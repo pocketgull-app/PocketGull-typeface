@@ -22,8 +22,8 @@ import json
 from pathlib import Path
 
 try:
-    from fontTools.ttLib import TTFont
-    from fontTools.ttLib import newTable
+    from fontTools.ttLib import TTFont  # type: ignore[import-not-found]
+    from fontTools.ttLib import newTable  # type: ignore[import-not-found]
 except ImportError as e:
     sys.exit(f"fontTools not available: {e}")
 
