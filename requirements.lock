@@ -1,0 +1,4 @@
+fonttools==4.53.1
+fontbakery==0.12.0
+cu2qu==1.6.7
+pytest==8.2.2

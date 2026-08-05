@@ -1,0 +1,12 @@
+# pyrefly.toml — PocketGull Typeface scripts
+# Tells pyrefly where to find third-party packages (fontTools, etc.)
+
+[python]
+python_interpreter = "C:\\Users\\philg\\anaconda3\\python.exe"
+
+[project]
+# Include the scripts dir so nib_engine, glyph_skeletons resolve
+search_path = [
+    "scripts",
+    "C:\\Users\\philg\\anaconda3\\Lib\\site-packages",
+]

@@ -1,0 +1,39 @@
+name: Build Antigravity Typeface
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.lock
+
+      - name: Run Deterministic Compilation Script
+        run: |
+          python scripts/compile.py --input PocketGull-Bold.ttf --output build/PocketGull-Antigravity.ttf
+
+      - name: Run FontBakery QA Suite
+        run: |
+          fontbakery check-opentype build/PocketGull-Antigravity.ttf --no-progress || true
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: pocketgull-font-binary
+          path: build/

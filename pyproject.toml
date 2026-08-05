@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pocketgull-typeface"
+version = "1.0.0"
+description = "Caslon-Level Reproducible Antigravity Typeface Compiler"
+authors = [
+    { name = "PocketGull Authors", email = "philgear@gmail.com" }
+]
+license = { text = "OFL-1.1" }
+requires-python = ">=3.11"
+dependencies = [
+    "fonttools==4.53.1",
+    "fontbakery==0.12.0",
+    "cu2qu==1.6.7",
+    "pytest==8.2.2"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
