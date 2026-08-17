@@ -31,5 +31,8 @@ fonts {
   copyright: "Copyright 2026 The PocketGull Project Authors (https://github.com/philgear/pocketgull)"
 }
 subsets: "latin"
+subsets: "latin-ext"
+subsets: "greek"
+subsets: "cyrillic"
 subsets: "menu"
 article: "article/README.md"

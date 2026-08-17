@@ -18,9 +18,9 @@ $PocketgullRoot = "C:\Users\philg\Pocketgull\pocketgull"
 $BrandFontsDir = Join-Path $PocketgullRoot "public\brand\fonts"
 $PublicFontsDir = Join-Path $PocketgullRoot "public\fonts"
 
-# Step 1: Recompile Precision Superfamily
-Write-Host "`n[1/5] Compiling Precision Vector Superfamily 1024 UPM..." -ForegroundColor Yellow
-wsl -d Ubuntu -- bash -c "~/.local/bin/uv run --with fonttools --with brotli python3 /mnt/c/Users/philg/Pocketgull/pocketgull-typeface/scripts/compile_precision_superfamily.py"
+# Step 1: Recompile Master Superfamily v4.0 (Authentic Wordmark + Caslon Skeletons)
+Write-Host "`n[1/5] Compiling Master Vector Superfamily 1024 UPM (Truth & Craft Edition)..." -ForegroundColor Yellow
+wsl -d Ubuntu -- bash -c "~/.local/bin/uv run --with fonttools --with brotli python3 /mnt/c/Users/philg/Pocketgull/pocketgull-typeface/scripts/compile_master_pocketgull_superfamily.py"
 
 # Step 2: Build Sacred Numerology & Telemetry Font
 Write-Host "`n[2/5] Building Sacred Numerology and Telemetry Font..." -ForegroundColor Yellow
@@ -36,12 +36,17 @@ wsl -d Ubuntu -- bash -c "~/.local/bin/uv run --with fonttools --with brotli pyt
 
 # Step 5: Run Unicode CMAP Audit & Quaker Quality Inspector
 if (-not $SkipAudit) {
-    Write-Host "`n[5/5] Running Unicode CMAP Audit and Quaker Quality Inspection..." -ForegroundColor Yellow
+    Write-Host "`n[5/6] Running Unicode CMAP Audit and Quaker Quality Inspection..." -ForegroundColor Yellow
     wsl -d Ubuntu -- bash -c "~/.local/bin/uv run --with fonttools python3 /mnt/c/Users/philg/Pocketgull/pocketgull-typeface/scripts/audit_unicode_cmap.py"
     wsl -d Ubuntu -- bash -c "~/.local/bin/uv run --with fonttools python3 /mnt/c/Users/philg/Pocketgull/pocketgull-typeface/scripts/quaker_quality_inspector.py"
 }
 
-# Step 6: Synchronize Binaries to Web Application & Brand Kit
+# Step 6: Embed Base64 Fonts into Specimen HTML & Generate Master SVG
+Write-Host "`n[6/6] Embedding Base64 Fonts into Specimen & Generating Master SVG..." -ForegroundColor Yellow
+wsl -d Ubuntu -- bash -c "~/.local/bin/uv run python3 /mnt/c/Users/philg/Pocketgull/pocketgull-typeface/scripts/embed_fonts_in_specimen.py"
+wsl -d Ubuntu -- bash -c "~/.local/bin/uv run --with fonttools python3 /mnt/c/Users/philg/Pocketgull/pocketgull-typeface/scripts/generate_master_vector_specimen_svg.py"
+
+# Step 7: Synchronize Binaries to Web Application & Brand Kit
 if (-not $SkipSync) {
     Write-Host "`nSynchronizing Font Binaries and Assets to Web Application..." -ForegroundColor Green
     
