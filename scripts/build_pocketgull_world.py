@@ -245,7 +245,9 @@ def compile_world_fonts():
         os.path.join(typeface_root, 'PocketGull-Fineliner.ttf'),
         os.path.join(typeface_root, 'PocketGull-Chiseltip.ttf'),
         os.path.join(typeface_root, 'PocketGull-VF.ttf'),
-        os.path.join(typeface_root, 'PocketGull-Numerics.ttf')
+        os.path.join(typeface_root, 'PocketGull-Numerics.ttf'),
+        os.path.join(typeface_root, 'PocketGullMono-Regular.ttf'),
+        os.path.join(typeface_root, 'PocketGull-Antigravity.ttf')
     ]
 
     world_glyphs = generate_world_glyphs()
