@@ -50,10 +50,12 @@ The master letterforms (`P`, `o`, `c`, `k`, `e`, `t`, `g`, `u`, `l`, `l`) are co
 
 | Font File | Weight / Style | US Weight | Primary Application |
 | :--- | :--- | :---: | :--- |
-| **`PocketGull-Fineliner.ttf`** | Light 400 | `400` | 0.3mm fine felt pen stroke contraction for dense EHR vitals & lab tables. |
-| **`PocketGull-Bold.ttf`** | Bold 700/800 | `700` | **Master vector SVG trace**. Primary brand display & clinical header typography. |
-| **`PocketGull-Chiseltip.ttf`** | Ultra-Bold 900 | `900` | Broad-nib calligraphic marker expansion for high-impact signage & ICU alerts. |
-| **`PocketGullMono-Regular.ttf`** | Monospace 400 | `400` | Fixed-width code & streaming heart-rate telemetry feed font (`mmol/L`, `SpO2`). |
+| **`PocketGull-VF.ttf` / `.woff2`** | Variable (`100` $\rightarrow$ `900`) | `100–900` | **Universal Variable Font**: Continuous weight, optical sizing (`opsz: 8..72`), and slant axes. |
+| **`PocketGull-Numerics.ttf` / `.woff2`** | Regular / Sacred | `400` | **Sacred Numerology & Telemetry**: Golden ratio ($\phi$), master numbers (`11`, `22`, `33`), circadian dials. |
+| **`PocketGull-Fineliner.ttf`** | Light / Regular | `400` | 0.3mm fine felt pen stroke contraction for dense EHR vitals & lab tables. |
+| **`PocketGull-Bold.ttf`** | Bold Display | `700` | **Master vector SVG trace**. Primary brand display & clinical header typography. |
+| **`PocketGull-Chiseltip.ttf`** | Ultra-Bold / Black | `900` | Broad-nib calligraphic marker expansion with $45^\circ$ origami chamfers for high-impact signage. |
+| **`PocketGullMono-Regular.ttf`** | Monospace Telemetry | `400` | Fixed-width $600\text{ UPM}$ code & streaming heart-rate telemetry feed font (`mmol/L`, `SpO2`). |
 
 ---
 

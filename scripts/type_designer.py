@@ -31,8 +31,9 @@ SCALE = ASCENDER_FONT / BASELINE_SVG  # ~10.127
 LSB = 40
 RSB = 40
 
-FONT_DIR = r'c:\Users\philg\Pocketgull\pocketgull-typeface'
-APP_FONT_DIR = r'c:\Users\philg\Pocketgull\pocketgull\public\fonts'
+FONT_DIR = os.path.dirname(SCRIPT_DIR)
+APP_FONT_DIR = os.path.abspath(os.path.join(FONT_DIR, '..', 'pocketgull', 'public', 'fonts'))
+BRAND_FONT_DIR = os.path.abspath(os.path.join(FONT_DIR, '..', 'pocketgull', 'public', 'brand', 'fonts'))
 
 # Master SVG paths (from the original wordmark — these take priority)
 MASTER_PATHS = {
@@ -177,11 +178,14 @@ def main():
         os.remove(filepath)
         os.rename(tmp, filepath)
         
-        # Copy to main app
+        # Copy to main app & brand fonts
         app_path = os.path.join(APP_FONT_DIR, filename)
+        brand_path = os.path.join(BRAND_FONT_DIR, filename)
         if os.path.exists(app_path):
             os.chmod(app_path, 0o666)
         shutil.copy2(filepath, app_path)
+        os.makedirs(BRAND_FONT_DIR, exist_ok=True)
+        shutil.copy2(filepath, brand_path)
         
         with open(filepath, 'rb') as f:
             sha = hashlib.sha256(f.read()).hexdigest()[:24]
