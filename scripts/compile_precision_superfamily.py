@@ -1181,6 +1181,95 @@ def create_precision_glyph_dict(weight=700):
             pen.closePath()
     glyphs['asterisk'] = (draw_asterisk, 480)
 
+    # =========================================================================
+    # CLINICAL TELEMETRY & MEDICAL ICON SUITE (Private Use Area E001-E006)
+    # =========================================================================
+
+    def draw_icon_heart_ecg(pen):
+        # Continuous crisp medical ECG QRS waveform
+        pen.moveTo((40, 260))
+        pen.lineTo((160, 260))
+        pen.lineTo((200, 200))
+        pen.lineTo((270, CAP - 40))
+        pen.lineTo((340, DSC + 40))
+        pen.lineTo((400, 360))
+        pen.lineTo((450, 260))
+        pen.lineTo((560, 260))
+        pen.lineTo((560, 260 + HW))
+        pen.lineTo((460, 260 + HW))
+        pen.lineTo((400, 360 + HW))
+        pen.lineTo((340, DSC + 40 + HW * 1.5))
+        pen.lineTo((270, CAP - 40 + HW))
+        pen.lineTo((190, 200 + HW))
+        pen.lineTo((150, 260 + HW))
+        pen.lineTo((40, 260 + HW))
+        pen.closePath()
+    glyphs['icon_heart_ecg'] = (draw_icon_heart_ecg, 600)
+
+    def draw_icon_spo2(pen):
+        # Crisp blood oxygen droplet (CW) with inner bubble (CCW)
+        pen.moveTo((300, CAP - 40))
+        pen.curveTo((380, 420), (480, 260), (480, 160))
+        pen.curveTo((480, BL - OVS), (120, BL - OVS), (120, 160))
+        pen.curveTo((120, 260), (220, 420), (300, CAP - 40))
+        pen.closePath()
+        # Inner counter (CCW)
+        pen.moveTo((300, CAP - 140))
+        pen.curveTo((240, 380), (160, 240), (160, 160))
+        pen.curveTo((160, BL + HW * 1.5), (440, BL + HW * 1.5), (440, 160))
+        pen.curveTo((440, 240), (360, 380), (300, CAP - 140))
+        pen.closePath()
+    glyphs['icon_spo2'] = (draw_icon_spo2, 600)
+
+    def draw_icon_glucose(pen):
+        # Hexagonal CGM sensor diamond
+        pen.moveTo((300, CAP - 40))
+        pen.lineTo((520, 360))
+        pen.lineTo((520, 120))
+        pen.lineTo((300, BL - 40))
+        pen.lineTo((80, 120))
+        pen.lineTo((80, 360))
+        pen.closePath()
+        # Inner counter (CCW)
+        pen.moveTo((300, CAP - 120))
+        pen.lineTo((130, 340))
+        pen.lineTo((130, 140))
+        pen.lineTo((300, BL + 40))
+        pen.lineTo((470, 140))
+        pen.lineTo((470, 340))
+        pen.closePath()
+        # Center sensor node
+        draw_oval_counter(pen, 300, 240, 60, 60, 0, 0)
+    glyphs['icon_glucose'] = (draw_icon_glucose, 600)
+
+    def draw_icon_aed_shock(pen):
+        # High-voltage AED lightning bolt
+        pen.moveTo((340, CAP))
+        pen.lineTo((140, 260))
+        pen.lineTo((280, 260))
+        pen.lineTo((200, BL - 40))
+        pen.lineTo((460, 320))
+        pen.lineTo((310, 320))
+        pen.lineTo((410, CAP))
+        pen.closePath()
+    glyphs['icon_aed_shock'] = (draw_icon_aed_shock, 600)
+
+    def draw_icon_beacon_gps(pen):
+        # 911 Dispatch Radar / Beacon
+        draw_oval_counter(pen, 300, 260, 220, 220, 220 - HW, 220 - HW)
+        draw_oval_counter(pen, 300, 260, 140, 140, 140 - HW, 140 - HW)
+        draw_oval_counter(pen, 300, 260, 50, 50, 0, 0)
+    glyphs['icon_beacon_gps'] = (draw_icon_beacon_gps, 600)
+
+    def draw_icon_cpr_coach(pen):
+        # Real-time CPR Rhythm Metronome Waves
+        draw_oval_counter(pen, 300, 260, 70, 70, 0, 0)
+        draw_smooth_c_arc(pen, 300, 260, 160, 160, HW, 300, 420, 300, 100)
+        draw_smooth_c_arc(pen, 300, 260, 160, 160, HW, 300, 100, 300, 420)
+        draw_smooth_c_arc(pen, 300, 260, 240, 240, HW, 300, 500, 300, 20)
+        draw_smooth_c_arc(pen, 300, 260, 240, 240, HW, 300, 20, 300, 500)
+    glyphs['icon_cpr_coach'] = (draw_icon_cpr_coach, 600)
+
     def draw_space(pen):
         pass
     glyphs['space'] = (draw_space, 280)
@@ -1209,6 +1298,15 @@ def build_superfamily():
         ('PocketGull-Numerics.ttf', 500, 'Regular', 'PocketGull Numerics', False),
     ]
 
+    PUA_MAP = {
+        'icon_heart_ecg': 0xE001,
+        'icon_spo2': 0xE002,
+        'icon_glucose': 0xE003,
+        'icon_aed_shock': 0xE004,
+        'icon_beacon_gps': 0xE005,
+        'icon_cpr_coach': 0xE006,
+    }
+
     for filename, wght, style_name, full_name, is_mono in weights:
         font = TTFont(base_font_path)
         glyf_table = font['glyf']
@@ -1231,17 +1329,43 @@ def build_superfamily():
             else:
                 glyph, advance = make_clean_glyph(draw_fn, glyph_set, final_aw)
             
-            # Map standard character name if present
-            if char_key in glyf_table:
-                glyf_table[char_key] = glyph
-                hmtx_table[char_key] = (final_aw, 40)
+            # Map standard character name
+            glyf_table[char_key] = glyph
+            hmtx_table[char_key] = (final_aw, 40)
             
             # Map PostScript name from cmap
             if len(char_key) == 1 and ord(char_key) in cmap:
                 glyph_name = cmap[ord(char_key)]
-                if glyph_name in glyf_table:
-                    glyf_table[glyph_name] = glyph
-                    hmtx_table[glyph_name] = (final_aw, 40)
+                glyf_table[glyph_name] = glyph
+                hmtx_table[glyph_name] = (final_aw, 40)
+
+        # Inject PUA into all sub-cmap tables
+        for table in font['cmap'].tables:
+            for gname, ucode in PUA_MAP.items():
+                table.cmap[ucode] = gname
+
+        # Inject GPOS optical kerning table (for non-monospace instances)
+        if not is_mono:
+            try:
+                from fontTools.ttLib.tables._k_e_r_n import KernTable_format_0
+                kern_table = newTable('kern')
+                kern_table.version = 0
+                kern_subtable = KernTable_format_0()
+                kern_subtable.version = 0
+                kern_subtable.coverage = 1
+                kerning_dict = {
+                    ('A', 'V'): -60, ('A', 'W'): -50, ('A', 'Y'): -70, ('A', 'T'): -60,
+                    ('T', 'A'): -65, ('T', 'a'): -50, ('T', 'e'): -45, ('T', 'o'): -45,
+                    ('V', 'A'): -60, ('V', 'a'): -40, ('V', 'e'): -40, ('V', 'o'): -40,
+                    ('W', 'A'): -50, ('W', 'a'): -35, ('W', 'e'): -35, ('W', 'o'): -35,
+                    ('Y', 'A'): -70, ('Y', 'a'): -55, ('Y', 'e'): -55, ('Y', 'o'): -55,
+                    ('P', 'A'): -50, ('F', 'A'): -45, ('L', 'T'): -50, ('L', 'V'): -40,
+                }
+                kern_subtable.kernTable = kerning_dict
+                kern_table.kernTables = [kern_subtable]
+                font['kern'] = kern_table
+            except Exception as e:
+                print(f"  ⚠️ Kerning note: {e}")
 
         # Set metadata
         if 'OS/2' in font:
@@ -1272,14 +1396,16 @@ def build_superfamily():
     
     for char_key, (draw_fn, aw) in vf_glyphs.items():
         glyph, advance = make_clean_glyph(draw_fn, glyph_set_vf, aw)
-        if char_key in glyf_vf:
-            glyf_vf[char_key] = glyph
-            hmtx_vf[char_key] = (advance, 40)
+        glyf_vf[char_key] = glyph
+        hmtx_vf[char_key] = (advance, 40)
         if len(char_key) == 1 and ord(char_key) in cmap_vf:
             glyph_name = cmap_vf[ord(char_key)]
-            if glyph_name in glyf_vf:
-                glyf_vf[glyph_name] = glyph
-                hmtx_vf[glyph_name] = (advance, 40)
+            glyf_vf[glyph_name] = glyph
+            hmtx_vf[glyph_name] = (advance, 40)
+
+    for table in font_vf['cmap'].tables:
+        for gname, ucode in PUA_MAP.items():
+            table.cmap[ucode] = gname
 
     fvar = newTable('fvar')
 

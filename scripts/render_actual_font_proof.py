@@ -65,18 +65,18 @@ def render_authentic_specimen():
     draw.text((160, 540), '0 1 2 3 4 5 6 7 8 9  (Slashed Zero 0, Structured 1, Open 4)', font=f_caps, fill=C_TEAL)
     draw.text((160, 630), '! ? . , : ; - _ ( ) [ ] { } / \\ @ # $ % & * + = < > \' "', font=f_caps, fill=C_MUTED)
 
-    # Card 2: Monospace Telemetry
+    # Card 2: Monospace Telemetry & Clinical Icons
     draw.rectangle([120, 790, W - 120, 1110], fill=C_CARD, outline=C_BORDER, width=2)
-    draw.text((160, 820), 'CLINICAL TELEMETRY & TABULAR MONOSPACE (PocketGull Mono)', font=f_meta, fill=C_TEAL)
-    draw.text((160, 870), 'HEART_RATE: 72 bpm  ·  SPO2: 98%  ·  GLUCOSE: 104 mg/dL  ·  DOSE: 100 mg / 1.5 mL', font=f_mono_large, fill=C_TEAL)
-    draw.text((160, 940), 'SYS_PRESSURE: 120/80 mmHg   PULSE: 68 bpm   RESP_RATE: 16 bpm   STATUS: OPTIMAL', font=f_mono_large, fill='#38bdf8')
-    draw.text((160, 1010), '0123456789   0123456789   0123456789   0123456789  (600 UPM MONO CELL)', font=f_mono_small, fill=C_MUTED)
+    draw.text((160, 820), 'CLINICAL TELEMETRY & BESPOKE MEDICAL ICONS (PocketGull Mono + PUA E001-E006)', font=f_meta, fill=C_TEAL)
+    draw.text((160, 870), '\uE001 HEART_RATE: 72 bpm  ·  \uE002 SPO2: 98%  ·  \uE003 GLUCOSE: 104 mg/dL', font=f_mono_large, fill=C_TEAL)
+    draw.text((160, 940), '\uE004 AED: ARMED & READY   \uE005 DISPATCH: 911 ACTIVE   \uE006 CPR: 110 BPM', font=f_mono_large, fill='#38bdf8')
+    draw.text((160, 1010), '0123456789   0123456789   0123456789  (TABULAR 600 UPM + GPOS KERNING PAIRS)', font=f_mono_small, fill=C_MUTED)
 
     # Card 3: Editorial & Grid Specs
     draw.rectangle([120, 1150, W - 120, 1480], fill=C_CARD, outline=C_BORDER, width=2)
-    draw.text((160, 1180), 'PANGRAM & EDITORIAL PROOF', font=f_meta, fill=C_ORANGE)
+    draw.text((160, 1180), 'PANGRAM & OPTICAL KERNING PROOF (AV, AW, Ta, To, We, Yo)', font=f_meta, fill=C_ORANGE)
     draw.text((160, 1230), 'Sphinx of black quartz, judge my vow.', font=f_h2, fill=C_WHITE)
-    draw.text((160, 1300), 'Bystander 911 dispatch, real-time CPR coach, and waveform telemetry with zero ambiguity.', font=f_sub, fill='#cbd5e1')
+    draw.text((160, 1300), 'AWAY TOWARD VICTORY: Bystander 911 dispatch, CPR coach, and telemetry with zero ambiguity.', font=f_sub, fill='#cbd5e1')
     draw.text((160, 1370), '1024 UPM Grid  |  Cap: 720  |  x-Height: 480  |  Baseline: 0  |  Descender: -180  |  True Bézier Vectors', font=f_mono_small, fill=C_MUTED)
 
     png_out_path = os.path.join(typeface_root, 'PocketGull-Authentic-Specimen.png')
