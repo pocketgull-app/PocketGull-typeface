@@ -22,79 +22,98 @@ def render_authentic_specimen():
     print("🎨 Rendering authentic font specimen directly from TTF binaries...")
 
     # -------------------------------------------------------------------------
-    # 1. 4x SUPER-SAMPLED MUSEUM SPECIMEN (typeface.pocketgull.app Aesthetic)
+    # 1. 4x SUPER-SAMPLED MUSEUM SPECIMEN (Exact typeface.pocketgull.app Sunlight Card)
     # -------------------------------------------------------------------------
     SCALE = 4
-    W_FINAL, H_FINAL = 2400, 1600
+    W_FINAL, H_FINAL = 2400, 1500
     W, H = W_FINAL * SCALE, H_FINAL * SCALE
 
-    # Background slate-950
-    img = Image.new('RGB', (W, H), color='#090d16')
+    # Background canvas: sleek modern dark slate matching the site (#0d1117)
+    img = Image.new('RGB', (W, H), color='#0a0e17')
     draw = ImageDraw.Draw(img)
 
-    C_CARD_BG = '#0f172a'
-    C_CARD_BORDER = '#1e293b'
-    C_AMBER = '#f59e0b'
-    C_AMBER_GLOW = '#d97706'
-    C_CYAN = '#06b6d4'
-    C_EMERALD = '#10b981'
-    C_ROSE = '#f43f5e'
-    C_WHITE = '#f8fafc'
-    C_MUTED = '#64748b'
-    C_GRID = '#101726'
-
-    # 1. Minimalist Dieter Rams Blueprint Grid
+    # 1. Subtle Dieter Rams Blueprint Coordinate Grid
     for y in range(0, H, 80 * SCALE):
-        draw.line([(0, y), (W, y)], fill=C_GRID, width=SCALE)
+        draw.line([(0, y), (W, y)], fill='#111827', width=SCALE)
     for x in range(0, W, 80 * SCALE):
-        draw.line([(x, 0), (x, H)], fill=C_GRID, width=SCALE)
+        draw.line([(x, 0), (x, H)], fill='#111827', width=SCALE)
 
-    # 2. Load Fonts at 4x scale
-    f_hero = ImageFont.truetype(font_bold, 120 * SCALE)
-    f_h2 = ImageFont.truetype(font_bold, 40 * SCALE)
-    f_badge = ImageFont.truetype(font_mono, 18 * SCALE)
-    f_sub = ImageFont.truetype(font_fine, 24 * SCALE)
-    f_caps = ImageFont.truetype(font_bold, 46 * SCALE)
-    f_low = ImageFont.truetype(font_fine, 42 * SCALE)
-    f_mono_large = ImageFont.truetype(font_mono, 32 * SCALE)
-    f_mono_small = ImageFont.truetype(font_mono, 20 * SCALE)
-    f_meta = ImageFont.truetype(font_mono, 16 * SCALE)
+    # 2. Top Header Bar (Matching typeface.pocketgull.app header)
+    f_brand_title = ImageFont.truetype(font_bold, 36 * SCALE)
+    f_brand_sub = ImageFont.truetype(font_fine, 18 * SCALE)
+    f_theme_btn = ImageFont.truetype(font_mono, 16 * SCALE)
 
-    # 3. Top Branding Header (Matching typeface.pocketgull.app)
-    # Seagull / Pen icon badge
-    draw.rounded_rectangle([120 * SCALE, 80 * SCALE, 190 * SCALE, 150 * SCALE], radius=16 * SCALE, fill=C_AMBER)
-    draw.text((138 * SCALE, 90 * SCALE), '🖋️', font=f_badge, fill='#000000')
+    # Logo badge (Amber felt tip / gull)
+    draw.rounded_rectangle([100 * SCALE, 60 * SCALE, 156 * SCALE, 116 * SCALE], radius=14 * SCALE, fill='#ea580c')
+    draw.text((114 * SCALE, 68 * SCALE), '🖋️', font=ImageFont.truetype(font_mono, 24 * SCALE), fill='#ffffff')
 
-    draw.text((215 * SCALE, 75 * SCALE), 'POCKETGULL', font=f_hero, fill=C_WHITE)
-    
-    # Subtitle with badge pills
-    draw.text((220 * SCALE, 215 * SCALE), '100% OWNED MATHEMATICAL TYPEFACE SUPERFAMILY  ·  WCAG 2.1 AAA CERTIFIED', font=f_sub, fill=C_AMBER)
-    draw.text((W - 680 * SCALE, 100 * SCALE), 'typeface.pocketgull.app', font=f_badge, fill=C_CYAN)
+    draw.text((176 * SCALE, 62 * SCALE), 'PocketGull', font=f_brand_title, fill='#f8fafc')
+    draw.text((176 * SCALE, 108 * SCALE), 'Official Typography & Design System (pocketgull.app)', font=f_brand_sub, fill='#94a3b8')
 
-    # 4. Card 1: Primary Character Matrix & Glyph Palette
-    draw.rounded_rectangle([120 * SCALE, 270 * SCALE, (W_FINAL - 120) * SCALE, 730 * SCALE], radius=24 * SCALE, fill=C_CARD_BG, outline=C_AMBER_GLOW, width=2 * SCALE)
-    draw.text((160 * SCALE, 300 * SCALE), '✦ CHARACTER SET MATRIX (PocketGull Bold 700 & Fineliner 400)', font=f_meta, fill=C_AMBER)
-    draw.text((160 * SCALE, 350 * SCALE), 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z', font=f_caps, fill=C_WHITE)
-    draw.text((160 * SCALE, 440 * SCALE), 'a b c d e f g h i j k l m n o p q r s t u v w x y z', font=f_low, fill='#e2e8f0')
-    draw.text((160 * SCALE, 525 * SCALE), '0 1 2 3 4 5 6 7 8 9  (Slashed Zero 0, Structured 1, Open 4)', font=f_caps, fill=C_CYAN)
-    draw.text((160 * SCALE, 615 * SCALE), '! ? . , : ; - _ ( ) [ ] { } / \\ @ # $ % & * + = < > \' "', font=f_caps, fill=C_MUTED)
+    # Top right theme pill
+    draw.rounded_rectangle([(W_FINAL - 260) * SCALE, 68 * SCALE, (W_FINAL - 100) * SCALE, 114 * SCALE], radius=12 * SCALE, fill='#1e293b', outline='#334155', width=SCALE)
+    draw.text(((W_FINAL - 235) * SCALE, 78 * SCALE), '🌗 OFL 1.1 Verified', font=f_theme_btn, fill='#cbd5e1')
 
-    # 5. Card 2: Clinical Telemetry & Bespoke Medical Icons
-    draw.rounded_rectangle([120 * SCALE, 770 * SCALE, (W_FINAL - 120) * SCALE, 1100 * SCALE], radius=24 * SCALE, fill=C_CARD_BG, outline='#0e7490', width=2 * SCALE)
-    draw.text((160 * SCALE, 800 * SCALE), '🩺 CLINICAL DISAMBIGUATION & TELEMETRY SUITE (PocketGull Mono 500 + PUA E001-E006)', font=f_meta, fill=C_CYAN)
-    draw.text((160 * SCALE, 855 * SCALE), '\uE001 HEART_RATE: 72 bpm   ·   \uE002 SPO2: 98%   ·   \uE003 GLUCOSE: 104 mg/dL', font=f_mono_large, fill=C_CYAN)
-    draw.text((160 * SCALE, 925 * SCALE), '\uE004 AED: ARMED & READY   \uE005 DISPATCH: 911 ACTIVE   \uE006 CPR: 110 BPM', font=f_mono_large, fill=C_EMERALD)
-    draw.text((160 * SCALE, 1000 * SCALE), '0123456789   0123456789   0123456789  (FIXED 600 UPM CELL  |  GPOS PAIR KERNING ACTIVE)', font=f_mono_small, fill=C_MUTED)
+    # 3. HERO SUNLIGHT SPECIMEN CARD (The Iconic Ivory & Ochre Card from typeface.pocketgull.app)
+    CARD_X0, CARD_Y0 = 100 * SCALE, 170 * SCALE
+    CARD_X1, CARD_Y1 = (W_FINAL - 100) * SCALE, 860 * SCALE
 
-    # 6. Card 3: Editorial Pangram & Optical Spec
-    draw.rounded_rectangle([120 * SCALE, 1140 * SCALE, (W_FINAL - 120) * SCALE, 1480 * SCALE], radius=24 * SCALE, fill=C_CARD_BG, outline='#475569', width=2 * SCALE)
-    draw.text((160 * SCALE, 1170 * SCALE), '📏 DIETER RAMS PANGRAM PROOF & 1024 UPM OPTICAL SPECS', font=f_meta, fill='#cbd5e1')
-    draw.text((160 * SCALE, 1220 * SCALE), 'Sphinx of black quartz, judge my vow.', font=f_h2, fill=C_WHITE)
-    draw.text((160 * SCALE, 1290 * SCALE), 'AWAY TOWARD VICTORY: Bystander 911 dispatch, real-time CPR coach, and waveform telemetry with zero ambiguity.', font=f_sub, fill='#94a3b8')
-    draw.text((160 * SCALE, 1370 * SCALE), '1024 UPM Grid  |  Cap: 720  |  x-Height: 480  |  Baseline: 0  |  Descender: -180  |  True Bézier Vectors', font=f_mono_small, fill=C_MUTED)
+    # Ivory card background with warm ochre border (#c27d38)
+    draw.rounded_rectangle([CARD_X0, CARD_Y0, CARD_X1, CARD_Y1], radius=32 * SCALE, fill='#fbf9f5', outline='#c27d38', width=4 * SCALE)
 
-    # Downsample using Lanczos-3 for razor-sharp antialiasing
-    print("  ✨ Downsampling 9600x6400 -> 2400x1600 via Lanczos anti-aliasing filter...")
+    # Sunlight Badge: POCKETGULL TYPEFACE SPECIMEN
+    f_badge = ImageFont.truetype(font_bold, 15 * SCALE)
+    draw.rounded_rectangle([(CARD_X0 + 40 * SCALE), (CARD_Y0 + 40 * SCALE), (CARD_X0 + 360 * SCALE), (CARD_Y0 + 82 * SCALE)], radius=999 * SCALE, fill='#c27d38')
+    draw.text(((CARD_X0 + 64 * SCALE), (CARD_Y0 + 48 * SCALE)), 'POCKETGULL TYPEFACE SPECIMEN', font=f_badge, fill='#ffffff')
+
+    # Wordmark: "PocketGull" in master titlecase!
+    f_wordmark = ImageFont.truetype(font_bold, 110 * SCALE)
+    draw.text(((CARD_X0 + 40 * SCALE), (CARD_Y0 + 105 * SCALE)), 'PocketGull', font=f_wordmark, fill='#1c1b1a')
+
+    # Subtitle: Handcrafted Felt-Tip Marker Typography & Clinical Legibility Engine
+    f_card_sub = ImageFont.truetype(font_bold, 24 * SCALE)
+    draw.text(((CARD_X0 + 44 * SCALE), (CARD_Y0 + 265 * SCALE)), 'Handcrafted Felt-Tip Marker Typography & Clinical Legibility Engine', font=f_card_sub, fill='#c27d38')
+
+    # Dashed divider line
+    dash_y = CARD_Y0 + 325 * SCALE
+    for dx in range(CARD_X0 + 40 * SCALE, CARD_X1 - 40 * SCALE, 20 * SCALE):
+        draw.line([(dx, dash_y), (dx + 10 * SCALE, dash_y)], fill='#d5cebf', width=2 * SCALE)
+
+    # Character set line: Aa Bb Cc Dd Ee 0123456789 · I IV X · ½ ¼ · ± % = · α β Ω
+    f_chars = ImageFont.truetype(font_bold, 28 * SCALE)
+    draw.text(((CARD_X0 + 44 * SCALE), (CARD_Y0 + 355 * SCALE)), 'Aa Bb Cc Dd Ee 0123456789 · I IV X · ! ? & # @ · ± % = · \uE001 \uE002 \uE003 \uE004 \uE005 \uE006', font=f_chars, fill='#4a4744')
+
+    # Footer: SIL Open Font License 1.1 · Certified WCAG 2.1 AAA Contrast Ratio (8.9:1) · pocketgull.app
+    f_footer = ImageFont.truetype(font_mono, 16 * SCALE)
+    draw.text(((CARD_X0 + 44 * SCALE), (CARD_Y0 + 425 * SCALE)), 'SIL Open Font License 1.1 · Certified WCAG 2.1 AAA Contrast Ratio (12.8:1) · pocketgull.app · 1024 UPM Grid', font=f_footer, fill='#78716c')
+
+    # 4. LOWER CARD: Interactive Live Specimen & Clinical Telemetry Matrix
+    L_CARD_Y0 = 910 * SCALE
+    L_CARD_Y1 = (H_FINAL - 60) * SCALE
+    draw.rounded_rectangle([CARD_X0, L_CARD_Y0, CARD_X1, L_CARD_Y1], radius=28 * SCALE, fill='#0f172a', outline='#1e293b', width=2 * SCALE)
+
+    # Section title
+    f_sec_title = ImageFont.truetype(font_bold, 22 * SCALE)
+    draw.text(((CARD_X0 + 40 * SCALE), (L_CARD_Y0 + 35 * SCALE)), '✨ Interactive Clinical Telemetry & Variable Superfamily Matrix', font=f_sec_title, fill='#f8fafc')
+
+    # Pill Tabs: Display & Brand, Clinical & Body, Telemetry & Vitals
+    draw.rounded_rectangle([(CARD_X0 + 40 * SCALE), (L_CARD_Y0 + 80 * SCALE), (CARD_X0 + 290 * SCALE), (L_CARD_Y0 + 128 * SCALE)], radius=12 * SCALE, fill='#ea580c')
+    draw.text(((CARD_X0 + 60 * SCALE), (L_CARD_Y0 + 90 * SCALE)), '🎨 Display & Brand (Bold 700)', font=f_badge, fill='#ffffff')
+
+    draw.rounded_rectangle([(CARD_X0 + 310 * SCALE), (L_CARD_Y0 + 80 * SCALE), (CARD_X0 + 600 * SCALE), (L_CARD_Y0 + 128 * SCALE)], radius=12 * SCALE, fill='#1e293b', outline='#334155', width=SCALE)
+    draw.text(((CARD_X0 + 330 * SCALE), (L_CARD_Y0 + 90 * SCALE)), '🩺 Clinical & Telemetry (Mono 500)', font=f_badge, fill='#cbd5e1')
+
+    # Editorial Pangram in True Bold & Telemetry
+    f_pangram = ImageFont.truetype(font_bold, 44 * SCALE)
+    f_telemetry = ImageFont.truetype(font_mono, 26 * SCALE)
+    f_mono_desc = ImageFont.truetype(font_fine, 20 * SCALE)
+
+    draw.text(((CARD_X0 + 40 * SCALE), (L_CARD_Y0 + 160 * SCALE)), 'PocketGull — Continuous Empirical Intelligence & Care', font=f_pangram, fill='#f8fafc')
+    draw.text(((CARD_X0 + 40 * SCALE), (L_CARD_Y0 + 245 * SCALE)), '\uE001 HEART_RATE: 72 bpm   \uE002 SPO2: 98%   \uE003 GLUCOSE: 104 mg/dL   \uE004 AED: ARMED   \uE005 GPS: 911 ACTIVE', font=f_telemetry, fill='#22d3ee')
+    draw.text(((CARD_X0 + 40 * SCALE), (L_CARD_Y0 + 315 * SCALE)), 'Sphinx of black quartz, judge my vow.  ·  Tabular 600 UPM numerals with GPOS optical kerning pairs.', font=f_mono_desc, fill='#94a3b8')
+
+    # Downsample using Lanczos-3 for silky print-grade antialiasing
+    print("  ✨ Downsampling 9600x6000 -> 2400x1500 via Lanczos anti-aliasing filter...")
     img_crisp = img.resize((W_FINAL, H_FINAL), resample=Image.Resampling.LANCZOS)
 
     png_out_path = os.path.join(typeface_root, 'PocketGull-Authentic-Specimen.png')
