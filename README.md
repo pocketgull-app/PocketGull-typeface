@@ -1,29 +1,19 @@
 <div align="center">
 
 # 🖋️ PocketGull Typeface Superfamily
-### *Open-Source Felt-Tip Marker & High-Contrast Clinical Typeface Suite*
+### *100% Owned Mathematical Vector Typeface & Clinical Telemetry Suite*
 
 [![OFL 1.1 License](https://img.shields.io/badge/License-OFL--1.1-orange.svg)](https://opensource.org/licenses/OFL-1.1)
-[![Fontbakery QA](https://img.shields.io/badge/Fontbakery_QA-0_FAILs_%7C_0_FATALs-brightgreen.svg)](https://github.com/philgear/PocketGull-typeface)
+[![Vector Precision](https://img.shields.io/badge/Vector_Grid-1024_UPM_%7C_G2_Continuity-teal.svg)](https://github.com/pocketgull-app/PocketGull-typeface)
+[![Dead Letters](https://img.shields.io/badge/Charmap_Audit-0_Dead_Letters-brightgreen.svg)](https://github.com/pocketgull-app/PocketGull-typeface)
+[![Clinical PUA Icons](https://img.shields.io/badge/Clinical_PUA-E001--E006-blue.svg)](https://github.com/pocketgull-app/PocketGull-typeface)
 [![WCAG 2.1 AAA](https://img.shields.io/badge/WCAG_2.1_AAA-12.8%3A1_Contrast-emerald.svg)](https://typeface.pocketgull.app)
-[![Google Fonts Ready](https://img.shields.io/badge/Google_Fonts-OFL_Submission-blue.svg)](https://github.com/philgear/PocketGull-typeface)
 
 <br/>
 
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 262.72 79.16" style="width: 100%; max-width: 600px; height: auto; fill: #1c1917;">
-  <path d="M196.15,49.52l-9.6-.21.09-8.54,15.88-.29c.65-.01,2.52.43,2.52.95v2.81c.06,10.75-.26,30.08-8.37,32.91-6.32,2.21-14.76,2.19-20.36-2.27-4.48-3.58-6.6-10.34-6.93-15.95-.79-13.46-.64-26.4.95-39.66.74-6.14,3.43-12.02,8.95-15.03,6.72-3.67,15.91-2.63,21.43,2.87,3,2.99,3.5,8.2,3.78,11.85l-10.09,1.57c-.49-2.94-.73-5.14-2.04-7.49-.95-1.71-4.87-1.76-6.91-1.01-1.76.64-3.57,3.21-4.1,5.77-2.86,13.79-3.4,32.74-.03,46.06.86,3.39,3.85,5.11,6.77,5.1s6.51-1.43,6.82-5.01l1.25-14.45Z"/>
-  <path d="M12.38,78.22l-10.64.54c-1.03.05-1.07-2-1.06-3.25l.07-23.9L0,4.29l15.98-1.9c5.21-.62,11.35-.07,15.69,2.7,7,4.48,7.96,12.52,7.21,20.09-.74,7.47-4.74,12.96-12.61,14.38-4.56.83-9.87.84-14.7.78l.8,37.87ZM23.39,11.92l-12.54-.24.41,20.69,7.03-.13c3.04-.06,6.15-.86,8.02-2.88,4.52-4.89,2.17-17.35-2.92-17.44Z"/>
-  <path d="M110.9,77.72l-10.89-22.1.23,21.94-10.23.2c1.2-11.34.86-22.07.66-33.6l-.37-21.01-.66-15.25,10.05-2.58.26,36.25,9.93-12.58c3.18-.34,6.17-.35,10.48.16l-14.67,17.43,14.45,27.49,1.32,3.22-10.55.45Z"/>
-  <path d="M209.14,68.45l-.62-9.64-.28-25.1,9.45.07c-.74,10.56-2.46,33.12,2.21,35.68.89.49,3.22-.23,4.06-1.04,2.01-1.93,1.69-4.65,1.66-7.21l-.34-26.95c2.7-1.2,6.69-1.43,9.42-.8l-.2,14.39c-.14,9.8-1.9,19.41,1.24,28.88l-8.96,1.66-1.14-3.74c-3.03,2.87-7.61,4.39-11.71,2.31-2.79-1.41-4.57-5.15-4.79-8.52Z"/>
-  <path d="M136.06,68.26l1.5-3.94,8.11.83c.29,7.61-5.49,12.79-12.7,12.71-7.57-.08-13.14-4.93-13.65-12.68-1.02-15.73-2.46-32.08,13.55-33.07,5.14-.32,8.88,1.69,10.89,6.61,1.88,4.62,2.14,9.73,1.89,15.27l-18.07,2.83,2.58,10.97c.18.77,1.74,2,2.5,2.24.91.29,3.05-.85,3.4-1.75ZM137.29,49.42c-.39-2.78-1.04-7.03-3.11-9.44-1.72-2.01-5.92.14-6.09,2.41l-.64,8.53,9.84-1.49Z"/>
-  <path d="M167.9,76.56c-4.86,2.52-10.67,2.85-14.93-.96-1.62-1.45-2.68-5.72-2.68-8.18l-.04-33.05-5.57-.06-.21-7.02,6.06-.34.03-8.96,9.01-3.01-.32,11.99,6.69-.41.43,7.48-7.42.35.42,31.56c.35,1.09.92,3.51,1.84,3.65s2.48-.19,4.47-.51c1.14,1.21,1.94,4.49,2.22,7.46Z"/>
-  <path d="M262.72,79.03l-10.71-.18,1.24-49.69-.96-25.67,10.3-3.49c-1.07,18.26-2.37,35.25-1.41,53.12l.72,13.46.83,12.46Z"/>
-  <path d="M78.98,66.4c1.62-1.64,5.91-2.22,8.6-1.68.84,4.2-.29,9.24-3.91,11.88-5.74,4.19-14.46,3.12-19.23-2.21s-4.39-22.04-2.41-30.79c1.34-5.9,6.57-9.44,12.38-9.91,6.97-.56,13.05,3.67,13.24,10.98-2.66.96-5.58,1.47-8.35,1.55-.43-2.7-2.07-5.29-4.14-5.73-1.37-.29-3.94,1.95-4.15,3.21-1.72,10.36-2.02,28.87,4.53,27.82,2.26-.36,3.01-1.97,3.43-5.12Z"/>
-  <path d="M238.5,77.9l.09-21.45c.05-12.68.74-25.05-.13-37.74l-.8-11.63,10.22-3.36-.79,42.99,1.33,31.43-9.91-.23Z"/>
-  <path d="M54.12,75.97c-6.6,4.26-15.26,4.46-20.85-1.24-3.03-3.08-3.9-8.37-3.87-12.56l.09-10.61c.03-3.51.48-7.91,2.63-10.83,5.31-7.19,16.34-8.1,22.67-1.75,2.67,2.68,3.25,7.47,3.31,11.07l.18,11.45c.08,5.18-1.17,9.8-4.16,14.47ZM47.98,45.94c-.34-1.88-2.32-3.67-3.91-3.78-1.23-.08-4.03,1.33-4.22,2.61l-1.11,7.48c-1.09,7.37-.75,18.69,4.67,19.92,6.69,1.52,6.41-15.94,4.58-26.23Z"/>
-</svg>
+![PocketGull Authentic Specimen](PocketGull-Authentic-Specimen.png)
 
-### 🌐 Live Specimen: [typeface.pocketgull.app](https://typeface.pocketgull.app)
+### 🌐 Live Specimen Web Portal: [typeface.pocketgull.app](https://typeface.pocketgull.app)
 
 </div>
 
@@ -31,79 +21,99 @@
 
 ## 📖 Overview
 
-**PocketGull** is an open-source felt-tip marker and high-contrast clinical typeface superfamily. Designed for zero-error medical charting, papercraft UI branding, and ICU telemetry displays, PocketGull combines the authentic warmth of hand-inked felt marker lettering with the mathematical precision of **WCAG 2.1 AAA 12.8:1 contrast certification**.
+**PocketGull** is a bespoke, 100% owned mathematical vector typeface superfamily engineered for zero-error medical charting, emergency 911 dispatch HUDs, bystander CPR coaching, and high-contrast clinical displays.
 
-The master letterforms (`P`, `o`, `c`, `k`, `e`, `t`, `g`, `u`, `l`, `l`) are compiled **100% verbatim** from the original vector trace of the **GearArts PocketGull** brand mark.
-
----
-
-## 🖼️ Specimen Gallery
-
-| GearArts Origin Artwork | Dieter Rams 10 Principles Specimen | Clinical Bionic Telemetry Specimen |
-| :---: | :---: | :---: |
-| ![GearArts Origin Card](article/geararts_pocketgull_origin_card.jpg) | ![Dieter Rams Specimen](article/dieter_rams_specimen.png) | ![Clinical Bionic Specimen](article/clinical_bionic_specimen.png) |
-| *Original papercraft card & felt marker lettering.* | *Minimalist papercraft type specimen.* | *High-contrast ICU telemetry 40% fixation mode.* |
+Every glyph in the superfamily is synthesized from pure mathematical Bézier splines on a standardized **1024 UPM grid** ($CAP=720, XH=480, BL=0, DSC=-180$) with strict TrueType winding rules (Clockwise perimeters and Counter-Clockwise inner counters), G2 continuous extrema, and zero overlapping primitive artifacts.
 
 ---
 
-## 🖋️ Superfamily Font Family Matrix
+## 🫀 Clinical Telemetry Icon Suite (PUA `E001–E006`)
 
-| Font File | Weight / Style | US Weight | Primary Application |
-| :--- | :--- | :---: | :--- |
-| **`PocketGull-VF.ttf` / `.woff2`** | Variable (`100` $\rightarrow$ `900`) | `100–900` | **Universal Variable Font**: Continuous weight, optical sizing (`opsz: 8..72`), and slant axes. |
-| **`PocketGull-Numerics.ttf` / `.woff2`** | Regular / Sacred | `400` | **Sacred Numerology & Telemetry**: Golden ratio ($\phi$), master numbers (`11`, `22`, `33`), circadian dials. |
-| **`PocketGull-Fineliner.ttf`** | Light / Regular | `400` | 0.3mm fine felt pen stroke contraction for dense EHR vitals & lab tables. |
-| **`PocketGull-Bold.ttf`** | Bold Display | `700` | **Master vector SVG trace**. Primary brand display & clinical header typography. |
-| **`PocketGull-Chiseltip.ttf`** | Ultra-Bold / Black | `900` | Broad-nib calligraphic marker expansion with $45^\circ$ origami chamfers for high-impact signage. |
-| **`PocketGullMono-Regular.ttf`** | Monospace Telemetry | `400` | Fixed-width $600\text{ UPM}$ code & streaming heart-rate telemetry feed font (`mmol/L`, `SpO2`). |
+PocketGull embeds bespoke clinical and emergency icons directly into the font’s **Private Use Area (PUA)**, allowing applications to render vector medical indicators inline with text strings without extra HTTP requests or image assets:
+
+| Glyph | Unicode | Name | Application | Live String Example |
+| :---: | :---: | :--- | :--- | :--- |
+| **`🫀`** | `\uE001` | `icon_heart_ecg` | Cardiac QRS wave & telemetry pulse | `\uE001 HEART_RATE: 72 bpm` |
+| **`💧`** | `\uE002` | `icon_spo2` | Blood oxygen saturation droplet | `\uE002 SPO2: 98%` |
+| **`💎`** | `\uE003` | `icon_glucose` | Hexagonal CGM continuous glucose sensor | `\uE003 GLUCOSE: 104 mg/dL` |
+| **`⚡`** | `\uE004` | `icon_aed_shock` | High-voltage AED defibrillator armed alert | `\uE004 AED: ARMED & READY` |
+| **`🎯`** | `\uE005` | `icon_beacon_gps` | 911 dispatch radio concentric radar beacon | `\uE005 DISPATCH: 911 ACTIVE` |
+| **`🔊`** | `\uE006` | `icon_cpr_coach` | Real-time 110 BPM CPR compression metronome | `\uE006 CPR: 110 BPM` |
 
 ---
 
-## 📜 William Caslon Typefounding Standard
+## 🖋️ Superfamily Instances
 
-The typeface strictly adheres to William Caslon’s 5 master typefounding principles:
+| Font File | Weight / Style | Grid / Advance | Primary Application |
+| :--- | :---: | :---: | :--- |
+| **`PocketGull-VF.ttf` / `.woff2`** | `100` $\rightarrow$ `900` | Proportional | **Universal Variable Font**: Continuous `wght`, `opsz` (8–72), and `slnt` axes. |
+| **`PocketGull-Bold.ttf`** | Bold (`700`) | Proportional | **Master Display**: Primary brand identity, headlines, and critical clinical callouts. |
+| **`PocketGull-Fineliner.ttf`** | Regular (`400`) | Proportional | **Dense EHR & Lab Tables**: High-legibility body text and clinical charts. |
+| **`PocketGull-Chiseltip.ttf`** | Black (`900`) | Proportional | **Signage & High Impact**: Bold geometric chamfers for emergency placards. |
+| **`PocketGull-Antigravity.ttf`** | Heavy (`800`) | Proportional | **Dynamic HUD Display**: High-contrast user interface titles. |
+| **`PocketGullMono-Regular.ttf`** | Medium (`500`) | Fixed `600 UPM` | **Telemetry & Vital Feeds**: Tabular alignment for streaming heart rate and metrics. |
+| **`PocketGull-Numerics.ttf`** | Medium (`500`) | Proportional | **Sacred Numerology & Dials**: Golden ratio ($\phi$) and high-legibility numerals. |
 
-1. **✍️ Human Warmth ("Form Follows the Hand")**: Master SVG glyphs preserve natural hand-inked stroke contours without artificial flattening.
-2. **👁️ Open Counter Apertures**: Deep loops in `e`, `c`, `o`, `g` guarantee **WCAG 2.1 AAA 12.8:1 contrast legibility** under low-light ICU environments.
-3. **⚖️ Proportional Optical Scaling**: Distinct stroke proportions across `Fineliner`, `Bold`, and `Chiseltip`.
-4. **🔀 Contextual Handwriting Alternates (`calt`)**: OpenType `l.alt` substitution for natural variation in double letters (`ll`).
-5. **🛠️ Printers' Ornaments & Apothecary Glyphs**: Latin, Greek (`α β Ω`), Cyrillic (`Б`), Eastern Arabic (`٠١٢`), Apothecary measures (`℞`, `℥`, `ℨ`, `℃`, `℉`), and Clinical organ telemetry icons (`🫀`, `🫁`, `🧠`, `🛡️`).
+---
+
+## 📐 Engineering & Typographic Specifications
+
+* **Grid Resolution**: Standardized `1024 UPM` (Units per Em).
+* **Cap-Height**: `720 UPM` | **x-Height**: `480 UPM` | **Descender**: `-180 UPM`.
+* **Stem Widths**: Bold (`110 UPM`), Regular (`65 UPM`), Hairline/Crossbar (`45 UPM`).
+* **Optical Overshoot**: `14 UPM` on curved vertices for optical height uniformity.
+* **Optical Kerning**: Embedded `GPOS` / `kern` pair-spacing table (`AV`, `AW`, `Ta`, `To`, `We`, `Yo`, `PA`, `FA`, `LT`).
+* **Contour Winding**: Clockwise outer boundaries with Counter-Clockwise internal counters for zero-artifact FreeType / DirectWrite rendering.
+
+---
+
+## 🛠️ Local Foundry Toolchain
+
+Compile the entire font superfamily, audit the charmap, and render binary proof posters directly from your local terminal:
+
+```bash
+# 1. Compile all 6 TTF/WOFF2 instances and Variable Font
+python scripts/compile_precision_superfamily.py
+
+# 2. Render high-resolution 2400x1600 proof directly from compiled TTF binaries
+python scripts/render_actual_font_proof.py
+
+# 3. Perform a zero-dead-letter and CMAP code audit
+python scripts/audit_unicode_cmap.py
+```
 
 ---
 
 ## 💻 Web & CSS Integration
 
-Add the `@font-face` definitions to your CSS stylesheet:
+Add the `@font-face` definitions to your web or mobile stylesheet:
 
 ```css
-/* 🖋️ PocketGull Superfamily Font Declarations */
+/* PocketGull Variable Font */
 @font-face {
   font-family: 'PocketGull';
+  font-weight: 100 900;
   font-style: normal;
-  font-weight: 400;
-  src: url('/assets/fonts/PocketGull-Fineliner.ttf') format('truetype');
+  src: url('/fonts/PocketGull-VF.woff2') format('woff2-variations'),
+       url('/fonts/PocketGull-Bold.woff2') format('woff2');
 }
 
-@font-face {
-  font-family: 'PocketGull';
-  font-style: normal;
-  font-weight: 700;
-  src: url('/assets/fonts/PocketGull-Bold.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'PocketGull';
-  font-style: normal;
-  font-weight: 900;
-  src: url('/assets/fonts/PocketGull-Chiseltip.ttf') format('truetype');
-}
-
+/* PocketGull Monospace Telemetry */
 @font-face {
   font-family: 'PocketGull Mono';
+  font-weight: 500;
   font-style: normal;
-  font-weight: 400;
-  src: url('/assets/fonts/PocketGullMono-Regular.ttf') format('truetype');
+  src: url('/fonts/PocketGullMono-Regular.woff2') format('woff2');
 }
+```
+
+```html
+<!-- Inline Medical Telemetry HUD Example -->
+<div class="hud-telemetry" style="font-family: 'PocketGull Mono', monospace;">
+  <span>&#xE001; HEART_RATE: 72 bpm</span>
+  <span>&#xE002; SPO2: 98%</span>
+  <span>&#xE003; GLUCOSE: 104 mg/dL</span>
+</div>
 ```
 
 ---
