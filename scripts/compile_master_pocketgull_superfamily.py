@@ -26,7 +26,7 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 if SCRIPT_DIR not in sys.path:
     sys.path.insert(0, SCRIPT_DIR)
 
-from nib_engine import POCKETGULL_NIB, NibModel
+from nib_engine import POCKETGULL_NIB, NibModel, StrokeExpander
 from glyph_skeletons import _build_skeletons
 
 # Font Dimensions (1024 UPM)
@@ -100,9 +100,10 @@ def build_all_true_fonts():
             hmtx[char] = (adv, LSB)
         
         # 2. Compile Caslon & Skeletons from glyph_skeletons.py
+        expander = StrokeExpander(nib=POCKETGULL_NIB)
         for name, skel in skeletons.items():
             if name not in MASTER_WORDMARK_PATHS:
-                svg_d = skel.to_svg_path(nib=POCKETGULL_NIB)
+                svg_d = expander.expand_glyph(skel)
                 if svg_d:
                     try:
                         glyph, adv = compile_svg_d_to_glyph(font, svg_d, scale_factor=10.0)
