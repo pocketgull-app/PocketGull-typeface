@@ -71,146 +71,581 @@ def draw_oval(pen, cx, cy, rx, ry, inner_rx=0, inner_ry=0):
         pen.curveTo((cx + inner_rx, cy + iky), (cx + ikx, cy + inner_ry), (cx, cy + inner_ry))
         pen.closePath()
 
+def draw_arc_open(pen, cx, cy, rx, ry, sw, start_deg=45, end_deg=315):
+    """Draws a smooth open curved contour with thickness sw."""
+    pts_outer = []
+    pts_inner = []
+    n = 16
+    for i in range(n + 1):
+        deg = start_deg + (end_deg - start_deg) * (i / n)
+        rad = math.radians(deg)
+        ox = cx + rx * math.cos(rad)
+        oy = cy + ry * math.sin(rad)
+        ix = cx + (rx - sw) * math.cos(rad)
+        iy = cy + (ry - sw) * math.sin(rad)
+        pts_outer.append((ox, oy))
+        pts_inner.append((ix, iy))
+    
+    pen.moveTo(pts_outer[0])
+    for p in pts_outer[1:]:
+        pen.lineTo(p)
+    for p in reversed(pts_inner):
+        pen.lineTo(p)
+    pen.closePath()
+
 def create_precision_glyph_dict(weight=700):
-    # Dynamic stem scaling based on weight (400 -> 65, 700 -> 110, 900 -> 150)
-    SW = int(50 + (weight - 100) * (110 / 800))   # Main stem width
-    HW = int(35 + (weight - 100) * (55 / 800))    # Hairline / Crossbar width
-    
+    # Dynamic stem scaling based on weight (400 -> 70, 700 -> 115, 900 -> 155)
+    w_norm = (weight - 400) / 500.0 if weight >= 400 else 0.0
+    SW = int(70 + w_norm * 85)   # Main stem width
+    HW = int(45 + w_norm * 40)   # Crossbar / hairline width
+
     glyphs = {}
-    
-    # ── A ──
+
+    # =========================================================================
+    # UPPERCASE (A-Z)
+    # =========================================================================
+
     def draw_A(pen):
-        # Clean geometric apex with origami chamfer terminal
-        pen.moveTo((60, BL))
-        pen.lineTo((270, CAP + OVS))
+        pen.moveTo((50, BL))
+        pen.lineTo((260, CAP + OVS))
         pen.lineTo((340, CAP + OVS))
         pen.lineTo((550, BL))
         pen.lineTo((550 - SW, BL))
-        pen.lineTo((420, 220))
-        pen.lineTo((190, 220))
+        pen.lineTo((420, 200))
+        pen.lineTo((180, 200))
         pen.lineTo((120, BL))
         pen.closePath()
-        # Inner counter
-        pen.moveTo((210, 280))
-        pen.lineTo((400, 280))
-        pen.lineTo((305, CAP - 120))
+        pen.moveTo((200, 260))
+        pen.lineTo((400, 260))
+        pen.lineTo((300, CAP - 100))
         pen.closePath()
-    glyphs['A'] = (draw_A, 610)
+    glyphs['A'] = (draw_A, 600)
 
-    # ── B ──
     def draw_B(pen):
-        # Vertical stem + 2 rounded bowls
-        draw_rect(pen, 70, BL, 70 + SW, CAP)
-        # Top bowl outer
-        draw_oval(pen, 280, CAP - 170, 210, 180, 210 - SW, 180 - HW)
-        # Bottom bowl outer
-        draw_oval(pen, 290, 180, 225, 190, 225 - SW, 190 - HW)
-    glyphs['B'] = (draw_B, 590)
+        draw_rect(pen, 60, BL, 60 + SW, CAP)
+        draw_oval(pen, 270, CAP - 170, 200, 170, 200 - SW, 170 - HW)
+        draw_oval(pen, 280, 180, 215, 180, 215 - SW, 180 - HW)
+        draw_rect(pen, 60, (CAP/2) - (HW/2), 280, (CAP/2) + (HW/2))
+    glyphs['B'] = (draw_B, 570)
 
-    # ── C ──
     def draw_C(pen):
-        draw_oval(pen, 310, CAP/2, 250, (CAP/2) + OVS, 250 - SW, (CAP/2) + OVS - HW)
-    glyphs['C'] = (draw_C, 590)
+        draw_arc_open(pen, 300, CAP/2, 240, (CAP/2) + OVS, SW, start_deg=40, end_deg=320)
+    glyphs['C'] = (draw_C, 580)
 
-    # ── P (Master Brand Letter) ──
-    def draw_P(pen):
-        draw_rect(pen, 70, BL, 70 + SW, CAP)
-        # Upper bowl with aerodynamic wingtail
-        draw_oval(pen, 290, CAP - 210, 220, 220, 220 - SW, 220 - HW)
-    glyphs['P'] = (draw_P, 580)
+    def draw_D(pen):
+        draw_rect(pen, 60, BL, 60 + SW, CAP)
+        draw_oval(pen, 280, CAP/2, 230, (CAP/2) + OVS, 230 - SW, (CAP/2) + OVS - HW)
+    glyphs['D'] = (draw_D, 590)
 
-    # ── G (Master Display Letter) ──
+    def draw_E(pen):
+        draw_rect(pen, 60, BL, 60 + SW, CAP)
+        draw_rect(pen, 60, CAP - HW, 480, CAP)
+        draw_rect(pen, 60, (CAP/2) - (HW/2), 420, (CAP/2) + (HW/2))
+        draw_rect(pen, 60, BL, 480, BL + HW)
+    glyphs['E'] = (draw_E, 530)
+
+    def draw_F(pen):
+        draw_rect(pen, 60, BL, 60 + SW, CAP)
+        draw_rect(pen, 60, CAP - HW, 470, CAP)
+        draw_rect(pen, 60, (CAP/2) - (HW/2), 400, (CAP/2) + (HW/2))
+    glyphs['F'] = (draw_F, 520)
+
     def draw_G(pen):
-        # Outer oval bowl + crossbar & spur
-        draw_oval(pen, 330, CAP/2, 270, (CAP/2) + OVS, 270 - SW, (CAP/2) + OVS - HW)
-        draw_rect(pen, 330, 240, 560, 240 + HW)
+        draw_arc_open(pen, 320, CAP/2, 260, (CAP/2) + OVS, SW, start_deg=35, end_deg=325)
+        draw_rect(pen, 320, 240, 560, 240 + HW)
         draw_rect(pen, 560 - SW, BL + 40, 560, 240 + HW)
-    glyphs['G'] = (draw_G, 650)
+    glyphs['G'] = (draw_G, 630)
 
-    # ── o (Master Lowercase) ──
-    def draw_o(pen):
-        draw_oval(pen, 260, XH/2, 210, (XH/2) + OVS, 210 - SW, (XH/2) + OVS - HW)
-    glyphs['o'] = (draw_o, 520)
+    def draw_H(pen):
+        draw_rect(pen, 60, BL, 60 + SW, CAP)
+        draw_rect(pen, 520 - SW, BL, 520, CAP)
+        draw_rect(pen, 60, (CAP/2) - (HW/2), 520, (CAP/2) + (HW/2))
+    glyphs['H'] = (draw_H, 580)
 
-    # ── c (Master Lowercase) ──
+    def draw_I(pen):
+        draw_rect(pen, 120, BL, 120 + SW, CAP)
+    glyphs['I'] = (draw_I, 310)
+
+    def draw_J(pen):
+        draw_rect(pen, 280, 140, 280 + SW, CAP)
+        draw_arc_open(pen, 200, 140, 140, 140, SW, start_deg=180, end_deg=360)
+    glyphs['J'] = (draw_J, 420)
+
+    def draw_K(pen):
+        draw_rect(pen, 60, BL, 60 + SW, CAP)
+        pen.moveTo((60 + SW, 300))
+        pen.lineTo((450, CAP))
+        pen.lineTo((450 + SW, CAP))
+        pen.lineTo((180, 220))
+        pen.lineTo((480, BL))
+        pen.lineTo((480 - SW, BL))
+        pen.lineTo((60 + SW, 170))
+        pen.closePath()
+    glyphs['K'] = (draw_K, 570)
+
+    def draw_L(pen):
+        draw_rect(pen, 60, BL, 60 + SW, CAP)
+        draw_rect(pen, 60, BL, 460, BL + HW)
+    glyphs['L'] = (draw_L, 500)
+
+    def draw_M(pen):
+        draw_rect(pen, 50, BL, 50 + SW, CAP)
+        draw_rect(pen, 630 - SW, BL, 630, CAP)
+        pen.moveTo((50 + SW, CAP))
+        pen.lineTo((340, 160))
+        pen.lineTo((630 - SW, CAP))
+        pen.lineTo((630 - SW, CAP - HW * 1.5))
+        pen.lineTo((340, 60))
+        pen.lineTo((50 + SW, CAP - HW * 1.5))
+        pen.closePath()
+    glyphs['M'] = (draw_M, 680)
+
+    def draw_N(pen):
+        draw_rect(pen, 60, BL, 60 + SW, CAP)
+        draw_rect(pen, 530 - SW, BL, 530, CAP)
+        pen.moveTo((60 + SW, CAP))
+        pen.lineTo((530, BL + 60))
+        pen.lineTo((530, BL))
+        pen.lineTo((530 - SW, BL))
+        pen.lineTo((60, CAP - 60))
+        pen.lineTo((60, CAP))
+        pen.closePath()
+    glyphs['N'] = (draw_N, 590)
+
+    def draw_O(pen):
+        draw_oval(pen, 300, CAP/2, 250, (CAP/2) + OVS, 250 - SW, (CAP/2) + OVS - HW)
+    glyphs['O'] = (draw_O, 600)
+
+    def draw_P(pen):
+        draw_rect(pen, 60, BL, 60 + SW, CAP)
+        draw_oval(pen, 270, CAP - 200, 210, 200, 210 - SW, 200 - HW)
+    glyphs['P'] = (draw_P, 560)
+
+    def draw_Q(pen):
+        draw_oval(pen, 300, CAP/2, 250, (CAP/2) + OVS, 250 - SW, (CAP/2) + OVS - HW)
+        pen.moveTo((260, 160))
+        pen.lineTo((520, -50))
+        pen.lineTo((560, -50 + HW))
+        pen.lineTo((310, 180))
+        pen.closePath()
+    glyphs['Q'] = (draw_Q, 600)
+
+    def draw_R(pen):
+        draw_rect(pen, 60, BL, 60 + SW, CAP)
+        draw_oval(pen, 260, CAP - 190, 200, 190, 200 - SW, 190 - HW)
+        pen.moveTo((220, 280))
+        pen.lineTo((480, BL))
+        pen.lineTo((480 - SW, BL))
+        pen.lineTo((140, 280))
+        pen.closePath()
+    glyphs['R'] = (draw_R, 570)
+
+    def draw_S(pen):
+        draw_arc_open(pen, 280, CAP - 180, 210, 180 + OVS, SW, start_deg=40, end_deg=260)
+        draw_arc_open(pen, 280, 180, 220, 180 + OVS, SW, start_deg=220, end_deg=440)
+        draw_rect(pen, 130, (CAP/2) - (HW/2), 430, (CAP/2) + (HW/2))
+    glyphs['S'] = (draw_S, 560)
+
+    def draw_T(pen):
+        draw_rect(pen, 260 - SW/2, BL, 260 + SW/2, CAP)
+        draw_rect(pen, 40, CAP - HW, 480, CAP)
+    glyphs['T'] = (draw_T, 520)
+
+    def draw_U(pen):
+        draw_rect(pen, 60, 180, 60 + SW, CAP)
+        draw_rect(pen, 520 - SW, 180, 520, CAP)
+        draw_arc_open(pen, 290, 200, 230, 200 + OVS, SW, start_deg=180, end_deg=360)
+    glyphs['U'] = (draw_U, 580)
+
+    def draw_V(pen):
+        pen.moveTo((40, CAP))
+        pen.lineTo((280 - SW/2, BL))
+        pen.lineTo((280 + SW/2, BL))
+        pen.lineTo((520, CAP))
+        pen.lineTo((520 - SW, CAP))
+        pen.lineTo((280, BL + 80))
+        pen.lineTo((40 + SW, CAP))
+        pen.closePath()
+    glyphs['V'] = (draw_V, 560)
+
+    def draw_W(pen):
+        pen.moveTo((30, CAP))
+        pen.lineTo((190, BL))
+        pen.lineTo((360, CAP - 120))
+        pen.lineTo((530, BL))
+        pen.lineTo((690, CAP))
+        pen.lineTo((690 - SW, CAP))
+        pen.lineTo((530, BL + 100))
+        pen.lineTo((360, CAP - 20))
+        pen.lineTo((190, BL + 100))
+        pen.lineTo((30 + SW, CAP))
+        pen.closePath()
+    glyphs['W'] = (draw_W, 720)
+
+    def draw_X(pen):
+        pen.moveTo((50, CAP))
+        pen.lineTo((510, BL))
+        pen.lineTo((510 - SW, BL))
+        pen.lineTo((280, (CAP/2) - 30))
+        pen.lineTo((100, BL))
+        pen.lineTo((50, BL))
+        pen.lineTo((460, CAP))
+        pen.lineTo((510, CAP))
+        pen.lineTo((280, (CAP/2) + 30))
+        pen.lineTo((100, CAP))
+        pen.closePath()
+    glyphs['X'] = (draw_X, 560)
+
+    def draw_Y(pen):
+        pen.moveTo((40, CAP))
+        pen.lineTo((270, 320))
+        pen.lineTo((500, CAP))
+        pen.lineTo((500 - SW, CAP))
+        pen.lineTo((270 + SW/2, 340))
+        pen.lineTo((270 + SW/2, BL))
+        pen.lineTo((270 - SW/2, BL))
+        pen.lineTo((270 - SW/2, 340))
+        pen.lineTo((40 + SW, CAP))
+        pen.closePath()
+    glyphs['Y'] = (draw_Y, 540)
+
+    def draw_Z(pen):
+        draw_rect(pen, 50, CAP - HW, 490, CAP)
+        draw_rect(pen, 50, BL, 490, BL + HW)
+        pen.moveTo((490, CAP - HW))
+        pen.lineTo((110, BL + HW))
+        pen.lineTo((50, BL + HW))
+        pen.lineTo((430, CAP - HW))
+        pen.closePath()
+    glyphs['Z'] = (draw_Z, 540)
+
+    # =========================================================================
+    # LOWERCASE (a-z)
+    # =========================================================================
+
+    def draw_a(pen):
+        draw_oval(pen, 230, XH/2, 180, (XH/2) + OVS, 180 - SW, (XH/2) + OVS - HW)
+        draw_rect(pen, 410 - SW, BL, 410, XH)
+    glyphs['a'] = (draw_a, 470)
+
+    def draw_b(pen):
+        draw_rect(pen, 60, BL, 60 + SW, CAP)
+        draw_oval(pen, 250, XH/2, 190, (XH/2) + OVS, 190 - SW, (XH/2) + OVS - HW)
+    glyphs['b'] = (draw_b, 490)
+
     def draw_c(pen):
-        draw_oval(pen, 250, XH/2, 200, (XH/2) + OVS, 200 - SW, (XH/2) + OVS - HW)
-    glyphs['c'] = (draw_c, 490)
+        draw_arc_open(pen, 240, XH/2, 190, (XH/2) + OVS, SW, start_deg=40, end_deg=320)
+    glyphs['c'] = (draw_c, 460)
 
-    # ── k (Master Lowercase) ──
+    def draw_d(pen):
+        draw_rect(pen, 420 - SW, BL, 420, CAP)
+        draw_oval(pen, 230, XH/2, 190, (XH/2) + OVS, 190 - SW, (XH/2) + OVS - HW)
+    glyphs['d'] = (draw_d, 490)
+
+    def draw_e(pen):
+        draw_oval(pen, 240, XH/2, 190, (XH/2) + OVS, 190 - SW, (XH/2) + OVS - HW)
+        draw_rect(pen, 60, 210, 420, 210 + HW)
+    glyphs['e'] = (draw_e, 480)
+
+    def draw_f(pen):
+        draw_rect(pen, 130, BL, 130 + SW, CAP - 80)
+        draw_arc_open(pen, 220, CAP - 90, 90, 90, SW, start_deg=0, end_deg=180)
+        draw_rect(pen, 50, XH - HW, 300, XH)
+    glyphs['f'] = (draw_f, 350)
+
+    def draw_g(pen):
+        draw_oval(pen, 240, XH/2, 190, (XH/2) + OVS, 190 - SW, (XH/2) + OVS - HW)
+        draw_rect(pen, 430 - SW, DSC + 60, 430, XH)
+        draw_arc_open(pen, 280, DSC + 70, 150, 90, SW, start_deg=180, end_deg=360)
+    glyphs['g'] = (draw_g, 490)
+
+    def draw_h(pen):
+        draw_rect(pen, 60, BL, 60 + SW, CAP)
+        draw_arc_open(pen, 250, XH - 120, 180, 120, SW, start_deg=0, end_deg=180)
+        draw_rect(pen, 430 - SW, BL, 430, XH - 120)
+    glyphs['h'] = (draw_h, 490)
+
+    def draw_i(pen):
+        draw_rect(pen, 90, BL, 90 + SW, XH)
+        draw_oval(pen, 90 + SW/2, CAP - 60, SW/2 + 6, SW/2 + 6)
+    glyphs['i'] = (draw_i, 260)
+
+    def draw_j(pen):
+        draw_rect(pen, 180, DSC + 60, 180 + SW, XH)
+        draw_arc_open(pen, 120, DSC + 70, 100, 80, SW, start_deg=180, end_deg=360)
+        draw_oval(pen, 180 + SW/2, CAP - 60, SW/2 + 6, SW/2 + 6)
+    glyphs['j'] = (draw_j, 290)
+
     def draw_k(pen):
         draw_rect(pen, 60, BL, 60 + SW, CAP)
-        pen.moveTo((60 + SW, 220))
+        pen.moveTo((60 + SW, 200))
         pen.lineTo((340, XH))
         pen.lineTo((340 + SW, XH))
-        pen.lineTo((150, 160))
+        pen.lineTo((140, 140))
         pen.lineTo((370, BL))
         pen.lineTo((370 - SW, BL))
-        pen.lineTo((60 + SW, 120))
+        pen.lineTo((60 + SW, 100))
         pen.closePath()
-    glyphs['k'] = (draw_k, 470)
+    glyphs['k'] = (draw_k, 450)
 
-    # ── e (Master Lowercase) ──
-    def draw_e(pen):
-        draw_oval(pen, 250, XH/2, 200, (XH/2) + OVS, 200 - SW, (XH/2) + OVS - HW)
-        draw_rect(pen, 70, 220, 430, 220 + HW)
-    glyphs['e'] = (draw_e, 500)
-
-    # ── t (Master Lowercase) ──
-    def draw_t(pen):
-        draw_rect(pen, 160, BL + 30, 160 + SW, CAP - 80)
-        draw_rect(pen, 60, XH - HW, 330, XH)
-        # bottom curve
-        draw_oval(pen, 240, 70, 90, 80, 90 - SW, 80 - HW)
-    glyphs['t'] = (draw_t, 380)
-
-    # ── u (Master Lowercase) ──
-    def draw_u(pen):
-        draw_rect(pen, 70, 120, 70 + SW, XH)
-        draw_rect(pen, 370, BL, 370 + SW, XH)
-        draw_oval(pen, 250, 120, 180, 130, 180 - SW, 130 - HW)
-    glyphs['u'] = (draw_u, 510)
-
-    # ── l (Master Lowercase with Hook cv05) ──
     def draw_l(pen):
         draw_rect(pen, 80, BL + 40, 80 + SW, CAP)
-        # subtle hook terminal
         pen.moveTo((80, BL + 40))
         pen.curveTo((80, BL), (140, BL), (180, BL + 20))
         pen.lineTo((180, BL + 20 + HW))
         pen.curveTo((140, BL + HW), (80 + SW, BL + HW), (80 + SW, BL + 40))
         pen.closePath()
-    glyphs['l'] = (draw_l, 260)
+    glyphs['l'] = (draw_l, 250)
 
-    # ── 0 (Slashed Zero) ──
+    def draw_m(pen):
+        draw_rect(pen, 50, BL, 50 + SW, XH)
+        draw_arc_open(pen, 200, XH - 100, 140, 100, SW, start_deg=0, end_deg=180)
+        draw_rect(pen, 340 - SW, BL, 340, XH - 100)
+        draw_arc_open(pen, 470, XH - 100, 140, 100, SW, start_deg=0, end_deg=180)
+        draw_rect(pen, 610 - SW, BL, 610, XH - 100)
+    glyphs['m'] = (draw_m, 660)
+
+    def draw_n(pen):
+        draw_rect(pen, 60, BL, 60 + SW, XH)
+        draw_arc_open(pen, 240, XH - 100, 180, 100, SW, start_deg=0, end_deg=180)
+        draw_rect(pen, 420 - SW, BL, 420, XH - 100)
+    glyphs['n'] = (draw_n, 480)
+
+    def draw_o(pen):
+        draw_oval(pen, 240, XH/2, 190, (XH/2) + OVS, 190 - SW, (XH/2) + OVS - HW)
+    glyphs['o'] = (draw_o, 480)
+
+    def draw_p(pen):
+        draw_rect(pen, 60, DSC, 60 + SW, XH)
+        draw_oval(pen, 250, XH/2, 190, (XH/2) + OVS, 190 - SW, (XH/2) + OVS - HW)
+    glyphs['p'] = (draw_p, 490)
+
+    def draw_q(pen):
+        draw_rect(pen, 420 - SW, DSC, 420, XH)
+        draw_oval(pen, 230, XH/2, 190, (XH/2) + OVS, 190 - SW, (XH/2) + OVS - HW)
+    glyphs['q'] = (draw_q, 490)
+
+    def draw_r(pen):
+        draw_rect(pen, 60, BL, 60 + SW, XH)
+        draw_arc_open(pen, 220, XH - 100, 160, 100, SW, start_deg=40, end_deg=180)
+    glyphs['r'] = (draw_r, 380)
+
+    def draw_s(pen):
+        draw_arc_open(pen, 230, XH - 120, 160, 120 + OVS, SW, start_deg=40, end_deg=260)
+        draw_arc_open(pen, 230, 120, 170, 120 + OVS, SW, start_deg=220, end_deg=440)
+        draw_rect(pen, 90, (XH/2) - (HW/2), 370, (XH/2) + (HW/2))
+    glyphs['s'] = (draw_s, 460)
+
+    def draw_t(pen):
+        draw_rect(pen, 130, BL + 40, 130 + SW, CAP - 120)
+        pen.moveTo((130, BL + 40))
+        pen.curveTo((130, BL), (190, BL), (240, BL + 20))
+        pen.lineTo((240, BL + 20 + HW))
+        pen.curveTo((190, BL + HW), (130 + SW, BL + HW), (130 + SW, BL + 40))
+        pen.closePath()
+        draw_rect(pen, 50, XH - HW, 270, XH)
+    glyphs['t'] = (draw_t, 340)
+
+    def draw_u(pen):
+        draw_rect(pen, 60, 120, 60 + SW, XH)
+        draw_rect(pen, 420 - SW, BL, 420, XH)
+        draw_arc_open(pen, 240, 130, 180, 130 + OVS, SW, start_deg=180, end_deg=360)
+    glyphs['u'] = (draw_u, 480)
+
+    def draw_v(pen):
+        pen.moveTo((30, XH))
+        pen.lineTo((230 - SW/2, BL))
+        pen.lineTo((230 + SW/2, BL))
+        pen.lineTo((430, XH))
+        pen.lineTo((430 - SW, XH))
+        pen.lineTo((230, BL + 60))
+        pen.lineTo((30 + SW, XH))
+        pen.closePath()
+    glyphs['v'] = (draw_v, 460)
+
+    def draw_w(pen):
+        pen.moveTo((20, XH))
+        pen.lineTo((160, BL))
+        pen.lineTo((300, XH - 80))
+        pen.lineTo((440, BL))
+        pen.lineTo((580, XH))
+        pen.lineTo((580 - SW, XH))
+        pen.lineTo((440, BL + 80))
+        pen.lineTo((300, XH - 20))
+        pen.lineTo((160, BL + 80))
+        pen.lineTo((20 + SW, XH))
+        pen.closePath()
+    glyphs['w'] = (draw_w, 600)
+
+    def draw_x(pen):
+        pen.moveTo((40, XH))
+        pen.lineTo((410, BL))
+        pen.lineTo((410 - SW, BL))
+        pen.lineTo((225, (XH/2) - 20))
+        pen.lineTo((80, BL))
+        pen.lineTo((40, BL))
+        pen.lineTo((370, XH))
+        pen.lineTo((410, XH))
+        pen.lineTo((225, (XH/2) + 20))
+        pen.lineTo((80, XH))
+        pen.closePath()
+    glyphs['x'] = (draw_x, 450)
+
+    def draw_y(pen):
+        pen.moveTo((40, XH))
+        pen.lineTo((230, BL))
+        pen.lineTo((420, XH))
+        pen.lineTo((420 - SW, XH))
+        pen.lineTo((230, BL + 40))
+        pen.lineTo((110, DSC))
+        pen.lineTo((60, DSC))
+        pen.lineTo((170, BL - 20))
+        pen.lineTo((40 + SW, XH))
+        pen.closePath()
+    glyphs['y'] = (draw_y, 460)
+
+    def draw_z(pen):
+        draw_rect(pen, 40, XH - HW, 400, XH)
+        draw_rect(pen, 40, BL, 400, BL + HW)
+        pen.moveTo((400, XH - HW))
+        pen.lineTo((90, BL + HW))
+        pen.lineTo((40, BL + HW))
+        pen.lineTo((350, XH - HW))
+        pen.closePath()
+    glyphs['z'] = (draw_z, 440)
+
+    # =========================================================================
+    # DIGITS (0-9)
+    # =========================================================================
+
     def draw_0(pen):
-        draw_oval(pen, 280, CAP/2, 220, (CAP/2) + OVS, 220 - SW, (CAP/2) + OVS - HW)
-        # Crisp diagonal slash
+        draw_oval(pen, 270, CAP/2, 210, (CAP/2) + OVS, 210 - SW, (CAP/2) + OVS - HW)
         pen.moveTo((120, 160))
-        pen.lineTo((440, CAP - 160))
-        pen.lineTo((440, CAP - 160 - HW))
+        pen.lineTo((420, CAP - 160))
+        pen.lineTo((420, CAP - 160 - HW))
         pen.lineTo((120, 160 - HW))
         pen.closePath()
-    glyphs['0'] = (draw_0, 560)
+    glyphs['0'] = (draw_0, 540)
 
-    # ── 1 ──
     def draw_1(pen):
-        draw_rect(pen, 230, BL, 230 + SW, CAP)
-        pen.moveTo((120, CAP - 120))
-        pen.lineTo((230 + SW, CAP))
-        pen.lineTo((230 + SW, CAP - HW))
-        pen.lineTo((120, CAP - 120 - HW))
+        draw_rect(pen, 210, BL, 210 + SW, CAP)
+        pen.moveTo((110, CAP - 120))
+        pen.lineTo((210 + SW, CAP))
+        pen.lineTo((210 + SW, CAP - HW))
+        pen.lineTo((110, CAP - 120 - HW))
         pen.closePath()
-        draw_rect(pen, 130, BL, 390, BL + HW)
-    glyphs['1'] = (draw_1, 520)
+        draw_rect(pen, 110, BL, 350, BL + HW)
+    glyphs['1'] = (draw_1, 460)
 
-    # ── 2-9 Standard Digits ──
-    for d in ['2', '3', '4', '5', '6', '7', '8', '9']:
-        def make_digit_fn(digit_char):
-            def draw_digit(pen):
-                draw_oval(pen, 280, CAP/2, 210, CAP/2, 210 - SW, (CAP/2) - HW)
-            return draw_digit
-        glyphs[d] = (make_digit_fn(d), 560)
+    def draw_2(pen):
+        draw_arc_open(pen, 260, CAP - 180, 200, 180 + OVS, SW, start_deg=0, end_deg=180)
+        draw_rect(pen, 50, BL, 470, BL + HW)
+        pen.moveTo((460, CAP - 180))
+        pen.lineTo((100, BL + HW))
+        pen.lineTo((50, BL + HW))
+        pen.lineTo((410, CAP - 180))
+        pen.closePath()
+    glyphs['2'] = (draw_2, 520)
+
+    def draw_3(pen):
+        draw_arc_open(pen, 260, CAP - 180, 190, 180 + OVS, SW, start_deg=-60, end_deg=180)
+        draw_arc_open(pen, 260, 180, 200, 180 + OVS, SW, start_deg=180, end_deg=420)
+        draw_rect(pen, 130, (CAP/2) - (HW/2), 380, (CAP/2) + (HW/2))
+    glyphs['3'] = (draw_3, 520)
+
+    def draw_4(pen):
+        draw_rect(pen, 340 - SW, BL, 340, CAP)
+        pen.moveTo((340, CAP))
+        pen.lineTo((40, 200))
+        pen.lineTo((460, 200))
+        pen.lineTo((460, 200 - HW))
+        pen.lineTo((40, 200 - HW))
+        pen.lineTo((340 - SW, CAP - 40))
+        pen.closePath()
+    glyphs['4'] = (draw_4, 500)
+
+    def draw_5(pen):
+        draw_rect(pen, 60, CAP - HW, 450, CAP)
+        draw_rect(pen, 60, CAP/2, 60 + SW, CAP)
+        draw_arc_open(pen, 260, 190, 200, 190 + OVS, SW, start_deg=180, end_deg=440)
+        draw_rect(pen, 60, CAP/2, 320, CAP/2 + HW)
+    glyphs['5'] = (draw_5, 510)
+
+    def draw_6(pen):
+        draw_oval(pen, 270, 210, 210, 210 + OVS, 210 - SW, 210 + OVS - HW)
+        draw_arc_open(pen, 270, CAP - 200, 210, 200, SW, start_deg=90, end_deg=180)
+        draw_rect(pen, 60, 210, 60 + SW, CAP - 200)
+    glyphs['6'] = (draw_6, 540)
+
+    def draw_7(pen):
+        draw_rect(pen, 50, CAP - HW, 470, CAP)
+        pen.moveTo((470, CAP))
+        pen.lineTo((190, BL))
+        pen.lineTo((190 - SW, BL))
+        pen.lineTo((470 - SW, CAP - HW))
+        pen.closePath()
+    glyphs['7'] = (draw_7, 520)
+
+    def draw_8(pen):
+        draw_oval(pen, 260, CAP - 180, 180, 170 + OVS, 180 - SW, 170 + OVS - HW)
+        draw_oval(pen, 260, 190, 200, 190 + OVS, 200 - SW, 190 + OVS - HW)
+    glyphs['8'] = (draw_8, 520)
+
+    def draw_9(pen):
+        draw_oval(pen, 270, CAP - 210, 210, 210 + OVS, 210 - SW, 210 + OVS - HW)
+        draw_rect(pen, 480 - SW, 180, 480, CAP - 210)
+        draw_arc_open(pen, 270, 180, 210, 180, SW, start_deg=270, end_deg=360)
+    glyphs['9'] = (draw_9, 540)
+
+    # =========================================================================
+    # PUNCTUATION & SYMBOLS
+    # =========================================================================
+
+    def draw_period(pen):
+        draw_oval(pen, 120, BL + SW/2, SW/2 + 2, SW/2 + 2)
+    glyphs['period'] = (draw_period, 240)
+
+    def draw_comma(pen):
+        draw_oval(pen, 120, BL + SW/2, SW/2 + 2, SW/2 + 2)
+        pen.moveTo((120 + SW/2, BL + SW/2))
+        pen.lineTo((80, BL - 60))
+        pen.lineTo((120, BL - 60))
+        pen.closePath()
+    glyphs['comma'] = (draw_comma, 240)
+
+    def draw_colon(pen):
+        draw_oval(pen, 120, BL + SW/2, SW/2 + 2, SW/2 + 2)
+        draw_oval(pen, 120, XH - SW/2, SW/2 + 2, SW/2 + 2)
+    glyphs['colon'] = (draw_colon, 240)
+
+    def draw_hyphen(pen):
+        draw_rect(pen, 50, (XH/2) - (HW/2), 290, (XH/2) + (HW/2))
+    glyphs['hyphen'] = (draw_hyphen, 340)
+
+    def draw_exclam(pen):
+        draw_rect(pen, 120 - SW/2, 160, 120 + SW/2, CAP)
+        draw_oval(pen, 120, BL + SW/2, SW/2 + 2, SW/2 + 2)
+    glyphs['exclam'] = (draw_exclam, 240)
+
+    def draw_question(pen):
+        draw_arc_open(pen, 200, CAP - 160, 150, 150 + OVS, SW, start_deg=-30, end_deg=180)
+        draw_rect(pen, 200 - SW/2, 160, 200 + SW/2, CAP - 280)
+        draw_oval(pen, 200, BL + SW/2, SW/2 + 2, SW/2 + 2)
+    glyphs['question'] = (draw_question, 400)
+
+    def draw_slash(pen):
+        pen.moveTo((300, CAP))
+        pen.lineTo((60, DSC))
+        pen.lineTo((60 + SW, DSC))
+        pen.lineTo((300 + SW, CAP))
+        pen.closePath()
+    glyphs['slash'] = (draw_slash, 360)
+
+    def draw_space(pen):
+        pass
+    glyphs['space'] = (draw_space, 280)
+
+    return glyphs
 
     return glyphs
 
@@ -242,21 +677,36 @@ def build_superfamily():
 
         precision_glyphs = create_precision_glyph_dict(weight=wght)
         
-        for char, (draw_fn, aw) in precision_glyphs.items():
+        cmap = font.getBestCmap()
+        for char_key, (draw_fn, aw) in precision_glyphs.items():
             glyph, advance = make_clean_glyph(draw_fn, glyph_set, aw)
-            glyf_table[char] = glyph
-            hmtx_table[char] = (advance, 40)
+            
+            # Map standard character name if present
+            if char_key in glyf_table:
+                glyf_table[char_key] = glyph
+                hmtx_table[char_key] = (advance, 40)
+            
+            # Map PostScript name from cmap (e.g. '0' -> 'zero', '1' -> 'one', '.' -> 'period')
+            if len(char_key) == 1 and ord(char_key) in cmap:
+                glyph_name = cmap[ord(char_key)]
+                if glyph_name in glyf_table:
+                    glyf_table[glyph_name] = glyph
+                    hmtx_table[glyph_name] = (advance, 40)
 
         # Set metadata
         if 'OS/2' in font:
             font['OS/2'].usWeightClass = wght
         
-        # Save to all distribution targets
+        # Save to all distribution targets (TTF and WOFF2)
         for dest in [typeface_root, sync_dir, brand_fonts_dir]:
-            target_path = os.path.join(dest, filename)
-            font.save(target_path)
+            target_ttf = os.path.join(dest, filename)
+            target_woff2 = os.path.splitext(target_ttf)[0] + '.woff2'
+            font.save(target_ttf)
+            font.flavor = 'woff2'
+            font.save(target_woff2)
+            font.flavor = None
         
-        print(f"  ✅ Built pristine {filename} (Weight: {wght})")
+        print(f"  ✅ Built pristine {filename} & WOFF2 (Weight: {wght})")
 
     # Build Variable Font (VF)
     font_vf = TTFont(base_font_path)
