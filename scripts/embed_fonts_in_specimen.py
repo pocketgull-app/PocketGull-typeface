@@ -19,9 +19,13 @@ def embed_specimen_fonts():
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PocketGull — The Living Brand Typeface & Typefoundry</title>
-  <meta name="description" content="Open-Source Handcrafted Felt-Tip Marker & High-Contrast Clinical Typeface Superfamily. Pure mathematical Bezier precision, variable font axes, and sacred numerology.">
+  <title>PocketGull — The Handcrafted Living Brand Typeface</title>
+  <meta name="description" content="Handcrafted Felt-Tip Marker Typography from the PocketGull brand. High-contrast geometric warmth, open apertures, and authentic vector craft.">
   
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
   <!-- EMBEDDED_FONTS_PLACEHOLDER -->
 
   <style>
@@ -37,19 +41,21 @@ def embed_specimen_fonts():
       --accent-teal: #14b8a6;
       --accent-gold: #eab308;
       --accent-blue: #0284c7;
-      --font-display: 'PocketGull VF', 'PocketGull Bold', sans-serif;
-      --font-mono: 'PocketGull Mono', monospace;
+      --font-display: 'PocketGull VF', 'PocketGull', 'Outfit', 'Plus Jakarta Sans', 'Atkinson Hyperlegible', sans-serif;
+      --font-brand: 'PocketGull', 'Outfit', 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Plus Jakarta Sans', 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'PocketGull Mono', 'JetBrains Mono', monospace;
     }
 
     [data-theme="light"] {
-      --bg-primary: #f8fafc;
+      --bg-primary: #fbf9f5;
       --bg-surface: #ffffff;
-      --bg-card: #f1f5f9;
-      --border-color: #e2e8f0;
-      --text-primary: #0f172a;
-      --text-secondary: #475569;
-      --text-muted: #94a3b8;
-      --accent-orange: #c2410c;
+      --bg-card: #f2efe9;
+      --border-color: #e5e0d8;
+      --text-primary: #1c1b1a;
+      --text-secondary: #4a4744;
+      --text-muted: #78716c;
+      --accent-orange: #c27d38;
       --accent-teal: #0d9488;
       --accent-gold: #ca8a04;
       --accent-blue: #0369a1;
@@ -64,10 +70,38 @@ def embed_specimen_fonts():
     body {
       background-color: var(--bg-primary);
       color: var(--text-primary);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      line-height: 1.5;
+      font-family: var(--font-body);
+      line-height: 1.6;
       padding: 24px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
       transition: background-color 0.3s, color 0.3s;
+    }
+
+    .marker-underline-highlight {
+      position: relative;
+      display: inline-block;
+    }
+    .marker-underline-highlight::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 2px;
+      width: 100%;
+      height: 7px;
+      background-color: rgba(234, 88, 12, 0.3);
+      border-radius: 3px;
+      z-index: -1;
+      transform: rotate(-0.6deg);
+    }
+
+    .marker-bold-emphasis {
+      font-family: var(--font-brand);
+      font-weight: 800;
+      background: linear-gradient(120deg, rgba(251, 146, 60, 0.2) 0%, rgba(249, 115, 22, 0.28) 100%);
+      border-radius: 4px;
+      padding: 0 6px;
     }
 
     .container {
