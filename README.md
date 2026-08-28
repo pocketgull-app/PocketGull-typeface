@@ -11,9 +11,13 @@
 
 <br/>
 
-![PocketGull Authentic Specimen](PocketGull-Authentic-Specimen.png)
+<a href="https://typeface.pocketgull.app" target="_blank">
+  <img src="PocketGull-Authentic-Specimen.png" alt="PocketGull Authentic Superfamily Specimen" width="100%" style="border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);" />
+</a>
 
-### 🌐 Live Specimen Web Portal: [typeface.pocketgull.app](https://typeface.pocketgull.app)
+<br/><br/>
+
+### 🌐 Live Interactive Foundry: [typeface.pocketgull.app](https://typeface.pocketgull.app)
 
 </div>
 
