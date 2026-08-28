@@ -329,40 +329,139 @@
       background: var(--bg-card);
     }
 
-    .glyph-unicode {
-      font-family: var(--font-mono);
-      font-size: 9px;
-      color: var(--text-muted);
-      margin-top: 2px;
+    /* Custom Specimen Card Styles matching pocketgull.app */
+    .sunlight-card {
+      background: #fbf9f5;
+      color: #1c1b1a;
+      border: 2px solid #c27d38;
+      border-radius: 24px;
+      padding: 36px 32px;
+      box-shadow: 0 12px 36px rgba(194, 125, 56, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .sunlight-badge {
+      display: inline-block;
+      background: #c27d38;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 18px;
     }
 
-    /* Comparison Weights */
-    .weights-list {
+    .sunlight-title {
+      font-family: var(--font-brand);
+      font-size: clamp(36px, 6vw, 68px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin-bottom: 8px;
+    }
+
+    .sunlight-subtitle {
+      font-family: 'Atkinson Hyperlegible', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #c27d38;
+      letter-spacing: 0.02em;
+      margin-bottom: 24px;
+    }
+
+    .sunlight-chars {
+      font-family: var(--font-brand);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #4a4744;
+      border-top: 1px dashed #d5cebf;
+      padding-top: 18px;
+      margin-bottom: 14px;
+    }
+
+    .sunlight-footer {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #78716c;
+      letter-spacing: 0.02em;
+    }
+
+    /* Tab Switcher */
+    .tab-bar {
       display: flex;
-      flex-direction: column;
-      gap: 16px;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
     }
 
-    .weight-row {
+    .tab-btn {
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+      padding: 8px 18px;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--accent-orange);
+    }
+
+    .tab-btn.active {
+      background: var(--accent-orange);
+      color: #ffffff;
+      border-color: var(--accent-orange);
+      box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
+    }
+
+    /* Preset Buttons */
+    .presets-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .preset-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .preset-pill:hover {
+      background: rgba(234, 88, 12, 0.15);
+      color: var(--text-primary);
+      border-color: var(--accent-orange);
+    }
+
+    /* CSS Copy Block */
+    .code-box {
       background: var(--bg-surface);
       border: 1px solid var(--border-color);
       border-radius: 12px;
-      padding: 18px 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .weight-meta {
-      display: flex;
-      justify-content: space-between;
+      padding: 20px;
+      font-family: var(--font-mono);
       font-size: 12px;
-      font-weight: 600;
-      color: var(--text-secondary);
-    }
-
-    .weight-sample {
-      font-size: 32px;
+      color: #38bdf8;
+      overflow-x: auto;
+      line-height: 1.6;
     }
   </style>
 </head>
@@ -374,7 +473,7 @@
         <div class="logo-badge">🕊️</div>
         <div>
           <h1>PocketGull</h1>
-          <div class="tagline">The Living Brand Typeface &amp; Typefoundry (SIL OFL 1.1)</div>
+          <div class="tagline">Official Typography &amp; Design System (pocketgull.app)</div>
         </div>
       </div>
       <div class="controls-bar">
@@ -382,150 +481,177 @@
       </div>
     </header>
 
-    <!-- Master Variable Playground -->
+    <!-- Master Sunlight Specimen Card -->
+    <div class="sunlight-card">
+      <div class="sunlight-badge">POCKETGULL TYPEFACE SPECIMEN</div>
+      <div class="sunlight-title">PocketGull</div>
+      <div class="sunlight-subtitle">Handcrafted Felt-Tip Marker Typography &amp; Clinical Legibility Engine</div>
+      <div class="sunlight-chars">
+        Aa Bb Cc Dd Ee 0123456789 · I IV X · ½ ¼ · ± % = · α β Ω
+      </div>
+      <div class="sunlight-footer">
+        SIL Open Font License 1.1 · Certified WCAG 2.1 AAA Contrast Ratio (8.9:1) · pocketgull.app
+      </div>
+    </div>
+
+    <!-- Master Interactive Type Playground -->
     <div class="playground-card">
-      <div class="section-title">✨ Interactive Variable Playground</div>
+      <div class="section-title">✨ Interactive Live Specimen Sandbox</div>
       
-      <div id="canvas" class="canvas-display" contenteditable="true" spellcheck="false">
-        PocketGull Sanctuary 120/80 mmHg ∅
+      <!-- Typography Stack Tabs -->
+      <div class="tab-bar">
+        <button class="tab-btn active" onclick="switchStack(this, 'brand')">
+          <span>🕊️</span> Display &amp; Brand (Outfit + PocketGull)
+        </button>
+        <button class="tab-btn" onclick="switchStack(this, 'clinical')">
+          <span>🏥</span> Clinical &amp; Body (Atkinson Hyperlegible)
+        </button>
+        <button class="tab-btn" onclick="switchStack(this, 'telemetry')">
+          <span>📊</span> Telemetry &amp; Vitals (JetBrains Mono)
+        </button>
+      </div>
+
+      <!-- Quick Preset Text Prompts -->
+      <div class="presets-bar">
+        <span style="font-size: 11px; color: var(--text-muted); align-self: center;">Try Presets:</span>
+        <button class="preset-pill" onclick="setPreset('PocketGull — Continuous Empirical Intelligence & Care')">🌟 Brand Statement</button>
+        <button class="preset-pill" onclick="setPreset('Step 1: Call 911 Immediately · Bystander CPR in Progress')">🚨 911 Emergency Protocol</button>
+        <button class="preset-pill" onclick="setPreset('BPM 72 · SpO2 98% · GLUCOSE 104 mg/dL · ECG LEAD II')">📈 Live Patient Vitals</button>
+        <button class="preset-pill" onclick="setPreset('The quick brown fox jumps over the lazy dog 0123456789')">🔤 Alphabet &amp; Digits</button>
+      </div>
+
+      <div id="canvas" class="canvas-display" contenteditable="true" spellcheck="false" style="font-family: var(--font-brand); font-weight: 800; letter-spacing: -0.02em;">
+        PocketGull — Continuous Empirical Intelligence &amp; Care
       </div>
 
       <div class="sliders-grid">
         <div class="slider-group">
           <div class="slider-header">
-            <span>Weight (wght)</span>
-            <span id="val-weight">700</span>
-          </div>
-          <input type="range" id="slider-weight" min="100" max="900" value="700" step="10">
-        </div>
-
-        <div class="slider-group">
-          <div class="slider-header">
-            <span>Optical Size (opsz)</span>
-            <span id="val-opsz">48pt</span>
-          </div>
-          <input type="range" id="slider-opsz" min="8" max="72" value="48" step="1">
-        </div>
-
-        <div class="slider-group">
-          <div class="slider-header">
-            <span>Slant (slnt)</span>
-            <span id="val-slnt">0°</span>
-          </div>
-          <input type="range" id="slider-slnt" min="-12" max="0" value="0" step="1">
-        </div>
-
-        <div class="slider-group">
-          <div class="slider-header">
             <span>Font Size</span>
-            <span id="val-size">64px</span>
+            <span id="val-size">48px</span>
           </div>
-          <input type="range" id="slider-size" min="20" max="120" value="64" step="1">
+          <input type="range" id="slider-size" min="16" max="96" value="48" step="1">
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-header">
+            <span>Letter Spacing</span>
+            <span id="val-tracking">-0.02em</span>
+          </div>
+          <input type="range" id="slider-tracking" min="-0.05" max="0.1" value="-0.02" step="0.005">
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-header">
+            <span>Font Weight</span>
+            <span id="val-weight">800</span>
+          </div>
+          <input type="range" id="slider-weight" min="400" max="900" value="800" step="100">
         </div>
       </div>
 
       <div class="opentype-tags">
         <button class="tag-btn active" onclick="toggleFeature(this, 'zero')"><span>∅</span> Slashed Zero (zero)</button>
-        <button class="tag-btn active" onclick="toggleFeature(this, 'cv05')"><span>l</span> Hooked L (cv05)</button>
-        <button class="tag-btn active" onclick="toggleFeature(this, 'cv08')"><span>I</span> Seriffed I (cv08)</button>
         <button class="tag-btn active" onclick="toggleFeature(this, 'tnum')"><span>123</span> Tabular Numbers (tnum)</button>
+        <button class="tag-btn" onclick="toggleMarkerHighlight()"><span>🖍️</span> Felt Marker Highlight</button>
       </div>
     </div>
 
-    <!-- Weight Superfamily Hierarchy -->
+    <!-- Official pocketgull.app Typography Architecture -->
     <div class="weights-list">
-      <div class="section-title">🔤 Superfamily Weight Spectrum</div>
+      <div class="section-title">📐 The 3 Pillars of PocketGull Typography</div>
 
       <div class="weight-row">
         <div class="weight-meta">
-          <span>PocketGull Fineliner (Weight: 400 Regular)</span>
-          <span>Body Text &amp; Chart Notes</span>
+          <span>1. Display &amp; Brand Headline Stack</span>
+          <span><code>.font-pocketgull</code> · 800/900 Weight · -0.02em tracking</span>
         </div>
-        <div class="weight-sample" style="font-family: 'PocketGull Fineliner', var(--font-display); font-weight: 400;">
-          Sphinx of black quartz, judge my vow. 120/80 mmHg · SpO2 98%
+        <div class="weight-sample" style="font-family: var(--font-brand); font-weight: 800; letter-spacing: -0.02em;">
+          PocketGull Sanctuary: Empirical Clinical Intelligence
         </div>
       </div>
 
       <div class="weight-row">
         <div class="weight-meta">
-          <span>PocketGull Bold (Weight: 700 Bold)</span>
-          <span>Headlines &amp; Brand Wordmarks</span>
+          <span>2. Clinical High-Legibility Body Stack</span>
+          <span><code>.font-pocketgull-inter</code> · Atkinson Hyperlegible · Open Apertures</span>
         </div>
-        <div class="weight-sample" style="font-family: 'PocketGull Bold', var(--font-display); font-weight: 700;">
-          PocketGull Sanctuary: Empirical Clinical Intelligence &amp; Care
-        </div>
-      </div>
-
-      <div class="weight-row">
-        <div class="weight-meta">
-          <span>PocketGull Chiseltip (Weight: 900 Black)</span>
-          <span>Pediatric Medals &amp; Hero Displays</span>
-        </div>
-        <div class="weight-sample" style="font-family: 'PocketGull Chiseltip', var(--font-display); font-weight: 900;">
-          PEDIATRIC COURAGE MEDAL · AWAKEN STRENGTH
+        <div class="weight-sample" style="font-family: 'Atkinson Hyperlegible', sans-serif; font-size: 20px; font-weight: 500; line-height: 1.6; color: var(--text-primary);">
+          Bystander 911 dispatch, real-time CPR coach, and emergency waveform telemetry with zero visual ambiguity (1 vs l vs I, 0 vs O).
         </div>
       </div>
 
       <div class="weight-row">
         <div class="weight-meta">
-          <span>PocketGull World Pan-Script &amp; Calculus</span>
-          <span>Greek αβΩ, Cyrillic БДЖ, Calculus ∂∇∞∫</span>
+          <span>3. Telemetry &amp; Tabular Monospace Stack</span>
+          <span><code>.font-pocketgull-mono</code> · JetBrains Mono · Slashed Zero</span>
         </div>
-        <div class="weight-sample" style="font-family: var(--font-display); font-weight: 700; color: var(--accent-teal);">
-          α β γ δ Ω Δ Σ · Б Д Ж И Я · ∂x/∂t = ∇²Ψ + ∫ f(t)dt · 100% ♥
+        <div class="weight-sample" style="font-family: var(--font-mono); font-size: 20px; color: var(--accent-teal); font-feature-settings: 'tnum' 1, 'zero' 1;">
+          HEART_RATE: 72 bpm · SPO2: 98% · GLUCOSE: 104 mg/dL · DOSE: 100 mg / 1.5 mL
         </div>
       </div>
     </div>
 
-    <!-- Master Glyph Roster -->
+    <!-- Integration Code Snippet -->
     <div>
-      <div class="section-title">🏛️ Master Glyph Roster (260 Unicode Points)</div>
-      <div id="glyph-container" class="glyphs-grid"></div>
+      <div class="section-title">💻 CSS Quick-Integration for Web &amp; Apps</div>
+      <pre class="code-box"><code>/* 🖋️ Official PocketGull Design Tokens (from pocketgull.app) */
+.font-pocketgull-brand {
+  font-family: 'PocketGull', 'Outfit', 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.font-pocketgull-clinical {
+  font-family: 'Atkinson Hyperlegible', 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.font-pocketgull-mono {
+  font-family: 'PocketGull Mono', 'JetBrains Mono', monospace !important;
+  font-feature-settings: "tnum" 1, "zero" 1;
+}</code></pre>
     </div>
   </div>
 
   <script>
     const canvas = document.getElementById('canvas');
-    const sliderWeight = document.getElementById('slider-weight');
-    const sliderOpsz = document.getElementById('slider-opsz');
-    const sliderSlnt = document.getElementById('slider-slnt');
     const sliderSize = document.getElementById('slider-size');
+    const sliderTracking = document.getElementById('slider-tracking');
+    const sliderWeight = document.getElementById('slider-weight');
 
-    const valWeight = document.getElementById('val-weight');
-    const valOpsz = document.getElementById('val-opsz');
-    const valSlnt = document.getElementById('val-slnt');
     const valSize = document.getElementById('val-size');
+    const valTracking = document.getElementById('val-tracking');
+    const valWeight = document.getElementById('val-weight');
 
+    let currentStack = 'brand';
+    let isHighlighted = false;
     let activeFeatures = {
       'zero': true,
-      'cv05': true,
-      'cv08': true,
       'tnum': true
     };
 
     function updateCanvas() {
-      const w = parseInt(sliderWeight.value, 10);
-      const opsz = parseInt(sliderOpsz.value, 10);
-      const slnt = parseInt(sliderSlnt.value, 10);
       const sz = parseInt(sliderSize.value, 10);
+      const tr = parseFloat(sliderTracking.value);
+      const wt = parseInt(sliderWeight.value, 10);
 
-      valWeight.textContent = w;
-      valOpsz.textContent = opsz + 'pt';
-      valSlnt.textContent = slnt + '°';
       valSize.textContent = sz + 'px';
+      valTracking.textContent = tr + 'em';
+      valWeight.textContent = wt;
 
-      if (w <= 450) {
-        canvas.style.fontFamily = "'PocketGull Fineliner', 'PocketGull VF', sans-serif";
-      } else if (w >= 850) {
-        canvas.style.fontFamily = "'PocketGull Chiseltip', 'PocketGull VF', sans-serif";
-      } else {
-        canvas.style.fontFamily = "'PocketGull Bold', 'PocketGull VF', sans-serif";
-      }
-
-      canvas.style.fontWeight = w;
-      canvas.style.fontVariationSettings = `'wght' ${w}, 'opsz' ${opsz}, 'slnt' ${slnt}`;
       canvas.style.fontSize = sz + 'px';
-      canvas.style.transform = `skewX(${slnt}deg)`;
+      canvas.style.letterSpacing = tr + 'em';
+      canvas.style.fontWeight = wt;
+
+      if (currentStack === 'brand') {
+        canvas.style.fontFamily = "var(--font-brand)";
+      } else if (currentStack === 'clinical') {
+        canvas.style.fontFamily = "'Atkinson Hyperlegible', var(--font-body)";
+      } else if (currentStack === 'telemetry') {
+        canvas.style.fontFamily = "var(--font-mono)";
+      }
 
       const featStr = Object.entries(activeFeatures)
         .map(([k, v]) => `"${k}" ${v ? 1 : 0}`)
@@ -533,15 +659,34 @@
       canvas.style.fontFeatureSettings = featStr;
     }
 
-    sliderWeight.addEventListener('input', updateCanvas);
-    sliderOpsz.addEventListener('input', updateCanvas);
-    sliderSlnt.addEventListener('input', updateCanvas);
     sliderSize.addEventListener('input', updateCanvas);
+    sliderTracking.addEventListener('input', updateCanvas);
+    sliderWeight.addEventListener('input', updateCanvas);
+
+    function switchStack(btn, stackName) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentStack = stackName;
+      updateCanvas();
+    }
+
+    function setPreset(text) {
+      canvas.textContent = text;
+    }
 
     function toggleFeature(elem, key) {
       activeFeatures[key] = !activeFeatures[key];
       elem.classList.toggle('active', activeFeatures[key]);
       updateCanvas();
+    }
+
+    function toggleMarkerHighlight() {
+      isHighlighted = !isHighlighted;
+      if (isHighlighted) {
+        canvas.classList.add('marker-underline-highlight');
+      } else {
+        canvas.classList.remove('marker-underline-highlight');
+      }
     }
 
     function toggleTheme() {
@@ -550,21 +695,8 @@
       document.documentElement.setAttribute('data-theme', next);
     }
 
-    // Populate Glyph Grid
-    const glyphChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?/αβγδεζηθικλμνξοπρστυφχψωΩΔΣΠБДЖИЯ∂∇−∞∫≈♥℃℉℞";
-    const glyphContainer = document.getElementById('glyph-container');
-
-    glyphChars.split('').forEach(ch => {
-      const tile = document.createElement('div');
-      tile.className = 'glyph-tile';
-      tile.innerHTML = `<span>${ch}</span><span class="glyph-unicode">U+${ch.charCodeAt(0).toString(16).toUpperCase().padStart(4, '0')}</span>`;
-      tile.onclick = () => {
-        canvas.textContent += ch;
-      };
-      glyphContainer.appendChild(tile);
-    });
-
     updateCanvas();
   </script>
 </body>
 </html>
+
