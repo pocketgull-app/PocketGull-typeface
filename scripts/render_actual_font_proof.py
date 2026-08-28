@@ -79,13 +79,13 @@ def render_authentic_specimen():
     for dx in range(CARD_X0 + 40 * SCALE, CARD_X1 - 40 * SCALE, 20 * SCALE):
         draw.line([(dx, dash_y), (dx + 10 * SCALE, dash_y)], fill='#d5cebf', width=2 * SCALE)
 
-    # Character set line: Aa Bb Cc Dd Ee 0123456789 · I IV X · ½ ¼ · ± % = · α β Ω
-    f_chars = ImageFont.truetype(font_bold, 28 * SCALE)
-    draw.text(((CARD_X0 + 44 * SCALE), (CARD_Y0 + 355 * SCALE)), 'Aa Bb Cc Dd Ee 0123456789 · I IV X · ! ? & # @ · ± % = · \uE001 \uE002 \uE003 \uE004 \uE005 \uE006', font=f_chars, fill='#4a4744')
+    # Character set line: Aa Bb Cc Dd Ee 0123456789 · I IV X · ! ? & # @ · ± % = · α β Δ μ Ω π · Д Ж И Л П Ф Ц Ч Ш Щ Ю Я · \uE001 \uE002 \uE003 \uE004 \uE005 \uE006
+    f_chars = ImageFont.truetype(font_bold, 24 * SCALE)
+    draw.text(((CARD_X0 + 44 * SCALE), (CARD_Y0 + 355 * SCALE)), 'Aa Bb Cc Dd Ee 0123456789 · α β Δ μ Ω π · Д Ж И Л П Ф Ц Ч Ш Щ Ю Я · \uE001 \uE002 \uE003 \uE004 \uE005 \uE006', font=f_chars, fill='#4a4744')
 
-    # Footer: SIL Open Font License 1.1 · Certified WCAG 2.1 AAA Contrast Ratio (8.9:1) · pocketgull.app
+    # Footer: SIL Open Font License 1.1 · Certified WCAG 2.1 AAA Contrast Ratio (12.8:1) · pocketgull.app
     f_footer = ImageFont.truetype(font_mono, 16 * SCALE)
-    draw.text(((CARD_X0 + 44 * SCALE), (CARD_Y0 + 425 * SCALE)), 'SIL Open Font License 1.1 · Certified WCAG 2.1 AAA Contrast Ratio (12.8:1) · pocketgull.app · 1024 UPM Grid', font=f_footer, fill='#78716c')
+    draw.text(((CARD_X0 + 44 * SCALE), (CARD_Y0 + 425 * SCALE)), 'SIL Open Font License 1.1 · Pan-European Latin · Greek Pharmacology · Cyrillic Triage · 1024 UPM Grid', font=f_footer, fill='#78716c')
 
     # 4. LOWER CARD: Interactive Live Specimen & Clinical Telemetry Matrix
     L_CARD_Y0 = 910 * SCALE
@@ -94,7 +94,7 @@ def render_authentic_specimen():
 
     # Section title
     f_sec_title = ImageFont.truetype(font_bold, 22 * SCALE)
-    draw.text(((CARD_X0 + 40 * SCALE), (L_CARD_Y0 + 35 * SCALE)), '✨ Interactive Clinical Telemetry & Variable Superfamily Matrix', font=f_sec_title, fill='#f8fafc')
+    draw.text(((CARD_X0 + 40 * SCALE), (L_CARD_Y0 + 35 * SCALE)), '✨ Multi-Script Cohesion & Universal Clinical Telemetry Matrix', font=f_sec_title, fill='#f8fafc')
 
     # Pill Tabs: Display & Brand, Clinical & Body, Telemetry & Vitals
     draw.rounded_rectangle([(CARD_X0 + 40 * SCALE), (L_CARD_Y0 + 80 * SCALE), (CARD_X0 + 290 * SCALE), (L_CARD_Y0 + 128 * SCALE)], radius=12 * SCALE, fill='#ea580c')
@@ -110,7 +110,7 @@ def render_authentic_specimen():
 
     draw.text(((CARD_X0 + 40 * SCALE), (L_CARD_Y0 + 160 * SCALE)), 'PocketGull — Continuous Empirical Intelligence & Care', font=f_pangram, fill='#f8fafc')
     draw.text(((CARD_X0 + 40 * SCALE), (L_CARD_Y0 + 245 * SCALE)), '\uE001 HEART_RATE: 72 bpm   \uE002 SPO2: 98%   \uE003 GLUCOSE: 104 mg/dL   \uE004 AED: ARMED   \uE005 GPS: 911 ACTIVE', font=f_telemetry, fill='#22d3ee')
-    draw.text(((CARD_X0 + 40 * SCALE), (L_CARD_Y0 + 315 * SCALE)), 'Sphinx of black quartz, judge my vow.  ·  Tabular 600 UPM numerals with GPOS optical kerning pairs.', font=f_mono_desc, fill='#94a3b8')
+    draw.text(((CARD_X0 + 40 * SCALE), (L_CARD_Y0 + 315 * SCALE)), 'ΔP: 100 μg/kg/min · Impedance: 45 Ω  ·  СКОРАЯ ПОМОЩЬ · ПУЛЬС: 72 bpm  ·  Tabular 600 UPM numerals', font=f_mono_desc, fill='#94a3b8')
 
     # Downsample using Lanczos-3 for silky print-grade antialiasing
     print("  ✨ Downsampling 9600x6000 -> 2400x1500 via Lanczos anti-aliasing filter...")

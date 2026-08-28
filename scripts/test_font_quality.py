@@ -8,7 +8,9 @@ Automated quality gates asserting:
 4. Monospace Invariants (Identical 600 UPM advance width across all glyphs in PocketGullMono)
 5. Glyph Contour Geometry & Clockwise Winding Topology
 6. Unicode Latin & PUA Clinical Telemetry Mapping (U+E001 - U+E006)
-7. WOFF2 Compression & Magic Byte Header Validity
+7. Greek Pharmacology & Mathematical Constants Mapping (Delta, Sigma, Omega, alpha, beta, gamma, mu, pi)
+8. Cyrillic Emergency Medicine Letterforms Mapping (D, ZH, I, L, P, F, TS, CH, SH, SHCH, YU, YA)
+9. WOFF2 Compression & Magic Byte Header Validity
 """
 
 import os
@@ -128,6 +130,30 @@ class TestUnicodeMappingAndClinicalPUA:
         pua_codepoints = [0xE001, 0xE002, 0xE003, 0xE004, 0xE005, 0xE006]
         for cp in pua_codepoints:
             assert cp in cmap, f"Font {font_name} missing PUA clinical telemetry codepoint {hex(cp)}"
+
+    @pytest.mark.parametrize('font_name', SUPERFAMILY_FONTS)
+    def test_greek_pharmacology_coverage(self, font_name):
+        """Assert Greek mathematical & pharmacology units (Delta, Sigma, Omega, alpha, beta, gamma, mu, pi)."""
+        font_path = os.path.join(REPO_ROOT, font_name)
+        font = TTFont(font_path)
+        cmap = font.getBestCmap()
+        greek_codepoints = [0x0394, 0x03A3, 0x03A9, 0x03B1, 0x03B2, 0x03B3, 0x03BC, 0x03C0, 0x00B5]
+        for cp in greek_codepoints:
+            assert cp in cmap, f"Font {font_name} missing Greek codepoint {hex(cp)}"
+
+    @pytest.mark.parametrize('font_name', SUPERFAMILY_FONTS)
+    def test_cyrillic_triage_coverage(self, font_name):
+        """Assert Cyrillic emergency medicine letterforms (D, ZH, I, L, P, F, TS, CH, SH, SHCH, YU, YA)."""
+        font_path = os.path.join(REPO_ROOT, font_name)
+        font = TTFont(font_path)
+        cmap = font.getBestCmap()
+        cyrillic_codepoints = [
+            0x0414, 0x0434, 0x0416, 0x0436, 0x0418, 0x0438, 0x041B, 0x043B,
+            0x041F, 0x043F, 0x0424, 0x0444, 0x0426, 0x0446, 0x0427, 0x0447,
+            0x0428, 0x0448, 0x0429, 0x0449, 0x042E, 0x044E, 0x042F, 0x044F
+        ]
+        for cp in cyrillic_codepoints:
+            assert cp in cmap, f"Font {font_name} missing Cyrillic codepoint {hex(cp)}"
 
 
 class TestGlyphGeometryAndTopologies:
