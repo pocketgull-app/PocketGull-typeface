@@ -786,13 +786,15 @@ def build_superfamily():
     print("🎨 Compiling Master Precision Vector Superfamily...")
 
     weights = [
-        ('PocketGull-Fineliner.ttf', 400, 'Regular', 'PocketGull Fineliner'),
-        ('PocketGull-Bold.ttf', 700, 'Bold', 'PocketGull Bold'),
-        ('PocketGull-Chiseltip.ttf', 900, 'Black', 'PocketGull Chiseltip'),
-        ('PocketGull-Antigravity.ttf', 800, 'Bold', 'PocketGull Antigravity'),
+        ('PocketGull-Fineliner.ttf', 400, 'Regular', 'PocketGull Fineliner', False),
+        ('PocketGull-Bold.ttf', 700, 'Bold', 'PocketGull Bold', False),
+        ('PocketGull-Chiseltip.ttf', 900, 'Black', 'PocketGull Chiseltip', False),
+        ('PocketGull-Antigravity.ttf', 800, 'Bold', 'PocketGull Antigravity', False),
+        ('PocketGullMono-Regular.ttf', 500, 'Regular', 'PocketGull Mono', True),
+        ('PocketGull-Numerics.ttf', 500, 'Regular', 'PocketGull Numerics', False),
     ]
 
-    for filename, wght, style_name, full_name in weights:
+    for filename, wght, style_name, full_name, is_mono in weights:
         font = TTFont(base_font_path)
         glyf_table = font['glyf']
         hmtx_table = font['hmtx']
@@ -802,23 +804,37 @@ def build_superfamily():
         
         cmap = font.getBestCmap()
         for char_key, (draw_fn, aw) in precision_glyphs.items():
-            glyph, advance = make_clean_glyph(draw_fn, glyph_set, aw)
+            final_aw = 600 if is_mono else aw
+            if is_mono and aw != 600:
+                offset_x = (600 - aw) / 2.0
+                def make_mono_draw(fn, ox):
+                    def draw_centered(pen):
+                        tpen = TransformPen(pen, (1, 0, 0, 1, ox, 0))
+                        fn(tpen)
+                    return draw_centered
+                glyph, advance = make_clean_glyph(make_mono_draw(draw_fn, offset_x), glyph_set, final_aw)
+            else:
+                glyph, advance = make_clean_glyph(draw_fn, glyph_set, final_aw)
             
             # Map standard character name if present
             if char_key in glyf_table:
                 glyf_table[char_key] = glyph
-                hmtx_table[char_key] = (advance, 40)
+                hmtx_table[char_key] = (final_aw, 40)
             
             # Map PostScript name from cmap
             if len(char_key) == 1 and ord(char_key) in cmap:
                 glyph_name = cmap[ord(char_key)]
                 if glyph_name in glyf_table:
                     glyf_table[glyph_name] = glyph
-                    hmtx_table[glyph_name] = (advance, 40)
+                    hmtx_table[glyph_name] = (final_aw, 40)
 
         # Set metadata
         if 'OS/2' in font:
             font['OS/2'].usWeightClass = wght
+            if is_mono:
+                font['OS/2'].panose.bProportion = 9
+        if 'post' in font and is_mono:
+            font['post'].isFixedPitch = 1
         
         # Save to all distribution targets (TTF and WOFF2)
         for dest in [typeface_root, sync_dir, brand_fonts_dir]:
@@ -829,7 +845,7 @@ def build_superfamily():
             font.save(target_woff2)
             font.flavor = None
         
-        print(f"  ✅ Built pristine {filename} & WOFF2 (Weight: {wght})")
+        print(f"  ✅ Built pristine {filename} & WOFF2 (Weight: {wght}, Mono: {is_mono})")
 
     # Build Variable Font (VF)
     font_vf = TTFont(base_font_path)
