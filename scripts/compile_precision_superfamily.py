@@ -618,34 +618,157 @@ def create_precision_glyph_dict(weight=700):
         draw_oval(pen, 120, XH - SW/2, SW/2 + 2, SW/2 + 2)
     glyphs['colon'] = (draw_colon, 240)
 
-    def draw_hyphen(pen):
-        draw_rect(pen, 50, (XH/2) - (HW/2), 290, (XH/2) + (HW/2))
-    glyphs['hyphen'] = (draw_hyphen, 340)
-
-    def draw_exclam(pen):
-        draw_rect(pen, 120 - SW/2, 160, 120 + SW/2, CAP)
+    def draw_semicolon(pen):
+        draw_oval(pen, 120, XH - SW/2, SW/2 + 2, SW/2 + 2)
         draw_oval(pen, 120, BL + SW/2, SW/2 + 2, SW/2 + 2)
-    glyphs['exclam'] = (draw_exclam, 240)
-
-    def draw_question(pen):
-        draw_arc_open(pen, 200, CAP - 160, 150, 150 + OVS, SW, start_deg=-30, end_deg=180)
-        draw_rect(pen, 200 - SW/2, 160, 200 + SW/2, CAP - 280)
-        draw_oval(pen, 200, BL + SW/2, SW/2 + 2, SW/2 + 2)
-    glyphs['question'] = (draw_question, 400)
-
-    def draw_slash(pen):
-        pen.moveTo((300, CAP))
-        pen.lineTo((60, DSC))
-        pen.lineTo((60 + SW, DSC))
-        pen.lineTo((300 + SW, CAP))
+        pen.moveTo((120 + SW/2, BL + SW/2))
+        pen.lineTo((80, BL - 60))
+        pen.lineTo((120, BL - 60))
         pen.closePath()
-    glyphs['slash'] = (draw_slash, 360)
+    glyphs['semicolon'] = (draw_semicolon, 240)
+
+    def draw_underscore(pen):
+        draw_rect(pen, 30, DSC + 30, 470, DSC + 30 + HW)
+    glyphs['underscore'] = (draw_underscore, 500)
+
+    def draw_parenleft(pen):
+        draw_arc_open(pen, 260, (CAP/2), 220, (CAP/2) + 60, SW, start_deg=110, end_deg=250)
+    glyphs['parenleft'] = (draw_parenleft, 320)
+
+    def draw_parenright(pen):
+        draw_arc_open(pen, 60, (CAP/2), 220, (CAP/2) + 60, SW, start_deg=290, end_deg=430)
+    glyphs['parenright'] = (draw_parenright, 320)
+
+    def draw_bracketleft(pen):
+        draw_rect(pen, 120, DSC + 40, 120 + SW, CAP + 40)
+        draw_rect(pen, 120, CAP + 40 - HW, 260, CAP + 40)
+        draw_rect(pen, 120, DSC + 40, 260, DSC + 40 + HW)
+    glyphs['bracketleft'] = (draw_bracketleft, 340)
+
+    def draw_bracketright(pen):
+        draw_rect(pen, 220 - SW, DSC + 40, 220, CAP + 40)
+        draw_rect(pen, 80, CAP + 40 - HW, 220, CAP + 40)
+        draw_rect(pen, 80, DSC + 40, 220, DSC + 40 + HW)
+    glyphs['bracketright'] = (draw_bracketright, 340)
+
+    def draw_braceleft(pen):
+        draw_rect(pen, 140, DSC + 40, 140 + SW, CAP + 40)
+        draw_rect(pen, 140, CAP + 40 - HW, 240, CAP + 40)
+        draw_rect(pen, 140, DSC + 40, 240, DSC + 40 + HW)
+        draw_rect(pen, 60, (CAP/2) - (HW/2), 140, (CAP/2) + (HW/2))
+    glyphs['braceleft'] = (draw_braceleft, 340)
+
+    def draw_braceright(pen):
+        draw_rect(pen, 200 - SW, DSC + 40, 200, CAP + 40)
+        draw_rect(pen, 100, CAP + 40 - HW, 200, CAP + 40)
+        draw_rect(pen, 100, DSC + 40, 200, DSC + 40 + HW)
+        draw_rect(pen, 200, (CAP/2) - (HW/2), 280, (CAP/2) + (HW/2))
+    glyphs['braceright'] = (draw_braceright, 340)
+
+    def draw_backslash(pen):
+        pen.moveTo((60, CAP))
+        pen.lineTo((300, DSC))
+        pen.lineTo((300 + SW, DSC))
+        pen.lineTo((60 + SW, CAP))
+        pen.closePath()
+    glyphs['backslash'] = (draw_backslash, 360)
+
+    def draw_plus(pen):
+        draw_rect(pen, 250 - SW/2, 120, 250 + SW/2, 520)
+        draw_rect(pen, 50, 320 - HW/2, 450, 320 + HW/2)
+    glyphs['plus'] = (draw_plus, 500)
+
+    def draw_equal(pen):
+        draw_rect(pen, 50, 400 - HW/2, 450, 400 + HW/2)
+        draw_rect(pen, 50, 240 - HW/2, 450, 240 + HW/2)
+    glyphs['equal'] = (draw_equal, 500)
+
+    def draw_less(pen):
+        pen.moveTo((420, 520))
+        pen.lineTo((100, 320))
+        pen.lineTo((420, 120))
+        pen.lineTo((420, 120 + HW * 1.5))
+        pen.lineTo((160, 320))
+        pen.lineTo((420, 520 - HW * 1.5))
+        pen.closePath()
+    glyphs['less'] = (draw_less, 480)
+
+    def draw_greater(pen):
+        pen.moveTo((60, 520))
+        pen.lineTo((380, 320))
+        pen.lineTo((60, 120))
+        pen.lineTo((60, 120 + HW * 1.5))
+        pen.lineTo((320, 320))
+        pen.lineTo((60, 520 - HW * 1.5))
+        pen.closePath()
+    glyphs['greater'] = (draw_greater, 480)
+
+    def draw_quotesingle(pen):
+        draw_rect(pen, 100, CAP - 180, 100 + SW, CAP)
+    glyphs['quotesingle'] = (draw_quotesingle, 220)
+
+    def draw_quotedbl(pen):
+        draw_rect(pen, 70, CAP - 180, 70 + SW, CAP)
+        draw_rect(pen, 190, CAP - 180, 190 + SW, CAP)
+    glyphs['quotedbl'] = (draw_quotedbl, 340)
+
+    def draw_numbersign(pen):
+        draw_rect(pen, 140, BL, 140 + SW, CAP)
+        draw_rect(pen, 340, BL, 340 + SW, CAP)
+        draw_rect(pen, 60, 460 - HW/2, 480, 460 + HW/2)
+        draw_rect(pen, 60, 240 - HW/2, 480, 240 + HW/2)
+    glyphs['numbersign'] = (draw_numbersign, 540)
+
+    def draw_dollar(pen):
+        draw_arc_open(pen, 280, CAP - 180, 210, 180 + OVS, SW, start_deg=40, end_deg=260)
+        draw_arc_open(pen, 280, 180, 220, 180 + OVS, SW, start_deg=220, end_deg=440)
+        draw_rect(pen, 130, (CAP/2) - (HW/2), 430, (CAP/2) + (HW/2))
+        draw_rect(pen, 280 - SW/4, -40, 280 + SW/4, CAP + 40)
+    glyphs['dollar'] = (draw_dollar, 560)
+
+    def draw_percent(pen):
+        draw_oval(pen, 160, CAP - 140, 90, 90, 90 - SW, 90 - HW)
+        draw_oval(pen, 380, 140, 90, 90, 90 - SW, 90 - HW)
+        pen.moveTo((420, CAP))
+        pen.lineTo((120, BL))
+        pen.lineTo((120 + SW, BL))
+        pen.lineTo((420 + SW, CAP))
+        pen.closePath()
+    glyphs['percent'] = (draw_percent, 560)
+
+    def draw_ampersand(pen):
+        draw_oval(pen, 260, CAP - 180, 160, 160 + OVS, 160 - SW, 160 - HW)
+        draw_oval(pen, 260, 180, 200, 180 + OVS, 200 - SW, 180 - HW)
+        pen.moveTo((360, 180))
+        pen.lineTo((480, BL))
+        pen.lineTo((480 - SW, BL))
+        pen.lineTo((300, 140))
+        pen.closePath()
+    glyphs['ampersand'] = (draw_ampersand, 560)
+
+    def draw_at(pen):
+        draw_oval(pen, 300, CAP/2, 260, (CAP/2) + OVS, 260 - SW, (CAP/2) + OVS - HW)
+        draw_oval(pen, 300, CAP/2, 130, 130, 130 - SW, 130 - HW)
+        draw_rect(pen, 430 - SW, 180, 430, CAP/2 + 20)
+    glyphs['at'] = (draw_at, 600)
+
+    def draw_asterisk(pen):
+        cx, cy = 250, 460
+        r = 130
+        for angle in [0, 60, 120]:
+            rad = math.radians(angle)
+            dx = r * math.cos(rad)
+            dy = r * math.sin(rad)
+            pen.moveTo((cx - dx, cy - dy))
+            pen.lineTo((cx + dx, cy + dy))
+            pen.lineTo((cx + dx + HW/2, cy + dy - HW/2))
+            pen.lineTo((cx - dx + HW/2, cy - dy - HW/2))
+            pen.closePath()
+    glyphs['asterisk'] = (draw_asterisk, 500)
 
     def draw_space(pen):
         pass
     glyphs['space'] = (draw_space, 280)
-
-    return glyphs
 
     return glyphs
 
@@ -686,7 +809,7 @@ def build_superfamily():
                 glyf_table[char_key] = glyph
                 hmtx_table[char_key] = (advance, 40)
             
-            # Map PostScript name from cmap (e.g. '0' -> 'zero', '1' -> 'one', '.' -> 'period')
+            # Map PostScript name from cmap
             if len(char_key) == 1 and ord(char_key) in cmap:
                 glyph_name = cmap[ord(char_key)]
                 if glyph_name in glyf_table:
@@ -710,6 +833,23 @@ def build_superfamily():
 
     # Build Variable Font (VF)
     font_vf = TTFont(base_font_path)
+    glyf_vf = font_vf['glyf']
+    hmtx_vf = font_vf['hmtx']
+    glyph_set_vf = font_vf.getGlyphSet()
+    vf_glyphs = create_precision_glyph_dict(weight=700)
+    cmap_vf = font_vf.getBestCmap()
+    
+    for char_key, (draw_fn, aw) in vf_glyphs.items():
+        glyph, advance = make_clean_glyph(draw_fn, glyph_set_vf, aw)
+        if char_key in glyf_vf:
+            glyf_vf[char_key] = glyph
+            hmtx_vf[char_key] = (advance, 40)
+        if len(char_key) == 1 and ord(char_key) in cmap_vf:
+            glyph_name = cmap_vf[ord(char_key)]
+            if glyph_name in glyf_vf:
+                glyf_vf[glyph_name] = glyph
+                hmtx_vf[glyph_name] = (advance, 40)
+
     fvar = newTable('fvar')
 
     weight_axis = Axis()
@@ -776,3 +916,4 @@ def build_superfamily():
 
 if __name__ == '__main__':
     build_superfamily()
+
