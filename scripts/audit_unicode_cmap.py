@@ -117,7 +117,7 @@ def run_dead_audit():
     categorized_dead = {
         'Superseded Early Compilers': ['compile.py', 'compile_v2.py', 'build_pocketgull_font.py', 'build_pocketgull_superfamily.py', 'compile_variable_superfamily.py', 'compile_master_pocketgull_superfamily.py', 'build_numerology_font.py', 'build_pocketgull_world.py'],
         'Deprecated Fix/Patch Scripts': ['fix_all_variants.py', 'fix_g_mapping.py', 'harmonize_all_glyphs.py', 'strip_wave.py', 'antigravity_wave.py', 'expand_glyph_set.py'],
-        'Unfinished / Experimental Models': ['parametric_type_model.py', 'type_designer.py', 'nib_engine.py', 'glyph_skeletons.py', 'quaker_quality_inspector.py', 'apply_type_best_practices.py', 'glyph_roadmap.py'],
+        'Unfinished / Experimental Models': ['parametric_type_model.py', 'type_designer.py', 'nib_engine.py', 'glyph_skeletons.py', 'craftsmanship_quality_inspector.py', 'apply_type_best_practices.py', 'glyph_roadmap.py'],
         'SVG Generators & Diagnostics': ['generate_master_vector_specimen_svg.py', 'generate_ttf_specimen_svg.py', 'render_actual_font_proof.py', 'inspect_glyph_render.py', 'analyze_wordmark.py', 'verify_font_precision.py', 'validate_fonts.py']
     }
 

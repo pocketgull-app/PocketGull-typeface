@@ -150,10 +150,10 @@ def render_master_svg():
     svg.append(render_vector_line("Pack my box with five dozen liquor jugs. 1234567890", 60, 1390, scale_factor=0.042, css_class="glyph-path", tracking=10))
     svg.append(render_vector_line("Sphinx of black quartz, judge my vow. Ø vs O Disambiguation.", 60, 1445, scale_factor=0.038, css_class="glyph-path", tracking=10))
 
-    # 8. Quaker Quality Footer
+    # 8. Craftsmanship Quality Footer
     svg.append(f'  <line x1="60" y1="1500" x2="{width-60}" y2="1500" stroke="#CBD5E1" stroke-width="1" />')
-    svg.append('  <g transform="translate(60, 1540)">')
-    svg.append('    <text x="0" y="0" class="ui-meta" font-size="11" font-weight="800" fill="#0F172A">QUAKER QUALITY TESTIMONY INSPECTED</text>')
+    svg.append(f'  <g transform="translate(100, {height - 60})">')
+    svg.append('    <text x="0" y="0" class="ui-meta" font-size="11" font-weight="800" fill="#0F172A">POCKETGULL PRECISION CRAFTSMANSHIP INSPECTED</text>')
     svg.append('    <text x="0" y="18" class="ui-meta" font-size="10" fill="#64748B">Simplicity · Peace · Integrity · Equality · Stewardship</text>')
     svg.append(f'    <text x="{width-120}" y="0" class="ui-meta" font-size="11" font-weight="800" fill="#EA580C" text-anchor="end">POCKETGULL TYPEFOUNDRY</text>')
     svg.append(f'    <text x="{width-120}" y="18" class="ui-meta" font-size="10" fill="#64748B" text-anchor="end">github.com/philgear/PocketGull-typeface</text>')

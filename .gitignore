@@ -29,7 +29,25 @@ desktop.ini
 *.tmp
 *.bak
 
-# Proprietary Philosophy & Internal Documents
+# Proprietary Philosophy, Internal Documents & Drafts
 QUAKER_DESIGN_PHILOSOPHY.md
 docs/internal/
+docs/philosophy/
+docs/grants/
+docs/patents/
+docs/valuation/
+docs/business/
 manuscripts/
+.hidden/
+*.patent.md
+*.draft.md
+
+# Raw Vector Masters & Design Project Files
+*.ai
+*.glyphs
+*.ufo
+*.sketch
+*.fig
+*.cdr
+*.eps
+proofs/private/

@@ -34,11 +34,11 @@ wsl -d Ubuntu -- bash -c "~/.local/bin/uv run --with fonttools python3 /mnt/c/Us
 Write-Host "`n[4/5] Compiling PocketGull World Pan-Script Extension..." -ForegroundColor Yellow
 wsl -d Ubuntu -- bash -c "~/.local/bin/uv run --with fonttools --with brotli python3 /mnt/c/Users/philg/Pocketgull/pocketgull-typeface/scripts/build_pocketgull_world.py"
 
-# Step 5: Run Unicode CMAP Audit & Quaker Quality Inspector
+# Step 5: Run Unicode CMAP Audit & Craftsmanship Quality Inspector
 if (-not $SkipAudit) {
-    Write-Host "`n[5/6] Running Unicode CMAP Audit and Quaker Quality Inspection..." -ForegroundColor Yellow
+    Write-Host "`n[5/6] Running Unicode CMAP Audit and Craftsmanship Quality Inspection..." -ForegroundColor Yellow
     wsl -d Ubuntu -- bash -c "~/.local/bin/uv run --with fonttools python3 /mnt/c/Users/philg/Pocketgull/pocketgull-typeface/scripts/audit_unicode_cmap.py"
-    wsl -d Ubuntu -- bash -c "~/.local/bin/uv run --with fonttools python3 /mnt/c/Users/philg/Pocketgull/pocketgull-typeface/scripts/quaker_quality_inspector.py"
+    wsl -d Ubuntu -- bash -c "~/.local/bin/uv run --with fonttools python3 /mnt/c/Users/philg/Pocketgull/pocketgull-typeface/scripts/craftsmanship_quality_inspector.py"
 }
 
 # Step 6: Embed Base64 Fonts into Specimen HTML & Generate Master SVG

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Quaker Typeface Quality Inspector & Integrity Auditor
-Audits the PocketGull Typeface against the 5 Quaker Design Testimonies:
+Precision Craftsmanship Typeface Quality Inspector & Integrity Auditor
+Audits the PocketGull Typeface against the 5 Core Craftsmanship Standards:
 1. Simplicity (Plainness): Node count efficiency, absence of decorative fluff
 2. Peace (Tranquillitas): Harmonized proportions, calm leading/tracking metrics
 3. Integrity (Veritas): Zero artificial skew/distortion, valid cmap, true OpenType tables
@@ -13,7 +13,7 @@ import os
 import sys
 from fontTools.ttLib import TTFont
 
-def run_quaker_inspection():
+def run_craftsmanship_inspection():
     script_dir = os.path.dirname(os.path.abspath(__file__))
     typeface_root = os.path.dirname(script_dir)
     fonts = [
@@ -25,7 +25,7 @@ def run_quaker_inspection():
     ]
 
     print("=" * 70)
-    print("🌾 QUAKER QUALITY INSPECTION AGENT — TYPEFACE AUDIT")
+    print("💎 PRECISION CRAFTSMANSHIP QUALITY INSPECTOR — TYPEFACE AUDIT")
     print("=" * 70)
     print(f"Directory: {typeface_root}\n")
 
@@ -105,15 +105,15 @@ def run_quaker_inspection():
 
     print("=" * 70)
     if all_passed:
-        print("🕯️ QUAKER AUDIT VERDICT: 100% COMPLIANT WITH QUAKER PLAINNESS STANDARDS")
+        print("💎 CRAFTSMANSHIP AUDIT VERDICT: 100% COMPLIANT WITH PRECISION PLAINNESS STANDARDS")
         print("  - Simplicity: Unadorned, honest geometric construction")
         print("  - Peace: Generous vertical rhythm & spacious optical metrics")
         print("  - Integrity: No artificial skew distortion or masquerading glyphs")
         print("  - Equality: High-contrast universal accessibility across themes")
         print("  - Stewardship: Free, open-source SIL OFL 1.1 distribution")
     else:
-        print("⚠️ QUAKER AUDIT VERDICT: DEFICIENCIES DETECTED")
+        print("⚠️ CRAFTSMANSHIP AUDIT VERDICT: DEFICIENCIES DETECTED")
     print("=" * 70)
 
 if __name__ == '__main__':
-    run_quaker_inspection()
+    run_craftsmanship_inspection()
