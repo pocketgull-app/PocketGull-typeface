@@ -3,11 +3,11 @@
 # 🖋️ PocketGull Typeface Superfamily
 ### *100% Owned Mathematical Vector Typeface & Clinical Telemetry Suite*
 
-[![OFL 1.1 License](https://img.shields.io/badge/License-OFL--1.1-orange.svg)](https://opensource.org/licenses/OFL-1.1)
+[![OFL 1.1 License](https://img.shields.io/badge/License-OFL--1.1-orange.svg)](OFL.txt)
 [![Google Fonts Submission](https://img.shields.io/badge/Google_Fonts_PR-%2310862-blue.svg)](https://github.com/google/fonts/pull/10862)
 [![FontBakery QA](https://img.shields.io/badge/FontBakery_QA-196_Pass_%7C_0_Fail-brightgreen.svg)](https://github.com/google/fonts/pull/10862)
 [![Vector Precision](https://img.shields.io/badge/Vector_Grid-1024_UPM_%7C_G2_Continuity-teal.svg)](https://github.com/pocketgull-app/PocketGull-typeface)
-[![Dead Letters](https://img.shields.io/badge/Charmap_Audit-0_Dead_Letters-brightgreen.svg)](https://github.com/pocketgull-app/PocketGull-typeface)
+[![Charmap Audit](https://img.shields.io/badge/Charmap_Audit-0_Dead_Letters-brightgreen.svg)](https://github.com/pocketgull-app/PocketGull-typeface)
 [![Clinical PUA Icons](https://img.shields.io/badge/Clinical_PUA-E001--E006-blue.svg)](https://github.com/pocketgull-app/PocketGull-typeface)
 [![WCAG 2.1 AAA](https://img.shields.io/badge/WCAG_2.1_AAA-12.8%3A1_Contrast-emerald.svg)](https://typeface.pocketgull.app)
 
@@ -19,7 +19,7 @@
 
 <br/><br/>
 
-### 🌐 Live Interactive Foundry: [typeface.pocketgull.app](https://typeface.pocketgull.app)
+### 🌐 Live Interactive Foundry: [typeface.pocketgull.app](https://typeface.pocketgull.app) &nbsp;|&nbsp; 📦 Google Fonts Upstream PR: [google/fonts#10862](https://github.com/google/fonts/pull/10862)
 
 </div>
 
@@ -30,6 +30,8 @@
 **PocketGull** is a bespoke, 100% owned mathematical vector typeface superfamily engineered for zero-error medical charting, emergency 911 dispatch HUDs, bystander CPR coaching, and high-contrast clinical displays.
 
 Every glyph in the superfamily is synthesized from pure mathematical Bézier splines on a standardized **1024 UPM grid** ($CAP=720, XH=480, BL=0, DSC=-180$) with strict TrueType winding rules (Clockwise perimeters and Counter-Clockwise inner counters), G2 continuous extrema, and zero overlapping primitive artifacts.
+
+All font binaries are 100% compliant with **Adobe Glyph List (AGL)** naming standards, **OpenType Sanitizer (OTS)** binary validation, and **Google Fonts FontBakery** QA test suites (0 errors, 0 fails).
 
 ---
 
@@ -53,8 +55,8 @@ PocketGull embeds bespoke clinical and emergency icons directly into the font’
 | Font File | Weight / Style | Grid / Advance | Primary Application |
 | :--- | :---: | :---: | :--- |
 | **`PocketGull-VF.ttf` / `.woff2`** | `100` $\rightarrow$ `900` | Proportional | **Universal Variable Font**: Continuous `wght`, `opsz` (8–72), and `slnt` axes. |
-| **`PocketGull-Bold.ttf`** | Bold (`700`) | Proportional | **Master Display**: Primary brand identity, headlines, and critical clinical callouts. |
 | **`PocketGull-Fineliner.ttf`** | Regular (`400`) | Proportional | **Dense EHR & Lab Tables**: High-legibility body text and clinical charts. |
+| **`PocketGull-Bold.ttf`** | Bold (`700`) | Proportional | **Master Display**: Primary brand identity, headlines, and critical clinical callouts. |
 | **`PocketGull-Chiseltip.ttf`** | Black (`900`) | Proportional | **Signage & High Impact**: Bold geometric chamfers for emergency placards. |
 | **`PocketGull-Antigravity.ttf`** | Heavy (`800`) | Proportional | **Dynamic HUD Display**: High-contrast user interface titles. |
 | **`PocketGullMono-Regular.ttf`** | Medium (`500`) | Fixed `600 UPM` | **Telemetry & Vital Feeds**: Tabular alignment for streaming heart rate and metrics. |
@@ -70,21 +72,26 @@ PocketGull embeds bespoke clinical and emergency icons directly into the font’
 * **Optical Overshoot**: `14 UPM` on curved vertices for optical height uniformity.
 * **Optical Kerning**: Embedded `GPOS` / `kern` pair-spacing table (`AV`, `AW`, `Ta`, `To`, `We`, `Yo`, `PA`, `FA`, `LT`).
 * **Contour Winding**: Clockwise outer boundaries with Counter-Clockwise internal counters for zero-artifact FreeType / DirectWrite rendering.
+* **AGL Glyph Naming**: 100% compliant with standard Adobe Glyph List specifications.
 
 ---
 
-## 🛠️ Local Foundry Toolchain
+## 🛠️ Local Foundry & QA Toolchain
 
-Compile the entire font superfamily, audit the charmap, and render binary proof posters directly from your local terminal:
+Compile the font superfamily, run the precision craftsmanship auditor, and execute FontBakery validation directly from your local terminal:
 
 ```bash
-# 1. Compile all 6 TTF/WOFF2 instances and Variable Font
+# 1. Compile all TrueType/WOFF2 instances and Variable Font
 python scripts/compile_precision_superfamily.py
 
-# 2. Render high-resolution 2400x1600 proof directly from compiled TTF binaries
-python scripts/render_actual_font_proof.py
+# 2. Run FontBakery Universal Quality Assurance Suite
+fontbakery check-universal PocketGull-Fineliner.ttf PocketGull-Bold.ttf PocketGull-Chiseltip.ttf
 
-# 3. Perform a zero-dead-letter and CMAP code audit
+# 3. Refine glyph names and sanitize OpenType tables
+python scripts/refine_google_fonts.py PocketGull-*.ttf
+
+# 4. Perform craftsmanship and CMAP zero-dead-letter audit
+python scripts/craftsmanship_quality_inspector.py
 python scripts/audit_unicode_cmap.py
 ```
 
@@ -126,5 +133,6 @@ Add the `@font-face` definitions to your web or mobile stylesheet:
 
 ## ⚖️ License
 
-Released under the **[SIL Open Font License 1.1 (OFL)](LICENSE.txt)**.  
+Released under the **[SIL Open Font License 1.1 (OFL)](OFL.txt)**.  
 Reserved Font Name: `PocketGull`
+
