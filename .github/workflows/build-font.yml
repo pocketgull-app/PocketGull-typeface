@@ -2,9 +2,12 @@ name: Build Antigravity Typeface
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, master ]
+
+permissions:
+  contents: read
 
 jobs:
   build:
