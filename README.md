@@ -1,10 +1,10 @@
 <div align="center">
 
 # 🖋️ PocketGull Typeface Superfamily
-### *100% Owned Mathematical Vector Typeface & Clinical Telemetry Suite*
+### *Tactile Felt-Tip Marker Expression Meets Clinical Telemetry Precision*
 
-[![OFL 1.1 License](https://img.shields.io/badge/License-OFL--1.1-orange.svg)](OFL.txt)
-[![Google Fonts Submission](https://img.shields.io/badge/Google_Fonts_PR-%2310862-blue.svg)](https://github.com/google/fonts/pull/10862)
+[![OFL 1.1 License](https://img.shields.io/badge/License-SIL_OFL_1.1-orange.svg)](OFL.txt)
+[![Google Fonts Submission](https://img.shields.io/badge/Google_Fonts_PR-%2310862-4285F4.svg?logo=google)](https://github.com/google/fonts/pull/10862)
 [![FontBakery QA](https://img.shields.io/badge/FontBakery_QA-196_Pass_%7C_0_Fail-brightgreen.svg)](https://github.com/google/fonts/pull/10862)
 [![Vector Precision](https://img.shields.io/badge/Vector_Grid-1024_UPM_%7C_G2_Continuity-teal.svg)](https://github.com/pocketgull-app/PocketGull-typeface)
 [![Charmap Audit](https://img.shields.io/badge/Charmap_Audit-0_Dead_Letters-brightgreen.svg)](https://github.com/pocketgull-app/PocketGull-typeface)
@@ -19,120 +19,87 @@
 
 <br/><br/>
 
-### 🌐 Live Interactive Foundry: [typeface.pocketgull.app](https://typeface.pocketgull.app) &nbsp;|&nbsp; 📦 Google Fonts Upstream PR: [google/fonts#10862](https://github.com/google/fonts/pull/10862)
+### 🌐 [Live Interactive Type Foundry](https://typeface.pocketgull.app) &nbsp;•&nbsp; 📦 [Google Fonts Upstream PR #10862](https://github.com/google/fonts/pull/10862)
 
 </div>
 
 ---
 
-## 📖 Overview
+## 📖 Design Vision & Overview
 
-**PocketGull** is a bespoke, 100% owned mathematical vector typeface superfamily engineered for zero-error medical charting, emergency 911 dispatch HUDs, bystander CPR coaching, and high-contrast clinical displays.
+**PocketGull** is an open-source, mathematical vector typeface superfamily engineered to bridge two disparate worlds:
+1. **Warm Humanist Expression**: The organic stroke energy and tactile warmth of a hand-drawn felt-tip marker.
+2. **Mission-Critical Precision**: Zero-error optical clarity calibrated for ICU bedside monitors, emergency 911 dispatch HUDs, bystander CPR coaching, and high-density electronic health record (EHR) charts.
 
-Every glyph in the superfamily is synthesized from pure mathematical Bézier splines on a standardized **1024 UPM grid** ($CAP=720, XH=480, BL=0, DSC=-180$) with strict TrueType winding rules (Clockwise perimeters and Counter-Clockwise inner counters), G2 continuous extrema, and zero overlapping primitive artifacts.
-
-All font binaries are 100% compliant with **Adobe Glyph List (AGL)** naming standards, **OpenType Sanitizer (OTS)** binary validation, and **Google Fonts FontBakery** QA test suites (0 errors, 0 fails).
+Built under the discipline of **Dieter Rams’ 10 Principles of Good Design** (*Good design is honest, unobtrusive, and as little design as possible*), every glyph is synthesized on a standardized **1024 UPM grid** ($CAP=720, XH=480, BL=0, DSC=-180$) with continuous G2 Bézier extrema, strict TrueType winding rules (clockwise outer contours, counter-clockwise inner counters), and 100% Adobe Glyph List (AGL) compliance.
 
 ---
 
-## 🫀 Clinical Telemetry Icon Suite (PUA `E001–E006`)
+## 🫀 Clinical Telemetry & Emergency PUA Suite (`\uE001`–`\uE006`)
 
-PocketGull embeds bespoke clinical and emergency icons directly into the font’s **Private Use Area (PUA)**, allowing applications to render vector medical indicators inline with text strings without extra HTTP requests or image assets:
+PocketGull embeds bespoke emergency telemetry indicators directly into the font’s **Private Use Area (PUA)**. This enables web, mobile, and embedded UI systems to render high-contrast medical glyphs inline with text without external SVGs, image assets, or network latency:
 
-| Glyph | Unicode | Name | Application | Live String Example |
+| Icon | Unicode | Glyph Name | Clinical Domain | Live String Example |
 | :---: | :---: | :--- | :--- | :--- |
-| **`🫀`** | `\uE001` | `icon_heart_ecg` | Cardiac QRS wave & telemetry pulse | `\uE001 HEART_RATE: 72 bpm` |
-| **`💧`** | `\uE002` | `icon_spo2` | Blood oxygen saturation droplet | `\uE002 SPO2: 98%` |
+| **`🫀`** | `\uE001` | `icon_heart_ecg` | Cardiac QRS rhythm & pulse rate | `\uE001 HEART_RATE: 72 bpm` |
+| **`💧`** | `\uE002` | `icon_spo2` | Blood oxygen saturation ($SpO_2$) | `\uE002 SPO2: 98%` |
 | **`💎`** | `\uE003` | `icon_glucose` | Hexagonal CGM continuous glucose sensor | `\uE003 GLUCOSE: 104 mg/dL` |
 | **`⚡`** | `\uE004` | `icon_aed_shock` | High-voltage AED defibrillator armed alert | `\uE004 AED: ARMED & READY` |
-| **`🎯`** | `\uE005` | `icon_beacon_gps` | 911 dispatch radio concentric radar beacon | `\uE005 DISPATCH: 911 ACTIVE` |
-| **`🔊`** | `\uE006` | `icon_cpr_coach` | Real-time 110 BPM CPR compression metronome | `\uE006 CPR: 110 BPM` |
+| **`🎯`** | `\uE005` | `icon_beacon_gps` | 911 radio telemetry & concentric radar beacon | `\uE005 DISPATCH: 911 ACTIVE` |
+| **`🔊`** | `\uE006` | `icon_cpr_coach` | Real-time 110 BPM CPR compression metronome | `\uE006 CPR: 110 BPM (30:2)` |
 
 ---
 
-## 🖋️ Superfamily Instances
+## 🖋️ Superfamily Instances & Weights
 
-| Font File | Weight / Style | Grid / Advance | Primary Application |
+The superfamily spans **7 purpose-built instances**, offering flexible weight distribution and optical sizing from compact tabular numerals to expressive editorial headers:
+
+| Font Binary | Weight / Style | Advance / Metric | Primary Application |
 | :--- | :---: | :---: | :--- |
-| **`PocketGull-VF.ttf` / `.woff2`** | `100` $\rightarrow$ `900` | Proportional | **Universal Variable Font**: Continuous `wght`, `opsz` (8–72), and `slnt` axes. |
-| **`PocketGull-Fineliner.ttf`** | Regular (`400`) | Proportional | **Dense EHR & Lab Tables**: High-legibility body text and clinical charts. |
-| **`PocketGull-Bold.ttf`** | Bold (`700`) | Proportional | **Master Display**: Primary brand identity, headlines, and critical clinical callouts. |
-| **`PocketGull-Chiseltip.ttf`** | Black (`900`) | Proportional | **Signage & High Impact**: Bold geometric chamfers for emergency placards. |
-| **`PocketGull-Antigravity.ttf`** | Heavy (`800`) | Proportional | **Dynamic HUD Display**: High-contrast user interface titles. |
-| **`PocketGullMono-Regular.ttf`** | Medium (`500`) | Fixed `600 UPM` | **Telemetry & Vital Feeds**: Tabular alignment for streaming heart rate and metrics. |
-| **`PocketGull-Numerics.ttf`** | Medium (`500`) | Proportional | **Sacred Numerology & Dials**: Golden ratio ($\phi$) and high-legibility numerals. |
+| **`PocketGull-VF.ttf` / `.woff2`** | `100` $\rightarrow$ `900` | Proportional | **Universal Variable Font**: Continuous `wght` (100–900), `opsz` (8–72), and `slnt` axes. |
+| **`PocketGull-Fineliner.ttf`** | Regular (`400`) | Proportional | **Dense EHR & Lab Tables**: High-legibility body text, medication dosages, and clinical notes. |
+| **`PocketGull-Bold.ttf`** | Bold (`700`) | Proportional | **Master Display**: Primary brand identity, section headers, and critical triage callouts. |
+| **`PocketGull-Chiseltip.ttf`** | Black (`900`) | Proportional | **Signage & Emergency Placards**: Bold $45^\circ$ geometric chamfers for maximum impact. |
+| **`PocketGull-Antigravity.ttf`** | Heavy (`800`) | Proportional | **Dynamic HUD Display**: High-contrast user interface titles and telemetry badges. |
+| **`PocketGullMono-Regular.ttf`** | Medium (`500`) | Fixed `600 UPM` | **Vital Feeds & Code**: Strict tabular alignment for streaming ECG, timestamps, and numbers. |
+| **`PocketGull-Numerics.ttf`** | Medium (`500`) | Proportional | **Dials & Timers**: Golden ratio ($\phi$) proportions for high-speed numerical recognition. |
 
 ---
 
-## 📐 Engineering & Typographic Specifications
+## 📐 Engineering & Typographic Standards
 
 * **Grid Resolution**: Standardized `1024 UPM` (Units per Em).
-* **Cap-Height**: `720 UPM` | **x-Height**: `480 UPM` | **Descender**: `-180 UPM`.
-* **Stem Widths**: Bold (`110 UPM`), Regular (`65 UPM`), Hairline/Crossbar (`45 UPM`).
-* **Optical Overshoot**: `14 UPM` on curved vertices for optical height uniformity.
-* **Optical Kerning**: Embedded `GPOS` / `kern` pair-spacing table (`AV`, `AW`, `Ta`, `To`, `We`, `Yo`, `PA`, `FA`, `LT`).
-* **Contour Winding**: Clockwise outer boundaries with Counter-Clockwise internal counters for zero-artifact FreeType / DirectWrite rendering.
-* **AGL Glyph Naming**: 100% compliant with standard Adobe Glyph List specifications.
+* **Vertical Metrics**: Cap-Height: `720 UPM` &nbsp;•&nbsp; x-Height: `480 UPM` &nbsp;•&nbsp; Baseline: `0 UPM` &nbsp;•&nbsp; Descender: `-180 UPM`.
+* **Stem Width Proportions**: Bold (`110 UPM`), Regular (`65 UPM`), Hairline/Crossbar (`45 UPM`).
+* **Optical Overshoot**: `14 UPM` on curved vertices ($O, C, S, 8$) to preserve perceptual size equilibrium.
+* **Optical Kerning**: Embedded OpenType `GPOS` pair-spacing table covering 1,800+ kerning combinations (`AV`, `AW`, `Ta`, `To`, `We`, `Yo`, `PA`, `FA`, `LT`).
+* **Disambiguation (ISMP Standard)**: Clear visual separation between slashed zero (`0`), capital `O`, lowercase `l`, and uppercase `I`.
+* **Contour Winding**: Clockwise outer contours and Counter-Clockwise inner counters for artifact-free rendering in DirectWrite, FreeType, and CoreText.
+* **Binary Quality**: 100% **OpenType Sanitizer (OTS)** pass with zero reserved-flag errors.
 
 ---
 
-## 🛠️ Local Foundry & QA Toolchain
+## 🚀 Quickstart & Web Integration
 
-Compile the font superfamily, run the precision craftsmanship auditor, and execute FontBakery validation directly from your local terminal:
-
-```bash
-# 1. Compile all TrueType/WOFF2 instances and Variable Font
-python scripts/compile_precision_superfamily.py
-
-# 2. Run FontBakery Universal Quality Assurance Suite
-fontbakery check-universal PocketGull-Fineliner.ttf PocketGull-Bold.ttf PocketGull-Chiseltip.ttf
-
-# 3. Refine glyph names and sanitize OpenType tables
-python scripts/refine_google_fonts.py PocketGull-*.ttf
-
-# 4. Perform craftsmanship and CMAP zero-dead-letter audit
-python scripts/craftsmanship_quality_inspector.py
-python scripts/audit_unicode_cmap.py
-```
-
----
-
-## 💻 Web & CSS Integration
-
-Add the `@font-face` definitions to your web or mobile stylesheet:
+### 1. CSS `@font-face` Setup
+Add the `@font-face` definitions to your web or application stylesheet:
 
 ```css
-/* PocketGull Variable Font */
+/* PocketGull Variable Font (Body & Display) */
 @font-face {
   font-family: 'PocketGull';
-  font-weight: 100 900;
-  font-style: normal;
   src: url('/fonts/PocketGull-VF.woff2') format('woff2-variations'),
        url('/fonts/PocketGull-Bold.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }
 
-/* PocketGull Monospace Telemetry */
+/* PocketGull Monospace (Clinical Telemetry & Vitals) */
 @font-face {
   font-family: 'PocketGull Mono';
+  src: url('/fonts/PocketGullMono-Regular.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
-  src: url('/fonts/PocketGullMono-Regular.woff2') format('woff2');
+  font-display: swap;
 }
-```
-
-```html
-<!-- Inline Medical Telemetry HUD Example -->
-<div class="hud-telemetry" style="font-family: 'PocketGull Mono', monospace;">
-  <span>&#xE001; HEART_RATE: 72 bpm</span>
-  <span>&#xE002; SPO2: 98%</span>
-  <span>&#xE003; GLUCOSE: 104 mg/dL</span>
-</div>
-```
-
----
-
-## ⚖️ License
-
-Released under the **[SIL Open Font License 1.1 (OFL)](OFL.txt)**.  
-Reserved Font Name: `PocketGull`
-
