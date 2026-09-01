@@ -28,3 +28,8 @@ desktop.ini
 # Temp / scratch
 *.tmp
 *.bak
+
+# Proprietary Philosophy & Internal Documents
+QUAKER_DESIGN_PHILOSOPHY.md
+docs/internal/
+manuscripts/

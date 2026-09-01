@@ -4,6 +4,8 @@
 ### *100% Owned Mathematical Vector Typeface & Clinical Telemetry Suite*
 
 [![OFL 1.1 License](https://img.shields.io/badge/License-OFL--1.1-orange.svg)](https://opensource.org/licenses/OFL-1.1)
+[![Google Fonts Submission](https://img.shields.io/badge/Google_Fonts_PR-%2310862-blue.svg)](https://github.com/google/fonts/pull/10862)
+[![FontBakery QA](https://img.shields.io/badge/FontBakery_QA-196_Pass_%7C_0_Fail-brightgreen.svg)](https://github.com/google/fonts/pull/10862)
 [![Vector Precision](https://img.shields.io/badge/Vector_Grid-1024_UPM_%7C_G2_Continuity-teal.svg)](https://github.com/pocketgull-app/PocketGull-typeface)
 [![Dead Letters](https://img.shields.io/badge/Charmap_Audit-0_Dead_Letters-brightgreen.svg)](https://github.com/pocketgull-app/PocketGull-typeface)
 [![Clinical PUA Icons](https://img.shields.io/badge/Clinical_PUA-E001--E006-blue.svg)](https://github.com/pocketgull-app/PocketGull-typeface)
