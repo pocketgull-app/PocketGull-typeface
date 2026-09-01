@@ -29,6 +29,7 @@ jobs:
 
       - name: Run Deterministic Compilation Script
         run: |
+          mkdir -p build
           python scripts/compile.py --input PocketGull-Bold.ttf --output build/PocketGull-Antigravity.ttf
 
       - name: Run FontBakery QA Suite

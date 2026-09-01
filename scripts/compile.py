@@ -83,6 +83,10 @@ def compile_deterministic_font(input_ttf, output_ttf):
         font['head'].modified = 1700000000
         font['head'].checkSumAdjustment = 0
 
+    out_dir = os.path.dirname(os.path.abspath(output_ttf))
+    if out_dir:
+        os.makedirs(out_dir, exist_ok=True)
+
     out_path = output_ttf.replace('.ttf', '-Build.ttf')
     font.save(out_path)
     
