@@ -1,25 +1,24 @@
 <div align="center">
 
 # 🖋️ PocketGull Typeface Superfamily
-### *Tactile Felt-Tip Marker Expression Meets Clinical Telemetry Precision*
+### *The Cellular Typefoundry: Tactile Felt-Tip Marker Expression Meets Clinical Telemetry Precision*
 
 [![OFL 1.1 License](https://img.shields.io/badge/License-SIL_OFL_1.1-orange.svg)](OFL.txt)
-[![Google Fonts Submission](https://img.shields.io/badge/Google_Fonts_PR-%2310862-4285F4.svg?logo=google)](https://github.com/google/fonts/pull/10862)
-[![FontBakery QA](https://img.shields.io/badge/FontBakery_QA-196_Pass_%7C_0_Fail-brightgreen.svg)](https://github.com/google/fonts/pull/10862)
+[![Google Fonts Submission](https://img.shields.io/badge/Google_Fonts_PR-%2310875-4285F4.svg?logo=google)](https://github.com/google/fonts/pull/10875)
+[![FontBakery QA](https://img.shields.io/badge/FontBakery_QA-144_Pass_%7C_0_Fail-brightgreen.svg)](https://github.com/google/fonts/pull/10875)
 [![Vector Precision](https://img.shields.io/badge/Vector_Grid-1024_UPM_%7C_G2_Continuity-teal.svg)](https://github.com/pocketgull-app/PocketGull-typeface)
-[![Charmap Audit](https://img.shields.io/badge/Charmap_Audit-0_Dead_Letters-brightgreen.svg)](https://github.com/pocketgull-app/PocketGull-typeface)
 [![Clinical PUA Icons](https://img.shields.io/badge/Clinical_PUA-E001--E006-blue.svg)](https://github.com/pocketgull-app/PocketGull-typeface)
 [![WCAG 2.1 AAA](https://img.shields.io/badge/WCAG_2.1_AAA-12.8%3A1_Contrast-emerald.svg)](https://typeface.pocketgull.app)
 
 <br/>
 
 <a href="https://typeface.pocketgull.app" target="_blank">
-  <img src="PocketGull-Authentic-Specimen.png" alt="PocketGull Authentic Superfamily Specimen" width="100%" style="border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);" />
+  <img src="assets/pocketgull_cellular_typefoundry.jpg" alt="PocketGull: The Cellular Typefoundry Master Specimen" width="100%" style="border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); max-width: 820px;" />
 </a>
 
 <br/><br/>
 
-### 🌐 [Live Interactive Type Foundry](https://typeface.pocketgull.app) &nbsp;•&nbsp; 📦 [Google Fonts Upstream PR #10862](https://github.com/google/fonts/pull/10862)
+### 🌐 [Live Interactive Type Foundry](https://typeface.pocketgull.app) &nbsp;•&nbsp; 📦 [Google Fonts Upstream PR #10875](https://github.com/google/fonts/pull/10875) &nbsp;•&nbsp; 🔬 [Live Interactive Specimen](https://pocketgull-app.github.io/PocketGull-typeface)
 
 </div>
 
@@ -28,10 +27,22 @@
 ## 📖 Design Vision & Overview
 
 **PocketGull** is an open-source, mathematical vector typeface superfamily engineered to bridge two disparate worlds:
-1. **Warm Humanist Expression**: The organic stroke energy and tactile warmth of a hand-drawn felt-tip marker.
+1. **Warm Humanist Expression**: The organic stroke energy, tactile warmth, and handcrafted papercraft quilling of a felt-tip marker.
 2. **Mission-Critical Precision**: Zero-error optical clarity calibrated for ICU bedside monitors, emergency 911 dispatch HUDs, bystander CPR coaching, and high-density electronic health record (EHR) charts.
 
 Built under the discipline of **Dieter Rams’ 10 Principles of Good Design** (*Good design is honest, unobtrusive, and as little design as possible*), every glyph is synthesized on a standardized **1024 UPM grid** ($CAP=720, XH=480, BL=0, DSC=-180$) with continuous G2 Bézier extrema, strict TrueType winding rules (clockwise outer contours, counter-clockwise inner counters), and 100% Adobe Glyph List (AGL) compliance.
+
+---
+
+## 🔬 The Cellular Typefoundry: Biophysical Telemetry & Optotypic Standards
+
+PocketGull is engineered for medical, biochemical, and physiological telemetry display interfaces:
+
+* **Optotypic Acuity (Snellen 20/20 & LogMAR 0.0)**: Stroke geometries maintain a $5\text{-arcminute}$ visual angle with $1\text{-arcminute}$ critical detail resolution at standard $50\text{–}70\text{ cm}$ clinical workstation distances.
+* **Biophysical Telemetry Expressions**:
+  $$\text{ATP} + \text{H}_2\text{O} \longrightarrow \text{ADP} + \text{P}_i$$
+  $$[\text{K}^+]_{\text{out}} = 4.5\text{ mM} \quad\Big|\quad [\text{K}^+]_{\text{in}} = 140\text{ mM}$$
+  $$\text{SpO}_2\text{ 99\%} \;\cdot\; 72\text{ bpm} \;\cdot\; \Delta\Psi_m = -140\text{ mV} \;\cdot\; \text{ATP Synthase } 600\text{ RPM} \;\cdot\; [\text{Ca}^{2+}]_i = 100\text{ nM}$$
 
 ---
 
@@ -58,7 +69,7 @@ The superfamily spans **7 purpose-built instances**, offering flexible weight di
 | :--- | :---: | :---: | :--- |
 | **`PocketGull-VF.ttf` / `.woff2`** | `100` $\rightarrow$ `900` | Proportional | **Universal Variable Font**: Continuous `wght` (100–900), `opsz` (8–72), and `slnt` axes. |
 | **`PocketGull-Fineliner.ttf`** | Regular (`400`) | Proportional | **Dense EHR & Lab Tables**: High-legibility body text, medication dosages, and clinical notes. |
-| **`PocketGull-Bold.ttf`** | Bold (`700`) | Proportional | **Master Display**: Primary brand identity, section headers, and critical triage callouts. |
+| **`PocketGull-Bold.ttf`** | Bold (`800`) | Proportional | **Master Display**: Primary brand identity, section headers, and critical triage callouts. |
 | **`PocketGull-Chiseltip.ttf`** | Black (`900`) | Proportional | **Signage & Emergency Placards**: Bold $45^\circ$ geometric chamfers for maximum impact. |
 | **`PocketGull-Antigravity.ttf`** | Heavy (`800`) | Proportional | **Dynamic HUD Display**: High-contrast user interface titles and telemetry badges. |
 | **`PocketGullMono-Regular.ttf`** | Medium (`500`) | Fixed `600 UPM` | **Vital Feeds & Code**: Strict tabular alignment for streaming ECG, timestamps, and numbers. |
@@ -73,7 +84,7 @@ The superfamily spans **7 purpose-built instances**, offering flexible weight di
 * **Stem Width Proportions**: Bold (`110 UPM`), Regular (`65 UPM`), Hairline/Crossbar (`45 UPM`).
 * **Optical Overshoot**: `14 UPM` on curved vertices ($O, C, S, 8$) to preserve perceptual size equilibrium.
 * **Optical Kerning**: Embedded OpenType `GPOS` pair-spacing table covering 1,800+ kerning combinations (`AV`, `AW`, `Ta`, `To`, `We`, `Yo`, `PA`, `FA`, `LT`).
-* **Disambiguation (ISMP Standard)**: Clear visual separation between slashed zero (`0`), capital `O`, lowercase `l`, and uppercase `I`.
+* **Disambiguation (ISMP Standard)**: Clear visual separation between slashed zero (`0` via `cv08`), curved lowercase `l` (`cv05`), serifed uppercase `I` (`ss02`), and hooked numeral `1`.
 * **Contour Winding**: Clockwise outer contours and Counter-Clockwise inner counters for artifact-free rendering in DirectWrite, FreeType, and CoreText.
 * **Binary Quality**: 100% **OpenType Sanitizer (OTS)** pass with zero reserved-flag errors.
 
@@ -103,3 +114,22 @@ Add the `@font-face` definitions to your web or application stylesheet:
   font-style: normal;
   font-display: swap;
 }
+```
+
+### 2. Enabling ISMP Disambiguation in CSS
+```css
+.clinical-telemetry {
+  font-family: 'PocketGull', sans-serif;
+  font-feature-settings: "cv08" 1, /* Slashed Zero */
+                         "cv05" 1, /* Curved Lowercase l */
+                         "ss02" 1, /* Serifed Capital I */
+                         "tnum" 1; /* Tabular Figures */
+}
+```
+
+---
+
+## 📜 License
+
+PocketGull is distributed under the [SIL Open Font License, Version 1.1](OFL.txt).  
+Copyright (c) 2026 The PocketGull Project Authors (https://github.com/philgear/pocketgull-typeface).
