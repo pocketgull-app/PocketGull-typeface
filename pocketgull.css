@@ -1,0 +1,189 @@
+/**
+ * PocketGull Typeface Superfamily
+ * Official Webfont Stylesheet (SIL Open Font License 1.1)
+ * https://typeface.pocketgull.app | https://github.com/pocketgull-app/PocketGull-typeface
+ */
+
+/* 1. Universal Variable Font (PocketGull) */
+@font-face {
+  font-family: 'PocketGull';
+  src: url('fonts/PocketGull-VF.woff2') format('woff2-variations'),
+       url('/fonts/PocketGull-VF.woff2') format('woff2-variations'),
+       url('PocketGull-VF.woff2') format('woff2-variations'),
+       url('https://typeface.pocketgull.app/fonts/PocketGull-VF.woff2') format('woff2-variations'),
+       url('fonts/PocketGull-VF.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PocketGull VF';
+  src: url('fonts/PocketGull-VF.woff2') format('woff2-variations'),
+       url('/fonts/PocketGull-VF.woff2') format('woff2-variations'),
+       url('PocketGull-VF.woff2') format('woff2-variations'),
+       url('https://typeface.pocketgull.app/fonts/PocketGull-VF.woff2') format('woff2-variations'),
+       url('fonts/PocketGull-VF.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 2. PocketGull Fineliner (Regular 400 - Clinical Body & Dosages) */
+@font-face {
+  font-family: 'PocketGull';
+  src: url('fonts/PocketGull-Fineliner.woff2') format('woff2'),
+       url('/fonts/PocketGull-Fineliner.woff2') format('woff2'),
+       url('PocketGull-Fineliner.woff2') format('woff2'),
+       url('https://typeface.pocketgull.app/fonts/PocketGull-Fineliner.woff2') format('woff2'),
+       url('fonts/PocketGull-Fineliner.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PocketGull Fineliner';
+  src: url('fonts/PocketGull-Fineliner.woff2') format('woff2'),
+       url('/fonts/PocketGull-Fineliner.woff2') format('woff2'),
+       url('PocketGull-Fineliner.woff2') format('woff2'),
+       url('https://typeface.pocketgull.app/fonts/PocketGull-Fineliner.woff2') format('woff2'),
+       url('fonts/PocketGull-Fineliner.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 3. PocketGull Bold (Display 800 - Headlines & Brand) */
+@font-face {
+  font-family: 'PocketGull';
+  src: url('fonts/PocketGull-Bold.woff2') format('woff2'),
+       url('/fonts/PocketGull-Bold.woff2') format('woff2'),
+       url('PocketGull-Bold.woff2') format('woff2'),
+       url('https://typeface.pocketgull.app/fonts/PocketGull-Bold.woff2') format('woff2'),
+       url('fonts/PocketGull-Bold.ttf') format('truetype');
+  font-weight: 700 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PocketGull Bold';
+  src: url('fonts/PocketGull-Bold.woff2') format('woff2'),
+       url('/fonts/PocketGull-Bold.woff2') format('woff2'),
+       url('PocketGull-Bold.woff2') format('woff2'),
+       url('https://typeface.pocketgull.app/fonts/PocketGull-Bold.woff2') format('woff2'),
+       url('fonts/PocketGull-Bold.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 4. PocketGull Chiseltip (Black 900 - Emergency & Placards) */
+@font-face {
+  font-family: 'PocketGull';
+  src: url('fonts/PocketGull-Chiseltip.woff2') format('woff2'),
+       url('/fonts/PocketGull-Chiseltip.woff2') format('woff2'),
+       url('PocketGull-Chiseltip.woff2') format('woff2'),
+       url('https://typeface.pocketgull.app/fonts/PocketGull-Chiseltip.woff2') format('woff2'),
+       url('fonts/PocketGull-Chiseltip.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PocketGull Chiseltip';
+  src: url('fonts/PocketGull-Chiseltip.woff2') format('woff2'),
+       url('/fonts/PocketGull-Chiseltip.woff2') format('woff2'),
+       url('PocketGull-Chiseltip.woff2') format('woff2'),
+       url('https://typeface.pocketgull.app/fonts/PocketGull-Chiseltip.woff2') format('woff2'),
+       url('fonts/PocketGull-Chiseltip.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 5. PocketGull Antigravity (Display 800) */
+@font-face {
+  font-family: 'PocketGull Antigravity';
+  src: url('fonts/PocketGull-Antigravity.woff2') format('woff2'),
+       url('/fonts/PocketGull-Antigravity.woff2') format('woff2'),
+       url('PocketGull-Antigravity.woff2') format('woff2'),
+       url('https://typeface.pocketgull.app/fonts/PocketGull-Antigravity.woff2') format('woff2'),
+       url('fonts/PocketGull-Antigravity.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 6. PocketGull Monospace (Telemetry 500 - Fixed 600 UPM) */
+@font-face {
+  font-family: 'PocketGull Mono';
+  src: url('fonts/PocketGullMono-Regular.woff2') format('woff2'),
+       url('/fonts/PocketGullMono-Regular.woff2') format('woff2'),
+       url('PocketGullMono-Regular.woff2') format('woff2'),
+       url('https://typeface.pocketgull.app/fonts/PocketGullMono-Regular.woff2') format('woff2'),
+       url('fonts/PocketGullMono-Regular.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 7. PocketGull Numerics (Dials & Metrics) */
+@font-face {
+  font-family: 'PocketGull Numerics';
+  src: url('fonts/PocketGull-Numerics.woff2') format('woff2'),
+       url('/fonts/PocketGull-Numerics.woff2') format('woff2'),
+       url('PocketGull-Numerics.woff2') format('woff2'),
+       url('https://typeface.pocketgull.app/fonts/PocketGull-Numerics.woff2') format('woff2'),
+       url('fonts/PocketGull-Numerics.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   Utility Classes
+   ========================================================================== */
+.font-pocketgull {
+  font-family: 'PocketGull', 'PocketGull VF', sans-serif;
+}
+
+.font-pocketgull-body,
+.font-pocketgull-fine {
+  font-family: 'PocketGull Fineliner', 'PocketGull', sans-serif;
+  font-weight: 400;
+}
+
+.font-pocketgull-heading,
+.font-pocketgull-bold {
+  font-family: 'PocketGull Bold', 'PocketGull', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.font-pocketgull-chisel,
+.font-pocketgull-emergency {
+  font-family: 'PocketGull Chiseltip', 'PocketGull', sans-serif;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+}
+
+.font-pocketgull-mono,
+.font-pocketgull-telemetry {
+  font-family: 'PocketGull Mono', monospace;
+  font-feature-settings: "tnum" 1, "zero" 1;
+}
+
+.font-pocketgull-numerics {
+  font-family: 'PocketGull Numerics', monospace;
+  font-feature-settings: "tnum" 1, "zero" 1;
+}
+
+/* ISMP / FDA Clinical Disambiguation Safety Preset */
+.clinical-ismp-safe,
+.pocketgull-safe {
+  font-family: 'PocketGull', 'PocketGull Fineliner', sans-serif;
+  font-feature-settings: "cv08" 1, "cv05" 1, "ss02" 1, "tnum" 1;
+}
