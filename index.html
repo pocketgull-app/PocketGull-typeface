@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PocketGull — The Cellular Typefoundry &amp; Clinical Telemetry Specimen</title>
-  <meta name="description" content="100% Pure Embedded PocketGull Typography. Tactile Felt-Tip Marker Expression Meets Clinical Telemetry Precision.">
+  <meta name="description" content="100% Pure Embedded PocketGull Typography. Tactile Felt-Tip Marker Expression Meets Clinical Telemetry Precision. Includes copy-paste CSS, pairing recipes, and designer guides.">
 
   <!-- 100% Embedded PocketGull Typography Superfamily (Zero External Font Dependencies) -->
   <style id="pocketgull-embedded-fonts">
@@ -80,7 +80,7 @@
       --accent-emerald: #10b981;
       --accent-blue: #3b82f6;
 
-      /* ONLY POCKETGULL FONTS ACROSS THE ENTIRE UI */
+      /* ONLY POCKETGULL FONTS ACROSS ENTIRE UI */
       --font-pg-bold: 'PocketGull Bold', 'PocketGull VF';
       --font-pg-fine: 'PocketGull Fineliner', 'PocketGull VF';
       --font-pg-chisel: 'PocketGull Chiseltip', 'PocketGull VF';
@@ -130,7 +130,6 @@
       overflow-x: hidden;
     }
 
-    /* Global Container */
     .container {
       max-width: 1280px;
       margin: 0 auto;
@@ -234,7 +233,7 @@
       transform: translateY(-1px);
     }
 
-    /* Hero Master Poster */
+    /* Hero Poster */
     .specimen-hero-section {
       padding: 48px 0 32px;
     }
@@ -481,6 +480,241 @@
       font-size: 16px;
       font-family: var(--font-pg-fine);
       margin-top: 6px;
+    }
+
+    /* PAIRINGS STUDIO CARDS */
+    .pairings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .pairing-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+
+    .pairing-card:hover {
+      border-color: var(--border-active);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+    }
+
+    .pairing-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 12px;
+    }
+
+    .pairing-usecase {
+      font-family: var(--font-pg-mono);
+      font-size: 12px;
+      color: var(--accent-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .pairing-badge {
+      font-family: var(--font-pg-mono);
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: var(--accent-gold);
+    }
+
+    .pairing-headline {
+      font-size: 26px;
+      line-height: 1.15;
+      color: var(--text-primary);
+    }
+
+    .pairing-body {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .pairing-telemetry {
+      font-family: var(--font-pg-mono);
+      font-size: 13px;
+      padding: 8px 12px;
+      background: var(--bg-canvas);
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      color: var(--accent-teal);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .pairing-css-box {
+      background: #020617;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: var(--font-pg-mono);
+      font-size: 12px;
+      color: #38bdf8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* CSS HUB & HOW-TO STYLING */
+    .css-hub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    .code-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .code-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+      background: var(--bg-surface-elevated);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .code-card-title {
+      font-family: var(--font-pg-bold);
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-copy-code {
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      color: var(--accent-teal);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-family: var(--font-pg-mono);
+      font-size: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-copy-code:hover {
+      background: var(--accent-teal);
+      color: #000000;
+      box-shadow: 0 0 12px rgba(6, 182, 212, 0.4);
+    }
+
+    .code-block-pre {
+      padding: 18px 20px;
+      font-family: var(--font-pg-mono);
+      font-size: 13px;
+      color: #38bdf8;
+      line-height: 1.55;
+      overflow-x: auto;
+      background: #020617;
+      flex-grow: 1;
+    }
+
+    .code-card-footer {
+      padding: 12px 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+      font-family: var(--font-pg-fine);
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+    }
+
+    .howto-steps-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 32px;
+    }
+
+    .howto-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    .howto-step-card {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .step-number {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: var(--accent-teal);
+      color: #000000;
+      font-family: var(--font-pg-bold);
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+    }
+
+    .step-title {
+      font-family: var(--font-pg-bold);
+      font-size: 17px;
+      margin-bottom: 6px;
+    }
+
+    .step-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    #copy-toast {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      background: var(--accent-teal);
+      color: #000000;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-family: var(--font-pg-bold);
+      font-size: 14px;
+      box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    #copy-toast.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* Type Tester */
@@ -877,6 +1111,9 @@
 </head>
 <body>
 
+  <!-- Toast Notification -->
+  <div id="copy-toast">📋 CSS Copied to Clipboard!</div>
+
   <!-- Sticky Header -->
   <header class="site-header">
     <div class="container nav-inner">
@@ -888,6 +1125,12 @@
         </div>
       </a>
       <div class="nav-actions">
+        <a href="#pairings" class="status-badge" style="background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.3); color: var(--accent-gold);">
+          <span>✨</span> Pairings
+        </a>
+        <a href="#css-toolkit" class="status-badge" style="background: rgba(6, 182, 212, 0.12); border-color: rgba(6, 182, 212, 0.3); color: var(--accent-teal);">
+          <span>💻</span> Copy CSS
+        </a>
         <a href="https://github.com/google/fonts/pull/10875" target="_blank" class="status-badge">
           <span>●</span> Google Fonts PR #10875
         </a>
@@ -904,7 +1147,6 @@
         <div class="poster-art-bg"></div>
         <div class="poster-blueprint-overlay"></div>
         
-        <!-- Blueprint Crosshairs -->
         <div class="blueprint-registration reg-tl"></div>
         <div class="blueprint-registration reg-tr"></div>
         <div class="blueprint-registration reg-bl"></div>
@@ -917,7 +1159,6 @@
             <div class="poster-subtitle">The Quick Brown Fox Jumps Over The Lazy Dog.</div>
           </div>
 
-          <!-- Live Biochemical Telemetry Box -->
           <div class="biochem-telemetry-panel">
             <div class="formula-row">
               <span>ATP + H<sub>2</sub>O</span>
@@ -942,20 +1183,300 @@
             </div>
           </div>
 
-          <!-- Live Alphabet Waterfall -->
           <div class="poster-alphabet">
             Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm<br>
             Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz<br>
             Rod (ggular) 500 600 1234567890 &amp;!? <span class="weights-tag">Fineliner 400 • Bold 800 • Chiseltip 900</span>
           </div>
 
-          <!-- Organelle Legend -->
           <div class="organelle-callouts">
             <span class="organelle-pill">⚡ Mitochondria (Golden Cristae)</span>
             <span class="organelle-pill">🟣 Synaptic Vesicles</span>
             <span class="organelle-pill">🧬 Nucleus &amp; Chromatin Core</span>
             <span class="organelle-pill">🛡️ Lipid Membrane Complex</span>
             <span class="organelle-pill">🔄 ATP Synthase Motor</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHIC PAIRING SUGGESTIONS & STUDIO -->
+    <section id="pairings" class="specimen-section">
+      <div class="section-header">
+        <div>
+          <div class="section-tag">Curated Typographic Harmony</div>
+          <h3 class="section-title">Font Pairing Suggestions</h3>
+          <p class="section-description">Tested typographic harmonies across clinical EHR charts, medical journal editorials, healthtech SaaS, and brand design.</p>
+        </div>
+      </div>
+
+      <div class="pairings-grid">
+        <!-- Pairing 1: Clinical High-Acuity -->
+        <div class="pairing-card">
+          <div class="pairing-meta">
+            <span class="pairing-usecase">🏥 Clinical &amp; EHR Telemetry Stack</span>
+            <span class="pairing-badge">Max Safety</span>
+          </div>
+          <div class="pairing-headline" style="font-family: var(--font-pg-bold);">
+            Emergency Cardiac Rhythm &amp; Medication Chart
+          </div>
+          <div class="pairing-body" style="font-family: var(--font-pg-fine);">
+            PocketGull Bold paired with Atkinson Hyperlegible or PocketGull Fineliner guarantees open counterforms and unambiguous glyph differentiation under harsh clinical monitor lighting.
+          </div>
+          <div class="pairing-telemetry">
+            <span>🫀 HR: 72 bpm</span>
+            <span>💧 SpO2: 99%</span>
+            <span>DOSE: 50 mg</span>
+          </div>
+          <div class="pairing-css-box">
+            <code>font-family: 'PocketGull Bold', 'Atkinson Hyperlegible';</code>
+            <button class="btn-copy-code" onclick="copyDirectText(`font-family: 'PocketGull Bold', 'Atkinson Hyperlegible', sans-serif;`)">📋 Copy</button>
+          </div>
+        </div>
+
+        <!-- Pairing 2: Biomedical Editorial -->
+        <div class="pairing-card">
+          <div class="pairing-meta">
+            <span class="pairing-usecase">🔬 Biomedical Editorial &amp; Journal</span>
+            <span class="pairing-badge">Scholarly</span>
+          </div>
+          <div class="pairing-headline" style="font-family: var(--font-pg-chisel);">
+            Mitochondrial Bioenergetics &amp; Cellular Dynamics
+          </div>
+          <div class="pairing-body" style="font-family: var(--font-pg-fine);">
+            PocketGull Chiseltip headers combined with Newsreader or Lora body serif creates an authoritative yet tactile scientific publication aesthetic with rich academic elegance.
+          </div>
+          <div class="pairing-telemetry" style="color: var(--accent-gold);">
+            <span>ATP + H₂O ⟶ ADP + Pi</span>
+            <span>[ΔG° = -30.5 kJ/mol]</span>
+          </div>
+          <div class="pairing-css-box">
+            <code>font-family: 'PocketGull Chiseltip', 'Newsreader', serif;</code>
+            <button class="btn-copy-code" onclick="copyDirectText(`font-family: 'PocketGull Chiseltip', 'Newsreader', 'Lora', serif;`)">📋 Copy</button>
+          </div>
+        </div>
+
+        <!-- Pairing 3: Modern HealthTech SaaS -->
+        <div class="pairing-card">
+          <div class="pairing-meta">
+            <span class="pairing-usecase">⚡ HealthTech SaaS &amp; Mobile Apps</span>
+            <span class="pairing-badge">Modern Product</span>
+          </div>
+          <div class="pairing-headline" style="font-family: var(--font-pg-bold); color: var(--accent-teal);">
+            Empirical Health Tracking &amp; Continuous CGM
+          </div>
+          <div class="pairing-body" style="font-family: var(--font-pg-fine);">
+            PocketGull Bold for high-impact hero titles and numbers, paired with Inter or Geist for clean UI controls, delivers a premium, human-centric wellness dashboard.
+          </div>
+          <div class="pairing-telemetry" style="color: var(--accent-magenta);">
+            <span>GLUCOSE: 104 mg/dL</span>
+            <span>TREND: STEADY (→)</span>
+          </div>
+          <div class="pairing-css-box">
+            <code>font-family: 'PocketGull Bold', 'Inter', 'Geist';</code>
+            <button class="btn-copy-code" onclick="copyDirectText(`font-family: 'PocketGull Bold', 'Inter', 'Geist', sans-serif;`)">📋 Copy</button>
+          </div>
+        </div>
+
+        <!-- Pairing 4: Pure Native PocketGull Monosuite -->
+        <div class="pairing-card">
+          <div class="pairing-meta">
+            <span class="pairing-usecase">🕊️ 100% Pure PocketGull Monosuite</span>
+            <span class="pairing-badge">Zero Dependency</span>
+          </div>
+          <div class="pairing-headline" style="font-family: var(--font-pg-bold); color: var(--accent-gold);">
+            The Handcrafted Living Brand Superfamily
+          </div>
+          <div class="pairing-body" style="font-family: var(--font-pg-fine);">
+            Pure superfamily harmony using PocketGull Bold for headings, PocketGull Fineliner for body text, and PocketGull Mono for tabular vitals and data tables.
+          </div>
+          <div class="pairing-telemetry">
+            <span>FINELINER (400)</span>
+            <span>BOLD (800)</span>
+            <span>MONO (500)</span>
+          </div>
+          <div class="pairing-css-box">
+            <code>font-family: 'PocketGull Bold', 'PocketGull Fineliner';</code>
+            <button class="btn-copy-code" onclick="copyDirectText(`/* Pure PocketGull Stack */\nh1 { font-family: 'PocketGull Bold', sans-serif; }\np { font-family: 'PocketGull Fineliner', sans-serif; }\ncode { font-family: 'PocketGull Mono', monospace; }`)">📋 Copy</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DESIGNER & DEVELOPER CSS HUB -->
+    <section id="css-toolkit" class="specimen-section">
+      <div class="section-header">
+        <div>
+          <div class="section-tag">Designer &amp; Developer Toolkit</div>
+          <h3 class="section-title">Copy &amp; Paste CSS Library</h3>
+          <p class="section-description">Ready-to-use CSS definitions for every PocketGull weight, clinical safety preset, and OpenType feature recipe.</p>
+        </div>
+      </div>
+
+      <div class="css-hub-grid">
+        <!-- Card 1: Variable Font -->
+        <div class="code-card">
+          <div class="code-card-header">
+            <span class="code-card-title"><span>🎛️</span> PocketGull Variable Font</span>
+            <button class="btn-copy-code" onclick="copySnippet('css-vf')"><span>📋</span> Copy CSS</button>
+          </div>
+          <pre class="code-block-pre"><code id="css-vf">/* PocketGull Universal Variable Font */
+@font-face {
+  font-family: 'PocketGull';
+  src: url('/fonts/PocketGull-VF.woff2') format('woff2-variations'),
+       url('/fonts/PocketGull-VF.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-pocketgull {
+  font-family: 'PocketGull', sans-serif;
+  font-weight: 800; /* Any weight 100 to 900 */
+}</code></pre>
+          <div class="code-card-footer">Universal variable font with continuous 100–900 weight axis.</div>
+        </div>
+
+        <!-- Card 2: Clinical Fineliner Body -->
+        <div class="code-card">
+          <div class="code-card-header">
+            <span class="code-card-title"><span>🖋️</span> Fineliner (Regular 400)</span>
+            <button class="btn-copy-code" onclick="copySnippet('css-fine')"><span>📋</span> Copy CSS</button>
+          </div>
+          <pre class="code-block-pre"><code id="css-fine">/* PocketGull Fineliner (Clinical Body &amp; EHR) */
+@font-face {
+  font-family: 'PocketGull Fineliner';
+  src: url('/fonts/PocketGull-Fineliner.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-pocketgull-body {
+  font-family: 'PocketGull Fineliner', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}</code></pre>
+          <div class="code-card-footer">High-legibility regular weight for EHR notes, dosages, and medical summaries.</div>
+        </div>
+
+        <!-- Card 3: Master Bold Headline -->
+        <div class="code-card">
+          <div class="code-card-header">
+            <span class="code-card-title"><span>🌟</span> Bold (Display 800)</span>
+            <button class="btn-copy-code" onclick="copySnippet('css-bold')"><span>📋</span> Copy CSS</button>
+          </div>
+          <pre class="code-block-pre"><code id="css-bold">/* PocketGull Bold (Display &amp; Headers) */
+@font-face {
+  font-family: 'PocketGull Bold';
+  src: url('/fonts/PocketGull-Bold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-pocketgull-heading {
+  font-family: 'PocketGull Bold', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}</code></pre>
+          <div class="code-card-footer">Primary brand identity and clinical section header styling.</div>
+        </div>
+
+        <!-- Card 4: Chiseltip Emergency -->
+        <div class="code-card">
+          <div class="code-card-header">
+            <span class="code-card-title"><span>⚡</span> Chiseltip (Black 900)</span>
+            <button class="btn-copy-code" onclick="copySnippet('css-chisel')"><span>📋</span> Copy CSS</button>
+          </div>
+          <pre class="code-block-pre"><code id="css-chisel">/* PocketGull Chiseltip (Signage &amp; Emergency) */
+@font-face {
+  font-family: 'PocketGull Chiseltip';
+  src: url('/fonts/PocketGull-Chiseltip.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-pocketgull-emergency {
+  font-family: 'PocketGull Chiseltip', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}</code></pre>
+          <div class="code-card-footer">45° chamfered emergency signage, CPR alerts, and AED placards.</div>
+        </div>
+
+        <!-- Card 5: Telemetry Monospace -->
+        <div class="code-card">
+          <div class="code-card-header">
+            <span class="code-card-title"><span>📊</span> Monospace (Telemetry 500)</span>
+            <button class="btn-copy-code" onclick="copySnippet('css-mono')"><span>📋</span> Copy CSS</button>
+          </div>
+          <pre class="code-block-pre"><code id="css-mono">/* PocketGull Monospace (Vitals &amp; Code) */
+@font-face {
+  font-family: 'PocketGull Mono';
+  src: url('/fonts/PocketGullMono-Regular.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-pocketgull-telemetry {
+  font-family: 'PocketGull Mono', monospace;
+  font-feature-settings: "tnum" 1, "zero" 1;
+  letter-spacing: 0.04em;
+}</code></pre>
+          <div class="code-card-footer">Fixed 600 UPM grid for tabular numerals and streaming telemetry.</div>
+        </div>
+
+        <!-- Card 6: ISMP Safety Feature Recipe -->
+        <div class="code-card">
+          <div class="code-card-header">
+            <span class="code-card-title"><span>🛡️</span> ISMP Safety Feature Preset</span>
+            <button class="btn-copy-code" onclick="copySnippet('css-ismp')"><span>📋</span> Copy CSS</button>
+          </div>
+          <pre class="code-block-pre"><code id="css-ismp">/* ISMP / FDA Full Disambiguation Preset */
+.clinical-ismp-safe {
+  font-family: 'PocketGull', 'PocketGull Fineliner', sans-serif;
+  font-feature-settings: 
+    "cv08" 1, /* Slashed Zero (0 vs O) */
+    "cv05" 1, /* Curved Lowercase l */
+    "ss02" 1, /* Serifed Capital I */
+    "tnum" 1; /* Tabular Proportional Numbers */
+}</code></pre>
+          <div class="code-card-footer">Complete patient safety OpenType recipe to eliminate look-alike dosage errors.</div>
+        </div>
+      </div>
+
+      <!-- STEP BY STEP HOW-TO GUIDE -->
+      <div class="howto-steps-container">
+        <h4 style="font-family: var(--font-pg-bold); font-size: 22px; margin-bottom: 4px;">📖 How to Implement PocketGull in Your Project</h4>
+        <p style="color: var(--text-secondary); font-size: 14px;">Follow these 4 simple steps to integrate PocketGull into HTML/CSS, React, Next.js, or Vue.</p>
+        
+        <div class="howto-steps-grid">
+          <div class="howto-step-card">
+            <div class="step-number">1</div>
+            <div class="step-title">Download Binaries</div>
+            <div class="step-text">Grab the <code>.woff2</code> / <code>.ttf</code> files from the repository and place them inside your public <code>/fonts/</code> directory.</div>
+          </div>
+
+          <div class="howto-step-card">
+            <div class="step-number">2</div>
+            <div class="step-title">Paste @font-face</div>
+            <div class="step-text">Copy the <code>@font-face</code> snippet above into your global <code>styles.css</code>, <code>globals.css</code>, or main stylesheet.</div>
+          </div>
+
+          <div class="howto-step-card">
+            <div class="step-number">3</div>
+            <div class="step-title">Configure Tailwind / CSS</div>
+            <div class="step-text">Define <code>fontFamily: { pocketgull: ['PocketGull', 'sans-serif'] }</code> in your <code>tailwind.config.js</code> or CSS tokens.</div>
+          </div>
+
+          <div class="howto-step-card">
+            <div class="step-number">4</div>
+            <div class="step-title">Apply Disambiguation</div>
+            <div class="step-text">Use <code>.clinical-ismp-safe</code> or Tailwind's <code>[font-feature-settings:'cv08'_1,'cv05'_1]</code> on medical feeds.</div>
           </div>
         </div>
       </div>
@@ -1230,6 +1751,8 @@
   <footer class="site-footer">
     <div class="container">
       <div class="footer-links">
+        <a href="#pairings">Pairing Suggestions</a>
+        <a href="#css-toolkit">Copy CSS Snippets</a>
         <a href="https://github.com/pocketgull-app/PocketGull-typeface" target="_blank">GitHub Repository</a>
         <a href="https://github.com/google/fonts/pull/10875" target="_blank">Google Fonts PR #10875</a>
         <a href="https://pocketgull.app" target="_blank">PocketGull App</a>
@@ -1306,6 +1829,31 @@
       const current = document.documentElement.getAttribute('data-theme');
       const next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
+    }
+
+    // Clipboard Helpers
+    function copySnippet(elementId) {
+      const codeEl = document.getElementById(elementId);
+      if (!codeEl) return;
+      copyDirectText(codeEl.textContent.trim());
+    }
+
+    function copyDirectText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('📋 Copied CSS to Clipboard!');
+      }).catch(err => {
+        console.error('Failed to copy text: ', err);
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('copy-toast');
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
     }
 
     const sliderDistance = document.getElementById('slider-distance');
