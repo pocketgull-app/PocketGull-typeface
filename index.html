@@ -4,12 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PocketGull — The Cellular Typefoundry &amp; Clinical Telemetry Specimen</title>
-  <meta name="description" content="Tactile Felt-Tip Marker Expression Meets Clinical Telemetry Precision. Explore the live interactive specimen of the PocketGull typography superfamily.">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <meta name="description" content="100% Pure Embedded PocketGull Typography. Tactile Felt-Tip Marker Expression Meets Clinical Telemetry Precision.">
 
+  <!-- 100% Embedded PocketGull Typography Superfamily (Zero External Font Dependencies) -->
   <style id="pocketgull-embedded-fonts">
     @font-face {
       font-family: 'PocketGull VF';
@@ -67,14 +64,14 @@
       --bg-canvas: #050811;
       --bg-surface: #0b1120;
       --bg-surface-elevated: #111b33;
-      --bg-glass: rgba(11, 17, 32, 0.85);
+      --bg-glass: rgba(11, 17, 32, 0.88);
       --border-subtle: rgba(255, 255, 255, 0.08);
       --border-active: rgba(6, 182, 212, 0.4);
       --border-gold: rgba(245, 158, 11, 0.4);
       
       --text-primary: #f8fafc;
-      --text-secondary: #94a3b8;
-      --text-muted: #64748b;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
       
       --accent-gold: #f59e0b;
       --accent-magenta: #ec4899;
@@ -83,27 +80,28 @@
       --accent-emerald: #10b981;
       --accent-blue: #3b82f6;
 
-      --font-pg-bold: 'PocketGull Bold', 'PocketGull VF', sans-serif;
-      --font-pg-fine: 'PocketGull Fineliner', 'PocketGull VF', sans-serif;
-      --font-pg-chisel: 'PocketGull Chiseltip', 'PocketGull VF', sans-serif;
-      --font-pg-anti: 'PocketGull Antigravity', 'PocketGull VF', sans-serif;
-      --font-pg-num: 'PocketGull Numerics', monospace;
-      --font-pg-mono: 'PocketGull Mono', 'JetBrains Mono', monospace;
-      --font-ui: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      /* ONLY POCKETGULL FONTS ACROSS THE ENTIRE UI */
+      --font-pg-bold: 'PocketGull Bold', 'PocketGull VF';
+      --font-pg-fine: 'PocketGull Fineliner', 'PocketGull VF';
+      --font-pg-chisel: 'PocketGull Chiseltip', 'PocketGull VF';
+      --font-pg-anti: 'PocketGull Antigravity', 'PocketGull VF';
+      --font-pg-num: 'PocketGull Numerics';
+      --font-pg-mono: 'PocketGull Mono';
+      --font-ui: 'PocketGull Fineliner', 'PocketGull VF';
     }
 
     [data-theme="light"] {
       --bg-canvas: #f8fafc;
       --bg-surface: #ffffff;
       --bg-surface-elevated: #f1f5f9;
-      --bg-glass: rgba(255, 255, 255, 0.9);
+      --bg-glass: rgba(255, 255, 255, 0.92);
       --border-subtle: rgba(0, 0, 0, 0.08);
       --border-active: rgba(6, 182, 212, 0.6);
       --border-gold: rgba(245, 158, 11, 0.6);
       
       --text-primary: #0f172a;
-      --text-secondary: #475569;
-      --text-muted: #94a3b8;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
       
       --accent-gold: #d97706;
       --accent-magenta: #db2777;
@@ -123,6 +121,7 @@
       background-color: var(--bg-canvas);
       color: var(--text-primary);
       font-family: var(--font-ui);
+      font-weight: 400;
       line-height: 1.6;
       padding: 0;
       -webkit-font-smoothing: antialiased;
@@ -131,12 +130,14 @@
       overflow-x: hidden;
     }
 
+    /* Global Container */
     .container {
       max-width: 1280px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
+    /* Header */
     header.site-header {
       position: sticky;
       top: 0;
@@ -182,10 +183,9 @@
     }
 
     .brand-text p {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-secondary);
-      font-family: var(--font-ui);
-      font-weight: 500;
+      font-family: var(--font-pg-fine);
     }
 
     .nav-actions {
@@ -200,8 +200,8 @@
       gap: 6px;
       padding: 6px 14px;
       border-radius: 999px;
-      font-size: 12px;
-      font-weight: 600;
+      font-size: 13px;
+      font-family: var(--font-pg-fine);
       background: rgba(16, 185, 129, 0.12);
       border: 1px solid rgba(16, 185, 129, 0.3);
       color: var(--accent-emerald);
@@ -234,6 +234,7 @@
       transform: translateY(-1px);
     }
 
+    /* Hero Master Poster */
     .specimen-hero-section {
       padding: 48px 0 32px;
     }
@@ -253,7 +254,7 @@
       background-image: url('assets/synaptic_quilling_specimen_bg.jpg'), url('synaptic_quilling_specimen_bg.jpg');
       background-size: cover;
       background-position: center;
-      opacity: 0.42;
+      opacity: 0.45;
       filter: saturate(1.2) contrast(1.1);
       transition: opacity 0.5s ease;
     }
@@ -306,7 +307,7 @@
       align-items: center;
       gap: 8px;
       font-family: var(--font-pg-mono);
-      font-size: 12px;
+      font-size: 13px;
       color: var(--accent-teal);
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -374,7 +375,7 @@
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 16px;
       font-family: var(--font-pg-mono);
-      font-size: 14px;
+      font-size: 15px;
       color: var(--text-primary);
       padding-top: 12px;
       border-top: 1px dashed rgba(255, 255, 255, 0.1);
@@ -406,7 +407,7 @@
 
     .poster-alphabet span.weights-tag {
       font-family: var(--font-pg-mono);
-      font-size: 12px;
+      font-size: 13px;
       color: var(--accent-gold);
       background: rgba(245, 158, 11, 0.15);
       border: 1px solid rgba(245, 158, 11, 0.3);
@@ -428,8 +429,8 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-family: var(--font-pg-mono);
-      font-size: 12px;
+      font-family: var(--font-pg-fine);
+      font-size: 13px;
       padding: 6px 14px;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.06);
@@ -444,6 +445,7 @@
       color: var(--text-primary);
     }
 
+    /* Sections */
     section.specimen-section {
       padding: 48px 0;
       border-bottom: 1px solid var(--border-subtle);
@@ -460,7 +462,7 @@
 
     .section-tag {
       font-family: var(--font-pg-mono);
-      font-size: 12px;
+      font-size: 13px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--accent-teal);
@@ -476,10 +478,12 @@
     .section-description {
       color: var(--text-secondary);
       max-width: 680px;
-      font-size: 15px;
+      font-size: 16px;
+      font-family: var(--font-pg-fine);
       margin-top: 6px;
     }
 
+    /* Type Tester */
     .tester-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
@@ -506,7 +510,8 @@
     .control-label {
       display: flex;
       justify-content: space-between;
-      font-size: 13px;
+      font-size: 14px;
+      font-family: var(--font-pg-fine);
       font-weight: 600;
       color: var(--text-secondary);
     }
@@ -546,8 +551,8 @@
       background: var(--bg-surface-elevated);
       border: 1px solid var(--border-subtle);
       color: var(--text-secondary);
-      font-size: 12px;
-      font-weight: 600;
+      font-family: var(--font-pg-fine);
+      font-size: 13px;
       padding: 6px 14px;
       border-radius: 8px;
       cursor: pointer;
@@ -571,8 +576,8 @@
       background: var(--bg-surface-elevated);
       border: 1px solid var(--border-subtle);
       color: var(--text-secondary);
-      font-size: 12px;
-      font-weight: 700;
+      font-family: var(--font-pg-fine);
+      font-size: 13px;
       padding: 6px 14px;
       border-radius: 8px;
       cursor: pointer;
@@ -609,6 +614,7 @@
       box-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
     }
 
+    /* ISMP Disambiguation Cards */
     .disambiguation-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -634,6 +640,7 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 16px;
+      font-family: var(--font-pg-fine);
     }
 
     .disambig-tag {
@@ -659,11 +666,13 @@
     }
 
     .disambig-rule {
-      font-size: 13px;
+      font-family: var(--font-pg-fine);
+      font-size: 14px;
       color: var(--text-secondary);
       line-height: 1.5;
     }
 
+    /* ICU Telemetry Monitor */
     .icu-monitor-card {
       background: #020617;
       border: 2px solid #1e293b;
@@ -689,8 +698,8 @@
       justify-content: space-between;
       align-items: center;
       font-family: var(--font-pg-mono);
-      font-size: 12px;
-      color: #64748b;
+      font-size: 13px;
+      color: #94a3b8;
       border-bottom: 1px solid #1e293b;
       padding-bottom: 12px;
       margin-bottom: 20px;
@@ -711,8 +720,7 @@
 
     .vital-label {
       font-family: var(--font-pg-mono);
-      font-size: 12px;
-      font-weight: 700;
+      font-size: 13px;
       letter-spacing: 0.05em;
       margin-bottom: 4px;
     }
@@ -720,15 +728,14 @@
     .vital-number {
       font-family: var(--font-pg-mono);
       font-size: 48px;
-      font-weight: 800;
       line-height: 1;
       font-feature-settings: "tnum" 1, "zero" 1;
     }
 
     .vital-unit {
-      font-family: var(--font-pg-mono);
-      font-size: 12px;
-      color: #64748b;
+      font-family: var(--font-pg-fine);
+      font-size: 13px;
+      color: #94a3b8;
       margin-top: 4px;
     }
 
@@ -737,6 +744,7 @@
     .color-bp { color: #ec4899; }
     .color-glucose { color: #f59e0b; }
 
+    /* Distance Simulator */
     .distance-simulator-card {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
@@ -753,6 +761,7 @@
       transition: filter 0.3s ease, transform 0.3s ease;
     }
 
+    /* Glyph Matrix */
     .glyph-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
@@ -791,11 +800,12 @@
 
     .glyph-code {
       font-family: var(--font-pg-mono);
-      font-size: 9px;
+      font-size: 10px;
       color: var(--text-muted);
       margin-top: 2px;
     }
 
+    /* Weights Architecture */
     .weights-stack-table {
       display: flex;
       flex-direction: column;
@@ -818,7 +828,7 @@
       display: flex;
       justify-content: space-between;
       font-family: var(--font-pg-mono);
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-muted);
       margin-bottom: 12px;
       padding-bottom: 8px;
@@ -831,6 +841,7 @@
       color: var(--text-primary);
     }
 
+    /* Footer */
     footer.site-footer {
       padding: 64px 0 48px;
       border-top: 1px solid var(--border-subtle);
@@ -848,8 +859,8 @@
     .footer-links a {
       color: var(--text-secondary);
       text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
+      font-family: var(--font-pg-fine);
+      font-size: 15px;
       transition: color 0.2s;
     }
 
@@ -858,13 +869,15 @@
     }
 
     .footer-copy {
-      font-size: 13px;
+      font-family: var(--font-pg-fine);
+      font-size: 14px;
       color: var(--text-muted);
     }
   </style>
 </head>
 <body>
 
+  <!-- Sticky Header -->
   <header class="site-header">
     <div class="container nav-inner">
       <a href="#" class="brand-mark">
@@ -885,11 +898,13 @@
 
   <main class="container">
 
+    <!-- HERO MASTER SPECIMEN POSTER -->
     <section class="specimen-hero-section">
       <div class="cellular-poster-card">
         <div class="poster-art-bg"></div>
         <div class="poster-blueprint-overlay"></div>
         
+        <!-- Blueprint Crosshairs -->
         <div class="blueprint-registration reg-tl"></div>
         <div class="blueprint-registration reg-tr"></div>
         <div class="blueprint-registration reg-bl"></div>
@@ -902,6 +917,7 @@
             <div class="poster-subtitle">The Quick Brown Fox Jumps Over The Lazy Dog.</div>
           </div>
 
+          <!-- Live Biochemical Telemetry Box -->
           <div class="biochem-telemetry-panel">
             <div class="formula-row">
               <span>ATP + H<sub>2</sub>O</span>
@@ -926,12 +942,14 @@
             </div>
           </div>
 
+          <!-- Live Alphabet Waterfall -->
           <div class="poster-alphabet">
             Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm<br>
             Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz<br>
             Rod (ggular) 500 600 1234567890 &amp;!? <span class="weights-tag">Fineliner 400 • Bold 800 • Chiseltip 900</span>
           </div>
 
+          <!-- Organelle Legend -->
           <div class="organelle-callouts">
             <span class="organelle-pill">⚡ Mitochondria (Golden Cristae)</span>
             <span class="organelle-pill">🟣 Synaptic Vesicles</span>
@@ -943,6 +961,7 @@
       </div>
     </section>
 
+    <!-- INTERACTIVE TYPE TESTER PLAYGROUND -->
     <section class="specimen-section">
       <div class="section-header">
         <div>
@@ -953,6 +972,7 @@
       </div>
 
       <div class="tester-card">
+        <!-- Preset Buttons -->
         <div class="preset-pills-bar">
           <button class="preset-btn" onclick="setPreset('PocketGull Sanctuary: Empirical Clinical Intelligence')">🏥 Clinical Branding</button>
           <button class="preset-btn" onclick="setPreset('SpO2 99% · 72 bpm · ΔΨm = -140 mV · ATP Synthase 600 RPM')">⚡ Vitals &amp; Bio-Telemetry</button>
@@ -961,6 +981,7 @@
           <button class="preset-btn" onclick="setPreset('ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz 0123456789')">🔤 All Characters</button>
         </div>
 
+        <!-- Sliders -->
         <div class="tester-controls">
           <div class="control-group">
             <div class="control-label">
@@ -987,6 +1008,7 @@
           </div>
         </div>
 
+        <!-- OpenType Feature Toggles -->
         <div class="feature-toggle-pills">
           <button class="toggle-pill active" onclick="toggleFeature(this, 'cv08')"><span>∅</span> Slashed Zero (cv08)</button>
           <button class="toggle-pill active" onclick="toggleFeature(this, 'cv05')"><span>ℓ</span> Curved Lowercase l (cv05)</button>
@@ -994,12 +1016,14 @@
           <button class="toggle-pill active" onclick="toggleFeature(this, 'tnum')"><span>123</span> Tabular Numbers (tnum)</button>
         </div>
 
+        <!-- Live Canvas -->
         <div id="live-canvas" class="live-editable-canvas" contenteditable="true" spellcheck="false">
           PocketGull: The Cellular Typefoundry
         </div>
       </div>
     </section>
 
+    <!-- CLINICAL ISMP DISAMBIGUATION LAB -->
     <section class="specimen-section">
       <div class="section-header">
         <div>
@@ -1056,6 +1080,7 @@
       </div>
     </section>
 
+    <!-- LIVE ICU / TELEMETRY MONITOR HUD -->
     <section class="specimen-section">
       <div class="section-header">
         <div>
@@ -1100,6 +1125,7 @@
       </div>
     </section>
 
+    <!-- SNELLEN / LOGMAR OPTOTYPIC DISTANCE SIMULATOR -->
     <section class="specimen-section">
       <div class="section-header">
         <div>
@@ -1125,13 +1151,14 @@
           <div style="font-family: var(--font-pg-fine); font-size: 24px; color: var(--text-secondary); margin-bottom: 8px;">
             PECFD EDFCZP FELOPZD DEFPOTEC
           </div>
-          <div style="font-family: var(--font-pg-mono); font-size: 14px; color: var(--accent-teal);">
+          <div style="font-family: var(--font-pg-mono); font-size: 15px; color: var(--accent-teal);">
             LogMAR 0.00 • Snellen 20/20 • 5-Arcminute Stroke Subtense Verified
           </div>
         </div>
       </div>
     </section>
 
+    <!-- SUPERFAMILY WEIGHTS ARCHITECTURE -->
     <section class="specimen-section">
       <div class="section-header">
         <div>
@@ -1184,6 +1211,7 @@
       </div>
     </section>
 
+    <!-- UNICODE CHARACTER MAP INSPECTOR -->
     <section class="specimen-section">
       <div class="section-header">
         <div>
@@ -1208,7 +1236,7 @@
         <a href="OFL.txt" target="_blank">SIL Open Font License 1.1</a>
       </div>
       <p class="footer-copy">
-        PocketGull Typeface Superfamily • Engineered by Phil Gear &amp; The PocketGull Project Authors • Released under SIL OFL 1.1
+        PocketGull Typeface Superfamily • 100% Pure Embedded Typography • Engineered by Phil Gear &amp; The PocketGull Project Authors • Released under SIL OFL 1.1
       </p>
     </div>
   </footer>
