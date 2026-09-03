@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 """
-Automated Test Suite for Pan-Asian (Chinese Hanzi) & Indic (Sanskrit Devanagari) Typography
+Automated Test Suite for Global Clinical Typography
 Validates:
 1. 100% CMap mapping for all 36 Chinese anatomical characters.
 2. 100% CMap mapping for all 45 Sanskrit Devanagari base & matra codepoints.
 3. 100% CMap mapping for all 256 Unicode Braille patterns (U+2800 - U+28FF).
-4. HarfBuzz text shaping: zero .notdef (tofu), zero dotted circles (U+25CC).
-5. Strict 600 UPM advance width across all glyphs in PocketGullMono-Regular.
+4. HarfBuzz text shaping across:
+   - Sanskrit Devanagari clinical terms
+   - Chinese anatomical characters
+   - Korean Hangul clinical terms
+   - Arabic clinical terms
+   - Hebrew clinical terms
+5. Zero .notdef (tofu) and zero broken glyphs.
 """
 
 import os
@@ -51,6 +56,10 @@ SANSKRIT_CLINICAL_TERMS = [
     'महाशिरा', 'भूताग्नि • कोशिकीय ओजस्', 'बीज भाग • प्रकृति संस्कार',
     'कोश कला • प्राण वहा स्रोतस्', 'अस्थि मज्जा धात्वाधार'
 ]
+
+KOREAN_CLINICAL_TERMS = ['뇌', '심장', '폐', '간', '신장', '위', '골', '혈압', '맥박', '척추']
+ARABIC_CLINICAL_TERMS = ['المخ', 'القلب', 'الرئتان', 'الكبد', 'ضغط الدم', 'النبض', 'العلامات الحيوية']
+HEBREW_CLINICAL_TERMS = ['המוח הגדול', 'עצם המצח', 'לב', 'שריר הלב', 'ריאות', 'כבד', 'כליות', 'דם', 'לחץ דם', 'אק״ג']
 
 
 class TestChineseClinicalAnatomyCoverage:
@@ -127,7 +136,6 @@ class TestHarfBuzzClinicalShaping:
             hb.shape(hb_font, buf)
 
             for info in buf.glyph_infos:
-                # Assert no .notdef glyph (GID 0)
                 assert info.codepoint != 0, f"Font {font_name} produced .notdef tofu in Sanskrit term '{term}'"
 
     @pytest.mark.parametrize('font_name', SUPERFAMILY_FONTS)
@@ -148,3 +156,60 @@ class TestHarfBuzzClinicalShaping:
 
             for info in buf.glyph_infos:
                 assert info.codepoint != 0, f"Font {font_name} produced .notdef tofu for Chinese char '{zh_char}'"
+
+    @pytest.mark.parametrize('font_name', SUPERFAMILY_FONTS)
+    def test_korean_clinical_terms_shaping(self, font_name):
+        font_path = REPO_ROOT / font_name
+        with open(str(font_path), 'rb') as f:
+            font_data = f.read()
+
+        blob = hb.Blob(font_data)
+        face = hb.Face(blob, 0)
+        hb_font = hb.Font(face)
+
+        for term in KOREAN_CLINICAL_TERMS:
+            buf = hb.Buffer()
+            buf.add_str(term)
+            buf.guess_segment_properties()
+            hb.shape(hb_font, buf)
+
+            for info in buf.glyph_infos:
+                assert info.codepoint != 0, f"Font {font_name} produced .notdef tofu for Korean term '{term}'"
+
+    @pytest.mark.parametrize('font_name', SUPERFAMILY_FONTS)
+    def test_arabic_clinical_terms_shaping(self, font_name):
+        font_path = REPO_ROOT / font_name
+        with open(str(font_path), 'rb') as f:
+            font_data = f.read()
+
+        blob = hb.Blob(font_data)
+        face = hb.Face(blob, 0)
+        hb_font = hb.Font(face)
+
+        for term in ARABIC_CLINICAL_TERMS:
+            buf = hb.Buffer()
+            buf.add_str(term)
+            buf.guess_segment_properties()
+            hb.shape(hb_font, buf)
+
+            for info in buf.glyph_infos:
+                assert info.codepoint != 0, f"Font {font_name} produced .notdef tofu for Arabic term '{term}'"
+
+    @pytest.mark.parametrize('font_name', SUPERFAMILY_FONTS)
+    def test_hebrew_clinical_terms_shaping(self, font_name):
+        font_path = REPO_ROOT / font_name
+        with open(str(font_path), 'rb') as f:
+            font_data = f.read()
+
+        blob = hb.Blob(font_data)
+        face = hb.Face(blob, 0)
+        hb_font = hb.Font(face)
+
+        for term in HEBREW_CLINICAL_TERMS:
+            buf = hb.Buffer()
+            buf.add_str(term)
+            buf.guess_segment_properties()
+            hb.shape(hb_font, buf)
+
+            for info in buf.glyph_infos:
+                assert info.codepoint != 0, f"Font {font_name} produced .notdef tofu for Hebrew term '{term}'"
