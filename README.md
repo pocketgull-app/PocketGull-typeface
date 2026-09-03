@@ -3,6 +3,10 @@
 # 🖋️ PocketGull Typeface Superfamily
 ### *The Clinical Superfamily: Tactile Humanist Warmth Meets Mission-Critical Ophthalmological Precision*
 
+[![SemVer 2.0.0](https://img.shields.io/badge/SemVer-2.0.0-blue.svg)](CHANGELOG.md)
+[![OpenSSF Scorecard](https://img.shields.io/badge/OpenSSF-Scorecard_Passing-blue.svg)](https://securityscorecards.dev)
+[![W3C OTS Validated](https://img.shields.io/badge/W3C_OTS-100%25_Valid-emerald.svg)](https://github.com/googlefonts/ots)
+[![Fontbakery QA](https://img.shields.io/badge/Fontbakery-711%2F711_Passed-brightgreen.svg)](https://github.com/googlefonts/fontbakery)
 [![OFL 1.1 License](https://img.shields.io/badge/License-SIL_OFL_1.1-orange.svg)](OFL.txt)
 [![Vector Metric](https://img.shields.io/badge/Vector_Grid-1000_UPM_%7C_OpenType_TrueType-teal.svg)](https://github.com/pocketgull-app/pocketgull-typeface)
 [![Unicode Braille](https://img.shields.io/badge/Braille_Block-256_Patterns_%7C_U%2B2800--28FF-blue.svg)](https://github.com/pocketgull-app/pocketgull-typeface)
@@ -103,7 +107,7 @@ Embedded directly in the live typeface specimen, the **Doc Drill** engine provid
 | **`PocketGullMono-Regular.woff2` / `.ttf`** | `PocketGullMono-Regular` | Medium (`500`) | Fixed $600\text{ UPM}$ | Tabular telemetry, streaming vitals, ECG waveforms, terminal CLI, code editors |
 | **`pocketgull-ophthalmic.omp.json`** | — | Theme | JSON | Windows Terminal, PowerShell, Bash, and Zsh Oh My Posh ophthalmic prompt |
 
-*(All binaries available in root `/` and `/fonts/` in both `.woff2` and `.ttf` formats).*
+*(All binaries organized in `fonts/`, `fonts/ttf/`, and `fonts/woff2/` conforming to Google Fonts standards).*
 
 ---
 

@@ -1,0 +1,13 @@
+# Google Fonts Project Template Builder Config
+sources:
+  - PocketGull-Bold.ufo
+  - PocketGull-Fineliner.ufo
+  - PocketGull-Chiseltip.ufo
+  - PocketGullMono-Regular.ufo
+
+familyName: "PocketGull"
+
+outputDir: ../fonts
+buildOTF: false
+buildTTF: true
+buildVariable: false

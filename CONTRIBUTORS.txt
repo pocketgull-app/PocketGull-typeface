@@ -1,0 +1,3 @@
+# This is the official list of people who have contributed to the PocketGull font project.
+Phil Gear <philgear@gmail.com>
+The PocketGull Project Authors & Clinical Typography Team

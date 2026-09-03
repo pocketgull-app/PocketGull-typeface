@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use the PocketGull Typeface Superfamily in clinical software, medical informatics, or vision science research, please cite it as below."
+title: "PocketGull Typeface Superfamily"
+abstract: "A clinical and ophthalmological vector typeface superfamily bridging tactile humanist warmth with zero-error clinical precision, featuring 256 Unicode Braille patterns, ISMP/FDA character disambiguation, and Louise Sloan 5:1 optotypic geometry."
+version: 2.0.0
+date-released: 2026-09-03
+license: OFL-1.1
+repository-code: "https://github.com/pocketgull-app/pocketgull-typeface"
+url: "https://typeface.pocketgull.app"
+authors:
+  - name: "The PocketGull Project Authors"
+keywords:
+  - "typeface"
+  - "typography"
+  - "opentype"
+  - "truetype"
+  - "google-fonts"
+  - "ophthalmology"
+  - "clinical-safety"
+  - "ismp"
+  - "braille"
+  - "bionic-reading"
+  - "telemetry"

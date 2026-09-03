@@ -1,0 +1,3 @@
+# This is the official list of people who hold copyright to the PocketGull font project.
+Phil Gear <philgear@gmail.com>
+The PocketGull Project Authors

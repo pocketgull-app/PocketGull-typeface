@@ -1,94 +1,13 @@
 /**
- * PocketGull Typeface Superfamily
+ * PocketGull Typeface Superfamily — Core Design Tokens & Utilities
  * Official Webfont Stylesheet (SIL Open Font License 1.1)
- * https://typeface.pocketgull.app | https://github.com/pocketgull-app/pocketgull-typeface
  */
-
-/* 1. Universal Proportional Superfamily */
-@font-face {
-  font-family: 'PocketGull';
-  src: url('PocketGull-Bold.woff2') format('woff2'),
-       url('fonts/PocketGull-Bold.woff2') format('woff2'),
-       url('PocketGull-Bold.ttf') format('truetype'),
-       url('fonts/PocketGull-Bold.ttf') format('truetype');
-  font-weight: 700 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'PocketGull';
-  src: url('PocketGull-Fineliner.woff2') format('woff2'),
-       url('fonts/PocketGull-Fineliner.woff2') format('woff2'),
-       url('PocketGull-Fineliner.ttf') format('truetype'),
-       url('fonts/PocketGull-Fineliner.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'PocketGull';
-  src: url('PocketGull-Chiseltip.woff2') format('woff2'),
-       url('fonts/PocketGull-Chiseltip.woff2') format('woff2'),
-       url('PocketGull-Chiseltip.ttf') format('truetype'),
-       url('fonts/PocketGull-Chiseltip.ttf') format('truetype');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Dedicated Family Names */
-@font-face {
-  font-family: 'PocketGull Bold';
-  src: url('PocketGull-Bold.woff2') format('woff2'),
-       url('fonts/PocketGull-Bold.woff2') format('woff2'),
-       url('PocketGull-Bold.ttf') format('truetype'),
-       url('fonts/PocketGull-Bold.ttf') format('truetype');
-  font-weight: 700 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'PocketGull Fineliner';
-  src: url('PocketGull-Fineliner.woff2') format('woff2'),
-       url('fonts/PocketGull-Fineliner.woff2') format('woff2'),
-       url('PocketGull-Fineliner.ttf') format('truetype'),
-       url('fonts/PocketGull-Fineliner.ttf') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'PocketGull Chiseltip';
-  src: url('PocketGull-Chiseltip.woff2') format('woff2'),
-       url('fonts/PocketGull-Chiseltip.woff2') format('woff2'),
-       url('PocketGull-Chiseltip.ttf') format('truetype'),
-       url('fonts/PocketGull-Chiseltip.ttf') format('truetype');
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* 2. PocketGull Mono (Fixed 600 UPM Clinical Telemetry & Terminal) */
-@font-face {
-  font-family: 'PocketGull Mono';
-  src: url('PocketGullMono-Regular.woff2') format('woff2'),
-       url('fonts/PocketGullMono-Regular.woff2') format('woff2'),
-       url('PocketGullMono-Regular.ttf') format('truetype'),
-       url('fonts/PocketGullMono-Regular.ttf') format('truetype');
-  font-weight: 400 500;
-  font-style: normal;
-  font-display: swap;
-}
 
 /* ==========================================================================
    Utility Classes & Stylistic Sets
    ========================================================================== */
 .font-pocketgull {
-  font-family: 'PocketGull', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'PocketGull', 'PocketGull Fineliner', sans-serif;
 }
 
 .font-pocketgull-bold {
@@ -107,7 +26,7 @@
 }
 
 .font-pocketgull-mono {
-  font-family: 'PocketGull Mono', 'Cascadia Code', 'Consolas', monospace;
+  font-family: 'PocketGull Mono', monospace;
   font-feature-settings: "tnum" 1, "zero" 1;
 }
 
@@ -115,7 +34,8 @@
 .clinical-ismp-safe,
 .pocketgull-safe {
   font-family: 'PocketGull', 'PocketGull Fineliner', sans-serif;
-  font-feature-settings: "zero" 1, "cv08" 1, "cv05" 1, "ss02" 1, "tnum" 1;
+  font-feature-settings: "zero" 1, "cv08" 1, "cv05" 1, "ss02" 1, "tnum" 1 !important;
+  font-variant-numeric: slashed-zero tabular-nums !important;
 }
 
 /* Sloan 5:1 Optotype Aperture Ratio (LogMAR 0.0 / Snellen 20/20) */
@@ -204,3 +124,108 @@
   letter-spacing: 0.15em;
   line-height: 1.6;
 }
+
+    /* Universal PocketGull Typography for All Buttons & Form Controls */
+    button, input, optgroup, select, textarea,
+    .btn, [class*="btn-"], [class*="-btn"], .weight-btn, .preset-pill,
+    .samsa-glyph-btn, .tab-btn, .prompt-theme-btn, .btn-copy-code,
+    .doc-drill-chip, .doc-drill-send, .btn-download-hero, .btn-pbm-toggle,
+    .header-nav a, .btn-hero-primary, .btn-hero-secondary, .btn-hero-outline {
+      font-family: 'PocketGull Bold', 'PocketGull', sans-serif !important;
+      font-weight: 700 !important;
+      letter-spacing: -0.01em;
+    }
+
+    /* Monospace telemetry and code buttons */
+    .btn-mono, button[data-weight="500"], .prompt-theme-btn, .samsa-metric-val, .axis-badge-readout {
+      font-family: 'PocketGull Mono', monospace !important;
+      font-feature-settings: "tnum" 1, "zero" 1;
+    }
+
+
+    /* ==========================================================================
+       Themed Clinical Scrollbars for The Drill Down Frame & Modal Panels
+       ========================================================================== */
+    .doc-drill-panel,
+    .doc-drill-panel *,
+    .doc-drill-body,
+    .doc-drill-chips,
+    #letterPreview,
+    .code-block-wrapper pre,
+    .tester-output-area {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(45, 212, 191, 0.45) rgba(15, 23, 42, 0.6);
+    }
+
+    .doc-drill-panel::-webkit-scrollbar,
+    .doc-drill-panel *::-webkit-scrollbar,
+    .doc-drill-body::-webkit-scrollbar,
+    .doc-drill-chips::-webkit-scrollbar,
+    #letterPreview::-webkit-scrollbar,
+    .code-block-wrapper pre::-webkit-scrollbar,
+    .tester-output-area::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    .doc-drill-panel::-webkit-scrollbar-track,
+    .doc-drill-panel *::-webkit-scrollbar-track,
+    .doc-drill-body::-webkit-scrollbar-track,
+    .doc-drill-chips::-webkit-scrollbar-track,
+    #letterPreview::-webkit-scrollbar-track,
+    .code-block-wrapper pre::-webkit-scrollbar-track,
+    .tester-output-area::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 9999px;
+    }
+
+    .doc-drill-panel::-webkit-scrollbar-thumb,
+    .doc-drill-panel *::-webkit-scrollbar-thumb,
+    .doc-drill-body::-webkit-scrollbar-thumb,
+    .doc-drill-chips::-webkit-scrollbar-thumb,
+    #letterPreview::-webkit-scrollbar-thumb,
+    .code-block-wrapper pre::-webkit-scrollbar-thumb,
+    .tester-output-area::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, rgba(45, 212, 191, 0.7), rgba(20, 184, 166, 0.45));
+      border-radius: 9999px;
+      border: 1px solid rgba(45, 212, 191, 0.3);
+      box-shadow: 0 0 8px rgba(45, 212, 191, 0.25);
+      transition: all 0.2s ease;
+    }
+
+    .doc-drill-panel::-webkit-scrollbar-thumb:hover,
+    .doc-drill-panel *::-webkit-scrollbar-thumb:hover,
+    .doc-drill-body::-webkit-scrollbar-thumb:hover,
+    .doc-drill-chips::-webkit-scrollbar-thumb:hover,
+    #letterPreview::-webkit-scrollbar-thumb:hover,
+    .code-block-wrapper pre::-webkit-scrollbar-thumb:hover,
+    .tester-output-area::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #2dd4bf, #0d9488);
+      box-shadow: 0 0 12px rgba(45, 212, 191, 0.6);
+    }
+
+    /* 670nm Photobiomodulation Deep-Red Scrollbars */
+    [data-theme="pbm"] .doc-drill-panel,
+    [data-theme="pbm"] .doc-drill-panel *,
+    [data-theme="pbm"] .doc-drill-body,
+    [data-theme="pbm"] #letterPreview {
+      scrollbar-color: rgba(239, 68, 68, 0.5) rgba(20, 0, 0, 0.8);
+    }
+
+    [data-theme="pbm"] .doc-drill-panel::-webkit-scrollbar-thumb,
+    [data-theme="pbm"] .doc-drill-panel *::-webkit-scrollbar-thumb,
+    [data-theme="pbm"] .doc-drill-body::-webkit-scrollbar-thumb,
+    [data-theme="pbm"] #letterPreview::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, rgba(239, 68, 68, 0.8), rgba(185, 28, 28, 0.5));
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      box-shadow: 0 0 8px rgba(239, 68, 68, 0.35);
+    }
+
+    [data-theme="pbm"] .doc-drill-panel::-webkit-scrollbar-thumb:hover,
+    [data-theme="pbm"] .doc-drill-panel *::-webkit-scrollbar-thumb:hover,
+    [data-theme="pbm"] .doc-drill-body::-webkit-scrollbar-thumb:hover,
+    [data-theme="pbm"] #letterPreview::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #ef4444, #b91c1c);
+      box-shadow: 0 0 12px rgba(239, 68, 68, 0.7);
+    }
+

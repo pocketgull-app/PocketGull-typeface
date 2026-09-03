@@ -1,0 +1,9 @@
+name: PocketGull
+branch: main
+repository: https://github.com/pocketgull-app/pocketgull-typeface
+archive: ""
+files:
+  PocketGull-Bold.ttf: fonts/ttf/PocketGull-Bold.ttf
+  PocketGull-Fineliner.ttf: fonts/ttf/PocketGull-Fineliner.ttf
+  PocketGull-Chiseltip.ttf: fonts/ttf/PocketGull-Chiseltip.ttf
+  PocketGullMono-Regular.ttf: fonts/ttf/PocketGullMono-Regular.ttf
