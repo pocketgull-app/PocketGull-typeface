@@ -1,0 +1,7 @@
+# GitHub Copilot Content Exclusion
+.venv/
+.foundry/
+__pycache__/
+*.pyc
+sources/PocketGull.glyphs
+*.log

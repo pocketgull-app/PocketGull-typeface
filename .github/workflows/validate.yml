@@ -2,9 +2,9 @@ name: Google Fonts Quality Assurance & Fontbakery
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:

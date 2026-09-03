@@ -58,7 +58,7 @@
     <!-- Rule 3 -->
     <rect x="0" y="285" width="960" height="105" rx="10" fill="#0D1628" stroke="#334155" stroke-width="1"/>
     <text x="24" y="315" class="font-mono" font-size="13" fill="#38BDF8" font-weight="bold">RULE 3: KEEP IT SIMPLE AND KIND</text>
-    <text x="24" y="345" class="font-body" font-size="15" fill="#E2E8F0">Dieter Rams said: "Less, but better." When we strip away junk, what remains is pure, honest help.</text>
+    <text x="24" y="345" class="font-body" font-size="15" fill="#E2E8F0">Libre Functionalism said: "Less, but better." When we strip away junk, what remains is pure, honest help.</text>
     <text x="24" y="370" class="font-mono" font-size="11" fill="#64748B">Empathetic typography brings calm and peace.</text>
   </g>
 

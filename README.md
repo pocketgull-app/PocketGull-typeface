@@ -2,14 +2,18 @@
 
 # 🕊️ PocketGull Typeface Superfamily
 
-[![OFL 1.1 License](https://img.shields.io/badge/License-SIL_OFL_1.1-orange.svg)](OFL.txt)
-[![SemVer 2.0.0](https://img.shields.io/badge/SemVer-2.0.0-blue.svg)](CHANGELOG.md)
-[![W3C OTS Validated](https://img.shields.io/badge/W3C_OTS-100%25_Valid-emerald.svg)](https://github.com/googlefonts/ots)
-[![Fontbakery QA](https://img.shields.io/badge/Fontbakery-711%2F711_Passed-brightgreen.svg)](https://github.com/googlefonts/fontbakery)
+[![OFL 1.1 License](https://img.shields.io/badge/License-SIL_OFL_1.1-orange.svg?style=flat-square)](OFL.txt)
+[![SemVer 2.0.0](https://img.shields.io/badge/SemVer-2.0.0-blue.svg?style=flat-square)](CHANGELOG.md)
+[![W3C OTS Validated](https://img.shields.io/badge/W3C_OTS-100%25_Valid-emerald.svg?style=flat-square)](https://github.com/googlefonts/ots)
+[![Fontbakery QA](https://img.shields.io/badge/Fontbakery-711%2F711_Passed-brightgreen.svg?style=flat-square)](https://github.com/googlefonts/fontbakery)
+<br/>
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0008--1372--5381-A6C900?style=flat-square&logo=orcid&logoColor=white)](https://orcid.org/0009-0008-1372-5381)
+[![CERN Zenodo Archival](https://img.shields.io/badge/CERN%20Zenodo-Open%20Science-024c9c.svg?style=flat-square)](documentation/CERN_ZENODO_ARCHIVAL_GUIDE.md)
+[![WCAG 2.1 AAA](https://img.shields.io/badge/WCAG_2.1-AAA_100%25-emerald.svg?style=flat-square)](index.html)
 
 <br/>
 
-### 🌐 [Live Interactive Specimen](https://typeface.pocketgull.app) &nbsp;•&nbsp; 📦 [UFO Sources](sources/) &nbsp;•&nbsp; 📄 [SIL OFL 1.1 License](OFL.txt)
+### 🌐 [Live Interactive Specimen](https://typeface.pocketgull.app) &nbsp;•&nbsp; 📦 [UFO Sources](sources/) &nbsp;•&nbsp; 📄 [SIL OFL 1.1 License](OFL.txt) &nbsp;•&nbsp; 🏛️ [CERN Archival](documentation/CERN_ZENODO_ARCHIVAL_GUIDE.md)
 
 </div>
 
@@ -81,10 +85,33 @@ Enable clinical dosage disambiguation:
 
 * 📖 **[Design Specification](documentation/DESIGN_SPECIFICATION.md)** — Architectural guidelines and design history
 * 🔬 **[Scientific Bibliography](documentation/BIBLIOGRAPHY.md)** — Peer-reviewed ophthalmology & vision science literature
+* 🏛️ **[CERN & Zenodo Archival Guide](documentation/CERN_ZENODO_ARCHIVAL_GUIDE.md)** — Permanent Open Science preservation
+* ⚖️ **[Project Governance](GOVERNANCE.md)** — Oversight policy and review board
+* 👁️ **[Responsible Typography Framework](RESPONSIBLE_TYPOGRAPHY.md)** — Clinical safety and optotypic invariants
 * 🏥 **[Workstation Authorization Memo](documentation/WORKSTATION_AUTHORIZATION_LETTER.md)** — Institutional deployment request for CMIOs and IT
 * 🛠️ **[Building from UFO Sources](sources/)** — Compiler setup with `fontmake` and `gftools-builder`
 * 🛡️ **[Security Policy](SECURITY.md)** — OpenSSF vulnerability disclosure and W3C OTS verification
 * 📝 **[Changelog](CHANGELOG.md)** — Semantic Versioning history (SemVer 2.0.0)
+
+---
+
+## 🔬 Academic Citation & CERN / Zenodo DOI
+
+If you use the PocketGull Typeface Superfamily in your clinical research, healthcare software, or vision science publications, please cite it using [`CITATION.cff`](CITATION.cff) or the BibTeX entry below:
+
+```bibtex
+@software{gear_pocketgull_typeface_2026,
+  author       = {Gear, Phil and {The PocketGull Project Authors}},
+  title        = {{PocketGull Typeface Superfamily: Optotypically Calibrated Clinical \& Ophthalmological Vector Letterforms}},
+  month        = sep,
+  year         = 2026,
+  publisher    = {CERN / Zenodo},
+  version      = {2.0.0},
+  doi          = {10.5281/zenodo.20647514},
+  url          = {https://typeface.pocketgull.app},
+  license      = {OFL-1.1}
+}
+```
 
 ---
 

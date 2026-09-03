@@ -1,0 +1,88 @@
+name: "Release & Publish Typeface Package"
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  release:
+    name: Package & Publish GitHub Release (CERN/Zenodo Ingest)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Validation Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install fonttools opentype-sanitizer
+
+      - name: Run PocketGull Pre-Flight Validator
+        run: |
+          python sources/validate_fonts.py
+
+      - name: Create Release Package
+        run: |
+          TAG_NAME="${GITHUB_REF_NAME:-v2.0.0}"
+          ZIP_NAME="pocketgull-typeface-${TAG_NAME}.zip"
+          
+          # Bundle release artifacts
+          zip -r "${ZIP_NAME}" \
+            fonts/ttf/*.ttf \
+            fonts/woff2/*.woff2 \
+            fonts.css \
+            pocketgull.css \
+            OFL.txt \
+            CITATION.cff \
+            .zenodo.json \
+            README.md \
+            CHANGELOG.md
+
+          # Generate cryptographic SHA-256 checksums
+          sha256sum "${ZIP_NAME}" > SHA256SUMS.txt
+          sha256sum fonts/ttf/*.ttf fonts/woff2/*.woff2 >> SHA256SUMS.txt
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "PocketGull Typeface ${{ github.ref_name }}"
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+          files: |
+            pocketgull-typeface-*.zip
+            SHA256SUMS.txt
+          body: |
+            ## 🕊️ PocketGull Typeface Superfamily Release
+
+            ### 📦 Included Deliverables
+            - **TrueType (.ttf)**: `PocketGull-Bold.ttf`, `PocketGull-Fineliner.ttf`, `PocketGull-Chiseltip.ttf`, `PocketGullMono-Regular.ttf`
+            - **Webfonts (.woff2)**: W3C OTS validated, brotli compressed
+            - **Web Embeds**: `fonts.css`, `pocketgull.css`
+            - **Licensing & Citation**: `OFL.txt` (SIL Open Font License 1.1), `CITATION.cff` (v1.2.0), `.zenodo.json`
+
+            ### 🔬 CERN / Zenodo Archival & DOI
+            This release is automatically captured and preserved in the **CERN Data Centre (Geneva, Switzerland)** via the Zenodo integration.
+            - **Lead Architect**: Phillip Gear ([ORCID: 0009-0008-1372-5381](https://orcid.org/0009-0008-1372-5381))
+            - **Publisher**: PocketGull LLC
+            - **Companion Suite**: [Pocket-Gull Clinical Intelligence](https://doi.org/10.5281/zenodo.20647514)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

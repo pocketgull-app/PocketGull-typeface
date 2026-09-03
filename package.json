@@ -1,0 +1,40 @@
+{
+  "name": "@pocketgull/typeface",
+  "version": "2.0.0",
+  "description": "Optotypically calibrated clinical and ophthalmological vector typeface superfamily bridging tactile humanist warmth with zero-error clinical precision.",
+  "main": "fonts.css",
+  "style": "fonts.css",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pocketgull-app/pocketgull-typeface.git"
+  },
+  "keywords": [
+    "font",
+    "typeface",
+    "clinical",
+    "ophthalmology",
+    "braille",
+    "ismp",
+    "sloan-optotypes",
+    "wcag-aaa",
+    "woff2",
+    "truetype"
+  ],
+  "author": "Phil Gear <philgear@gmail.com> (https://orcid.org/0009-0008-1372-5381)",
+  "contributors": [
+    "The PocketGull Project Authors"
+  ],
+  "license": "OFL-1.1",
+  "bugs": {
+    "url": "https://github.com/pocketgull-app/pocketgull-typeface/issues"
+  },
+  "homepage": "https://typeface.pocketgull.app",
+  "files": [
+    "fonts/ttf/*.ttf",
+    "fonts/woff2/*.woff2",
+    "fonts.css",
+    "pocketgull.css",
+    "OFL.txt",
+    "CITATION.cff"
+  ]
+}

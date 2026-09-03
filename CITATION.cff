@@ -1,23 +1,62 @@
 cff-version: 1.2.0
-message: "If you use the PocketGull Typeface Superfamily in clinical software, medical informatics, or vision science research, please cite it as below."
-title: "PocketGull Typeface Superfamily"
-abstract: "A clinical and ophthalmological vector typeface superfamily bridging tactile humanist warmth with zero-error clinical precision, featuring 256 Unicode Braille patterns, ISMP/FDA character disambiguation, and Louise Sloan 5:1 optotypic geometry."
+message: "If you use the PocketGull Typeface Superfamily in clinical software, medical informatics, vision science research, or assistive reading systems, please cite it as below."
+title: "PocketGull Typeface Superfamily: Optotypically Calibrated Clinical & Ophthalmological Vector Letterforms"
+abstract: "PocketGull is an open-source clinical and ophthalmological vector typeface superfamily bridging tactile humanist warmth with zero-error clinical precision. Engineered on a 1000 UPM grid with LogMAR 0.0 Snellen optotypic geometry, PocketGull incorporates 256 Unicode Braille patterns (U+2800..U+28FF), ISMP/FDA numeral disambiguation (slashed zero, curved lowercase l, serifed capital I), Louise Sloan 5:1 proportional legibility, and high-contrast dyslexia-conscious lower-half terminal weighting."
 version: 2.0.0
-date-released: 2026-09-03
+date-released: "2026-09-03"
 license: OFL-1.1
+doi: "10.5281/zenodo.20647514"
 repository-code: "https://github.com/pocketgull-app/pocketgull-typeface"
 url: "https://typeface.pocketgull.app"
 authors:
+  - family-names: "Gear"
+    given-names: "Phil"
+    orcid: "https://orcid.org/0009-0008-1372-5381"
+    affiliation: "PocketGull LLC"
   - name: "The PocketGull Project Authors"
+identifiers:
+  - type: url
+    value: "https://typeface.pocketgull.app"
+    description: "Official Interactive Type Specimen & Telemetry Suite"
+  - type: url
+    value: "https://orcid.org/0009-0008-1372-5381"
+    description: "Lead Architect ORCID Identifier"
+  - type: url
+    value: "https://npiregistry.cms.hhs.gov/provider-view/1487569752"
+    description: "CMS NPI Provider Registry Record"
+  - type: doi
+    value: "10.5281/zenodo.20647514"
+    description: "Zenodo Open Science Archive DOI"
 keywords:
-  - "typeface"
   - "typography"
-  - "opentype"
-  - "truetype"
-  - "google-fonts"
+  - "typeface"
   - "ophthalmology"
+  - "optotypes"
   - "clinical-safety"
-  - "ismp"
+  - "ismp-medication-safety"
   - "braille"
   - "bionic-reading"
-  - "telemetry"
+  - "low-vision"
+  - "dyslexia"
+  - "photobiomodulation"
+  - "variable-fonts"
+  - "google-fonts"
+  - "open-font-license"
+  - "wcag-aaa"
+preferred-citation:
+  type: software
+  title: "PocketGull Typeface Superfamily: Optotypically Calibrated Clinical & Ophthalmological Vector Letterforms"
+  authors:
+    - family-names: "Gear"
+      given-names: "Phil"
+      orcid: "https://orcid.org/0009-0008-1372-5381"
+      affiliation: "PocketGull LLC"
+    - name: "The PocketGull Project Authors"
+  year: 2026
+  month: 9
+  version: "2.0.0"
+  doi: "10.5281/zenodo.20647514"
+  url: "https://typeface.pocketgull.app"
+  repository-code: "https://github.com/pocketgull-app/pocketgull-typeface"
+  license: "OFL-1.1"
+  notes: "Released under the SIL Open Font License 1.1 for medical informatics, clinical safety, and low-vision accessibility."

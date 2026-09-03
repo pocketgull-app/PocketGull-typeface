@@ -1,0 +1,11 @@
+.venv/
+node_modules/
+.git/
+.foundry/
+*.log
+.env
+.env.local
+tmp/
+temp/
+__pycache__/
+*.pyc

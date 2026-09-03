@@ -1,36 +1,25 @@
-# PocketGull Typeface System Specification (WebMCP & LLM Index)
+# PocketGull Typeface Superfamily
 
-> PocketGull is an open-source felt-tip marker and high-contrast clinical typeface superfamily. Designed for zero-error medical charting, papercraft UI branding, and ICU telemetry displays.
+> Open-source ophthalmological and clinical typeface superfamily engineered for Louise Sloan 5:1 optotypic legibility, ISO/TR 11548 256-glyph Unicode Braille, and ISMP life-critical medication safety.
 
-## 🔤 Superfamily Font Matrix
+## Overview
+- **Name**: PocketGull
+- **Designer**: Phil Gear (ORCID: 0009-0008-1372-5381)
+- **Publisher**: PocketGull LLC
+- **License**: SIL Open Font License 1.1 (100% Free & Open Source)
+- **Repository**: https://github.com/pocketgull-app/pocketgull-typeface
+- **Specimen**: https://typeface.pocketgull.app/
+- **CERN / Zenodo Archival**: https://doi.org/10.5281/zenodo.20647514 (Companion)
+- **Citation File**: https://typeface.pocketgull.app/CITATION.cff
 
-- **PocketGull Bold (Master 700/800)**: `PocketGull-Bold.ttf`
-  - *Description*: Exact 1:1 mathematical path import of the master GearArts vector trace (`P`, `o`, `c`, `k`, `e`, `t`, `g`, `u`, `l`, `l`).
-  - *Use Case*: Primary brand display & clinical header typography.
-- **PocketGull Fineliner (Light 400)**: `PocketGull-Fineliner.ttf`
-  - *Description*: 0.3mm fine felt pen stroke contraction for high-density tables.
-  - *Use Case*: Patient vitals, FHIR observation tables, lab values.
-- **PocketGull Chiseltip (Ultra-Bold 900)**: `PocketGull-Chiseltip.ttf`
-  - *Description*: Broad-nib calligraphic marker expansion (+15% scale X).
-  - *Use Case*: High-impact headlines, packaging, critical ICU alert banners.
-- **PocketGull Mono (Regular 400)**: `PocketGullMono-Regular.ttf`
-  - *Description*: Fixed-width monospaced felt marker font.
-  - *Use Case*: Streaming ECG telemetry, code blocks, medical calculations (`mmol/L`, `SpO2`).
+## 4 Coordinated Masters
+1. **PocketGull Bold (700)**: Triage warnings and headline acuity.
+2. **PocketGull Fineliner (400)**: Clinical progress notes and humanized reading.
+3. **PocketGull Chiseltip (900)**: Dynamic calligraphic display and brand mark.
+4. **PocketGull Mono (400)**: 600 UPM fixed-pitch telemetry and ICU vitals.
 
-## 🏥 OpenType & Clinical Glyph Features
-
-- `calt` (Contextual Alternates): Automatic handwriting stroke variation substituting `l.alt` for repeating letters (`ll`).
-- `Apothecary & Measures`: `℞` (Prescription), `℃` (Celsius), `℉` (Fahrenheit), `µ` (Microgram/Microliter), `℥` (Ounce), `ℨ` (Dram).
-- `Clinical Telemetry Icons`: `🫀` Heart, `🫁` Lungs, `🧠` Brain, `🦴` Spine, `🩸` CGM, `🛡️` Shield.
-
-## 👁️ WCAG 2.1 AAA Legibility Certification
-
-- Contrast Ratio: 12.8:1 (Dark Charcoal `#1c1917` on Warm Cream `#fff8f0`)
-- Disambiguation: Clear distinction between `I`, `l`, `1` and `O`, `0`.
-- Bionic Reading: Felt-tip marker 40% fixation accentuation for rapid clinical scanning.
-
-## 🌐 Endpoints & Specimen
-
-- Web Specimen: https://typeface.pocketgull.app
-- Repository: https://github.com/philgear/PocketGull-typeface
-- License: SIL Open Font License 1.1 (OFL)
+## Clinical Safety Features
+- `cv08` Slashed Zero (0 vs O)
+- Curved lowercase l, footed capital I, and hooked numeral 1
+- Herman Bouma 0.12em lateral anti-crowding geometry
+- 670nm Retinal Photobiomodulation (PBM) zero-blue-light circadian preservation mode

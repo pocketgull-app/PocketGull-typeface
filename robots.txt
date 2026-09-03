@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://typeface.pocketgull.app/sitemap.xml
+Sitemap: https://pocketgull-app.github.io/PocketGull-typeface/sitemap.xml

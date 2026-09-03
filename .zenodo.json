@@ -1,0 +1,58 @@
+{
+  "title": "PocketGull Typeface Superfamily: Optotypically Calibrated Clinical & Ophthalmological Vector Letterforms",
+  "upload_type": "software",
+  "description": "PocketGull is an open-source clinical and ophthalmological vector typeface superfamily designed for digital health applications, critical care telemetry readouts, and assistive reading. Engineered on a 1000 UPM grid with LogMAR 0.0 Snellen optotypic legibility, PocketGull features 256 Unicode Braille patterns (U+2800..U+28FF), ISMP/FDA numeral disambiguation (slashed zero, curved lowercase l, serifed capital I), unified baseline metric curves, and multi-script coverage across Latin, Greek, Cyrillic, and medical telemetry symbols.",
+  "creators": [
+    {
+      "name": "Gear, Phil",
+      "orcid": "0009-0008-1372-5381",
+      "affiliation": "PocketGull LLC"
+    },
+    {
+      "name": "The PocketGull Project Authors"
+    }
+  ],
+  "access_right": "open",
+  "license": "OFL-1.1",
+  "publication_date": "2026-09-03",
+  "version": "2.0.0",
+  "keywords": [
+    "typography",
+    "typeface",
+    "ophthalmology",
+    "optotypes",
+    "clinical-safety",
+    "ismp-medication-safety",
+    "braille",
+    "bionic-reading",
+    "low-vision",
+    "dyslexia",
+    "photobiomodulation",
+    "variable-fonts",
+    "google-fonts",
+    "open-font-license",
+    "wcag-aaa"
+  ],
+  "related_identifiers": [
+    {
+      "relation": "isIdenticalTo",
+      "identifier": "https://doi.org/10.5281/zenodo.20647514",
+      "resource_type": "software"
+    },
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://npiregistry.cms.hhs.gov/provider-view/1487569752",
+      "resource_type": "other"
+    },
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://orcid.org/0009-0008-1372-5381",
+      "resource_type": "other"
+    },
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://github.com/pocketgull-app/pocketgull",
+      "resource_type": "software"
+    }
+  ]
+}

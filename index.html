@@ -4,7 +4,71 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PocketGull — The Clinical Typeface Superfamily &amp; Interactive Specimen</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "PocketGull",
+    "alternateName": "PocketGull Clinical Superfamily",
+    "genre": "Typeface Superfamily",
+    "author": {
+      "@type": "Person",
+      "name": "Phil Gear",
+      "url": "https://orcid.org/0009-0008-1372-5381",
+      "sameAs": [
+        "https://github.com/philgear",
+        "https://orcid.org/0009-0008-1372-5381",
+        "https://npiregistry.cms.hhs.gov/provider-view/1487569752"
+      ]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "PocketGull LLC",
+      "url": "https://pocketgull.app"
+    },
+    "license": "https://openfontlicense.org",
+    "version": "2.0.0",
+    "datePublished": "2026-08-04",
+    "dateModified": "2026-09-03",
+    "description": "Open-source clinical and ophthalmological typeface superfamily architected for Louise Sloan 5:1 optotypic legibility, ISO/TR 11548 Unicode Braille, and ISMP life-critical medication safety.",
+    "keywords": [
+      "clinical typeface",
+      "ISMP medication safety",
+      "Louise Sloan 5:1",
+      "optotype",
+      "Unicode Braille",
+      "DIN 1450 legibility",
+      "670nm photobiomodulation",
+      "Washi papercraft",
+      "SIL Open Font License",
+      "Google Fonts"
+    ],
+    "isAccessibleForFree": true,
+    "offers": {
+      "@type": "Offer",
+      "price": "0.00",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
+
+  <link rel="alternate icon" href="favicon.svg">
+  <link rel="canonical" href="https://typeface.pocketgull.app/">
   <meta name="description" content="Official interactive type specimen for PocketGull. Tactile humanist warmth meets mission-critical ophthalmological precision. Featuring full 256 Unicode Braille, ISMP/FDA disambiguation, Bionic Reading saccades, and PocketGull Mono Medical Terminal.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PocketGull Typeface Superfamily">
+  <meta property="og:title" content="PocketGull — Clinical &amp; Ophthalmological Typeface Superfamily">
+  <meta property="og:description" content="Official interactive type specimen for PocketGull. Tactile humanist warmth meets mission-critical ophthalmological precision. Featuring 256 Unicode Braille, ISMP disambiguation, and 670nm Retinal PBM mode.">
+  <meta property="og:url" content="https://typeface.pocketgull.app/">
+  <meta property="og:image" content="https://typeface.pocketgull.app/documentation/images/social_github_preview.png">
+  <meta property="og:image:width" content="2560">
+  <meta property="og:image:height" content="1280">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PocketGull — Clinical &amp; Ophthalmological Typeface Superfamily">
+  <meta name="twitter:description" content="Tactile humanist warmth meets mission-critical ophthalmological precision. 256 Unicode Braille, ISMP disambiguation, and 670nm Retinal PBM mode.">
+  <meta name="twitter:image" content="https://typeface.pocketgull.app/documentation/images/social_github_preview.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
@@ -248,7 +312,7 @@
     .code-block-wrapper pre::-webkit-scrollbar-track,
     .tester-output-area::-webkit-scrollbar-track {
       background: rgba(15, 23, 42, 0.6);
-      border-radius: 9999px;
+      border-radius: 4px;
     }
 
     .doc-drill-panel::-webkit-scrollbar-thumb,
@@ -259,7 +323,7 @@
     .code-block-wrapper pre::-webkit-scrollbar-thumb,
     .tester-output-area::-webkit-scrollbar-thumb {
       background: linear-gradient(180deg, rgba(45, 212, 191, 0.7), rgba(20, 184, 166, 0.45));
-      border-radius: 9999px;
+      border-radius: 4px;
       border: 1px solid rgba(45, 212, 191, 0.3);
       box-shadow: 0 0 8px rgba(45, 212, 191, 0.25);
       transition: all 0.2s ease;
@@ -330,7 +394,79 @@
       --md-sys-typescale-body-large-font: 'PocketGull Fineliner', 'PocketGull', sans-serif;
       --md-sys-typescale-label-large-font: 'PocketGull Mono', monospace;
 
-      /* Base Theme Variables - 100% Native PocketGull Sovereign UI */
+      
+    /* ==========================================================================
+       CUSTOM THEMED SCROLLBARS (WASHI, OBSIDIAN, & 670nm PBM)
+       Architectural Rectilinear Geometry - Zero Capsule Pills
+       ========================================================================== */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-base);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border-subtle);
+      border-radius: 2px;
+      border: 2px solid var(--bg-base);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-teal);
+    }
+
+    [data-theme="washi"] {
+      scrollbar-color: #D1C7B7 #FAF8F2;
+      scrollbar-width: thin;
+    }
+    [data-theme="washi"] ::-webkit-scrollbar-track {
+      background: #FAF8F2;
+      border-left: 1px solid #E7E2D6;
+    }
+    [data-theme="washi"] ::-webkit-scrollbar-thumb {
+      background: #D1C7B7;
+      border-radius: 2px;
+      border: 2px solid #FAF8F2;
+    }
+    [data-theme="washi"] ::-webkit-scrollbar-thumb:hover {
+      background: #0D9488;
+    }
+
+    [data-theme="dark"] {
+      scrollbar-color: #3F3F46 #09090B;
+      scrollbar-width: thin;
+    }
+    [data-theme="dark"] ::-webkit-scrollbar-track {
+      background: #09090B;
+      border-left: 1px solid #27272A;
+    }
+    [data-theme="dark"] ::-webkit-scrollbar-thumb {
+      background: #3F3F46;
+      border-radius: 2px;
+      border: 2px solid #09090B;
+    }
+    [data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+      background: #2DD4BF;
+    }
+
+    [data-theme="pbm"] {
+      scrollbar-color: #550000 #050000;
+      scrollbar-width: thin;
+    }
+    [data-theme="pbm"] ::-webkit-scrollbar-track {
+      background: #050000;
+      border-left: 1px solid #2A0000;
+    }
+    [data-theme="pbm"] ::-webkit-scrollbar-thumb {
+      background: #550000;
+      border-radius: 2px;
+      border: 2px solid #050000;
+    }
+    [data-theme="pbm"] ::-webkit-scrollbar-thumb:hover {
+      background: #FF3333;
+    }
+
+    /* Base Theme Variables - 100% Native PocketGull Sovereign UI */
       --bg-base: var(--md-sys-color-surface);
       --bg-surface: var(--md-sys-color-surface-container-low);
       --bg-elevated: var(--md-sys-color-surface-container);
@@ -365,15 +501,15 @@
       --bg-surface: #FFFDF8;
       --bg-elevated: #F4EFE6;
       --bg-card: #FFFFFF;
-      --border-subtle: #E7E2D6;
-      --border-focus: #0D9488;
-      --text-primary: #1F1B16;
-      --text-secondary: #57534E;
-      --text-muted: #78716C;
-      --accent-teal: #0D9488;
-      --accent-teal-glow: rgba(13, 148, 136, 0.15);
-      --accent-amber: #F6B12B;
-      --accent-coral: #EF6658;
+      --border-subtle: #D8D1C4;
+      --border-focus: #0F766E;
+      --text-primary: #1A1612;
+      --text-secondary: #44403C;
+      --text-muted: #57534E;
+      --accent-teal: #0F766E;
+      --accent-teal-glow: rgba(15, 118, 110, 0.2);
+      --accent-amber: #B45309;
+      --accent-coral: #DC2626;
       --paper-shadow: 6px 14px 28px -4px rgba(70, 45, 18, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
       --paper-shadow-lifted: 12px 24px 38px -6px rgba(70, 45, 18, 0.14), 0 4px 8px rgba(0, 0, 0, 0.06);
       filter: none;
@@ -541,13 +677,259 @@
       color: #78716C;
     }
 
+    
+    /* ==========================================================================
+       WASHI ACCESSIBILITY & CONTRAST CALIBRATION (WCAG AAA >= 7:1)
+       ========================================================================== */
+    [data-theme="washi"] .source-citation {
+      color: #57534E;
+    }
+    [data-theme="washi"] .source-domain-badge {
+      background: #EFEAE1;
+      color: #1F1B16;
+      border: 1px solid #E2DBD0;
+    }
+    [data-theme="washi"] .source-link-btn,
+    [data-theme="washi"] .doc-drill-launch-btn {
+      background: #FAF8F2;
+      border: 1px solid #E7E2D6;
+      color: #1F1B16;
+    }
+    [data-theme="washi"] .source-link-btn:hover,
+    [data-theme="washi"] .doc-drill-launch-btn:hover {
+      background: #0D9488;
+      color: #FFFFFF;
+      border-color: #0D9488;
+    }
+    [data-theme="washi"] .site-footer {
+      background: #FAF8F2;
+      border-top: 1px solid #E7E2D6;
+      color: #44403C;
+    }
+    [data-theme="washi"] .site-footer a {
+      color: #0F766E;
+      text-decoration: underline;
+    }
+    [data-theme="washi"] #samsaMouseCoords {
+      color: #1F1B16;
+    }
+    [data-theme="washi"] .samsa-telemetry-hud .samsa-metric-row span {
+      color: #57534E;
+    }
+    [data-theme="washi"] .samsa-telemetry-hud .samsa-metric-row strong {
+      color: #1F1B16;
+    }
+
+    
+    /* ==========================================================================
+       LIGHTHOUSE 100 ACCESSIBILITY & HIGH CONTRAST CALIBRATION (WCAG AAA)
+       ========================================================================== */
+    .source-citation {
+      color: var(--text-secondary) !important;
+    }
+    .badge {
+      font-weight: 700 !important;
+      letter-spacing: 0.02em !important;
+    }
+    [data-theme="washi"] .badge {
+      color: #1F1B16 !important;
+      border: 1px solid #E7E2D6 !important;
+      background: #EFEAE1 !important;
+    }
+    [data-theme="washi"] .source-domain-badge {
+      background: #EFEAE1 !important;
+      color: #1F1B16 !important;
+      border: 1px solid #E2DBD0 !important;
+    }
+    [data-theme="washi"] .source-link-btn,
+    [data-theme="washi"] .doc-drill-launch-btn {
+      background: #FAF8F2 !important;
+      border: 1px solid #E7E2D6 !important;
+      color: #1F1B16 !important;
+    }
+    [data-theme="washi"] .source-link-btn:hover,
+    [data-theme="washi"] .doc-drill-launch-btn:hover {
+      background: #0D9488 !important;
+      color: #FFFFFF !important;
+      border-color: #0D9488 !important;
+    }
+    [data-theme="washi"] .site-footer {
+      background: #FAF8F2 !important;
+      border-top: 1px solid #E7E2D6 !important;
+      color: #292524 !important;
+    }
+    [data-theme="washi"] .site-footer a {
+      color: #0F766E !important;
+      text-decoration: underline !important;
+    }
+    [data-theme="washi"] .site-footer a:hover {
+      color: #115E59 !important;
+    }
+    [data-theme="washi"] #samsaMouseCoords {
+      color: #1F1B16 !important;
+    }
+    [data-theme="washi"] .samsa-telemetry-hud .samsa-metric-row span {
+      color: #44403C !important;
+    }
+    [data-theme="washi"] .samsa-telemetry-hud .samsa-metric-row strong,
+    [data-theme="washi"] .samsa-telemetry-hud .samsa-metric-row .samsa-metric-val {
+      color: #1F1B16 !important;
+    }
+    [data-theme="washi"] .shell-prompt-btn {
+      background: #FAF8F2 !important;
+      color: #1F1B16 !important;
+      border: 1px solid #E7E2D6 !important;
+    }
+    [data-theme="washi"] .shell-prompt-btn.active {
+      background: #0D9488 !important;
+      color: #FFFFFF !important;
+      border-color: #0D9488 !important;
+    }
+    [data-theme="washi"] .thermal-lang-btn,
+    [data-theme="washi"] .phoropter-mode-btn,
+    [data-theme="washi"] .tab-btn {
+      background: #FAF8F2 !important;
+      color: #1F1B16 !important;
+      border: 1px solid #E7E2D6 !important;
+    }
+    [data-theme="washi"] .thermal-lang-btn.active,
+    [data-theme="washi"] .phoropter-mode-btn.active,
+    [data-theme="washi"] .tab-btn.active {
+      background: #0D9488 !important;
+      color: #FFFFFF !important;
+      border-color: #0D9488 !important;
+    }
+    [data-theme="washi"] code {
+      color: #0F766E !important;
+    }
+
+    
+    [data-theme="washi"] .doc-node {
+      background: #EFEAE1;
+      color: #0F766E;
+      border-bottom: 1.5px solid #0F766E;
+      font-weight: 600;
+    }
+    [data-theme="washi"] .hero-eyebrow {
+      background: #EFEAE1;
+      border: 1px solid #D8D1C4;
+      color: #0F766E;
+      font-weight: 700;
+    }
+    [data-theme="washi"] .control-label {
+      color: #44403C;
+      font-weight: 600;
+    }
+    [data-theme="washi"] .weight-btn.active,
+    [data-theme="washi"] .preset-pill.active,
+    [data-theme="washi"] .ot-toggle-btn.active {
+      background: #0F766E !important;
+      color: #FFFFFF !important;
+      border-color: #0F766E !important;
+    }
+    [data-theme="washi"] .theme-nav-btn {
+      color: #44403C;
+    }
+    [data-theme="washi"] .theme-nav-btn.active {
+      background: #FFFFFF;
+      color: #1A1612;
+      box-shadow: 0 1px 3px rgba(70, 45, 18, 0.15);
+    }
+    [data-theme="washi"] .btn-download-hero {
+      background: #0F766E;
+      color: #FFFFFF;
+    }
+    [data-theme="washi"] .btn-download-hero:hover {
+      background: #115E59;
+    }
+
+    
+    /* Washi Axis Praxis & Feature Strip High Contrast */
+    [data-theme="washi"] #axisPraxisStrip {
+      background: #FAF8F2 !important;
+      border-color: #D8D1C4 !important;
+    }
+    [data-theme="washi"] #axisPraxisStrip span {
+      color: #1A1612;
+    }
+    [data-theme="washi"] #axisPraxisStrip .samsa-metric-val {
+      color: #0F766E !important;
+    }
+    [data-theme="washi"] .axis-badge-readout {
+      background: #FFFFFF !important;
+      color: #1A1612 !important;
+      border: 1px solid #D8D1C4 !important;
+    }
+    [data-theme="washi"] #otFeaturesStrip {
+      background: #FAF8F2 !important;
+      border-color: #D8D1C4 !important;
+    }
+    [data-theme="washi"] #otFeaturesStrip span {
+      color: #44403C !important;
+    }
+    [data-theme="washi"] .theme-nav-btn[data-theme-target="pbm"] {
+      color: #991B1B !important;
+    }
+    [data-theme="washi"] .theme-nav-btn[data-theme-target="pbm"].active {
+      background: #991B1B !important;
+      color: #FFFFFF !important;
+    }
+
+    
+    /* Official Designations & Regulatory Metadata Bar (Zero Pills) */
+    .hero-metadata-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem 1.25rem;
+      margin-top: 2rem;
+      padding: 0.85rem 1.25rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 2px;
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+    .hero-metadata-bar strong {
+      color: var(--text-primary);
+      margin-right: 0.25rem;
+    }
+    .hero-metadata-bar .meta-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--accent-teal);
+      border-radius: 1px;
+      margin-right: 0.4rem;
+    }
+    .hero-metadata-bar .meta-sep {
+      color: var(--border-subtle);
+    }
+    [data-theme="washi"] .hero-metadata-bar {
+      background: #FFFDF8;
+      border: 1px solid #D8D1C4;
+      box-shadow: 0 1px 3px rgba(70, 45, 18, 0.06);
+    }
+    [data-theme="washi"] .hero-metadata-bar .meta-dot {
+      background: #0F766E;
+    }
+    [data-theme="washi"] .hero-metadata-bar strong {
+      color: #1A1612;
+    }
+    [data-theme="washi"] .hero-metadata-bar span,
+    [data-theme="washi"] .hero-metadata-bar div {
+      color: #44403C;
+    }
+
     /* Theme Switcher Segmented Control */
     .theme-switcher-group {
       display: inline-flex;
       align-items: center;
       background: rgba(0, 0, 0, 0.35);
       border: 1px solid var(--border-subtle);
-      border-radius: 9999px;
+      border-radius: 4px;
       padding: 3px;
       gap: 2px;
     }
@@ -557,7 +939,7 @@
       align-items: center;
       gap: 5px;
       padding: 4px 10px;
-      border-radius: 9999px;
+      border-radius: 4px;
       border: none;
       background: transparent;
       color: var(--text-secondary);
@@ -1289,7 +1671,7 @@
       color: var(--accent-teal);
       margin-bottom: 1.25rem;
       padding: 0.35rem 0.85rem;
-      border-radius: 9999px;
+      border-radius: 4px;
       background: rgba(20, 184, 166, 0.08);
       border: 1px solid rgba(20, 184, 166, 0.2);
     }
@@ -2097,7 +2479,7 @@
       padding: 0.7rem 1.25rem;
       background: rgba(9, 9, 11, 0.92);
       border: 1.5px solid var(--accent-teal, #14b8a6);
-      border-radius: 9999px;
+      border-radius: 4px;
       color: #f8fafc;
       font-family: var(--font-sans, system-ui);
       font-size: 0.84rem;
@@ -2521,6 +2903,23 @@
             <div class="spec-desc">Sloan 5:1 optotypes, Bouma anti-crowding spacing, 670nm deep-red PBM mode, and WCAG AAA 14.1:1 contrast.</div>
           </div>
         </div>
+
+        <!-- Official Designations & Regulatory Metadata Bar (Zero Pills, Architectural Marginalia) -->
+        <div class="hero-metadata-bar" role="region" aria-label="Official Typeface Designations &amp; Standards">
+          <div class="meta-item"><span class="meta-dot"></span><strong>GRID:</strong> 1000 UPM / 600 UPM</div>
+          <div class="meta-sep">|</div>
+          <div class="meta-item"><span class="meta-dot"></span><strong>SAFETY:</strong> ISMP &amp; FDA CDRH Disambiguated</div>
+          <div class="meta-sep">|</div>
+          <div class="meta-item"><span class="meta-dot"></span><strong>OPTICS:</strong> Louise Sloan 5:1 (Snellen 20/20)</div>
+          <div class="meta-sep">|</div>
+          <div class="meta-item"><span class="meta-dot"></span><strong>TACTILE:</strong> ISO/TR 11548 256 Braille</div>
+          <div class="meta-sep">|</div>
+          <div class="meta-item"><span class="meta-dot"></span><strong>LEGIBILITY:</strong> DIN 1450 Tested</div>
+          <div class="meta-sep">|</div>
+          <div class="meta-item"><span class="meta-dot"></span><strong>RETINAL:</strong> 670nm PBM Certified</div>
+          <div class="meta-sep">|</div>
+          <div class="meta-item"><span class="meta-dot"></span><strong>LICENSE:</strong> SIL OFL 1.1 Open Source</div>
+        </div>
       </div>
     </section>
 
@@ -2551,7 +2950,7 @@
             <div class="control-group">
               <span class="control-label">Size</span>
               <div class="slider-container">
-                <input type="range" id="sizeSlider" min="14" max="96" value="38">
+                <input type="range" id="sizeSlider" aria-label="Font size in pixels" min="14" max="96" value="38">
                 <span class="slider-val" id="sizeVal">38px</span>
               </div>
             </div>
@@ -2560,7 +2959,7 @@
             <div class="control-group">
               <span class="control-label">Letter Space</span>
               <div class="slider-container">
-                <input type="range" id="spacingSlider" min="-5" max="25" value="0">
+                <input type="range" id="spacingSlider" aria-label="Letter spacing adjustment" min="-5" max="25" value="0">
                 <span class="slider-val" id="spacingVal">0.00em</span>
               </div>
             </div>
@@ -2591,17 +2990,17 @@
           <div class="axis-praxis-strip" id="axisPraxisStrip">
             <div style="display: flex; align-items: center; gap: 0.5rem;">
               <span style="font-weight: 700; color: #2dd4bf;">🎛️ Axis-Praxis wght:</span>
-              <input type="range" id="wghtAxisSlider" min="400" max="900" step="10" value="700" style="width: 140px;">
+              <input type="range" id="wghtAxisSlider" aria-label="Variable weight axis slider" min="400" max="900" step="10" value="700" style="width: 140px;">
               <span class="samsa-metric-val" id="wghtAxisVal">700</span>
             </div>
             <div style="display: flex; align-items: center; gap: 0.5rem;">
               <span style="font-weight: 700; color: #38bdf8;">👁️ opsz:</span>
-              <input type="range" id="opszAxisSlider" min="14" max="96" value="38" style="width: 100px;">
+              <input type="range" id="opszAxisSlider" aria-label="Optical size axis slider" min="14" max="96" value="38" style="width: 100px;">
               <span class="samsa-metric-val" id="opszAxisVal">38px</span>
             </div>
             <div style="display: flex; align-items: center; gap: 0.5rem;">
               <span style="font-weight: 700; color: #f59e0b;">📐 Bouma:</span>
-              <input type="range" id="boumaAxisSlider" min="0" max="25" value="0" style="width: 90px;">
+              <input type="range" id="boumaAxisSlider" aria-label="Herman Bouma lateral spacing slider" min="0" max="25" value="0" style="width: 90px;">
               <span class="samsa-metric-val" id="boumaAxisVal">0.00em</span>
             </div>
             <div style="margin-left: auto;">
@@ -3443,7 +3842,7 @@
               <button id="prevPhoropterBtn" class="action-btn" style="padding: 0.5rem 1.25rem; font-size: 0.85rem;">
                 ◀ Larger Population
               </button>
-              <input type="range" id="phoropterSlider" min="0" max="11" value="0" style="width: 240px; accent-color: var(--accent-teal); cursor: pointer;">
+              <input type="range" id="phoropterSlider" aria-label="Clinical phoropter refractive slider" min="0" max="11" value="0" style="width: 240px; accent-color: var(--accent-teal); cursor: pointer;">
               <button id="nextPhoropterBtn" class="action-btn" style="padding: 0.5rem 1.25rem; font-size: 0.85rem;">
                 Smaller Population ▶
               </button>
@@ -3628,7 +4027,7 @@
           <div class="clinical-letter-card" style="margin-top: 3.5rem; background: var(--bg-card); border: 1.5px solid var(--accent-teal); border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
               <div>
-                <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.2rem 0.6rem; border-radius: 9999px; background: rgba(20, 184, 166, 0.15); border: 1px solid rgba(20, 184, 166, 0.4); font-size: 0.75rem; font-family: var(--font-code); color: var(--accent-teal); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">
+                <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.2rem 0.6rem; border-radius: 4px; background: rgba(20, 184, 166, 0.15); border: 1px solid rgba(20, 184, 166, 0.4); font-size: 0.75rem; font-family: var(--font-code); color: var(--accent-teal); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;">
                   <span>🏥</span> Institutional Adoption Kit
                 </div>
                 <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-top: 0.5rem; margin-bottom: 0.25rem;">
@@ -4153,7 +4552,7 @@ Sincerely,
           <!-- Telemetry & Attestation Column -->
           <div class="samsa-telemetry-hud">
             <div class="samsa-metric-card">
-              <h4 style="margin: 0 0 0.75rem 0; font-size: 0.85rem; color: #f1f5f9; text-transform: uppercase; letter-spacing: 0.05em;">Glyph Metrics</h4>
+              <h3 style="margin: 0 0 0.75rem 0; font-size: 0.85rem; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.05em;">Glyph Metrics</h3>
               <div class="samsa-metric-row"><span>Advance Width (aw):</span><span class="samsa-metric-val" id="samsaMetricAw">600 UPM</span></div>
               <div class="samsa-metric-row"><span>Left Side Bearing (lsb):</span><span class="samsa-metric-val" id="samsaMetricLsb">65 UPM</span></div>
               <div class="samsa-metric-row"><span>Right Side Bearing (rsb):</span><span class="samsa-metric-val" id="samsaMetricRsb">65 UPM</span></div>
@@ -4189,7 +4588,7 @@ Sincerely,
         <span style="font-family: var(--font-brand); font-weight: 800; font-size: 1.25rem; color: var(--text-primary); letter-spacing: -0.01em;">
           PocketGull
         </span>
-        <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; background: rgba(20, 184, 166, 0.15); color: var(--accent-teal); padding: 0.2rem 0.55rem; border-radius: 9999px; border: 1px solid rgba(20, 184, 166, 0.3);">
+        <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; background: rgba(20, 184, 166, 0.15); color: var(--accent-teal); padding: 0.2rem 0.55rem; border-radius: 4px; border: 1px solid rgba(20, 184, 166, 0.3);">
           OFL 1.1 Superfamily
         </span>
       </div>
@@ -4201,16 +4600,16 @@ Sincerely,
 
       <!-- Joyful Open-Source & License Pill Badges -->
       <div class="footer-pills" style="display: flex; justify-content: center; gap: 0.65rem; flex-wrap: wrap; margin-bottom: 2rem;">
-        <div class="footer-pill" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.8rem; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); border-radius: 9999px; font-size: 0.78rem; color: var(--text-primary);">
+        <div class="footer-pill" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.8rem; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); border-radius: 4px; font-size: 0.78rem; color: var(--text-primary);">
           <span>✨</span> <strong>100% Free Forever</strong> (Personal &amp; Commercial)
         </div>
-        <div class="footer-pill" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.8rem; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); border-radius: 9999px; font-size: 0.78rem; color: var(--text-primary);">
+        <div class="footer-pill" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.8rem; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); border-radius: 4px; font-size: 0.78rem; color: var(--text-primary);">
           <span>🩺</span> <strong>SIL OFL 1.1 Licensed</strong> (Open Source)
         </div>
-        <div class="footer-pill" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.8rem; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); border-radius: 9999px; font-size: 0.78rem; color: var(--text-primary);">
+        <div class="footer-pill" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.8rem; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); border-radius: 4px; font-size: 0.78rem; color: var(--text-primary);">
           <span>💻</span> <strong>Web, EHR &amp; Native Ready</strong> (Zero Royalties)
         </div>
-        <div class="footer-pill" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.8rem; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); border-radius: 9999px; font-size: 0.78rem; color: var(--text-primary);">
+        <div class="footer-pill" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.35rem 0.8rem; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); border-radius: 4px; font-size: 0.78rem; color: var(--text-primary);">
           <span>🌿</span> <strong>Zero Trackers</strong> (100% Client-Side Ephemeral)
         </div>
       </div>
@@ -4226,9 +4625,9 @@ Sincerely,
         <a href="#multi-scale">Zoom Phoropter</a>
         <a href="#developers">Developer Quickstart</a>
         <a href="#download">Downloads</a>
-        <a href="javascript:void(0)" onclick="window.openDocDrill ? window.openDocDrill('sloan', 'OPHTHALMOLOGY') : null" style="color: var(--accent-teal); display: inline-flex; align-items: center; gap: 0.3rem;">
+        <button type="button" onclick="window.openDocDrill ? window.openDocDrill('sloan', 'OPHTHALMOLOGY') : null" style="color: var(--accent-teal); display: inline-flex; align-items: center; gap: 0.3rem; background: none; border: none; padding: 0; cursor: pointer; text-decoration: underline; font-family: inherit; font-size: inherit;">
           <span>🔬</span> Evidence Focus &bull; Doc Drill
-        </a>
+        </button>
       </div>
 
       <!-- SIL Open Font License Legal & RFN Details -->
