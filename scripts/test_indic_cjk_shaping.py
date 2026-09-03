@@ -213,3 +213,31 @@ class TestHarfBuzzClinicalShaping:
 
             for info in buf.glyph_infos:
                 assert info.codepoint != 0, f"Font {font_name} produced .notdef tofu for Hebrew term '{term}'"
+
+    @pytest.mark.parametrize('font_name', SUPERFAMILY_FONTS)
+    def test_cyrillic_clinical_terms_shaping(self, font_name):
+        font_path = REPO_ROOT / font_name
+        with open(str(font_path), 'rb') as f:
+            font_data = f.read()
+
+        blob = hb.Blob(font_data)
+        face = hb.Face(blob, 0)
+        hb_font = hb.Font(face)
+
+        cyrillic_terms = [
+            'Лобная кость', 'Головной мозг', 'Мозжечок', 'Сердце • Миокард',
+            'Лёгкие', 'Печень', 'Почки', 'Желудок', 'Грудной отдел позвоночника',
+            'Кровь', 'Артериальное давление 120/80', 'ЭКГ', 'Жизненные показатели',
+            'Лобова кістка', 'Головний мозок', 'Легені', 'Печінка', 'Нирки',
+            'Черен дроб', 'Бели дробове', 'Сърце'
+        ]
+
+        for term in cyrillic_terms:
+            buf = hb.Buffer()
+            buf.add_str(term)
+            buf.guess_segment_properties()
+            hb.shape(hb_font, buf)
+
+            for info in buf.glyph_infos:
+                assert info.codepoint != 0, f"Font {font_name} produced .notdef tofu for Cyrillic term '{term}'"
+

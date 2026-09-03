@@ -43,6 +43,10 @@ HEBREW_CLINICAL_TEXT = (
     "ְִֵֶַָֹֻּ"
 )
 
+# Full Pan-Cyrillic Block (U+0400 - U+04FF): Russian, Ukrainian, Bulgarian, Serbian, Belarusian, Kazakh, Mongolian
+CYRILLIC_PAN_CODEPOINTS = list(range(0x0400, 0x0500))
+
+
 WEIGHT_CONFIGS = [
     ("PocketGull-Fineliner", False, False),
     ("PocketGull-Bold", True, False),
@@ -171,6 +175,15 @@ for font_stem, is_bold, is_mono in WEIGHT_CONFIGS:
             dest_gname = f"uni{cp:04X}"
             if inject_glyph_from_src(f_gl, src_gname, dest_gname, cp):
                 injected_he += 1
+
+    # 6. Pan-Cyrillic Full 256-Codepoint Block (U+0400 - U+04FF)
+    injected_cyr = 0
+    for cp in CYRILLIC_PAN_CODEPOINTS:
+        if cp in cmap_gl:
+            src_gname = cmap_gl[cp]
+            dest_gname = f"uni{cp:04X}"
+            if inject_glyph_from_src(f_gl, src_gname, dest_gname, cp):
+                injected_cyr += 1
 
     # Ensure gasp table exists
     if 'gasp' not in font:
