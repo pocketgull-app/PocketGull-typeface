@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="dotaboveleftcmb" format="2">
+  <unicode hex="1DF8"/>
+  <outline>
+    <contour>
+      <point x="0" y="776" type="qcurve" smooth="yes"/>
+      <point x="41" y="776"/>
+      <point x="102" y="742"/>
+      <point x="102" y="691" type="qcurve" smooth="yes"/>
+      <point x="102" y="642"/>
+      <point x="41" y="607"/>
+      <point x="0" y="607" type="qcurve" smooth="yes"/>
+      <point x="-42" y="607"/>
+      <point x="-101" y="642"/>
+      <point x="-101" y="691" type="qcurve" smooth="yes"/>
+      <point x="-101" y="742"/>
+      <point x="-42" y="776"/>
+    </contour>
+  </outline>
+</glyph>

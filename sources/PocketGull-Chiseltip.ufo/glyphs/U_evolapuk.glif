@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Uevolapuk" format="2">
+  <advance width="815"/>
+  <unicode hex="A79E"/>
+  <outline>
+    <contour>
+      <point x="322" y="-10" type="qcurve" smooth="yes"/>
+      <point x="247" y="-10"/>
+      <point x="136" y="45"/>
+      <point x="75" y="142"/>
+      <point x="75" y="204" type="qcurve" smooth="yes"/>
+      <point x="75" y="252"/>
+      <point x="105" y="324"/>
+      <point x="178" y="368"/>
+      <point x="244" y="373" type="qcurve"/>
+      <point x="244" y="377" type="line"/>
+      <point x="190" y="387"/>
+      <point x="116" y="430"/>
+      <point x="77" y="500"/>
+      <point x="77" y="547" type="qcurve" smooth="yes"/>
+      <point x="77" y="714" type="line"/>
+      <point x="270" y="714" type="line"/>
+      <point x="270" y="557" type="line" smooth="yes"/>
+      <point x="270" y="499"/>
+      <point x="334" y="450"/>
+      <point x="397" y="450" type="qcurve" smooth="yes"/>
+      <point x="407" y="450" type="line"/>
+      <point x="407" y="294" type="line"/>
+      <point x="388" y="294" type="line" smooth="yes"/>
+      <point x="325" y="294"/>
+      <point x="273" y="258"/>
+      <point x="273" y="222" type="qcurve" smooth="yes"/>
+      <point x="273" y="183"/>
+      <point x="324" y="148"/>
+      <point x="377" y="148" type="qcurve" smooth="yes"/>
+      <point x="470" y="148"/>
+      <point x="540" y="238"/>
+      <point x="540" y="338" type="qcurve" smooth="yes"/>
+      <point x="540" y="714" type="line"/>
+      <point x="730" y="714" type="line"/>
+      <point x="730" y="0" type="line"/>
+      <point x="570" y="0" type="line"/>
+      <point x="529" y="69" type="line"/>
+      <point x="519" y="69" type="line"/>
+      <point x="502" y="51"/>
+      <point x="454" y="14"/>
+      <point x="380" y="-10"/>
+    </contour>
+  </outline>
+</glyph>

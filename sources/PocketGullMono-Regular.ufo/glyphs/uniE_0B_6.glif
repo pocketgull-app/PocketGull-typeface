@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE0B6" format="2">
+  <advance width="600"/>
+  <unicode hex="E0B6"/>
+  <outline>
+    <contour>
+      <point x="600" y="1069" type="curve"/>
+      <point x="600" y="-293" type="line"/>
+      <point x="102.94372518" y="-293"/>
+      <point x="0" y="11.894085386200004"/>
+      <point x="0" y="388" type="curve" smooth="yes"/>
+      <point x="0" y="764.1059146138"/>
+      <point x="102.94372518" y="1069"/>
+    </contour>
+  </outline>
+</glyph>

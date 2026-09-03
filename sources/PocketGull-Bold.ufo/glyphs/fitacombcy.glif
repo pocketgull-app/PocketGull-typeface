@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="fitacombcy" format="2">
+  <unicode hex="2DF4"/>
+  <outline>
+    <contour>
+      <point x="128" y="730" type="qcurve" smooth="yes"/>
+      <point x="128" y="675"/>
+      <point x="64" y="616"/>
+      <point x="8" y="616" type="qcurve" smooth="yes"/>
+      <point x="-43" y="616"/>
+      <point x="-110" y="675"/>
+      <point x="-110" y="730" type="qcurve" smooth="yes"/>
+      <point x="-110" y="784"/>
+      <point x="-46" y="842"/>
+      <point x="10" y="842" type="qcurve" smooth="yes"/>
+      <point x="61" y="842"/>
+      <point x="128" y="784"/>
+    </contour>
+    <contour>
+      <point x="9" y="664" type="qcurve" smooth="yes"/>
+      <point x="31" y="664"/>
+      <point x="55" y="687"/>
+      <point x="58" y="709" type="qcurve"/>
+      <point x="-41" y="709" type="line"/>
+      <point x="-37" y="687"/>
+      <point x="-13" y="664"/>
+    </contour>
+    <contour>
+      <point x="9" y="794" type="qcurve" smooth="yes"/>
+      <point x="-13" y="794"/>
+      <point x="-37" y="772"/>
+      <point x="-41" y="750" type="qcurve"/>
+      <point x="58" y="750" type="line"/>
+      <point x="55" y="772"/>
+      <point x="31" y="794"/>
+    </contour>
+  </outline>
+</glyph>

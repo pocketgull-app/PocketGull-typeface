@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="marwariddadeva" format="2">
+  <advance width="604"/>
+  <unicode hex="0978"/>
+  <outline>
+    <contour>
+      <point x="252" y="510" type="line"/>
+      <point x="252" y="221" type="line" smooth="yes"/>
+      <point x="252" y="176"/>
+      <point x="216" y="135"/>
+      <point x="182" y="135" type="qcurve" smooth="yes"/>
+      <point x="156" y="135"/>
+      <point x="104" y="162"/>
+      <point x="59" y="206"/>
+      <point x="32" y="257"/>
+      <point x="32" y="280" type="qcurve" smooth="yes"/>
+      <point x="32" y="316"/>
+      <point x="93" y="362"/>
+      <point x="162" y="374" type="qcurve"/>
+      <point x="195" y="378" type="line"/>
+      <point x="228" y="385"/>
+      <point x="295" y="392"/>
+      <point x="331" y="392" type="qcurve" smooth="yes"/>
+      <point x="414" y="392"/>
+      <point x="518" y="340"/>
+      <point x="566" y="250"/>
+      <point x="566" y="191" type="qcurve" smooth="yes"/>
+      <point x="566" y="136"/>
+      <point x="525" y="29"/>
+      <point x="477" y="-25" type="qcurve"/>
+      <point x="360" y="40" type="line"/>
+      <point x="391" y="76"/>
+      <point x="429" y="147"/>
+      <point x="429" y="185" type="qcurve" smooth="yes"/>
+      <point x="429" y="214"/>
+      <point x="405" y="255"/>
+      <point x="357" y="278"/>
+      <point x="318" y="278" type="qcurve" smooth="yes"/>
+      <point x="281" y="278"/>
+      <point x="212" y="264"/>
+      <point x="180" y="251" type="qcurve"/>
+      <point x="112" y="329" type="line"/>
+      <point x="112" y="510" type="line"/>
+      <point x="0" y="510" type="line"/>
+      <point x="0" y="622" type="line"/>
+      <point x="618" y="622" type="line"/>
+      <point x="618" y="510" type="line"/>
+    </contour>
+  </outline>
+</glyph>

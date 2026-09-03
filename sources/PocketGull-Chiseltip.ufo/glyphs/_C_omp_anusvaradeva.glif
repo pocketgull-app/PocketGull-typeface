@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="_Comp_anusvaradeva" format="2">
+  <outline>
+    <contour>
+      <point x="-239" y="815" type="qcurve" smooth="yes"/>
+      <point x="-239" y="849"/>
+      <point x="-193" y="894"/>
+      <point x="-158" y="894" type="qcurve" smooth="yes"/>
+      <point x="-123" y="894"/>
+      <point x="-78" y="849"/>
+      <point x="-78" y="815" type="qcurve" smooth="yes"/>
+      <point x="-78" y="781"/>
+      <point x="-123" y="736"/>
+      <point x="-158" y="736" type="qcurve" smooth="yes"/>
+      <point x="-193" y="736"/>
+      <point x="-239" y="781"/>
+    </contour>
+  </outline>
+</glyph>

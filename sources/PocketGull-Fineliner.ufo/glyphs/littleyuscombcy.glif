@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="littleyuscombcy" format="2">
+  <unicode hex="2DFD"/>
+  <outline>
+    <contour>
+      <point x="34" y="834" type="line"/>
+      <point x="136" y="620" type="line"/>
+      <point x="96" y="620" type="line"/>
+      <point x="51" y="714" type="line"/>
+      <point x="27" y="714" type="line"/>
+      <point x="27" y="620" type="line"/>
+      <point x="-8" y="620" type="line"/>
+      <point x="-8" y="714" type="line"/>
+      <point x="-33" y="714" type="line"/>
+      <point x="-77" y="620" type="line"/>
+      <point x="-117" y="620" type="line"/>
+      <point x="-15" y="834" type="line"/>
+    </contour>
+    <contour>
+      <point x="8" y="811" type="line"/>
+      <point x="5" y="801"/>
+      <point x="-3" y="783"/>
+      <point x="-7" y="772" type="qcurve"/>
+      <point x="-20" y="743" type="line"/>
+      <point x="39" y="743" type="line"/>
+      <point x="26" y="772" type="line" smooth="yes"/>
+      <point x="21" y="783"/>
+      <point x="13" y="804"/>
+      <point x="10" y="811" type="qcurve"/>
+    </contour>
+  </outline>
+</glyph>

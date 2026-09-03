@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="djervcombcy" format="2">
+  <unicode hex="2DF8"/>
+  <outline>
+    <contour>
+      <point x="11" y="759" type="qcurve" smooth="yes"/>
+      <point x="60" y="759"/>
+      <point x="124" y="715"/>
+      <point x="124" y="666" type="qcurve" smooth="yes"/>
+      <point x="124" y="620" type="line"/>
+      <point x="57" y="620" type="line"/>
+      <point x="57" y="664" type="line" smooth="yes"/>
+      <point x="57" y="687"/>
+      <point x="34" y="711"/>
+      <point x="10" y="711" type="qcurve" smooth="yes"/>
+      <point x="-14" y="711"/>
+      <point x="-37" y="687"/>
+      <point x="-37" y="664" type="qcurve" smooth="yes"/>
+      <point x="-37" y="620" type="line"/>
+      <point x="-104" y="620" type="line"/>
+      <point x="-104" y="666" type="line" smooth="yes"/>
+      <point x="-104" y="715"/>
+      <point x="-39" y="759"/>
+    </contour>
+    <contour>
+      <point x="-75" y="775" type="line"/>
+      <point x="-75" y="814" type="line"/>
+      <point x="94" y="814" type="line"/>
+      <point x="94" y="775" type="line"/>
+    </contour>
+    <contour>
+      <point x="43" y="728" type="line"/>
+      <point x="-24" y="728" type="line"/>
+      <point x="-24" y="838" type="line"/>
+      <point x="43" y="838" type="line"/>
+    </contour>
+  </outline>
+</glyph>

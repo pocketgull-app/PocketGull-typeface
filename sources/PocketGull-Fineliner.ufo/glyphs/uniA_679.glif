@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniA679" format="2">
+  <unicode hex="A679"/>
+  <outline>
+    <contour>
+      <point x="-127" y="620" type="line"/>
+      <point x="-127" y="834" type="line"/>
+      <point x="-87" y="834" type="line"/>
+      <point x="-87" y="746" type="line"/>
+      <point x="-25" y="746" type="line" smooth="yes"/>
+      <point x="22" y="746"/>
+      <point x="67" y="716"/>
+      <point x="67" y="686" type="qcurve" smooth="yes"/>
+      <point x="67" y="656"/>
+      <point x="24" y="620"/>
+      <point x="-26" y="620" type="qcurve" smooth="yes"/>
+    </contour>
+    <contour>
+      <point x="-30" y="648" type="line" smooth="yes"/>
+      <point x="-4" y="648"/>
+      <point x="28" y="665"/>
+      <point x="28" y="684" type="qcurve" smooth="yes"/>
+      <point x="28" y="704"/>
+      <point x="-2" y="717"/>
+      <point x="-30" y="717" type="qcurve" smooth="yes"/>
+      <point x="-87" y="717" type="line"/>
+      <point x="-87" y="648" type="line"/>
+    </contour>
+    <contour>
+      <point x="107" y="620" type="line"/>
+      <point x="107" y="834" type="line"/>
+      <point x="147" y="834" type="line"/>
+      <point x="147" y="620" type="line"/>
+    </contour>
+  </outline>
+</glyph>

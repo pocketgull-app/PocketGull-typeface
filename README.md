@@ -13,11 +13,26 @@
 
 </div>
 
----
+<div align="center">
 
-![PocketGull Authentic Specimen](documentation/images/PocketGull-Authentic-Specimen.png)
+<img src="documentation/images/pocketgull_device_hero.jpg" alt="PocketGull Telemetry Device & Optotypic Interface" width="100%" />
 
-**PocketGull** is an open-source clinical handwriting and display typeface superfamily designed by Phil Gear. Engineered to bridge tactile humanist warmth with zero-error clinical precision, PocketGull solves a life-critical challenge in medical software: eliminating medication administration errors while providing an organic, fatigue-resistant texture that soothes the reader's eyes during 12-hour hospital shifts.
+<br/><br/>
+
+<table>
+  <tr>
+    <td width="50%" align="center">
+      <img src="documentation/images/pocketgull_synaptic_specimen_light.png" alt="PocketGull Synaptic Codex - Light Mode" width="100%" />
+    </td>
+    <td width="50%" align="center">
+      <img src="documentation/images/pocketgull_synaptic_specimen_dark.png" alt="PocketGull Synaptic Codex - Dark Mode" width="100%" />
+    </td>
+  </tr>
+</table>
+
+</div>
+
+**PocketGull** is an open-source clinical sans-serif, display, and telemetry monospace typeface superfamily designed by Phil Gear. Engineered to bridge tactile humanist warmth with zero-error clinical precision, PocketGull solves a life-critical challenge in medical software: eliminating medication administration errors while providing an organic, fatigue-resistant texture that soothes the reader's eyes during 12-hour hospital shifts.
 
 Originating from spontaneous felt marker lettering created on physical cardstock, PocketGull synthesizes organic stroke dynamism with the Institute for Safe Medication Practices (ISMP) character disambiguation rules and Louise Sloan 5:1 optotypic legibility standards.
 

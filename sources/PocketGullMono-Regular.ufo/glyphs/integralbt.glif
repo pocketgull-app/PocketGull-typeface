@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="integralbt" format="2">
+  <advance width="600"/>
+  <unicode hex="2321"/>
+  <outline>
+    <contour>
+      <point x="193" y="-240" type="qcurve" smooth="yes"/>
+      <point x="162" y="-240"/>
+      <point x="125" y="-209"/>
+      <point x="125" y="-186" type="qcurve" smooth="yes"/>
+      <point x="125" y="-166"/>
+      <point x="150" y="-141"/>
+      <point x="168" y="-141" type="qcurve" smooth="yes"/>
+      <point x="184" y="-141"/>
+      <point x="205" y="-156"/>
+      <point x="216" y="-170" type="qcurve" smooth="yes"/>
+      <point x="231" y="-189"/>
+      <point x="240" y="-189" type="qcurve" smooth="yes"/>
+      <point x="256" y="-189"/>
+      <point x="265" y="-154"/>
+      <point x="265" y="-102" type="qcurve" smooth="yes"/>
+      <point x="265" y="833" type="line"/>
+      <point x="336" y="833" type="line"/>
+      <point x="336" y="-24" type="line" smooth="yes"/>
+      <point x="336" y="-119"/>
+      <point x="295" y="-180" type="qcurve" smooth="yes"/>
+      <point x="255" y="-240"/>
+    </contour>
+  </outline>
+</glyph>

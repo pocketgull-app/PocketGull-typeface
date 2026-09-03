@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Rturnedsmall" format="2">
+  <advance width="554"/>
+  <unicode hex="1D1A"/>
+  <outline>
+    <contour>
+      <point x="286" y="0" type="line" smooth="yes"/>
+      <point x="186" y="0"/>
+      <point x="75" y="80"/>
+      <point x="75" y="156" type="qcurve" smooth="yes"/>
+      <point x="75" y="201"/>
+      <point x="105" y="261"/>
+      <point x="151" y="297"/>
+      <point x="173" y="306" type="qcurve"/>
+      <point x="14" y="546" type="line"/>
+      <point x="146" y="546" type="line"/>
+      <point x="276" y="336" type="line"/>
+      <point x="350" y="336" type="line"/>
+      <point x="350" y="546" type="line"/>
+      <point x="468" y="546" type="line"/>
+      <point x="468" y="0" type="line"/>
+    </contour>
+    <contour>
+      <point x="291" y="93" type="qcurve" smooth="yes"/>
+      <point x="350" y="93" type="line"/>
+      <point x="350" y="244" type="line"/>
+      <point x="294" y="244" type="line" smooth="yes"/>
+      <point x="244" y="244"/>
+      <point x="195" y="202"/>
+      <point x="195" y="164" type="qcurve" smooth="yes"/>
+      <point x="195" y="127"/>
+      <point x="245" y="93"/>
+    </contour>
+  </outline>
+</glyph>

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Tsereversedcy" format="2">
+  <advance width="600"/>
+  <unicode hex="A660"/>
+  <outline>
+    <contour>
+      <point x="530" y="0" type="line"/>
+      <point x="93" y="0" type="line"/>
+      <point x="93" y="714" type="line"/>
+      <point x="183" y="714" type="line"/>
+      <point x="183" y="80" type="line"/>
+      <point x="440" y="80" type="line"/>
+      <point x="440" y="714" type="line"/>
+      <point x="530" y="714" type="line"/>
+    </contour>
+    <contour>
+      <point x="96" y="-153" type="line"/>
+      <point x="10" y="-153" type="line"/>
+      <point x="10" y="80" type="line"/>
+      <point x="143" y="80" type="line"/>
+      <point x="143" y="0" type="line"/>
+      <point x="96" y="0" type="line"/>
+    </contour>
+  </outline>
+</glyph>

@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="kavykainvertedlow" format="2">
+  <advance width="391"/>
+  <unicode hex="2E45"/>
+  <outline>
+    <contour>
+      <point x="296" y="206" type="line"/>
+      <point x="293" y="232"/>
+      <point x="264" y="259"/>
+      <point x="221" y="269"/>
+      <point x="195" y="269" type="qcurve" smooth="yes"/>
+      <point x="165" y="269"/>
+      <point x="122" y="260"/>
+      <point x="97" y="234"/>
+      <point x="94" y="206" type="qcurve"/>
+      <point x="40" y="206" type="line"/>
+      <point x="44" y="268"/>
+      <point x="119" y="340"/>
+      <point x="193" y="340" type="qcurve" smooth="yes"/>
+      <point x="241" y="340"/>
+      <point x="309" y="306"/>
+      <point x="348" y="246"/>
+      <point x="351" y="206" type="qcurve"/>
+    </contour>
+  </outline>
+</glyph>

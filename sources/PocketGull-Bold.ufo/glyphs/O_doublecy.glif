@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Odoublecy" format="2">
+  <advance width="1312"/>
+  <unicode hex="A698"/>
+  <outline>
+    <component base="O"/>
+    <component base="O" xOffset="521"/>
+  </outline>
+</glyph>

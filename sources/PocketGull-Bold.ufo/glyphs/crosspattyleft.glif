@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="crosspattyleft" format="2">
+  <advance width="527"/>
+  <unicode hex="2E51"/>
+  <outline>
+    <contour>
+      <point x="436" y="88" type="line"/>
+      <point x="279" y="88" type="line"/>
+      <point x="323" y="326" type="line"/>
+      <point x="85" y="281" type="line"/>
+      <point x="85" y="439" type="line"/>
+      <point x="323" y="394" type="line"/>
+      <point x="279" y="632" type="line"/>
+      <point x="442" y="632" type="line"/>
+      <point x="391" y="361" type="line"/>
+    </contour>
+  </outline>
+</glyph>

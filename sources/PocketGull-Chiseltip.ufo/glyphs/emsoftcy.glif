@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="emsoftcy" format="2">
+  <advance width="977"/>
+  <unicode hex="A667"/>
+  <outline>
+    <contour>
+      <point x="717" y="411" type="line"/>
+      <point x="717" y="553" type="line"/>
+      <point x="967" y="553" type="line"/>
+      <point x="967" y="411" type="line"/>
+    </contour>
+    <contour>
+      <point x="66" y="0" type="line"/>
+      <point x="66" y="553" type="line"/>
+      <point x="326" y="553" type="line"/>
+      <point x="456" y="135" type="line"/>
+      <point x="404" y="135" type="line"/>
+      <point x="536" y="553" type="line"/>
+      <point x="792" y="553" type="line"/>
+      <point x="792" y="0" type="line"/>
+      <point x="622" y="0" type="line"/>
+      <point x="622" y="268" type="line" smooth="yes"/>
+      <point x="622" y="308"/>
+      <point x="625" y="384"/>
+      <point x="628" y="416" type="qcurve"/>
+      <point x="625" y="416" type="line"/>
+      <point x="494" y="0" type="line"/>
+      <point x="364" y="0" type="line"/>
+      <point x="233" y="417" type="line"/>
+      <point x="230" y="417" type="line"/>
+      <point x="233" y="384"/>
+      <point x="236" y="309"/>
+      <point x="236" y="264" type="qcurve" smooth="yes"/>
+      <point x="236" y="0" type="line"/>
+    </contour>
+  </outline>
+</glyph>

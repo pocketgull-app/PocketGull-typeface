@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="aturnedmod" format="2">
+  <advance width="600"/>
+  <unicode hex="1D44"/>
+  <outline>
+    <contour>
+      <point x="329" y="615" type="qcurve" smooth="yes"/>
+      <point x="380" y="615"/>
+      <point x="444" y="568"/>
+      <point x="444" y="520" type="qcurve" smooth="yes"/>
+      <point x="444" y="486"/>
+      <point x="407" y="440"/>
+      <point x="337" y="416"/>
+      <point x="286" y="415" type="qcurve" smooth="yes"/>
+      <point x="211" y="413" type="line"/>
+      <point x="211" y="400" type="line" smooth="yes"/>
+      <point x="211" y="357"/>
+      <point x="258" y="325"/>
+      <point x="297" y="325" type="qcurve" smooth="yes"/>
+      <point x="326" y="325"/>
+      <point x="376" y="338"/>
+      <point x="399" y="350" type="qcurve"/>
+      <point x="419" y="309" type="line"/>
+      <point x="394" y="298"/>
+      <point x="333" y="281"/>
+      <point x="294" y="281" type="qcurve" smooth="yes"/>
+      <point x="229" y="281"/>
+      <point x="158" y="336"/>
+      <point x="158" y="393" type="qcurve" smooth="yes"/>
+      <point x="158" y="609" type="line"/>
+      <point x="204" y="609" type="line"/>
+      <point x="211" y="564" type="line"/>
+      <point x="213" y="564" type="line"/>
+      <point x="228" y="581"/>
+      <point x="262" y="603"/>
+      <point x="304" y="615"/>
+    </contour>
+    <contour>
+      <point x="319" y="571" type="qcurve" smooth="yes"/>
+      <point x="290" y="571"/>
+      <point x="241" y="551"/>
+      <point x="211" y="511"/>
+      <point x="211" y="480" type="qcurve" smooth="yes"/>
+      <point x="211" y="451" type="line"/>
+      <point x="273" y="453" type="line" smooth="yes"/>
+      <point x="315" y="454"/>
+      <point x="365" y="470"/>
+      <point x="388" y="499"/>
+      <point x="388" y="519" type="qcurve" smooth="yes"/>
+      <point x="388" y="546"/>
+      <point x="351" y="571"/>
+    </contour>
+  </outline>
+</glyph>

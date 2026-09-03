@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni0347" format="2">
+  <unicode hex="0347"/>
+  <outline>
+    <component base="underscore" xOffset="-300" yOffset="-125"/>
+    <component base="underscore" xOffset="-300"/>
+  </outline>
+</glyph>

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="integralbt.mir" format="2">
+  <advance width="600"/>
+  <outline>
+    <contour>
+      <point x="408" y="-240" type="qcurve" smooth="yes"/>
+      <point x="347" y="-240"/>
+      <point x="306" y="-180" type="qcurve" smooth="yes"/>
+      <point x="265" y="-119"/>
+      <point x="265" y="-24" type="qcurve" smooth="yes"/>
+      <point x="265" y="833" type="line"/>
+      <point x="336" y="833" type="line"/>
+      <point x="336" y="-102" type="line" smooth="yes"/>
+      <point x="336" y="-154"/>
+      <point x="345" y="-189"/>
+      <point x="361" y="-189" type="qcurve" smooth="yes"/>
+      <point x="370" y="-189"/>
+      <point x="385" y="-170" type="qcurve" smooth="yes"/>
+      <point x="396" y="-156"/>
+      <point x="417" y="-141"/>
+      <point x="433" y="-141" type="qcurve" smooth="yes"/>
+      <point x="451" y="-141"/>
+      <point x="476" y="-166"/>
+      <point x="476" y="-186" type="qcurve" smooth="yes"/>
+      <point x="476" y="-209"/>
+      <point x="439" y="-240"/>
+    </contour>
+  </outline>
+</glyph>

@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="pecombcy" format="2">
+  <unicode hex="2DEB"/>
+  <outline>
+    <contour>
+      <point x="112" y="834" type="line"/>
+      <point x="112" y="620" type="line"/>
+      <point x="73" y="620" type="line"/>
+      <point x="73" y="804" type="line"/>
+      <point x="-52" y="804" type="line"/>
+      <point x="-52" y="620" type="line"/>
+      <point x="-92" y="620" type="line"/>
+      <point x="-92" y="834" type="line"/>
+    </contour>
+  </outline>
+</glyph>

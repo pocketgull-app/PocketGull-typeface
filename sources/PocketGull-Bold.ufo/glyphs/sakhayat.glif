@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="sakhayat" format="2">
+  <advance width="926"/>
+  <unicode hex="AB60"/>
+  <outline>
+    <contour>
+      <point x="78" y="0" type="line"/>
+      <point x="78" y="546" type="line"/>
+      <point x="574" y="546" type="line"/>
+      <point x="574" y="335" type="line"/>
+      <point x="646" y="335" type="line" smooth="yes"/>
+      <point x="730" y="335"/>
+      <point x="838" y="300"/>
+      <point x="891" y="228"/>
+      <point x="891" y="174" type="qcurve" smooth="yes"/>
+      <point x="891" y="121"/>
+      <point x="842" y="43"/>
+      <point x="737" y="0"/>
+      <point x="651" y="0" type="qcurve" smooth="yes"/>
+      <point x="425" y="0" type="line"/>
+      <point x="425" y="434" type="line"/>
+      <point x="227" y="434" type="line"/>
+      <point x="227" y="0" type="line"/>
+    </contour>
+    <contour>
+      <point x="574" y="103" type="line"/>
+      <point x="643" y="103" type="line" smooth="yes"/>
+      <point x="687" y="103"/>
+      <point x="742" y="135"/>
+      <point x="742" y="172" type="qcurve" smooth="yes"/>
+      <point x="742" y="204"/>
+      <point x="691" y="232"/>
+      <point x="641" y="232" type="qcurve" smooth="yes"/>
+      <point x="574" y="232" type="line"/>
+    </contour>
+  </outline>
+</glyph>

@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="iturnedmod" format="2">
+  <advance width="179"/>
+  <unicode hex="1D4E"/>
+  <outline>
+    <contour>
+      <point x="118" y="609" type="line"/>
+      <point x="118" y="287" type="line"/>
+      <point x="61" y="287" type="line"/>
+      <point x="61" y="609" type="line"/>
+    </contour>
+    <contour>
+      <point x="89" y="234" type="qcurve" smooth="yes"/>
+      <point x="103" y="234"/>
+      <point x="123" y="217"/>
+      <point x="123" y="200" type="qcurve" smooth="yes"/>
+      <point x="123" y="182"/>
+      <point x="103" y="166"/>
+      <point x="89" y="166" type="qcurve" smooth="yes"/>
+      <point x="76" y="166"/>
+      <point x="56" y="182"/>
+      <point x="56" y="200" type="qcurve" smooth="yes"/>
+      <point x="56" y="217"/>
+      <point x="76" y="234"/>
+    </contour>
+  </outline>
+</glyph>

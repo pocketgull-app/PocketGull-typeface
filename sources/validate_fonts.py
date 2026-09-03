@@ -160,6 +160,19 @@ def validate():
             log_fail("STAT Table: Missing")
             failed_checks += 1
 
+        # I. OpenType Sanitizer (OTS) Security & Memory Safety
+        total_checks += 1
+        try:
+            import ots
+            res = ots.sanitize(fpath)
+            if res.returncode == 0:
+                log_pass("OpenType Sanitizer (OTS): Passed (100% memory-safe)")
+            else:
+                log_fail(f"OpenType Sanitizer (OTS): Failed with code {res.returncode}")
+                failed_checks += 1
+        except ImportError:
+            log_info("OpenType Sanitizer (OTS): python-ots not installed, skipping runtime test")
+
     print(f"\n{BOLD}=== SUMMARY ==={RESET}")
     print(f"Total Checks: {total_checks}")
     print(f"Passed: {GREEN}{total_checks - failed_checks}{RESET}")

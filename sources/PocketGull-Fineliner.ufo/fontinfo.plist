@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>familyName</key>
+    <string>PocketGull</string>
+    <key>openTypeHheaAscender</key>
+    <integer>1069</integer>
+    <key>openTypeHheaDescender</key>
+    <integer>-293</integer>
+    <key>openTypeHheaLineGap</key>
+    <integer>0</integer>
+    <key>openTypeNameVersion</key>
+    <string>Version 2.000; The PocketGull Project Authors; OFL 1.1</string>
+    <key>openTypeOS2TypoAscender</key>
+    <integer>1069</integer>
+    <key>openTypeOS2TypoDescender</key>
+    <integer>-293</integer>
+    <key>openTypeOS2TypoLineGap</key>
+    <integer>0</integer>
+    <key>openTypeOS2WeightClass</key>
+    <integer>400</integer>
+    <key>openTypeOS2WinAscent</key>
+    <integer>1230</integer>
+    <key>openTypeOS2WinDescent</key>
+    <integer>520</integer>
+    <key>postscriptIsFixedPitch</key>
+    <false/>
+    <key>styleName</key>
+    <string>Fineliner</string>
+    <key>unitsPerEm</key>
+    <integer>1000</integer>
+    <key>versionMajor</key>
+    <integer>2</integer>
+    <key>versionMinor</key>
+    <integer>0</integer>
+  </dict>
+</plist>

@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniFE20" format="2">
+  <unicode hex="FE20"/>
+  <outline>
+    <contour>
+      <point x="-393" y="587" type="line"/>
+      <point x="-367" y="639"/>
+      <point x="-291" y="714"/>
+      <point x="-190" y="762"/>
+      <point x="-69" y="785"/>
+      <point x="0" y="785" type="qcurve" smooth="yes"/>
+      <point x="5" y="785" type="line"/>
+      <point x="5" y="689" type="line"/>
+      <point x="0" y="689" type="line" smooth="yes"/>
+      <point x="-67" y="689"/>
+      <point x="-179" y="666"/>
+      <point x="-264" y="621"/>
+      <point x="-293" y="587" type="qcurve"/>
+    </contour>
+  </outline>
+</glyph>

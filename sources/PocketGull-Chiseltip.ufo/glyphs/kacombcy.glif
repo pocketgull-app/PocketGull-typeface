@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="kacombcy" format="2">
+  <unicode hex="2DE6"/>
+  <outline>
+    <contour>
+      <point x="-112" y="620" type="line"/>
+      <point x="-112" y="841" type="line"/>
+      <point x="-26" y="841" type="line"/>
+      <point x="-26" y="734" type="line"/>
+      <point x="62" y="841" type="line"/>
+      <point x="157" y="841" type="line"/>
+      <point x="64" y="735" type="line"/>
+      <point x="164" y="620" type="line"/>
+      <point x="66" y="620" type="line"/>
+      <point x="-26" y="732" type="line"/>
+      <point x="-26" y="620" type="line"/>
+    </contour>
+  </outline>
+</glyph>

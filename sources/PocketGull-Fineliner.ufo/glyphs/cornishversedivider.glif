@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="cornishversedivider" format="2">
+  <advance width="338"/>
+  <unicode hex="2E4F"/>
+  <outline>
+    <contour>
+      <point x="65" y="413" type="qcurve" smooth="yes"/>
+      <point x="43" y="413"/>
+      <point x="15" y="443"/>
+      <point x="15" y="468" type="qcurve" smooth="yes"/>
+      <point x="15" y="494"/>
+      <point x="43" y="524"/>
+      <point x="65" y="524" type="qcurve" smooth="yes"/>
+      <point x="88" y="524"/>
+      <point x="116" y="494"/>
+      <point x="116" y="468" type="qcurve" smooth="yes"/>
+      <point x="116" y="443"/>
+      <point x="88" y="413"/>
+    </contour>
+    <contour>
+      <point x="272" y="32" type="qcurve" smooth="yes"/>
+      <point x="250" y="32"/>
+      <point x="222" y="63"/>
+      <point x="222" y="88" type="qcurve" smooth="yes"/>
+      <point x="222" y="114"/>
+      <point x="250" y="144"/>
+      <point x="272" y="144" type="qcurve" smooth="yes"/>
+      <point x="295" y="144"/>
+      <point x="323" y="114"/>
+      <point x="323" y="88" type="qcurve" smooth="yes"/>
+      <point x="323" y="63"/>
+      <point x="295" y="32"/>
+    </contour>
+    <contour>
+      <point x="52" y="252" type="line"/>
+      <point x="16" y="305" type="line"/>
+      <point x="286" y="490" type="line"/>
+      <point x="322" y="437" type="line"/>
+    </contour>
+    <contour>
+      <point x="52" y="74" type="line"/>
+      <point x="16" y="127" type="line"/>
+      <point x="286" y="312" type="line"/>
+      <point x="322" y="259" type="line"/>
+    </contour>
+  </outline>
+</glyph>

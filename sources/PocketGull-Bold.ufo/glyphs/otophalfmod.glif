@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="otophalfmod" format="2">
+  <advance width="402"/>
+  <unicode hex="1D54"/>
+  <outline>
+    <contour>
+      <point x="202" y="621" type="qcurve" smooth="yes"/>
+      <point x="253" y="621"/>
+      <point x="330" y="581"/>
+      <point x="373" y="505"/>
+      <point x="373" y="448" type="qcurve"/>
+      <point x="274" y="448" type="line"/>
+      <point x="274" y="482"/>
+      <point x="259" y="527"/>
+      <point x="227" y="549"/>
+      <point x="201" y="549" type="qcurve" smooth="yes"/>
+      <point x="162" y="549"/>
+      <point x="128" y="499"/>
+      <point x="128" y="448" type="qcurve"/>
+      <point x="29" y="448" type="line"/>
+      <point x="29" y="504"/>
+      <point x="71" y="581"/>
+      <point x="149" y="621"/>
+    </contour>
+  </outline>
+</glyph>

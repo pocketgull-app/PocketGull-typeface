@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="dashwithupturnleft" format="2">
+  <advance width="1000"/>
+  <unicode hex="2E43"/>
+  <outline>
+    <contour>
+      <point x="285" y="202" type="line" smooth="yes"/>
+      <point x="195" y="202"/>
+      <point x="86" y="264"/>
+      <point x="37" y="361"/>
+      <point x="37" y="415" type="qcurve" smooth="yes"/>
+      <point x="37" y="487"/>
+      <point x="108" y="563"/>
+      <point x="164" y="563" type="qcurve" smooth="yes"/>
+      <point x="197" y="563"/>
+      <point x="239" y="536"/>
+      <point x="258" y="493"/>
+      <point x="258" y="469" type="qcurve" smooth="yes"/>
+      <point x="258" y="443"/>
+      <point x="246" y="414"/>
+      <point x="229" y="395"/>
+      <point x="217" y="377"/>
+      <point x="217" y="363" type="qcurve" smooth="yes"/>
+      <point x="217" y="356"/>
+      <point x="225" y="344"/>
+      <point x="245" y="337"/>
+      <point x="262" y="337" type="qcurve" smooth="yes"/>
+      <point x="962" y="337" type="line"/>
+      <point x="962" y="202" type="line"/>
+    </contour>
+  </outline>
+</glyph>

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="invertedCandrabindudeva" format="2">
+  <unicode hex="0900"/>
+  <outline>
+    <contour>
+      <point x="-247" y="704" type="qcurve" smooth="yes"/>
+      <point x="-247" y="732"/>
+      <point x="-210" y="765"/>
+      <point x="-178" y="765" type="qcurve" smooth="yes"/>
+      <point x="-146" y="765"/>
+      <point x="-109" y="733"/>
+      <point x="-109" y="704" type="qcurve" smooth="yes"/>
+      <point x="-109" y="677"/>
+      <point x="-147" y="644"/>
+      <point x="-178" y="644" type="qcurve" smooth="yes"/>
+      <point x="-210" y="644"/>
+      <point x="-247" y="677"/>
+    </contour>
+    <contour>
+      <point x="50" y="697" type="qcurve"/>
+      <point x="-68" y="674" type="line"/>
+      <point x="-67" y="734"/>
+      <point x="-125" y="797"/>
+      <point x="-178" y="797" type="qcurve" smooth="yes"/>
+      <point x="-231" y="797"/>
+      <point x="-289" y="734"/>
+      <point x="-288" y="674" type="qcurve"/>
+      <point x="-406" y="697" type="line"/>
+      <point x="-399" y="804"/>
+      <point x="-278" y="896"/>
+      <point x="-178" y="896" type="qcurve" smooth="yes"/>
+      <point x="-77" y="896"/>
+      <point x="43" y="804"/>
+    </contour>
+  </outline>
+</glyph>

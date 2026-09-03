@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="iotaserifedstrokemod" format="2">
+  <advance width="600"/>
+  <unicode hex="1DA7"/>
+  <outline>
+    <contour>
+      <point x="194" y="436" type="line"/>
+      <point x="194" y="478" type="line"/>
+      <point x="392" y="478" type="line"/>
+      <point x="392" y="436" type="line"/>
+    </contour>
+    <contour>
+      <point x="170" y="287" type="line"/>
+      <point x="170" y="324" type="line"/>
+      <point x="263" y="332" type="line"/>
+      <point x="263" y="564" type="line"/>
+      <point x="170" y="571" type="line"/>
+      <point x="170" y="609" type="line"/>
+      <point x="417" y="609" type="line"/>
+      <point x="417" y="571" type="line"/>
+      <point x="322" y="564" type="line"/>
+      <point x="322" y="332" type="line"/>
+      <point x="417" y="324" type="line"/>
+      <point x="417" y="287" type="line"/>
+    </contour>
+  </outline>
+</glyph>

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ocombcy" format="2">
+  <unicode hex="2DEA"/>
+  <outline>
+    <contour>
+      <point x="122" y="728" type="qcurve" smooth="yes"/>
+      <point x="122" y="692"/>
+      <point x="94" y="642"/>
+      <point x="44" y="616"/>
+      <point x="9" y="616" type="qcurve" smooth="yes"/>
+      <point x="-22" y="616"/>
+      <point x="-73" y="642"/>
+      <point x="-101" y="692"/>
+      <point x="-101" y="728" type="qcurve" smooth="yes"/>
+      <point x="-101" y="781"/>
+      <point x="-41" y="838"/>
+      <point x="11" y="838" type="qcurve" smooth="yes"/>
+      <point x="60" y="838"/>
+      <point x="122" y="781"/>
+    </contour>
+    <contour>
+      <point x="-60" y="728" type="qcurve" smooth="yes"/>
+      <point x="-60" y="690"/>
+      <point x="-26" y="645"/>
+      <point x="10" y="645" type="qcurve" smooth="yes"/>
+      <point x="47" y="645"/>
+      <point x="81" y="690"/>
+      <point x="81" y="728" type="qcurve" smooth="yes"/>
+      <point x="81" y="766"/>
+      <point x="47" y="809"/>
+      <point x="10" y="809" type="qcurve" smooth="yes"/>
+      <point x="-27" y="809"/>
+      <point x="-60" y="766"/>
+    </contour>
+  </outline>
+</glyph>

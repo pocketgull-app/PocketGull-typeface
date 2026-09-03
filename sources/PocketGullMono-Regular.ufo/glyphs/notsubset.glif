@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="notsubset" format="2">
+  <advance width="600"/>
+  <unicode hex="2284"/>
+  <outline>
+    <component base="propersubset"/>
+    <component base="uni0338" xOffset="557"/>
+  </outline>
+</glyph>

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni09400901.03" format="2">
+  <advance width="317"/>
+  <outline>
+    <component base="uni0940.03"/>
+    <component base="_Comp_candraBindudeva.01" xOffset="346"/>
+  </outline>
+</glyph>

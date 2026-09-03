@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Zpalatalhook" format="2">
+  <advance width="572"/>
+  <unicode hex="A7C6"/>
+  <outline>
+    <contour>
+      <point x="416" y="-198" type="qcurve" smooth="yes"/>
+      <point x="397" y="-198"/>
+      <point x="366" y="-190"/>
+      <point x="356" y="-186" type="qcurve"/>
+      <point x="356" y="-113" type="line"/>
+      <point x="364" y="-116"/>
+      <point x="390" y="-122"/>
+      <point x="406" y="-122" type="qcurve" smooth="yes"/>
+      <point x="429" y="-122"/>
+      <point x="454" y="-97"/>
+      <point x="454" y="-70" type="qcurve" smooth="yes"/>
+      <point x="454" y="0" type="line"/>
+      <point x="533" y="68" type="line"/>
+      <point x="533" y="-65" type="line" smooth="yes"/>
+      <point x="533" y="-108"/>
+      <point x="508" y="-167"/>
+      <point x="456" y="-198"/>
+    </contour>
+    <contour>
+      <point x="533" y="0" type="line"/>
+      <point x="38" y="0" type="line"/>
+      <point x="38" y="68" type="line"/>
+      <point x="414" y="634" type="line"/>
+      <point x="50" y="634" type="line"/>
+      <point x="50" y="714" type="line"/>
+      <point x="523" y="714" type="line"/>
+      <point x="523" y="646" type="line"/>
+      <point x="147" y="80" type="line"/>
+      <point x="533" y="80" type="line"/>
+    </contour>
+  </outline>
+</glyph>

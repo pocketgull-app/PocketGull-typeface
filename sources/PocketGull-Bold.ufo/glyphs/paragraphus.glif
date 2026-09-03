@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="paragraphus" format="2">
+  <advance width="561"/>
+  <unicode hex="2E4D"/>
+  <outline>
+    <contour>
+      <point x="206" y="334" type="line"/>
+      <point x="157" y="382" type="line"/>
+      <point x="474" y="699" type="line"/>
+      <point x="523" y="651" type="line"/>
+    </contour>
+    <contour>
+      <point x="541" y="714" type="line"/>
+      <point x="541" y="589" type="line"/>
+      <point x="241" y="589" type="line"/>
+      <point x="241" y="0" type="line"/>
+      <point x="90" y="0" type="line"/>
+      <point x="90" y="714" type="line"/>
+    </contour>
+  </outline>
+</glyph>

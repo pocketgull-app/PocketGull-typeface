@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni1D73" format="2">
+  <advance width="432"/>
+  <unicode hex="1D73"/>
+  <outline>
+    <contour>
+      <point x="71" y="187" type="line"/>
+      <point x="67" y="188"/>
+      <point x="55" y="189"/>
+      <point x="45" y="189" type="qcurve" smooth="yes"/>
+      <point x="29" y="189"/>
+      <point x="6" y="163"/>
+      <point x="4" y="140" type="qcurve"/>
+      <point x="-83" y="140" type="line"/>
+      <point x="-83" y="182"/>
+      <point x="-62" y="244"/>
+      <point x="-24" y="284"/>
+      <point x="27" y="304"/>
+      <point x="56" y="304" type="qcurve" smooth="yes"/>
+      <point x="60" y="304"/>
+      <point x="67" y="303"/>
+      <point x="71" y="303" type="qcurve"/>
+      <point x="71" y="353" type="line" smooth="yes"/>
+      <point x="71" y="426"/>
+      <point x="117" y="520"/>
+      <point x="207" y="566"/>
+      <point x="272" y="566" type="qcurve" smooth="yes"/>
+      <point x="313" y="566"/>
+      <point x="371" y="558"/>
+      <point x="403" y="550" type="qcurve"/>
+      <point x="381" y="394" type="line"/>
+      <point x="366" y="398"/>
+      <point x="341" y="401"/>
+      <point x="324" y="401" type="qcurve" smooth="yes"/>
+      <point x="287" y="401"/>
+      <point x="266" y="361"/>
+      <point x="266" y="343" type="qcurve" smooth="yes"/>
+      <point x="266" y="256" type="line"/>
+      <point x="270" y="255"/>
+      <point x="278" y="254"/>
+      <point x="282" y="254" type="qcurve" smooth="yes"/>
+      <point x="299" y="254"/>
+      <point x="323" y="280"/>
+      <point x="326" y="305" type="qcurve"/>
+      <point x="414" y="305" type="line"/>
+      <point x="414" y="220"/>
+      <point x="333" y="141"/>
+      <point x="276" y="141" type="qcurve" smooth="yes"/>
+      <point x="274" y="141"/>
+      <point x="268" y="141"/>
+      <point x="266" y="141" type="qcurve"/>
+      <point x="266" y="0" type="line"/>
+      <point x="71" y="0" type="line"/>
+    </contour>
+  </outline>
+</glyph>

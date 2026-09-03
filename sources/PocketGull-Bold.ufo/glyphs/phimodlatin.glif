@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="phimodlatin" format="2">
+  <advance width="527"/>
+  <unicode hex="1DB2"/>
+  <outline>
+    <contour>
+      <point x="311" y="617" type="line"/>
+      <point x="371" y="611"/>
+      <point x="454" y="568"/>
+      <point x="497" y="497"/>
+      <point x="497" y="451" type="qcurve" smooth="yes"/>
+      <point x="497" y="405"/>
+      <point x="455" y="334"/>
+      <point x="373" y="290"/>
+      <point x="311" y="285" type="qcurve"/>
+      <point x="311" y="143" type="line"/>
+      <point x="217" y="143" type="line"/>
+      <point x="217" y="285" type="line"/>
+      <point x="128" y="293"/>
+      <point x="30" y="383"/>
+      <point x="30" y="451" type="qcurve" smooth="yes"/>
+      <point x="30" y="498"/>
+      <point x="71" y="569"/>
+      <point x="153" y="613"/>
+      <point x="218" y="617" type="qcurve"/>
+      <point x="218" y="743" type="line"/>
+      <point x="311" y="743" type="line"/>
+    </contour>
+    <contour>
+      <point x="218" y="548" type="line"/>
+      <point x="176" y="545"/>
+      <point x="129" y="492"/>
+      <point x="129" y="451" type="qcurve" smooth="yes"/>
+      <point x="129" y="408"/>
+      <point x="175" y="357"/>
+      <point x="218" y="354" type="qcurve"/>
+    </contour>
+    <contour>
+      <point x="311" y="354" type="line"/>
+      <point x="338" y="356"/>
+      <point x="378" y="381"/>
+      <point x="398" y="423"/>
+      <point x="398" y="451" type="qcurve" smooth="yes"/>
+      <point x="398" y="492"/>
+      <point x="351" y="545"/>
+      <point x="311" y="548" type="qcurve"/>
+    </contour>
+  </outline>
+</glyph>

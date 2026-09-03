@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni1DCB" format="2">
+  <unicode hex="1DCB"/>
+  <outline>
+    <component base="breve" xOffset="-420" yOffset="26"/>
+    <component base="overscore" xOffset="-175" yOffset="77"/>
+  </outline>
+</glyph>

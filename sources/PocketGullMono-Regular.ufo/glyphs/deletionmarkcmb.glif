@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="deletionmarkcmb" format="2">
+  <unicode hex="1DFB"/>
+  <outline>
+    <component base="minute" xOffset="-475"/>
+    <component base="minute" xOffset="-300"/>
+    <component base="minute" xOffset="-123"/>
+  </outline>
+</glyph>

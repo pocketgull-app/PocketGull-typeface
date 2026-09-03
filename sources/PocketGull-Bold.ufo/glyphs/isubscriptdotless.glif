@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="isubscriptdotless" format="2">
+  <advance width="194"/>
+  <outline>
+    <contour>
+      <point x="146" y="-96" type="line"/>
+      <point x="48" y="-96" type="line"/>
+      <point x="48" y="232" type="line"/>
+      <point x="146" y="232" type="line"/>
+    </contour>
+  </outline>
+</glyph>

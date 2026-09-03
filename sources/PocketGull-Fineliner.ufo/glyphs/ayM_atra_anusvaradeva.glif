@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ayMatra_anusvaradeva" format="2">
+  <outline>
+    <component base="ayMatradeva" xOffset="-1"/>
+    <component base="_Comp_anusvaradeva" xOffset="107" yOffset="10"/>
+  </outline>
+</glyph>

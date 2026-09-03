@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="oopenmod" format="2">
+  <advance width="333"/>
+  <unicode hex="1D53"/>
+  <outline>
+    <contour>
+      <point x="137" y="621" type="qcurve" smooth="yes"/>
+      <point x="212" y="621"/>
+      <point x="303" y="543"/>
+      <point x="303" y="454" type="qcurve" smooth="yes"/>
+      <point x="303" y="395"/>
+      <point x="259" y="318"/>
+      <point x="182" y="281"/>
+      <point x="131" y="281" type="qcurve" smooth="yes"/>
+      <point x="97" y="281"/>
+      <point x="49" y="292"/>
+      <point x="27" y="305" type="qcurve"/>
+      <point x="27" y="383" type="line"/>
+      <point x="48" y="371"/>
+      <point x="94" y="356"/>
+      <point x="126" y="356" type="qcurve" smooth="yes"/>
+      <point x="149" y="356"/>
+      <point x="182" y="377"/>
+      <point x="202" y="420"/>
+      <point x="202" y="453" type="qcurve" smooth="yes"/>
+      <point x="202" y="501"/>
+      <point x="161" y="546"/>
+      <point x="125" y="546" type="qcurve" smooth="yes"/>
+      <point x="105" y="546"/>
+      <point x="66" y="536"/>
+      <point x="49" y="527" type="qcurve"/>
+      <point x="20" y="598" type="line"/>
+      <point x="39" y="608"/>
+      <point x="99" y="621"/>
+    </contour>
+  </outline>
+</glyph>

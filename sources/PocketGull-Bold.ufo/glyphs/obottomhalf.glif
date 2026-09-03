@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="obottomhalf" format="2">
+  <advance width="619"/>
+  <unicode hex="1D17"/>
+  <outline>
+    <contour>
+      <point x="574" y="269" type="line"/>
+      <point x="573" y="202"/>
+      <point x="536" y="98"/>
+      <point x="466" y="27"/>
+      <point x="369" y="-10"/>
+      <point x="308" y="-10" type="qcurve" smooth="yes"/>
+      <point x="251" y="-10"/>
+      <point x="155" y="27"/>
+      <point x="85" y="98"/>
+      <point x="46" y="202"/>
+      <point x="45" y="269" type="qcurve"/>
+      <point x="197" y="269" type="line"/>
+      <point x="198" y="217"/>
+      <point x="221" y="146"/>
+      <point x="271" y="110"/>
+      <point x="310" y="110" type="qcurve" smooth="yes"/>
+      <point x="349" y="110"/>
+      <point x="398" y="146"/>
+      <point x="422" y="217"/>
+      <point x="422" y="269" type="qcurve"/>
+    </contour>
+  </outline>
+</glyph>

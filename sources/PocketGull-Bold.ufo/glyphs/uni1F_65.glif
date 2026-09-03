@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni1F65" format="2">
+  <advance width="875"/>
+  <unicode hex="1F65"/>
+  <outline>
+    <component base="omega"/>
+    <component base="uni1FFE" xOffset="187"/>
+    <component base="tonos" xOffset="397"/>
+  </outline>
+</glyph>

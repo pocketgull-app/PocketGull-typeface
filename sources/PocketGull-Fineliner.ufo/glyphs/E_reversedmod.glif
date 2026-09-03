@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Ereversedmod" format="2">
+  <advance width="361"/>
+  <unicode hex="1D32"/>
+  <outline>
+    <contour>
+      <point x="39" y="287" type="line"/>
+      <point x="39" y="334" type="line"/>
+      <point x="240" y="334" type="line"/>
+      <point x="240" y="487" type="line"/>
+      <point x="51" y="487" type="line"/>
+      <point x="51" y="534" type="line"/>
+      <point x="240" y="534" type="line"/>
+      <point x="240" y="668" type="line"/>
+      <point x="39" y="668" type="line"/>
+      <point x="39" y="715" type="line"/>
+      <point x="298" y="715" type="line"/>
+      <point x="298" y="287" type="line"/>
+    </contour>
+  </outline>
+</glyph>

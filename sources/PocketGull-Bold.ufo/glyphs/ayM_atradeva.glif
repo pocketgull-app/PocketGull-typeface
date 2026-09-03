@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ayMatradeva" format="2">
+  <unicode hex="A8FF"/>
+  <outline>
+    <contour>
+      <point x="-219" y="615" type="line"/>
+      <point x="-230" y="642"/>
+      <point x="-265" y="664"/>
+      <point x="-294" y="664" type="qcurve" smooth="yes"/>
+      <point x="-312" y="664"/>
+      <point x="-351" y="662"/>
+      <point x="-370" y="662" type="qcurve" smooth="yes"/>
+      <point x="-404" y="662"/>
+      <point x="-455" y="683"/>
+      <point x="-493" y="736"/>
+      <point x="-509" y="784" type="qcurve"/>
+      <point x="-415" y="820" type="line"/>
+      <point x="-400" y="780"/>
+      <point x="-373" y="751"/>
+      <point x="-345" y="751" type="qcurve" smooth="yes"/>
+      <point x="-334" y="751"/>
+      <point x="-303" y="753"/>
+      <point x="-289" y="753" type="qcurve" smooth="yes"/>
+      <point x="-238" y="753"/>
+      <point x="-173" y="714"/>
+      <point x="-151" y="659" type="qcurve"/>
+      <point x="-148" y="659" type="line"/>
+      <point x="-146" y="665"/>
+      <point x="-145" y="679"/>
+      <point x="-145" y="686" type="qcurve" smooth="yes"/>
+      <point x="-145" y="713"/>
+      <point x="-170" y="745"/>
+      <point x="-203" y="755" type="qcurve" smooth="yes"/>
+      <point x="-251" y="769" type="line" smooth="yes"/>
+      <point x="-286" y="779"/>
+      <point x="-325" y="811"/>
+      <point x="-338" y="859"/>
+      <point x="-336" y="896" type="qcurve"/>
+      <point x="-227" y="896" type="line"/>
+      <point x="-228" y="868"/>
+      <point x="-210" y="849"/>
+      <point x="-179" y="840" type="qcurve" smooth="yes"/>
+      <point x="-143" y="829" type="line" smooth="yes"/>
+      <point x="-94" y="815"/>
+      <point x="-54" y="758"/>
+      <point x="-54" y="710" type="qcurve" smooth="yes"/>
+      <point x="-54" y="687"/>
+      <point x="-63" y="638"/>
+      <point x="-71" y="615" type="qcurve"/>
+    </contour>
+  </outline>
+</glyph>

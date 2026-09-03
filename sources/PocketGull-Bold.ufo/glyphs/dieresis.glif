@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="dieresis" format="2">
+  <advance width="593"/>
+  <unicode hex="00A8"/>
+  <outline>
+    <contour>
+      <point x="125" y="686" type="qcurve" smooth="yes"/>
+      <point x="125" y="721"/>
+      <point x="165" y="753"/>
+      <point x="194" y="753" type="qcurve" smooth="yes"/>
+      <point x="222" y="753"/>
+      <point x="263" y="721"/>
+      <point x="263" y="686" type="qcurve" smooth="yes"/>
+      <point x="263" y="653"/>
+      <point x="222" y="621"/>
+      <point x="194" y="621" type="qcurve" smooth="yes"/>
+      <point x="165" y="621"/>
+      <point x="125" y="653"/>
+    </contour>
+    <contour>
+      <point x="341" y="686" type="qcurve" smooth="yes"/>
+      <point x="341" y="721"/>
+      <point x="380" y="753"/>
+      <point x="410" y="753" type="qcurve" smooth="yes"/>
+      <point x="438" y="753"/>
+      <point x="479" y="721"/>
+      <point x="479" y="686" type="qcurve" smooth="yes"/>
+      <point x="479" y="653"/>
+      <point x="438" y="621"/>
+      <point x="410" y="621" type="qcurve" smooth="yes"/>
+      <point x="380" y="621"/>
+      <point x="341" y="653"/>
+    </contour>
+  </outline>
+</glyph>

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="yatcombcy" format="2">
+  <unicode hex="2DFA"/>
+  <outline>
+    <contour>
+      <point x="-66" y="620" type="line"/>
+      <point x="-66" y="924" type="line"/>
+      <point x="-28" y="924" type="line"/>
+      <point x="-28" y="746" type="line"/>
+      <point x="33" y="746" type="line" smooth="yes"/>
+      <point x="76" y="746"/>
+      <point x="120" y="715"/>
+      <point x="120" y="685" type="qcurve" smooth="yes"/>
+      <point x="120" y="664"/>
+      <point x="101" y="635"/>
+      <point x="62" y="620"/>
+      <point x="33" y="620" type="qcurve" smooth="yes"/>
+    </contour>
+    <contour>
+      <point x="32" y="647" type="line" smooth="yes"/>
+      <point x="55" y="647"/>
+      <point x="82" y="665"/>
+      <point x="82" y="683" type="qcurve" smooth="yes"/>
+      <point x="82" y="702"/>
+      <point x="56" y="719"/>
+      <point x="31" y="719" type="qcurve" smooth="yes"/>
+      <point x="-28" y="719" type="line"/>
+      <point x="-28" y="647" type="line"/>
+    </contour>
+    <contour>
+      <point x="-125" y="805" type="line"/>
+      <point x="-125" y="834" type="line"/>
+      <point x="47" y="834" type="line"/>
+      <point x="47" y="805" type="line"/>
+    </contour>
+  </outline>
+</glyph>

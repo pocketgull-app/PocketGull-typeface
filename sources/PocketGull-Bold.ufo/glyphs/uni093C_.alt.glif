@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni093C.alt" format="2">
+  <outline>
+    <contour>
+      <point x="-345" y="-88" type="qcurve" smooth="yes"/>
+      <point x="-345" y="-61"/>
+      <point x="-311" y="-27"/>
+      <point x="-283" y="-27" type="qcurve" smooth="yes"/>
+      <point x="-255" y="-27"/>
+      <point x="-220" y="-61"/>
+      <point x="-220" y="-88" type="qcurve" smooth="yes"/>
+      <point x="-220" y="-113"/>
+      <point x="-255" y="-147"/>
+      <point x="-283" y="-147" type="qcurve" smooth="yes"/>
+      <point x="-311" y="-147"/>
+      <point x="-345" y="-113"/>
+    </contour>
+  </outline>
+</glyph>

@@ -1,87 +1,54 @@
-# Python
+# Python & Environments
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
 .Python
 *.egg-info/
-dist/
-build/
-.eggs/
-
-# Virtual environments
 .venv/
 venv/
 env/
 
-# IDE
+# Operating System & IDE
+.DS_Store
+Thumbs.db
+desktop.ini
 .idea/
 .vscode/
 *.suo
 *.user
 
-# OS
-.DS_Store
-Thumbs.db
-desktop.ini
+# Build & Intermediate Compilation Files
+build/
+dist/
+instance_ufo/
+master_ufo/
+master_ttf/
+master_otf/
+master_ufo_interpolatable/
+*.intermediate.ttf
+*.intermediate.otf
 
-# Temp / scratch
-*.tmp
-*.bak
+# Font Editor Backups & Working Files
+*.glyphs~
+*.glyphspackage~
+*.backup
+autosave.glyphs
+*.glyphs.bak
+*.ufo.bak/
 
-# Proprietary Philosophy, Internal Documents & Drafts
-QUAKER_DESIGN_PHILOSOPHY.md
-docs/internal/
-docs/philosophy/
-docs/grants/
-docs/patents/
-docs/valuation/
-docs/business/
-manuscripts/
-.hidden/
-*.patent.md
-*.draft.md
+# QA, Proofing & Testing Reports
+fontbakery-report.*
+proof/
+diffenator/
+diffbrowsers/
 
-# Raw Vector Masters & Design Project Files
-*.ai
-*.glyphs
-*.ufo
-*.sketch
-*.fig
-*.cdr
-*.eps
-proofs/private/
-
-# Node.js & Tooling
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# Dart & Flutter
-.dart_tool/
-.packages
-
-# Playwright & Testing
-.playwright_temp/
-test-results/
-playwright-report/
-
-# Temporary Scratch Files & Visual Proof Outputs
-scratch/
-actual_font_binary_proof.svg
-live_rendered_font_proof.svg
-*.png
-!PocketGull-Authentic-Specimen.png
-!pocketgull_cellular_typefoundry.jpg
-!synaptic_quilling_specimen_bg.jpg
-
-# Hidden Foundry Tooling
-.foundry/
-# Agentic, AI & IDE Internal Workspaces
+# Tooling & Agent Workspaces
 .agents/
 .antigravity/
 .gemini/
-.foundry/
 .tools/
+
+# Private Typefoundry Workspace (Generators, Internal Docs, Philosophy, Patents)
+.foundry/
+.studio/

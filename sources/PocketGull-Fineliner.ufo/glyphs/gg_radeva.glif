@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="gg_radeva" format="2">
+  <advance width="564"/>
+  <outline>
+    <contour>
+      <point x="208" y="551" type="line"/>
+      <point x="208" y="282" type="line" smooth="yes"/>
+      <point x="208" y="257"/>
+      <point x="183" y="227"/>
+      <point x="160" y="227" type="qcurve" smooth="yes"/>
+      <point x="134" y="227"/>
+      <point x="79" y="262"/>
+      <point x="41" y="313"/>
+      <point x="41" y="336" type="qcurve" smooth="yes"/>
+      <point x="41" y="359"/>
+      <point x="68" y="387"/>
+      <point x="102" y="387" type="qcurve" smooth="yes"/>
+      <point x="128" y="387" type="line"/>
+      <point x="128" y="551" type="line"/>
+      <point x="0" y="551" type="line"/>
+      <point x="0" y="622" type="line"/>
+      <point x="578" y="622" type="line"/>
+      <point x="578" y="551" type="line"/>
+      <point x="474" y="551" type="line"/>
+      <point x="474" y="-40" type="line"/>
+      <point x="394" y="-40" type="line"/>
+      <point x="394" y="551" type="line"/>
+    </contour>
+    <contour>
+      <point x="82" y="31" type="line"/>
+      <point x="437" y="31" type="line"/>
+      <point x="437" y="-40" type="line"/>
+      <point x="82" y="-40" type="line"/>
+    </contour>
+    <contour>
+      <point x="205" y="70" type="line"/>
+      <point x="150" y="133" type="line"/>
+      <point x="404" y="312" type="line"/>
+      <point x="445" y="258" type="line"/>
+    </contour>
+  </outline>
+</glyph>

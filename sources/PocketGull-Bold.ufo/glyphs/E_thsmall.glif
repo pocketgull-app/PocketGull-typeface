@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Ethsmall" format="2">
+  <advance width="609"/>
+  <unicode hex="1D06"/>
+  <outline>
+    <contour>
+      <point x="262" y="546" type="line" smooth="yes"/>
+      <point x="393" y="546"/>
+      <point x="549" y="409"/>
+      <point x="549" y="278" type="qcurve" smooth="yes"/>
+      <point x="549" y="186"/>
+      <point x="477" y="62"/>
+      <point x="341" y="0"/>
+      <point x="244" y="0" type="qcurve" smooth="yes"/>
+      <point x="86" y="0" type="line"/>
+      <point x="86" y="225" type="line"/>
+      <point x="34" y="225" type="line"/>
+      <point x="34" y="318" type="line"/>
+      <point x="86" y="318" type="line"/>
+      <point x="86" y="546" type="line"/>
+    </contour>
+    <contour>
+      <point x="267" y="453" type="qcurve" smooth="yes"/>
+      <point x="204" y="453" type="line"/>
+      <point x="204" y="318" type="line"/>
+      <point x="295" y="318" type="line"/>
+      <point x="295" y="225" type="line"/>
+      <point x="204" y="225" type="line"/>
+      <point x="204" y="94" type="line"/>
+      <point x="255" y="94" type="line" smooth="yes"/>
+      <point x="341" y="94"/>
+      <point x="427" y="185"/>
+      <point x="427" y="275" type="qcurve" smooth="yes"/>
+      <point x="427" y="367"/>
+      <point x="344" y="453"/>
+    </contour>
+  </outline>
+</glyph>

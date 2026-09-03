@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="monographukcombcy" format="2">
+  <unicode hex="2DF9"/>
+  <outline>
+    <contour>
+      <point x="5" y="616" type="qcurve" smooth="yes"/>
+      <point x="-35" y="616"/>
+      <point x="-83" y="653"/>
+      <point x="-83" y="684" type="qcurve" smooth="yes"/>
+      <point x="-83" y="705"/>
+      <point x="-60" y="743"/>
+      <point x="-42" y="760" type="qcurve"/>
+      <point x="-69" y="784"/>
+      <point x="-96" y="822"/>
+      <point x="-106" y="862"/>
+      <point x="-106" y="888" type="qcurve"/>
+      <point x="-20" y="888" type="line"/>
+      <point x="-20" y="873"/>
+      <point x="-17" y="848"/>
+      <point x="-7" y="825"/>
+      <point x="4" y="812" type="qcurve"/>
+      <point x="14" y="826"/>
+      <point x="28" y="864"/>
+      <point x="36" y="905"/>
+      <point x="35" y="924" type="qcurve"/>
+      <point x="126" y="924" type="line"/>
+      <point x="127" y="896"/>
+      <point x="106" y="838"/>
+      <point x="71" y="786"/>
+      <point x="50" y="768" type="qcurve"/>
+      <point x="72" y="747"/>
+      <point x="91" y="712"/>
+      <point x="91" y="688" type="qcurve" smooth="yes"/>
+      <point x="91" y="660"/>
+      <point x="47" y="616"/>
+    </contour>
+    <contour>
+      <point x="5" y="666" type="qcurve" smooth="yes"/>
+      <point x="11" y="666"/>
+      <point x="22" y="676"/>
+      <point x="22" y="686" type="qcurve" smooth="yes"/>
+      <point x="22" y="695"/>
+      <point x="13" y="711"/>
+      <point x="4" y="720" type="qcurve"/>
+      <point x="-4" y="711"/>
+      <point x="-15" y="693"/>
+      <point x="-15" y="684" type="qcurve" smooth="yes"/>
+      <point x="-15" y="675"/>
+      <point x="-4" y="666"/>
+    </contour>
+  </outline>
+</glyph>

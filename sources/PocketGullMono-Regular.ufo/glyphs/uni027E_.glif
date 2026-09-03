@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni027E" format="2">
+  <advance width="600"/>
+  <unicode hex="027E"/>
+  <outline>
+    <contour>
+      <point x="174" y="318" type="line" smooth="yes"/>
+      <point x="174" y="392"/>
+      <point x="225" y="494"/>
+      <point x="320" y="546"/>
+      <point x="384" y="546" type="qcurve" smooth="yes"/>
+      <point x="427" y="546"/>
+      <point x="487" y="532"/>
+      <point x="506" y="523" type="qcurve"/>
+      <point x="489" y="448" type="line"/>
+      <point x="475" y="456"/>
+      <point x="422" y="470"/>
+      <point x="387" y="470" type="qcurve" smooth="yes"/>
+      <point x="346" y="470"/>
+      <point x="289" y="436"/>
+      <point x="261" y="364"/>
+      <point x="261" y="307" type="qcurve" smooth="yes"/>
+      <point x="261" y="0" type="line"/>
+      <point x="174" y="0" type="line"/>
+    </contour>
+  </outline>
+</glyph>

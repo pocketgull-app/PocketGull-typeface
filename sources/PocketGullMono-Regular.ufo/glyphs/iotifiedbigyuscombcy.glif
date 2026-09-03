@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="iotifiedbigyuscombcy" format="2">
+  <unicode hex="2DFF"/>
+  <outline>
+    <contour>
+      <point x="-195" y="620" type="line"/>
+      <point x="-195" y="834" type="line"/>
+      <point x="-156" y="834" type="line"/>
+      <point x="-156" y="745" type="line"/>
+      <point x="33" y="745" type="line"/>
+      <point x="-48" y="810" type="line"/>
+      <point x="-48" y="834" type="line"/>
+      <point x="203" y="834" type="line"/>
+      <point x="203" y="810" type="line"/>
+      <point x="119" y="744" type="line"/>
+      <point x="143" y="743"/>
+      <point x="171" y="733"/>
+      <point x="188" y="718"/>
+      <point x="198" y="698"/>
+      <point x="204" y="686" type="qcurve"/>
+      <point x="232" y="620" type="line"/>
+      <point x="192" y="620" type="line"/>
+      <point x="164" y="685" type="line" smooth="yes"/>
+      <point x="160" y="695"/>
+      <point x="150" y="708"/>
+      <point x="136" y="716"/>
+      <point x="114" y="720"/>
+      <point x="96" y="720" type="qcurve"/>
+      <point x="96" y="620" type="line"/>
+      <point x="60" y="620" type="line"/>
+      <point x="60" y="720" type="line"/>
+      <point x="41" y="720"/>
+      <point x="19" y="716"/>
+      <point x="5" y="708"/>
+      <point x="-5" y="695"/>
+      <point x="-9" y="685" type="qcurve" smooth="yes"/>
+      <point x="-38" y="620" type="line"/>
+      <point x="-77" y="620" type="line"/>
+      <point x="-48" y="686" type="line" smooth="yes"/>
+      <point x="-44" y="695"/>
+      <point x="-36" y="711"/>
+      <point x="-30" y="716" type="qcurve"/>
+      <point x="-156" y="716" type="line"/>
+      <point x="-156" y="620" type="line"/>
+    </contour>
+    <contour>
+      <point x="78" y="746" type="line"/>
+      <point x="152" y="806" type="line"/>
+      <point x="4" y="806" type="line"/>
+    </contour>
+  </outline>
+</glyph>

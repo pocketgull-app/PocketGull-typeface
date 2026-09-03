@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Ukmonographcy" format="2">
+  <advance width="777"/>
+  <unicode hex="A64A"/>
+  <outline>
+    <contour>
+      <point x="391" y="436" type="line"/>
+      <point x="576" y="714" type="line"/>
+      <point x="673" y="714" type="line"/>
+      <point x="435" y="367" type="line"/>
+      <point x="435" y="226" type="line"/>
+      <point x="345" y="226" type="line"/>
+      <point x="345" y="363" type="line"/>
+      <point x="107" y="714" type="line"/>
+      <point x="206" y="714" type="line"/>
+    </contour>
+    <contour>
+      <point x="716" y="214" type="qcurve" smooth="yes"/>
+      <point x="716" y="164"/>
+      <point x="675" y="82"/>
+      <point x="593" y="22"/>
+      <point x="470" y="-10"/>
+      <point x="388" y="-10" type="qcurve" smooth="yes"/>
+      <point x="306" y="-10"/>
+      <point x="184" y="22"/>
+      <point x="102" y="82"/>
+      <point x="61" y="164"/>
+      <point x="61" y="214" type="qcurve" smooth="yes"/>
+      <point x="61" y="314"/>
+      <point x="225" y="436"/>
+      <point x="389" y="436" type="qcurve" smooth="yes"/>
+      <point x="471" y="436"/>
+      <point x="593" y="404"/>
+      <point x="675" y="345"/>
+      <point x="716" y="264"/>
+    </contour>
+    <contour>
+      <point x="157" y="216" type="qcurve" smooth="yes"/>
+      <point x="157" y="149"/>
+      <point x="269" y="69"/>
+      <point x="389" y="69" type="qcurve" smooth="yes"/>
+      <point x="510" y="69"/>
+      <point x="620" y="149"/>
+      <point x="620" y="216" type="qcurve" smooth="yes"/>
+      <point x="620" y="286"/>
+      <point x="505" y="362"/>
+      <point x="390" y="362" type="qcurve" smooth="yes"/>
+      <point x="270" y="362"/>
+      <point x="157" y="283"/>
+    </contour>
+  </outline>
+</glyph>

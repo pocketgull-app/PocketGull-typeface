@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="jcrossedtailmoddotless" format="2">
+  <advance width="600"/>
+  <outline>
+    <contour>
+      <point x="271" y="143" type="qcurve" smooth="yes"/>
+      <point x="229" y="143"/>
+      <point x="183" y="182"/>
+      <point x="183" y="214" type="qcurve" smooth="yes"/>
+      <point x="183" y="236"/>
+      <point x="203" y="269"/>
+      <point x="245" y="287"/>
+      <point x="276" y="287" type="qcurve" smooth="yes"/>
+      <point x="310" y="287" type="line"/>
+      <point x="310" y="564" type="line"/>
+      <point x="196" y="571" type="line"/>
+      <point x="196" y="609" type="line"/>
+      <point x="368" y="609" type="line"/>
+      <point x="368" y="287" type="line"/>
+      <point x="417" y="287" type="line"/>
+      <point x="417" y="244" type="line"/>
+      <point x="368" y="244" type="line"/>
+      <point x="367" y="214"/>
+      <point x="351" y="175"/>
+      <point x="325" y="152"/>
+      <point x="290" y="143"/>
+    </contour>
+    <contour>
+      <point x="271" y="186" type="qcurve" smooth="yes"/>
+      <point x="283" y="186"/>
+      <point x="300" y="195"/>
+      <point x="310" y="216"/>
+      <point x="310" y="234" type="qcurve" smooth="yes"/>
+      <point x="310" y="244" type="line"/>
+      <point x="279" y="244" type="line" smooth="yes"/>
+      <point x="260" y="244"/>
+      <point x="237" y="232"/>
+      <point x="237" y="215" type="qcurve" smooth="yes"/>
+      <point x="237" y="203"/>
+      <point x="252" y="186"/>
+    </contour>
+  </outline>
+</glyph>

@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="tsecombcy" format="2">
+  <unicode hex="2DF0"/>
+  <outline>
+    <contour>
+      <point x="176" y="539" type="line"/>
+      <point x="101" y="539" type="line"/>
+      <point x="101" y="620" type="line"/>
+      <point x="-131" y="620" type="line"/>
+      <point x="-131" y="841" type="line"/>
+      <point x="-45" y="841" type="line"/>
+      <point x="-45" y="677" type="line"/>
+      <point x="34" y="677" type="line"/>
+      <point x="34" y="841" type="line"/>
+      <point x="120" y="841" type="line"/>
+      <point x="120" y="677" type="line"/>
+      <point x="176" y="677" type="line"/>
+    </contour>
+  </outline>
+</glyph>

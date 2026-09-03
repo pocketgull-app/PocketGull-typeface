@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="kavykalow" format="2">
+  <advance width="464"/>
+  <unicode hex="2E47"/>
+  <outline>
+    <contour>
+      <point x="424" y="371" type="line"/>
+      <point x="421" y="323"/>
+      <point x="370" y="248"/>
+      <point x="286" y="206"/>
+      <point x="230" y="206" type="qcurve" smooth="yes"/>
+      <point x="144" y="206"/>
+      <point x="44" y="296"/>
+      <point x="40" y="371" type="qcurve"/>
+      <point x="123" y="371" type="line"/>
+      <point x="126" y="343"/>
+      <point x="155" y="317"/>
+      <point x="203" y="310"/>
+      <point x="231" y="310" type="qcurve" smooth="yes"/>
+      <point x="255" y="310"/>
+      <point x="302" y="319"/>
+      <point x="336" y="345"/>
+      <point x="339" y="371" type="qcurve"/>
+    </contour>
+  </outline>
+</glyph>

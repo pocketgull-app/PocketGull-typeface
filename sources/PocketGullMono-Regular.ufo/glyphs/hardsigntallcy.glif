@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="hardsigntallcy" format="2">
+  <advance width="600"/>
+  <unicode hex="1C86"/>
+  <outline>
+    <contour>
+      <point x="130" y="0" type="line"/>
+      <point x="130" y="760" type="line"/>
+      <point x="215" y="760" type="line"/>
+      <point x="215" y="316" type="line"/>
+      <point x="351" y="316" type="line" smooth="yes"/>
+      <point x="447" y="316"/>
+      <point x="544" y="239"/>
+      <point x="544" y="162" type="qcurve" smooth="yes"/>
+      <point x="544" y="111"/>
+      <point x="502" y="38"/>
+      <point x="416" y="0"/>
+      <point x="351" y="0" type="qcurve" smooth="yes"/>
+    </contour>
+    <contour>
+      <point x="348" y="68" type="line" smooth="yes"/>
+      <point x="399" y="68"/>
+      <point x="460" y="112"/>
+      <point x="460" y="158" type="qcurve" smooth="yes"/>
+      <point x="460" y="205"/>
+      <point x="402" y="247"/>
+      <point x="347" y="247" type="qcurve" smooth="yes"/>
+      <point x="215" y="247" type="line"/>
+      <point x="215" y="68" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="687" type="line"/>
+      <point x="0" y="760" type="line"/>
+      <point x="197" y="760" type="line"/>
+      <point x="197" y="687" type="line"/>
+    </contour>
+  </outline>
+</glyph>

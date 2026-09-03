@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Omonocularcy" format="2">
+  <advance width="781"/>
+  <unicode hex="A668"/>
+  <outline>
+    <contour>
+      <point x="720" y="358" type="qcurve" smooth="yes"/>
+      <point x="720" y="275"/>
+      <point x="678" y="140"/>
+      <point x="595" y="42"/>
+      <point x="472" y="-10"/>
+      <point x="391" y="-10" type="qcurve" smooth="yes"/>
+      <point x="307" y="-10"/>
+      <point x="183" y="43"/>
+      <point x="101" y="140"/>
+      <point x="61" y="276"/>
+      <point x="61" y="359" type="qcurve" smooth="yes"/>
+      <point x="61" y="469"/>
+      <point x="133" y="633"/>
+      <point x="280" y="725"/>
+      <point x="392" y="725" type="qcurve" smooth="yes"/>
+      <point x="499" y="725"/>
+      <point x="645" y="634"/>
+      <point x="720" y="469"/>
+    </contour>
+    <contour>
+      <point x="156" y="358" type="qcurve" smooth="yes"/>
+      <point x="156" y="268"/>
+      <point x="206" y="138"/>
+      <point x="311" y="68"/>
+      <point x="391" y="68" type="qcurve" smooth="yes"/>
+      <point x="472" y="68"/>
+      <point x="575" y="138"/>
+      <point x="625" y="268"/>
+      <point x="625" y="358" type="qcurve" smooth="yes"/>
+      <point x="625" y="493"/>
+      <point x="513" y="646"/>
+      <point x="392" y="646" type="qcurve" smooth="yes"/>
+      <point x="311" y="646"/>
+      <point x="206" y="577"/>
+      <point x="156" y="448"/>
+    </contour>
+    <contour>
+      <point x="333" y="362" type="qcurve" smooth="yes"/>
+      <point x="333" y="399"/>
+      <point x="369" y="429"/>
+      <point x="394" y="429" type="qcurve" smooth="yes"/>
+      <point x="420" y="429"/>
+      <point x="457" y="399"/>
+      <point x="457" y="362" type="qcurve" smooth="yes"/>
+      <point x="457" y="326"/>
+      <point x="420" y="294"/>
+      <point x="394" y="294" type="qcurve" smooth="yes"/>
+      <point x="369" y="294"/>
+      <point x="333" y="326"/>
+    </contour>
+  </outline>
+</glyph>

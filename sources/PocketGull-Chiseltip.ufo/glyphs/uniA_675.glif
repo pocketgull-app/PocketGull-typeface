@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniA675" format="2">
+  <unicode hex="A675"/>
+  <outline>
+    <contour>
+      <point x="-43" y="755" type="line" smooth="yes"/>
+      <point x="-43" y="742"/>
+      <point x="-45" y="712"/>
+      <point x="-46" y="700" type="qcurve"/>
+      <point x="48" y="841" type="line"/>
+      <point x="142" y="841" type="line"/>
+      <point x="142" y="620" type="line"/>
+      <point x="63" y="620" type="line"/>
+      <point x="63" y="700" type="line" smooth="yes"/>
+      <point x="63" y="716"/>
+      <point x="65" y="749"/>
+      <point x="66" y="762" type="qcurve"/>
+      <point x="-29" y="620" type="line"/>
+      <point x="-121" y="620" type="line"/>
+      <point x="-121" y="841" type="line"/>
+      <point x="-43" y="841" type="line"/>
+    </contour>
+  </outline>
+</glyph>

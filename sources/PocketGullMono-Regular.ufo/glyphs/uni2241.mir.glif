@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni2241.mir" format="2">
+  <advance width="600"/>
+  <outline>
+    <contour>
+      <point x="443" y="93" type="line"/>
+      <point x="367" y="93" type="line"/>
+      <point x="167" y="603" type="line"/>
+      <point x="243" y="603" type="line"/>
+    </contour>
+    <contour>
+      <point x="535" y="287" type="line"/>
+      <point x="511" y="312"/>
+      <point x="450" y="346"/>
+      <point x="422" y="346" type="qcurve" smooth="yes"/>
+      <point x="400" y="346"/>
+      <point x="353" y="335"/>
+      <point x="317" y="319" type="qcurve" smooth="yes"/>
+      <point x="272" y="300"/>
+      <point x="214" y="287"/>
+      <point x="185" y="287" type="qcurve" smooth="yes"/>
+      <point x="149" y="287"/>
+      <point x="89" y="315"/>
+      <point x="65" y="341" type="qcurve"/>
+      <point x="65" y="418" type="line"/>
+      <point x="89" y="393"/>
+      <point x="151" y="359"/>
+      <point x="180" y="359" type="qcurve" smooth="yes"/>
+      <point x="201" y="359"/>
+      <point x="248" y="370"/>
+      <point x="284" y="386" type="qcurve" smooth="yes"/>
+      <point x="330" y="406"/>
+      <point x="388" y="418"/>
+      <point x="416" y="418" type="qcurve" smooth="yes"/>
+      <point x="452" y="418"/>
+      <point x="511" y="391"/>
+      <point x="535" y="365" type="qcurve"/>
+    </contour>
+  </outline>
+</glyph>

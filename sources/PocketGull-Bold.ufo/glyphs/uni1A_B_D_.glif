@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni1ABD" format="2">
+  <unicode hex="1ABD"/>
+  <outline>
+    <component base="uni1ABB" yOffset="-849"/>
+  </outline>
+</glyph>

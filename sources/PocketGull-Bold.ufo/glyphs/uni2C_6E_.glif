@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni2C6E" format="2">
+  <advance width="943"/>
+  <unicode hex="2C6E"/>
+  <outline>
+    <contour>
+      <point x="853" y="0" type="line" smooth="yes"/>
+      <point x="853" y="-72"/>
+      <point x="802" y="-165"/>
+      <point x="711" y="-210"/>
+      <point x="651" y="-210" type="qcurve" smooth="yes"/>
+      <point x="623" y="-210"/>
+      <point x="580" y="-203"/>
+      <point x="565" y="-199" type="qcurve"/>
+      <point x="565" y="-81" type="line"/>
+      <point x="579" y="-85"/>
+      <point x="610" y="-91"/>
+      <point x="628" y="-91" type="qcurve" smooth="yes"/>
+      <point x="671" y="-91"/>
+      <point x="711" y="-47"/>
+      <point x="712" y="2" type="qcurve" smooth="yes"/>
+      <point x="712" y="338" type="line" smooth="yes"/>
+      <point x="712" y="376"/>
+      <point x="714" y="452"/>
+      <point x="717" y="525"/>
+      <point x="719" y="559" type="qcurve"/>
+      <point x="715" y="559" type="line"/>
+      <point x="531" y="0" type="line"/>
+      <point x="392" y="0" type="line"/>
+      <point x="220" y="560" type="line"/>
+      <point x="216" y="560" type="line"/>
+      <point x="219" y="525"/>
+      <point x="223" y="451"/>
+      <point x="225" y="373"/>
+      <point x="225" y="332" type="qcurve" smooth="yes"/>
+      <point x="225" y="0" type="line"/>
+      <point x="90" y="0" type="line"/>
+      <point x="90" y="714" type="line"/>
+      <point x="296" y="714" type="line"/>
+      <point x="465" y="168" type="line"/>
+      <point x="468" y="168" type="line"/>
+      <point x="647" y="714" type="line"/>
+      <point x="853" y="714" type="line"/>
+    </contour>
+  </outline>
+</glyph>

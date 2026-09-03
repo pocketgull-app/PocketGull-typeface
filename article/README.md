@@ -27,15 +27,15 @@ From these 10 original hand-drawn vector paths (`P`, `o`, `c`, `k`, `e`, `t`, `G
 
 ---
 
-## 📐 Chapter 2: Dieter Rams & Mathematical Precision Alignment
+## 📐 Chapter 2: Libre Functionalism & Mathematical Precision Alignment
 
-PocketGull was built under the strict discipline of **Dieter Rams’ 10 Principles of Good Design** and mathematical precision engineering standards:
+PocketGull was built under the strict discipline of **Libre Functionalist Design Principles** (*Weniger, aber besser* / Less, but better) and mathematical precision engineering standards:
 
 1. **Good Design is Honest (*Veritas*)**: No artificial 3D skewing or deceptive font masking. Every letter is mathematically true to its $1024\text{ UPM}$ TrueType grid.
 2. **Good Design is as Little Design as Possible (*Simplicitas*)**: Minimal-node cubic Bezier curves, zero autotrace noise, and functional $45^\circ$ origami chamfers.
 3. **Good Design Makes a Product Useful (*Aequabilitas*)**: Universal legibility calibrated to **WCAG 2.1 AAA 12.8:1 contrast certification** and clinical character disambiguation (`0` vs `O`, `1` vs `l`, `7` vs `T`).
 
-![Dieter Rams Specimen](dieter_rams_specimen.png)
+![Libre Functionalist Specimen](libre_functionalist_specimen.png)
 
 ---
 

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni093C0941" format="2">
+  <outline>
+    <component base="uMatra_Narrowdeva"/>
+    <component base="uni093C" xOffset="-295"/>
+  </outline>
+</glyph>

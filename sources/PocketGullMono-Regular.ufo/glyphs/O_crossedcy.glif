@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Ocrossedcy" format="2">
+  <advance width="600"/>
+  <unicode hex="A69A"/>
+  <outline>
+    <contour>
+      <point x="266" y="29" type="line"/>
+      <point x="266" y="661" type="line"/>
+      <point x="338" y="661" type="line"/>
+      <point x="338" y="29" type="line"/>
+    </contour>
+    <contour>
+      <point x="91" y="324" type="line"/>
+      <point x="91" y="396" type="line"/>
+      <point x="509" y="396" type="line"/>
+      <point x="509" y="324" type="line"/>
+    </contour>
+    <contour>
+      <point x="299" y="-10" type="qcurve" smooth="yes"/>
+      <point x="232" y="-10"/>
+      <point x="136" y="43"/>
+      <point x="74" y="140"/>
+      <point x="45" y="275"/>
+      <point x="45" y="357" type="qcurve" smooth="yes"/>
+      <point x="45" y="467"/>
+      <point x="98" y="633"/>
+      <point x="211" y="726"/>
+      <point x="300" y="726" type="qcurve" smooth="yes"/>
+      <point x="367" y="726"/>
+      <point x="463" y="674"/>
+      <point x="525" y="576"/>
+      <point x="555" y="442"/>
+      <point x="555" y="359" type="qcurve" smooth="yes"/>
+      <point x="555" y="276"/>
+      <point x="525" y="140"/>
+      <point x="463" y="43"/>
+      <point x="366" y="-10"/>
+    </contour>
+    <contour>
+      <point x="301" y="62" type="qcurve" smooth="yes"/>
+      <point x="364" y="62"/>
+      <point x="438" y="133"/>
+      <point x="470" y="266"/>
+      <point x="470" y="358" type="qcurve" smooth="yes"/>
+      <point x="470" y="451"/>
+      <point x="438" y="583"/>
+      <point x="364" y="653"/>
+      <point x="302" y="653" type="qcurve" smooth="yes"/>
+      <point x="239" y="653"/>
+      <point x="164" y="582"/>
+      <point x="130" y="450"/>
+      <point x="130" y="358" type="qcurve" smooth="yes"/>
+      <point x="130" y="266"/>
+      <point x="163" y="133"/>
+      <point x="238" y="62"/>
+    </contour>
+  </outline>
+</glyph>

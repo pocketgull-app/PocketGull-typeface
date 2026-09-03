@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="encombcy" format="2">
+  <unicode hex="2DE9"/>
+  <outline>
+    <contour>
+      <point x="-110" y="620" type="line"/>
+      <point x="-110" y="841" type="line"/>
+      <point x="-24" y="841" type="line"/>
+      <point x="-24" y="762" type="line"/>
+      <point x="44" y="762" type="line"/>
+      <point x="44" y="841" type="line"/>
+      <point x="130" y="841" type="line"/>
+      <point x="130" y="620" type="line"/>
+      <point x="44" y="620" type="line"/>
+      <point x="44" y="705" type="line"/>
+      <point x="-24" y="705" type="line"/>
+      <point x="-24" y="620" type="line"/>
+    </contour>
+  </outline>
+</glyph>

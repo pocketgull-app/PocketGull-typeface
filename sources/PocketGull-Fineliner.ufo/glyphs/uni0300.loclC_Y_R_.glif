@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni0300.loclCYR" format="2">
+  <outline>
+    <contour>
+      <point x="11" y="606" type="line"/>
+      <point x="-131" y="756" type="line"/>
+      <point x="-131" y="766" type="line"/>
+      <point x="-26" y="766" type="line"/>
+      <point x="70" y="618" type="line"/>
+      <point x="70" y="606" type="line"/>
+    </contour>
+  </outline>
+</glyph>

@@ -1,7 +1,7 @@
 name: "PocketGull"
 designer: "Phil Gear"
 license: "OFL"
-category: "HANDWRITING"
+category: "SANS_SERIF"
 date_added: "2026-08-04"
 fonts {
   name: "PocketGull"
@@ -46,7 +46,7 @@ subsets: "latin-ext"
 subsets: "menu"
 primary_script: "Latn"
 stroke: "SANS_SERIF"
-classifications: "HANDWRITING"
+classifications: "SANS_SERIF"
 classifications: "DISPLAY"
 minisite_url: "https://pocketgull.app"
 source {

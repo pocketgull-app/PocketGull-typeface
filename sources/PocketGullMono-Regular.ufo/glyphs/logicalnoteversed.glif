@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="logicalnoteversed" format="2">
+  <advance width="600"/>
+  <unicode hex="2310"/>
+  <outline>
+    <contour>
+      <point x="154" y="128" type="line"/>
+      <point x="83" y="128" type="line"/>
+      <point x="83" y="388" type="line"/>
+      <point x="523" y="388" type="line"/>
+      <point x="523" y="317" type="line"/>
+      <point x="154" y="317" type="line"/>
+    </contour>
+  </outline>
+</glyph>

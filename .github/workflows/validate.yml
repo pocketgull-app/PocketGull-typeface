@@ -27,7 +27,7 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install fonttools fontbakery gftools
+          pip install fonttools fontbakery gftools opentype-sanitizer
 
       - name: Run PocketGull Pre-Flight Validator
         run: |

@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="bb_rdeva" format="2">
+  <advance width="339"/>
+  <outline>
+    <contour>
+      <point x="250" y="138" type="qcurve" smooth="yes"/>
+      <point x="156" y="138"/>
+      <point x="46" y="233"/>
+      <point x="46" y="311" type="qcurve" smooth="yes"/>
+      <point x="46" y="397"/>
+      <point x="168" y="483"/>
+      <point x="264" y="483" type="qcurve" smooth="yes"/>
+      <point x="294" y="483"/>
+      <point x="344" y="478"/>
+      <point x="366" y="473" type="qcurve"/>
+      <point x="360" y="404" type="line"/>
+      <point x="338" y="409"/>
+      <point x="293" y="414"/>
+      <point x="270" y="414" type="qcurve" smooth="yes"/>
+      <point x="203" y="414"/>
+      <point x="127" y="362"/>
+      <point x="127" y="311" type="qcurve" smooth="yes"/>
+      <point x="127" y="259"/>
+      <point x="197" y="206"/>
+      <point x="253" y="206" type="qcurve" smooth="yes"/>
+      <point x="306" y="206"/>
+      <point x="388" y="251"/>
+      <point x="408" y="272" type="qcurve"/>
+      <point x="426" y="197" type="line"/>
+      <point x="392" y="170"/>
+      <point x="308" y="138"/>
+    </contour>
+    <contour>
+      <point x="82" y="-90" type="line"/>
+      <point x="82" y="-19" type="line"/>
+      <point x="387" y="-19" type="line"/>
+      <point x="387" y="-90" type="line"/>
+    </contour>
+    <contour>
+      <point x="130" y="6" type="line"/>
+      <point x="85" y="71" type="line"/>
+      <point x="360" y="234" type="line"/>
+      <point x="426" y="197" type="line"/>
+    </contour>
+    <contour>
+      <point x="331" y="188" type="line"/>
+      <point x="143" y="416" type="line"/>
+      <point x="205" y="439" type="line"/>
+      <point x="377" y="230" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="551" type="line"/>
+      <point x="0" y="622" type="line"/>
+      <point x="378" y="622" type="line"/>
+      <point x="378" y="551" type="line"/>
+    </contour>
+  </outline>
+</glyph>

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Yatiotifiedcy" format="2">
+  <advance width="906"/>
+  <unicode hex="A652"/>
+  <outline>
+    <contour>
+      <point x="85" y="0" type="line"/>
+      <point x="85" y="714" type="line"/>
+      <point x="238" y="714" type="line"/>
+      <point x="238" y="639" type="line"/>
+      <point x="374" y="639" type="line"/>
+      <point x="374" y="714" type="line"/>
+      <point x="528" y="714" type="line"/>
+      <point x="528" y="639" type="line"/>
+      <point x="759" y="639" type="line"/>
+      <point x="759" y="512" type="line"/>
+      <point x="528" y="512" type="line"/>
+      <point x="528" y="436" type="line"/>
+      <point x="575" y="436" type="line" smooth="yes"/>
+      <point x="681" y="436"/>
+      <point x="808" y="382"/>
+      <point x="864" y="288"/>
+      <point x="864" y="227" type="qcurve" smooth="yes"/>
+      <point x="864" y="120"/>
+      <point x="722" y="0"/>
+      <point x="581" y="0" type="qcurve" smooth="yes"/>
+      <point x="374" y="0" type="line"/>
+      <point x="374" y="512" type="line"/>
+      <point x="238" y="512" type="line"/>
+      <point x="238" y="0" type="line"/>
+    </contour>
+    <contour>
+      <point x="574" y="121" type="line" smooth="yes"/>
+      <point x="644" y="121"/>
+      <point x="709" y="173"/>
+      <point x="709" y="225" type="qcurve" smooth="yes"/>
+      <point x="709" y="258"/>
+      <point x="679" y="298"/>
+      <point x="618" y="318"/>
+      <point x="569" y="318" type="qcurve" smooth="yes"/>
+      <point x="528" y="318" type="line"/>
+      <point x="528" y="121" type="line"/>
+    </contour>
+  </outline>
+</glyph>

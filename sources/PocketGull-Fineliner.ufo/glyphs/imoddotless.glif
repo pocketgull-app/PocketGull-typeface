@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="imoddotless" format="2">
+  <advance width="168"/>
+  <outline>
+    <contour>
+      <point x="112" y="609" type="line"/>
+      <point x="112" y="287" type="line"/>
+      <point x="55" y="287" type="line"/>
+      <point x="55" y="609" type="line"/>
+    </contour>
+  </outline>
+</glyph>

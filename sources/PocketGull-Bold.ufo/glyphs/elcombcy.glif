@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="elcombcy" format="2">
+  <unicode hex="2DE7"/>
+  <outline>
+    <contour>
+      <point x="122" y="620" type="line"/>
+      <point x="54" y="620" type="line"/>
+      <point x="54" y="792" type="line"/>
+      <point x="-5" y="792" type="line"/>
+      <point x="-11" y="729"/>
+      <point x="-32" y="651"/>
+      <point x="-69" y="616"/>
+      <point x="-100" y="616" type="qcurve" smooth="yes"/>
+      <point x="-109" y="616"/>
+      <point x="-125" y="619"/>
+      <point x="-132" y="621" type="qcurve"/>
+      <point x="-132" y="666" type="line"/>
+      <point x="-128" y="665"/>
+      <point x="-120" y="663"/>
+      <point x="-115" y="663" type="qcurve" smooth="yes"/>
+      <point x="-103" y="663"/>
+      <point x="-85" y="692"/>
+      <point x="-71" y="768"/>
+      <point x="-65" y="838" type="qcurve"/>
+      <point x="122" y="838" type="line"/>
+    </contour>
+  </outline>
+</glyph>

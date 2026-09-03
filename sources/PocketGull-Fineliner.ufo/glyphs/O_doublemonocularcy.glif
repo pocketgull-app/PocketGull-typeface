@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Odoublemonocularcy" format="2">
+  <advance width="1336"/>
+  <unicode hex="A66C"/>
+  <outline>
+    <component base="Omonocularcy" xOffset="559"/>
+    <component base="Omonocularcy"/>
+  </outline>
+</glyph>

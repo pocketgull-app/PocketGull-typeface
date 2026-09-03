@@ -1,5 +1,5 @@
 designer: "Phil Gear"
-link: "https://pocketgull.app"
+link: "https://philgear.biz"
 avatar {
   file_name: "philgear.png"
 }

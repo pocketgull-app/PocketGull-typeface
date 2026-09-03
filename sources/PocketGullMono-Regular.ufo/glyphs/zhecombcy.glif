@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="zhecombcy" format="2">
+  <unicode hex="2DE4"/>
+  <outline>
+    <contour>
+      <point x="-118" y="620" type="line"/>
+      <point x="-48" y="746" type="line"/>
+      <point x="-54" y="721" type="line"/>
+      <point x="-115" y="834" type="line"/>
+      <point x="-76" y="834" type="line"/>
+      <point x="-22" y="731" type="line"/>
+      <point x="-22" y="728" type="line"/>
+      <point x="-78" y="620" type="line"/>
+    </contour>
+    <contour>
+      <point x="99" y="620" type="line"/>
+      <point x="43" y="728" type="line"/>
+      <point x="43" y="731" type="line"/>
+      <point x="96" y="834" type="line"/>
+      <point x="135" y="834" type="line"/>
+      <point x="75" y="721" type="line"/>
+      <point x="69" y="746" type="line"/>
+      <point x="138" y="620" type="line"/>
+    </contour>
+    <contour>
+      <point x="-8" y="620" type="line"/>
+      <point x="-8" y="834" type="line"/>
+      <point x="28" y="834" type="line"/>
+      <point x="28" y="620" type="line"/>
+    </contour>
+    <contour>
+      <point x="-32" y="716" type="line"/>
+      <point x="-32" y="744" type="line"/>
+      <point x="53" y="744" type="line"/>
+      <point x="53" y="716" type="line"/>
+    </contour>
+  </outline>
+</glyph>

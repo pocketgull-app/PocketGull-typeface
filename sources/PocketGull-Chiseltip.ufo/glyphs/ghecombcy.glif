@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ghecombcy" format="2">
+  <unicode hex="2DE2"/>
+  <outline>
+    <contour>
+      <point x="112" y="841" type="line"/>
+      <point x="112" y="784" type="line"/>
+      <point x="13" y="784" type="line"/>
+      <point x="13" y="620" type="line"/>
+      <point x="-73" y="620" type="line"/>
+      <point x="-73" y="841" type="line"/>
+    </contour>
+  </outline>
+</glyph>

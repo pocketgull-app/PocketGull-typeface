@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="mturnedmod" format="2">
+  <advance width="650"/>
+  <unicode hex="1D5A"/>
+  <outline>
+    <contour>
+      <point x="168" y="281" type="qcurve" smooth="yes"/>
+      <point x="107" y="281"/>
+      <point x="42" y="339"/>
+      <point x="42" y="403" type="qcurve" smooth="yes"/>
+      <point x="42" y="619" type="line"/>
+      <point x="166" y="619" type="line"/>
+      <point x="166" y="438" type="line" smooth="yes"/>
+      <point x="166" y="400"/>
+      <point x="188" y="371"/>
+      <point x="209" y="371" type="qcurve" smooth="yes"/>
+      <point x="240" y="371"/>
+      <point x="263" y="419"/>
+      <point x="263" y="464" type="qcurve" smooth="yes"/>
+      <point x="263" y="619" type="line"/>
+      <point x="387" y="619" type="line"/>
+      <point x="387" y="438" type="line" smooth="yes"/>
+      <point x="387" y="402"/>
+      <point x="407" y="371"/>
+      <point x="428" y="371" type="qcurve" smooth="yes"/>
+      <point x="450" y="371"/>
+      <point x="474" y="395"/>
+      <point x="483" y="441"/>
+      <point x="483" y="474" type="qcurve" smooth="yes"/>
+      <point x="483" y="619" type="line"/>
+      <point x="607" y="619" type="line"/>
+      <point x="607" y="287" type="line"/>
+      <point x="514" y="287" type="line"/>
+      <point x="495" y="328" type="line"/>
+      <point x="492" y="328" type="line"/>
+      <point x="483" y="314"/>
+      <point x="452" y="293"/>
+      <point x="411" y="281"/>
+      <point x="384" y="281" type="qcurve" smooth="yes"/>
+      <point x="345" y="281"/>
+      <point x="293" y="306"/>
+      <point x="277" y="327" type="qcurve"/>
+      <point x="273" y="327" type="line"/>
+      <point x="256" y="305"/>
+      <point x="202" y="281"/>
+    </contour>
+  </outline>
+</glyph>

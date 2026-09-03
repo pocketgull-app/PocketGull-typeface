@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni2057" format="2">
+  <advance width="935"/>
+  <unicode hex="2057"/>
+  <outline>
+    <component base="minute"/>
+    <component base="minute" xOffset="211"/>
+    <component base="minute" xOffset="422"/>
+    <component base="minute" xOffset="632"/>
+  </outline>
+</glyph>
