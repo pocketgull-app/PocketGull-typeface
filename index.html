@@ -6,27 +6,50 @@
   <title>PocketGull — The Clinical Typeface Superfamily &amp; Interactive Specimen</title>
   <meta name="description" content="Official interactive type specimen for PocketGull. Tactile humanist warmth meets mission-critical ophthalmological precision. Featuring full 256 Unicode Braille, ISMP/FDA disambiguation, Bionic Reading saccades, and PocketGull Mono Medical Terminal.">
   <link rel="stylesheet" href="pocketgull.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-base: #09090b;
-      --bg-surface: #121217;
-      --bg-elevated: #181820;
-      --bg-card: #1f1f2a;
-      --border-subtle: #272732;
-      --border-focus: #14b8a6;
-      --text-primary: #f4f4f5;
-      --text-secondary: #a1a1aa;
+      /* Material Design 3 (M3) System Color Tokens (Dark Obsidian Theme) */
+      --md-sys-color-primary: #14b8a6;
+      --md-sys-color-on-primary: #003731;
+      --md-sys-color-primary-container: #005047;
+      --md-sys-color-on-primary-container: #70f7e4;
+      --md-sys-color-surface: #09090b;
+      --md-sys-color-surface-dim: #0e0e12;
+      --md-sys-color-surface-container-lowest: #0c0c10;
+      --md-sys-color-surface-container-low: #121217;
+      --md-sys-color-surface-container: #181820;
+      --md-sys-color-surface-container-high: #1f1f2a;
+      --md-sys-color-surface-container-highest: #262633;
+      --md-sys-color-on-surface: #f4f4f5;
+      --md-sys-color-on-surface-variant: #a1a1aa;
+      --md-sys-color-outline: #272732;
+      --md-sys-color-outline-variant: #3f3f4e;
+
+      /* Material Design 3 Typography Roles Mapped to PocketGull */
+      --md-sys-typescale-display-large-font: 'PocketGull Bold', 'PocketGull', sans-serif;
+      --md-sys-typescale-headline-medium-font: 'PocketGull Bold', 'PocketGull', sans-serif;
+      --md-sys-typescale-title-medium-font: 'PocketGull Bold', 'PocketGull', sans-serif;
+      --md-sys-typescale-body-large-font: 'PocketGull Fineliner', 'PocketGull', sans-serif;
+      --md-sys-typescale-label-large-font: 'PocketGull Mono', monospace;
+
+      /* Base Theme Variables - 100% Native PocketGull Sovereign UI */
+      --bg-base: var(--md-sys-color-surface);
+      --bg-surface: var(--md-sys-color-surface-container-low);
+      --bg-elevated: var(--md-sys-color-surface-container);
+      --bg-card: var(--md-sys-color-surface-container-high);
+      --border-subtle: var(--md-sys-color-outline);
+      --border-focus: var(--md-sys-color-primary);
+      --text-primary: var(--md-sys-color-on-surface);
+      --text-secondary: var(--md-sys-color-on-surface-variant);
       --text-muted: #71717a;
-      --accent-teal: #14b8a6;
+      --accent-teal: var(--md-sys-color-primary);
       --accent-teal-glow: rgba(20, 184, 166, 0.25);
       --accent-amber: #f59e0b;
       --accent-pbm: #ff3333;
       --accent-pbm-glow: rgba(255, 51, 51, 0.3);
-      --font-ui: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-ui: 'PocketGull Fineliner', 'PocketGull', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-heading: 'PocketGull Bold', 'PocketGull', sans-serif;
       --font-code: 'PocketGull Mono', 'Cascadia Code', monospace;
     }
 
@@ -44,6 +67,34 @@
       --accent-teal-glow: rgba(255, 51, 51, 0.3);
       --accent-amber: #ff6633;
       filter: contrast(105%);
+    }
+
+    /* 203 DPI Calibrated Bedside Thermal Print Media Styles */
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+      .printable-thermal-label, .printable-thermal-label * {
+        visibility: visible !important;
+      }
+      .printable-thermal-label {
+        position: fixed !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        max-width: 3.5in !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0.2in !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      @page {
+        size: 3.5in 2in;
+        margin: 0;
+      }
     }
 
     * {
@@ -213,12 +264,14 @@
     .hero-title .highlight {
       background: linear-gradient(135deg, #14b8a6, #38bdf8);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     [data-theme="pbm"] .hero-title .highlight {
       background: linear-gradient(135deg, #ff4d4d, #ff8533);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
@@ -374,6 +427,7 @@
 
     input[type="range"] {
       -webkit-appearance: none;
+      appearance: none;
       width: 100px;
       height: 4px;
       background: var(--border-subtle);
@@ -960,7 +1014,7 @@
           </div>
 
           <!-- Editable Output Canvas -->
-          <div class="tester-output-area clinical-ismp-safe" id="testerOutput" contenteditable="true" spellcheck="false" style="font-family: 'PocketGull Bold', 'PocketGull', sans-serif; font-size: 38px; font-weight: 700; font-feature-settings: 'zero' 1, 'cv08' 1, 'cv05' 1, 'ss02' 1, 'tnum' 1;">
+          <div class="tester-output-area clinical-ismp-safe" id="testerOutput" contenteditable="true" spellcheck="false" style="font-family: 'PocketGull Bold', 'PocketGull', sans-serif; font-size: 38px; font-weight: 700; font-variant-numeric: slashed-zero tabular-nums; font-feature-settings: 'zero' 1, 'cv08' 1, 'cv05' 1, 'ss02' 1, 'tnum' 1;">
             Rx: Amoxicillin 500 mg PO Q8H × 10d [ISMP Slashed Zero: 0 vs O]
           </div>
 
@@ -1538,31 +1592,135 @@
         </div>
 
         <!-- 203 DPI Thermal Label Simulation Banner -->
-        <div style="background: #000000; border: 2px solid #333338; border-radius: 12px; padding: 1.75rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1.5rem;">
-          <div style="max-width: 650px;">
-            <div style="font-family: var(--font-code); font-size: 0.75rem; color: #f59e0b; font-weight: 700; text-transform: uppercase; margin-bottom: 0.35rem;">
-              🖨️ 203 DPI Thermal Hospital Label &amp; Wristband Simulation
+        <div style="background: var(--md-sys-color-surface-container-low); border: 2px solid var(--border-subtle); border-radius: 14px; padding: 2rem; margin-top: 2rem;">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 1.5rem; margin-bottom: 1.5rem;">
+            <div style="max-width: 650px;">
+              <div style="display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-code); font-size: 0.75rem; color: #f59e0b; font-weight: 700; text-transform: uppercase; margin-bottom: 0.35rem;">
+                <span>🖨️ 203 DPI Thermal Hospital Label &amp; Bedside Wristband</span>
+                <span class="badge" style="background: rgba(20, 184, 166, 0.2); color: var(--accent-teal); border: 1px solid var(--accent-teal); font-size: 0.65rem; padding: 0.15rem 0.5rem;">ZPL II &amp; 1-BIT MONOCHROME</span>
+              </div>
+              <h4 style="font-size: 1.25rem; font-weight: 800; color: #ffffff; margin-bottom: 0.5rem;">
+                PocketGull Sloan 5:1 Apertures Survive Low-Resolution Thermal Bleed
+              </h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6;">
+                Over 85% of bedside medication labels, IV bags, and patient wristbands are printed on 203 DPI thermal printers (Zebra, Honeywell, Brother). 
+                PocketGull's Sloan 5:1 dilated counters allow lower printhead heat (Darkness 12–14 vs 25+), extending printhead lifespan past 2.2 million inches while preventing diacritics, Eastern numerals, and Hebrew final letters from clogging.
+              </p>
             </div>
-            <h4 style="font-size: 1.15rem; font-weight: 700; color: #ffffff; margin-bottom: 0.35rem;">
-              PocketGull-Chiseltip &amp; Bold Survive Physical Thermal Ink Spread
-            </h4>
-            <p style="font-size: 0.85rem; color: #a1a1aa; line-height: 1.5;">
-              Over 85% of bedside medication labels, IV bags, and patient wristbands are printed on 203 DPI thermal printers. 
-              Sloan 5:1 counter dilation prevents diacritics, Eastern numerals, and Hebrew final letters from closing under thermal heat spread.
-            </p>
+
+            <!-- Thermal Bedside Actions -->
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <button id="btnPrintThermalLabel" class="action-btn" style="background: var(--accent-teal); color: #09090b; font-weight: 800; padding: 0.5rem 1rem; border-radius: 8px; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem;">
+                🖨️ Print 203 DPI Label
+              </button>
+              <button id="btnDownloadZpl" class="action-btn" style="background: var(--bg-surface); color: var(--text-primary); border: 1px solid var(--border-subtle); padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.8rem;">
+                💾 Download ZPL II
+              </button>
+              <button id="btnThermalBleedToggle" class="action-btn" style="background: transparent; color: #f59e0b; border: 1px solid #f59e0b; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; font-size: 0.8rem;">
+                🔥 203 DPI Heat Spread: OFF
+              </button>
+            </div>
           </div>
-          <div style="background: #ffffff; color: #000000; padding: 1rem 1.5rem; border-radius: 6px; font-family: 'PocketGull Bold', sans-serif; text-align: left; box-shadow: 0 4px 12px rgba(0,0,0,0.5); min-width: 280px;">
-            <div style="font-size: 0.75rem; font-weight: 800; border-bottom: 2px solid #000; padding-bottom: 0.25rem; margin-bottom: 0.5rem; display: flex; justify-content: space-between;">
-              <span>STAT RX: CEFAZOLIN</span>
-              <span>2.0 g IV</span>
+
+          <!-- Multilingual Language Switcher Pills -->
+          <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; padding: 0.75rem 1rem; background: var(--bg-base); border: 1px solid var(--border-subtle); border-radius: 8px;">
+            <span style="font-family: var(--font-code); font-size: 0.75rem; color: var(--text-muted); font-weight: 700; margin-right: 0.5rem;">BEDSIDE LANGUAGE:</span>
+            <div style="display: inline-flex; gap: 0.35rem; flex-wrap: wrap;" id="thermalLangGroup">
+              <button class="thermal-lang-btn active" data-lang="en" style="padding: 0.3rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: var(--accent-teal); color: #fff;">🇺🇸 English</button>
+              <button class="thermal-lang-btn" data-lang="es" style="padding: 0.3rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">🇪🇸 Español</button>
+              <button class="thermal-lang-btn" data-lang="zh" style="padding: 0.3rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">🇨🇳 中文</button>
+              <button class="thermal-lang-btn" data-lang="hi" style="padding: 0.3rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">🇮🇳 हिन्दी</button>
+              <button class="thermal-lang-btn" data-lang="ar" style="padding: 0.3rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">🇸🇦 العربية</button>
+              <button class="thermal-lang-btn" data-lang="he" style="padding: 0.3rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">🇮🇱 עברית</button>
+              <button class="thermal-lang-btn" data-lang="ko" style="padding: 0.3rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">🇰🇷 한국어</button>
+              <button class="thermal-lang-btn" data-lang="ja" style="padding: 0.3rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">🇯🇵 日本語</button>
+              <button class="thermal-lang-btn" data-lang="ru" style="padding: 0.3rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">🇷🇺 Русский</button>
+              <button class="thermal-lang-btn" data-lang="vi" style="padding: 0.3rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">🇻🇳 Tiếng Việt</button>
             </div>
-            <div style="font-size: 0.7rem; font-family: 'PocketGull Mono', monospace; line-height: 1.3;">
-              DOSE: 2000 mg Q8H • ⌀18G IV<br>
-              ISMP: NO TRAILING ZERO<br>
-              MRN: ⠠⠓⠠⠎ ⠼⠉⠙ • #9842-01
-            </div>
-            <div style="font-size: 0.65rem; margin-top: 0.5rem; font-weight: 700; color: #333;">
-              [ 203 DPI APERTURE PRESERVED ✓ ]
+          </div>
+
+          <!-- The Physical 203 DPI Thermal Label Simulation Card -->
+          <div style="display: flex; justify-content: center; align-items: center;">
+            <div id="thermalHospitalLabel" class="printable-thermal-label" style="background: #ffffff; color: #000000; padding: 1.5rem 2rem; border-radius: 4px; font-family: 'PocketGull Bold', sans-serif; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.7); max-width: 440px; width: 100%; border: 1px dashed #cccccc; transition: filter 0.2s ease;">
+              <!-- Header -->
+              <div style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #000000; padding-bottom: 0.4rem; margin-bottom: 0.6rem;">
+                <div style="font-size: 0.75rem; font-weight: 900; letter-spacing: 0.05em;">POCKETGULL HEALTH SYSTEM</div>
+                <div style="font-family: 'PocketGull Mono', monospace; font-size: 0.7rem; font-weight: 700;">203 DPI • STAT</div>
+              </div>
+
+              <!-- Patient Line -->
+              <div style="display: flex; justify-content: space-between; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.4rem;">
+                <span>PATIENT: SAPIENS, H. (34y F)</span>
+                <span>BED: 04 (NEURO-ICU)</span>
+              </div>
+
+              <!-- Barcode -->
+              <div style="text-align: center; margin: 0.5rem 0;">
+                <svg width="280" height="38" viewBox="0 0 280 38" style="display: inline-block;">
+                  <!-- Code 128 Procedural Barcode -->
+                  <rect x="0" y="0" width="3" height="38" fill="#000"/>
+                  <rect x="5" y="0" width="2" height="38" fill="#000"/>
+                  <rect x="10" y="0" width="4" height="38" fill="#000"/>
+                  <rect x="16" y="0" width="2" height="38" fill="#000"/>
+                  <rect x="22" y="0" width="5" height="38" fill="#000"/>
+                  <rect x="30" y="0" width="3" height="38" fill="#000"/>
+                  <rect x="36" y="0" width="2" height="38" fill="#000"/>
+                  <rect x="42" y="0" width="4" height="38" fill="#000"/>
+                  <rect x="48" y="0" width="6" height="38" fill="#000"/>
+                  <rect x="58" y="0" width="3" height="38" fill="#000"/>
+                  <rect x="64" y="0" width="2" height="38" fill="#000"/>
+                  <rect x="70" y="0" width="5" height="38" fill="#000"/>
+                  <rect x="78" y="0" width="3" height="38" fill="#000"/>
+                  <rect x="85" y="0" width="4" height="38" fill="#000"/>
+                  <rect x="92" y="0" width="2" height="38" fill="#000"/>
+                  <rect x="98" y="0" width="5" height="38" fill="#000"/>
+                  <rect x="106" y="0" width="3" height="38" fill="#000"/>
+                  <rect x="112" y="0" width="2" height="38" fill="#000"/>
+                  <rect x="118" y="0" width="6" height="38" fill="#000"/>
+                  <rect x="127" y="0" width="3" height="38" fill="#000"/>
+                  <rect x="133" y="0" width="4" height="38" fill="#000"/>
+                  <rect x="140" y="0" width="2" height="38" fill="#000"/>
+                  <rect x="146" y="0" width="5" height="38" fill="#000"/>
+                  <rect x="154" y="0" width="3" height="38" fill="#000"/>
+                  <rect x="160" y="0" width="2" height="38" fill="#000"/>
+                  <rect x="166" y="0" width="4" height="38" fill="#000"/>
+                  <rect x="174" y="0" width="5" height="38" fill="#000"/>
+                  <rect x="182" y="0" width="3" height="38" fill="#000"/>
+                  <rect x="188" y="0" width="2" height="38" fill="#000"/>
+                  <rect x="194" y="0" width="6" height="38" fill="#000"/>
+                  <rect x="203" y="0" width="3" height="38" fill="#000"/>
+                  <rect x="209" y="0" width="4" height="38" fill="#000"/>
+                  <rect x="216" y="0" width="2" height="38" fill="#000"/>
+                  <rect x="222" y="0" width="5" height="38" fill="#000"/>
+                  <rect x="230" y="0" width="3" height="38" fill="#000"/>
+                  <rect x="236" y="0" width="2" height="38" fill="#000"/>
+                  <rect x="242" y="0" width="6" height="38" fill="#000"/>
+                  <rect x="251" y="0" width="3" height="38" fill="#000"/>
+                  <rect x="257" y="0" width="4" height="38" fill="#000"/>
+                  <rect x="264" y="0" width="2" height="38" fill="#000"/>
+                  <rect x="270" y="0" width="5" height="38" fill="#000"/>
+                  <rect x="277" y="0" width="3" height="38" fill="#000"/>
+                </svg>
+                <div style="font-family: 'PocketGull Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; font-weight: 700;">*PG-9842-01-STAT*</div>
+              </div>
+
+              <!-- Localized Rx Directive (Dynamic) -->
+              <div id="thermalRxHeader" style="background: #000000; color: #ffffff; padding: 0.4rem 0.6rem; font-size: 0.95rem; font-weight: 800; border-radius: 3px; margin: 0.5rem 0; display: flex; justify-content: space-between; align-items: center;">
+                <span id="thermalRxTitle">STAT RX: CEFAZOLIN 2 g IV</span>
+                <span style="font-family: 'PocketGull Mono', monospace; font-size: 0.75rem;">Q8H</span>
+              </div>
+
+              <!-- Dosage & Warning -->
+              <div id="thermalRxBody" style="font-size: 0.8rem; font-family: 'PocketGull Mono', monospace; line-height: 1.4; font-variant-numeric: slashed-zero tabular-nums; margin-bottom: 0.5rem;">
+                <div id="thermalDoseText">DOSE: 2000 mg Q8H • ⌀18G IV</div>
+                <div id="thermalAllergyText" style="font-weight: 800; text-decoration: underline;">ALLERGY ALERT: PENICILLIN</div>
+              </div>
+
+              <!-- Footer with Braille -->
+              <div style="border-top: 1px solid #000000; padding-top: 0.4rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem;">
+                <span style="font-family: 'PocketGull', monospace;">MRN: ⠠⠓⠠⠎ ⠼⠉⠙ (#9842-01)</span>
+                <span style="font-weight: 800;">SLOAN 5:1 DILATED ✓</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1743,6 +1901,7 @@
         <!-- Code Tabs -->
         <div class="code-tabs-nav">
           <button class="tab-btn active" data-tab="css">CSS @font-face</button>
+          <button class="tab-btn" data-tab="material3">Material Design 3 (M3)</button>
           <button class="tab-btn" data-tab="ismp-css">ISMP Safety Preset</button>
           <button class="tab-btn" data-tab="multilingual-css">Pan-Asian &amp; Indic</button>
           <button class="tab-btn" data-tab="tailwind">Tailwind Config</button>
@@ -1921,6 +2080,7 @@
           btnIsmpToggle.style.borderColor = 'var(--accent-teal)';
           btnIsmpToggle.textContent = '🛡️ Slashed 0: ON';
           testerOutput.style.fontFeatureSettings = '"zero" 1, "cv08" 1, "cv05" 1, "ss02" 1, "tnum" 1';
+          testerOutput.style.fontVariantNumeric = 'slashed-zero tabular-nums';
         } else {
           btnIsmpToggle.classList.remove('active');
           btnIsmpToggle.style.background = 'transparent';
@@ -1928,6 +2088,7 @@
           btnIsmpToggle.style.borderColor = 'var(--border-subtle)';
           btnIsmpToggle.textContent = '🛡️ Slashed 0: OFF';
           testerOutput.style.fontFeatureSettings = 'normal';
+          testerOutput.style.fontVariantNumeric = 'normal';
         }
       });
     }
@@ -2242,6 +2403,34 @@
   line-height: 1.6;
   vertical-align: baseline;
 }`,
+      material3: `/* 2. Material Design 3 (M3) System Tokens & Typography Roles */
+:root {
+  /* M3 Primary Clinical Tonal Palette Derived from PocketGull Gear Teal */
+  --md-sys-color-primary: #14b8a6;
+  --md-sys-color-on-primary: #003731;
+  --md-sys-color-primary-container: #005047;
+  --md-sys-color-on-primary-container: #70f7e4;
+
+  /* M3 Surface Container Elevation (Dark Obsidian Medical Palette) */
+  --md-sys-color-surface: #09090b;
+  --md-sys-color-surface-container: #181820;
+  --md-sys-color-surface-container-high: #1f1f2a;
+  --md-sys-color-on-surface: #f4f4f5;
+  --md-sys-color-outline: #272732;
+
+  /* M3 System Typography Roles mapped directly to PocketGull */
+  --md-sys-typescale-display-large-font: 'PocketGull Bold', sans-serif;
+  --md-sys-typescale-headline-medium-font: 'PocketGull Bold', sans-serif;
+  --md-sys-typescale-title-medium-font: 'PocketGull Bold', sans-serif;
+  --md-sys-typescale-body-large-font: 'PocketGull Fineliner', sans-serif;
+  --md-sys-typescale-label-large-font: 'PocketGull Mono', monospace;
+}
+
+/* Material Web Components (@material/web) Usage */
+<md-filled-tonal-button class="clinical-verify">
+  <md-icon slot="icon">medical_services</md-icon>
+  Verify Prescription (ISMP Safe)
+</md-filled-tonal-button>`,
       'ismp-css': `/* 2. ISMP / FDA Clinical Disambiguation Safety Preset */
 .clinical-dosage-safe {
   font-family: 'PocketGull', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -2274,6 +2463,190 @@ oh-my-posh init pwsh --config https://typeface.pocketgull.app/pocketgull-ophthal
 
 # Set terminal font to "PocketGull Mono" for gapless box-drawing and sub-cell ECG waveforms!`
     };
+
+    // Multilingual Thermal Hospital Label Studio
+    const THERMAL_PRESCRIPTIONS = {
+      en: {
+        title: "STAT RX: CEFAZOLIN 2 g IV",
+        dose: "DOSE: 2000 mg Q8H • ⌀18G IV",
+        allergy: "ALLERGY ALERT: PENICILLIN",
+        zplDose: "DOSE: 2000 mg Q8H - 18G IV",
+        zplAllergy: "ALLERGY: PENICILLIN",
+        rtl: false
+      },
+      es: {
+        title: "RX URGENTE: CEFAZOLINA 2 g IV",
+        dose: "DOSIS: 2000 mg C/8H • ⌀18G IV",
+        allergy: "ALERTA DE ALERGIA: PENICILINA",
+        zplDose: "DOSIS: 2000 mg C/8H - 18G IV",
+        zplAllergy: "ALERGIA: PENICILINA",
+        rtl: false
+      },
+      zh: {
+        title: "急诊处方: 头孢唑林 2 g 静脉注射",
+        dose: "剂量: 2000 mg 每8小时 • ⌀18G 静脉",
+        allergy: "过敏警报: 青霉素过敏",
+        zplDose: "剂量: 2000 mg 每8小时 - 18G",
+        zplAllergy: "过敏警报: 青霉素",
+        rtl: false
+      },
+      hi: {
+        title: "आपातकालीन औषधि: सेफाज़ोलिन 2 g",
+        dose: "मात्रा: 2000 mg प्रति 8 घंटे • ⌀18G अंतःशिरा",
+        allergy: "एलर्जी चेतावनी: पेनिसिलिन",
+        zplDose: "मात्रा: 2000 mg प्रति 8 घंटे",
+        zplAllergy: "एलर्जी चेतावनी: पेनिसिलिन",
+        rtl: false
+      },
+      ar: {
+        title: "وصفة طارئة: سيفازولين 2 غرام وريدي",
+        dose: "الجرعة: 2000 مغ كل 8 ساعات • ⌀18G وريدي",
+        allergy: "تحذير حساسية: بنسلين",
+        zplDose: "الجرعة: 2000 مغ كل 8 ساعات",
+        zplAllergy: "تحذير حساسية: بنسلين",
+        rtl: true
+      },
+      he: {
+        title: "מרשם דחוף: צפזולין 2 גרם תוך-ורידי",
+        dose: "מינון: 2000 מ\"ג כל 8 שעות • ⌀18G",
+        allergy: "התראת אלרגיה: פניצילין",
+        zplDose: "מינון: 2000 מ\"ג כל 8 שעות",
+        zplAllergy: "התראת אלרגיה: פניצילין",
+        rtl: true
+      },
+      ko: {
+        title: "응급 처방: 세파졸린 2 g 정맥 주사",
+        dose: "용량: 2000 mg 8시간마다 • ⌀18G IV",
+        allergy: "알레르기 경고: 페니실린",
+        zplDose: "용량: 2000 mg 8시간마다",
+        zplAllergy: "알레르기: 페니실린",
+        rtl: false
+      },
+      ja: {
+        title: "至急処方: セファゾリン 2 g 点滴静注",
+        dose: "用量: 2000 mg 8時間毎 • ⌀18G 点滴",
+        allergy: "アレルギー警告: ペニシリン",
+        zplDose: "用量: 2000 mg 8時間毎",
+        zplAllergy: "アレルギー警告: ペニシリン",
+        rtl: false
+      },
+      ru: {
+        title: "СРОЧНЫЙ РЕЦЕПТ: ЦЕФАЗОЛИН 2 г в/в",
+        dose: "ДОЗА: 2000 мг каждые 8 ч • ⌀18G в/в",
+        allergy: "ПРЕДУПРЕЖДЕНИЕ: АЛЛЕРГИЯ НА ПЕНИЦИЛЛИН",
+        zplDose: "ДОЗА: 2000 мг каждые 8 ч - 18G",
+        zplAllergy: "АЛЛЕРГИЯ: ПЕНИЦИЛЛИН",
+        rtl: false
+      },
+      vi: {
+        title: "ĐƠN KHẨN CẤP: CEFAZOLIN 2 g TIÊM TM",
+        dose: "LIỀU: 2000 mg MỖI 8 GIỜ • ⌀18G TM",
+        allergy: "CẢNH BÁO DỊ ỨNG: PENICILLIN",
+        zplDose: "LIỀU: 2000 mg MỖI 8 GIỜ",
+        zplAllergy: "CẢNH BÁO DỊ ỨNG: PENICILLIN",
+        rtl: false
+      }
+    };
+
+    let activeThermalLang = 'en';
+    const thermalRxTitle = document.getElementById('thermalRxTitle');
+    const thermalDoseText = document.getElementById('thermalDoseText');
+    const thermalAllergyText = document.getElementById('thermalAllergyText');
+    const thermalHospitalLabel = document.getElementById('thermalHospitalLabel');
+    const thermalLangBtns = document.querySelectorAll('.thermal-lang-btn');
+
+    function setThermalLanguage(lang) {
+      if (!THERMAL_PRESCRIPTIONS[lang]) return;
+      activeThermalLang = lang;
+      const data = THERMAL_PRESCRIPTIONS[lang];
+      if (thermalRxTitle) thermalRxTitle.textContent = data.title;
+      if (thermalDoseText) thermalDoseText.textContent = data.dose;
+      if (thermalAllergyText) thermalAllergyText.textContent = data.allergy;
+      
+      if (thermalHospitalLabel) {
+        if (data.rtl) {
+          thermalHospitalLabel.setAttribute('dir', 'rtl');
+          thermalHospitalLabel.style.textAlign = 'right';
+        } else {
+          thermalHospitalLabel.removeAttribute('dir');
+          thermalHospitalLabel.style.textAlign = 'left';
+        }
+      }
+
+      thermalLangBtns.forEach(btn => {
+        if (btn.dataset.lang === lang) {
+          btn.style.background = 'var(--accent-teal)';
+          btn.style.color = '#fff';
+          btn.classList.add('active');
+        } else {
+          btn.style.background = 'transparent';
+          btn.style.color = 'var(--text-secondary)';
+          btn.classList.remove('active');
+        }
+      });
+    }
+
+    thermalLangBtns.forEach(btn => {
+      btn.addEventListener('click', () => setThermalLanguage(btn.dataset.lang));
+    });
+
+    // Thermal Actions
+    const btnPrintThermalLabel = document.getElementById('btnPrintThermalLabel');
+    if (btnPrintThermalLabel) {
+      btnPrintThermalLabel.addEventListener('click', () => {
+        window.print();
+      });
+    }
+
+    const btnDownloadZpl = document.getElementById('btnDownloadZpl');
+    if (btnDownloadZpl) {
+      btnDownloadZpl.addEventListener('click', () => {
+        const cur = THERMAL_PRESCRIPTIONS[activeThermalLang] || THERMAL_PRESCRIPTIONS.en;
+        const zpl = `^XA
+^CI28
+^PW609
+^LL406
+^LH0,0
+^FO40,30^GB529,0,3^FS
+^FO40,40^A0N,22,22^FDPOCKETGULL HEALTH SYSTEM - 203 DPI^FS
+^FO40,68^A0N,20,20^FDPATIENT: SAPIENS, H. (34y F)  BED: 04^FS
+^FO40,95^BY2,3,40^BCN,40,Y,N,N^FD9842-01-STAT^FS
+^FO40,165^GB529,42,42^FS
+^FO50,175^FR^A0N,24,24^FD${cur.title}^FS
+^FO40,225^A0N,22,22^FD${cur.zplDose}^FS
+^FO40,255^A0N,22,22^FD${cur.zplAllergy}^FS
+^FO40,300^GB529,0,2^FS
+^FO40,315^A0N,18,18^FDMRN: #9842-01 [SLOAN 5:1 DILATED COUNTERS]^FS
+^XZ`;
+
+        const blob = new Blob([zpl], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `pocketgull_stat_rx_${activeThermalLang}.zpl`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+    }
+
+    let thermalBleedActive = false;
+    const btnThermalBleedToggle = document.getElementById('btnThermalBleedToggle');
+    if (btnThermalBleedToggle && thermalHospitalLabel) {
+      btnThermalBleedToggle.addEventListener('click', () => {
+        thermalBleedActive = !thermalBleedActive;
+        if (thermalBleedActive) {
+          btnThermalBleedToggle.textContent = '🔥 203 DPI Heat Spread: ON';
+          btnThermalBleedToggle.style.background = 'rgba(245, 158, 11, 0.2)';
+          thermalHospitalLabel.style.filter = 'contrast(180%) brightness(92%) blur(0.4px)';
+        } else {
+          btnThermalBleedToggle.textContent = '🔥 203 DPI Heat Spread: OFF';
+          btnThermalBleedToggle.style.background = 'transparent';
+          thermalHospitalLabel.style.filter = 'none';
+        }
+      });
+    }
 
     const codeDisplay = document.getElementById('codeDisplay');
     const copyCodeBtn = document.getElementById('copyCodeBtn');

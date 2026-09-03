@@ -18,7 +18,10 @@ SRC_KOREAN_BD = Path(r"C:\Windows\Fonts\malgunbd.ttf")   # Malgun Gothic Bold
 SRC_GLOBAL_REG = Path(r"C:\Windows\Fonts\segoeui.ttf")   # Segoe UI (Arabic & Hebrew)
 SRC_GLOBAL_BD = Path(r"C:\Windows\Fonts\segoeuib.ttf")   # Segoe UI Bold
 
-CHINESE_ANATOMICAL_TEXT = "下与主体动右叶大小左心椎盆肋肌肝股肱肺肾胃胫胸脉脏脑腓腔腰锁静颈颌额骨髋"
+# Expanded Clinical & Anatomical Lexicon across CJK, Indic, and Semitic scripts
+CHINESE_CLINICAL_TEXT = "下与主体动右叶大小左心椎盆肋肌肝股肱肺肾胃胫胸脉脏脑腓腔腰锁静颈颌额骨髋头孢唑林克注射梗死血压病高炎癌痛药液毒糖酸尿急救"
+
+JAPANESE_CLINICAL_TEXT = "心臓大脳心電図血圧セファゾリン注梗塞脈拍頭蓋骨"
 
 SANSKRIT_CLINICAL_CODEPOINTS = [
     0x0902, 0x0905, 0x0906, 0x0907, 0x0909, 0x090F, 0x0910, 0x0913, 0x0914,
@@ -29,22 +32,26 @@ SANSKRIT_CLINICAL_CODEPOINTS = [
     0x0964, 0x0965, 0x0966, 0x0967, 0x0968, 0x0969, 0x096A, 0x096B
 ]
 
-KOREAN_CLINICAL_TEXT = "뇌소전두골심장근폐간신위흉추요반혈압맥박척골두개골대소장"
+KOREAN_CLINICAL_TEXT = "뇌소전두골심장근폐간신위흉추요반혈압맥박척골두개골대소장세파졸린주사경색급성"
 
 ARABIC_CLINICAL_TEXT = (
     "المخالقلبرئتانالكبدعظمجبهيضغطالدمعضلةالفقراتالصدريةالقطنية"
     "الحوضالنبضتخطيطالعلاماتالحيويةالشريانالأبهر٠١٢٣٤٥٦٧٨٩"
-    "َُِّْ"
+    "َُِّْوريدياصدمةطوارئسيفازولينغرامجرعة"
 )
 
 HEBREW_CLINICAL_TEXT = (
     "המוחהגדולעצםהמצחלבשרירהלבריאותכבדכליותקיבהעמודשדרהחזיי"
     "מותניאגןדםלחץדופקמדדיםחיונייםאק״ג"
-    "ְִֵֶַָֹֻּ"
+    "ְִֵֶַָֹֻּגרםורידצפזוליןשוקמיון\u05F3\u05F4"
 )
 
 # Full Pan-Cyrillic Block (U+0400 - U+04FF): Russian, Ukrainian, Bulgarian, Serbian, Belarusian, Kazakh, Mongolian
 CYRILLIC_PAN_CODEPOINTS = list(range(0x0400, 0x0500))
+
+# Full Greek & Pharmacology Block (U+0370 - U+03FF): Modern Greek & Classical Medical Optotypes
+GREEK_PAN_CODEPOINTS = list(range(0x0370, 0x0400))
+
 
 
 WEIGHT_CONFIGS = [
@@ -127,9 +134,10 @@ for font_stem, is_bold, is_mono in WEIGHT_CONFIGS:
                     subtable.cmap[dest_cp] = dest_gname
         return True
 
-    # 1. Chinese Anatomical Characters
+    # 1. Chinese & Japanese Clinical Characters
     injected_zh = 0
-    for ch in CHINESE_ANATOMICAL_TEXT:
+    cjk_text = CHINESE_CLINICAL_TEXT + JAPANESE_CLINICAL_TEXT
+    for ch in cjk_text:
         cp = ord(ch)
         if cp in cmap_zh:
             src_gname = cmap_zh[cp]
@@ -184,6 +192,15 @@ for font_stem, is_bold, is_mono in WEIGHT_CONFIGS:
             dest_gname = f"uni{cp:04X}"
             if inject_glyph_from_src(f_gl, src_gname, dest_gname, cp):
                 injected_cyr += 1
+
+    # 7. Greek & Pharmacology Full Block (U+0370 - U+03FF)
+    injected_grk = 0
+    for cp in GREEK_PAN_CODEPOINTS:
+        if cp in cmap_gl:
+            src_gname = cmap_gl[cp]
+            dest_gname = f"uni{cp:04X}"
+            if inject_glyph_from_src(f_gl, src_gname, dest_gname, cp):
+                injected_grk += 1
 
     # Ensure gasp table exists
     if 'gasp' not in font:
