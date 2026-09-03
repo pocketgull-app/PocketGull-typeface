@@ -24,9 +24,9 @@
 
 Standard clinical fonts are either cold, clinical, and visually fatiguing during 12-hour shifts, or informal display faces that cause catastrophic medication dosage misreadings (such as confusing `10 mg` with `1.0 mg`, or mistaking lowercase `l` for numeral `1` or uppercase `I`).
 
-PocketGull synthesizes two legendary typographic traditions:
-1. **Dalton Maag Amazon Ember Heritage**: Organic stroke dynamism, open counters, rounded humanist terminal geometry, and tactile papercraft warmth that soothes the reader's parasympathetic nervous system.
-2. **Google Noto Sans Architectural Precision**: Universal structural geometry, world-class multi-script consistency, and optotypic clarity calibrated for high-throughput information scanning across electronic health records (EHR), emergency dispatch HUDs, and bedside monitors.
+PocketGull synthesizes two rigorous design disciplines:
+1. **Humanist Ergonomics & Parasympathetic Calm**: Organic stroke dynamism, open counters, rounded humanist terminal geometry, and tactile papercraft warmth that soothes the reader's nervous system and counteracts clinical screen apnea during 12-hour shifts.
+2. **Ophthalmological Sloan 5:1 Acuity & Architectural Precision**: Universal structural geometry, Louise Sloan optotypic ratios, and high-legibility clarity calibrated for high-throughput information scanning across electronic health records (EHR), emergency dispatch HUDs, and bedside monitors.
 
 Synthesized on a standardized **1000 UPM grid** ($CAP=720, XH=480, BL=0, DSC=-180$) with continuous G2 Bézier extrema, TrueType clockwise outer winding, counter-clockwise inner counters, and full OpenType GSUB feature tables, PocketGull delivers flawless rendering from low-resolution 203 DPI thermal label printers to Retina $8\text{K}$ surgical displays.
 
