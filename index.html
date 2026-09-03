@@ -940,12 +940,19 @@
                 👁️ Bouma Spacing
               </button>
             </div>
+
+            <!-- ISMP Slashed Zero Toggle Quick-Action -->
+            <div class="control-group">
+              <button class="preset-pill active" id="btnIsmpToggle" style="background: rgba(20, 184, 166, 0.2); color: var(--accent-teal); border: 1px solid var(--accent-teal);" title="Toggle OpenType 'zero' (Slashed Zero: 0 vs O) and 'cv05' / 'ss02'">
+                🛡️ Slashed 0: ON
+              </button>
+            </div>
           </div>
 
           <!-- Quick Presets -->
           <div class="preset-pills">
             <span class="control-label" style="align-self: center; margin-right: 0.5rem;">Presets:</span>
-            <button class="preset-pill" data-preset="rx">💊 Rx Order</button>
+            <button class="preset-pill active" data-preset="rx">💊 Rx Order</button>
             <button class="preset-pill" data-preset="triage">⚡ STAT Trauma Triage</button>
             <button class="preset-pill" data-preset="sloan">👁️ Sloan 5:1 Optotypes</button>
             <button class="preset-pill" data-preset="pangram">📜 Clinical Pangram</button>
@@ -953,8 +960,8 @@
           </div>
 
           <!-- Editable Output Canvas -->
-          <div class="tester-output-area" id="testerOutput" contenteditable="true" spellcheck="false" style="font-family: 'PocketGull Bold', 'PocketGull', sans-serif; font-size: 38px; font-weight: 700;">
-            Rx: Amoxicillin 500 mg PO Q8H × 10d [ISMP Safe 0.slash]
+          <div class="tester-output-area clinical-ismp-safe" id="testerOutput" contenteditable="true" spellcheck="false" style="font-family: 'PocketGull Bold', 'PocketGull', sans-serif; font-size: 38px; font-weight: 700; font-feature-settings: 'zero' 1, 'cv08' 1, 'cv05' 1, 'ss02' 1, 'tnum' 1;">
+            Rx: Amoxicillin 500 mg PO Q8H × 10d [ISMP Slashed Zero: 0 vs O]
           </div>
 
           <div class="tester-footer">
@@ -1100,6 +1107,31 @@
           <p class="section-desc">Engineered on a strict 600 UPM fixed pitch with gapless box drawing (U+2500–257F) and sub-cell ECG waveforms (U+2580–259F) for ICU monitors, trauma telemetry, and CLI developer themes.</p>
         </div>
 
+        <!-- Terminal Rhythm Control Toolbar -->
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
+          <div style="display: inline-flex; background: var(--bg-surface); padding: 0.25rem; border-radius: 8px; border: 1px solid var(--border-subtle); gap: 0.25rem;">
+            <button class="ecg-rhythm-btn active" data-rhythm="sinus" style="padding: 0.4rem 0.85rem; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: none; cursor: pointer; background: var(--accent-teal); color: #fff;">
+              ❤️ Sinus Rhythm (72 bpm)
+            </button>
+            <button class="ecg-rhythm-btn" data-rhythm="vtach" style="padding: 0.4rem 0.85rem; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">
+              ⚡ V-Tach (160 bpm)
+            </button>
+            <button class="ecg-rhythm-btn" data-rhythm="afib" style="padding: 0.4rem 0.85rem; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">
+              〰️ AFib (114 bpm)
+            </button>
+            <button class="ecg-rhythm-btn" data-rhythm="asystole" style="padding: 0.4rem 0.85rem; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">
+              ⚠️ Asystole (0 bpm)
+            </button>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <span style="font-family: var(--font-code); font-size: 0.75rem; color: var(--text-muted);">SWEEP SPEED:</span>
+            <button id="btnSweepSpeed" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">
+              ⚡ 25 mm/s (Standard)
+            </button>
+          </div>
+        </div>
+
         <div class="terminal-window">
           <div class="terminal-bar">
             <div class="term-dot red"></div>
@@ -1113,10 +1145,14 @@
 ├─────────────────────────────────────────────────────────────────────────────┤
 │ <span class="term-white">PATIENT:</span> Sapiens, H. (34y F)  │ <span class="term-white">LOC:</span> NEURO-ICU POD-A  │ <span class="term-white">ISO/TR 11548:</span> ⠠⠓⠠⠎ ⠼⠉⠙   │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ <span class="term-green">🫀 HEART RATE:</span> <span class="term-white">72 bpm</span>     │ <span class="term-teal">ECG II:</span> <span class="term-teal" id="liveEcg"> ▂▃▅█▅▃▂   ▂▃▅█▅▃▂   ▂▃▅█▅▃▂ </span>│
-│ <span class="term-amber">💧 SpO2 LEVEL:</span> <span class="term-white">99%</span>        │ <span class="term-amber">PLETH:</span>  <span class="term-amber">▅▆▇██▇▆▅  ▅▆▇██▇▆▅  ▅▆▇██▇▆▅ </span>│
-│ <span class="term-teal">🩸 ARTERIAL BP:</span> <span class="term-white">120/80</span>    │ <span class="term-teal">MAP:</span>   <span class="term-white">93 mmHg [NORMOTENSIVE]</span>           │
+│ <span class="term-green">🫀 HEART RATE:</span> <span class="term-white" id="liveHr">72 bpm</span>     │ <span class="term-teal">RHYTHM:</span> <span class="term-teal" id="liveRhythmTag">NORMAL SINUS (ST STABLE)</span>        │
+│ <span class="term-amber">💧 SpO2 LEVEL:</span> <span class="term-white" id="liveSpo2">99%</span>        │ <span class="term-amber">PERFUSION INDEX:</span> <span class="term-amber">PI 4.8% [STRONG]</span>         │
+│ <span class="term-teal">🩸 ARTERIAL BP:</span> <span class="term-white" id="liveBp">120/80</span>    │ <span class="term-teal">MAP:</span>   <span class="term-white">93 mmHg [NORMOTENSIVE]</span>           │
 │ <span class="term-white">🌡️ TEMP:</span>        <span class="term-white">36.8 °C</span>   │ <span class="term-white">RR:</span>    <span class="term-white">16 breaths/min (ETCO2: 38)</span>      │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ <span class="term-teal">LEAD II (mV) :</span> <span class="term-teal" id="liveEcg"> ▂▃▅█▅▃▂        ▂▃▅█▅▃▂        ▂▃▅█▅▃▂        ▂▃▅█▅▃▂ </span>│
+│ <span class="term-amber">PLETH (SpO2) :</span> <span class="term-amber" id="livePleth"> ▂▄▆▇██▇▆▅▄▅▄▃▂   ▂▄▆▇██▇▆▅▄▅▄▃▂   ▂▄▆▇██▇▆▅▄▅▄▃▂ </span>│
+│ <span class="term-green">RESP (CO2)   :</span> <span class="term-green" id="liveResp"> ▂▃▄▅▆▇▆▅▄▃▂     ▂▃▄▅▆▇▆▅▄▃▂     ▂▃▄▅▆▇▆▅▄▃▂     </span>│
 ├─────────────────────────────────────────────────────────────────────────────┤
 │ <span class="term-white">ACTIVE RX:</span> ℞ Cefazolin 2 g IV Q8H • ⌀ 18G Cannula Right Antecubital Fossa   │
 │ <span class="term-green">OH MY POSH:</span> <span class="term-teal"></span><span style="background: #14b8a6; color:#09090b; font-weight:bold;"> 🏥 icu-station </span><span class="term-teal"></span><span style="background: #1e293b; color:#38bdf8;"> 󰘬 main </span><span style="color:#1e293b;"></span> ⠠⠕⠅ 14ms               │
@@ -1751,9 +1787,34 @@
       charCount.textContent = `${testerOutput.innerText.length} characters`;
     });
 
+    // ISMP Slashed Zero & Disambiguation Toggle
+    const btnIsmpToggle = document.getElementById('btnIsmpToggle');
+    let ismpSafeActive = true;
+
+    if (btnIsmpToggle) {
+      btnIsmpToggle.addEventListener('click', () => {
+        ismpSafeActive = !ismpSafeActive;
+        if (ismpSafeActive) {
+          btnIsmpToggle.classList.add('active');
+          btnIsmpToggle.style.background = 'rgba(20, 184, 166, 0.2)';
+          btnIsmpToggle.style.color = 'var(--accent-teal)';
+          btnIsmpToggle.style.borderColor = 'var(--accent-teal)';
+          btnIsmpToggle.textContent = '🛡️ Slashed 0: ON';
+          testerOutput.style.fontFeatureSettings = '"zero" 1, "cv08" 1, "cv05" 1, "ss02" 1, "tnum" 1';
+        } else {
+          btnIsmpToggle.classList.remove('active');
+          btnIsmpToggle.style.background = 'transparent';
+          btnIsmpToggle.style.color = 'var(--text-secondary)';
+          btnIsmpToggle.style.borderColor = 'var(--border-subtle)';
+          btnIsmpToggle.textContent = '🛡️ Slashed 0: OFF';
+          testerOutput.style.fontFeatureSettings = 'normal';
+        }
+      });
+    }
+
     // Presets
     const PRESETS = {
-      rx: "Rx: Amoxicillin 500 mg PO Q8H × 10d [ISMP Safe 0.slash]",
+      rx: "Rx: Amoxicillin 500 mg PO Q8H × 10d [ISMP Slashed Zero: 0 vs O]",
       triage: "STAT 911 TRAUMA: SpO2 98% • HR 118 BPM • BP 85/50 mmHg • QRS 0.08s",
       sloan: "C D H K N O R S V Z — 5:1 Sloan Snellen 20/20 Optotypes",
       pangram: "The quick brown fox jumps over the lazy dog & zero quartz vexes 109 patients.",
@@ -1766,6 +1827,9 @@
         if (text) {
           testerOutput.innerText = text;
           charCount.textContent = `${text.length} characters`;
+          if (pill.dataset.preset === 'rx' && !ismpSafeActive && btnIsmpToggle) {
+            btnIsmpToggle.click();
+          }
         }
       });
     });
@@ -1796,7 +1860,6 @@
         if (char >= '0' && char <= '9') {
           if (!inNumber) {
             result += '⠼'; // Number indicator
-            inNumber = true;
           }
           const digitBraille = {
             '1': '⠁', '2': '⠃', '3': '⠉', '4': '⠙', '5': '⠑',
@@ -1866,21 +1929,126 @@
 
     refreshBionic();
 
-    // 5. Medical Terminal Animated ECG Sparkline
+    // 5. Medical Terminal Animated Sub-Cell ECG, Pleth & Respiratory Sweep Engine
     const liveEcg = document.getElementById('liveEcg');
-    const ECG_FRAMES = [
-      " ▂▃▅█▅▃▂   ▂▃▅█▅▃▂   ▂▃▅█▅▃▂ ",
-      "▂ ▂▃▅█▅▃   ▂ ▂▃▅█▅▃   ▂ ▂▃▅█▅",
-      "▃▂ ▂▃▅█▅   ▃▂ ▂▃▅█▅   ▃▂ ▂▃▅█",
-      "▅▃▂ ▂▃▅█   ▅▃▂ ▂▃▅█   ▅▃▂ ▂▃▅",
-      "█▅▃▂ ▂▃▅   █▅▃▂ ▂▃▅   █▅▃▂ ▂▃",
-      "▅█▅▃▂ ▂▃   ▅█▅▃▂ ▂▃   ▅█▅▃▂ ▂"
-    ];
-    let ecgIdx = 0;
-    setInterval(() => {
-      ecgIdx = (ecgIdx + 1) % ECG_FRAMES.length;
-      if (liveEcg) liveEcg.textContent = ECG_FRAMES[ecgIdx];
-    }, 450);
+    const livePleth = document.getElementById('livePleth');
+    const liveResp = document.getElementById('liveResp');
+    const liveHr = document.getElementById('liveHr');
+    const liveRhythmTag = document.getElementById('liveRhythmTag');
+    const liveSpo2 = document.getElementById('liveSpo2');
+    const liveBp = document.getElementById('liveBp');
+    const rhythmBtns = document.querySelectorAll('.ecg-rhythm-btn');
+    const btnSweepSpeed = document.getElementById('btnSweepSpeed');
+
+    // High-resolution cardiac patterns defined via Unicode sub-cell elements (U+2580–259F)
+    const RHYTHM_TEMPLATES = {
+      sinus: {
+        hr: '72 bpm',
+        rhythm: 'NORMAL SINUS (ST STABLE)',
+        spo2: '99%',
+        bp: '120/80',
+        ecgBeat: [' ', ' ', '▂', '▃', '▂', ' ', ' ', ' ', ' ', '█', ' ', ' ', ' ', '▂', '▃', '▄', '▃', '▂', ' ', ' ', ' ', ' ', ' '],
+        plethBeat: [' ', '▂', '▄', '▆', '▇', '█', '█', '▇', '▆', '▅', '▄', '▅', '▄', '▃', '▂', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        respBeat: [' ', '▂', '▃', '▄', '▅', '▆', '▇', '▆', '▅', '▄', '▃', '▂', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+      },
+      vtach: {
+        hr: '160 bpm STAT',
+        rhythm: 'VENTRICULAR TACHYCARDIA ⚠️',
+        spo2: '91%',
+        bp: '78/42',
+        ecgBeat: [' ', '▄', '▆', '█', '█', '▇', '▅', '▃', ' ', '▄', '▆', '█'],
+        plethBeat: [' ', '▂', '▃', '▄', '▄', '▃', '▂', ' ', '▂', '▃', '▄', '▃'],
+        respBeat: [' ', '▂', '▃', '▄', '▅', '▆', '▆', '▅', '▄', '▃', '▂', ' ']
+      },
+      afib: {
+        hr: '114 bpm',
+        rhythm: 'ATRIAL FIBRILLATION (RVR)',
+        spo2: '96%',
+        bp: '105/68',
+        ecgBeat: ['▂', ' ', '▃', ' ', '█', ' ', '▂', ' ', '▃', '▂', ' ', '▂', '█', ' ', ' ', '▂', '▃', ' ', ' '],
+        plethBeat: [' ', '▂', '▄', '▆', '▇', '▆', '▄', '▂', ' ', '▂', '▅', '█', '▇', '▅', '▃', ' ', '▂', '▃', ' '],
+        respBeat: [' ', '▂', '▃', '▄', '▅', '▆', '▇', '▆', '▅', '▄', '▃', '▂', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+      },
+      asystole: {
+        hr: '0 bpm [ALARM]',
+        rhythm: 'ASYSTOLE / CODE BLUE 🚨',
+        spo2: '-- %',
+        bp: '--/--',
+        ecgBeat: [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        plethBeat: [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        respBeat: [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+      }
+    };
+
+    let activeRhythmKey = 'sinus';
+    let sweepSpeedMs = 70;
+    const BUFFER_WIDTH = 55;
+
+    let ecgBuffer = new Array(BUFFER_WIDTH).fill(' ');
+    let plethBuffer = new Array(BUFFER_WIDTH).fill(' ');
+    let respBuffer = new Array(BUFFER_WIDTH).fill(' ');
+    let beatSampleIdx = 0;
+
+    function stepWaveforms() {
+      const template = RHYTHM_TEMPLATES[activeRhythmKey];
+      const ecgSeq = template.ecgBeat;
+      const plethSeq = template.plethBeat;
+      const respSeq = template.respBeat;
+
+      const nextEcg = ecgSeq[beatSampleIdx % ecgSeq.length];
+      const nextPleth = plethSeq[beatSampleIdx % plethSeq.length];
+      const nextResp = respSeq[beatSampleIdx % respSeq.length];
+      beatSampleIdx++;
+
+      ecgBuffer.shift();
+      ecgBuffer.push(nextEcg);
+
+      plethBuffer.shift();
+      plethBuffer.push(nextPleth);
+
+      respBuffer.shift();
+      respBuffer.push(nextResp);
+
+      if (liveEcg) liveEcg.textContent = ecgBuffer.join('');
+      if (livePleth) livePleth.textContent = plethBuffer.join('');
+      if (liveResp) liveResp.textContent = respBuffer.join('');
+    }
+
+    let waveInterval = setInterval(stepWaveforms, sweepSpeedMs);
+
+    function setRhythm(key) {
+      activeRhythmKey = key;
+      const t = RHYTHM_TEMPLATES[key];
+      if (liveHr) liveHr.textContent = t.hr;
+      if (liveRhythmTag) liveRhythmTag.textContent = t.rhythm;
+      if (liveSpo2) liveSpo2.textContent = t.spo2;
+      if (liveBp) liveBp.textContent = t.bp;
+
+      rhythmBtns.forEach(btn => {
+        if (btn.dataset.rhythm === key) {
+          btn.style.background = key === 'asystole' ? '#ef4444' : key === 'vtach' ? '#f59e0b' : 'var(--accent-teal)';
+          btn.style.color = '#fff';
+        } else {
+          btn.style.background = 'transparent';
+          btn.style.color = 'var(--text-secondary)';
+        }
+      });
+    }
+
+    rhythmBtns.forEach(btn => {
+      btn.addEventListener('click', () => setRhythm(btn.dataset.rhythm));
+    });
+
+    let fastSweep = false;
+    if (btnSweepSpeed) {
+      btnSweepSpeed.addEventListener('click', () => {
+        fastSweep = !fastSweep;
+        sweepSpeedMs = fastSweep ? 38 : 70;
+        btnSweepSpeed.textContent = fastSweep ? '⚡ 50 mm/s (High Speed)' : '⚡ 25 mm/s (Standard)';
+        clearInterval(waveInterval);
+        waveInterval = setInterval(stepWaveforms, sweepSpeedMs);
+      });
+    }
 
     // 6. Developer Code Tabs
     const CODE_SNIPPETS = {
