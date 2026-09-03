@@ -134,6 +134,19 @@
       gap: 0.75rem;
       text-decoration: none;
       color: inherit;
+      cursor: pointer;
+    }
+
+    .brand-mascot-bird {
+      display: inline-block;
+      vertical-align: middle;
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+      filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.35));
+      flex-shrink: 0;
+    }
+
+    .brand-group:hover .brand-mascot-bird {
+      transform: rotate(-8deg) scale(1.15);
     }
 
     .brand-logo-text {
@@ -1299,7 +1312,28 @@
 
   <!-- Site Navigation Header -->
   <header class="site-header">
-    <a href="#" class="brand-group">
+    <a href="https://pocketgull.app" class="brand-group" title="PocketGull Clinical OS &amp; AI Consult Engine" target="_blank" rel="noopener">
+      <!-- Official PocketGull Cute Origami Mascot Bird -->
+      <svg class="brand-mascot-bird" viewBox="0 0 134 100" width="38" height="29" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PocketGull Origami Seagull Mascot">
+        <g id="origami-gull" transform="translate(2, 6)">
+          <!-- Tail Wing -->
+          <polygon points="10,38 68,22 38,88 10,38" fill="#ffffff" stroke="#0f172a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <polygon points="10,38 38,88 28,60" fill="#e2e8f0"/>
+          <!-- Body Base -->
+          <polygon points="38,88 68,22 92,34 100,78 38,88" fill="#f8fafc" stroke="#0f172a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <!-- Folded Wing / Breast (Honest Teal #0d9488) -->
+          <polygon points="68,22 100,78 110,38 68,22" fill="#0d9488" stroke="#0f172a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <!-- Wing Crease Depth -->
+          <polygon points="100,78 110,38 94,52" fill="#0f766e"/>
+          <!-- Head & Neck -->
+          <polygon points="68,22 80,6 100,8 110,38 92,34 68,22" fill="#ffffff" stroke="#0f172a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <!-- Smiling Eye Arc (^) -->
+          <path d="M 82,18 Q 88,12 94,18" fill="none" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/>
+          <!-- Origami Beak (Vivid Terracotta #ea580c / #f97316) -->
+          <polygon points="100,8 124,14 108,24 100,18" fill="#ea580c" stroke="#0f172a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+          <polygon points="100,18 124,14 110,38 100,18" fill="#f97316" stroke="#0f172a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+        </g>
+      </svg>
       <span class="brand-logo-text">PocketGull</span>
       <span class="brand-badge">Clinical Superfamily</span>
     </a>
@@ -2923,9 +2957,16 @@ Sincerely,
   <!-- Doc Drill / Evidence Focus Sliding Panel Drawer -->
   <aside id="docDrillPanel" class="doc-drill-panel" role="region" aria-label="Evidence Focus &amp; Socratic Learning Drawer">
     <div class="doc-drill-header">
-      <div class="doc-drill-icon">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="13" height="13">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      <div class="doc-drill-icon" style="background: rgba(13, 148, 136, 0.15); border-color: rgba(13, 148, 136, 0.3);">
+        <!-- Miniature Cute Origami Bird -->
+        <svg viewBox="0 0 134 100" width="16" height="13" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+          <g transform="translate(2, 6)">
+            <polygon points="10,38 68,22 38,88 10,38" fill="#ffffff" stroke="#0f172a" stroke-width="3"/>
+            <polygon points="38,88 68,22 92,34 100,78 38,88" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
+            <polygon points="68,22 100,78 110,38 68,22" fill="#0d9488" stroke="#0f172a" stroke-width="3"/>
+            <polygon points="68,22 80,6 100,8 110,38 92,34 68,22" fill="#ffffff" stroke="#0f172a" stroke-width="3"/>
+            <polygon points="100,8 124,14 108,24 100,18" fill="#ea580c" stroke="#0f172a" stroke-width="3"/>
+          </g>
         </svg>
       </div>
       <span class="doc-drill-title">Evidence Focus • Doc Drill</span>
