@@ -354,6 +354,278 @@
       --font-code: 'PocketGull Mono', monospace;
     }
 
+    
+    /* ==========================================================================
+       WASHI RICE PAPER (和紙) PAPERCRAFT THEME
+       Unbleached Mulberry (Kozo) Fibers, Deep Sumi Ink, Celadon Bamboo Teal
+       Persimmon Dial Accents (#F6B12B), and Hanko Seal Red (#EF6658)
+       ========================================================================== */
+    [data-theme="washi"] {
+      --bg-base: #FAF8F2;
+      --bg-surface: #FFFDF8;
+      --bg-elevated: #F4EFE6;
+      --bg-card: #FFFFFF;
+      --border-subtle: #E7E2D6;
+      --border-focus: #0D9488;
+      --text-primary: #1F1B16;
+      --text-secondary: #57534E;
+      --text-muted: #78716C;
+      --accent-teal: #0D9488;
+      --accent-teal-glow: rgba(13, 148, 136, 0.15);
+      --accent-amber: #F6B12B;
+      --accent-coral: #EF6658;
+      --paper-shadow: 6px 14px 28px -4px rgba(70, 45, 18, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+      --paper-shadow-lifted: 12px 24px 38px -6px rgba(70, 45, 18, 0.14), 0 4px 8px rgba(0, 0, 0, 0.06);
+      filter: none;
+    }
+
+    [data-theme="washi"] body {
+      background: linear-gradient(135deg, #FFFFFF 0%, #FAF8F5 60%, #F3EFE7 100%);
+      color: #1F1B16;
+    }
+
+    [data-theme="washi"] header,
+    [data-theme="washi"] .site-header {
+      background: rgba(250, 248, 242, 0.94);
+      border-bottom: 1px solid #E7E2D6;
+      backdrop-filter: blur(14px);
+    }
+
+    [data-theme="washi"] .brand-title {
+      color: #1F1B16;
+    }
+
+    [data-theme="washi"] .brand-subtitle {
+      color: #78716C;
+    }
+
+    [data-theme="washi"] .header-nav a {
+      color: #57534E;
+    }
+
+    [data-theme="washi"] .header-nav a:hover {
+      color: #0D9488;
+    }
+
+    [data-theme="washi"] .hero-title {
+      color: #1F1B16;
+    }
+
+    [data-theme="washi"] .hero-title .highlight {
+      color: #0D9488;
+    }
+
+    [data-theme="washi"] .hero-subtitle {
+      color: #57534E;
+    }
+
+    [data-theme="washi"] .hero-eyebrow {
+      background: #EFEAE1;
+      border: 1px solid #E2DBD0;
+      color: #0D9488;
+    }
+
+    [data-theme="washi"] .doc-node {
+      background: #F4EFE6;
+      color: #0D9488;
+      border-bottom: 1.5px dashed #0D9488;
+    }
+
+    [data-theme="washi"] .doc-node:hover {
+      background: #0D9488;
+      color: #FFFFFF;
+    }
+
+    [data-theme="washi"] .card,
+    [data-theme="washi"] .ismp-card,
+    [data-theme="washi"] .ismp-panel,
+    [data-theme="washi"] .doc-drill-card,
+    [data-theme="washi"] .tester-container,
+    [data-theme="washi"] .tester-toolbar,
+    [data-theme="washi"] .tester-canvas-wrap {
+      background: #FFFFFF;
+      border: 1px solid #E7E2D6;
+      color: #1F1B16;
+      box-shadow: var(--paper-shadow);
+    }
+
+    [data-theme="washi"] .tester-output {
+      color: #1F1B16;
+    }
+
+    [data-theme="washi"] .preset-pill,
+    [data-theme="washi"] .ot-toggle-btn,
+    [data-theme="washi"] .weight-btn,
+    [data-theme="washi"] .tab-btn {
+      background: #FAF8F2;
+      border: 1px solid #E7E2D6;
+      color: #57534E;
+    }
+
+    [data-theme="washi"] .preset-pill:hover,
+    [data-theme="washi"] .ot-toggle-btn:hover,
+    [data-theme="washi"] .weight-btn:hover,
+    [data-theme="washi"] .tab-btn:hover {
+      background: #F4EFE6;
+      color: #1F1B16;
+    }
+
+    [data-theme="washi"] .preset-pill.active,
+    [data-theme="washi"] .ot-toggle-btn.active,
+    [data-theme="washi"] .weight-btn.active,
+    [data-theme="washi"] .tab-btn.active {
+      background: #0D9488;
+      border-color: #0D9488;
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(13, 148, 136, 0.25);
+    }
+
+    /* Rotary Persimmon Dial Slider Thumb (#F6B12B) */
+    [data-theme="washi"] input[type="range"] {
+      accent-color: #F6B12B;
+    }
+
+    [data-theme="washi"] input[type="range"]::-webkit-slider-thumb {
+      background: #F6B12B;
+      border: 2px solid #FFFDF8;
+      box-shadow: 0 2px 6px rgba(246, 177, 43, 0.45);
+    }
+
+    [data-theme="washi"] input[type="range"]::-moz-range-thumb {
+      background: #F6B12B;
+      border: 2px solid #FFFDF8;
+      box-shadow: 0 2px 6px rgba(246, 177, 43, 0.45);
+    }
+
+    /* Terminal in Washi Palette */
+    [data-theme="washi"] .terminal-window {
+      background: #FAF8F2;
+      border: 1px solid #E7E2D6;
+      box-shadow: var(--paper-shadow-lifted);
+    }
+
+    [data-theme="washi"] .terminal-header {
+      background: #EFEAE1;
+      border-bottom: 1px solid #E2DBD0;
+      color: #57534E;
+    }
+
+    [data-theme="washi"] .terminal-body {
+      color: #292524;
+    }
+
+    [data-theme="washi"] .term-teal {
+      color: #0D9488;
+    }
+
+    [data-theme="washi"] .term-white {
+      color: #1F1B16;
+    }
+
+    [data-theme="washi"] .term-amber {
+      color: #D97706;
+    }
+
+    [data-theme="washi"] .btn-download-hero {
+      background: #0D9488;
+      color: #FFFFFF;
+    }
+
+    [data-theme="washi"] .btn-download-hero:hover {
+      background: #0F766E;
+    }
+
+    [data-theme="washi"] .site-footer {
+      background: #FAF8F2;
+      border-top: 1px solid #E7E2D6;
+      color: #78716C;
+    }
+
+    /* Theme Switcher Segmented Control */
+    .theme-switcher-group {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border-subtle);
+      border-radius: 9999px;
+      padding: 3px;
+      gap: 2px;
+    }
+
+    .theme-nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: 'PocketGull', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .theme-nav-btn:hover {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .theme-nav-btn.active {
+      background: var(--bg-card);
+      color: var(--text-primary);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .theme-nav-btn.pbm-accent.active {
+      background: #ff3333;
+      color: #050000;
+      box-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+    }
+
+    [data-theme="washi"] .theme-switcher-group {
+      background: #EFEAE1;
+      border-color: #E2DBD0;
+    }
+
+    [data-theme="washi"] .theme-nav-btn {
+      color: #78716C;
+    }
+
+    [data-theme="washi"] .theme-nav-btn:hover {
+      color: #1F1B16;
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    [data-theme="washi"] .theme-nav-btn.active {
+      background: #FFFFFF;
+      color: #1F1B16;
+      box-shadow: 0 1px 3px rgba(70, 45, 18, 0.12);
+    }
+
+    [data-theme="washi"] .theme-nav-btn.pbm-accent.active {
+      background: #ff3333;
+      color: #FFFFFF;
+    }
+
+    [data-theme="pbm"] .theme-switcher-group {
+      background: #140000;
+      border-color: #380505;
+    }
+
+    [data-theme="pbm"] .theme-nav-btn {
+      color: #d43838;
+    }
+
+    [data-theme="pbm"] .theme-nav-btn.active {
+      background: #ff3333;
+      color: #050000;
+      box-shadow: 0 0 12px rgba(255, 51, 51, 0.6);
+    }
+
     /* ==========================================================================
        670nm RETINAL PHOTOBIOMODULATION (PBM) DEEP RED SYSTEM OVERRIDES
        Glen Jeffery / UCL Institute of Ophthalmology Clinical Standards
@@ -2195,9 +2467,17 @@
       <a href="#sources">Sources</a>
     </nav>
     <div class="header-actions">
-      <button class="btn-pbm-toggle" id="pbmToggle" title="Toggle 670nm Retinal Photobiomodulation Night Mode">
-        <span>🔴</span> <span id="pbmLabel">670nm PBM</span>
-      </button>
+      <div class="theme-switcher-group" role="group" aria-label="Theme Mode Selection">
+        <button class="theme-nav-btn" data-theme-target="washi" title="Washi Rice Paper Theme (和紙) - Unbleached Mulberry & Sumi Ink">
+          <span>📜</span> Washi
+        </button>
+        <button class="theme-nav-btn" data-theme-target="dark" title="Clinical Obsidian Dark Mode - ICU Telemetry">
+          <span>🌑</span> Dark
+        </button>
+        <button class="theme-nav-btn pbm-accent" data-theme-target="pbm" id="pbmToggle" title="670nm Retinal Photobiomodulation Night Mode - Zero Blue Light">
+          <span>🔴</span> <span id="pbmLabel">670nm PBM</span>
+        </button>
+      </div>
       <a href="#download" class="btn-download-hero">
         <span>⬇</span> Get Fonts
       </a>
@@ -4019,21 +4299,43 @@ Sincerely,
 
   <!-- Interactive Client-Side Logic -->
   <script>
-    // 1. 670nm Photobiomodulation Night Mode Toggle
+    // 1. Tri-Modal Theme System: Washi Papercraft (和紙), Clinical Obsidian, and 670nm PBM
+    const themeButtons = document.querySelectorAll('.theme-nav-btn');
     const pbmToggle = document.getElementById('pbmToggle');
     const pbmLabel = document.getElementById('pbmLabel');
-    let isPbm = false;
 
-    pbmToggle.addEventListener('click', () => {
-      isPbm = !isPbm;
-      if (isPbm) {
-        document.documentElement.setAttribute('data-theme', 'pbm');
-        pbmLabel.textContent = 'Standard Mode';
-      } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        pbmLabel.textContent = '670nm PBM';
+    function applySiteTheme(targetTheme) {
+      document.documentElement.setAttribute('data-theme', targetTheme);
+      try {
+        localStorage.setItem('pocketgull_specimen_theme', targetTheme);
+      } catch (err) {}
+
+      themeButtons.forEach(btn => {
+        const matches = btn.getAttribute('data-theme-target') === targetTheme;
+        btn.classList.toggle('active', matches);
+      });
+
+      if (pbmLabel) {
+        pbmLabel.textContent = (targetTheme === 'pbm') ? 'PBM Active' : '670nm PBM';
       }
+    }
+
+    themeButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const theme = btn.getAttribute('data-theme-target');
+        applySiteTheme(theme);
+      });
     });
+
+    // Initialize with saved theme or default to Washi
+    const initialTheme = (function() {
+      try {
+        const saved = localStorage.getItem('pocketgull_specimen_theme');
+        if (['washi', 'dark', 'pbm'].includes(saved)) return saved;
+      } catch (e) {}
+      return 'washi';
+    })();
+    applySiteTheme(initialTheme);
 
     // 2. Interactive Type Tester
     const testerOutput = document.getElementById('testerOutput');
