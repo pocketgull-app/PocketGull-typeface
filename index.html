@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="pocketgull.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
     :root {
@@ -27,7 +27,7 @@
       --accent-pbm: #ff3333;
       --accent-pbm-glow: rgba(255, 51, 51, 0.3);
       --font-ui: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-      --font-code: 'JetBrains Mono', monospace;
+      --font-code: 'PocketGull Mono', 'Cascadia Code', monospace;
     }
 
     [data-theme="pbm"] {
@@ -998,7 +998,7 @@
                 <div class="comparison-sample disambiguated" style="font-feature-settings: 'zero' 1, 'cv08' 1;">0 vs O</div>
               </div>
             </div>
-            <p class="ismp-desc">Prevents confusing numeral zero with uppercase letter O in medication dosages like "10 mg" vs "1O mg".</p>
+            <p class="ismp-desc">Prevents confusing numeral zero with uppercase letter O in medication dosages like "10 mg" vs "1O mg" and electronic order codes.</p>
           </div>
 
           <!-- Curved Lowercase L -->
@@ -1017,7 +1017,7 @@
                 <div class="comparison-sample disambiguated" style="font-feature-settings: 'cv05' 1, 'ss02' 1;">l 1 I</div>
               </div>
             </div>
-            <p class="ismp-desc">Features a distinctive outward terminal curve, clearly differentiating lowercase l from numeral 1 and capital I.</p>
+            <p class="ismp-desc">Features a distinctive outward terminal curve, clearly differentiating lowercase l from numeral 1 and capital I in "100 mg" vs "l00 mg".</p>
           </div>
 
           <!-- Serifed Capital I -->
@@ -1036,7 +1036,102 @@
                 <div class="comparison-sample disambiguated" style="font-feature-settings: 'ss02' 1, 'cv05' 1;">Illness</div>
               </div>
             </div>
-            <p class="ismp-desc">Symmetrical bilateral serifs at cap-height and baseline eliminate ambiguity in laboratory acronyms (e.g., IL-6, IgA).</p>
+            <p class="ismp-desc">Symmetrical bilateral serifs at cap-height and baseline eliminate ambiguity in laboratory biomarkers and immunology acronyms (e.g., IL-6, IgA).</p>
+          </div>
+
+          <!-- FDA / ISMP Tall Man Lettering -->
+          <div class="ismp-card">
+            <div class="ismp-header">
+              <div class="ismp-title">FDA Tall Man Lettering</div>
+              <span class="ismp-feature-tag">ss03 / LASA</span>
+            </div>
+            <div class="ismp-comparison">
+              <div class="comparison-col">
+                <div class="comparison-label bad">Standard Font</div>
+                <div class="comparison-sample" style="font-size: 1.35rem; line-height: 1.4;">prednisone<br>prednisolone</div>
+              </div>
+              <div class="comparison-col">
+                <div class="comparison-label good">PocketGull Safe</div>
+                <div class="comparison-sample disambiguated" style="font-size: 1.35rem; line-height: 1.4; font-weight: 700;">predni<span style="color:#f59e0b;">SONE</span><br>predniso<span style="color:#f59e0b;">LONE</span></div>
+              </div>
+            </div>
+            <p class="ismp-desc">Capitalizes distinctive phonetic syllables of Look-Alike / Sound-Alike (LASA) pairs (hydrOXYzine vs hydrALAZINE) to halt pharmacy dispensing substitution errors.</p>
+          </div>
+
+          <!-- Decimal Point & Zero Guard -->
+          <div class="ismp-card">
+            <div class="ismp-header">
+              <div class="ismp-title">Decimal Point &amp; Zero Guard</div>
+              <span class="ismp-feature-tag">ISMP Rule #1</span>
+            </div>
+            <div class="ismp-comparison">
+              <div class="comparison-col">
+                <div class="comparison-label bad">10× Overdose Risk</div>
+                <div class="comparison-sample" style="font-size: 1.4rem; line-height: 1.4;">5.0 mg<br>.5 mg</div>
+              </div>
+              <div class="comparison-col">
+                <div class="comparison-label good">PocketGull Safe</div>
+                <div class="comparison-sample disambiguated" style="font-size: 1.4rem; line-height: 1.4; font-feature-settings: 'zero' 1;">5 mg<br>0.5 mg</div>
+              </div>
+            </div>
+            <p class="ismp-desc">A printer speck turns 5.0 into 50 mg; a missed decimal turns .5 into 5 mg. PocketGull enforces strict leading zeros and Bouma optical clearance around decimals.</p>
+          </div>
+
+          <!-- Slashed Z vs Numeral 2 -->
+          <div class="ismp-card">
+            <div class="ismp-header">
+              <div class="ismp-title">Slashed Z vs Numeral 2</div>
+              <span class="ismp-feature-tag">cv06 / Ƶ</span>
+            </div>
+            <div class="ismp-comparison">
+              <div class="comparison-col">
+                <div class="comparison-label bad">Standard Font</div>
+                <div class="comparison-sample">2 vs Z</div>
+              </div>
+              <div class="comparison-col">
+                <div class="comparison-label good">PocketGull Safe</div>
+                <div class="comparison-sample disambiguated">2 vs Ƶ</div>
+              </div>
+            </div>
+            <p class="ismp-desc">Horizontal stroke cross-bar on uppercase Z prevents critical dosage misinterpretations between numeral 2 and letter Z on low-resolution thermal label printers.</p>
+          </div>
+
+          <!-- Microgram Disambiguation -->
+          <div class="ismp-card">
+            <div class="ismp-header">
+              <div class="ismp-title">Microgram mcg Disambiguation</div>
+              <span class="ismp-feature-tag">ISMP Standard</span>
+            </div>
+            <div class="ismp-comparison">
+              <div class="comparison-col">
+                <div class="comparison-label bad">1,000× Lethal Risk</div>
+                <div class="comparison-sample" style="font-size: 1.4rem;">50 µg</div>
+              </div>
+              <div class="comparison-col">
+                <div class="comparison-label good">PocketGull Safe</div>
+                <div class="comparison-sample disambiguated" style="font-size: 1.4rem; font-weight: 700;">50 mcg</div>
+              </div>
+            </div>
+            <p class="ismp-desc">ISMP mandates never using the Greek symbol µg, which is easily mistaken for mg. PocketGull incorporates bonded ligature glyphs for explicit "mcg" unit clarity.</p>
+          </div>
+
+          <!-- Tabular Figures for Infusions -->
+          <div class="ismp-card">
+            <div class="ismp-header">
+              <div class="ismp-title">Tabular Numeric Figures</div>
+              <span class="ismp-feature-tag">tnum</span>
+            </div>
+            <div class="ismp-comparison">
+              <div class="comparison-col">
+                <div class="comparison-label bad">Jittery Alignment</div>
+                <div class="comparison-sample" style="font-size: 1.25rem; font-family: sans-serif; font-feature-settings: 'pnum' 1; line-height: 1.3;">111.1 mL/h<br>888.8 mL/h</div>
+              </div>
+              <div class="comparison-col">
+                <div class="comparison-label good">Strict Column Lock</div>
+                <div class="comparison-sample disambiguated" style="font-size: 1.25rem; font-feature-settings: 'tnum' 1, 'zero' 1; line-height: 1.3;">111.1 mL/h<br>888.8 mL/h</div>
+              </div>
+            </div>
+            <p class="ismp-desc">Equal-advance numeric glyphs ensure decimals and digits align vertically across IV pump titration flowcharts, preventing adjacent-row misreading.</p>
           </div>
         </div>
       </div>
@@ -1141,23 +1236,48 @@
           </div>
           <div class="terminal-body" id="termBody">
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ <span class="term-teal">POCKETGULL INTENSIVE CARE TELEMETRY HUD</span> :: BED 04 (STAT MONITOR)           │
+│ <span class="term-teal">POCKETGULL INTENSIVE CARE TELEMETRY HUD</span> :: BED 04 (STAT MONITOR)            │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ <span class="term-white">PATIENT:</span> Sapiens, H. (34y F)  │ <span class="term-white">LOC:</span> NEURO-ICU POD-A  │ <span class="term-white">ISO/TR 11548:</span> ⠠⠓⠠⠎ ⠼⠉⠙   │
+│ <span class="term-white">PATIENT:</span> Sapiens, H. (34y F)  │ <span class="term-white">LOC:</span> NEURO-ICU POD-A  │ <span class="term-white">ISO/TR:</span> 2026-09-02  │
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ <span class="term-green">🫀 HEART RATE:</span> <span class="term-white" id="liveHr">72 bpm</span>     │ <span class="term-teal">RHYTHM:</span> <span class="term-teal" id="liveRhythmTag">NORMAL SINUS (ST STABLE)</span>        │
-│ <span class="term-amber">💧 SpO2 LEVEL:</span> <span class="term-white" id="liveSpo2">99%</span>        │ <span class="term-amber">PERFUSION INDEX:</span> <span class="term-amber">PI 4.8% [STRONG]</span>         │
-│ <span class="term-teal">🩸 ARTERIAL BP:</span> <span class="term-white" id="liveBp">120/80</span>    │ <span class="term-teal">MAP:</span>   <span class="term-white">93 mmHg [NORMOTENSIVE]</span>           │
-│ <span class="term-white">🌡️ TEMP:</span>        <span class="term-white">36.8 °C</span>   │ <span class="term-white">RR:</span>    <span class="term-white">16 breaths/min (ETCO2: 38)</span>      │
+│ <span class="term-green">[HR]   HEART RATE:</span>   <span class="term-white" id="liveHr">72 bpm  </span>│ <span class="term-teal">RHYTHM:</span>   <span class="term-teal" id="liveRhythmTag">NORMAL SINUS (ST STABLE)           </span>│
+│ <span class="term-amber">[SpO2] OXYGEN SAT:</span>   <span class="term-white" id="liveSpo2">99%     </span>│ <span class="term-amber">PLETH:</span>    <span class="term-amber">PI 4.8% [STRONG PULSATILE]         </span>│
+│ <span class="term-teal">[BP]   ARTERIAL BP:</span>  <span class="term-white" id="liveBp">120/80  </span>│ <span class="term-teal">MAP:</span>      <span class="term-white">93 mmHg [NORMOTENSIVE]             </span>│
+│ <span class="term-white">[TEMP] CORE TEMP:</span>    <span class="term-white">36.8 °C </span>│ <span class="term-white">RR:</span>       <span class="term-white">16 breaths/min (ETCO2: 38)         </span>│
 ├─────────────────────────────────────────────────────────────────────────────┤
-│ <span class="term-teal">LEAD II (mV) :</span> <span class="term-teal" id="liveEcg"> ▂▃▅█▅▃▂        ▂▃▅█▅▃▂        ▂▃▅█▅▃▂        ▂▃▅█▅▃▂ </span>│
-│ <span class="term-amber">PLETH (SpO2) :</span> <span class="term-amber" id="livePleth"> ▂▄▆▇██▇▆▅▄▅▄▃▂   ▂▄▆▇██▇▆▅▄▅▄▃▂   ▂▄▆▇██▇▆▅▄▅▄▃▂ </span>│
-│ <span class="term-green">RESP (CO2)   :</span> <span class="term-green" id="liveResp"> ▂▃▄▅▆▇▆▅▄▃▂     ▂▃▄▅▆▇▆▅▄▃▂     ▂▃▄▅▆▇▆▅▄▃▂     </span>│
+│ <span class="term-teal">[ECG-II]</span> <span class="term-teal" id="liveEcg">                                                                   </span>│
+│ <span class="term-amber">[PLETH] </span> <span class="term-amber" id="livePleth">                                                                   </span>│
+│ <span class="term-green">[RESP]  </span> <span class="term-green" id="liveResp">                                                                   </span>│
 ├─────────────────────────────────────────────────────────────────────────────┤
 │ <span class="term-white">ACTIVE RX:</span> ℞ Cefazolin 2 g IV Q8H • ⌀ 18G Cannula Right Antecubital Fossa   │
-│ <span class="term-green">OH MY POSH:</span> <span class="term-teal"></span><span style="background: #14b8a6; color:#09090b; font-weight:bold;"> 🏥 icu-station </span><span class="term-teal"></span><span style="background: #1e293b; color:#38bdf8;"> 󰘬 main </span><span style="color:#1e293b;"></span> ⠠⠕⠅ 14ms               │
+<span id="livePromptRow">│ <span class="term-green">OH MY POSH:</span> <span class="term-teal"></span><span style="background: #14b8a6; color:#09090b; font-weight:bold;"> icu-station </span><span class="term-teal"></span><span style="background: #1e293b; color:#38bdf8;"> main </span><span style="color:#1e293b;"></span> tty1 (PocketGull Mono 600 UPM)           │</span>
 └─────────────────────────────────────────────────────────────────────────────┘
           </div>
+        </div>
+
+        <!-- Terminal Shell Prompt Theme Selector -->
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; margin-top: 1rem; padding: 0.75rem 1rem; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 8px;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <span style="font-family: var(--font-code); font-size: 0.75rem; color: var(--text-muted); font-weight: 700;">PROMPT THEME:</span>
+            <div style="display: inline-flex; gap: 0.25rem; flex-wrap: wrap;">
+              <button class="shell-prompt-btn active" data-prompt="ohmyposh" style="padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: var(--accent-teal); color: #fff;">
+                🎨 Oh My Posh
+              </button>
+              <button class="shell-prompt-btn" data-prompt="p10k" style="padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">
+                ⚡ Powerlevel10k (Zsh)
+              </button>
+              <button class="shell-prompt-btn" data-prompt="starship" style="padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">
+                🚀 Starship (Rust)
+              </button>
+              <button class="shell-prompt-btn" data-prompt="pure" style="padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">
+                ✨ Pure (Minimal Zsh)
+              </button>
+              <button class="shell-prompt-btn" data-prompt="agnoster" style="padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">
+                🛡️ Agnoster (Oh-My-Zsh)
+              </button>
+            </div>
+          </div>
+          <span style="font-family: var(--font-code); font-size: 0.7rem; color: var(--accent-teal);">Gapless 600 UPM Chevrons &amp; Powerline (U+E0A0–E0B3, U+276F)</span>
         </div>
       </div>
     </section>
@@ -1952,8 +2072,8 @@
         respBeat: [' ', '▂', '▃', '▄', '▅', '▆', '▇', '▆', '▅', '▄', '▃', '▂', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
       },
       vtach: {
-        hr: '160 bpm STAT',
-        rhythm: 'VENTRICULAR TACHYCARDIA ⚠️',
+        hr: '160 bpm',
+        rhythm: 'VENTRICULAR TACHYCARDIA STAT',
         spo2: '91%',
         bp: '78/42',
         ecgBeat: [' ', '▄', '▆', '█', '█', '▇', '▅', '▃', ' ', '▄', '▆', '█'],
@@ -1970,8 +2090,8 @@
         respBeat: [' ', '▂', '▃', '▄', '▅', '▆', '▇', '▆', '▅', '▄', '▃', '▂', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
       },
       asystole: {
-        hr: '0 bpm [ALARM]',
-        rhythm: 'ASYSTOLE / CODE BLUE 🚨',
+        hr: '0 bpm',
+        rhythm: 'ASYSTOLE / CODE BLUE [ALARM]',
         spo2: '-- %',
         bp: '--/--',
         ecgBeat: [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -1982,7 +2102,7 @@
 
     let activeRhythmKey = 'sinus';
     let sweepSpeedMs = 70;
-    const BUFFER_WIDTH = 55;
+    const BUFFER_WIDTH = 67;
 
     let ecgBuffer = new Array(BUFFER_WIDTH).fill(' ');
     let plethBuffer = new Array(BUFFER_WIDTH).fill(' ');
@@ -2019,10 +2139,10 @@
     function setRhythm(key) {
       activeRhythmKey = key;
       const t = RHYTHM_TEMPLATES[key];
-      if (liveHr) liveHr.textContent = t.hr;
-      if (liveRhythmTag) liveRhythmTag.textContent = t.rhythm;
-      if (liveSpo2) liveSpo2.textContent = t.spo2;
-      if (liveBp) liveBp.textContent = t.bp;
+      if (liveHr) liveHr.textContent = t.hr.padEnd(8);
+      if (liveRhythmTag) liveRhythmTag.textContent = t.rhythm.padEnd(35);
+      if (liveSpo2) liveSpo2.textContent = t.spo2.padEnd(8);
+      if (liveBp) liveBp.textContent = t.bp.padEnd(8);
 
       rhythmBtns.forEach(btn => {
         if (btn.dataset.rhythm === key) {
@@ -2050,7 +2170,37 @@
       });
     }
 
-    // 6. Developer Code Tabs
+    // Shell Prompt Theme Templates (All strictly 79 columns)
+    const PROMPT_TEMPLATES = {
+      ohmyposh: `│ <span class="term-green">OH MY POSH:</span> <span class="term-teal"></span><span style="background:#14b8a6;color:#09090b;font-weight:bold;"> icu-station </span><span class="term-teal"></span><span style="background:#1e293b;color:#38bdf8;"> main </span><span style="color:#1e293b;"></span> tty1 (PocketGull Mono 600 UPM)           │`,
+      p10k: `│ <span class="term-green">P10K ZSH:</span>   <span class="term-teal"></span><span style="background:#14b8a6;color:#09090b;font-weight:bold;"> icu-station </span><span class="term-teal"></span> <span class="term-amber"> main</span> <span class="term-dim"></span> <span class="term-white">✔ 14ms</span>                                 │`,
+      starship: `│ <span class="term-green">STARSHIP:</span>   <span class="term-teal">phil@icu</span> in <span class="term-amber">~/pocketgull</span> on <span class="term-white"> main</span> <span class="term-teal">[12ms]</span> <span class="term-green">❯</span>                     │`,
+      pure: `│ <span class="term-green">PURE ZSH:</span>   <span class="term-teal">~/pocketgull</span> <span class="term-white">main*</span> <span class="term-dim">14ms</span> <span class="term-green">❯</span>                                       │`,
+      agnoster: `│ <span class="term-green">AGNOSTER:</span>   <span style="background:#1e293b;color:#38bdf8;"> phil@icu </span><span class="term-teal"></span><span style="background:#14b8a6;color:#09090b;font-weight:bold;"> ~/pocketgull </span><span class="term-amber"></span><span style="background:#f59e0b;color:#09090b;font-weight:bold;">  main </span><span style="color:#f59e0b;"></span>                             │`
+    };
+
+    const livePromptRow = document.getElementById('livePromptRow');
+    const shellBtns = document.querySelectorAll('.shell-prompt-btn');
+
+    shellBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const theme = btn.dataset.prompt;
+        if (PROMPT_TEMPLATES[theme] && livePromptRow) {
+          livePromptRow.innerHTML = PROMPT_TEMPLATES[theme];
+        }
+        shellBtns.forEach(b => {
+          if (b === btn) {
+            b.style.background = 'var(--accent-teal)';
+            b.style.color = '#fff';
+            b.classList.add('active');
+          } else {
+            b.style.background = 'transparent';
+            b.style.color = 'var(--text-secondary)';
+            b.classList.remove('active');
+          }
+        });
+      });
+    });
     const CODE_SNIPPETS = {
       css: `/* 1. PocketGull Webfont Declarations */
 @font-face {
