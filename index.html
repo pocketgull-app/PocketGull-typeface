@@ -149,23 +149,30 @@
       transform: rotate(-8deg) scale(1.15);
     }
 
-    .brand-logo-text {
-      font-family: 'PocketGull Bold', 'PocketGull', sans-serif;
-      font-size: 1.5rem;
-      letter-spacing: -0.02em;
-      color: var(--text-primary);
+    .brand-text-lockup {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      gap: 0.15rem;
     }
 
-    .brand-badge {
-      font-size: 0.7rem;
+    .brand-logo-text {
+      font-family: 'PocketGull Bold', 'PocketGull', sans-serif;
+      font-size: 1.35rem;
       font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      line-height: 1.05;
+    }
+
+    .brand-subtitle {
+      font-family: 'PocketGull Mono', monospace;
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 0.2rem 0.55rem;
-      border-radius: 9999px;
-      background: rgba(20, 184, 166, 0.12);
       color: var(--accent-teal);
-      border: 1px solid rgba(20, 184, 166, 0.3);
+      line-height: 1;
     }
 
     nav.header-nav {
@@ -1334,8 +1341,10 @@
           <polygon points="100,18 124,14 110,38 100,18" fill="#f97316" stroke="#0f172a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
         </g>
       </svg>
-      <span class="brand-logo-text">PocketGull</span>
-      <span class="brand-badge">Clinical Superfamily</span>
+      <div class="brand-text-lockup">
+        <span class="brand-logo-text">PocketGull</span>
+        <span class="brand-subtitle">Clinical Superfamily</span>
+      </div>
     </a>
     <nav class="header-nav">
       <a href="#playground">Type Tester</a>
