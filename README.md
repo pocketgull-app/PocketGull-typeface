@@ -327,6 +327,12 @@ PocketGull's geometry and clinical behavioral architecture are grounded in peer-
      *Demonstrates $670\text{ nm}$ red photobiomodulation restores retinal ATP synthesis and scotopic/photopic contrast sensitivity.*
    * **George C. Brainard, et al. (2001)**: *"Action spectrum for melatonin regulation in humans: evidence for a novel circadian photoreceptor."* Journal of Neuroscience, 21(16), 6405–6412. [[DOI: 10.1523/JNEUROSCI.21-16-06405.2001](https://doi.org/10.1523/JNEUROSCI.21-16-06405.2001)] • [[PubMed: 11511598](https://pubmed.ncbi.nlm.nih.gov/11511598/)]
 
+6. **AI Ethics, Data Provenance & Healthcare Transparency Artifacts**:
+   * **Mahima Pushkarna, Andrew Zaldivar, & Oddur Kjartansson (2022)**: *"Data Cards: Purpose-Driven AI Documentation for Machine Learning Datasets."* In **Proceedings of the 2022 ACM Conference on Fairness, Accountability, and Transparency (FAccT '22)**, pp. 1776–1826. [[DOI: 10.1145/3531146.3533231](https://doi.org/10.1145/3531146.3533231)] • [[Google PAIR Guide](https://pair-code.github.io/datacards/)]  
+     *Establishes the structured schema for dataset provenance, intended clinical usage boundaries, and accountability documentation.*
+   * **Negar Rostamzadeh, Diana Mincu, et al. (2022)**: *"Healthsheet: Development of a Transparency Artifact for Health Datasets."* arXiv preprint arXiv:2202.13028. [[arXiv: 2202.13028](https://arxiv.org/abs/2202.13028)]  
+     *Adapts transparency documentation specifically for life-critical healthcare datasets and clinical decision support systems.*
+
 ---
 
 ## 📜 Open-Source License & Attribution

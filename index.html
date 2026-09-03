@@ -2864,6 +2864,33 @@ Sincerely,
               </a>
             </div>
           </article>
+
+          <!-- 15. Google PAIR Data Cards & Healthsheets -->
+          <article class="source-card">
+            <div>
+              <div class="source-header">
+                <span class="source-domain-badge badge-spec">AI Ethics &amp; Transparency</span>
+                <span class="source-year">2022</span>
+              </div>
+              <h3 class="source-title">Data Cards &amp; Healthsheets: Human-Centered Transparency for Healthcare AI &amp; Software Artifacts</h3>
+              <p class="source-authors">Mahima Pushkarna, Andrew Zaldivar, Negar Rostamzadeh, et al. — Google Research &amp; Google PAIR</p>
+              <div class="source-citation">ACM FAccT '22 (pp. 1776–1826) &amp; arXiv:2202.13028 ("Healthsheets for Healthcare Datasets")</div>
+              <p class="source-takeaway">
+                <strong>Radical Transparency &amp; Rigorous Provenance:</strong> Established the definitive schema for documenting datasets, model architectures, and clinical decision support boundaries. PocketGull incorporates PAIR principles by shipping full typographic provenance, verified biometric invariants (5:1 Sloan), unambiguous ISMP glyph sets, and zero-egress data privacy declarations.
+              </p>
+            </div>
+            <div class="source-link-row">
+              <button type="button" class="doc-drill-launch-btn" data-term="Google PAIR Data Cards &amp; Healthsheets" data-category="AI Ethics &amp; Transparency">
+                <span>🔬</span> Drill Down &amp; Learn
+              </button>
+              <a href="https://pair-code.github.io/datacards/" target="_blank" rel="noopener" class="source-link-btn">
+                <span>📑</span> PAIR Data Cards Guide
+              </a>
+              <a href="https://arxiv.org/abs/2202.13028" target="_blank" rel="noopener" class="source-link-btn">
+                <span>📄</span> Healthsheet (arXiv:2202.13028)
+              </a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -4299,6 +4326,18 @@ Sincerely,
             <h3>2. Clinical Acuity Synthesis</h3>
             <p>PocketGull elevates this humanist lineage by embedding Louise Sloan 5:1 optotype ratios, ISMP slashed zeroes (<code>cv08</code>), and 256 Unicode Braille codepoints for mission-critical medical applications.</p>
           `
+        },
+        'pair': {
+          title: 'Google PAIR Data Cards &amp; Healthsheets',
+          category: 'AI ETHICS &amp; TRANSPARENCY',
+          citation: 'Pushkarna et al. (ACM FAccT 2022) &amp; Rostamzadeh et al. (arXiv:2202.13028)',
+          chips: ['What is a Data Card?', 'Explain Healthsheet framework', 'Why transparency matters in CDS', 'View PocketGull Data Card'],
+          content: `
+            <h3>1. The Transparency Crisis in Clinical Software</h3>
+            <p>In 2022, Google\'s People + AI Research (PAIR) team published their landmark framework on <strong>Data Cards</strong> and <strong>Healthsheets</strong> to combat opaque "black box" claims in healthcare software and clinical machine learning.</p>
+            <h3>2. How PocketGull Adheres to PAIR Standards</h3>
+            <p>Every claim made about PocketGull—from its 5:1 Sloan optotype ratio and 203 DPI thermal printhead survival to its ISMP slashed zero disambiguation—is structured as a verifiable, falsifiable <strong>Data Card Invariant</strong>. The typeface is not a closed proprietary file, but an open-source clinical artifact with complete provenance, SIL Open Font licensing, and zero telemetry egress.</p>
+          `
         }
       };
 
@@ -4332,6 +4371,7 @@ Sincerely,
         if (lower.includes('true') || lower.includes('opentype') || lower.includes('upm')) return DOC_DRILL_KNOWLEDGE['upm'];
         if (lower.includes('noto') || lower.includes('tofu')) return DOC_DRILL_KNOWLEDGE['noto'];
         if (lower.includes('ember') || lower.includes('dalton') || lower.includes('maag')) return DOC_DRILL_KNOWLEDGE['ember'];
+        if (lower.includes('pair') || lower.includes('data card') || lower.includes('healthsheet') || lower.includes('transparency')) return DOC_DRILL_KNOWLEDGE['pair'];
 
         return {
           title: term,
