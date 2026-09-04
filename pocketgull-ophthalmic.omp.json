@@ -11,17 +11,18 @@
           "type": "text",
           "style": "diamond",
           "leading_diamond": "\ue0b6",
-          "trailing_diamond": "\ue0b0",
+          "trailing_diamond": "\ue0b4",
           "foreground": "#ffffff",
-          "background": "#0284c7",
+          "background": "#0f766e",
           "template": " ⚕ POCKETGULL "
         },
         {
           "type": "path",
-          "style": "powerline",
-          "powerline_symbol": "\ue0b0",
-          "foreground": "#f8fafc",
-          "background": "#1e293b",
+          "style": "diamond",
+          "leading_diamond": " \ue0b6",
+          "trailing_diamond": "\ue0b4",
+          "foreground": "#faf8f2",
+          "background": "#18181b",
           "options": {
             "style": "full",
             "folder_icon": "📁 "
@@ -30,20 +31,26 @@
         },
         {
           "type": "git",
-          "style": "powerline",
-          "powerline_symbol": "\ue0b0",
-          "foreground": "#000000",
-          "background": "#34d399",
-          "template": "  {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }} *{{ end }}{{ if gt .Ahead 0 }} ▲{{ .Ahead }}{{ end }}{{ if gt .Behind 0 }} ▼{{ .Behind }}{{ end }} "
+          "style": "diamond",
+          "leading_diamond": " \ue0b6",
+          "trailing_diamond": "\ue0b4",
+          "foreground": "#ffffff",
+          "background": "#059669",
+          "background_templates": [
+            "{{ if or (.Working.Changed) (.Staging.Changed) }}#b45309{{ end }}",
+            "#059669"
+          ],
+          "template": "  {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }} 金{{ end }}{{ if gt .Ahead 0 }} ▲{{ .Ahead }}{{ end }}{{ if gt .Behind 0 }} ▼{{ .Behind }}{{ end }} "
         },
         {
           "type": "executiontime",
           "style": "diamond",
-          "trailing_diamond": "\ue0b0",
-          "foreground": "#facc15",
-          "background": "#14141c",
+          "leading_diamond": " \ue0b6",
+          "trailing_diamond": "\ue0b4",
+          "foreground": "#fbbf24",
+          "background": "#1c1917",
           "options": {
-            "threshold": 10
+            "threshold": 50
           },
           "template": " ⏱ {{ .FormattedMs }} "
         }
@@ -56,11 +63,11 @@
         {
           "type": "text",
           "style": "diamond",
-          "leading_diamond": "\ue0b2",
+          "leading_diamond": "\ue0b6",
           "trailing_diamond": "\ue0b4",
-          "foreground": "#38bdf8",
-          "background": "#09090d",
-          "template": " ⠠⠏⠕⠉⠅⠑⠞⠠⠛⠥⠇⠇ ⠠⠍⠕⠝⠕ • WCAG AAA "
+          "foreground": "#2dd4bf",
+          "background": "#18181b",
+          "template": " ⠠⠏⠕⠉⠅⠑⠞⠠⠛⠥⠇⠇ ⠠⠍⠕⠝⠕ "
         }
       ]
     }

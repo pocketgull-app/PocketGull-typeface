@@ -8,9 +8,9 @@
 @font-face {
   font-family: 'PocketGull';
   src: url('fonts/woff2/PocketGull-Bold.woff2') format('woff2'),
-       url('fonts/PocketGull-Bold.woff2') format('woff2'),
+       url('PocketGull-Bold.woff2') format('woff2'),
        url('fonts/ttf/PocketGull-Bold.ttf') format('truetype'),
-       url('fonts/PocketGull-Bold.ttf') format('truetype');
+       url('PocketGull-Bold.ttf') format('truetype');
   font-weight: 700 800;
   font-style: normal;
   font-display: swap;
@@ -19,10 +19,10 @@
 @font-face {
   font-family: 'PocketGull';
   src: url('fonts/woff2/PocketGull-Fineliner.woff2') format('woff2'),
-       url('fonts/PocketGull-Fineliner.woff2') format('woff2'),
+       url('PocketGull-Fineliner.woff2') format('woff2'),
        url('fonts/ttf/PocketGull-Fineliner.ttf') format('truetype'),
-       url('fonts/PocketGull-Fineliner.ttf') format('truetype');
-  font-weight: 400;
+       url('PocketGull-Fineliner.ttf') format('truetype');
+  font-weight: 400 500;
   font-style: normal;
   font-display: swap;
 }
@@ -30,9 +30,9 @@
 @font-face {
   font-family: 'PocketGull';
   src: url('fonts/woff2/PocketGull-Chiseltip.woff2') format('woff2'),
-       url('fonts/PocketGull-Chiseltip.woff2') format('woff2'),
+       url('PocketGull-Chiseltip.woff2') format('woff2'),
        url('fonts/ttf/PocketGull-Chiseltip.ttf') format('truetype'),
-       url('fonts/PocketGull-Chiseltip.ttf') format('truetype');
+       url('PocketGull-Chiseltip.ttf') format('truetype');
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -42,8 +42,9 @@
 @font-face {
   font-family: 'PocketGull Bold';
   src: url('fonts/woff2/PocketGull-Bold.woff2') format('woff2'),
-       url('fonts/PocketGull-Bold.woff2') format('woff2'),
-       url('fonts/ttf/PocketGull-Bold.ttf') format('truetype');
+       url('PocketGull-Bold.woff2') format('woff2'),
+       url('fonts/ttf/PocketGull-Bold.ttf') format('truetype'),
+       url('PocketGull-Bold.ttf') format('truetype');
   font-weight: 700 800;
   font-style: normal;
   font-display: swap;
@@ -52,9 +53,10 @@
 @font-face {
   font-family: 'PocketGull Fineliner';
   src: url('fonts/woff2/PocketGull-Fineliner.woff2') format('woff2'),
-       url('fonts/PocketGull-Fineliner.woff2') format('woff2'),
-       url('fonts/ttf/PocketGull-Fineliner.ttf') format('truetype');
-  font-weight: 400;
+       url('PocketGull-Fineliner.woff2') format('woff2'),
+       url('fonts/ttf/PocketGull-Fineliner.ttf') format('truetype'),
+       url('PocketGull-Fineliner.ttf') format('truetype');
+  font-weight: 400 500;
   font-style: normal;
   font-display: swap;
 }
@@ -62,8 +64,9 @@
 @font-face {
   font-family: 'PocketGull Chiseltip';
   src: url('fonts/woff2/PocketGull-Chiseltip.woff2') format('woff2'),
-       url('fonts/PocketGull-Chiseltip.woff2') format('woff2'),
-       url('fonts/ttf/PocketGull-Chiseltip.ttf') format('truetype');
+       url('PocketGull-Chiseltip.woff2') format('woff2'),
+       url('fonts/ttf/PocketGull-Chiseltip.ttf') format('truetype'),
+       url('PocketGull-Chiseltip.ttf') format('truetype');
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -73,10 +76,10 @@
 @font-face {
   font-family: 'PocketGull Mono';
   src: url('fonts/woff2/PocketGullMono-Regular.woff2') format('woff2'),
-       url('fonts/PocketGullMono-Regular.woff2') format('woff2'),
+       url('PocketGullMono-Regular.woff2') format('woff2'),
        url('fonts/ttf/PocketGullMono-Regular.ttf') format('truetype'),
-       url('fonts/PocketGullMono-Regular.ttf') format('truetype');
-  font-weight: 400 500;
+       url('PocketGullMono-Regular.ttf') format('truetype');
+  font-weight: 400 500 600 700;
   font-style: normal;
   font-display: swap;
 }
