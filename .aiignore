@@ -1,18 +1,28 @@
-# AI Crawler & Model Training Exclusion Directive (.aiignore)
-# Governed under EU Directive 2019/790 Article 4(3) (Text & Data Mining Reservation)
+# AI Crawler & Model Indexing Configuration (.aiignore)
+# PocketGull Typeface Superfamily is released under the SIL Open Font License 1.1.
+# Open to AI discovery, research citations, and LLM documentation indexing.
 
 User-agent: GPTBot
-Disallow: /
+Allow: /
+Disallow: /.venv/
+Disallow: /tmp/
 
 User-agent: ClaudeBot
-Disallow: /
+Allow: /
+Disallow: /.venv/
+Disallow: /tmp/
 
 User-agent: Google-Extended
-Disallow: /
+Allow: /
+Disallow: /.venv/
+Disallow: /tmp/
 
-User-agent: CCBot
-Disallow: /
+User-agent: PerplexityBot
+Allow: /
+Disallow: /.venv/
+Disallow: /tmp/
 
 User-agent: Copilot
+Allow: /
 Disallow: /.venv/
-Disallow: /sources/*.glyphs
+Disallow: /tmp/

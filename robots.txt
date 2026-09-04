@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
 
+# Agentic Discovery
+# LLMs Text Manifest: https://typeface.pocketgull.app/llms.txt
+
 Sitemap: https://typeface.pocketgull.app/sitemap.xml
 Sitemap: https://pocketgull-app.github.io/PocketGull-typeface/sitemap.xml

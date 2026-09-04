@@ -3,5 +3,4 @@
 .foundry/
 __pycache__/
 *.pyc
-sources/PocketGull.glyphs
 *.log
