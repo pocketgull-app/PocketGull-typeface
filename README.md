@@ -42,25 +42,43 @@ Originating from spontaneous felt marker lettering created on physical cardstock
 
 ---
 
-## 🗂️ Superfamily Styles & Weights
+## 🗂️ Superfamily Architecture: Typefaces & Font Instances
 
-PocketGull is engineered on a standardized 1000 UPM grid across 4 coordinated styles:
+PocketGull is engineered on a standardized 1000 UPM grid. In strict typographic taxonomy, **PocketGull** is the visual typeface design system, and the compiled `.woff2` and `.ttf` binaries are its concrete font software implementations:
 
-| Style | PostScript Name | Weight | Advance Metric | Primary Use Case |
-| :--- | :--- | :---: | :---: | :--- |
-| **PocketGull Bold** | `PocketGull-Bold` | 700 / 800 | Proportional | Prescription markers, Bionic reading anchors, alarms |
-| **PocketGull Fineliner** | `PocketGull-Fineliner` | 400 | Proportional | Long-form clinical notes, EHR charts, patient leaflets |
-| **PocketGull Chiseltip** | `PocketGull-Chiseltip` | 900 | Proportional | Expressive signage, trauma alerts, high-contrast placards |
-| **PocketGull Mono** | `PocketGullMono-Regular` | 400 / 500 | Fixed 600 UPM | ICU telemetry, tabular vitals, gapless box drawing |
+| Typeface Subfamily | Font Binary File | PostScript Name | Weight | Advance Metric | Primary Clinical Use Case |
+| :--- | :--- | :--- | :---: | :---: | :--- |
+| **PocketGull Bold** | `PocketGull-Bold.woff2` | `PocketGull-Bold` | 700 / 800 | Proportional | Prescription markers, Bionic reading anchors, alarms |
+| **PocketGull Fineliner** | `PocketGull-Fineliner.woff2` | `PocketGull-Fineliner` | 400 | Proportional | Long-form clinical notes, EHR charts, patient leaflets |
+| **PocketGull Chiseltip** | `PocketGull-Chiseltip.woff2` | `PocketGull-Chiseltip` | 900 | Proportional | Expressive signage, trauma alerts, high-contrast placards |
+| **PocketGull Mono** | `PocketGullMono-Regular.woff2` | `PocketGullMono-Regular` | 400 / 500 | Fixed 600 UPM | ICU telemetry, tabular vitals, gapless box drawing |
 
 ---
 
 ## 🔬 Core Innovations
 
-* **🫀 ISMP & FDA Disambiguation**: Native slashed zero (`cv08`), curved lowercase `l` (`cv05`), serifed uppercase `I` (`ss02`), and tabular numbers (`tnum`).
+* **🫀 ISMP & FDA Disambiguation**: Native OpenType layout feature tables for slashed zero (`cv08`), curved lowercase `l` (`cv05`), serifed uppercase `I` (`ss02`), and tabular numbers (`tnum`).
 * **⠃ 256 Unicode Braille Block (`U+2800`–`U+28FF`)**: Full ISO/TR 11548 tactile matrix for blister packs and pharmaceutical accessibility.
-* **👁️ Sloan 5:1 Optotypes & Bouma Spacing**: Calibrated for LogMAR 0.0 acuity and peripheral anti-crowding at 50–70 cm reading distance.
-* **💻 ICU Medical Terminal & Oh My Posh**: Gapless box drawing (`U+2500`–`U+257F`) and sub-cell ECG waveforms with native prompt theme (`pocketgull-ophthalmic.omp.json`).
+* **👁️ Sloan 5:1 Optotypes & Bouma Spacing**: Calibrated for LogMAR 0.0 acuity and Herman Bouma peripheral anti-crowding at 50–70 cm reading distance.
+* **💻 ICU Medical Terminal & Oh My Posh**: Strict 600 UPM gapless box drawing (`U+2500`–`U+257F`) and sub-cell ECG waveforms with native prompt theme (`pocketgull-ophthalmic.omp.json`).
+
+---
+
+## 🌐 Universal World Scripts Roadmap & Progress
+
+To guarantee universal healthcare equity, PocketGull is expanding to support all major world writing systems, eliminating the "tofu" missing-glyph box in global EHRs:
+
+| Tier | Script Systems | Target Glyphs | Est. Effort | Status in PocketGull |
+| :--- | :--- | :---: | :---: | :---: |
+| **Tier 1 (Western & Tactile)** | Latin, Cyrillic, Greek, Braille, ICU Telemetry | ~1,800 | 1,200 hrs | **100% Complete** (3,350+ chars) |
+| **Tier 2 (RTL & Semitic)** | Arabic, Hebrew, Syriac, Thaana (BiDi & Cursive) | ~2,200 | 1,500 hrs | 📋 Planned |
+| **Tier 3 (Indic Core)** | Devanagari, Bengali, Tamil, Telugu, Gurmukhi, Gujarati | ~6,500 | 4,200 hrs | 🟡 In Progress (128 Devanagari chars) |
+| **Tier 4 (SE Asian)** | Thai, Lao, Khmer, Burmese, Tibetan | ~2,000 | 1,200 hrs | 📋 Planned |
+| **Tier 5 (CJK Clinical Core)** | High-frequency medical Hanzi, Kana, Hangul | ~15,000 | 8,500 hrs | 📋 Planned |
+| **Tier 6 (Indigenous/African)** | Ge'ez, Cherokee, Inuktitut, Tifinagh, Adlam, Vai | ~2,500 | 1,800 hrs | 📋 Planned |
+
+*Multi-Script Fallback*: Until all native scripts reach completion, PocketGull pairs seamlessly with Google Noto Sans and system CJK/Indic typefaces with zero baseline jitter.
+
 
 ---
 
