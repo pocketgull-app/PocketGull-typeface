@@ -6033,6 +6033,16 @@ Sincerely,
         }
       }
 
+      function escapeHtml(str) {
+        if (!str) return '';
+        return String(str)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
       const DOC_DRILL_KNOWLEDGE = {
         'sloan': {
           title: 'Louise Sloan 5:1 Optotype Invariant',
@@ -6232,11 +6242,8 @@ Sincerely,
           category: 'CLINICAL SCIENCE',
           citation: 'PocketGull Scientific Knowledge Base',
           chips: ['Explain clinical significance', 'How does PocketGull implement this?', 'What are the 6 PEMDA+ pillars?'],
-          content: `
-            <h3>Overview</h3>
-            <p><strong>${term}</strong> is a core concept in PocketGull's ophthalmological and clinical design architecture.</p>
-            <p>Type a specific question below or click one of the suggested query chips to explore further.</p>
-          `
+          isFallback: true,
+          content: ''
         };
       }
 
@@ -6248,12 +6255,32 @@ Sincerely,
         const k = resolveKnowledge(term);
         drillBadge.textContent = category || k.category;
 
-        let html = `
-          <h2 style="font-size: 1.15rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.25rem;">${k.title}</h2>
-          <div style="font-family: var(--font-code); font-size: 0.72rem; color: var(--accent-amber); margin-bottom: 1rem;">${k.citation}</div>
-          ${k.content}
-        `;
-drillBody.innerHTML = html;
+        drillBody.replaceChildren();
+
+        const h2 = document.createElement('h2');
+        h2.style.cssText = 'font-size: 1.15rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.25rem;';
+        h2.textContent = k.title;
+
+        const cite = document.createElement('div');
+        cite.style.cssText = 'font-family: var(--font-code); font-size: 0.72rem; color: var(--accent-amber); margin-bottom: 1rem;';
+        cite.textContent = k.citation;
+
+        const contentDiv = document.createElement('div');
+        if (k.isFallback) {
+          const overviewH3 = document.createElement('h3');
+          overviewH3.textContent = 'Overview';
+          const p1 = document.createElement('p');
+          const strong = document.createElement('strong');
+          strong.textContent = k.title;
+          p1.append(strong, document.createTextNode(" is a core concept in PocketGull's ophthalmological and clinical design architecture."));
+          const p2 = document.createElement('p');
+          p2.textContent = 'Type a specific question below or click one of the suggested query chips to explore further.';
+          contentDiv.append(overviewH3, p1, p2);
+        } else {
+          contentDiv.innerHTML = k.content;
+        }
+
+        drillBody.append(h2, cite, contentDiv);
 
         // Render Chips
         drillChips.innerHTML = '';
@@ -6354,7 +6381,8 @@ Keep answers clear, educational, and structured in 2-3 paragraphs with markdown 
 
             const ansDiv = document.createElement('div');
             ansDiv.style.cssText = 'margin: 8px 0; padding: 10px 14px; background: var(--bg-card); border-radius: 8px; border: 1px solid var(--border-subtle);';
-            ansDiv.innerHTML = text
+            const escaped = escapeHtml(text);
+            ansDiv.innerHTML = escaped
               .replace(/^### (.+)$/gm, '<h3>$1</h3>')
               .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
               .replace(/`([^`]+)`/g, '<code>$1</code>')
@@ -6564,10 +6592,23 @@ Keep answers clear, educational, and structured in 2-3 paragraphs with markdown 
           }
           // 25. GENERAL FALLBACK (CONTEXT-AWARE SYNTHESIS)
           else {
-            answer = `<h4 style="color: var(--accent-teal); margin-bottom: 6px; font-size: 0.9rem;">🔬 Doc Drill Clinical Synthesis: ${question}</h4>
-            <p>In relation to <strong>${currentDrillTerm}</strong>, PocketGull bridges humanist aesthetic warmth with zero-error clinical precision.</p>
-            <p>All typographical parameters—including our 1000 UPM TrueType geometry, Louise Sloan 5:1 optotype invariants, and ISMP safety alternates—are designed to maintain 100% optical legibility across surgical displays, mobile kiosks, and bedside thermal wristbands.</p>
-            `;
+            const h4 = document.createElement('h4');
+            h4.style.cssText = 'color: var(--accent-teal); margin-bottom: 6px; font-size: 0.9rem;';
+            h4.textContent = `🔬 Doc Drill Clinical Synthesis: ${question}`;
+
+            const p1 = document.createElement('p');
+            p1.append(document.createTextNode('In relation to '));
+            const strong = document.createElement('strong');
+            strong.textContent = currentDrillTerm;
+            p1.append(strong, document.createTextNode(', PocketGull bridges humanist aesthetic warmth with zero-error clinical precision.'));
+
+            const p2 = document.createElement('p');
+            p2.textContent = 'All typographical parameters—including our 1000 UPM TrueType geometry, Louise Sloan 5:1 optotype invariants, and ISMP safety alternates—are designed to maintain 100% optical legibility across surgical displays, mobile kiosks, and bedside thermal wristbands.';
+
+            ansDiv.replaceChildren(h4, p1, p2);
+            drillBody.appendChild(ansDiv);
+            drillBody.scrollTop = drillBody.scrollHeight;
+            return;
           }
 
           ansDiv.innerHTML = answer;
