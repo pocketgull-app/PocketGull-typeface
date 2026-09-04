@@ -1,6 +1,6 @@
 {
   "name": "@pocketgull/typeface",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Optotypically calibrated clinical and ophthalmological vector typeface superfamily bridging tactile humanist warmth with zero-error clinical precision.",
   "main": "fonts.css",
   "style": "fonts.css",
@@ -29,6 +29,13 @@
     "url": "https://github.com/pocketgull-app/pocketgull-typeface/issues"
   },
   "homepage": "https://typeface.pocketgull.app",
+  "scripts": {
+    "build": "dart run tool/pocketgull_foundry.dart build",
+    "test": "dart run tool/pocketgull_foundry.dart audit && python sources/validate_fonts.py",
+    "audit": "dart run tool/pocketgull_foundry.dart audit",
+    "validate": "python sources/validate_fonts.py",
+    "serve": "dart run tool/pocketgull_foundry.dart serve 8080"
+  },
   "files": [
     "fonts/ttf/*.ttf",
     "fonts/woff2/*.woff2",

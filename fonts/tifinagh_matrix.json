@@ -1,0 +1,77 @@
+{
+  "timestamp": "2026-09-04T08:50:36Z",
+  "script": "Neo-Tifinagh (Amazigh / Berber)",
+  "unicode_range": "U+2D30 - U+2D7F",
+  "assigned_codepoints": 59,
+  "historical_origin": "Ancient Libyco-Berber script codified by Académie Berbère (1960s) & IRCAM (Morocco, 2003)",
+  "clinical_lexicon": [
+    {
+      "term": "ⵜⴰⵣⵎⵔⵜ",
+      "transliteration": "Tazmert",
+      "meaning": "Health / Physical Vitality",
+      "clinical_use": "Primary wellness indicator & baseline vitality score"
+    },
+    {
+      "term": "ⴰⵎⵙⴰⴼⴰⵔ",
+      "transliteration": "Amsafar",
+      "meaning": "Doctor / Physician",
+      "clinical_use": "EHR clinician role identifier"
+    },
+    {
+      "term": "ⴰⵙⴰⴼⴰⵔ",
+      "transliteration": "Asafar",
+      "meaning": "Medicine / Remedy",
+      "clinical_use": "Prescription & pharmacological dosing header"
+    },
+    {
+      "term": "ⵉⴷⴰⵎⵎⵏ",
+      "transliteration": "Idammen",
+      "meaning": "Blood",
+      "clinical_use": "Hematology lab reports & blood pressure telemetry"
+    },
+    {
+      "term": "ⵓⵍ",
+      "transliteration": "Ul",
+      "meaning": "Heart",
+      "clinical_use": "Cardiovascular vitals & ECG telemetry"
+    },
+    {
+      "term": "ⵜⵓⴷⵔⵜ",
+      "transliteration": "Tudert",
+      "meaning": "Life / Survival",
+      "clinical_use": "STAT triage acuity & life-support monitoring"
+    }
+  ],
+  "perma_pillars": [
+    {
+      "pillar": "P",
+      "term": "ⵜⵓⵎⵔⵜ (Tumert)",
+      "meaning": "Positive Emotion"
+    },
+    {
+      "pillar": "E",
+      "term": "ⵜⴰⵡⵡⵓⵔⵉ (Tawwuri)",
+      "meaning": "Engagement"
+    },
+    {
+      "pillar": "R",
+      "term": "ⵜⵉⴷⵓⴽⵍⴰ (Tidukla)",
+      "meaning": "Relationships / Kinship"
+    },
+    {
+      "pillar": "M",
+      "term": "ⴰⵏⴰⵎⴽ (Anamk)",
+      "meaning": "Meaning / Purpose"
+    },
+    {
+      "pillar": "A",
+      "term": "ⴰⵡⵏⵉ (Awni)",
+      "meaning": "Accomplishment"
+    },
+    {
+      "pillar": "+",
+      "term": "ⵜⴰⵣⵎⵔⵜ (Tazmert)",
+      "meaning": "Physical Vitality"
+    }
+  ]
+}

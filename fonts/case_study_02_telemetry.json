@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-09-04T08:50:58Z",
+  "case_study": 2,
+  "script": "Chinuk Pipa (Duployan Shorthand for Chinuk Wawa)",
+  "region": "Pacific Northwest / Grand Ronde, Columbia River basin",
+  "clinical_focus": "Tribal sovereignty health centers, holistic wellness, and community clinic communications.",
+  "codepoints_synthesized": 143,
+  "total_glyphs_compiled": 572,
+  "runtime_ms": 11284.47,
+  "manual_hours_benchmark": 429.0,
+  "acceleration_factor": 136860,
+  "fonts_updated": [
+    {
+      "filename": "PocketGull-Fineliner.ttf",
+      "weight": 400,
+      "is_mono": false,
+      "glyphs_added": 143,
+      "time_ms": 2864.93
+    },
+    {
+      "filename": "PocketGull-Bold.ttf",
+      "weight": 700,
+      "is_mono": false,
+      "glyphs_added": 143,
+      "time_ms": 2907.86
+    },
+    {
+      "filename": "PocketGull-Chiseltip.ttf",
+      "weight": 900,
+      "is_mono": false,
+      "glyphs_added": 143,
+      "time_ms": 2695.12
+    },
+    {
+      "filename": "PocketGullMono-Regular.ttf",
+      "weight": 400,
+      "is_mono": true,
+      "glyphs_added": 143,
+      "time_ms": 2785.83
+    }
+  ]
+}

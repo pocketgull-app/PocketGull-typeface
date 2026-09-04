@@ -62,3 +62,22 @@ INCLUDING ANY GENERAL, SPECIAL, INDIRECT, INCIDENTAL, OR CONSEQUENTIAL
 DAMAGES, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF THE USE OR INABILITY TO USE THE FONT SOFTWARE OR FROM
 OTHER DEALINGS IN THE FONT SOFTWARE.
+
+-----------------------------------------------------------
+ACKNOWLEDGEMENTS & SPECIAL THANKS
+-----------------------------------------------------------
+The PocketGull authors and contributors express sincere gratitude to:
+
+- The Dart Programming Language Project (https://dart.dev) and Google's
+  Dart & Flutter engineering teams for providing a soundly-typed,
+  high-performance, batteries-included standalone tooling runtime that powers
+  our procedural vector typography, phonological data matrices, and specimen
+  automation pipelines.
+
+- Randal L. Schwartz and the open-source software community for pioneering
+  advocacy of sound engineering practices, disciplined developer tooling,
+  and reliable systems programming standards.
+
+- The Sovereign Tribal, First Nations, and Indigenous language keepers,
+  clinicians, and community elders whose enduring stewardship and cultural
+  wisdom guide the development of this universal healthcare typography.

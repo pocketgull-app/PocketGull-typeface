@@ -1,0 +1,17 @@
+{
+  "region": "The Andes (Tawantinsuyu)",
+  "languages": ["Runasimi (Quechua)", "Aymara"],
+  "health_jurisdiction": "Kallawaya Traditional Healers Assembly & Red de Salud Intercultural Cusco",
+  "direction": "LTR",
+  "phonological_features": [
+    { "char": "q", "name": "Uvular stop (crucial phonemic distinction from velar k in Quechua)" },
+    { "char": "qʼ", "name": "Ejective uvular stop", "codepoints": ["U+0071", "U+02BC"] },
+    { "char": "qh", "name": "Aspirated uvular stop" },
+    { "char": "chʼ", "name": "Ejective affricate", "codepoints": ["U+0063", "U+0068", "U+02BC"] },
+    { "char": "chh", "name": "Aspirated affricate" },
+    { "char": "ñ", "name": "Palatal nasal (universal in Runasimi)", "codepoint": "U+00F1" },
+    { "char": "ll", "name": "Palatal lateral" },
+    { "char": "ï", "name": "Aymara centralized long vowel", "codepoint": "U+00EF" }
+  ],
+  "medical_context": "Guarantees exact transcription of medicinal plant taxonomies and diagnostic terms without phonetic distortion by Spanish colonial orthography"
+}

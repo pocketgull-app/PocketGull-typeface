@@ -1,0 +1,27 @@
+{
+  "sovereign_nation": "Diné Bikéyah (Navajo Nation)",
+  "language": "Diné Bizaad (Navajo)",
+  "health_jurisdiction": "Navajo Nation Division of Health & Tuba City Regional Health",
+  "direction": "LTR",
+  "vowels_nasal_and_toned": [
+    { "char": "ą", "base": "a", "feature": "nasal hook (ogonek)", "codepoint": "U+0105" },
+    { "char": "ą́", "base": "a", "feature": "nasal hook + high tone acute", "codepoints": ["U+0105", "U+0301"] },
+    { "char": "ę", "base": "e", "feature": "nasal hook (ogonek)", "codepoint": "U+0119" },
+    { "char": "ę́", "base": "e", "feature": "nasal hook + high tone acute", "codepoints": ["U+0119", "U+0301"] },
+    { "char": "į", "base": "i", "feature": "nasal hook (ogonek)", "codepoint": "U+012F" },
+    { "char": "į́", "base": "i", "feature": "nasal hook + high tone acute", "codepoints": ["U+012F", "U+0301"] },
+    { "char": "ǫ", "base": "o", "feature": "nasal hook (ogonek)", "codepoint": "U+01EB" },
+    { "char": "ǫ́", "base": "o", "feature": "nasal hook + high tone acute", "codepoints": ["U+01EB", "U+0301"] }
+  ],
+  "consonants_and_glottals": [
+    { "char": "ł", "name": "LATIN SMALL LETTER L WITH STROKE (Voiceless alveolar lateral fricative)", "codepoint": "U+0142" },
+    { "char": "Ł", "name": "LATIN CAPITAL LETTER L WITH STROKE", "codepoint": "U+0141" },
+    { "char": "ʼ", "name": "MODIFIER LETTER APOSTROPHE (Glottal Stop / Ejective Consonants: chʼ, kʼ, tʼ, tłʼ, tsʼ)", "codepoint": "U+02BC" },
+    { "char": "zh", "name": "Voiced postalveolar fricative digraph" },
+    { "char": "gh", "name": "Voiced velar fricative digraph" }
+  ],
+  "optical_invariants": {
+    "zero_vertical_clipping": "Ascender +950 UPM to ensure double-stacked acute over ogonek (ǫ́) never clips in EHR tables",
+    "stroke_clearance": "Ł slash angle clamped at 32° to prevent collision with adjacent ascenders"
+  }
+}

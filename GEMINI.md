@@ -51,7 +51,7 @@ PocketGull is an open-source clinical sans-serif, display, and telemetry monospa
 
 Every release must conform to Google Fonts onboarding standards:
 - **Category**: `SANS_SERIF` with classifications `["SANS_SERIF", "DISPLAY"]`.
-- **Minimalist Versioning (`nameID 5`)**: Must strictly follow Google Fonts Option 5: `Version 2.000; The PocketGull Project Authors; OFL 1.1`. `head.fontRevision` locked to exact float `2.0`.
+- **Minimalist Versioning (`nameID 5`)**: Must strictly follow Google Fonts Option 5: `Version 3.000; The PocketGull Project Authors; OFL 1.1`. `head.fontRevision` locked to exact float `3.0`.
 - **Copyright & License**: `nameID 0` matches `OFL.txt` line 1 character-for-character (`Copyright 2026 The PocketGull Project Authors (https://github.com/pocketgull-app/pocketgull-typeface)`).
 - **Zero Reserved Font Names (RFN)**: SIL Open Font License 1.1 with no RFN restriction.
 - **Designer Profile Dossier**: `documentation/designer/philgear/` containing valid `info.pb`, `bio.html` (with the Gentle Healer limerick), and `philgear.png` (300x300).
@@ -65,11 +65,11 @@ Every release must conform to Google Fonts onboarding standards:
 Before approving any commit or release:
 ```powershell
 # 1. Forensic W3C OTS & word-alignment audit (Dart 3.11)
-dart run ../pocketgull/scripts/dart/pocketgull_foundry.dart audit
+dart run tool/pocketgull_foundry.dart audit
 
 # 2. Python Google Fonts pre-flight specification validator
 python sources/validate_fonts.py
 
-# 3. Synchronize verified binaries to web app mirror
-dart run ../pocketgull/scripts/dart/pocketgull_foundry.dart sync
+# 3. Synchronize verified binaries to web app mirror (if app is present)
+dart run tool/pocketgull_foundry.dart sync
 ```

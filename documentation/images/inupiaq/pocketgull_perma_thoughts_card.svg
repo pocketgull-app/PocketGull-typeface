@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="2400" height="2400" viewBox="0 0 2400 2400" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap');
+      .font-brand { font-family: 'Plus Jakarta Sans', sans-serif; }
+      .font-mono { font-family: 'JetBrains Mono', monospace; }
+      .font-native { font-family: 'PocketGull', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
+    </style>
+    <linearGradient id="permaBg_inupiaq" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="60%" stop-color="#FAF8F5"/>
+      <stop offset="100%" stop-color="#F2EDE4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Surface Paperboard -->
+  <rect width="2400" height="2400" fill="url(#permaBg_inupiaq)"/>
+
+  <!-- Tactile Frame -->
+  <rect x="60" y="60" width="2280" height="2280" fill="none" stroke="#D6CEBF" stroke-width="2.5"/>
+  <rect x="80" y="80" width="2240" height="2240" fill="none" stroke="#D6CEBF" stroke-width="1.2" stroke-dasharray="10,10"/>
+
+  <!-- Card Header -->
+  <g transform="translate(140, 160)">
+    <text x="0" y="40" class="font-mono" font-size="28" font-weight="bold" fill="#64748B" letter-spacing="0.12em">PERMA+ HOLISTIC CLINICAL WELL-BEING &amp; SOVEREIGN TRADITION</text>
+    <text x="0" y="125" class="font-brand" font-size="64" font-weight="800" fill="#0F172A">Iñupiaq & Yup’ik (Alaska Native)</text>
+    <text x="0" y="185" class="font-native" font-size="42" font-weight="700" fill="#0284C7">Inuvialuit / Inuit / Yupiit • Alaska Native Tribal Health Consortium (ANTHC) • YKHC</text>
+    <line x1="0" y1="220" x2="2120" y2="220" stroke="#CBD5E1" stroke-width="2"/>
+  </g>
+
+  <!-- 6 PERMA+ Pillar Cards -->
+  <g transform="translate(140, 440)">
+
+    <g transform="translate(0, 0)">
+      <rect width="1040" height="480" rx="18" fill="#FFFFFF" stroke="#E2DACB" stroke-width="2"/>
+      <rect width="12" height="480" rx="6" fill="#1E3A8A"/>
+      
+      <g transform="translate(50, 70)">
+        <text x="0" y="0" class="font-mono" font-size="24" font-weight="bold" fill="#64748B">PILLAR 01 • POSITIVE EMOTION</text>
+        <text x="0" y="65" class="font-native" font-size="52" font-weight="800" fill="#1E3A8A">Quviasuktuq</text>
+        <foreignObject x="0" y="105" width="940" height="260">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; color: #334155; line-height: 1.55;">
+            Heartfelt joy, contentment, and laughter in community
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+
+    <g transform="translate(1080, 0)">
+      <rect width="1040" height="480" rx="18" fill="#FFFFFF" stroke="#E2DACB" stroke-width="2"/>
+      <rect width="12" height="480" rx="6" fill="#0284C7"/>
+      
+      <g transform="translate(50, 70)">
+        <text x="0" y="0" class="font-mono" font-size="24" font-weight="bold" fill="#64748B">PILLAR 02 • ENGAGEMENT</text>
+        <text x="0" y="65" class="font-native" font-size="52" font-weight="800" fill="#1E3A8A">Aŋuniaq</text>
+        <foreignObject x="0" y="105" width="940" height="260">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; color: #334155; line-height: 1.55;">
+            Subsistence hunting with reverence, patience, and skill
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+
+    <g transform="translate(0, 540)">
+      <rect width="1040" height="480" rx="18" fill="#FFFFFF" stroke="#E2DACB" stroke-width="2"/>
+      <rect width="12" height="480" rx="6" fill="#1E3A8A"/>
+      
+      <g transform="translate(50, 70)">
+        <text x="0" y="0" class="font-mono" font-size="24" font-weight="bold" fill="#64748B">PILLAR 03 • RELATIONSHIPS</text>
+        <text x="0" y="65" class="font-native" font-size="52" font-weight="800" fill="#1E3A8A">Iḷagiikłiq</text>
+        <foreignObject x="0" y="105" width="940" height="260">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; color: #334155; line-height: 1.55;">
+            Sacred extended family kinship and honoring elders
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+
+    <g transform="translate(1080, 540)">
+      <rect width="1040" height="480" rx="18" fill="#FFFFFF" stroke="#E2DACB" stroke-width="2"/>
+      <rect width="12" height="480" rx="6" fill="#0284C7"/>
+      
+      <g transform="translate(50, 70)">
+        <text x="0" y="0" class="font-mono" font-size="24" font-weight="bold" fill="#64748B">PILLAR 04 • MEANING</text>
+        <text x="0" y="65" class="font-native" font-size="52" font-weight="800" fill="#1E3A8A">Inupiat Ilitqusiat</text>
+        <foreignObject x="0" y="105" width="940" height="260">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; color: #334155; line-height: 1.55;">
+            Living the 17 ancestral values: sharing and respect
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+
+    <g transform="translate(0, 1080)">
+      <rect width="1040" height="480" rx="18" fill="#FFFFFF" stroke="#E2DACB" stroke-width="2"/>
+      <rect width="12" height="480" rx="6" fill="#1E3A8A"/>
+      
+      <g transform="translate(50, 70)">
+        <text x="0" y="0" class="font-mono" font-size="24" font-weight="bold" fill="#64748B">PILLAR 05 • ACCOMPLISHMENT</text>
+        <text x="0" y="65" class="font-native" font-size="52" font-weight="800" fill="#1E3A8A">Naluqataq</text>
+        <foreignObject x="0" y="105" width="940" height="260">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; color: #334155; line-height: 1.55;">
+            Spring whaling feast celebrating abundance and bravery
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+
+    <g transform="translate(1080, 1080)">
+      <rect width="1040" height="480" rx="18" fill="#FFFFFF" stroke="#E2DACB" stroke-width="2"/>
+      <rect width="12" height="480" rx="6" fill="#0284C7"/>
+      
+      <g transform="translate(50, 70)">
+        <text x="0" y="0" class="font-mono" font-size="24" font-weight="bold" fill="#64748B">PILLAR 06 • HEALTH VITALITY</text>
+        <text x="0" y="65" class="font-native" font-size="52" font-weight="800" fill="#1E3A8A">Niqipiaq</text>
+        <foreignObject x="0" y="105" width="940" height="260">
+          <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; color: #334155; line-height: 1.55;">
+            Nutrient-rich traditional country foods: seal, char, berries
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+
+  </g>
+
+  <!-- Bottom Land & Resilience Epilogue -->
+  <g transform="translate(140, 2140)">
+    <rect width="2120" height="140" rx="12" fill="#0F172A"/>
+    <text x="40" y="55" class="font-brand" font-size="28" font-weight="bold" fill="#F8FAFC">❄️ THE ARCTIC COASTAL TUNDRA, SIKU PACK ICE & NORTHERN AURORA</text>
+    <text x="40" y="100" class="font-mono" font-size="20" fill="#94A3B8">POCKETGULL OPEN HEALTHCARE TYPOGRAPHY • DEDICATED TO TRIBAL WELL-BEING &amp; SELF-DETERMINATION</text>
+  </g>
+</svg>
+

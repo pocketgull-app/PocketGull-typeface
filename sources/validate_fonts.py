@@ -118,6 +118,23 @@ def validate():
             log_fail(f"name ID 0 mismatch: '{name_records[0] if name_records else None}' != '{ofl_line1}'")
             failed_checks += 1
 
+        # E2. Version Alignment (SemVer 3.0.0 & Option 5)
+        total_checks += 2
+        rev = round(font["head"].fontRevision, 4)
+        if rev == 3.0:
+            log_pass(f"head.fontRevision: {rev:.1f} (SemVer 3.0.0 aligned)")
+        else:
+            log_fail(f"head.fontRevision: {rev} (Expected 3.0)")
+            failed_checks += 1
+
+        v5_expected = "Version 3.000; The PocketGull Project Authors; OFL 1.1"
+        v5_records = [n.toUnicode() for n in font["name"].names if n.nameID == 5]
+        if v5_records and v5_records[0] == v5_expected:
+            log_pass(f"name ID 5: matches '{v5_expected}'")
+        else:
+            log_fail(f"name ID 5 mismatch: '{v5_records[0] if v5_records else None}' != '{v5_expected}'")
+            failed_checks += 1
+
         # F. Outline Quality (Zero duplicate points)
         total_checks += 1
         glyf = font["glyf"]

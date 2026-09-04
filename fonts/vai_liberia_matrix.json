@@ -1,0 +1,22 @@
+{
+  "script_system": "Vai Syllabary (ꕙꔤ)",
+  "language": "Vai",
+  "inventor": "Mɔmɔlu Duwalu Bukɛlɛ (c. 1833, Liberia)",
+  "health_jurisdiction": "Vai Cultural Assembly & Grand Cape Mount Community Health Teams",
+  "direction": "LTR",
+  "unicode_range": "U+A500-U+A63F",
+  "syllabary_sample": [
+    { "codepoint": "U+A500", "char": "ꔀ", "name": "VAI SYLLABLE EE" },
+    { "codepoint": "U+A501", "char": "ꔁ", "name": "VAI SYLLABLE EEN" },
+    { "codepoint": "U+A502", "char": "ꔂ", "name": "VAI SYLLABLE HEE" },
+    { "codepoint": "U+A51D", "char": "ꔝ", "name": "VAI SYLLABLE I" },
+    { "codepoint": "U+A524", "char": "ꔤ", "name": "VAI SYLLABLE IN" },
+    { "codepoint": "U+A559", "char": "ꕙ", "name": "VAI SYLLABLE VAI" },
+    { "codepoint": "U+A582", "char": "ꖂ", "name": "VAI SYLLABLE KPO" },
+    { "codepoint": "U+A5D8", "char": "ꗘ", "name": "VAI SYLLABLE GBA" }
+  ],
+  "optical_invariants": {
+    "grid": "Calibrated to 1000 UPM with internal counter clearance at 10pt text size",
+    "stroke_clarity": "Internal cross-bars in characters like ꔤ maintained at minimum 48 UPM stroke to avoid ink-bleed in rural clinics"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "timestamp": "2026-09-04T08:50:36Z",
+  "script": "Cherokee Syllabary (Tsalagi Gawonihisdi)",
+  "unicode_range": "U+13A0 - U+13FF (Syllabary) & U+AB70 - U+ABBF (Supplement)",
+  "assigned_codepoints": 172,
+  "historical_origin": "Invented by Sequoyah (ᏍᏏᏉᏯ) in 1821; 85 traditional characters + modern lowercase supplement",
+  "clinical_lexicon": [
+    {
+      "term": "ᎠᏰᎵ ᎤᏂᎩᏍᏗ",
+      "transliteration": "Ayeli Unigisdi",
+      "meaning": "Health / Healing",
+      "clinical_use": "Cherokee Nation Health Services banner"
+    },
+    {
+      "term": "ᎦᎾᎦᏘ",
+      "transliteration": "Ganagati",
+      "meaning": "Doctor / Physician",
+      "clinical_use": "Attending physician signature line"
+    },
+    {
+      "term": "ᏅᏬᏘ",
+      "transliteration": "Nvwoti",
+      "meaning": "Medicine / Treatment",
+      "clinical_use": "Medication administration record (MAR)"
+    },
+    {
+      "term": "ᎩᎦ",
+      "transliteration": "Giga",
+      "meaning": "Blood",
+      "clinical_use": "Hematology lab values & transfusion safety"
+    },
+    {
+      "term": "ᎤᏪᎵᎯᏍᏗ",
+      "transliteration": "Uwelihisdi",
+      "meaning": "Heart / Soul",
+      "clinical_use": "Pulse telemetry & cardiac care"
+    },
+    {
+      "term": "ᏓᎾᏓᏅᎿ",
+      "transliteration": "Danadanvhna",
+      "meaning": "Hospital",
+      "clinical_use": "Facility location header"
+    }
+  ],
+  "perma_pillars": [
+    {
+      "pillar": "P",
+      "term": "ᎤᎵᎮᎵᏍᏗ (Ulihelisdi)",
+      "meaning": "Positive Emotion / Joy"
+    },
+    {
+      "pillar": "E",
+      "term": "ᎪᎵᏩᏛᏗ (Goliwadvdi)",
+      "meaning": "Engagement / Mindful Focus"
+    },
+    {
+      "pillar": "R",
+      "term": "ᎣᏓᏅᏛ (Odanvdv)",
+      "meaning": "Relationships / Kinship"
+    },
+    {
+      "pillar": "M",
+      "term": "ᎦᏙ ᎤᏍᏗ ᏓᏛᏁᎵ (Gado Usdi Dadvneli)",
+      "meaning": "Meaning / Sacred Purpose"
+    },
+    {
+      "pillar": "A",
+      "term": "ᎦᎾᏄᎪᏫᏒ (Gananugowisv)",
+      "meaning": "Accomplishment / Mastery"
+    },
+    {
+      "pillar": "+",
+      "term": "ᎤᏍᎦᏎᏗ (Usgasedi)",
+      "meaning": "Physical Vitality / Resilience"
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="2688" height="3600" viewBox="0 0 2688 3600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@400;600;700&amp;display=swap');
+      .font-title { font-family: 'Plus Jakarta Sans', sans-serif; }
+      .font-mono { font-family: 'JetBrains Mono', monospace; }
+      .font-native { font-family: 'PocketGull', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
+    </style>
+    <linearGradient id="polarWashi_hawaiian" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="50%" stop-color="#FAF8F5"/>
+      <stop offset="100%" stop-color="#F3ECE2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Archival Polar Washi Paper Surface -->
+  <rect width="2688" height="3600" fill="url(#polarWashi_hawaiian)"/>
+
+  <!-- Museum Deckle Frame -->
+  <rect x="80" y="80" width="2528" height="3440" fill="none" stroke="#D1C7B7" stroke-width="3"/>
+  <rect x="100" y="100" width="2488" height="3400" fill="none" stroke="#D1C7B7" stroke-width="1.2" stroke-dasharray="12,12"/>
+
+  <!-- Color Header Ribbon -->
+  <rect x="80" y="80" width="632" height="12" fill="#0E7490"/>
+  <rect x="712" y="80" width="632" height="12" fill="#B91C1C"/>
+  <rect x="1344" y="80" width="632" height="12" fill="#CA8A04"/>
+  <rect x="1976" y="80" width="632" height="12" fill="#1E293B"/>
+
+  <!-- Broadside Header -->
+  <g transform="translate(160, 220)">
+    <text x="0" y="40" class="font-mono" font-size="28" font-weight="bold" fill="#64748B" letter-spacing="0.1em">POCKETGULL PEDAGOGICAL BROADSIDE • SOVEREIGN INDIGENOUS TYPOGRAPHY</text>
+    <text x="0" y="130" class="font-title" font-size="72" font-weight="800" fill="#0F172A">ʻŌlelo Hawaiʻi (Native Hawaiian)</text>
+    <text x="0" y="200" class="font-native" font-size="48" font-weight="700" fill="#B91C1C">Pae ʻĀina o Hawaiʻi • Papa Ola Lōkahi • Native Hawaiian Health Systems</text>
+    <line x1="0" y1="240" x2="2368" y2="240" stroke="#CBD5E1" stroke-width="2"/>
+  </g>
+
+  <!-- Master Alphabet & Syllable Specimen Wall -->
+  <g transform="translate(160, 560)">
+    <text x="0" y="0" class="font-mono" font-size="30" font-weight="bold" fill="#475569">01 / COMPLETE SOVEREIGN GLYPH RUN &amp; ORTHOGRAPHIC INVENTORY</text>
+    <rect y="30" width="2368" height="640" rx="16" fill="#FFFFFF" stroke="#E2DACB" stroke-width="2"/>
+    
+    <!-- Large Character Display -->
+    <g transform="translate(60, 160)">
+      <text x="0" y="0" class="font-native" font-size="64" font-weight="800" fill="#0F172A" letter-spacing="0.08em">
+        A B C D E G H I J K L M N O P Q R S T U W X Y Z
+      </text>
+      <text x="0" y="90" class="font-native" font-size="64" font-weight="800" fill="#0F172A" letter-spacing="0.08em">
+        a b c d e g h i j k l m n o p q r s t u w x y z
+      </text>
+      <text x="0" y="200" class="font-native" font-size="76" font-weight="800" fill="#0E7490" letter-spacing="0.12em">
+        ą́ ę́ į́ ǫ́ Ł ł ƛ ɬ ə ʔ ʼ ʻ č ȟ ǩ ŋ š ž
+      </text>
+      <text x="0" y="320" class="font-native" font-size="72" font-weight="800" fill="#B91C1C" letter-spacing="0.1em">
+        Ꭰ Ꭱ Ꭲ Ꭳ Ꭴ Ꭵ Ꭶ Ꭷ Ꭸ Ꭹ Ꭺ Ꭻ Ꭼ Ꭽ Ꭾ Ꭿ Ꮀ Ꮁ Ꮂ
+      </text>
+      <text x="0" y="420" class="font-mono" font-size="32" font-weight="bold" fill="#64748B">
+        0 1 2 3 4 5 6 7 8 9 • ISMP SLASHED ZERO: 0̸ • TABULAR NUMBERS: 120/80
+      </text>
+    </g>
+  </g>
+
+  <!-- Section 2: Bioregional Landscape & Flora Immersion -->
+  <g transform="translate(160, 1300)">
+    <text x="0" y="0" class="font-mono" font-size="30" font-weight="bold" fill="#475569">02 / WALKING THE LANDS &amp; NATURE WITHOUT TRAVELING</text>
+    <rect y="30" width="2368" height="520" rx="16" fill="#FFFFFF" stroke="#E2DACB" stroke-width="2"/>
+    <g transform="translate(60, 100)">
+      <text x="0" y="0" class="font-title" font-size="44" font-weight="800" fill="#0E7490">🌺 THE AHUPUAʻA WATERSHED, EMERALD KNIFE RIDGES & TURQUOISE SWELLS</text>
+      <foreignObject x="0" y="35" width="2240" height="360">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; color: #334155; line-height: 1.65;">
+          Stretching from misty cloud forests of Haleakalā and Mauna Kea through lush taro (Kalo) terraces to pristine coral reefs. Where scarlet ʻŌhiʻa blossoms grace black volcanic lava flows and ocean waves nourish the islands, health is the sacred triangle of Lōkahi (God, Humankind, Land).
+          <br/><br/>
+          <em style="color: #B91C1C; font-weight: 600;">Traditional Ecological Knowledge (TEK):</em> Indigenous languages preserve micro-climate data, seasonal bird migrations, and botanical chemistry refined over millennia. PocketGull provides the high-legibility digital typography required to pass this knowledge across generations.
+        </div>
+      </foreignObject>
+    </g>
+  </g>
+
+  <!-- Section 3: 8-Word Pharmacopeia Broadside Cards -->
+  <g transform="translate(160, 1920)">
+    <text x="0" y="0" class="font-mono" font-size="30" font-weight="bold" fill="#475569">03 / CULTURAL PHARMACOPEIA &amp; PHILOSOPHICAL FOUNDATIONS</text>
+    <g transform="translate(0, 30)">
+
+      <g transform="translate(0, 0)">
+        <rect width="1160" height="150" rx="12" fill="#FFFFFF" stroke="#E2DACB" stroke-width="1.8"/>
+        <text x="40" y="65" class="font-native" font-size="44" font-weight="bold" fill="#0E7490">Ola Pono</text>
+        <text x="40" y="115" class="font-title" font-size="24" font-weight="600" fill="#475569">Optimal health, vitality, wellness, and right living</text>
+      </g>
+
+      <g transform="translate(1210, 0)">
+        <rect width="1160" height="150" rx="12" fill="#FFFFFF" stroke="#E2DACB" stroke-width="1.8"/>
+        <text x="40" y="65" class="font-native" font-size="44" font-weight="bold" fill="#0E7490">Lōkahi</text>
+        <text x="40" y="115" class="font-title" font-size="24" font-weight="600" fill="#475569">Harmony and unity between God, people, and land</text>
+      </g>
+
+      <g transform="translate(0, 180)">
+        <rect width="1160" height="150" rx="12" fill="#FFFFFF" stroke="#E2DACB" stroke-width="1.8"/>
+        <text x="40" y="65" class="font-native" font-size="44" font-weight="bold" fill="#0E7490">Mālama ʻĀina</text>
+        <text x="40" y="115" class="font-title" font-size="24" font-weight="600" fill="#475569">Care for and protect the land so it nourishes you</text>
+      </g>
+
+      <g transform="translate(1210, 180)">
+        <rect width="1160" height="150" rx="12" fill="#FFFFFF" stroke="#E2DACB" stroke-width="1.8"/>
+        <text x="40" y="65" class="font-native" font-size="44" font-weight="bold" fill="#0E7490">Kalo</text>
+        <text x="40" y="115" class="font-title" font-size="24" font-weight="600" fill="#475569">Taro root; sacred elder brother and ancestral staple food</text>
+      </g>
+
+      <g transform="translate(0, 360)">
+        <rect width="1160" height="150" rx="12" fill="#FFFFFF" stroke="#E2DACB" stroke-width="1.8"/>
+        <text x="40" y="65" class="font-native" font-size="44" font-weight="bold" fill="#0E7490">Lāʻau Lapaʻau</text>
+        <text x="40" y="115" class="font-title" font-size="24" font-weight="600" fill="#475569">Traditional Hawaiian botanical medicine and healing arts</text>
+      </g>
+
+      <g transform="translate(1210, 360)">
+        <rect width="1160" height="150" rx="12" fill="#FFFFFF" stroke="#E2DACB" stroke-width="1.8"/>
+        <text x="40" y="65" class="font-native" font-size="44" font-weight="bold" fill="#0E7490">Puʻuwai</text>
+        <text x="40" y="115" class="font-title" font-size="24" font-weight="600" fill="#475569">The biological and spiritual human heart</text>
+      </g>
+
+      <g transform="translate(0, 540)">
+        <rect width="1160" height="150" rx="12" fill="#FFFFFF" stroke="#E2DACB" stroke-width="1.8"/>
+        <text x="40" y="65" class="font-native" font-size="44" font-weight="bold" fill="#0E7490">Ea</text>
+        <text x="40" y="115" class="font-title" font-size="24" font-weight="600" fill="#475569">Life breath, air, sovereignty, and independence</text>
+      </g>
+
+      <g transform="translate(1210, 540)">
+        <rect width="1160" height="150" rx="12" fill="#FFFFFF" stroke="#E2DACB" stroke-width="1.8"/>
+        <text x="40" y="65" class="font-native" font-size="44" font-weight="bold" fill="#0E7490">Mahalo Nui Loa</text>
+        <text x="40" y="115" class="font-title" font-size="24" font-weight="600" fill="#475569">Profound, overflowing gratitude from the heart</text>
+      </g>
+
+    </g>
+  </g>
+
+  <!-- Section 4: Typography Weight Comparison -->
+  <g transform="translate(160, 2760)">
+    <text x="0" y="0" class="font-mono" font-size="30" font-weight="bold" fill="#475569">04 / THE FOUR FOUNDATIONAL SUPERFAMILY WEIGHTS</text>
+    <rect y="30" width="2368" height="560" rx="16" fill="#FFFFFF" stroke="#E2DACB" stroke-width="2"/>
+    <g transform="translate(60, 100)">
+      <text x="0" y="30" class="font-mono" font-size="22" font-weight="bold" fill="#64748B">1. POCKETGULL FINELINER (WEIGHT 400 PROPORTIONAL) — LONG-FORM CLINICAL NOTES</text>
+      <text x="0" y="80" class="font-native" font-size="38" font-weight="400" fill="#0F172A">Ola Pono: Optimal health, vitality, wellness, and right living. Lōkahi: Harmony and unity between God, people, and land.</text>
+
+      <text x="0" y="160" class="font-mono" font-size="22" font-weight="bold" fill="#64748B">2. POCKETGULL BOLD (WEIGHT 700 PROPORTIONAL) — PRESCRIPTION LABELS &amp; ALARMS</text>
+      <text x="0" y="210" class="font-native" font-size="40" font-weight="700" fill="#0F172A">Ola Pono: Optimal health, vitality, wellness, and right living. Lōkahi: Harmony and unity between God, people, and land.</text>
+
+      <text x="0" y="290" class="font-mono" font-size="22" font-weight="bold" fill="#64748B">3. POCKETGULL CHISELTIP (WEIGHT 900 PROPORTIONAL) — TRAUMA PLACARDS &amp; WAYFINDING</text>
+      <text x="0" y="340" class="font-native" font-size="42" font-weight="900" fill="#0F172A">Ola Pono: Optimal health, vitality, wellness, and right living. Lōkahi: Harmony and unity between God, people, and land.</text>
+
+      <text x="0" y="420" class="font-mono" font-size="22" font-weight="bold" fill="#64748B">4. POCKETGULL MONO (600 UPM MEDICAL TERMINAL) — REAL-TIME BIOMETRIC READOUTS</text>
+      <text x="0" y="470" class="font-mono" font-size="36" font-weight="700" fill="#0369A1">HR 72 BPM | BP 120/80 mmHg | SpO2 99% | TEMP 37.0°C</text>
+    </g>
+  </g>
+
+  <!-- Footer Imprint -->
+  <g transform="translate(160, 3420)">
+    <text x="0" y="0" class="font-mono" font-size="24" fill="#64748B">POCKETGULL PEDAGOGICAL PLATE • 300 DPI MASTER PRINT QUALITY • SIL OPEN FONT LICENSE 1.1</text>
+  </g>
+</svg>
+

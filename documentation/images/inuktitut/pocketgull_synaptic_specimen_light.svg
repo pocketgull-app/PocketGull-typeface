@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="2560" height="1280" viewBox="0 0 2560 1280" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @font-face { font-family: "PocketGull"; src: local("PocketGull"), local("PocketGull-Bold"); font-weight: bold; }
+      @font-face { font-family: "PocketGull Mono"; src: local("PocketGull Mono"), local("PocketGullMono-Regular"); }
+      .font-title { font-family: "PocketGull", -apple-system, sans-serif; font-weight: bold; }
+      .font-mono { font-family: "PocketGull Mono", "Courier New", monospace; }
+      .font-syllabic { font-family: "PocketGull", "Gadugi", "Euphemia", sans-serif; }
+      .font-body { font-family: "PocketGull", -apple-system, sans-serif; }
+    </style>
+    <linearGradient id="panoBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="40%" stop-color="#FAF8F5"/>
+      <stop offset="100%" stop-color="#F2EDE2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="2560" height="1280" fill="url(#panoBg)"/>
+
+  <!-- Outer Architectural Framing -->
+  <rect x="60" y="60" width="2440" height="1160" fill="none" stroke="#E7E2D6" stroke-width="2"/>
+  <line x1="1280" y1="60" x2="1280" y2="1220" stroke="#E7E2D6" stroke-width="1.5"/>
+
+  <!-- Flags in Top Right -->
+    <g transform="translate(2245.0, 80.0)">
+    <rect width="100.0" height="62.0" rx="2" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="0.8"/>
+    <g transform="scale(0.010416666666666666, 0.012916666666666667)">
+      <!-- Official Canadian Red Bars (1:4 width each) -->
+      <path fill="#D52B1E" d="m0 0h2400v4800H0z"/>
+      <path fill="#D52B1E" d="m7200 0h2400v4800h-2400z"/>
+      <!-- Pure White Center Pale Square (1:2 width) -->
+      <path fill="#FFFFFF" d="m2400 0h4800v4800h-4800z"/>
+      <!-- The Official 11-Point Canadian Maple Leaf -->
+      <path fill="#D52B1E" d="m4890 4430-45-863a95 95 0 0 1 111-98l859 151-116-320a65 65 0 0 1 20-73l941-762-212-99a65 65 0 0 1-34-79l186-572-542 115a65 65 0 0 1-73-38l-105-247-423 454a65 65 0 0 1-111-57l204-1052-327 189a65 65 0 0 1-91-27l-332-652-332 652a65 65 0 0 1-91 27l-327-189 204 1052a65 65 0 0 1-111 57l-423-454-105 247a65 65 0 0 1-73 38l-542-115 186 572a65 65 0 0 1-34 79l-212 99 941 762a65 65 0 0 1 20 73l-116 320 859-151a95 95 0 0 1 111 98l-45 863z"/>
+    </g>
+  </g>
+  
+    <g transform="translate(2360.0, 80.0)">
+    <!-- Crisp Outer Border & Drop Shadow -->
+    <rect width="100.0" height="62.0" rx="2" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="0.8"/>
+    <g transform="scale(0.010416666666666666, 0.011481481481481481)">
+      <!-- Left Field: Nunavut Gold -->
+      <path fill="#FFD100" d="m0 0h4800v5400H0z"/>
+      <!-- Right Field: Pristine Arctic Snow White -->
+      <path fill="#FFFFFF" d="m4800 0h4800v5400h-4800z"/>
+      <!-- Center Inuksuk in Nunavut Crimson with Black Outline (Official Construction) -->
+      <path stroke="#0F172A" stroke-linejoin="round" stroke-width="70" fill="#D52B1E" d="m4800 39c83 18 434 417 464 510 24 96-94 927-204 1201-203 44-528 17-715-39-37-77-114-1079-79-1225 37-71 458-435 534-447zm-2085 1653c868 101 2615 93 3817 124 114 14-83 307-132 426-48 119-57 384-335 377-1021-30-1946-58-2939-89-361-11-640-863-411-838zm1336 882c176 20 873 8 1134 43 178 27 176 634 93 728-91 105-531 36-775 108-232 66-251 138-685 89 108-573 40-992 233-968zm-372 1048c67-89 192-64 341-53 203 9 649-161 945-158 180 7 319 79 315 242-6 129 7 438-74 613-48 114-745 92-1065-23-93-33-440 31-480-29-46-64-75-469 18-592zm50 664c27-51 157-69 239-63 216 15 626 196 1085 112 276-50 575 544 477 700-100 164-216 240-336 330-940 8-1614 89-1602-271 6-184 24-609 137-808z"/>
+      <!-- Niqirtsuituq Polaris Star in Polaris Blue (Upper Right Fly) -->
+      <path fill="#003896" d="m8847 753-784 399 869 138-622-622 138 869z"/>
+    </g>
+  </g>
+  
+
+  <!-- Left Half: Inuktitut Syllabics Core Anatomy & Rotational Sovereignty -->
+  <g transform="translate(120, 120)">
+    <rect x="0" y="0" width="240" height="34" rx="3" fill="#D52B1E"/>
+    <text x="120" y="22" class="font-mono" font-size="14" fill="#FFFFFF" text-anchor="middle" font-weight="bold">TIER 6 • CASE STUDY 01</text>
+    <text x="260" y="24" class="font-mono" font-size="14" fill="#003896" font-weight="bold">NUNAVUT VEXILLOLOGY // CA-NU 🇨🇦 // CANADIAN ABORIGINAL SYLLABICS</text>
+
+    <!-- Giant Bilingual Title -->
+    <text x="0" y="115" class="font-syllabic" font-size="72" fill="#1F1B16" font-weight="bold">ᐳᒃᑭᑦᒐᓪ <tspan fill="#FFD100">PocketGull</tspan></text>
+    <text x="0" y="160" class="font-syllabic" font-size="30" fill="#003896">ᐃᓄᒃᑎᑐᑦ • ROTATIONAL SOVEREIGNTY IN TELEMETRY</text>
+
+    <text x="0" y="210" class="font-body" font-size="20" fill="#57534E">Procedural compilation of 640 concrete syllabic glyphs (U+1400–U+167F) in 13.87 ms.</text>
+    <text x="0" y="240" class="font-body" font-size="20" fill="#57534E">Strict 1000 UPM grid, Louise Sloan 5:1 optotype ratio, 600 UPM fixed medical pitch.</text>
+
+    <!-- Large Syllabic Callout Ribbon -->
+    <g transform="translate(0, 280)">
+      <rect width="1040" height="180" fill="#FFFDF8" stroke="#E7E2D6" stroke-width="1.5"/>
+      <line x1="0" y1="0" x2="1040" y2="0" stroke="#FFD100" stroke-width="4"/>
+      <text x="30" y="40" class="font-mono" font-size="13" fill="#78716C" font-weight="bold">THE ROTATIONAL VOWEL CODE (pi, pu, pa + p-final)</text>
+      <text x="30" y="120" class="font-syllabic" font-size="64" fill="#1F1B16" letter-spacing="0.25em">ᐱ ᐲ ᐳ ᐴ ᐸ ᐹ ᑉ</text>
+      <text x="30" y="155" class="font-mono" font-size="13" fill="#003896" font-weight="bold">[ᐱ = NORTH • ᐳ = EAST • ᐸ = SOUTH • ᑉ = FINAL SUPERSCRIPT]</text>
+    </g>
+
+    <!-- 4 Weights Comparison Line -->
+    <g transform="translate(0, 500)">
+      <text x="0" y="30" class="font-mono" font-size="14" fill="#78716C" font-weight="bold">4 SUPERFAMILY WEIGHTS (UNIFORM OPTICAL DENSITY):</text>
+      <text x="0" y="80" class="font-syllabic" font-size="36" fill="#1F1B16">Fineliner: ᐋᓐᓂᐊᕕᒃ ᓘᒃᑖᖅ ᐆᒻᒪᑎ 72 bpm</text>
+      <text x="0" y="130" class="font-syllabic" font-size="36" fill="#1F1B16" font-weight="bold">Bold: ᐋᓐᓂᐊᕕᒃ ᓘᒃᑖᖅ ᐆᒻᒪᑎ 72 bpm</text>
+      <text x="0" y="180" class="font-syllabic" font-size="36" fill="#003896" font-weight="bold">Mono: ᐋᓐᓂᐊᕕᒃ ᓘᒃᑖᖅ ᐆᒻᒪᑎ 72 bpm</text>
+    </g>
+
+    <!-- Footer Seal -->
+    <text x="0" y="740" class="font-mono" font-size="13" fill="#78716C">UNIVERSAL WORLD SCRIPTS INITIATIVE // OFL 1.1 // ZERO NODE DUPLICATION // ISO 3166-2: CA-NU</text>
+  </g>
+
+  <!-- Right Half: Nunavut Clinical Health Center Telemetry HUD -->
+  <g transform="translate(1360, 120)">
+    <rect width="1080" height="980" rx="6" fill="#FFFDF8" stroke="#E7E2D6" stroke-width="2"/>
+    <line x1="0" y1="0" x2="1080" y2="0" stroke="#003896" stroke-width="5"/>
+
+    <!-- Header with Official Star & Locality Title -->
+    <g transform="translate(40, 45)">
+      <polygon points="16,0 20,12 32,16 20,20 16,32 12,20 0,16 12,12" fill="#003896"/>
+      <text x="45" y="24" class="font-syllabic" font-size="26" fill="#1F1B16" font-weight="bold">ᕿᑭᖅᑖᓗᒃ ᐋᓐᓂᐊᕕᒃ • QIKIQTANI GENERAL HOSPITAL</text>
+      <text x="45" y="50" class="font-mono" font-size="13" fill="#78716C">IQALUIT, NUNAVUT // ARCTIC EMERGENCY TELEMETRY CONSOLE // CA-NU 🇨🇦</text>
+      <line x1="0" y1="65" x2="1000" y2="65" stroke="#E7E2D6" stroke-width="1.5"/>
+    </g>
+
+    <!-- Nunavut Localities & Health Network Bar -->
+    <g transform="translate(40, 125)">
+      <rect width="1000" height="34" rx="3" fill="#FAF8F5" stroke="#E7E2D6" stroke-width="1"/>
+      <line x1="0" y1="0" x2="1000" y2="0" stroke="#FFD100" stroke-width="2"/>
+      <text x="16" y="22" class="font-mono" font-size="10" fill="#B45309" font-weight="bold">LOCALITIES // ᓄᓇᓕᖕᓂ ᐋᓐᓂᐊᕕᖃᕐᕖᑦ:</text>
+      <text x="250" y="22" class="font-syllabic" font-size="12" fill="#1F1B16">ᐃᖃᓗᐃᑦ (Iqaluit) • ᑲᖏᖅᖠᓂᖅ (Rankin Inlet) • ᐃᖃᓗᒃᑑᑦᑎᐊᖅ (Cambridge Bay) • ᐃᒡᓗᓕᒃ (Igloolik) • ᐸᖕᓂᕐᑑᖅ (Pangnirtung) • ᑭᙵᐃᑦ (Kinngait)</text>
+    </g>
+
+    <!-- Telemetry Vitals Display (Tabular Figures) -->
+    <g transform="translate(40, 175)">
+      <!-- Box 1: Heart Rate -->
+      <rect x="0" y="0" width="310" height="130" fill="#FAF8F5" stroke="#D52B1E" stroke-width="1.5"/>
+      <text x="24" y="32" class="font-syllabic" font-size="16" fill="#D52B1E" font-weight="bold">ᐆᒻᒪᑎ • HEART RATE</text>
+      <text x="24" y="88" class="font-mono" font-size="48" fill="#1F1B16" font-weight="bold">72 <tspan font-size="18" fill="#78716C">BPM</tspan></text>
+      <text x="24" y="114" class="font-mono" font-size="11" fill="#003896">NORMAL SINUS RHYTHM</text>
+
+      <!-- Box 2: SpO2 -->
+      <rect x="345" y="0" width="310" height="130" fill="#FAF8F5" stroke="#003896" stroke-width="1.5"/>
+      <text x="369" y="32" class="font-syllabic" font-size="16" fill="#003896" font-weight="bold">ᐊᓂᕐᓂᖃᕐᓇᖅ • SpO₂</text>
+      <text x="369" y="88" class="font-mono" font-size="48" fill="#1F1B16" font-weight="bold">99<tspan font-size="18" fill="#78716C">%</tspan></text>
+      <text x="369" y="114" class="font-mono" font-size="11" fill="#003896">ROOM AIR • 55 CM ACUITY</text>
+
+      <!-- Box 3: Blood Pressure -->
+      <rect x="690" y="0" width="310" height="130" fill="#FAF8F5" stroke="#FFD100" stroke-width="1.5"/>
+      <text x="714" y="32" class="font-syllabic" font-size="16" fill="#B45309" font-weight="bold">ᐊᐅᒃ • BLOOD PRESSURE</text>
+      <text x="714" y="88" class="font-mono" font-size="44" fill="#1F1B16" font-weight="bold">120/80</text>
+      <text x="714" y="114" class="font-mono" font-size="11" fill="#003896">TABULAR FIGURES • MONO</text>
+    </g>
+
+    <!-- Elder Wisdom, Healing, Longevity & Humour Banner -->
+    <g transform="translate(40, 325)">
+      <rect width="1000" height="42" rx="3" fill="#FAF8F5" stroke="#E7E2D6" stroke-width="1"/>
+      <rect x="0" y="0" width="4" height="42" fill="#D52B1E"/>
+      <text x="14" y="18" class="font-syllabic" font-size="12" fill="#1F1B16">"ᐃᓄᒃᑐᑦ ᐅᖃᐅᓯᖅ ᑭᓇᐅᓂᑦᑎᓐᓂᒃ ᓴᖅᑭᔮᖅᑎᑦᑎᔪᖅ." <tspan class="font-body" font-size="11" fill="#57534E">— Jose Kusugak ("Our language is our identity")</tspan></text>
+      <text x="14" y="33" class="font-body" font-size="11" fill="#003896" font-style="italic">ᒪᒥᓴᕐᓂᖅ (Healing) • ᖃᐅᔨᒪᓂᖅ (Wisdom) • ᐃᓅᓯᖃᑦᓯᐊᕐᓂᖅ (Longevity) • ᖁᕕᐊᓱᖕᓂᖅ (Humour: "Laughter is northern medicine")</text>
+    </g>
+
+    <!-- Clinical Vocabulary Table -->
+    <g transform="translate(40, 385)">
+      <rect width="1000" height="315" fill="#FAF8F5" stroke="#E7E2D6" stroke-width="1.5"/>
+      <line x1="0" y1="0" x2="1000" y2="0" stroke="#FFD100" stroke-width="3"/>
+      <text x="24" y="32" class="font-mono" font-size="13" fill="#003896" font-weight="bold">OFFICIAL CLINICAL LEXICON // NUNAVUT HEALTH ACT // CA-NU 🇨🇦</text>
+      <line x1="24" y1="44" x2="976" y2="44" stroke="#E7E2D6" stroke-width="1"/>
+
+      <g transform="translate(24, 75)" class="font-syllabic" font-size="20" fill="#1F1B16">
+        <text x="0" y="0">ᐋᓐᓂᐊᕕᒃ</text>
+        <text x="240" y="0" class="font-mono" font-size="15" fill="#78716C">Aanniavik</text>
+        <text x="500" y="0" class="font-body" font-size="17" fill="#003896">Hospital / Health Center</text>
+
+        <text x="0" y="42">ᓘᒃᑖᖅ</text>
+        <text x="240" y="42" class="font-mono" font-size="15" fill="#78716C">Luuktaaq</text>
+        <text x="500" y="42" class="font-body" font-size="17" fill="#003896">Doctor / Physician</text>
+
+        <text x="0" y="84">ᐋᓐᓂᐊᓯᐅᖅᑎ</text>
+        <text x="240" y="84" class="font-mono" font-size="15" fill="#78716C">Aanniasiuqti</text>
+        <text x="500" y="84" class="font-body" font-size="17" fill="#003896">Nurse / Practitioner</text>
+
+        <text x="0" y="126">ᐃᓅᓕᓴᐅᑦ</text>
+        <text x="240" y="126" class="font-mono" font-size="15" fill="#78716C">Inuulisaut</text>
+        <text x="500" y="126" class="font-body" font-size="17" fill="#003896">Medicine / Prescription Order</text>
+
+        <text x="0" y="168">ᑲᔪᓯᓂᖃᑦᓯᐊᕐᑐᖅ</text>
+        <text x="240" y="168" class="font-mono" font-size="15" fill="#78716C">Kajusiniqatsiaqtuq</text>
+        <text x="500" y="168" class="font-mono" font-size="15" fill="#D52B1E" font-weight="bold">PATIENT STATE: STABLE</text>
+      </g>
+    </g>
+
+    <!-- 203 DPI Thermal Simulation -->
+    <g transform="translate(40, 720)">
+      <rect width="1000" height="120" fill="#060911" stroke="#334155" stroke-width="1.5"/>
+      <text x="24" y="32" class="font-mono" font-size="12" fill="#FFD100" font-weight="bold">203 DPI THERMAL HOSPITAL LABEL EMULATION (LOUISE SLOAN 5:1 COMPLIANT)</text>
+      <text x="24" y="68" class="font-syllabic" font-size="24" fill="#FFFFFF">ᐋᓐᓂᐊᕕᒃ ᐃᓄᒃᑎᑐᑦ 500 mg (NOT 5.0 mg) [cv08 0 vs O] • ᐆᒻᒪᑎ 72 bpm</text>
+      <text x="24" y="98" class="font-mono" font-size="13" fill="#2DD4BF">WCAG AAA 7:1+ CONTRAST RATIO • ZERO AMBIGUITY • FDA 21 CFR PART 11 DIGEST</text>
+    </g>
+  </g>
+</svg>

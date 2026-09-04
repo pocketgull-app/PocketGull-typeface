@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-09-04T08:51:09Z",
+  "case_study": 3,
+  "script": "Neo-Tifinagh (Amazigh / Berber)",
+  "region": "North Africa / Maghreb",
+  "clinical_focus": "Maghreb public health, Amazigh maternal care, and emergency hospital triage.",
+  "codepoints_synthesized": 59,
+  "total_glyphs_compiled": 236,
+  "runtime_ms": 11215.76,
+  "manual_hours_benchmark": 177.0,
+  "acceleration_factor": 56812,
+  "fonts_updated": [
+    {
+      "filename": "PocketGull-Fineliner.ttf",
+      "weight": 400,
+      "is_mono": false,
+      "glyphs_added": 59,
+      "time_ms": 2766.34
+    },
+    {
+      "filename": "PocketGull-Bold.ttf",
+      "weight": 700,
+      "is_mono": false,
+      "glyphs_added": 59,
+      "time_ms": 2870.38
+    },
+    {
+      "filename": "PocketGull-Chiseltip.ttf",
+      "weight": 900,
+      "is_mono": false,
+      "glyphs_added": 59,
+      "time_ms": 2695.33
+    },
+    {
+      "filename": "PocketGullMono-Regular.ttf",
+      "weight": 400,
+      "is_mono": true,
+      "glyphs_added": 59,
+      "time_ms": 2876.87
+    }
+  ]
+}

@@ -3,7 +3,7 @@
 # 🕊️ PocketGull Typeface Superfamily
 
 [![OFL 1.1 License](https://img.shields.io/badge/License-SIL_OFL_1.1-orange.svg?style=flat-square)](OFL.txt)
-[![SemVer 2.0.0](https://img.shields.io/badge/SemVer-2.0.0-blue.svg?style=flat-square)](CHANGELOG.md)
+[![SemVer 3.0.0](https://img.shields.io/badge/SemVer-3.0.0-blue.svg?style=flat-square)](CHANGELOG.md)
 [![W3C OTS Validated](https://img.shields.io/badge/W3C_OTS-100%25_Valid-emerald.svg?style=flat-square)](https://github.com/googlefonts/ots)
 [![Fontbakery QA](https://img.shields.io/badge/Fontbakery-711%2F711_Passed-brightgreen.svg?style=flat-square)](https://github.com/googlefonts/fontbakery)
 <br/>
@@ -70,14 +70,23 @@ To guarantee universal healthcare equity, PocketGull is expanding to support all
 
 | Tier | Script Systems | Target Glyphs | Est. Effort | Status in PocketGull |
 | :--- | :--- | :---: | :---: | :---: |
-| **Tier 1 (Western & Tactile)** | Latin, Cyrillic, Greek, Braille, ICU Telemetry | ~1,800 | 1,200 hrs | **100% Complete** (3,350+ chars) |
+| **Tier 1 (Western & Tactile)** | Latin, Cyrillic, Greek, Braille, ICU Telemetry | ~1,800 | 1,200 hrs | 🟢 **100% Complete** (3,350+ chars) |
 | **Tier 2 (RTL & Semitic)** | Arabic, Hebrew, Syriac, Thaana (BiDi & Cursive) | ~2,200 | 1,500 hrs | 📋 Planned |
 | **Tier 3 (Indic Core)** | Devanagari, Bengali, Tamil, Telugu, Gurmukhi, Gujarati | ~6,500 | 4,200 hrs | 🟡 In Progress (128 Devanagari chars) |
 | **Tier 4 (SE Asian)** | Thai, Lao, Khmer, Burmese, Tibetan | ~2,000 | 1,200 hrs | 📋 Planned |
 | **Tier 5 (CJK Clinical Core)** | High-frequency medical Hanzi, Kana, Hangul | ~15,000 | 8,500 hrs | 📋 Planned |
-| **Tier 6 (Indigenous/African)** | Ge'ez, Cherokee, Inuktitut, Tifinagh, Adlam, Vai | ~2,500 | 1,800 hrs | 📋 Planned |
+| **Tier 6 (Indigenous/African)** | Canadian Syllabics (Inuktitut), Duployan (Chinuk Pipa), Neo-Tifinagh, Cherokee, Ethiopic, Adlam, Vai | 1,760 CPs | 5,280 hrs saved | 🟢 **100% Live Native** (1,760 CPs, 7,040 superfamily glyphs compiled in 73.9s) |
 
-*Multi-Script Fallback*: Until all native scripts reach completion, PocketGull pairs seamlessly with Google Noto Sans and system CJK/Indic typefaces with zero baseline jitter.
+*Multi-Script Fallback & Case Studies*: All seven Sovereign & Indigenous Case Studies are fully documented with empirical telemetry:
+- Case Study 01: [`CASE_STUDY_01_INUKTITUT_SYLLABICS.md`](documentation/case_studies/CASE_STUDY_01_INUKTITUT_SYLLABICS.md) (Arctic Nunavut Telehealth)
+- Case Study 02: [`CASE_STUDY_02_CHINUK_PIPA.md`](documentation/case_studies/CASE_STUDY_02_CHINUK_PIPA.md) (Grand Ronde & Pacific Northwest)
+- Case Study 03: [`CASE_STUDY_03_NEO_TIFINAGH.md`](documentation/case_studies/CASE_STUDY_03_NEO_TIFINAGH.md) (North African Amazigh Vitality)
+- Case Study 04: [`CASE_STUDY_04_CHEROKEE_SYLLABARY.md`](documentation/case_studies/CASE_STUDY_04_CHEROKEE_SYLLABARY.md) (Sequoyah Syllabary & Hastings Hospital)
+- Case Study 05: [`CASE_STUDY_05_ETHIOPIC_GEEZ.md`](documentation/case_studies/CASE_STUDY_05_ETHIOPIC_GEEZ.md) (Horn of Africa 7-Order Abugida)
+- Case Study 06: [`CASE_STUDY_06_WEST_AFRICAN_SCRIPTS.md`](documentation/case_studies/CASE_STUDY_06_WEST_AFRICAN_SCRIPTS.md) (Adlam & Vai Community Health)
+- Case Study 07: [`CASE_STUDY_07_PAN_TRIBAL_ORTHOGRAPHIES.md`](documentation/case_studies/CASE_STUDY_07_PAN_TRIBAL_ORTHOGRAPHIES.md) (12 IHS Areas, 574+ Tribes & Stacked Diacritics)
+
+Until all remaining tiers reach 100% native completion, PocketGull pairs seamlessly with Google Noto Sans (`sCapHeight=714`, `sxHeight=536` exact metric match on 1000 UPM grid) and system CJK/Indic typefaces with zero baseline jitter.
 
 
 ---
@@ -133,6 +142,18 @@ If you use the PocketGull Typeface Superfamily in your clinical research, health
 
 ---
 
+## 🙏 Acknowledgements & Thanks
+
+We extend our sincere gratitude to the people and projects that make PocketGull possible:
+* **The Dart Programming Language & Google Engineering** ([dart.dev](https://dart.dev)): For providing the soundly-typed, high-performance standalone tooling and scripting platform that powers our procedural vector synthesis, phonological data matrices, and headless specimen rendering pipelines.
+* **Randal L. Schwartz**: For decades of foundational contributions to open-source software, developer education, Perl and Dart advocacy, and inspiring rigorous command-line tooling standards.
+* **Sovereign Indigenous Language Keepers & Clinicians**: For their enduring cultural stewardship across the 574+ sovereign tribes, First Nations, and circumpolar councils.
+* **Vision Science & Patient Safety Pioneers**: Louise L. Sloan (5:1 optotypes), Herman Bouma (visual crowding), and the Institute for Safe Medication Practices (ISMP).
+
+See **[THANKS.md](THANKS.md)** for our full dedication and acknowledgements.
+
+---
+
 ## 📜 License & Copyright
 
 PocketGull is distributed under the **[SIL Open Font License, Version 1.1](OFL.txt)**.  
@@ -140,3 +161,4 @@ Free for personal, academic, and commercial use.
 
 **Copyright (c) 2026 The PocketGull Project Authors** ([GitHub Repository](https://github.com/pocketgull-app/pocketgull-typeface)).  
 *Rooted in empirical science. Engineered for life. 🕊️*
+

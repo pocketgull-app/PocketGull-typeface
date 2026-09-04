@@ -1,0 +1,24 @@
+name: pocketgull_typeface
+description: Optotypically calibrated clinical and ophthalmological vector typeface superfamily bridging tactile humanist warmth with zero-error clinical precision.
+version: 3.0.0
+homepage: https://typeface.pocketgull.app
+repository: https://github.com/pocketgull-app/PocketGull-typeface
+
+environment:
+  sdk: '^3.0.0'
+
+# Standard Flutter package font definitions for mobile ingestion
+flutter:
+  fonts:
+    - family: PocketGull
+      fonts:
+        - asset: fonts/ttf/PocketGull-Fineliner.ttf
+          weight: 400
+        - asset: fonts/ttf/PocketGull-Bold.ttf
+          weight: 700
+        - asset: fonts/ttf/PocketGull-Chiseltip.ttf
+          weight: 900
+    - family: PocketGull Mono
+      fonts:
+        - asset: fonts/ttf/PocketGullMono-Regular.ttf
+          weight: 400

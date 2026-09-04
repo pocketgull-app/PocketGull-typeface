@@ -1,0 +1,19 @@
+{
+  "region": "Mesoamerica (Anahuac & Maya Highlands)",
+  "languages": ["Nahuatl", "K'iche'", "Yucatec Maya", "Q'eqchi'", "Zapotec"],
+  "health_jurisdiction": "Promotores de Salud Indígena & Red de Salud Maya",
+  "direction": "LTR",
+  "saltillos_and_glottal_stops": [
+    { "char": "ʼ", "name": "Saltillo / Ejective glottal marker (e.g., kʼ, tʼ, chʼ)", "codepoint": "U+02BC" },
+    { "char": "h", "name": "Nahuatl saltillo aspiration" },
+    { "char": "ʼ", "name": "Maya apostrophe indicating glottalized consonants" }
+  ],
+  "vowel_length_and_underlines": [
+    { "char": "ā", "name": "A with macron (long vowel in Nahuatl)", "codepoint": "U+0101" },
+    { "char": "ē", "name": "E with macron", "codepoint": "U+0113" },
+    { "char": "ī", "name": "I with macron", "codepoint": "U+012B" },
+    { "char": "ō", "name": "O with macron", "codepoint": "U+014D" },
+    { "char": "ū", "name": "U with macron", "codepoint": "U+016B" },
+    { "char": "ä", "name": "Central vowel in K'iche' (umlaut/diaeresis)", "codepoint": "U+00E4" }
+  ]
+}

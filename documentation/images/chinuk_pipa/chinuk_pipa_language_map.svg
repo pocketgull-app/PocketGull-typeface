@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="1720" viewBox="0 0 1200 1720" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap');
+      .font-brand { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+      .font-mono { font-family: 'JetBrains Mono', monospace; }
+      .font-duployan { font-family: 'PocketGull', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
+    </style>
+  </defs>
+
+  <!-- Crisp Museum Exhibition Surface -->
+  <rect width="1200" height="1720" fill="#FFFFFF"/>
+  <rect x="40" y="40" width="1120" height="1640" fill="none" stroke="#1C1917" stroke-width="2"/>
+  <rect x="50" y="50" width="1100" height="1620" fill="none" stroke="#A8A29E" stroke-width="0.8"/>
+
+  <!-- Museum Title Header -->
+  <g transform="translate(80, 110)">
+    <text x="0" y="0" class="font-mono" font-size="12" fill="#B45309" font-weight="700" letter-spacing="0.2em">PEDAGOGICAL LANGUAGE MAP NO. 02</text>
+    <text x="0" y="42" class="font-brand" font-size="40" font-weight="800" fill="#1C1917">CHINUK PIPA STENOGRAPHIC MAP</text>
+    <text x="0" y="72" class="font-brand" font-size="17" font-weight="500" fill="#57534E">Euclidean Stroke Geometry of Duployan Shorthand for Chinuk Wawa (U+1BC00–U+1BC9F)</text>
+  </g>
+
+  <!-- Section 1: Consonant Vectors (Lines & Arcs) -->
+  <g transform="translate(80, 230)">
+    <text x="0" y="0" class="font-mono" font-size="13" fill="#1C1917" font-weight="700">1. CONSONANT VECTOR PRIMITIVES (LINES AT 4 CARDINAL ANGLES &amp; QUARTER-ARCS):</text>
+    <rect x="0" y="15" width="1040" height="340" fill="#FAFAF9" stroke="#E7E5E4" stroke-width="1.5"/>
+
+    <g transform="translate(30, 50)">
+      <!-- Straight Lines -->
+      <g>
+        <text x="0" y="0" class="font-mono" font-size="12" fill="#B45309" font-weight="700">STRAIGHT LINES (4 ANGLES):</text>
+        
+        <g transform="translate(0, 30)">
+          <text x="0" y="0" class="font-duployan" font-size="34" fill="#1C1917">𛰂</text>
+          <text x="40" y="-8" class="font-mono" font-size="14" fill="#1C1917" font-weight="700">P (45° down)</text>
+          <text x="40" y="12" class="font-brand" font-size="12" fill="#57534E">Pipa (paper, book)</text>
+
+          <text x="250" y="0" class="font-duployan" font-size="34" fill="#1C1917">𛰃</text>
+          <text x="290" y="-8" class="font-mono" font-size="14" fill="#1C1917" font-weight="700">T (90° down)</text>
+          <text x="290" y="12" class="font-brand" font-size="12" fill="#57534E">Tumtum (heart, soul)</text>
+
+          <text x="500" y="0" class="font-duployan" font-size="34" fill="#1C1917">𛰅</text>
+          <text x="540" y="-8" class="font-mono" font-size="14" fill="#1C1917" font-weight="700">K (0° horiz)</text>
+          <text x="540" y="12" class="font-brand" font-size="12" fill="#57534E">Kloshe (good, well)</text>
+
+          <text x="750" y="0" class="font-duployan" font-size="34" fill="#1C1917">𛰆</text>
+          <text x="790" y="-8" class="font-mono" font-size="14" fill="#1C1917" font-weight="700">L (135° up)</text>
+          <text x="790" y="12" class="font-brand" font-size="12" fill="#57534E">La-kret (medicine)</text>
+        </g>
+      </g>
+
+      <!-- Curves & Arcs -->
+      <g transform="translate(0, 115)">
+        <text x="0" y="0" class="font-mono" font-size="12" fill="#B45309" font-weight="700">CURVES &amp; QUARTER-CIRCLE ARCS:</text>
+
+        <g transform="translate(0, 30)">
+          <text x="0" y="0" class="font-duployan" font-size="34" fill="#1C1917">𛰙</text>
+          <text x="40" y="-8" class="font-mono" font-size="14" fill="#1C1917" font-weight="700">M (⌒ top arch)</text>
+          <text x="40" y="12" class="font-brand" font-size="12" fill="#57534E">Mamook (make, work)</text>
+
+          <text x="250" y="0" class="font-duployan" font-size="34" fill="#1C1917">𛰚</text>
+          <text x="290" y="-8" class="font-mono" font-size="14" fill="#1C1917" font-weight="700">N (⌣ bottom arch)</text>
+          <text x="290" y="12" class="font-brand" font-size="12" fill="#57534E">Nanitch (see, watch)</text>
+
+          <text x="500" y="0" class="font-duployan" font-size="34" fill="#1C1917">𛰛</text>
+          <text x="540" y="-8" class="font-mono" font-size="14" fill="#1C1917" font-weight="700">J / CH ( right arch)</text>
+          <text x="540" y="12" class="font-brand" font-size="12" fill="#57534E">Chako (come, arrive)</text>
+
+          <text x="750" y="0" class="font-duployan" font-size="34" fill="#1C1917">𛰜</text>
+          <text x="790" y="-8" class="font-mono" font-size="14" fill="#1C1917" font-weight="700">S ( left arch)</text>
+          <text x="790" y="12" class="font-brand" font-size="12" fill="#57534E">Skookum (strong, safe)</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- Section 2: Vocalic Circles & Glides -->
+  <g transform="translate(80, 625)">
+    <text x="0" y="0" class="font-mono" font-size="13" fill="#1C1917" font-weight="700">2. VOCALIC CIRCLES &amp; COMPOUND GLIDES:</text>
+    <rect x="0" y="15" width="1040" height="280" fill="#FAFAF9" stroke="#E7E5E4" stroke-width="1.5"/>
+
+    <g transform="translate(30, 50)">
+      <g>
+        <text x="0" y="0" class="font-duployan" font-size="34" fill="#1C1917">𛱁</text>
+        <text x="40" y="-8" class="font-mono" font-size="14" fill="#1C1917" font-weight="700">A (mid circle)</text>
+        <text x="40" y="12" class="font-brand" font-size="12" fill="#57534E">Alki (future, hope)</text>
+
+        <text x="250" y="0" class="font-duployan" font-size="34" fill="#1C1917">𛱄</text>
+        <text x="290" y="-8" class="font-mono" font-size="14" fill="#1C1917" font-weight="700">O (large circle)</text>
+        <text x="290" y="12" class="font-brand" font-size="12" fill="#57534E">Olally (berries, fruit)</text>
+
+        <text x="500" y="0" class="font-duployan" font-size="34" fill="#1C1917">𛱆</text>
+        <text x="540" y="-8" class="font-mono" font-size="14" fill="#1C1917" font-weight="700">I (small circle)</text>
+        <text x="540" y="12" class="font-brand" font-size="12" fill="#57534E">Ikt (one, baseline)</text>
+
+        <text x="750" y="0" class="font-duployan" font-size="34" fill="#1C1917">𛱑</text>
+        <text x="790" y="-8" class="font-mono" font-size="14" fill="#1C1917" font-weight="700">U (horseshoe)</text>
+        <text x="790" y="12" class="font-brand" font-size="12" fill="#57534E">Ulman (elder, ancient)</text>
+      </g>
+
+      <g transform="translate(0, 95)">
+        <text x="0" y="0" class="font-duployan" font-size="34" fill="#1C1917">𛱼</text>
+        <text x="40" y="-8" class="font-mono" font-size="14" fill="#1C1917" font-weight="700">WA (circle + dot)</text>
+        <text x="40" y="12" class="font-brand" font-size="12" fill="#57534E">Wawa (words, speech)</text>
+
+        <text x="250" y="0" class="font-duployan" font-size="34" fill="#1C1917">𛱾</text>
+        <text x="290" y="-8" class="font-mono" font-size="14" fill="#1C1917" font-weight="700">WI (circle + dash)</text>
+        <text x="290" y="12" class="font-brand" font-size="12" fill="#57534E">Win (breath, wind)</text>
+
+        <text x="500" y="0" class="font-duployan" font-size="34" fill="#1C1917">𛲟</text>
+        <text x="540" y="-8" class="font-mono" font-size="14" fill="#1C1917" font-weight="700">FULL STOP (cross)</text>
+        <text x="540" y="12" class="font-brand" font-size="12" fill="#57534E">Kamloops Sentence Final</text>
+
+        <text x="750" y="0" class="font-duployan" font-size="34" fill="#1C1917">𛲞</text>
+        <text x="790" y="-8" class="font-mono" font-size="14" fill="#1C1917" font-weight="700">DOUBLE MARK</text>
+        <text x="790" y="12" class="font-brand" font-size="12" fill="#57534E">Reduplication Mark</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Section 3: PERMA+ Clinical Vocabulary Table -->
+  <g transform="translate(80, 960)">
+    <text x="0" y="0" class="font-mono" font-size="13" fill="#1C1917" font-weight="700">3. CLINICAL PERMA+ WELL-BEING LEXICON FOR PATIENT EDUCATION:</text>
+    <rect x="0" y="15" width="1040" height="560" fill="#FAFAF9" stroke="#E7E5E4" stroke-width="1.5"/>
+
+    <g transform="translate(30, 50)">
+      <g>
+        <text x="0" y="0" class="font-mono" font-size="14" font-weight="700" fill="#B45309">[P] POSITIVE EMOTION</text>
+        <text x="240" y="0" class="font-duployan" font-size="28" fill="#1C1917">𛰅𛰆𛱄𛰜 𛰃𛱑𛰙 𛰃𛱑𛰙</text>
+        <text x="460" y="-3" class="font-brand" font-size="15" font-weight="700" fill="#1C1917">Kloshe Tumtum ("Good Heart")</text>
+        <text x="460" y="17" class="font-brand" font-size="13" fill="#57534E">Vagal tone balance, parasympathetic relaxation, emotional serenity.</text>
+      </g>
+
+      <g transform="translate(0, 75)">
+        <text x="0" y="0" class="font-mono" font-size="14" font-weight="700" fill="#15803D">[E] ENGAGEMENT</text>
+        <text x="240" y="0" class="font-duployan" font-size="28" fill="#1C1917">𛰀𛱇𛰀𛱇</text>
+        <text x="460" y="-3" class="font-brand" font-size="15" font-weight="700" fill="#1C1917">Heehee ("Laughter / Play")</text>
+        <text x="460" y="17" class="font-brand" font-size="13" fill="#57534E">Dopaminergic focus, recreational therapy, pediatric engagement.</text>
+      </g>
+
+      <g transform="translate(0, 150)">
+        <text x="0" y="0" class="font-mono" font-size="14" font-weight="700" fill="#1D4ED8">[R] RELATIONSHIPS</text>
+        <text x="240" y="0" class="font-duployan" font-size="28" fill="#1C1917">𛰃𛱆𛰆𛱆𛰅𛱑𛰙</text>
+        <text x="460" y="-3" class="font-brand" font-size="15" font-weight="700" fill="#1C1917">Tilikum ("Sacred Family &amp; Tribe")</text>
+        <text x="460" y="17" class="font-brand" font-size="13" fill="#57534E">Social determinants of health (SDOH), tribal kinship, peer recovery.</text>
+      </g>
+
+      <g transform="translate(0, 225)">
+        <text x="0" y="0" class="font-mono" font-size="14" font-weight="700" fill="#7E22CE">[M] MEANING</text>
+        <text x="240" y="0" class="font-duployan" font-size="28" fill="#1C1917">𛰅𛰆𛱄𛰜 𛰸𛱁𛰸𛱁</text>
+        <text x="460" y="-3" class="font-brand" font-size="15" font-weight="700" fill="#1C1917">Kloshe Wawa ("Truthful Words")</text>
+        <text x="460" y="17" class="font-brand" font-size="13" fill="#57534E">Culturally safe clinical dialogue, shared decision-making, informed consent.</text>
+      </g>
+
+      <g transform="translate(0, 300)">
+        <text x="0" y="0" class="font-mono" font-size="14" font-weight="700" fill="#BE185D">[A] ACCOMPLISHMENT</text>
+        <text x="240" y="0" class="font-duployan" font-size="28" fill="#1C1917">𛰙𛱁𛰙𛱑𛰅 𛰅𛰆𛱄𛰜</text>
+        <text x="460" y="-3" class="font-brand" font-size="15" font-weight="700" fill="#1C1917">Mamook Kloshe ("To Make Well")</text>
+        <text x="460" y="17" class="font-brand" font-size="13" fill="#57534E">Patient Activation Measure (PAM), physical rehabilitation adherence.</text>
+      </g>
+
+      <g transform="translate(0, 375)">
+        <text x="0" y="0" class="font-mono" font-size="14" font-weight="700" fill="#B91C1C">[+] PHYSICAL VITALITY</text>
+        <text x="240" y="0" class="font-duployan" font-size="28" fill="#1C1917">𛰅𛰆𛱄𛰜 𛰙𛱑𛰅𛱁𛰙𛱑𛰅</text>
+        <text x="460" y="-3" class="font-brand" font-size="15" font-weight="700" fill="#1C1917">Kloshe Muckamuck ("Good Food")</text>
+        <text x="460" y="17" class="font-brand" font-size="13" fill="#57534E">Traditional foodways, metabolic stabilization, nutritional vitality.</text>
+      </g>
+
+      <g transform="translate(0, 450)">
+        <text x="0" y="0" class="font-mono" font-size="14" font-weight="700" fill="#0284C7">[CLIN] CLINICAL CARE</text>
+        <text x="240" y="0" class="font-duployan" font-size="28" fill="#1C1917">𛰅𛰆𛱄𛰜 𛰚𛱁𛰚𛱆𛰛</text>
+        <text x="460" y="-3" class="font-brand" font-size="15" font-weight="700" fill="#1C1917">Kloshe Nanitch ("Take Care / Watch")</text>
+        <text x="460" y="17" class="font-brand" font-size="13" fill="#57534E">Clinical observation, vital sign monitoring, outpatient discharge safety.</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Museum Colophon Footer -->
+  <g transform="translate(80, 1630)">
+    <text x="0" y="0" class="font-mono" font-size="11" fill="#78716C">
+      POCKETGULL PEDAGOGICAL LANGUAGE MAP // 1891 KAMLOOPS WAWA // CONFEDERATED TRIBES OF GRAND RONDE // OFL 1.1
+    </text>
+  </g>
+</svg>

@@ -1,0 +1,42 @@
+{
+  "script_system": "Adlam (Alkule Namaye)",
+  "language": "Fulfulde (Pulaar)",
+  "inventors": "Ibrahima & Abdoulaye Barry (1989, Guinea)",
+  "health_jurisdiction": "Winden Jangen Adlam Association & Guinean Community Maternal Clinics",
+  "direction": "RTL",
+  "unicode_range": "U+1E900-U+1E95F",
+  "alphabet": [
+    { "codepoint": "U+1E900", "char": "𞤀", "name": "ADLAM CAPITAL LETTER ALIF" },
+    { "codepoint": "U+1E901", "char": "𞤁", "name": "ADLAM CAPITAL LETTER DAALI" },
+    { "codepoint": "U+1E902", "char": "𞤂", "name": "ADLAM CAPITAL LETTER LAAM" },
+    { "codepoint": "U+1E903", "char": "𞤃", "name": "ADLAM CAPITAL LETTER MIIM" },
+    { "codepoint": "U+1E904", "char": "𞤄", "name": "ADLAM CAPITAL LETTER BA" },
+    { "codepoint": "U+1E905", "char": "𞤅", "name": "ADLAM CAPITAL LETTER SIMMIIRE" },
+    { "codepoint": "U+1E906", "char": "𞤆", "name": "ADLAM CAPITAL LETTER PE" },
+    { "codepoint": "U+1E907", "char": "𞤇", "name": "ADLAM CAPITAL LETTER BHE" },
+    { "codepoint": "U+1E908", "char": "𞤈", "name": "ADLAM CAPITAL LETTER RA" },
+    { "codepoint": "U+1E909", "char": "𞤉", "name": "ADLAM CAPITAL LETTER E" },
+    { "codepoint": "U+1E90A", "char": "𞤊", "name": "ADLAM CAPITAL LETTER FA" },
+    { "codepoint": "U+1E90B", "char": "𞤋", "name": "ADLAM CAPITAL LETTER I" },
+    { "codepoint": "U+1E90C", "char": "𞤌", "name": "ADLAM CAPITAL LETTER O" },
+    { "codepoint": "U+1E90D", "char": "𞤍", "name": "ADLAM CAPITAL LETTER DHA" },
+    { "codepoint": "U+1E90E", "char": "𞤎", "name": "ADLAM CAPITAL LETTER YHE" },
+    { "codepoint": "U+1E90F", "char": "𞤏", "name": "ADLAM CAPITAL LETTER WAW" },
+    { "codepoint": "U+1E910", "char": "𞤐", "name": "ADLAM CAPITAL LETTER NUN" },
+    { "codepoint": "U+1E911", "char": "𞤑", "name": "ADLAM CAPITAL LETTER KAF" },
+    { "codepoint": "U+1E912", "char": "𞤒", "name": "ADLAM CAPITAL LETTER YA" },
+    { "codepoint": "U+1E913", "char": "𞤓", "name": "ADLAM CAPITAL LETTER U" },
+    { "codepoint": "U+1E914", "char": "𞤔", "name": "ADLAM CAPITAL LETTER JIIM" },
+    { "codepoint": "U+1E915", "char": "𞤕", "name": "ADLAM CAPITAL LETTER CHI" },
+    { "codepoint": "U+1E916", "char": "𞤖", "name": "ADLAM CAPITAL LETTER HA" },
+    { "codepoint": "U+1E917", "char": "𞤗", "name": "ADLAM CAPITAL LETTER QAF" },
+    { "codepoint": "U+1E918", "char": "𞤘", "name": "ADLAM CAPITAL LETTER GA" },
+    { "codepoint": "U+1E919", "char": "𞤙", "name": "ADLAM CAPITAL LETTER NYA" },
+    { "codepoint": "U+1E91A", "char": "𞤚", "name": "ADLAM CAPITAL LETTER TU" },
+    { "codepoint": "U+1E91B", "char": "𞤛", "name": "ADLAM CAPITAL LETTER NHA" }
+  ],
+  "optical_invariants": {
+    "direction": "RTL cursive joinery with UAX #9 number isolation",
+    "stroke_balance": "Preserves the original handwriting ductus of the Barry brothers without flattening into Latin geometric curves"
+  }
+}

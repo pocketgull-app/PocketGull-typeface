@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="896" height="1200" viewBox="0 0 896 1200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap');
+      .font-brand { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
+      .font-mono { font-family: 'JetBrains Mono', monospace; }
+      .font-duployan { font-family: 'PocketGull', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
+    </style>
+  </defs>
+
+  <rect width="896" height="1200" fill="#F0F9FF"/>
+  <rect x="25" y="25" width="846" height="1150" fill="none" stroke="#0284C7" stroke-width="1.5"/>
+
+  <!-- Technical Header -->
+  <g transform="translate(45, 65)">
+    <text x="0" y="0" class="font-mono" font-size="24" font-weight="800" fill="#0369A1">POCKETGULL</text>
+    <text x="0" y="32" class="font-mono" font-size="30" font-weight="800" fill="#0F172A">TELEMETRY &amp; CLINICAL GLYPHS</text>
+    <text x="560" y="0" class="font-mono" font-size="11" fill="#0284C7">TECHNICAL DATA</text>
+    <text x="560" y="16" class="font-mono" font-size="11" fill="#0F172A">1000 UPM / 600 ADV</text>
+    <text x="700" y="0" class="font-mono" font-size="11" fill="#0284C7">CHINUK PIPA</text>
+    <text x="700" y="16" class="font-mono" font-size="11" fill="#0F172A">U+1BC00-1BC9F</text>
+    <line x1="0" y1="48" x2="806" y2="48" stroke="#0F172A" stroke-width="2"/>
+  </g>
+
+  <!-- Monospace Subhead -->
+  <g transform="translate(45, 135)">
+    <text x="0" y="0" class="font-mono" font-size="20" font-weight="800" fill="#0F172A">POCKETGULL MONO</text>
+    <text x="0" y="20" class="font-mono" font-size="11" fill="#0284C7">A MONOSPACED SCRIPT FOR HEALTHCARE &amp; BEDSIDE MONITORS</text>
+    
+    <text x="430" y="0" class="font-mono" font-size="20" font-weight="800" fill="#0F172A">CLINICAL SAFETY</text>
+    <text x="430" y="20" class="font-mono" font-size="11" fill="#0284C7">ISMP / FDA DOSAGE DISAMBIGUATION</text>
+  </g>
+
+  <!-- Left: Monospace Character Chart -->
+  <g transform="translate(45, 185)">
+    <rect width="390" height="280" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <g transform="translate(15, 30)" class="font-mono" font-size="13" fill="#0F172A" letter-spacing="0.2em">
+      <text x="0" y="0">! @ # $ % ^ &amp; * ( ) _ +</text>
+      <text x="0" y="30">1 2 3 4 5 6 7 8 9 0 - =</text>
+      <text x="0" y="60">Q W E R T Y U I O P [ ]</text>
+      <text x="0" y="90">A S D F G H J K L ; ' </text>
+      <text x="0" y="120">Z X C V B N M , . / ?</text>
+      <text x="0" y="150" class="font-duployan" fill="#0369A1">𛰂 𛰃 𛰅 𛰆 𛰇 𛰈 𛰊 𛰋 𛰙 𛰚 𛰛</text>
+      <text x="0" y="180" class="font-duployan" fill="#0369A1">𛰜 𛰸 𛱁 𛱄 𛱆 𛱇 𛱑 𛱼 𛱾 𛲟 𛲞</text>
+      <text x="0" y="210">Δ % ± μg mg/dL mmHg bpm</text>
+    </g>
+  </g>
+
+  <!-- Right: Disambiguation & Tabular Sizes -->
+  <g transform="translate(475, 185)">
+    <!-- 0 vs O -->
+    <rect x="0" y="0" width="180" height="85" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <rect x="0" y="0" width="180" height="22" fill="#E0F2FE"/>
+    <text x="10" y="15" class="font-mono" font-size="10" font-weight="700" fill="#0369A1">SLASHED ZERO (cv08)</text>
+    <text x="25" y="60" class="font-mono" font-size="34" font-weight="700" fill="#0F172A">0 vs O</text>
+
+    <!-- 1 vs l vs I -->
+    <rect x="195" y="0" width="176" height="85" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <rect x="195" y="0" width="176" height="22" fill="#E0F2FE"/>
+    <text x="205" y="15" class="font-mono" font-size="10" font-weight="700" fill="#0369A1">SERIFED I (ss02)</text>
+    <text x="215" y="60" class="font-mono" font-size="34" font-weight="700" fill="#0F172A">1 | I l</text>
+
+    <!-- Clinical Units -->
+    <g transform="translate(0, 105)">
+      <rect x="0" y="0" width="371" height="175" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <g transform="translate(15, 30)">
+        <text x="0" y="0" class="font-mono" font-size="11" font-weight="700" fill="#0369A1">TABULAR CLINICAL FIGURES &amp; MEDICAL SYMBOLS</text>
+        <text x="0" y="32" class="font-mono" font-size="18" font-weight="700" fill="#0F172A">Δ % ± μg mg/dL mEq/L</text>
+        <text x="0" y="62" class="font-mono" font-size="18" font-weight="700" fill="#0F172A">≤ ≥ ≠ ≈ → mmHg SpO2</text>
+        <line x1="0" y1="85" x2="340" y2="85" stroke="#E2E8F0"/>
+        <text x="0" y="110" class="font-brand" font-size="12" fill="#64748B">ISMP Standard: Leading zero mandated (0.5 mg), trailing zero strictly prohibited (5 mg, never 5.0 mg).</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Sample Clinical Data Screen (ICU Monitor) -->
+  <g transform="translate(45, 490)">
+    <text x="0" y="0" class="font-mono" font-size="13" font-weight="700" fill="#0F172A">SAMPLE CLINICAL TELEMETRY DISPLAY (GRAND RONDE CLINIC BED 04):</text>
+    
+    <g transform="translate(0, 15)">
+      <!-- Dark ICU Monitor Shell -->
+      <rect width="806" height="280" rx="10" fill="#090D16" stroke="#1E293B" stroke-width="2"/>
+
+      <!-- ECG Waveform Panel -->
+      <g transform="translate(25, 25)">
+        <rect width="450" height="230" rx="6" fill="#050811" stroke="#1E293B"/>
+        <text x="20" y="28" class="font-mono" font-size="12" fill="#22C55E" font-weight="700">ECG LEAD II • SINUS RHYTHM</text>
+        
+        <!-- ECG Polyline -->
+        <polyline fill="none" stroke="#22C55E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+          points="20,110 60,110 75,110 82,90 90,140 100,50 112,130 120,110 135,110 150,98 165,110 220,110 235,110 242,90 250,140 260,50 272,130 280,110 295,110 310,98 325,110 380,110 395,110 402,90 410,140 420,50 432,130 440,110"/>
+        
+        <text x="20" y="190" class="font-duployan" font-size="22" fill="#FDE68A">𛰃𛱑𛰙 𛰃𛱑𛰙: 72 bpm • 𛰜𛰅𛱑𛰅𛱑𛰙</text>
+        <text x="20" y="212" class="font-brand" font-size="12" fill="#94A3B8">Tumtum: 72 bpm • Skookum (Stable)</text>
+      </g>
+
+      <!-- Vitals Telemetry Numbers -->
+      <g transform="translate(500, 25)">
+        <rect width="280" height="230" rx="6" fill="#0F172A" stroke="#1E293B"/>
+        <g transform="translate(20, 35)">
+          <text x="0" y="0" class="font-mono" font-size="11" fill="#94A3B8">HEART RATE</text>
+          <text x="0" y="32" class="font-mono" font-size="36" font-weight="700" fill="#22C55E">72 <tspan font-size="16">bpm</tspan></text>
+
+          <text x="0" y="75" class="font-mono" font-size="11" fill="#94A3B8">BLOOD PRESSURE</text>
+          <text x="0" y="105" class="font-mono" font-size="32" font-weight="700" fill="#38BDF8">120/80</text>
+
+          <text x="0" y="145" class="font-mono" font-size="11" fill="#94A3B8">O2 SATURATION (WIN)</text>
+          <text x="0" y="175" class="font-mono" font-size="32" font-weight="700" fill="#FBBF24">99%</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bottom: Medical Form & Optical Corrections -->
+  <g transform="translate(45, 810)">
+    <text x="0" y="0" class="font-mono" font-size="13" font-weight="700" fill="#0F172A">CLINICAL DOSAGE CORRECTIONS &amp; EHR TERMINOLOGY:</text>
+
+    <rect x="0" y="15" width="806" height="320" fill="#FFFFFF" stroke="#CBD5E1"/>
+
+    <g transform="translate(30, 50)">
+      <g>
+        <text x="0" y="0" class="font-brand" font-size="14" font-weight="700" fill="#0F172A">Attending Physician (Doctor Tilikum):</text>
+        <text x="320" y="0" class="font-duployan" font-size="24" fill="#0369A1">𛰈𛱄𛰅𛰃𛱄𛰋 𛰃𛱆𛰆𛱆𛰅𛱑𛰙</text>
+        <text x="560" y="0" class="font-mono" font-size="13" fill="#64748B">Dr. P. Gear, MD</text>
+      </g>
+
+      <g transform="translate(0, 50)">
+        <text x="0" y="0" class="font-brand" font-size="14" font-weight="700" fill="#0F172A">Clinical Vigilance (Kloshe Nanitch):</text>
+        <text x="320" y="0" class="font-duployan" font-size="24" fill="#0369A1">𛰅𛰆𛱄𛰜 𛰚𛱁𛰚𛱆𛰛</text>
+        <text x="560" y="0" class="font-mono" font-size="13" fill="#64748B">Vitals q4h / Post-Op Watch</text>
+      </g>
+
+      <g transform="translate(0, 100)">
+        <text x="0" y="0" class="font-brand" font-size="14" font-weight="700" fill="#0F172A">Remedy / Pharmacotherapy (Meskahke):</text>
+        <text x="320" y="0" class="font-duployan" font-size="24" fill="#0369A1">𛰙𛱇𛰜𛰅𛱁𛰀𛱇</text>
+        <text x="560" y="0" class="font-mono" font-size="13" fill="#64748B">Cephalexin 500 mg PO BID</text>
+      </g>
+
+      <g transform="translate(0, 150)">
+        <text x="0" y="0" class="font-brand" font-size="14" font-weight="700" fill="#0F172A">Gratitude Attestation (Mahsie):</text>
+        <text x="320" y="0" class="font-duployan" font-size="24" fill="#0369A1">𛰙𛱁𛰀𛰜𛱆</text>
+        <text x="560" y="0" class="font-mono" font-size="13" fill="#64748B">Care Plan Attested &amp; Signed</text>
+      </g>
+
+      <line x1="0" y1="190" x2="746" y2="190" stroke="#E2E8F0"/>
+
+      <g transform="translate(0, 220)">
+        <text x="0" y="0" class="font-mono" font-size="11" fill="#64748B">
+          OPTICAL CORRECTIONS: Tabular lining figures • Slashed zero (cv08) • Serifed capital I (ss02) • Curved lowercase l (cv05)
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>

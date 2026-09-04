@@ -1,0 +1,77 @@
+{
+  "timestamp": "2026-09-04T08:50:36Z",
+  "script": "Ethiopic / Ge'ez (ፊደል Fidäl)",
+  "unicode_range": "U+1200 - U+137F",
+  "assigned_codepoints": 358,
+  "historical_origin": "Ancient Semitic Abugida evolving from Ancient South Arabian script (~5th century BCE)",
+  "clinical_lexicon": [
+    {
+      "term": "ጤና",
+      "transliteration": "Ṭena",
+      "meaning": "Health / Wellness",
+      "clinical_use": "Primary health status indicator"
+    },
+    {
+      "term": "ሐኪም",
+      "transliteration": "Hakim",
+      "meaning": "Doctor / Physician",
+      "clinical_use": "Clinical care provider identifier"
+    },
+    {
+      "term": "መድኃኒት",
+      "transliteration": "Mädhanit",
+      "meaning": "Medicine / Pharmaceutical",
+      "clinical_use": "Prescription dosage guidance"
+    },
+    {
+      "term": "ደም",
+      "transliteration": "Däm",
+      "meaning": "Blood",
+      "clinical_use": "Hematocrit, hemoglobin, & blood pressure"
+    },
+    {
+      "term": "ልብ",
+      "transliteration": "Ləbb",
+      "meaning": "Heart",
+      "clinical_use": "Heart rate & rhythm telemetry"
+    },
+    {
+      "term": "ህክምና",
+      "transliteration": "Həkkəmənna",
+      "meaning": "Medical Care / Treatment",
+      "clinical_use": "EHR clinical consultation heading"
+    }
+  ],
+  "perma_pillars": [
+    {
+      "pillar": "P",
+      "term": "ደስታ (Dästa)",
+      "meaning": "Positive Emotion"
+    },
+    {
+      "pillar": "E",
+      "term": "ትጋት (Təgat)",
+      "meaning": "Engagement"
+    },
+    {
+      "pillar": "R",
+      "term": "ፍቅር (Fəqr)",
+      "meaning": "Relationships"
+    },
+    {
+      "pillar": "M",
+      "term": "ዓላማ (Alama)",
+      "meaning": "Meaning / Life Goal"
+    },
+    {
+      "pillar": "A",
+      "term": "ስኬት (Səket)",
+      "meaning": "Accomplishment"
+    },
+    {
+      "pillar": "+",
+      "term": "ጥንካሬ (Ṭənkare)",
+      "meaning": "Physical Vitality / Strength"
+    }
+  ]
+}

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="1200" viewBox="0 0 1200 1200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="washiBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="50%" stop-color="#FAF8F5"/>
+      <stop offset="100%" stop-color="#F4EFE6"/>
+    </linearGradient>
+    <style>
+      @font-face { font-family: "PocketGull"; src: local("PocketGull"), local("PocketGull-Bold"); font-weight: bold; }
+      @font-face { font-family: "PocketGull Mono"; src: local("PocketGull Mono"), local("PocketGullMono-Regular"); }
+      .title { font-family: "PocketGull", -apple-system, sans-serif; font-weight: bold; }
+      .mono { font-family: "PocketGull Mono", "Courier New", monospace; }
+      .body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+      .syllabic { font-family: "PocketGull", "Gadugi", "Euphemia", sans-serif; font-weight: bold; }
+    </style>
+  </defs>
+
+  <!-- Washi Paperboard Canvas -->
+  <rect width="1200" height="1200" fill="url(#washiBg)"/>
+  
+  <!-- Outer Architectural Deckle Frame -->
+  <rect x="26" y="26" width="1148" height="1148" fill="none" stroke="#E2DACB" stroke-width="1.5"/>
+  <rect x="32" y="32" width="1136" height="1136" fill="none" stroke="#E2DACB" stroke-width="0.8" stroke-dasharray="4,4"/>
+
+  <!-- Nunavut Vexillology Accent Rules -->
+  <rect x="26" y="26" width="382" height="4" fill="#FFD100"/>
+  <rect x="408" y="26" width="384" height="4" fill="#D52B1E"/>
+  <rect x="792" y="26" width="382" height="4" fill="#003896"/>
+
+  <!-- Header Section with Official Museum Flags -->
+  <g transform="translate(60, 75)">
+    <text x="0" y="48" class="title" font-size="50" fill="#1F1B16" letter-spacing="-0.02em">PERMA<tspan fill="#D52B1E">+</tspan> Thoughts: <tspan fill="#003896" class="syllabic">ᐃᓄᒃᑎᑐᑦ</tspan></text>
+    <text x="0" y="80" class="body" font-size="17" fill="#57534E">Positive Psychology, Arctic Clinical Medicine &amp; Seven Generations Longevity // CA-NU 🇨🇦</text>
+    
+      <g transform="translate(875.0, 35.0)">
+    <rect width="75.0" height="38.0" rx="2" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="0.8"/>
+    <g transform="scale(0.0078125, 0.007916666666666667)">
+      <!-- Official Canadian Red Bars (1:4 width each) -->
+      <path fill="#D52B1E" d="m0 0h2400v4800H0z"/>
+      <path fill="#D52B1E" d="m7200 0h2400v4800h-2400z"/>
+      <!-- Pure White Center Pale Square (1:2 width) -->
+      <path fill="#FFFFFF" d="m2400 0h4800v4800h-4800z"/>
+      <!-- The Official 11-Point Canadian Maple Leaf -->
+      <path fill="#D52B1E" d="m4890 4430-45-863a95 95 0 0 1 111-98l859 151-116-320a65 65 0 0 1 20-73l941-762-212-99a65 65 0 0 1-34-79l186-572-542 115a65 65 0 0 1-73-38l-105-247-423 454a65 65 0 0 1-111-57l204-1052-327 189a65 65 0 0 1-91-27l-332-652-332 652a65 65 0 0 1-91 27l-327-189 204 1052a65 65 0 0 1-111 57l-423-454-105 247a65 65 0 0 1-73 38l-542-115 186 572a65 65 0 0 1-34 79l-212 99 941 762a65 65 0 0 1 20 73l-116 320 859-151a95 95 0 0 1 111 98l-45 863z"/>
+    </g>
+  </g>
+  
+      <g transform="translate(960.0, 35.0)">
+    <!-- Crisp Outer Border & Drop Shadow -->
+    <rect width="75.0" height="42.0" rx="2" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="0.8"/>
+    <g transform="scale(0.0078125, 0.0077777777777777776)">
+      <!-- Left Field: Nunavut Gold -->
+      <path fill="#FFD100" d="m0 0h4800v5400H0z"/>
+      <!-- Right Field: Pristine Arctic Snow White -->
+      <path fill="#FFFFFF" d="m4800 0h4800v5400h-4800z"/>
+      <!-- Center Inuksuk in Nunavut Crimson with Black Outline (Official Construction) -->
+      <path stroke="#0F172A" stroke-linejoin="round" stroke-width="70" fill="#D52B1E" d="m4800 39c83 18 434 417 464 510 24 96-94 927-204 1201-203 44-528 17-715-39-37-77-114-1079-79-1225 37-71 458-435 534-447zm-2085 1653c868 101 2615 93 3817 124 114 14-83 307-132 426-48 119-57 384-335 377-1021-30-1946-58-2939-89-361-11-640-863-411-838zm1336 882c176 20 873 8 1134 43 178 27 176 634 93 728-91 105-531 36-775 108-232 66-251 138-685 89 108-573 40-992 233-968zm-372 1048c67-89 192-64 341-53 203 9 649-161 945-158 180 7 319 79 315 242-6 129 7 438-74 613-48 114-745 92-1065-23-93-33-440 31-480-29-46-64-75-469 18-592zm50 664c27-51 157-69 239-63 216 15 626 196 1085 112 276-50 575 544 477 700-100 164-216 240-336 330-940 8-1614 89-1602-271 6-184 24-609 137-808z"/>
+      <!-- Niqirtsuituq Polaris Star in Polaris Blue (Upper Right Fly) -->
+      <path fill="#003896" d="m8847 753-784 399 869 138-622-622 138 869z"/>
+    </g>
+  </g>
+  
+
+    <line x1="0" y1="104" x2="1080" y2="104" stroke="#E2DACB" stroke-width="1.5"/>
+  </g>
+
+  <!-- Elder Wisdom, Healing & Humour Banner -->
+  <g transform="translate(60, 190)">
+    <rect width="1080" height="42" rx="3" fill="#FFFDF8" stroke="#E2DACB" stroke-width="1"/>
+    <rect x="0" y="0" width="4" height="42" fill="#D52B1E"/>
+    <text x="16" y="18" class="syllabic" font-size="12" fill="#1F1B16">"ᐃᓄᒃᑐᑦ ᐅᖃᐅᓯᖅ ᑭᓇᐅᓂᑦᑎᓐᓂᒃ ᓴᖅᑭᔮᖅᑎᑦᑎᔪᖅ — Our language is our identity; writing it lets our elders live forward." <tspan class="mono" font-size="11" fill="#78716C">— Jose Kusugak</tspan></text>
+    <text x="16" y="34" class="body" font-size="11" fill="#003896" font-style="italic">ᒪᒥᓴᕐᓂᖅ (Healing) • ᖃᐅᔨᒪᓂᖅ (Wisdom) • ᐃᓅᓯᖃᑦᓯᐊᕐᓂᖅ (Longevity) • ᖁᕕᐊᓱᖕᓂᖅ (Humour: "Without humor, you freeze twice—once in body, once in spirit")</text>
+  </g>
+
+  <!-- Nunavut Localities & Arctic Health Nodes Ribbon -->
+  <g transform="translate(60, 238)">
+    <rect width="1080" height="34" rx="3" fill="#FFFDF8" stroke="#E2DACB" stroke-width="1"/>
+    <line x1="0" y1="0" x2="1080" y2="0" stroke="#FFD100" stroke-width="2"/>
+    <text x="16" y="22" class="mono" font-size="10" fill="#B45309" font-weight="bold">ARCTIC HEALTH NODES // ᓄᓇᓕᖕᓂ ᐋᓐᓂᐊᕕᖃᕐᕖᑦ:</text>
+    <text x="270" y="22" class="syllabic" font-size="13" fill="#1F1B16">ᐃᖃᓗᐃᑦ <tspan font-size="10" fill="#78716C">(Iqaluit)</tspan> • ᑲᖏᖅᖠᓂᖅ <tspan font-size="10" fill="#78716C">(Rankin Inlet)</tspan> • ᐃᖃᓗᒃᑑᑦᑎᐊᖅ <tspan font-size="10" fill="#78716C">(Cambridge Bay)</tspan> • ᐃᒡᓗᓕᒃ <tspan font-size="10" fill="#78716C">(Igloolik)</tspan> • ᐸᖕᓂᕐᑑᖅ <tspan font-size="10" fill="#78716C">(Pangnirtung)</tspan> • ᑭᙵᐃᑦ <tspan font-size="10" fill="#78716C">(Kinngait)</tspan></text>
+  </g>
+
+  <!-- ================= 6 PERMA+ PILLARS GRID ================= -->
+
+  <!-- ================= ROW 1 ================= -->
+  
+  <!-- Pillar 1: (P) Positive Emotion & Vitals Balance in Inuksuk Red -->
+  <g transform="translate(60, 285)">
+    <rect width="342" height="365" fill="#FFFDF8" stroke="#E2DACB" stroke-width="1"/>
+    <line x1="0" y1="0" x2="342" y2="0" stroke="#D52B1E" stroke-width="3"/>
+    
+    <text x="22" y="34" class="mono" font-size="15" fill="#D52B1E" font-weight="bold">(P) Positive Emotion</text>
+    <text x="22" y="55" class="syllabic" font-size="14" fill="#1F1B16">ᖁᕕᐊᓱᖕᓂᖅ • ᐃᒡᓗᕐᓂᖅ (Humour)</text>
+    <text x="22" y="74" class="body" font-size="11" fill="#78716C" font-style="italic">Vagal balance &amp; cortisol regulation</text>
+    
+    <g transform="translate(22, 90)">
+      <rect width="298" height="62" fill="#FAF8F5" stroke="#E2DACB" stroke-width="1"/>
+      <text x="149" y="42" class="syllabic" font-size="32" fill="#D52B1E" text-anchor="middle">ᐱ ᐳ ᐸ ᐯ</text>
+    </g>
+    
+    <line x1="22" y1="170" x2="320" y2="170" stroke="#E2DACB" stroke-width="0.8"/>
+    
+    <text x="22" y="198" class="body" font-size="12" fill="#1F1B16" font-weight="bold">• Laughter as Medicine (ᐃᒡᓗᕐᓂᖅ)</text>
+    <text x="32" y="218" class="body" font-size="11" fill="#57534E">Humour stimulates endorphins and</text>
+    <text x="32" y="234" class="body" font-size="11" fill="#57534E">reduces salivary cortisol by ~22%.</text>
+    
+    <text x="22" y="264" class="body" font-size="12" fill="#1F1B16" font-weight="bold">• Vital Signs (ᐆᒻᒪᑎ / ᐊᓂᕐᓂᖅ)</text>
+    <text x="32" y="284" class="body" font-size="11" fill="#57534E">Resting heart rate 72 bpm, calm</text>
+    <text x="32" y="300" class="body" font-size="11" fill="#57534E">parasympathetic vagal tone.</text>
+  </g>
+
+  <!-- Pillar 2: (E) Engagement & Focused Flow in Nunavut Gold -->
+  <g transform="translate(429, 285)">
+    <rect width="342" height="365" fill="#FFFDF8" stroke="#E2DACB" stroke-width="1"/>
+    <line x1="0" y1="0" x2="342" y2="0" stroke="#FFD100" stroke-width="3"/>
+    
+    <text x="22" y="34" class="mono" font-size="15" fill="#B45309" font-weight="bold">(E) Engagement / Flow</text>
+    <text x="22" y="55" class="syllabic" font-size="14" fill="#1F1B16">ᐱᓇᓱᐊᕐᓂᖅ • Mindful Focus</text>
+    <text x="22" y="74" class="body" font-size="11" fill="#78716C" font-style="italic">Sloan 5:1 optotype &amp; neuroplasticity</text>
+    
+    <g transform="translate(22, 90)">
+      <rect width="298" height="62" fill="#FAF8F5" stroke="#E2DACB" stroke-width="1"/>
+      <text x="149" y="42" class="syllabic" font-size="28" fill="#B45309" text-anchor="middle" font-weight="bold">ᑎ ᑏ ᑐ ᑑ ᑕ ᑖ</text>
+    </g>
+    
+    <line x1="22" y1="170" x2="320" y2="170" stroke="#E2DACB" stroke-width="0.8"/>
+    
+    <text x="22" y="198" class="body" font-size="12" fill="#1F1B16" font-weight="bold">• Snellen 20/20 Optical Precision</text>
+    <text x="32" y="218" class="body" font-size="11" fill="#57534E">Resolves at 5-arcminute visual angle</text>
+    <text x="32" y="234" class="body" font-size="11" fill="#57534E">to eliminate visual screen fatigue.</text>
+    
+    <text x="22" y="264" class="body" font-size="12" fill="#1F1B16" font-weight="bold">• Somatic Flow (ᐃᓱᒪᒃᑯᑦ ᓴᙱᓂᖅ)</text>
+    <text x="32" y="284" class="body" font-size="11" fill="#57534E">Full cognitive presence during care</text>
+    <text x="32" y="300" class="body" font-size="11" fill="#57534E">planning and physical rehabilitation.</text>
+  </g>
+
+  <!-- Pillar 3: (R) Relationships & Social Co-Regulation in Polaris Blue -->
+  <g transform="translate(798, 285)">
+    <rect width="342" height="365" fill="#FFFDF8" stroke="#E2DACB" stroke-width="1"/>
+    <line x1="0" y1="0" x2="342" y2="0" stroke="#003896" stroke-width="3"/>
+    
+    <text x="22" y="34" class="mono" font-size="15" fill="#003896" font-weight="bold">(R) Relationships</text>
+    <text x="22" y="55" class="syllabic" font-size="14" fill="#1F1B16">ᐃᓅᖃᑎᒌᑦᑎᐊᕐᓂᖅ • Kinship</text>
+    <text x="22" y="74" class="body" font-size="11" fill="#78716C" font-style="italic">Social determinants &amp; co-regulation</text>
+    
+    <g transform="translate(22, 90)">
+      <rect width="298" height="62" fill="#FAF8F5" stroke="#E2DACB" stroke-width="1"/>
+      <text x="149" y="42" class="syllabic" font-size="28" fill="#003896" text-anchor="middle" font-weight="bold">ᒥ ᒦ ᒧ ᒨ ᒪ ᒫ</text>
+    </g>
+    
+    <line x1="22" y1="170" x2="320" y2="170" stroke="#E2DACB" stroke-width="0.8"/>
+    
+    <text x="22" y="198" class="body" font-size="12" fill="#1F1B16" font-weight="bold">• Community Health (ᐃᓅᖃᑎᒌᑦ)</text>
+    <text x="32" y="218" class="body" font-size="11" fill="#57534E">Kinship bonds lower cardiac load</text>
+    <text x="32" y="234" class="body" font-size="11" fill="#57534E">and mitigate post-op vulnerability.</text>
+    
+    <text x="22" y="264" class="body" font-size="12" fill="#1F1B16" font-weight="bold">• Caregiver Alliance (ᐃᓚᒌᑦ)</text>
+    <text x="32" y="284" class="body" font-size="11" fill="#57534E">Shared decision-making across</text>
+    <text x="32" y="300" class="body" font-size="11" fill="#57534E">family and remote nursing stations.</text>
+  </g>
+
+  <!-- ================= ROW 2 ================= -->
+  
+  <!-- Pillar 4: (M) Meaning & Eudaimonic Purpose in Celadon Teal -->
+  <g transform="translate(60, 665)">
+    <rect width="342" height="365" fill="#FFFDF8" stroke="#E2DACB" stroke-width="1"/>
+    <line x1="0" y1="0" x2="342" y2="0" stroke="#0D9488" stroke-width="3"/>
+    
+    <text x="22" y="34" class="mono" font-size="15" fill="#0D9488" font-weight="bold">(M) Meaning &amp; Purpose</text>
+    <text x="22" y="55" class="syllabic" font-size="14" fill="#1F1B16">ᐃᓅᓯᖃᑦᓯᐊᕐᓂᖅ • Elder Wisdom</text>
+    <text x="22" y="74" class="body" font-size="11" fill="#78716C" font-style="italic">Eudaimonia &amp; telomere longevity</text>
+    
+    <g transform="translate(22, 90)">
+      <rect width="298" height="62" fill="#FAF8F5" stroke="#E2DACB" stroke-width="1"/>
+      <text x="149" y="42" class="syllabic" font-size="28" fill="#0D9488" text-anchor="middle" font-weight="bold">ᓂ ᓃ ᓄ ᓅ ᓇ ᓈ</text>
+    </g>
+    
+    <line x1="22" y1="170" x2="320" y2="170" stroke="#E2DACB" stroke-width="0.8"/>
+    
+    <text x="22" y="198" class="body" font-size="12" fill="#1F1B16" font-weight="bold">• Purposeful Life (ᐃᓅᓯᖅ)</text>
+    <text x="32" y="218" class="body" font-size="11" fill="#57534E">A reason to rise protects cellular</text>
+    <text x="32" y="234" class="body" font-size="11" fill="#57534E">telomeres and immune defense.</text>
+    
+    <text x="22" y="264" class="body" font-size="12" fill="#1F1B16" font-weight="bold">• Traditional Wisdom (IQ)</text>
+    <text x="32" y="284" class="body" font-size="11" fill="#57534E">Inuit Qaujimajatuqangit acts as an</text>
+    <text x="32" y="300" class="body" font-size="11" fill="#57534E">intergenerational protective anchor.</text>
+  </g>
+
+  <!-- Pillar 5: (A) Accomplishment & Autonomous Mastery in Inuksuk Red -->
+  <g transform="translate(429, 665)">
+    <rect width="342" height="365" fill="#FFFDF8" stroke="#E2DACB" stroke-width="1"/>
+    <line x1="0" y1="0" x2="342" y2="0" stroke="#D52B1E" stroke-width="3"/>
+    
+    <text x="22" y="34" class="mono" font-size="15" fill="#D52B1E" font-weight="bold">(A) Accomplishment</text>
+    <text x="22" y="55" class="syllabic" font-size="14" fill="#1F1B16">ᐊᔪᙱᓐᓂᖃᕐᓂᖅ • Self-Efficacy</text>
+    <text x="22" y="74" class="body" font-size="11" fill="#78716C" font-style="italic">Patient activation &amp; functional goals</text>
+    
+    <g transform="translate(22, 90)">
+      <rect width="298" height="62" fill="#FAF8F5" stroke="#E2DACB" stroke-width="1"/>
+      <text x="149" y="42" class="syllabic" font-size="28" fill="#D52B1E" text-anchor="middle" font-weight="bold">ᑭ ᑮ ᑯ ᑰ ᑲ ᑳ</text>
+    </g>
+    
+    <line x1="22" y1="170" x2="320" y2="170" stroke="#E2DACB" stroke-width="0.8"/>
+    
+    <text x="22" y="198" class="body" font-size="12" fill="#1F1B16" font-weight="bold">• Clinical Milestones (ᐊᔪᙱᓐᓂᖅ)</text>
+    <text x="32" y="218" class="body" font-size="11" fill="#57534E">Autonomous recovery wins across</text>
+    <text x="32" y="234" class="body" font-size="11" fill="#57534E">physical therapy and daily mobility.</text>
+    
+    <text x="22" y="264" class="body" font-size="12" fill="#1F1B16" font-weight="bold">• 100% Inuktitut Parity</text>
+    <text x="32" y="284" class="body" font-size="11" fill="#57534E">Full 640-glyph Unicode architecture</text>
+    <text x="32" y="300" class="body" font-size="11" fill="#57534E">empowering native chart literacy.</text>
+  </g>
+
+  <!-- Pillar 6: (+) Physical Vitality & Restorative Health in Nunavut Gold -->
+  <g transform="translate(798, 665)">
+    <rect width="342" height="365" fill="#FFFDF8" stroke="#E2DACB" stroke-width="1"/>
+    <line x1="0" y1="0" x2="342" y2="0" stroke="#FFD100" stroke-width="3"/>
+    
+    <text x="22" y="34" class="mono" font-size="15" fill="#B45309" font-weight="bold">(+) Physical Vitality</text>
+    <text x="22" y="55" class="syllabic" font-size="14" fill="#1F1B16">ᐋᓐᓂᐊᖃᕐᓇᙱᑦᑐᓕᕆᓂᖅ • Health</text>
+    <text x="22" y="74" class="body" font-size="11" fill="#78716C" font-style="italic">Sleep, nutrition &amp; 7 generations life</text>
+    
+    <g transform="translate(22, 90)">
+      <rect width="298" height="62" fill="#FAF8F5" stroke="#E2DACB" stroke-width="1"/>
+      <text x="149" y="42" class="syllabic" font-size="28" fill="#003896" text-anchor="middle" font-weight="bold">ᓯ ᓰ ᓱ ᓲ ᓴ ᓵ</text>
+    </g>
+    
+    <line x1="22" y1="170" x2="320" y2="170" stroke="#E2DACB" stroke-width="0.8"/>
+    
+    <text x="22" y="198" class="body" font-size="12" fill="#1F1B16" font-weight="bold">• Restorative Sleep (ᓯᓂᖕᓂᖅ)</text>
+    <text x="32" y="218" class="body" font-size="11" fill="#57534E">Deep slow-wave repair, cellular</text>
+    <text x="32" y="234" class="body" font-size="11" fill="#57534E">glymphatic cleansing and calm.</text>
+    
+    <text x="22" y="264" class="body" font-size="12" fill="#1F1B16" font-weight="bold">• ISMP Safety &amp; Vitality</text>
+    <text x="32" y="284" class="body" font-size="11" fill="#57534E">Zero trailing zeroes (500 mg, NOT</text>
+    <text x="32" y="300" class="body" font-size="11" fill="#57534E">5.0 mg) across 25 Arctic clinics.</text>
+  </g>
+
+  <!-- Footer Section -->
+  <g transform="translate(60, 1050)">
+    <line x1="0" y1="0" x2="1080" y2="0" stroke="#E2DACB" stroke-width="1.5"/>
+    <text x="0" y="26" class="mono" font-size="10" fill="#78716C">POCKETGULL TYPEFOUNDRY // UNIVERSAL WORLD SCRIPTS INITIATIVE // ARCTIC HEALTH TELEMETRY</text>
+    <text x="1080" y="26" class="mono" font-size="10" fill="#003896" text-anchor="end" font-weight="bold">SIL OPEN FONT LICENSE 1.1 // ISO 3166-2: CA-NU 🇨🇦 // PHILGEAR.BIZ</text>
+  </g>
+</svg>

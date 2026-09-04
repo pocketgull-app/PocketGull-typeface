@@ -52,3 +52,15 @@ diffbrowsers/
 # Private Typefoundry Workspace (Generators, Internal Docs, Philosophy, Patents)
 .foundry/
 .studio/
+
+# DirectML Hardware-Accelerated Local Generation Pipeline (Hidden from Uploads)
+scripts/directml/
+
+# Dart Package Cache
+.dart_tool/
+pubspec.lock
+
+# Rendered High-Resolution 300 DPI Raster Exhibition Plates (SVGs are the SSOT)
+documentation/images/*/*.png
+!documentation/images/inuktitut/pocketgull-perma-thoughts-card.png
+documentation/masterworks/*/*.png

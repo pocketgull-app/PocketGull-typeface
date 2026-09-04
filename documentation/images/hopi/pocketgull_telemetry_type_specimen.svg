@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="2688" height="3600" viewBox="0 0 2688 3600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@400;600;700&amp;display=swap');
+      .font-brand { font-family: 'Plus Jakarta Sans', sans-serif; }
+      .font-mono { font-family: 'JetBrains Mono', monospace; }
+      .font-native { font-family: 'PocketGull', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
+    </style>
+  </defs>
+
+  <!-- Basalt Black Medical Terminal Background -->
+  <rect width="2688" height="3600" fill="#090E17"/>
+
+  <!-- Hospital Monitor Frame -->
+  <rect x="80" y="80" width="2528" height="3440" rx="24" fill="#0F172A" stroke="#1E293B" stroke-width="4"/>
+
+  <!-- Top ICU Status Header -->
+  <g transform="translate(140, 160)">
+    <rect width="2408" height="120" rx="12" fill="#1E293B"/>
+    <circle cx="50" cy="60" r="14" fill="#10B981"/>
+    <text x="90" y="70" class="font-mono" font-size="32" font-weight="bold" fill="#F8FAFC">ICU BED 04 • IHS PHOENIX & TUCSON AREAS • SELLS HOSPITAL</text>
+    <text x="1850" y="70" class="font-mono" font-size="28" font-weight="bold" fill="#94A3B8">STANDBY: TELEHEALTH SYNC</text>
+  </g>
+
+  <!-- Big Telemetry Vitals Grid -->
+  <g transform="translate(140, 340)">
+    <!-- Heart Rate Card -->
+    <rect width="1180" height="420" rx="16" fill="#131E33" stroke="#10B981" stroke-width="3"/>
+    <text x="50" y="80" class="font-mono" font-size="32" font-weight="bold" fill="#10B981">HR / PULSE (ECG LEAD II)</text>
+    <text x="50" y="240" class="font-native" font-size="120" font-weight="800" fill="#10B981">72</text>
+    <text x="260" y="240" class="font-native" font-size="44" font-weight="bold" fill="#6EE7B7">BPM • Unaqa</text>
+    <!-- ECG Sine Path -->
+    <path d="M 50 340 L 300 340 L 340 310 L 380 400 L 420 250 L 460 360 L 500 340 L 1120 340" fill="none" stroke="#10B981" stroke-width="5" stroke-linecap="round"/>
+
+    <!-- Blood Pressure Card -->
+    <g transform="translate(1230, 0)">
+      <rect width="1180" height="420" rx="16" fill="#131E33" stroke="#F59E0B" stroke-width="3"/>
+      <text x="50" y="80" class="font-mono" font-size="32" font-weight="bold" fill="#F59E0B">NIBP (ARTERIAL PRESSURE)</text>
+      <text x="50" y="240" class="font-native" font-size="120" font-weight="800" fill="#F59E0B">120/80</text>
+      <text x="530" y="240" class="font-native" font-size="44" font-weight="bold" fill="#FDE68A">mmHg • Ungwa</text>
+      <text x="50" y="340" class="font-mono" font-size="28" fill="#94A3B8">MAP: 93.3 mmHg • REGULAR SINUS</text>
+    </g>
+  </g>
+
+  <!-- Second Row Vitals -->
+  <g transform="translate(140, 820)">
+    <!-- SpO2 Card -->
+    <rect width="1180" height="340" rx="16" fill="#131E33" stroke="#38BDF8" stroke-width="3"/>
+    <text x="50" y="80" class="font-mono" font-size="32" font-weight="bold" fill="#38BDF8">PULSE OXIMETRY (SpO2)</text>
+    <text x="50" y="230" class="font-native" font-size="110" font-weight="800" fill="#38BDF8">99%</text>
+    <text x="330" y="230" class="font-native" font-size="40" font-weight="bold" fill="#BAE6FD">Hikwsi SpO2</text>
+
+    <!-- Temperature Card -->
+    <g transform="translate(1230, 0)">
+      <rect width="1180" height="340" rx="16" fill="#131E33" stroke="#EC4899" stroke-width="3"/>
+      <text x="50" y="80" class="font-mono" font-size="32" font-weight="bold" fill="#EC4899">CORE BODY TEMP</text>
+      <text x="50" y="230" class="font-native" font-size="110" font-weight="800" fill="#EC4899">37.0°C</text>
+      <text x="440" y="230" class="font-native" font-size="40" font-weight="bold" fill="#FBCFE8">NORMOTHERMIC</text>
+    </g>
+  </g>
+
+  <!-- Medication Administration Record (MAR) Container -->
+  <g transform="translate(140, 1220)">
+    <rect width="2408" height="840" rx="20" fill="#111C2E" stroke="#3B82F6" stroke-width="3"/>
+    <g transform="translate(60, 80)">
+      <text x="0" y="0" class="font-mono" font-size="36" font-weight="bold" fill="#60A5FA">ELECTRONIC PRESCRIBING &amp; CLINICAL ORDER (RPMS / EHR)</text>
+      <text x="0" y="60" class="font-native" font-size="44" font-weight="bold" fill="#D97706">Tuuhikya Mongwi (Traditional Healing Plan)</text>
+      
+      <!-- Callout Box for Drug Direction -->
+      <g transform="translate(0, 100)">
+        <rect width="2288" height="240" rx="12" fill="#1E293B" stroke="#60A5FA" stroke-width="2"/>
+        <text x="40" y="70" class="font-mono" font-size="26" font-weight="bold" fill="#94A3B8">CLINICAL DIRECTIVE IN NATIVE SOVEREIGN ORTHOGRAPHY:</text>
+        <text x="40" y="150" class="font-native" font-size="48" font-weight="bold" fill="#FFFFFF">Sumi’nangwa kyelöwma (Walk with a pure, peaceful heart and daily clean water)</text>
+      </g>
+
+      <!-- Safety Badges -->
+      <g transform="translate(0, 400)">
+        <rect width="700" height="90" rx="10" fill="#065F46"/>
+        <text x="350" y="55" class="font-mono" font-size="24" font-weight="bold" fill="#D1FAE5" text-anchor="middle">✓ ZERO TONE TRUNCATION</text>
+
+        <rect x="740" y="0" width="700" height="90" rx="10" fill="#1E3A8A"/>
+        <text x="1090" y="55" class="font-mono" font-size="24" font-weight="bold" fill="#DBEAFE" text-anchor="middle">✓ 1.4x BAR CONTRAST (ISMP 2026)</text>
+
+        <rect x="1480" y="0" width="800" height="90" rx="10" fill="#701A75"/>
+        <text x="1880" y="55" class="font-mono" font-size="24" font-weight="bold" fill="#FDF4FF" text-anchor="middle">✓ FIRST-CLASS GLOTTAL LETTER</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bioregional Land & Healing Banner -->
+  <g transform="translate(140, 2120)">
+    <rect width="2408" height="1140" rx="20" fill="#131E33" stroke="#334155" stroke-width="2"/>
+    <g transform="translate(60, 80)">
+      <text x="0" y="0" class="font-mono" font-size="32" font-weight="bold" fill="#38BDF8">LAND-BASED HEALING &amp; TRADITIONAL KNOWLEDGE INTEGRATION</text>
+      <text x="0" y="70" class="font-native" font-size="44" font-weight="bold" fill="#D97706">🌽 The High Sandstone Mesas & Towering Saguaro Forests</text>
+      <foreignObject x="0" y="110" width="2280" height="360">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 28px; color: #E2E8F0; line-height: 1.65;">
+          From the timeless, wind-swept stone heights of Third Mesa (Orayvi) where blue corn roots plunge deep into arid sand, to the majestic Saguaro cactus (Ha:ṣan) giants guarding sacred Baboquivari Peak beneath crystalline starry skies, health is living in sacred balance (Sumi’nangwa).
+        </div>
+      </foreignObject>
+
+      <!-- 4 Pillars of Community Recovery -->
+      <g transform="translate(0, 520)">
+        <text x="0" y="0" class="font-mono" font-size="26" font-weight="bold" fill="#94A3B8">CLINICAL PROTOCOLS RECOGNIZED IN THIS EHR TENANT:</text>
+        <g transform="translate(0, 30)">
+          <rect width="540" height="200" rx="12" fill="#1E293B"/>
+          <text x="30" y="60" class="font-native" font-size="34" font-weight="bold" fill="#FFFFFF">Sumi’nangwa</text>
+          <text x="30" y="110" class="font-mono" font-size="20" fill="#94A3B8">All people coming together with one peaceful heart and mind</text>
+
+          <rect x="580" y="0" width="540" height="200" rx="12" fill="#1E293B"/>
+          <text x="610" y="60" class="font-native" font-size="34" font-weight="bold" fill="#FFFFFF">Hopituskwa</text>
+          <text x="610" y="110" class="font-mono" font-size="20" fill="#94A3B8">The ancestral, sacred Hopi homeland and high mesas</text>
+
+          <rect x="1160" y="0" width="540" height="200" rx="12" fill="#1E293B"/>
+          <text x="1190" y="60" class="font-native" font-size="34" font-weight="bold" fill="#FFFFFF">Ha:ṣan</text>
+          <text x="1190" y="110" class="font-mono" font-size="20" fill="#94A3B8">The sacred Saguaro cactus that sustains life in the desert</text>
+
+          <rect x="1740" y="0" width="540" height="200" rx="12" fill="#1E293B"/>
+          <text x="1770" y="60" class="font-native" font-size="34" font-weight="bold" fill="#FFFFFF">Sakyawqa</text>
+          <text x="1770" y="110" class="font-mono" font-size="20" fill="#94A3B8">Sacred blue corn; spiritual mother and nutritional foundation</text>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- Footer Technical Summary -->
+  <g transform="translate(140, 3340)">
+    <text x="0" y="0" class="font-mono" font-size="24" fill="#64748B">POCKETGULL ICU TELEMETRY • ZERO JITTER MONOSPACE 600 UPM • W3C OTS VERIFIED • HL7 FHIR R4 COMPLIANT</text>
+  </g>
+</svg>

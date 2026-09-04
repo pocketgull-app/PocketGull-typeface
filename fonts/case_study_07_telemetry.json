@@ -1,0 +1,16 @@
+{
+  "case_study_id": "CS-07",
+  "title": "Case Study 07: Pan-Tribal Sovereign Indigenous Latin Orthographies",
+  "script": "Pan-Tribal Indigenous Latin & Diacritic Safety",
+  "ihs_areas": 12,
+  "federally_recognized_tribes": 574,
+  "first_nations_canada": 630,
+  "verified_characters": 82,
+  "stacked_diacritic_clearance_upm": 110,
+  "sloan_acuity_ratio": "5:1",
+  "ots_sanitizer": "Passed (100% Valid)",
+  "google_fonts_preflight": "34/34 Passed",
+  "duplicate_nodes": 0,
+  "fixed_advance_mono_upm": 600,
+  "timestamp": "2026-09-04T09:12:12.209756+00:00"
+}

@@ -1,0 +1,47 @@
+﻿{
+  "script": "BassaVah",
+  "direction": "LTR",
+  "unicode_range": "U+16AD0-U+16AF5",
+  "upm": 1000,
+  "vowels": [
+    { "codepoint": "U+16AD0", "char": "𖫐", "name": "BASSA VAH LETTER A" },
+    { "codepoint": "U+16AD1", "char": "𖫑", "name": "BASSA VAH LETTER O" },
+    { "codepoint": "U+16AD2", "char": "𖫒", "name": "BASSA VAH LETTER OO" },
+    { "codepoint": "U+16AD3", "char": "𖫓", "name": "BASSA VAH LETTER U" },
+    { "codepoint": "U+16AD4", "char": "𖫔", "name": "BASSA VAH LETTER EE" },
+    { "codepoint": "U+16AD5", "char": "𖫕", "name": "BASSA VAH LETTER E" },
+    { "codepoint": "U+16AD6", "char": "𖫖", "name": "BASSA VAH LETTER I" }
+  ],
+  "consonants": [
+    { "codepoint": "U+16AD7", "char": "𖫗", "name": "BASSA VAH LETTER KA" },
+    { "codepoint": "U+16AD8", "char": "𖫘", "name": "BASSA VAH LETTER KPA" },
+    { "codepoint": "U+16AD9", "char": "𖫙", "name": "BASSA VAH LETTER M" },
+    { "codepoint": "U+16ADA", "char": "𖫚", "name": "BASSA VAH LETTER GA" },
+    { "codepoint": "U+16ADB", "char": "𖫛", "name": "BASSA VAH LETTER GBA" },
+    { "codepoint": "U+16ADC", "char": "𖫜", "name": "BASSA VAH LETTER NGA" },
+    { "codepoint": "U+16ADD", "char": "𖫝", "name": "BASSA VAH LETTER PA" },
+    { "codepoint": "U+16ADE", "char": "𖫞", "name": "BASSA VAH LETTER BA" },
+    { "codepoint": "U+16ADF", "char": "𖫟", "name": "BASSA VAH LETTER VU" },
+    { "codepoint": "U+16AE0", "char": "𖫠", "name": "BASSA VAH LETTER HIN" },
+    { "codepoint": "U+16AE1", "char": "𖫡", "name": "BASSA VAH LETTER TA" },
+    { "codepoint": "U+16AE2", "char": "𖫢", "name": "BASSA VAH LETTER DA" },
+    { "codepoint": "U+16AE3", "char": "𖫣", "name": "BASSA VAH LETTER CH" },
+    { "codepoint": "U+16AE4", "char": "𖫤", "name": "BASSA VAH LETTER JA" },
+    { "codepoint": "U+16AE5", "char": "𖫥", "name": "BASSA VAH LETTER SA" },
+    { "codepoint": "U+16AE6", "char": "𖫦", "name": "BASSA VAH LETTER ZA" },
+    { "codepoint": "U+16AE7", "char": "𖫧", "name": "BASSA VAH LETTER FA" },
+    { "codepoint": "U+16AE8", "char": "𖫨", "name": "BASSA VAH LETTER VA" },
+    { "codepoint": "U+16AE9", "char": "𖫩", "name": "BASSA VAH LETTER NA" },
+    { "codepoint": "U+16AEA", "char": "𖫪", "name": "BASSA VAH LETTER LA" },
+    { "codepoint": "U+16AEB", "char": "𖫫", "name": "BASSA VAH LETTER WA" },
+    { "codepoint": "U+16AEC", "char": "𖫬", "name": "BASSA VAH LETTER YA" },
+    { "codepoint": "U+16AED", "char": "𖫭", "name": "BASSA VAH LETTER R" }
+  ],
+  "combining_tone_marks": [
+    { "codepoint": "U+16AF0", "char": "𖫰", "name": "BASSA VAH COMBINING HIGH TONE" },
+    { "codepoint": "U+16AF1", "char": "𖫱", "name": "BASSA VAH COMBINING LOW TONE" },
+    { "codepoint": "U+16AF2", "char": "𖫲", "name": "BASSA VAH COMBINING MID TONE" },
+    { "codepoint": "U+16AF3", "char": "𖫳", "name": "BASSA VAH COMBINING LOW-MID TONE" },
+    { "codepoint": "U+16AF4", "char": "𖫴", "name": "BASSA VAH COMBINING HIGH-LOW TONE" }
+  ]
+}

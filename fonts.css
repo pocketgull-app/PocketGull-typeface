@@ -83,3 +83,157 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* ==========================================================================
+   3. SMoE DYNAMIC SCRIPT EXPERTS (UNICODE-RANGE GATED PATHWAYS)
+   Allows edge devices, IoT monitors, and remote clinics to selectively
+   dispatch font rendering based on active linguistic tokens.
+   ========================================================================== */
+
+/* Expert A: Latin Core, ISMP Safety & 256-Glyph Braille Matrix */
+@font-face {
+  font-family: 'PocketGull-SMoE';
+  src: url('fonts/woff2/PocketGull-Fineliner.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+                 U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+                 U+2800-28FF, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'PocketGull-SMoE';
+  src: url('fonts/woff2/PocketGull-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+                 U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+                 U+2800-28FF, U+FEFF, U+FFFD;
+}
+
+/* Expert B: Canadian Aboriginal Syllabics (Inuktitut / Cree) */
+@font-face {
+  font-family: 'PocketGull Inuktitut';
+  src: url('fonts/woff2/PocketGull-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+1400-167F;
+}
+
+@font-face {
+  font-family: 'PocketGull Inuktitut';
+  src: url('fonts/woff2/PocketGull-Fineliner.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+1400-167F;
+}
+
+/* Expert C: Chinuk Pipa & Duployan Shorthand */
+@font-face {
+  font-family: 'PocketGull ChinukPipa';
+  src: url('fonts/woff2/PocketGull-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+1BC00-1BC9F;
+}
+
+@font-face {
+  font-family: 'PocketGull ChinukPipa';
+  src: url('fonts/woff2/PocketGull-Fineliner.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+1BC00-1BC9F;
+}
+
+/* Expert D: Neo-Tifinagh (Amazigh / Berber) */
+@font-face {
+  font-family: 'PocketGull Tifinagh';
+  src: url('fonts/woff2/PocketGull-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+2D30-2D7F;
+}
+
+@font-face {
+  font-family: 'PocketGull Tifinagh';
+  src: url('fonts/woff2/PocketGull-Fineliner.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+2D30-2D7F;
+}
+
+/* Expert E: Cherokee Syllabary & Lowercase Supplement */
+@font-face {
+  font-family: 'PocketGull Cherokee';
+  src: url('fonts/woff2/PocketGull-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+13A0-13FF, U+AB70-ABBF;
+}
+
+@font-face {
+  font-family: 'PocketGull Cherokee';
+  src: url('fonts/woff2/PocketGull-Fineliner.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+13A0-13FF, U+AB70-ABBF;
+}
+
+/* Expert F: Ethiopic / Ge'ez Abugida */
+@font-face {
+  font-family: 'PocketGull Ethiopic';
+  src: url('fonts/woff2/PocketGull-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+1200-137F;
+}
+
+@font-face {
+  font-family: 'PocketGull Ethiopic';
+  src: url('fonts/woff2/PocketGull-Fineliner.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+1200-137F;
+}
+
+/* Expert G: West African Sovereign Scripts (Adlam & Vai) */
+@font-face {
+  font-family: 'PocketGull Adlam';
+  src: url('fonts/woff2/PocketGull-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+1E900-1E95F;
+}
+
+@font-face {
+  font-family: 'PocketGull Vai';
+  src: url('fonts/woff2/PocketGull-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+A500-A63F;
+}
+
+/* Expert H: Medical ICU Telemetry & Terminal Symbols */
+@font-face {
+  font-family: 'PocketGull Telemetry';
+  src: url('fonts/woff2/PocketGullMono-Regular.woff2') format('woff2');
+  font-weight: 400 500 600 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+E0A0-E0B6, U+2500-257F, U+26A1, U+2713-2714, U+276E-276F;
+}
+

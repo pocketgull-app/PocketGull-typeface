@@ -1,0 +1,42 @@
+{
+  "timestamp": "2026-09-04T08:51:50Z",
+  "case_study": 6,
+  "script": "West African Sovereign Scripts (Adlam & Vai)",
+  "region": "West Africa / Guinea, Liberia, Sierra Leone",
+  "clinical_focus": "Ebola/Lassa fever community health workers, vaccination tracking, and maternal health.",
+  "codepoints_synthesized": 388,
+  "total_glyphs_compiled": 1552,
+  "runtime_ms": 14751.46,
+  "manual_hours_benchmark": 1164.0,
+  "acceleration_factor": 284066,
+  "fonts_updated": [
+    {
+      "filename": "PocketGull-Fineliner.ttf",
+      "weight": 400,
+      "is_mono": false,
+      "glyphs_added": 388,
+      "time_ms": 3677.26
+    },
+    {
+      "filename": "PocketGull-Bold.ttf",
+      "weight": 700,
+      "is_mono": false,
+      "glyphs_added": 388,
+      "time_ms": 3735.36
+    },
+    {
+      "filename": "PocketGull-Chiseltip.ttf",
+      "weight": 900,
+      "is_mono": false,
+      "glyphs_added": 388,
+      "time_ms": 3632.6
+    },
+    {
+      "filename": "PocketGullMono-Regular.ttf",
+      "weight": 400,
+      "is_mono": true,
+      "glyphs_added": 388,
+      "time_ms": 3705.85
+    }
+  ]
+}
