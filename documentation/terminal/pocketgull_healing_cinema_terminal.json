@@ -1,0 +1,70 @@
+{
+  "$schema": "https://aka.ms/terminal-profiles-schema",
+  "schemes": [
+    {
+      "name": "PocketGull Healing Cinema",
+      "background": "#050811",
+      "foreground": "#E2E8F0",
+      "cursorColor": "#2DD4BF",
+      "selectionBackground": "#1E293B",
+      "black": "#0F172A",
+      "red": "#F87171",
+      "green": "#2DD4BF",
+      "yellow": "#FBBF24",
+      "blue": "#38BDF8",
+      "purple": "#C084FC",
+      "cyan": "#22D3EE",
+      "white": "#F1F5F9",
+      "brightBlack": "#475569",
+      "brightRed": "#FCA5A5",
+      "brightGreen": "#5EEAD4",
+      "brightYellow": "#FDE047",
+      "brightBlue": "#7DD3FC",
+      "brightPurple": "#E9D5FF",
+      "brightCyan": "#67E8F9",
+      "brightWhite": "#FFFFFF"
+    },
+    {
+      "name": "PocketGull 670nm Retinal PBM (Night)",
+      "background": "#0A0303",
+      "foreground": "#FED7AA",
+      "cursorColor": "#FB923C",
+      "selectionBackground": "#2A1010",
+      "black": "#1C0A0A",
+      "red": "#EF4444",
+      "green": "#F97316",
+      "yellow": "#FBBF24",
+      "blue": "#EA580C",
+      "purple": "#E11D48",
+      "cyan": "#FB923C",
+      "white": "#FFEDD5",
+      "brightBlack": "#7F1D1D",
+      "brightRed": "#F87171",
+      "brightGreen": "#FB923C",
+      "brightYellow": "#FDE047",
+      "brightBlue": "#F97316",
+      "brightPurple": "#FDA4AF",
+      "brightCyan": "#FED7AA",
+      "brightWhite": "#FFFFFF"
+    }
+  ],
+  "profileSample": {
+    "guid": "{a044dcc9-38cf-405f-9505-ace403f4517c}",
+    "name": "PocketGull Telemetry Console",
+    "commandline": "powershell.exe",
+    "colorScheme": "PocketGull Healing Cinema",
+    "font": {
+      "face": "PocketGull Mono",
+      "size": 11.5,
+      "weight": "medium",
+      "features": {
+        "cv08": 1,
+        "ss02": 1,
+        "cv05": 1,
+        "cv11": 1
+      }
+    },
+    "acrylicOpacity": 0.92,
+    "useAcrylic": true
+  }
+}

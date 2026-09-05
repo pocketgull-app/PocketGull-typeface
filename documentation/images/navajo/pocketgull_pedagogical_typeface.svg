@@ -35,7 +35,7 @@
     <line x1="0" y1="240" x2="2368" y2="240" stroke="#CBD5E1" stroke-width="2"/>
   </g>
 
-  <!-- Master Alphabet & Syllable Specimen Wall -->
+  <!-- Master Alphabet &amp; Syllable Specimen Wall -->
   <g transform="translate(160, 560)">
     <text x="0" y="0" class="font-mono" font-size="30" font-weight="bold" fill="#475569">01 / COMPLETE SOVEREIGN GLYPH RUN &amp; ORTHOGRAPHIC INVENTORY</text>
     <rect y="30" width="2368" height="640" rx="16" fill="#FFFFFF" stroke="#E2DACB" stroke-width="2"/>
@@ -60,12 +60,12 @@
     </g>
   </g>
 
-  <!-- Section 2: Bioregional Landscape & Flora Immersion -->
+  <!-- Section 2: Bioregional Landscape &amp; Flora Immersion -->
   <g transform="translate(160, 1300)">
     <text x="0" y="0" class="font-mono" font-size="30" font-weight="bold" fill="#475569">02 / WALKING THE LANDS &amp; NATURE WITHOUT TRAVELING</text>
     <rect y="30" width="2368" height="520" rx="16" fill="#FFFFFF" stroke="#E2DACB" stroke-width="2"/>
     <g transform="translate(60, 100)">
-      <text x="0" y="0" class="font-title" font-size="44" font-weight="800" fill="#991B1B">🏜️ THE FOUR SACRED MOUNTAINS & RED MESA SANCTUARIES</text>
+      <text x="0" y="0" class="font-title" font-size="44" font-weight="800" fill="#991B1B">🏜️ THE FOUR SACRED MOUNTAINS &amp; RED MESA SANCTUARIES</text>
       <foreignObject x="0" y="35" width="2240" height="360">
         <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; color: #334155; line-height: 1.65;">
           Bounded by Blanca Peak (East), Mount Taylor (South), San Francisco Peaks (West), and Hesperus Peak (North). From Canyon de Chelly’s sheer red sandstone spires to the sagebrush-scented breeze off high piñon mesas, health is living in sacred beauty (Hózhó).

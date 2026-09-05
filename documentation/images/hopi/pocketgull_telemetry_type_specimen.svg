@@ -19,7 +19,7 @@
   <g transform="translate(140, 160)">
     <rect width="2408" height="120" rx="12" fill="#1E293B"/>
     <circle cx="50" cy="60" r="14" fill="#10B981"/>
-    <text x="90" y="70" class="font-mono" font-size="32" font-weight="bold" fill="#F8FAFC">ICU BED 04 • IHS PHOENIX & TUCSON AREAS • SELLS HOSPITAL</text>
+    <text x="90" y="70" class="font-mono" font-size="32" font-weight="bold" fill="#F8FAFC">ICU BED 04 • IHS PHOENIX &amp; TUCSON AREAS • SELLS HOSPITAL</text>
     <text x="1850" y="70" class="font-mono" font-size="28" font-weight="bold" fill="#94A3B8">STANDBY: TELEHEALTH SYNC</text>
   </g>
 
@@ -88,12 +88,12 @@
     </g>
   </g>
 
-  <!-- Bioregional Land & Healing Banner -->
+  <!-- Bioregional Land &amp; Healing Banner -->
   <g transform="translate(140, 2120)">
     <rect width="2408" height="1140" rx="20" fill="#131E33" stroke="#334155" stroke-width="2"/>
     <g transform="translate(60, 80)">
       <text x="0" y="0" class="font-mono" font-size="32" font-weight="bold" fill="#38BDF8">LAND-BASED HEALING &amp; TRADITIONAL KNOWLEDGE INTEGRATION</text>
-      <text x="0" y="70" class="font-native" font-size="44" font-weight="bold" fill="#D97706">🌽 The High Sandstone Mesas & Towering Saguaro Forests</text>
+      <text x="0" y="70" class="font-native" font-size="44" font-weight="bold" fill="#D97706">🌽 The High Sandstone Mesas &amp; Towering Saguaro Forests</text>
       <foreignObject x="0" y="110" width="2280" height="360">
         <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 28px; color: #E2E8F0; line-height: 1.65;">
           From the timeless, wind-swept stone heights of Third Mesa (Orayvi) where blue corn roots plunge deep into arid sand, to the majestic Saguaro cactus (Ha:ṣan) giants guarding sacred Baboquivari Peak beneath crystalline starry skies, health is living in sacred balance (Sumi’nangwa).

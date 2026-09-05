@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PocketGull Micro-Mobility & Adaptive Transit Sanctuary: A universal handlebar and tiller HUD for medical mobility scooters, electric powerchairs, Segways, adaptive handcycles, and Lime e-scooters featuring ADA slope analysis, low-vibration routing, and accessible acoustic chimes.">
+  <title>PocketGull · Micro-Mobility & Adaptive Transit Sanctuary</title>
+  <link rel="stylesheet" href="fonts.css">
+  <style>
+    :root {
+      --bg-dark: #070e17;
+      --bg-surface: rgba(13, 24, 38, 0.85);
+      --bg-surface-elevated: rgba(22, 40, 62, 0.95);
+      --border-subtle: rgba(255, 255, 255, 0.14);
+      --border-accent: rgba(52, 211, 153, 0.45);
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --lime-green: #10b981;
+      --lime-accent: #34d399;
+      --canopy-gold: #f59e0b;
+      --air-teal: #38bdf8;
+      --wheelchair-blue: #60a5fa;
+      --warning-red: #ef4444;
+      --sans-stack: 'PocketGull', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --mono-stack: 'PocketGull Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    /* Outdoor Sunlight Polarized High-Contrast Mode */
+    body.sunlight-mode {
+      --bg-dark: #ffffff;
+      --bg-surface: #f1f5f9;
+      --bg-surface-elevated: #e2e8f0;
+      --border-subtle: #cbd5e1;
+      --border-accent: #059669;
+      --text-primary: #020617;
+      --text-secondary: #1e293b;
+      --text-muted: #475569;
+      --lime-green: #059669;
+      --lime-accent: #047857;
+      --canopy-gold: #b45309;
+      --air-teal: #0284c7;
+      --wheelchair-blue: #2563eb;
+    }
+
+    /* 670nm Retinal Comfort (Migraine, TBI & Photophobia Relief) */
+    body.pbm-mode {
+      --bg-dark: #0f0202;
+      --bg-surface: rgba(36, 6, 6, 0.9);
+      --bg-surface-elevated: rgba(58, 12, 12, 0.95);
+      --border-subtle: rgba(239, 68, 68, 0.25);
+      --border-accent: rgba(239, 68, 68, 0.6);
+      --text-primary: #fee2e2;
+      --text-secondary: #fca5a5;
+      --text-muted: #ef4444;
+      --lime-green: #ef4444;
+      --lime-accent: #f87171;
+      --canopy-gold: #f87171;
+      --air-teal: #f87171;
+      --wheelchair-blue: #f87171;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      font-family: var(--sans-stack);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
+      font-feature-settings: "cv08" 1, "cv05" 1, "ss02" 1, "cv11" 1;
+    }
+
+    /* Handlebar-Width Container (Portrait Mobile Ergonomics) */
+    .handlebar-wrapper {
+      width: 100%;
+      max-width: 540px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid var(--border-subtle);
+      border-right: 1px solid var(--border-subtle);
+      background: var(--bg-dark);
+      position: relative;
+    }
+
+    /* Top Handlebar Nav */
+    .handlebar-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--bg-surface);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.75rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .vehicle-lead-icon {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .brand-title {
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+
+    .mobility-mode-badge {
+      font-family: var(--mono-stack);
+      font-size: 0.66rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      background: rgba(96, 165, 250, 0.15);
+      border: 1px solid var(--wheelchair-blue);
+      color: var(--wheelchair-blue);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav-controls {
+      display: flex;
+      gap: 0.35rem;
+    }
+
+    .btn-sm {
+      font-family: var(--mono-stack);
+      font-size: 0.72rem;
+      padding: 0.35rem 0.6rem;
+      border-radius: 6px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-primary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-sm:hover, .btn-sm.active {
+      background: rgba(52, 211, 153, 0.25);
+      border-color: var(--lime-accent);
+      color: var(--lime-accent);
+    }
+
+    /* Modality Quick Switcher Strip */
+    .vehicle-selector-strip {
+      background: rgba(0, 0, 0, 0.35);
+      padding: 0.5rem 1rem;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.4rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .veh-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 0.4rem 0.25rem;
+      font-family: var(--mono-stack);
+      font-size: 0.65rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.2rem;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .veh-btn:hover {
+      border-color: var(--wheelchair-blue);
+      color: var(--text-primary);
+    }
+
+    .veh-btn.active {
+      background: rgba(96, 165, 250, 0.22);
+      border-color: var(--wheelchair-blue);
+      color: var(--wheelchair-blue);
+      font-weight: 700;
+    }
+
+    /* Live Telemetry Deck (Speed, Battery, Range, Power) */
+    .telemetry-deck {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 1rem 1.25rem;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 1rem;
+    }
+
+    .speedo-cell {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-right: 1px solid var(--border-subtle);
+      padding-right: 0.75rem;
+    }
+
+    .speed-number {
+      font-size: 3.4rem;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--text-primary);
+      font-feature-settings: "tnum" 1, "cv08" 1;
+    }
+
+    .speed-units {
+      font-family: var(--mono-stack);
+      font-size: 0.75rem;
+      color: var(--wheelchair-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 0.2rem;
+    }
+
+    .geofence-tag {
+      display: inline-block;
+      font-family: var(--mono-stack);
+      font-size: 0.66rem;
+      padding: 0.2rem 0.45rem;
+      border-radius: 4px;
+      background: rgba(96, 165, 250, 0.15);
+      border: 1px solid var(--wheelchair-blue);
+      color: var(--wheelchair-blue);
+      margin-top: 0.4rem;
+      width: fit-content;
+    }
+
+    .battery-cell {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.35rem;
+    }
+
+    .rental-brand-tag {
+      font-family: var(--mono-stack);
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--wheelchair-blue);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .battery-bar-wrap {
+      background: rgba(0, 0, 0, 0.3);
+      height: 14px;
+      border-radius: 7px;
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .battery-bar-fill {
+      height: 100%;
+      width: 82%;
+      background: linear-gradient(90deg, #3b82f6, #60a5fa);
+      border-radius: 7px;
+      transition: width 0.3s ease;
+    }
+
+    .battery-metrics {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono-stack);
+      font-size: 0.72rem;
+      color: var(--text-secondary);
+    }
+
+    /* Accessibility & Surface Engineering Metrics */
+    .accessibility-metrics-card {
+      background: var(--bg-surface-elevated);
+      margin: 0.75rem 1rem;
+      border-radius: 10px;
+      border: 1px solid var(--border-accent);
+      padding: 0.85rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .metrics-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .metrics-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .metrics-dual-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+    }
+
+    .metric-pill {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 6px;
+      padding: 0.45rem 0.65rem;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .metric-pill-label {
+      font-size: 0.63rem;
+      font-family: var(--mono-stack);
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .metric-pill-val {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--wheelchair-blue);
+      font-feature-settings: "tnum" 1;
+    }
+
+    /* Main Navigation & Waypoint Guidance */
+    .guidance-section {
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .turn-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .turn-arrow {
+      font-size: 2.2rem;
+      color: var(--wheelchair-blue);
+      line-height: 1;
+    }
+
+    .turn-details {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .turn-dist {
+      font-family: var(--mono-stack);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--canopy-gold);
+    }
+
+    .turn-street {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .turn-nature-tip {
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+      line-height: 1.35;
+    }
+
+    /* Vibration & Tactile Alert Warning */
+    .hazard-warning-pill {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid var(--canopy-gold);
+      border-radius: 6px;
+      padding: 0.55rem 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.74rem;
+      color: var(--text-secondary);
+    }
+
+    /* Sovereign Land Acknowledgement & Placename Alert */
+    .placename-banner {
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid var(--air-teal);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .placename-title {
+      font-size: 0.72rem;
+      font-family: var(--mono-stack);
+      color: var(--air-teal);
+      font-weight: 700;
+    }
+
+    .placename-body {
+      font-size: 0.76rem;
+      color: var(--text-primary);
+      line-height: 1.35;
+    }
+
+    /* Accessible Crosswalk Timing Audio Assist (MUTCD Signal) */
+    .crosswalk-dock {
+      background: var(--bg-surface);
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      padding: 0.85rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .crosswalk-status {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .crosswalk-label {
+      font-family: var(--mono-stack);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .crosswalk-timer {
+      font-family: var(--mono-stack);
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--wheelchair-blue);
+    }
+
+    /* Oversized Tactile Audio Chimes (64px+ Target for Tremors/Gloves) */
+    .bell-controls-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+      margin-top: 0.25rem;
+    }
+
+    .handlebar-bell-btn {
+      background: var(--bg-surface-elevated);
+      border: 2px solid var(--border-subtle);
+      color: var(--text-primary);
+      padding: 0.95rem 0.5rem;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      transition: all 0.15s ease;
+      user-select: none;
+      min-height: 72px;
+    }
+
+    .handlebar-bell-btn:hover {
+      border-color: var(--wheelchair-blue);
+    }
+
+    .handlebar-bell-btn:active {
+      transform: scale(0.96);
+      background: var(--wheelchair-blue);
+      color: #04070e;
+    }
+
+    .bell-icon {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .bell-name {
+      font-weight: 800;
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
+    }
+
+    .bell-sub {
+      font-family: var(--mono-stack);
+      font-size: 0.62rem;
+      color: var(--text-muted);
+    }
+
+    /* Accessible Restrooms & 120V Charging Ports Strip */
+    .amenities-strip {
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      padding: 0.65rem 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.74rem;
+      color: var(--text-secondary);
+    }
+
+    /* Bottom Trip Bar (Lock / Pause) */
+    .rental-bottom-bar {
+      margin-top: 1rem;
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-subtle);
+      padding: 0.85rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .trip-stat {
+      display: flex;
+      flex-direction: column;
+      font-family: var(--mono-stack);
+    }
+
+    .trip-label {
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .trip-val {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .ride-action-btn {
+      font-family: var(--mono-stack);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.6rem 1.1rem;
+      border-radius: 8px;
+      border: none;
+      background: var(--wheelchair-blue);
+      color: #04070e;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .ride-action-btn:hover {
+      box-shadow: 0 0 15px rgba(96, 165, 250, 0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="handlebar-wrapper">
+    <!-- Top Handlebar Header -->
+    <header class="handlebar-header" role="banner">
+      <div class="brand-group">
+        <span class="vehicle-lead-icon" id="vehicleLeadIcon" aria-hidden="true">🦼</span>
+        <div>
+          <h1 class="brand-title">PocketGull</h1>
+          <span class="mobility-mode-badge" id="vehicleBadge">BLACKWELL ACCESSIBILITY EDITION</span>
+        </div>
+      </div>
+
+      <div class="nav-controls">
+        <button class="btn-sm" id="btnSunlight" title="Toggle Outdoor Sunlight High-Contrast Mode">
+          <span>☀️</span> Sun
+        </button>
+        <button class="btn-sm" id="btnPbm" title="Toggle 670nm Retinal Comfort (Migraine & Photophobia)">
+          <span>🔴</span> 670nm
+        </button>
+        <a href="sanctuary_hub.html" class="btn-sm" title="Open Sanctuary Hub">
+          <span>🌐</span> Hub
+        </a>
+      </div>
+    </header>
+
+    <!-- Modality Selector (4 Specialized Profiles) -->
+    <nav class="vehicle-selector-strip" aria-label="Select Mobility Profile">
+      <button class="veh-btn active" data-veh="powerchair" title="Medical Powerchair & Mobility Scooter (Elizabeth Blackwell Clinic Edition)">
+        <span style="font-size:1.1rem;">🦼</span>
+        <span>Powerchair</span>
+      </button>
+      <button class="veh-btn" data-veh="segway" title="Segway & Personal Standing Transporter">
+        <span style="font-size:1.1rem;">🛴</span>
+        <span>Segway</span>
+      </button>
+      <button class="veh-btn" data-veh="ebike" title="Adaptive E-Bike, Handcycle & Recumbent Trike">
+        <span style="font-size:1.1rem;">🚲</span>
+        <span>Handcycle</span>
+      </button>
+      <button class="veh-btn" data-veh="lime" title="Lime / Bird Rental E-Scooter">
+        <span style="font-size:1.1rem;">⚡</span>
+        <span>Lime Gen4</span>
+      </button>
+    </nav>
+
+    <!-- Live Telemetry Deck -->
+    <section class="telemetry-deck" aria-label="Speed and Battery Telemetry">
+      <div class="speedo-cell">
+        <span class="speed-number" id="speedNum">4.2</span>
+        <span class="speed-units" id="speedUnitDisplay">Miles / Hour</span>
+        <div class="geofence-tag" id="geofenceTag">♿ ADA SIDEWALK: 5 MPH MAX</div>
+      </div>
+
+      <div class="battery-cell">
+        <div class="rental-brand-tag">
+          <span>🔋</span> <span id="telemetryModel">QUANTUM EDGE 3 (24V)</span>
+        </div>
+        <div class="battery-bar-wrap">
+          <div class="battery-bar-fill" id="batteryBar" style="width: 82%;"></div>
+        </div>
+        <div class="battery-metrics">
+          <span id="batteryPercent">82% (25.8V)</span>
+          <span id="batteryRange">14.6 mi Left</span>
+        </div>
+        <div style="font-family: var(--mono-stack); font-size: 0.65rem; color: var(--wheelchair-blue);" id="telemetrySubnote">
+          ✦ DUAL MOTORS BALANCED · NO THERMAL DERATING
+        </div>
+      </div>
+    </section>
+
+    <!-- Accessibility & Environmental Metrics Card -->
+    <section class="accessibility-metrics-card" aria-label="Accessibility & Surface Analysis">
+      <div class="metrics-header">
+        <span class="metrics-title">
+          <span id="metricCardIcon">♿</span> <span id="metricCardTitle">ADA Pavement & Incline Surveillance</span>
+        </span>
+        <span style="font-family: var(--mono-stack); font-size: 0.7rem; color: var(--wheelchair-blue);" id="metricRating">TIER 1 BARRIER-FREE</span>
+      </div>
+
+      <div class="metrics-dual-strip">
+        <div class="metric-pill">
+          <span class="metric-pill-label" id="metric1Label">Slope Incline Grade</span>
+          <span class="metric-pill-val" id="metric1Val">3.2% (Safe &lt; 8.3%)</span>
+        </div>
+        <div class="metric-pill">
+          <span class="metric-pill-label" id="metric2Label">Pavement Vibration Index</span>
+          <span class="metric-pill-val" id="metric2Val" style="color: var(--lime-green);">Smooth Concrete (0.04g)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Navigation & Waypoint Guidance -->
+    <main class="guidance-section">
+      <div class="turn-card">
+        <div class="turn-arrow" id="turnArrow">↰</div>
+        <div class="turn-details">
+          <div class="turn-dist" id="turnDist">IN 180 FEET · DUAL CURB-CUT RAMPS</div>
+          <div class="turn-street" id="turnStreet">Willamette River Greenway</div>
+          <p class="turn-nature-tip" id="turnNatureTip">
+            Wide 10-foot paved path with 0-step transition. Grade remains below 2.5% through the shade pavilion. Roll-in water fountain available.
+          </p>
+        </div>
+      </div>
+
+      <!-- Vibration Hazard Caution Banner -->
+      <div class="hazard-warning-pill" id="hazardWarning">
+        <span style="font-size:1.1rem;">⚠️</span>
+        <span>
+          <strong>UPCOMING PAVING ALERT:</strong> 40-foot bridge expansion joint ahead at MP 1.2. Decelerate to 2.5 mph for spinal comfort.
+        </span>
+      </div>
+
+      <!-- Sovereign Land Acknowledgement & Historic Stream Alert -->
+      <div class="placename-banner">
+        <div class="placename-title">✦ INDIGENOUS RECOGNITION · CLACKAMAS & MULTNOMAH</div>
+        <div class="placename-body">
+          You are traveling along the ancient seasonal encampments of the Clackamas and Multnomah bands, honoring continuous indigenous stewardship of the Willamette River basin.
+        </div>
+      </div>
+
+      <!-- Accessible Crosswalk Extended Timing Countdown -->
+      <div class="crosswalk-dock" aria-label="Accessible Crosswalk Timer">
+        <div class="crosswalk-status">
+          <span class="crosswalk-label">MUTCD Accessible Crosswalk Signal</span>
+          <span style="font-size:0.75rem; color:var(--text-secondary);">SE Water Ave & Clay St · Audible Chirp Active</span>
+        </div>
+        <div class="crosswalk-timer" id="crosswalkCountdown">24s CLEAR</div>
+      </div>
+
+      <!-- Oversized Tactile Audio Chimes (64px+ Targets) -->
+      <div class="bell-controls-grid">
+        <button class="handlebar-bell-btn" id="btnBrassBell" title="Classic brass bicycle handlebar bell">
+          <span class="bell-icon">🔔</span>
+          <span class="bell-name">BRASS BELL</span>
+          <span class="bell-sub">High Ding-Ding</span>
+        </button>
+
+        <button class="handlebar-bell-btn" id="btnSingingBowl" title="Gentle Tibetan singing chime for shared nature paths">
+          <span class="bell-icon">🥣</span>
+          <span class="bell-name">SINGING BOWL</span>
+          <span class="bell-sub">528 Hz Non-Startle</span>
+        </button>
+
+        <button class="handlebar-bell-btn" id="btnChairPresence" title="Electric powerchair gentle presence chirp for crowded walkways">
+          <span class="bell-icon">🔊</span>
+          <span class="bell-name">CHAIR BEACON</span>
+          <span class="bell-sub">Pedestrian Presence</span>
+        </button>
+
+        <button class="handlebar-bell-btn" id="btnVoiceGuidance" title="Hear voice readout of next accessible turn & slope">
+          <span class="bell-icon">🗣️</span>
+          <span class="bell-name">AUDIO GUIDE</span>
+          <span class="bell-sub">Voice Slope Readout</span>
+        </button>
+      </div>
+
+      <!-- Accessible Amenities Strip -->
+      <div class="amenities-strip">
+        <span>♿ Roll-in Restroom: <strong>0.3 mi</strong></span>
+        <span>⚡ 120V Charge Port: <strong>0.1 mi</strong></span>
+        <span>💧 Bottle Fill: <strong>Present</strong></span>
+      </div>
+    </main>
+
+    <!-- Bottom Rental Bar (Trip Duration, Distance, End Ride) -->
+    <footer class="rental-bottom-bar" role="contentinfo">
+      <div class="trip-stat">
+        <span class="trip-label">Session Time</span>
+        <span class="trip-val" id="rideDuration">18m 42s</span>
+      </div>
+      <div class="trip-stat">
+        <span class="trip-label">Trip Distance</span>
+        <span class="trip-val" id="tripDist">1.4 mi</span>
+      </div>
+      <div class="trip-stat">
+        <span class="trip-label">Slope Energy Saved</span>
+        <span class="trip-val" style="color: var(--wheelchair-blue);">94 Wh</span>
+      </div>
+      <button class="ride-action-btn" id="btnParkHold">Park / Hold</button>
+    </footer>
+  </div>
+
+  <script>
+    // =========================================================================
+    // MODALITY PROFILES (BLACKWELL ACCESSIBILITY MATRIX)
+    // =========================================================================
+    const MODALITY_CONFIGS = {
+      powerchair: {
+        leadIcon: "🦼",
+        badge: "BLACKWELL ACCESSIBILITY EDITION",
+        model: "QUANTUM EDGE 3 (24V)",
+        unit: "Miles / Hour",
+        defaultSpeed: 4.2,
+        geofence: "♿ ADA SIDEWALK: 5 MPH MAX",
+        batteryPercent: "82% (25.8V)",
+        batteryRange: "14.6 mi Left",
+        batteryWidth: "82%",
+        telemetrySubnote: "✦ DUAL MOTORS BALANCED · NO THERMAL DERATING",
+        metricIcon: "♿",
+        metricTitle: "ADA Pavement & Incline Surveillance",
+        metricRating: "TIER 1 BARRIER-FREE",
+        metric1Label: "Slope Incline Grade",
+        metric1Val: "3.2% (Safe < 8.3% ADA)",
+        metric2Label: "Pavement Vibration Index",
+        metric2Val: "Smooth Concrete (0.04g)",
+        metric2Color: "var(--lime-green)",
+        turnDist: "IN 180 FEET · DUAL CURB-CUT RAMPS",
+        turnStreet: "Willamette River Greenway",
+        turnNatureTip: "Wide 10-foot paved path with 0-step transition. Grade remains below 2.5% through the shade pavilion. Roll-in water fountain available.",
+        hazard: "⚠️ UPCOMING PAVING ALERT: 40-foot bridge expansion joint ahead at MP 1.2. Decelerate to 2.5 mph for spinal comfort.",
+        voiceText: "In one hundred eighty feet, take the dual curb-cut ramp onto the Willamette River Greenway. Incline is three point two percent, well below ADA threshold. Concrete is smooth."
+      },
+      segway: {
+        leadIcon: "🛴",
+        badge: "GYROSCOPIC PERSONAL TRANSPORTER",
+        model: "SEGWAY I2 SE DYNAMIC",
+        unit: "Miles / Hour",
+        defaultSpeed: 8.4,
+        geofence: "⚡ MULTI-USE TRAIL: 12.5 MPH MAX",
+        batteryPercent: "74% (54.8V)",
+        batteryRange: "19.2 mi Left",
+        batteryWidth: "74%",
+        telemetrySubnote: "✦ PITCH: +1.2° · ZERO-RADIUS PIVOT READY",
+        metricIcon: "⚖️",
+        metricTitle: "Gyroscopic Pitch & Equilibrium",
+        metricRating: "OPTIMAL BALANCE",
+        metric1Label: "Dynamic Lean Angle",
+        metric1Val: "+1.2° Forward Assist",
+        metric2Label: "Turn Clearance Radius",
+        metric2Val: "0.0 FT (360° On-Axis)",
+        metric2Color: "var(--wheelchair-blue)",
+        turnDist: "IN 240 FEET · BROAD RADIUS CURVE",
+        turnStreet: "Riverfront Promenade",
+        turnNatureTip: "Smooth brushed concrete path with clear sightlines. Please yield right-of-way to pedestrian strollers and powerchairs.",
+        hazard: "⚠️ SURFACE CAUTION: Wet timber decking near marina slip B. Lean back slightly to maintain traction.",
+        voiceText: "Approaching Riverfront Promenade in two hundred forty feet. Gyroscopic balance is nominal. Turn clearance is clear."
+      },
+      ebike: {
+        leadIcon: "🚲",
+        badge: "ADAPTIVE HANDCYCLE & RECUMBENT",
+        model: "CATRIKE / HASE RECUMBENT",
+        unit: "Miles / Hour",
+        defaultSpeed: 14.8,
+        geofence: "🚴 BIKEWAY: 20 MPH MAX",
+        batteryPercent: "88% (48V)",
+        batteryRange: "32.0 mi Left",
+        batteryWidth: "88%",
+        telemetrySubnote: "✦ PAS LEVEL 2 · 250W ASSIST TORQUE",
+        metricIcon: "⚙️",
+        metricTitle: "Cadence & Arm-Crank Dynamics",
+        metricRating: "RESONANT 70 RPM",
+        metric1Label: "Pedal / Crank Cadence",
+        metric1Val: "70 RPM (Low Joint Stress)",
+        metric2Label: "Corridor Track Width",
+        metric2Val: "32-Inch Trike Stance",
+        metric2Color: "var(--canopy-gold)",
+        turnDist: "IN 320 FEET · SEPARATED BIKEWAY",
+        turnStreet: "Springwater Corridor Trail",
+        turnNatureTip: "Grade-separated asphalt trail. Gentle 1.8% climb. Ideal low-impact cardiovascular aerobic zone.",
+        hazard: "⚠️ BOLLARD NOTICE: Three clearance bollards at street crossing spaced 38 inches apart. Center alignment recommended.",
+        voiceText: "In three hundred twenty feet, merge onto the Springwater Corridor. Clearance bollards ahead have thirty-eight inches width, ample for your thirty-two inch stance."
+      },
+      lime: {
+        leadIcon: "⚡",
+        badge: "LIME GEN4 SMART E-SCOOTER",
+        model: "LIME-S #0842 (SWAPPABLE 36V)",
+        unit: "Miles / Hour",
+        defaultSpeed: 12.0,
+        geofence: "⚡ GREENWAY: 15 MPH MAX",
+        batteryPercent: "78% Charged",
+        batteryRange: "18.4 mi Left",
+        batteryWidth: "78%",
+        telemetrySubnote: "✦ REGEN BRAKING: +28W RECUPERATION",
+        metricIcon: "🌿",
+        metricTitle: "Tree Canopy & Clean Air Score",
+        metricRating: "84% NDVI SHADE",
+        metric1Label: "NDVI Tree Canopy Cover",
+        metric1Val: "84% (+6°F Cooling)",
+        metric2Label: "PM2.5 Pure Air Buffer",
+        metric2Val: "4.2 µg/m³ (Tier 1 Pure)",
+        metric2Color: "var(--lime-green)",
+        turnDist: "IN 350 FEET · PAVED GREENWAY",
+        turnStreet: "Oaks Bottom Wildlife Trail",
+        turnNatureTip: "Follow the Willamette River shoreline past restored heron rookeries. Please yield to nesting waterfowl and pediatric walkers.",
+        hazard: "⚠️ GEOFENCE SLOW ZONE: Speed automatically limited to 8 mph on boardwalk crossing.",
+        voiceText: "In three hundred fifty feet, turn left onto Oaks Bottom Wildlife Trail. Eighty-four percent tree canopy shade active."
+      }
+    };
+
+    // =========================================================================
+    // STATE & DOM NODES
+    // =========================================================================
+    let currentModalityKey = 'powerchair';
+    let isSunlight = false;
+    let isPbm = false;
+    let isRideActive = true;
+    let rideSeconds = 1122; // 18m 42s
+    let crosswalkSeconds = 24;
+
+    const vehicleLeadIcon = document.getElementById('vehicleLeadIcon');
+    const vehicleBadge = document.getElementById('vehicleBadge');
+    const speedNum = document.getElementById('speedNum');
+    const speedUnitDisplay = document.getElementById('speedUnitDisplay');
+    const geofenceTag = document.getElementById('geofenceTag');
+    const telemetryModel = document.getElementById('telemetryModel');
+    const batteryBar = document.getElementById('batteryBar');
+    const batteryPercent = document.getElementById('batteryPercent');
+    const batteryRange = document.getElementById('batteryRange');
+    const telemetrySubnote = document.getElementById('telemetrySubnote');
+    const metricCardIcon = document.getElementById('metricCardIcon');
+    const metricCardTitle = document.getElementById('metricCardTitle');
+    const metricRating = document.getElementById('metricRating');
+    const metric1Label = document.getElementById('metric1Label');
+    const metric1Val = document.getElementById('metric1Val');
+    const metric2Label = document.getElementById('metric2Label');
+    const metric2Val = document.getElementById('metric2Val');
+    const turnDist = document.getElementById('turnDist');
+    const turnStreet = document.getElementById('turnStreet');
+    const turnNatureTip = document.getElementById('turnNatureTip');
+    const hazardWarning = document.getElementById('hazardWarning');
+    const rideDuration = document.getElementById('rideDuration');
+    const crosswalkCountdown = document.getElementById('crosswalkCountdown');
+    const btnParkHold = document.getElementById('btnParkHold');
+
+    const btnSunlight = document.getElementById('btnSunlight');
+    const btnPbm = document.getElementById('btnPbm');
+    const vehBtns = document.querySelectorAll('.veh-btn');
+
+    // =========================================================================
+    // PROCEDURAL WEB AUDIO ENGINE (A11Y CHIMES & BEACONS)
+    // =========================================================================
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    // Classic Brass Bell ("Ding-Ding!")
+    function playBrassBell() {
+      initAudio();
+      if (!audioCtx) return;
+
+      const strikes = [0, 0.12];
+      strikes.forEach(delay => {
+        setTimeout(() => {
+          const now = audioCtx.currentTime;
+          const fundamental = 2480;
+          [fundamental, fundamental * 1.62, fundamental * 2.3].forEach((f, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(f + (Math.random() * 20 - 10), now);
+
+            gain.gain.setValueAtTime(0.12 / (idx + 1), now);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.65);
+
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc.start(now);
+            osc.stop(now + 0.7);
+          });
+        }, delay * 1000);
+      });
+    }
+
+    // 528 Hz Singing Bowl (Gentle non-startle chime)
+    function playSingingBowl() {
+      initAudio();
+      if (!audioCtx) return;
+
+      const now = audioCtx.currentTime;
+      const fundamental = 528;
+      const bellGain = audioCtx.createGain();
+
+      bellGain.gain.setValueAtTime(0.001, now);
+      bellGain.gain.linearRampToValueAtTime(0.2, now + 0.08);
+      bellGain.gain.exponentialRampToValueAtTime(0.0001, now + 3.2);
+
+      [fundamental, fundamental * 1.5, fundamental * 2.76, fundamental * 4.02].forEach((f, idx) => {
+        const osc = audioCtx.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(f, now);
+
+        const oscGain = audioCtx.createGain();
+        oscGain.gain.setValueAtTime(1 / (idx + 1), now);
+
+        osc.connect(oscGain);
+        oscGain.connect(bellGain);
+
+        osc.start(now);
+        osc.stop(now + 3.3);
+      });
+
+      bellGain.connect(audioCtx.destination);
+    }
+
+    // Electric Powerchair Gentle Presence Beacon (Soft harmonic chirp)
+    function playChairPresenceBeacon() {
+      initAudio();
+      if (!audioCtx) return;
+
+      const now = audioCtx.currentTime;
+      const osc1 = audioCtx.createOscillator();
+      const osc2 = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc1.type = 'sine';
+      osc1.frequency.setValueAtTime(880, now);
+      osc1.frequency.exponentialRampToValueAtTime(1174, now + 0.15); // A5 to D6
+
+      osc2.type = 'sine';
+      osc2.frequency.setValueAtTime(440, now);
+      osc2.frequency.exponentialRampToValueAtTime(587, now + 0.15);
+
+      gain.gain.setValueAtTime(0.08, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.28);
+
+      osc1.connect(gain);
+      osc2.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc1.start(now);
+      osc2.start(now);
+      osc1.stop(now + 0.3);
+      osc2.stop(now + 0.3);
+    }
+
+    // Spoken Audio Navigation Guide
+    function speakVoiceGuidance() {
+      initAudio();
+      playChairPresenceBeacon();
+
+      if (!('speechSynthesis' in window)) return;
+
+      window.speechSynthesis.cancel();
+      const cfg = MODALITY_CONFIGS[currentModalityKey];
+      const utterance = new SpeechSynthesisUtterance(cfg.voiceText);
+      utterance.rate = 0.92;
+      utterance.pitch = 1.0;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // =========================================================================
+    // MODALITY SWITCHER
+    // =========================================================================
+    function switchModality(key, playAudio = false) {
+      currentModalityKey = key;
+      const cfg = MODALITY_CONFIGS[key];
+
+      vehBtns.forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-veh') === key);
+      });
+
+      vehicleLeadIcon.textContent = cfg.leadIcon;
+      vehicleBadge.textContent = cfg.badge;
+      telemetryModel.textContent = cfg.model;
+      speedUnitDisplay.textContent = cfg.unit;
+      speedNum.textContent = cfg.defaultSpeed.toFixed(1);
+      geofenceTag.textContent = cfg.geofence;
+      batteryPercent.textContent = cfg.batteryPercent;
+      batteryRange.textContent = cfg.batteryRange;
+      batteryBar.style.width = cfg.batteryWidth;
+      telemetrySubnote.textContent = cfg.telemetrySubnote;
+
+      metricCardIcon.textContent = cfg.metricIcon;
+      metricCardTitle.textContent = cfg.metricTitle;
+      metricRating.textContent = cfg.metricRating;
+      metric1Label.textContent = cfg.metric1Label;
+      metric1Val.textContent = cfg.metric1Val;
+      metric2Label.textContent = cfg.metric2Label;
+      metric2Val.textContent = cfg.metric2Val;
+      metric2Val.style.color = cfg.metric2Color;
+
+      turnDist.textContent = cfg.turnDist;
+      turnStreet.textContent = cfg.turnStreet;
+      turnNatureTip.textContent = cfg.turnNatureTip;
+      hazardWarning.innerHTML = `<span style="font-size:1.1rem;">⚠️</span><span>${cfg.hazard}</span>`;
+
+      if (playAudio) playChairPresenceBeacon();
+    }
+
+    vehBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        switchModality(btn.getAttribute('data-veh'), true);
+      });
+    });
+
+    // =========================================================================
+    // EVENT LISTENERS & CLOCKS
+    // =========================================================================
+    // Outdoor Sunlight Polarized High-Contrast Mode
+    btnSunlight.addEventListener('click', () => {
+      isSunlight = !isSunlight;
+      if (isSunlight) isPbm = false;
+      document.body.classList.toggle('sunlight-mode', isSunlight);
+      document.body.classList.remove('pbm-mode');
+      btnSunlight.classList.toggle('active', isSunlight);
+      btnPbm.classList.remove('active');
+    });
+
+    // 670nm Retinal Comfort Mode
+    btnPbm.addEventListener('click', () => {
+      isPbm = !isPbm;
+      if (isPbm) isSunlight = false;
+      document.body.classList.toggle('pbm-mode', isPbm);
+      document.body.classList.remove('sunlight-mode');
+      btnPbm.classList.toggle('active', isPbm);
+      btnSunlight.classList.remove('active');
+    });
+
+    // Audio Buttons
+    document.getElementById('btnBrassBell').addEventListener('click', playBrassBell);
+    document.getElementById('btnSingingBowl').addEventListener('click', playSingingBowl);
+    document.getElementById('btnChairPresence').addEventListener('click', playChairPresenceBeacon);
+    document.getElementById('btnVoiceGuidance').addEventListener('click', speakVoiceGuidance);
+
+    // Crosswalk Timer & Session Clock
+    setInterval(() => {
+      if (isRideActive) {
+        rideSeconds++;
+        const mins = Math.floor(rideSeconds / 60);
+        const secs = rideSeconds % 60;
+        rideDuration.textContent = `${mins}m ${secs < 10 ? '0' : ''}${secs}s`;
+      }
+
+      // Crosswalk countdown loop
+      crosswalkSeconds--;
+      if (crosswalkSeconds < 0) crosswalkSeconds = 28;
+      crosswalkCountdown.textContent = `${crosswalkSeconds}s CLEAR`;
+    }, 1000);
+
+    // Park / Hold
+    btnParkHold.addEventListener('click', () => {
+      isRideActive = !isRideActive;
+      if (!isRideActive) {
+        btnParkHold.textContent = "Resume";
+        btnParkHold.style.background = "#f59e0b";
+        speedNum.textContent = "0.0";
+        playChairPresenceBeacon();
+      } else {
+        btnParkHold.textContent = "Park / Hold";
+        btnParkHold.style.background = "var(--wheelchair-blue)";
+        const cfg = MODALITY_CONFIGS[currentModalityKey];
+        speedNum.textContent = cfg.defaultSpeed.toFixed(1);
+        playChairPresenceBeacon();
+      }
+    });
+
+    // Initial Load
+    switchModality('powerchair');
+  </script>
+</body>
+</html>

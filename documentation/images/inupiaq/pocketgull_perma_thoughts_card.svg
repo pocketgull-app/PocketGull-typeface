@@ -24,7 +24,7 @@
   <!-- Card Header -->
   <g transform="translate(140, 160)">
     <text x="0" y="40" class="font-mono" font-size="28" font-weight="bold" fill="#64748B" letter-spacing="0.12em">PERMA+ HOLISTIC CLINICAL WELL-BEING &amp; SOVEREIGN TRADITION</text>
-    <text x="0" y="125" class="font-brand" font-size="64" font-weight="800" fill="#0F172A">Iñupiaq & Yup’ik (Alaska Native)</text>
+    <text x="0" y="125" class="font-brand" font-size="64" font-weight="800" fill="#0F172A">Iñupiaq &amp; Yup’ik (Alaska Native)</text>
     <text x="0" y="185" class="font-native" font-size="42" font-weight="700" fill="#0284C7">Inuvialuit / Inuit / Yupiit • Alaska Native Tribal Health Consortium (ANTHC) • YKHC</text>
     <line x1="0" y1="220" x2="2120" y2="220" stroke="#CBD5E1" stroke-width="2"/>
   </g>
@@ -124,10 +124,10 @@
 
   </g>
 
-  <!-- Bottom Land & Resilience Epilogue -->
+  <!-- Bottom Land &amp; Resilience Epilogue -->
   <g transform="translate(140, 2140)">
     <rect width="2120" height="140" rx="12" fill="#0F172A"/>
-    <text x="40" y="55" class="font-brand" font-size="28" font-weight="bold" fill="#F8FAFC">❄️ THE ARCTIC COASTAL TUNDRA, SIKU PACK ICE & NORTHERN AURORA</text>
+    <text x="40" y="55" class="font-brand" font-size="28" font-weight="bold" fill="#F8FAFC">❄️ THE ARCTIC COASTAL TUNDRA, SIKU PACK ICE &amp; NORTHERN AURORA</text>
     <text x="40" y="100" class="font-mono" font-size="20" fill="#94A3B8">POCKETGULL OPEN HEALTHCARE TYPOGRAPHY • DEDICATED TO TRIBAL WELL-BEING &amp; SELF-DETERMINATION</text>
   </g>
 </svg>

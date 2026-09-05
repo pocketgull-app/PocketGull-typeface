@@ -129,7 +129,7 @@
       <text x="940" y="22" class="font-mono" font-size="13" fill="#15803D" font-weight="bold" text-anchor="middle">Snellen 20/20 Safe</text>
     </g>
 
-    <!-- Numerals & Punctuation -->
+    <!-- Numerals &amp; Punctuation -->
     <text x="30" y="175" class="font-mono" font-size="20" fill="#57534E" letter-spacing="0.12em">0 1 2 3 4 5 6 7 8 9   . , : ; ! ? @ # $ % &amp; * - + = ( ) [ ] { } / \ | ~</text>
 
     <!-- Grade 1 Braille Alphabet for Kids -->
@@ -137,7 +137,7 @@
     <text x="1070" y="212" class="font-mono" font-size="11" fill="#94A3B8" text-anchor="end">TACTILE BRAILLE A TO Z</text>
   </g>
 
-  <!-- Bottom Colophon & Imprint -->
+  <!-- Bottom Colophon &amp; Imprint -->
   <g transform="translate(50, 1370)">
     <line x1="0" y1="0" x2="1100" y2="0" stroke="#E7E2D6" stroke-width="1"/>
     <text x="0" y="35" class="font-mono" font-size="12" fill="#57534E">DESIGNED BY PHILLIP GEAR // GEARARTS STUDIO // DEDICATED TO HEALTHY EYES AND KIND HEALING</text>

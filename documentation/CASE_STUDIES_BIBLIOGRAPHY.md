@@ -3,7 +3,7 @@
 
 **The PocketGull Project Authors & Typefoundry Engineering Team**  
 *Grounded in Indigenous Knowledge Systems, First Nations OCAP® Principles, Louise Sloan 5:1 Optotypes, and ISMP 2026 Life-Safety Invariants.*  
-*Persistent CERN Zenodo Archival DOI: [10.5281/zenodo.18882512](https://doi.org/10.5281/zenodo.18882512)*
+*Persistent CERN Zenodo Archival DOI: [10.5281/zenodo.22309379](https://doi.org/10.5281/zenodo.22309379)*
 
 ---
 

@@ -6,9 +6,9 @@
 [![SemVer 3.0.0](https://img.shields.io/badge/SemVer-3.0.0-blue.svg?style=flat-square)](CHANGELOG.md)
 [![W3C OTS Validated](https://img.shields.io/badge/W3C_OTS-100%25_Valid-emerald.svg?style=flat-square)](https://github.com/googlefonts/ots)
 [![Fontbakery QA](https://img.shields.io/badge/Fontbakery-711%2F711_Passed-brightgreen.svg?style=flat-square)](https://github.com/googlefonts/fontbakery)
-<br/>
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0008--1372--5381-A6C900?style=flat-square&logo=orcid&logoColor=white)](https://orcid.org/0009-0008-1372-5381)
-[![CERN Zenodo Archival](https://img.shields.io/badge/CERN%20Zenodo-Open%20Science-024c9c.svg?style=flat-square)](documentation/CERN_ZENODO_ARCHIVAL_GUIDE.md)
+[![Google Developers](https://img.shields.io/badge/Google_Developers-Phil_Gear-4285F4?style=flat-square&logo=google&logoColor=white)](https://me.developers.google.com/u/philgear)
+[![CERN Zenodo](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.22309379-024c9c.svg?style=flat-square)](https://zenodo.org/records/22309379)
 [![WCAG 2.1 AAA](https://img.shields.io/badge/WCAG_2.1-AAA_100%25-emerald.svg?style=flat-square)](index.html)
 
 <br/>
@@ -46,12 +46,12 @@ Originating from spontaneous felt marker lettering created on physical cardstock
 
 PocketGull is engineered on a standardized 1000 UPM grid. In strict typographic taxonomy, **PocketGull** is the visual typeface design system, and the compiled `.woff2` and `.ttf` binaries are its concrete font software implementations:
 
-| Typeface Subfamily | Font Binary File | PostScript Name | Weight | Advance Metric | Primary Clinical Use Case |
-| :--- | :--- | :--- | :---: | :---: | :--- |
-| **PocketGull Bold** | `PocketGull-Bold.woff2` | `PocketGull-Bold` | 700 / 800 | Proportional | Prescription markers, Bionic reading anchors, alarms |
-| **PocketGull Fineliner** | `PocketGull-Fineliner.woff2` | `PocketGull-Fineliner` | 400 | Proportional | Long-form clinical notes, EHR charts, patient leaflets |
-| **PocketGull Chiseltip** | `PocketGull-Chiseltip.woff2` | `PocketGull-Chiseltip` | 900 | Proportional | Expressive signage, trauma alerts, high-contrast placards |
-| **PocketGull Mono** | `PocketGullMono-Regular.woff2` | `PocketGullMono-Regular` | 400 / 500 | Fixed 600 UPM | ICU telemetry, tabular vitals, gapless box drawing |
+| Typeface Subfamily | Google Fonts Canonical | Font Binary File | PostScript Name | Weight | Advance Metric | Primary Clinical Use Case |
+| :--- | :--- | :--- | :--- | :---: | :---: | :--- |
+| **PocketGull Bold** | `Pocket Gull Bold` | `PocketGull-Bold.woff2` / `.ttf` | `PocketGull-Bold` | 700 / 800 | Proportional | Prescription markers, Bionic reading anchors, alarms |
+| **PocketGull Fineliner** | `Pocket Gull Regular` | `PocketGull-Regular.woff2` / `.ttf` (`PocketGull-Fineliner`) | `PocketGull-Regular` | 400 | Proportional | Long-form clinical notes, EHR charts, patient leaflets |
+| **PocketGull Chiseltip** | `Pocket Gull Black` | `PocketGull-Black.woff2` / `.ttf` (`PocketGull-Chiseltip`) | `PocketGull-Black` | 900 | Proportional | Expressive signage, trauma alerts, high-contrast placards |
+| **PocketGull Mono** | `Pocket Gull Mono Regular` | `PocketGullMono-Regular.woff2` / `.ttf` | `PocketGullMono-Regular` | 400 / 500 | Fixed 600 UPM | ICU telemetry, tabular vitals, gapless box drawing |
 
 ---
 
@@ -61,6 +61,28 @@ PocketGull is engineered on a standardized 1000 UPM grid. In strict typographic 
 * **⠃ 256 Unicode Braille Block (`U+2800`–`U+28FF`)**: Full ISO/TR 11548 tactile matrix for blister packs and pharmaceutical accessibility.
 * **👁️ Sloan 5:1 Optotypes & Bouma Spacing**: Calibrated for LogMAR 0.0 acuity and Herman Bouma peripheral anti-crowding at 50–70 cm reading distance.
 * **💻 ICU Medical Terminal & Oh My Posh**: Strict 600 UPM gapless box drawing (`U+2500`–`U+257F`) and sub-cell ECG waveforms with native prompt theme (`pocketgull-ophthalmic.omp.json`).
+
+---
+
+## 🏛️ Tripartite Governance Standard: Elders, Typographers & Google Fonts
+
+To prevent cultural co-optation, maintain mathematical vector determinism, and ensure flawless upstream open-source adoption, PocketGull establishes three inviolable governance covenants under the CARE Principles for Indigenous Data Sovereignty:
+
+### 🕊️ For the Elders: CARE Principles & Sacred Boundaries
+* **Zero Base Model Training**: Publicly released font binaries and linguistic corpora may NEVER be ingested to train proprietary or commercial LLMs without affirmative community consent.
+* **Sovereign Vault Isolation**: Sacred clan ceremonial motifs, sensitive oral phonetics, and elder contact registries are held exclusively in private sovereign vaults (`.foundry/docs/`) and never committed to public repositories.
+* **Community Attestation**: New orthographic additions must be validated by native language keepers before clinical deployment.
+
+### ✒️ For the Typographers: Mathematical Determinism & Memory Safety
+* **2-Byte Word Boundary Invariant**: DirectWrite and W3C OTS memory buffers discard fonts with odd byte offsets. Every glyph record is strictly padded to 2-byte alignment (`loca[i] % 2 == 0`).
+* **Zero Duplicate Nodes**: Bézier contours are cleaned with zero co-located control points, guaranteeing clean rasterizer scan conversion at 8K displays and 203 DPI thermal wristband printers.
+* **Thomas Phinney Forensic Audit**: 100% pass across all 16 SFNT tables with zero bad flags.
+
+### 🌐 For Google Fonts: Option 5 Upstream Delivery & Zero Debt
+* **SIL OFL 1.1 Licensed**: Free for commercial and open-source use, with zero licensing fees or restrictive royalties.
+* **Option 5 Version Match**: Exact SemVer parity across `head.fontRevision == 3.0` and `nameID 5 == "Version 3.000; The PocketGull Project Authors; OFL 1.1"`.
+* **Vector SVGs as SSOT**: Clean single source of truth without bloating git histories with 100+ MB raster broadsides.
+
 
 ---
 
@@ -124,6 +146,10 @@ Enable clinical dosage disambiguation:
 
 ## 🔬 Academic Citation & CERN / Zenodo DOI
 
+* **Official Published Zenodo Record**: [zenodo.org/records/22309379](https://zenodo.org/records/22309379)
+* **Permanent DOI**: [`10.5281/zenodo.22309379`](https://doi.org/10.5281/zenodo.22309379)
+* **Preservation Archive**: CERN Data Centre (Geneva, Switzerland)
+
 If you use the PocketGull Typeface Superfamily in your clinical research, healthcare software, or vision science publications, please cite it using [`CITATION.cff`](CITATION.cff) or the BibTeX entry below:
 
 ```bibtex
@@ -133,8 +159,8 @@ If you use the PocketGull Typeface Superfamily in your clinical research, health
   month        = sep,
   year         = 2026,
   publisher    = {CERN / Zenodo},
-  version      = {2.0.0},
-  doi          = {10.5281/zenodo.20647514},
+  version      = {3.0.0},
+  doi          = {10.5281/zenodo.22309379},
   url          = {https://typeface.pocketgull.app},
   license      = {OFL-1.1}
 }
@@ -146,6 +172,7 @@ If you use the PocketGull Typeface Superfamily in your clinical research, health
 
 We extend our sincere gratitude to the people and projects that make PocketGull possible:
 * **The Dart Programming Language & Google Engineering** ([dart.dev](https://dart.dev)): For providing the soundly-typed, high-performance standalone tooling and scripting platform that powers our procedural vector synthesis, phonological data matrices, and headless specimen rendering pipelines.
+* **Emma**: For foundational linguistic research, sovereign orthography case study specifications, and character curation across Chinuk Pipa, Neo-Tifinagh, Cherokee, Ethiopic Geʻez, and West African Adlam & Vai.
 * **Randal L. Schwartz**: For decades of foundational contributions to open-source software, developer education, Perl and Dart advocacy, and inspiring rigorous command-line tooling standards.
 * **Sovereign Indigenous Language Keepers & Clinicians**: For their enduring cultural stewardship across the 574+ sovereign tribes, First Nations, and circumpolar councils.
 * **Vision Science & Patient Safety Pioneers**: Louise L. Sloan (5:1 optotypes), Herman Bouma (visual crowding), and the Institute for Safe Medication Practices (ISMP).
@@ -154,11 +181,16 @@ See **[THANKS.md](THANKS.md)** for our full dedication and acknowledgements.
 
 ---
 
-## 📜 License & Copyright
+## 📜 License, Trademarks & Security
 
-PocketGull is distributed under the **[SIL Open Font License, Version 1.1](OFL.txt)**.  
-Free for personal, academic, and commercial use.
+PocketGull font binaries and source code are distributed under the **[SIL Open Font License, Version 1.1](OFL.txt)** (Zero Reserved Font Names).  
+Free for personal, academic, clinical, and commercial use.
+
+* **Trademark Policy**: See [TRADEMARKS.md](TRADEMARKS.md) for brand protection and Lanham Act § 43(a) coexistence terms.
+* **Security & Regulatory Compliance**: See [SECURITY.md](SECURITY.md) for OpenSSF binary integrity, HIPAA/COPPA safe harbor, and FDA 21 U.S.C. § 360j(o) non-device declarations.
+* **Governance**: See [GOVERNANCE.md](GOVERNANCE.md) for the Tripartite Governance Standard (CARE Principles, W3C OTS safety, Option 5).
 
 **Copyright (c) 2026 The PocketGull Project Authors** ([GitHub Repository](https://github.com/pocketgull-app/pocketgull-typeface)).  
 *Rooted in empirical science. Engineered for life. 🕊️*
+
 

@@ -41,7 +41,7 @@
     <line x1="1140" y1="60" x2="1140" y2="1660"/>
   </g>
 
-  <!-- 2. Braille & Syllabic Top Perimeter -->
+  <!-- 2. Braille &amp; Syllabic Top Perimeter -->
   <rect x="60" y="24" width="1080" height="28" rx="0" fill="#0A0F1D" stroke="#1E293B" stroke-width="0.8"/>
   <text x="600" y="43" class="font-syllabic" font-size="13" fill="#FFD100" text-anchor="middle" font-weight="bold">ᐳᒃᑭᑦᒐᓪ • ᐃᓄᒃᑎᑐᑦ ᑲᓇᑕᒥ ᓄᓇᖃᖅᑳᖅᓯᒪᔪᑦ • POCKETGULL CASE STUDY 01 // CA-NU 🇨🇦</text>
 
@@ -50,7 +50,7 @@
     <line x1="0" y1="0" x2="1080" y2="0" stroke="#334155" stroke-width="1.2"/>
     <text x="0" y="34" class="font-syllabic" font-size="32" fill="#F8FAFC" font-weight="bold">ᐳᒃᑭᑦᒐᓪ <tspan fill="#FFD100">POCKETGULL</tspan></text>
     
-    <!-- Country Code & Flag Cluster -->
+    <!-- Country Code &amp; Flag Cluster -->
     <rect x="360" y="12" width="170" height="26" rx="3" fill="#0B132B" stroke="#D52B1E" stroke-width="1"/>
     <text x="445" y="29" class="font-mono" font-size="12" fill="#FFFFFF" text-anchor="middle" font-weight="bold">CA-NU • CANADA 🇨🇦</text>
 
@@ -204,7 +204,7 @@
     </g>
   </g>
 
-  <!-- 7. Typographic Anatomy & Disambiguation Ribbon -->
+  <!-- 7. Typographic Anatomy &amp; Disambiguation Ribbon -->
   <g id="typography-ribbon" transform="translate(60, 1470)">
     <rect width="1080" height="95" rx="3" fill="#060913" stroke="#1E293B" stroke-width="1.2"/>
     <text x="24" y="24" class="font-meta" font-size="12" fill="#FFD100" font-weight="bold">POCKETGULL INUKTITUT CLINICAL DISAMBIGUATION // CA-NU • iu-CA</text>

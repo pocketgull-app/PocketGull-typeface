@@ -125,7 +125,7 @@ Auditing compiled font cuts for Canadian Aboriginal Syllabics (Inuktitut / Cree 
   [PASS] W3C Web Fonts Core Requirements: Passed
 ```
 
-All fonts are distributed under the **SIL Open Font License 1.1** and archived in CERN Zenodo (`DOI: 10.5281/zenodo.18882512`).
+All fonts are distributed under the **SIL Open Font License 1.1** and archived in CERN Zenodo (`DOI: 10.5281/zenodo.22309379`).
 
 ---
 

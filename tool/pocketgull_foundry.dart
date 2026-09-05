@@ -10,26 +10,45 @@ import 'foundry/phinney_auditor.dart';
 import 'foundry/glyph_inspector.dart';
 import 'foundry/font_surgeon.dart';
 import 'foundry/smoe_subsetter.dart';
+import 'foundry/upstream_cure_engine.dart';
+import 'foundry/foundry_spector.dart';
 
 const fontStems = [
+  'PocketGull-Regular',
   'PocketGull-Bold',
+  'PocketGull-Black',
+  'PocketGull-BoldItalic',
   'PocketGull-Fineliner',
+  'PocketGull-Italic',
   'PocketGull-Chiseltip',
   'PocketGull-Antigravity',
   'PocketGull-Numerics',
   'PocketGullMono-Regular',
+  'PocketGullMono-Italic',
+  'PocketGull-MarkerRaw',
   'PocketGull-VF',
 ];
 
-String findProjectRoot() {
+Directory findTypefaceDir() {
   var dir = Directory.current;
   while (dir.path != dir.parent.path) {
-    if (File('${dir.path}${Platform.pathSeparator}package.json').existsSync()) {
-      return dir.path;
-    }
+    if (dir.path.endsWith('pocketgull-typeface')) return dir;
+    final candidate = Directory('${dir.path}${Platform.pathSeparator}pocketgull-typeface');
+    if (candidate.existsSync()) return candidate;
     dir = dir.parent;
   }
-  return Directory.current.path;
+  return Directory.current;
+}
+
+Directory? findAppDir() {
+  final tf = findTypefaceDir();
+  final candidate = Directory('${tf.parent.path}${Platform.pathSeparator}pocketgull');
+  if (candidate.existsSync()) return candidate;
+  return null;
+}
+
+String findProjectRoot() {
+  return findTypefaceDir().path;
 }
 
 void runAudit() {
@@ -37,14 +56,17 @@ void runAudit() {
   print('  POCKETGULL TYPEFOUNDRY: THOMAS PHINNEY FORENSIC AUDITOR (DART 3.11)');
   print('======================================================================\n');
 
-  final root = findProjectRoot();
-  final typefaceRoot = Directory('${Directory(root).parent.path}${Platform.pathSeparator}pocketgull-typeface');
-  final appFontsDir = Directory('$root${Platform.pathSeparator}public${Platform.pathSeparator}fonts');
+  final typefaceRoot = findTypefaceDir();
+  final appDir = findAppDir();
+  final auditDirs = <Directory>[typefaceRoot];
+  if (appDir != null) {
+    auditDirs.add(Directory('${appDir.path}${Platform.pathSeparator}public${Platform.pathSeparator}fonts'));
+  }
 
   var total = 0;
   var passed = 0;
 
-  for (final dir in [typefaceRoot, appFontsDir]) {
+  for (final dir in auditDirs) {
     print('Auditing fonts in: ${dir.path}');
     if (!dir.existsSync()) {
       print('  [SKIP] Directory does not exist');
@@ -85,6 +107,42 @@ void runAudit() {
 
   if (passed < total) {
     exitCode = 1;
+  }
+}
+
+void runRealign() {
+  print('\n======================================================================');
+  print('  POCKETGULL TYPEFOUNDRY: 2-BYTE WORD BOUNDARY ALIGNMENT (DART 3.11)');
+  print('======================================================================\n');
+
+  final root = findProjectRoot();
+  final ttfDir = Directory('$root${Platform.pathSeparator}fonts${Platform.pathSeparator}ttf');
+
+  final targetStems = [
+    'PocketGull-Regular',
+    'PocketGull-Bold',
+    'PocketGull-Black',
+    'PocketGull-BoldItalic',
+    'PocketGull-Fineliner',
+    'PocketGull-Italic',
+    'PocketGull-Chiseltip',
+    'PocketGull-MarkerRaw',
+    'PocketGullMono-Regular',
+    'PocketGullMono-Italic',
+    'PocketGull-VF',
+  ];
+
+  for (final stem in targetStems) {
+    final ttf = File('${ttfDir.path}${Platform.pathSeparator}$stem.ttf');
+    if (ttf.existsSync()) {
+      stdout.write('  • Realigning $stem.ttf ... ');
+      try {
+        SfntTransformer.transformFont(inputFile: ttf);
+        print('[OK 2-byte aligned]');
+      } catch (e) {
+        print('[ERR: $e]');
+      }
+    }
   }
 }
 
@@ -146,18 +204,34 @@ void runCompile() {
   if (typefaceRoot.existsSync()) {
     print('\n  [5/5] Realigning and sanitizing complete production superfamily in Dart...');
     final weightMap = {
+      'PocketGull-Regular.ttf': 400,
       'PocketGull-Fineliner.ttf': 400,
       'PocketGull-Bold.ttf': 700,
+      'PocketGull-Black.ttf': 900,
+      'PocketGull-BoldItalic.ttf': 700,
       'PocketGull-Chiseltip.ttf': 900,
+      'PocketGull-MarkerRaw.ttf': 900,
+      'PocketGull-Italic.ttf': 400,
       'PocketGull-Antigravity.ttf': 400,
       'PocketGull-Numerics.ttf': 600,
       'PocketGullMono-Regular.ttf': 500,
+      'PocketGullMono-Italic.ttf': 500,
       'PocketGull-VF.ttf': 400,
     };
 
     for (final entry in weightMap.entries) {
-      final ttfFile = File('${typefaceRoot.path}${Platform.pathSeparator}${entry.key}');
-      if (ttfFile.existsSync()) {
+      File? ttfFile;
+      final candidates = [
+        File('${typefaceRoot.path}${Platform.pathSeparator}fonts${Platform.pathSeparator}ttf${Platform.pathSeparator}${entry.key}'),
+        File('${typefaceRoot.path}${Platform.pathSeparator}${entry.key}'),
+      ];
+      for (final c in candidates) {
+        if (c.existsSync()) {
+          ttfFile = c;
+          break;
+        }
+      }
+      if (ttfFile != null && ttfFile.existsSync()) {
         stdout.write('    • Transforming ${entry.key} (wght: ${entry.value}) ... ');
         try {
           SfntTransformer.transformFont(
@@ -189,8 +263,7 @@ void runEmbed() {
   print('  POCKETGULL TYPEFOUNDRY: SPECIMEN EMBEDDER (DART 3.11)');
   print('======================================================================\n');
 
-  final root = findProjectRoot();
-  final typefaceRoot = Directory('${Directory(root).parent.path}${Platform.pathSeparator}pocketgull-typeface');
+  final typefaceRoot = findTypefaceDir();
   final htmlFile = File('${typefaceRoot.path}${Platform.pathSeparator}index.html');
 
   SpecimenEmbedder.embedFonts(typefaceDir: typefaceRoot, htmlFile: htmlFile);
@@ -207,10 +280,8 @@ void runSync() {
   print('  POCKETGULL TYPEFOUNDRY: FONT ASSET SYNCHRONIZATION (DART 3.11)');
   print('======================================================================\n');
 
-  final root = findProjectRoot();
-  final typefaceRoot = Directory('${Directory(root).parent.path}${Platform.pathSeparator}pocketgull-typeface');
-  final appFontsDir = Directory('$root${Platform.pathSeparator}public${Platform.pathSeparator}fonts');
-  final brandFontsDir = Directory('$root${Platform.pathSeparator}public${Platform.pathSeparator}brand${Platform.pathSeparator}fonts');
+  final typefaceRoot = findTypefaceDir();
+  final appDir = findAppDir();
 
   if (!typefaceRoot.existsSync()) {
     print('[ERROR] Source typeface directory does not exist: ${typefaceRoot.path}');
@@ -218,8 +289,15 @@ void runSync() {
     return;
   }
 
-  appFontsDir.createSync(recursive: true);
-  brandFontsDir.createSync(recursive: true);
+  final targetDirs = <Directory>[];
+  if (appDir != null) {
+    targetDirs.add(Directory('${appDir.path}${Platform.pathSeparator}public${Platform.pathSeparator}fonts'));
+    targetDirs.add(Directory('${appDir.path}${Platform.pathSeparator}public${Platform.pathSeparator}brand${Platform.pathSeparator}fonts'));
+  }
+
+  for (final td in targetDirs) {
+    td.createSync(recursive: true);
+  }
 
   var synced = 0;
   for (final stem in fontStems) {
@@ -228,8 +306,8 @@ void runSync() {
       final sub = ext == '.ttf' ? 'ttf' : 'woff2';
       File? srcFile;
       final candidates = [
-        File('${typefaceRoot.path}${Platform.pathSeparator}$filename'),
         File('${typefaceRoot.path}${Platform.pathSeparator}fonts${Platform.pathSeparator}$sub${Platform.pathSeparator}$filename'),
+        File('${typefaceRoot.path}${Platform.pathSeparator}$filename'),
       ];
       for (final c in candidates) {
         if (c.existsSync()) {
@@ -239,13 +317,21 @@ void runSync() {
       }
       if (srcFile == null) continue;
 
-      final dstApp = File('${appFontsDir.path}${Platform.pathSeparator}$filename');
-      final dstBrand = File('${brandFontsDir.path}${Platform.pathSeparator}$filename');
-
-      dstApp.writeAsBytesSync(srcFile.readAsBytesSync());
-      dstBrand.writeAsBytesSync(srcFile.readAsBytesSync());
-      synced++;
+      for (final td in targetDirs) {
+        final dst = File('${td.path}${Platform.pathSeparator}$filename');
+        dst.writeAsBytesSync(srcFile.readAsBytesSync());
+        synced++;
+      }
       print('  [OK] Synchronized $filename across all targets');
+    }
+  }
+
+  if (appDir != null) {
+    final srcCss = File('${typefaceRoot.path}${Platform.pathSeparator}fonts.css');
+    if (srcCss.existsSync()) {
+      final dstCss = File('${appDir.path}${Platform.pathSeparator}public${Platform.pathSeparator}fonts${Platform.pathSeparator}fonts.css');
+      dstCss.writeAsStringSync(srcCss.readAsStringSync());
+      print('  [OK] Synchronized fonts.css to ${dstCss.path}');
     }
   }
 
@@ -254,7 +340,9 @@ void runSync() {
 
 Future<void> runServe(int requestedPort) async {
   final root = findProjectRoot();
-  final typefaceRoot = Directory('${Directory(root).parent.path}${Platform.pathSeparator}pocketgull-typeface');
+  final typefaceRoot = File('$root${Platform.pathSeparator}index.html').existsSync()
+      ? Directory(root)
+      : Directory('${Directory(root).parent.path}${Platform.pathSeparator}pocketgull-typeface');
 
   if (!typefaceRoot.existsSync()) {
     print('[ERROR] Typeface directory not found: ${typefaceRoot.path}');
@@ -282,8 +370,10 @@ Future<void> runServe(int requestedPort) async {
   print('\n======================================================================');
   print('  POCKETGULL TYPEFOUNDRY PREVIEW SERVER (ZERO CORS, DART 3.11)');
   print('======================================================================');
-  print('  URL: http://localhost:$port/index.html');
-  print('  Serving: ${typefaceRoot.path}');
+  print('  Standard URL:     http://localhost:$port/index.html');
+  print('  Dedicated Domain: http://pocketgull.localhost:$port/index.html');
+  print('  Serving:          ${typefaceRoot.path}');
+  print('  Cache Policy:     no-cache, no-store (Instant refresh)');
   print('  Press Ctrl+C to terminate server.\n');
 
   await for (HttpRequest request in server) {
@@ -292,8 +382,25 @@ Future<void> runServe(int requestedPort) async {
     final targetPath = '${typefaceRoot.path}${path.replaceAll('/', Platform.pathSeparator)}';
     final targetFile = File(targetPath);
 
+    final ext = path.contains('.') ? path.split('.').last.toLowerCase() : '';
+    final isHtml = ext == 'html';
+    final isFont = ext == 'woff2' || ext == 'ttf' || ext == 'otf';
+    final isStaticAsset = ext == 'css' || ext == 'js' || ext == 'svg' || ext == 'png' || ext == 'webp' || ext == 'ico' || ext == 'json';
+
     request.response.headers.add('Access-Control-Allow-Origin', '*');
     request.response.headers.add('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
+    request.response.headers.add('TDM-Reservation', '1');
+    request.response.headers.add('X-Content-Type-Options', 'nosniff');
+
+    if (isFont) {
+      request.response.headers.set(HttpHeaders.cacheControlHeader, 'public, max-age=31536000, immutable');
+    } else if (isStaticAsset) {
+      request.response.headers.set(HttpHeaders.cacheControlHeader, 'public, max-age=86400');
+    } else if (isHtml) {
+      request.response.headers.set(HttpHeaders.cacheControlHeader, 'no-cache');
+    } else {
+      request.response.headers.set(HttpHeaders.cacheControlHeader, 'no-cache');
+    }
 
     if (request.method == 'OPTIONS') {
       request.response.statusCode = HttpStatus.ok;
@@ -305,10 +412,28 @@ Future<void> runServe(int requestedPort) async {
       if (path.endsWith('.html')) request.response.headers.contentType = ContentType.html;
       if (path.endsWith('.css')) request.response.headers.contentType = ContentType('text', 'css', charset: 'utf-8');
       if (path.endsWith('.js')) request.response.headers.contentType = ContentType('application', 'javascript', charset: 'utf-8');
+      if (path.endsWith('.json')) request.response.headers.contentType = ContentType('application', 'json', charset: 'utf-8');
       if (path.endsWith('.woff2')) request.response.headers.contentType = ContentType('font', 'woff2');
       if (path.endsWith('.ttf')) request.response.headers.contentType = ContentType('font', 'ttf');
+      if (path.endsWith('.svg')) request.response.headers.contentType = ContentType('image', 'svg+xml');
+      if (path.endsWith('.png')) request.response.headers.contentType = ContentType('image', 'png');
+      if (path.endsWith('.webp')) request.response.headers.contentType = ContentType('image', 'webp');
 
-      await targetFile.openRead().pipe(request.response);
+      if (request.method == 'HEAD') {
+        request.response.statusCode = HttpStatus.ok;
+        await request.response.close();
+        continue;
+      }
+
+      final isCompressible = isHtml || ext == 'css' || ext == 'js' || ext == 'svg' || ext == 'json';
+      final acceptEncoding = request.headers.value(HttpHeaders.acceptEncodingHeader) ?? '';
+      if (isCompressible && acceptEncoding.contains('gzip')) {
+        request.response.headers.set(HttpHeaders.contentEncodingHeader, 'gzip');
+        request.response.headers.set(HttpHeaders.varyHeader, 'Accept-Encoding');
+        await targetFile.openRead().transform(gzip.encoder).pipe(request.response);
+      } else {
+        await targetFile.openRead().pipe(request.response);
+      }
     } else {
       request.response.statusCode = HttpStatus.notFound;
       request.response.write('404 Not Found: $path');
@@ -385,15 +510,19 @@ Future<void> runBuild() async {
 
   final root = findProjectRoot();
   final ttfDir = Directory('${root}${Platform.pathSeparator}fonts${Platform.pathSeparator}ttf');
-  final woff2Dir = Directory('${root}${Platform.pathSeparator}fonts${Platform.pathSeparator}woff2');
 
   // Step 1: 2-Byte Alignment via SfntTransformer
   print('Step 1: Realigning TrueType binaries to 2-byte word boundaries...');
   final targetStems = [
     'PocketGull-Bold',
+    'PocketGull-BoldItalic',
     'PocketGull-Fineliner',
+    'PocketGull-Italic',
     'PocketGull-Chiseltip',
+    'PocketGull-MarkerRaw',
     'PocketGullMono-Regular',
+    'PocketGullMono-Italic',
+    'PocketGull-VF',
   ];
 
   for (final stem in targetStems) {
@@ -426,7 +555,7 @@ root = r"$root"
 ttf_dir = os.path.join(root, "fonts", "ttf")
 woff2_dir = os.path.join(root, "fonts", "woff2")
 
-for stem in ["PocketGull-Bold", "PocketGull-Fineliner", "PocketGull-Chiseltip", "PocketGullMono-Regular"]:
+for stem in ["PocketGull-Bold", "PocketGull-BoldItalic", "PocketGull-Fineliner", "PocketGull-Italic", "PocketGull-Chiseltip", "PocketGull-MarkerRaw", "PocketGullMono-Regular", "PocketGullMono-Italic"]:
     src = os.path.join(ttf_dir, stem + ".ttf")
     dst = os.path.join(woff2_dir, stem + ".woff2")
     if os.path.isfile(src):
@@ -484,9 +613,11 @@ Commands:
   embed             Embed verified pristine Base64 fonts into HTML specimen
   inspect [font]    Inspect glyph metrics, bounds, contours, and flags in pure Dart
   repair            Surgically fix letterform geometry (C flip, wordmark g, G spur) in Dart
+  cure              Execute Google Fonts upstream compliance pipeline (casing, GDEF/GPOS, Option 5, 2-byte alignment, audit)
   sync              Synchronize verified binaries across typeface and app font directories
   smoe [font]       Audit SMoE script expert routing across active Unicode blocks
-  serve [port]      Serve specimen proof locally with zero CORS restrictions (default: 8080)
+  spector [dir]     Pure Dart 3.11 replacement for FontSpector (OpenType, Google Fonts, W3C OTS)
+  serve [port]      Serve specimen proof locally with zero CORS restrictions (default: 8770)
 ''');
 }
 
@@ -496,8 +627,20 @@ Future<void> main(List<String> args) async {
     case 'build':
       await runBuild();
       break;
+    case 'spector':
+      final dir = args.length > 1 ? Directory(args[1]) : Directory('ofl');
+      final ok = await FoundrySpector.auditDirectory(dir);
+      if (!ok) exitCode = 1;
+      break;
+    case 'cure':
+    case 'upstream':
+      await UpstreamCureEngine.run(projectRoot: findProjectRoot());
+      break;
     case 'audit':
       runAudit();
+      break;
+    case 'realign':
+      runRealign();
       break;
     case 'smoe':
       final targetFont = args.length > 1 ? args[1] : 'fonts/ttf/PocketGull-Bold.ttf';
@@ -521,7 +664,7 @@ Future<void> main(List<String> args) async {
       runSync();
       break;
     case 'serve':
-      final port = args.length > 1 ? int.tryParse(args[1]) ?? 8080 : 8080;
+      final port = args.length > 1 ? int.tryParse(args[1]) ?? 8770 : 8770;
       await runServe(port);
       break;
     case 'help':

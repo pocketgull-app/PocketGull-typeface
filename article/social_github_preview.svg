@@ -36,7 +36,7 @@
     <!-- Pure Typographic Eyebrow (No Pill Box) -->
     <text x="0" y="20" class="font-mono" font-size="13" fill="#0D9488" font-weight="bold" letter-spacing="0.12em">CLINICAL TYPEFACE SUPERFAMILY</text>
 
-    <!-- Main Title (Deep Sumi Ink & Celadon Bamboo Teal) -->
+    <!-- Main Title (Deep Sumi Ink &amp; Celadon Bamboo Teal) -->
     <text x="0" y="80" class="font-title" font-size="44" fill="#1F1B16" letter-spacing="-0.02em">Letters Made for</text>
     <text x="0" y="130" class="font-title" font-size="44" fill="#0D9488" letter-spacing="-0.02em">Healthy Eyes.</text>
 
@@ -58,7 +58,7 @@
       <line x1="0" y1="38" x2="620" y2="38" stroke="#E7E2D6" stroke-width="1"/>
     </g>
 
-    <!-- Braille & Libre Functionalism Rule -->
+    <!-- Braille &amp; Libre Functionalism Rule -->
     <line x1="0" y1="345" x2="620" y2="345" stroke="#E7E2D6" stroke-width="0.8"/>
     <text x="0" y="380" class="font-braille" font-size="14" fill="#0D9488">⠏⠕⠉⠅⠑⠞⠛⠥⠇⠇ ⠺⠑⠝⠊⠛⠑⠗⠀⠁⠃⠑⠗⠀⠃⠑⠎⠎⠑⠗</text>
     <text x="0" y="415" class="font-body" font-size="14" fill="#78716C" font-style="italic">“Weniger, aber besser” — Less, but better. Honest, gentle, and useful.</text>

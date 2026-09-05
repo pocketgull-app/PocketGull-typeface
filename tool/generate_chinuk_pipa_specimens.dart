@@ -218,7 +218,7 @@ String generateSocialPreview(String photoBase64) {
       @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap');
       .font-brand { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
       .font-mono { font-family: 'JetBrains Mono', monospace; }
-      .font-duployan { font-family: 'PocketGull', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
+      .font-duployan { font-family: 'Pocket Gull', 'PocketGull', 'Pocket Gull Bold', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
       .font-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     </style>
     <linearGradient id="polarWashiBg" x1="0" y1="0" x2="0" y2="1">
@@ -328,7 +328,7 @@ String generateSynapticSpecimenDark(String rubaiyatBase64) {
       @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap');
       .font-brand { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
       .font-mono { font-family: 'JetBrains Mono', monospace; }
-      .font-duployan { font-family: 'PocketGull', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
+      .font-duployan { font-family: 'Pocket Gull', 'PocketGull', 'Pocket Gull Bold', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
     </style>
   </defs>
 
@@ -523,7 +523,7 @@ String generateSynapticSpecimenLight(String pebbleBase64) {
       @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap');
       .font-brand { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
       .font-mono { font-family: 'JetBrains Mono', monospace; }
-      .font-duployan { font-family: 'PocketGull', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
+      .font-duployan { font-family: 'Pocket Gull', 'PocketGull', 'Pocket Gull Bold', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
     </style>
     <linearGradient id="lightBg" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#FDFBF7"/>
@@ -607,7 +607,7 @@ String generatePermaThoughtsCard() {
       @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap');
       .font-brand { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
       .font-mono { font-family: 'JetBrains Mono', monospace; }
-      .font-duployan { font-family: 'PocketGull', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
+      .font-duployan { font-family: 'Pocket Gull', 'PocketGull', 'Pocket Gull Bold', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
     </style>
     <radialGradient id="washiCardGlow" cx="50%" cy="30%" r="70%">
       <stop offset="0%" stop-color="#FFFDF9"/>
@@ -700,7 +700,7 @@ String generatePrintExhibition(String kellsBase64) {
       @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap');
       .font-brand { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
       .font-mono { font-family: 'JetBrains Mono', monospace; }
-      .font-duployan { font-family: 'PocketGull', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
+      .font-duployan { font-family: 'Pocket Gull', 'PocketGull', 'Pocket Gull Bold', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
     </style>
   </defs>
 
@@ -770,7 +770,7 @@ String generateLanguageMap() {
       @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap');
       .font-brand { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
       .font-mono { font-family: 'JetBrains Mono', monospace; }
-      .font-duployan { font-family: 'PocketGull', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
+      .font-duployan { font-family: 'Pocket Gull', 'PocketGull', 'Pocket Gull Bold', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
     </style>
   </defs>
 
@@ -961,7 +961,7 @@ String generateTypeEngineeringPlate() {
       @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap');
       .font-brand { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
       .font-mono { font-family: 'JetBrains Mono', monospace; }
-      .font-duployan { font-family: 'PocketGull', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
+      .font-duployan { font-family: 'Pocket Gull', 'PocketGull', 'Pocket Gull Bold', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
     </style>
     <!-- Cyan Millimetric Technical Grid -->
     <pattern id="cyanGrid" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -1125,7 +1125,7 @@ String generateTelemetryTypePlate() {
       @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap');
       .font-brand { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
       .font-mono { font-family: 'JetBrains Mono', monospace; }
-      .font-duployan { font-family: 'PocketGull', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
+      .font-duployan { font-family: 'Pocket Gull', 'PocketGull', 'Pocket Gull Bold', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
     </style>
   </defs>
 
@@ -1285,7 +1285,7 @@ String generatePedagogicalPlate() {
     <style>
       .font-brand { font-family: 'PocketGull Bold', 'Plus Jakarta Sans', system-ui, sans-serif; }
       .font-mono { font-family: 'PocketGull Mono', 'JetBrains Mono', monospace; }
-      .font-duployan { font-family: 'PocketGull', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
+      .font-duployan { font-family: 'Pocket Gull', 'PocketGull', 'Pocket Gull Bold', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
       .font-fineliner { font-family: 'PocketGull Fineliner', 'PocketGull', sans-serif; }
       .font-bold { font-family: 'PocketGull Bold', 'PocketGull', sans-serif; }
       .font-chiseltip { font-family: 'PocketGull Chiseltip', 'PocketGull', sans-serif; }

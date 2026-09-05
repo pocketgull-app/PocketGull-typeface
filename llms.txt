@@ -4,22 +4,30 @@
 
 ## Overview
 - **Name**: PocketGull
-- **Designer**: Phil Gear (ORCID: 0009-0008-1372-5381)
+- **Designer**: Phil Gear (ORCID: [0009-0008-1372-5381](https://orcid.org/0009-0008-1372-5381))
 - **Publisher**: PocketGull LLC
-- **License**: SIL Open Font License 1.1 (100% Free & Open Source)
-- **Repository**: https://github.com/pocketgull-app/pocketgull-typeface
-- **Specimen**: https://typeface.pocketgull.app/
-- **CERN / Zenodo Archival**: https://doi.org/10.5281/zenodo.20647514 (Companion)
-- **Citation File**: https://typeface.pocketgull.app/CITATION.cff
+- **License**: [SIL Open Font License 1.1](https://openfontlicense.org) (100% Free & Open Source)
+- [Official Repository](https://github.com/pocketgull-app/pocketgull-typeface): Git repository containing UFO3 source files, Dart foundry compiler, and font binaries.
+- [Interactive Web Specimen](https://typeface.pocketgull.app/): Live specimen engine with variable font axes and 670nm Retinal PBM mode.
+- [Healing Cinema Engine](https://typeface.pocketgull.app/healing_cinema.html): 0.1 Hz resonant breathing typographic cinema and OKLCH gradient flow.
+- [CERN Zenodo Archival](https://doi.org/10.5281/zenodo.20647514): Long-term DOI preservation.
+- [Citation Metadata](https://typeface.pocketgull.app/CITATION.cff): CFF bibliographic citation format.
 
 ## 4 Coordinated Masters
-1. **PocketGull Bold (700)**: Triage warnings and headline acuity.
-2. **PocketGull Fineliner (400)**: Clinical progress notes and humanized reading.
-3. **PocketGull Chiseltip (900)**: Dynamic calligraphic display and brand mark.
-4. **PocketGull Mono (400)**: 600 UPM fixed-pitch telemetry and ICU vitals.
+- [PocketGull Bold](https://typeface.pocketgull.app/fonts/ttf/PocketGull-Bold.ttf): Triage warnings and headline acuity (weight 700).
+- [PocketGull Fineliner](https://typeface.pocketgull.app/fonts/ttf/PocketGull-Fineliner.ttf): Clinical progress notes and humanized reading (weight 400).
+- [PocketGull Chiseltip](https://typeface.pocketgull.app/fonts/ttf/PocketGull-Chiseltip.ttf): Dynamic calligraphic display and brand mark (weight 900).
+- [PocketGull Mono](https://typeface.pocketgull.app/fonts/ttf/PocketGullMono-Regular.ttf): 600 UPM fixed-pitch telemetry and ICU vitals.
 
 ## Clinical Safety Features
 - `cv08` Slashed Zero (0 vs O)
 - Curved lowercase l, footed capital I, and hooked numeral 1
 - Herman Bouma 0.12em lateral anti-crowding geometry
 - 670nm Retinal Photobiomodulation (PBM) zero-blue-light circadian preservation mode
+
+## Indigenous Data Sovereignty & Sacred Boundaries (CARE Principles)
+- **Zero Base Model Training Covenant**: In accordance with the CARE Principles for Indigenous Data Governance (Collective Benefit, Authority to Control, Responsibility, Ethics), publicly released font binaries, linguistic corpora, and tribal case studies in this repository may NEVER be ingested, crawled, scraped, or tokenized to train, fine-tune, or align commercial or base large language models (LLMs) without affirmative, sovereign community consent.
+- **Sovereign Vault Isolation**: Sacred clan ceremonial motifs, sensitive oral phonetics, and elder contact registries are held exclusively in private sovereign vaults (`.foundry/docs/`) and are never committed to public git trees, web endpoints, or open datasets.
+- **Community Attestation**: New orthographic additions must be validated by native language keepers before clinical deployment.
+- **Text & Data Mining Reservation (TDMR)**: All machine learning training and text/data mining rights are strictly reserved under Directive (EU) 2019/790 Article 4(3) and Indigenous CARE sovereignty protocols.
+

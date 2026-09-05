@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PocketGull Typeface Superfamily — Master Type Specimen Broadside</title>
+  <link rel="stylesheet" href="fonts.css">
+  <style>
+    :root {
+      --bg: #070b12;
+      --card-bg: #0d1522;
+      --card-border: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --cyan: #06b6d4;
+      --cyan-glow: rgba(6, 182, 212, 0.15);
+      --amber: #f59e0b;
+      --emerald: #10b981;
+      --rose: #f43f5e;
+      --purple: #a855f7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'PocketGull', system-ui, sans-serif;
+      padding: 40px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* Broadside Header */
+    .header-broadside {
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      background: radial-gradient(circle at top left, #131f33 0%, #0d1522 100%);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header-broadside::after {
+      content: "3.000";
+      position: absolute;
+      right: 20px;
+      top: 0px;
+      font-size: 160px;
+      font-weight: 900;
+      font-family: 'PocketGull Chiseltip';
+      color: rgba(255, 255, 255, 0.03);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .badge-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      color: var(--cyan);
+    }
+
+    .badge.emerald {
+      background: rgba(16, 185, 129, 0.1);
+      border-color: rgba(16, 185, 129, 0.3);
+      color: var(--emerald);
+    }
+
+    .badge.amber {
+      background: rgba(245, 158, 11, 0.1);
+      border-color: rgba(245, 158, 11, 0.3);
+      color: var(--amber);
+    }
+
+    .header-title {
+      font-size: 64px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      font-family: 'PocketGull Bold';
+    }
+
+    .header-title span {
+      color: var(--cyan);
+      background: linear-gradient(135deg, #38bdf8 0%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header-subtitle {
+      font-size: 20px;
+      color: var(--text-muted);
+      max-width: 860px;
+      line-height: 1.6;
+    }
+
+    /* Section Styles */
+    .specimen-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 32px;
+      position: relative;
+    }
+
+    .section-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      color: var(--cyan);
+      margin-bottom: 8px;
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .section-title small {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    /* Typography Hierarchy Showcase */
+    .hierarchy-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .hierarchy-row {
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .hierarchy-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .row-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-family: 'PocketGull Mono', monospace;
+    }
+
+    .font-sample-chiseltip {
+      font-family: 'PocketGull Chiseltip';
+      font-size: 46px;
+      font-weight: 900;
+      line-height: 1.15;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .font-sample-markerraw {
+      font-family: 'PocketGull Marker Raw';
+      font-size: 44px;
+      line-height: 1.2;
+      color: #38bdf8;
+      letter-spacing: 0.01em;
+    }
+
+    .font-sample-bold {
+      font-family: 'PocketGull Bold';
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: #f1f5f9;
+    }
+
+    .font-sample-bolditalic {
+      font-family: 'PocketGull Bold Italic';
+      font-size: 38px;
+      font-style: italic;
+      line-height: 1.25;
+      color: #cbd5e1;
+    }
+
+    .font-sample-fineliner {
+      font-family: 'PocketGull Fineliner';
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 1.35;
+      color: #e2e8f0;
+    }
+
+    .font-sample-finelineritalic {
+      font-family: 'PocketGull Fineliner Italic';
+      font-size: 32px;
+      font-style: italic;
+      line-height: 1.35;
+      color: #94a3b8;
+    }
+
+    .font-sample-mono {
+      font-family: 'PocketGull Mono';
+      font-size: 26px;
+      line-height: 1.4;
+      color: #34d399;
+    }
+
+    /* Variable Font Matrix */
+    .vf-interactive-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .vf-display-card {
+      background: #090d16;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .vf-sample-text {
+      font-family: 'PocketGull VF';
+      font-size: 38px;
+      line-height: 1.2;
+      margin: 16px 0;
+      color: #f8fafc;
+    }
+
+    /* ISMP Disambiguation Matrix */
+    .ismp-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .ismp-card {
+      background: #090d16;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .ismp-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--cyan);
+      margin-bottom: 12px;
+    }
+
+    .ismp-comparison {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 12px 0;
+      font-size: 32px;
+    }
+
+    .ismp-standard {
+      color: var(--rose);
+      font-family: sans-serif;
+      text-decoration: line-through;
+      opacity: 0.7;
+    }
+
+    .ismp-safe {
+      color: var(--emerald);
+      font-family: 'PocketGull Bold';
+      font-weight: 700;
+    }
+
+    .ismp-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ICU Telemetry HUD Terminal */
+    .terminal-box {
+      background: #05080e;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 24px;
+      font-family: 'PocketGull Mono', monospace;
+      color: #38bdf8;
+      font-size: 15px;
+      line-height: 1.45;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    /* Braille Strip */
+    .braille-strip {
+      background: #090d16;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 20px;
+      font-size: 24px;
+      color: var(--cyan);
+      letter-spacing: 0.15em;
+      text-align: center;
+      margin-top: 16px;
+    }
+
+    /* Footer Pillar Tags */
+    .pillar-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .pillar-item {
+      background: #090d16;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      padding: 16px;
+    }
+
+    .pillar-item h4 {
+      font-size: 13px;
+      color: var(--cyan);
+      margin-bottom: 4px;
+      font-family: 'PocketGull Bold';
+    }
+
+    .pillar-item p {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- 1. Broadside Master Header -->
+    <header class="header-broadside">
+      <div class="badge-bar">
+        <span class="badge">Open-Source Healthcare Typography</span>
+        <span class="badge emerald">W3C OTS & Word-Aligned Valid</span>
+        <span class="badge amber">SIL Open Font License 1.1</span>
+        <span class="badge">Google Fonts Option 5</span>
+        <span class="badge">72 BPM Philocardia Resonance</span>
+      </div>
+      <h1 class="header-title">PocketGull <span>Superfamily</span></h1>
+      <p class="header-subtitle">
+        An open-source clinical sans-serif, display, and telemetry monospace typeface engineered by Phil Gear.
+        Born from authentic felt-marker strokes on physical cardstock, synthesized with Louise Sloan 5:1 optotypic legibility
+        and ISMP life-critical character disambiguation for high-acuity healthcare environments.
+      </p>
+    </header>
+
+    <!-- 2. Superfamily Hierarchy Waterfall -->
+    <section class="specimen-card">
+      <div class="section-label">Superfamily Architecture & Masters</div>
+      <div class="section-title">
+        <span>The Five Production Cuts & Styles</span>
+        <small>1000 UPM Em-Square • 600 UPM Fixed Monospace</small>
+      </div>
+
+      <div class="hierarchy-grid">
+        <!-- 1. Chiseltip 900 -->
+        <div class="hierarchy-row">
+          <div class="row-meta">
+            <span>01. POCKETGULL CHISELTIP (wght: 900)</span>
+            <span>Display Placards • High-Contrast Signage</span>
+          </div>
+          <div class="font-sample-chiseltip">
+            EMERGENCY TRAUMA RESUSCITATION 01
+          </div>
+        </div>
+
+        <!-- 2. Marker Raw 900 -->
+        <div class="hierarchy-row">
+          <div class="row-meta">
+            <span>02. POCKETGULL MARKER RAW (wght: 900 AUTHENTIC COMPLETE 26-LETTER ALPHABET)</span>
+            <span>Hand-Drawn Felt-Marker Display • Single-Story 'g' • GearArts Archive</span>
+          </div>
+          <div class="font-sample-markerraw">
+            POCKETGULL CLINICAL SANCTUARY: Felt-Marker Craft
+          </div>
+          <div class="font-sample-markerraw" style="font-size: 26px; color: #f1f5f9; margin-top: 8px;">
+            The quick brown fox jumps over the lazy dog (0123456789 &!?)
+          </div>
+          <div style="font-family: 'PocketGull Marker Raw'; font-size: 20px; color: #94a3b8; letter-spacing: 0.08em; margin-top: 6px;">
+            A B C D E F G H I J K L M N O P Q R S T U V W X Y Z • a b c d e f g h i j k l m n o p q r s t u v w x y z
+          </div>
+        </div>
+
+        <!-- 3. Bold 700 & Bold Italic 700 -->
+        <div class="hierarchy-row">
+          <div class="row-meta">
+            <span>03. POCKETGULL BOLD & BOLD ITALIC (wght: 700 / 0° & -10.5°)</span>
+            <span>Bionic Reading Fixation • Stat Dosage Alerts</span>
+          </div>
+          <div class="font-sample-bold">
+            STAT Rx: Epinephrine 1 mg/mL IV Push • 0.5 mL
+          </div>
+          <div class="font-sample-bolditalic" style="margin-top: 8px;">
+            Critical Care Directive: Monitor Arterial Mean Pressure
+          </div>
+        </div>
+
+        <!-- 4. Fineliner 400 & Fineliner Italic 400 -->
+        <div class="hierarchy-row">
+          <div class="row-meta">
+            <span>04. POCKETGULL FINELINER & ITALIC (wght: 400 / 0° & -10.5°)</span>
+            <span>EHR Clinical Documentation • Louise Sloan 5:1 Optotypes</span>
+          </div>
+          <div class="font-sample-fineliner">
+            Patient discharged in stable sinus rhythm (72 bpm). Clear breath sounds bilaterally.
+          </div>
+          <div class="font-sample-finelineritalic" style="margin-top: 6px;">
+            International genetic syntax: HUGO gene BRCA1 vs protein BRCA1; microbiology Staphylococcus aureus.
+          </div>
+        </div>
+
+        <!-- 5. Mono 400 & Mono Italic -->
+        <div class="hierarchy-row">
+          <div class="row-meta">
+            <span>05. POCKETGULL MONO (Fixed 600 UPM / isFixedPitch = 1)</span>
+            <span>ICU Telemetry HUD • Box Drawing • Powerline Chevrons</span>
+          </div>
+          <div class="font-sample-mono">
+            [HR: 72 bpm] [SpO2: 99%] [BP: 120/80] [MAP: 93] | ⠁⠍⠕⠭ Amoxicillin 500 mg
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Variable Font Continuous Axis Interpolation -->
+    <section class="specimen-card">
+      <div class="section-label">Variable Font Engineering (fvar / gvar / HVAR / STAT)</div>
+      <div class="section-title">
+        <span>PocketGull-VF.ttf Continuous Axis Interpolation</span>
+        <small>wght: 400 ↔ 900 • slnt: -10.5° ↔ 0.0° • opsz: 14 ↔ 96</small>
+      </div>
+
+      <div class="vf-interactive-box">
+        <div class="vf-display-card">
+          <div class="row-meta">
+            <span>AXIS STATE: wght 450 • slnt 0.0° • opsz 18</span>
+            <span>Clinical Reading Mode</span>
+          </div>
+          <div class="vf-sample-text" style="font-variation-settings: 'wght' 450, 'slnt' 0, 'opsz' 18;">
+            Louise Sloan 5:1 optotypic legibility reduces cognitive fatigue during 12-hour surgical shifts.
+          </div>
+          <div style="font-size: 12px; color: var(--text-muted); font-family: 'PocketGull Mono', monospace;">
+            font-variation-settings: 'wght' 450, 'slnt' 0, 'opsz' 18;
+          </div>
+        </div>
+
+        <div class="vf-display-card">
+          <div class="row-meta">
+            <span>AXIS STATE: wght 820 • slnt -10.5° • opsz 48</span>
+            <span>Emergency Trauma Mode</span>
+          </div>
+          <div class="vf-sample-text" style="font-variation-settings: 'wght' 820, 'slnt' -10.5, 'opsz' 48; color: #38bdf8;">
+            STAT ALERT: 500 mg Amoxicillin IV • Bed 04
+          </div>
+          <div style="font-size: 12px; color: var(--text-muted); font-family: 'PocketGull Mono', monospace;">
+            font-variation-settings: 'wght' 820, 'slnt' -10.5, 'opsz' 48;
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. ISMP Life-Critical Clinical Disambiguation Suite -->
+    <section class="specimen-card">
+      <div class="section-label">Patient Safety Standard</div>
+      <div class="section-title">
+        <span>ISMP & FDA Character Disambiguation Suite</span>
+        <small>Eliminating Look-Alike / Sound-Alike Drug Collision Errors</small>
+      </div>
+
+      <div class="ismp-grid">
+        <div class="ismp-card">
+          <div class="ismp-title">Slashed Zero (cv08)</div>
+          <div class="ismp-comparison">
+            <span class="ismp-standard">0 vs O</span>
+            <span class="ismp-safe">0 vs O</span>
+          </div>
+          <p class="ismp-desc">Prevents confusing numeral zero with letter O in 10 mg vs 1O mg.</p>
+        </div>
+
+        <div class="ismp-card">
+          <div class="ismp-title">Curved Lowercase l (cv05)</div>
+          <div class="ismp-comparison">
+            <span class="ismp-standard">l 1 I</span>
+            <span class="ismp-safe">l 1 I</span>
+          </div>
+          <p class="ismp-desc">Prominent outward terminal foot separates lowercase l from 1 and I.</p>
+        </div>
+
+        <div class="ismp-card">
+          <div class="ismp-title">Serifed Capital I (ss02)</div>
+          <div class="ismp-comparison">
+            <span class="ismp-standard">IL-6</span>
+            <span class="ismp-safe">IL-6</span>
+          </div>
+          <p class="ismp-desc">Decisive bilobe serifs differentiate biomarkers and drug names.</p>
+        </div>
+
+        <div class="ismp-card">
+          <div class="ismp-title">Slashed Z (cv11)</div>
+          <div class="ismp-comparison">
+            <span class="ismp-standard">Z vs 2</span>
+            <span class="ismp-safe">Z vs 2</span>
+          </div>
+          <p class="ismp-desc">Crossbar stroke prevents fatal handwriting ambiguity with digit 2.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. ICU Telemetry HUD Monospace Terminal -->
+    <section class="specimen-card">
+      <div class="section-label">Medical Telemetry Monospace (Fixed 600 UPM)</div>
+      <div class="section-title">
+        <span>PocketGull Mono ICU Intensive Care Telemetry HUD</span>
+        <small>Gapless Box Drawing (U+2500–257F) • Sub-Cell Waveforms • Powerline Chevrons</small>
+      </div>
+
+      <div class="terminal-box">
+┌───────────────────────────────────────────────────────────────────────────────────────────────┐
+│ POCKETGULL CLINICAL TELEMETRY MONITOR :: BED 04 (NEURO-ICU TRAUMA POD-A)                      │
+├───────────────────────────────────────────────────────────────────────────────────────────────┤
+│ PATIENT: Sapiens, H. (34y F)    | MRN: #9842-01-STAT           | CADENCE: 72 BPM SINUS STABLE │
+├─────────────────────────────────┴──────────────────────────────┴──────────────────────────────┤
+│ [HEART RATE]    72 bpm   (NORMAL SINUS)   │ [BLOOD PRESSURE]  120/80 mmHg   (MAP: 93 mmHg)    │
+│ [PULSE OX]      99%      (PLETH PI 4.8%)  │ [RESPIRATORY]     16 br/min     (ETCO2: 38 mmHg)  │
+│ [TEMPERATURE]   36.8 °C  (NORMOTHERMIC)   │ [CONSCIOUSNESS]   GCS 15        (E4 V5 M6)        │
+├───────────────────────────────────────────────────────────────────────────────────────────────┤
+│ [ECG-LEAD II]   _/\_   _/\_   _/\_   _/\_   _/\_   _/\_   _/\_   _/\_   _/\_   _/\_           │
+│ [PLETH WAVE]    ▅▇█▇▅  ▅▇█▇▅  ▅▇█▇▅  ▅▇█▇▅  ▅▇█▇▅  ▅▇█▇▅  ▅▇█▇▅  ▅▇█▇▅  ▅▇█▇▅  ▅▇█▇▅          │
+├───────────────────────────────────────────────────────────────────────────────────────────────┤
+│ ACTIVE RX: R Cefazolin 2 g IV Q8H • ø 18G Cannula Right Antecubital • ALLERGY: PENICILLIN    │
+│ POWERLINE:  icu-station  main  bed-04  tty1 (PocketGull Mono 600 UPM pitch)               │
+└───────────────────────────────────────────────────────────────────────────────────────────────┘
+      </div>
+
+      <!-- Tactile Braille Strip -->
+      <div class="braille-strip">
+        ⠁⠍⠕⠭⠊⠉⠊⠇⠇⠊⠝⠀⠼⠑⠚⠚⠀⠍⠛⠀•⠀Full 256 Unicode Braille Coverage (U+2800–U+28FF)
+      </div>
+    </section>
+
+    <!-- 6. Architectural Quality Pillars -->
+    <div class="pillar-row">
+      <div class="pillar-item">
+        <h4>1. 1000 UPM Em-Square</h4>
+        <p>Conforms to ISO/IEC 14496-22 with <code>fsSelection</code> bit 7 enabled across all cuts.</p>
+      </div>
+      <div class="pillar-item">
+        <h4>2. 2-Byte Word Invariant</h4>
+        <p>Every glyph padded to even bytes; <code>loca[i] % 2 == 0</code> for 100% OTS memory safety.</p>
+      </div>
+      <div class="pillar-item">
+        <h4>3. Bit-7 Flag Masking</h4>
+        <p>Reserved bit 7 in TTGlyphPen flags strictly zeroed (<code>flag & 0x3F</code>) preventing driver crashes.</p>
+      </div>
+      <div class="pillar-item">
+        <h4>4. DirectWrite ClearType</h4>
+        <p>Version 1 <code>gasp</code> table mapped to symmetric smoothing and grayscale antialiasing.</p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

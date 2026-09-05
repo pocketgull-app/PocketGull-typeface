@@ -10,7 +10,7 @@
 **Zenodo** is an open-access scientific repository developed by **CERN** (the European Organization for Nuclear Research, Geneva, Switzerland) under the EU OpenAIRE project. Hosted in the CERN Data Centre in Meyrin, Switzerland, Zenodo provides persistent, tamper-evident digital preservation for open-source scientific software, research data, and clinical tools.
 
 For the **PocketGull Typeface Superfamily**, depositing on CERN/Zenodo achieves three critical milestones:
-1. **Permanent Digital Object Identifier (DOI)**: Mints an immutable DataCite DOI in the `10.5281/zenodo.*` namespace that can be cited in peer-reviewed journals (e.g. *Ophthalmology*, *Nature Biomedical Engineering*, *BMJ Health & Care Informatics*).
+1. **Permanent Digital Object Identifier (DOI)**: Immutable DataCite DOI [`10.5281/zenodo.22309379`](https://doi.org/10.5281/zenodo.22309379) and published repository record at [zenodo.org/records/22309379](https://zenodo.org/records/22309379) that can be cited in peer-reviewed journals (e.g. *Ophthalmology*, *Nature Biomedical Engineering*, *BMJ Health & Care Informatics*).
 2. **Archival Preservation at CERN**: Ensures font binaries (`.ttf`, `.woff2`), vector UFO master sources, OpenType table specifications, and clinical validation scripts remain accessible indefinitely, even across long-term institutional shifts.
 3. **Scholarly Citation & Attribution**: Links the typeface repository directly to **Phil Gear** ([ORCID: 0009-0008-1372-5381](https://orcid.org/0009-0008-1372-5381)), **PocketGull LLC**, and the CMS NPI registry.
 
@@ -81,15 +81,15 @@ To create a Personal Access Token on Zenodo:
   month        = sep,
   year         = 2026,
   publisher    = {CERN / Zenodo},
-  version      = {2.0.0},
-  doi          = {10.5281/zenodo.20647514},
+  version      = {3.0.0},
+  doi          = {10.5281/zenodo.22309379},
   url          = {https://typeface.pocketgull.app},
   license      = {OFL-1.1}
 }
 ```
 
 ### APA 7th Edition
-> Gear, P., & The PocketGull Project Authors. (2026). *PocketGull Typeface Superfamily: Optotypically Calibrated Clinical & Ophthalmological Vector Letterforms* (Version 2.0.0) [Computer software]. CERN / Zenodo. https://doi.org/10.5281/zenodo.20647514
+> Gear, P., & The PocketGull Project Authors. (2026). *PocketGull Typeface Superfamily: Optotypically Calibrated Clinical & Ophthalmological Vector Letterforms* (Version 3.0.0) [Computer software]. CERN / Zenodo. https://doi.org/10.5281/zenodo.22309379
 
 ---
 

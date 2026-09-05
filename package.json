@@ -22,7 +22,8 @@
   ],
   "author": "Phil Gear <philgear@gmail.com> (https://orcid.org/0009-0008-1372-5381)",
   "contributors": [
-    "The PocketGull Project Authors"
+    "The PocketGull Project Authors",
+    "Emma"
   ],
   "license": "OFL-1.1",
   "bugs": {
@@ -31,10 +32,11 @@
   "homepage": "https://typeface.pocketgull.app",
   "scripts": {
     "build": "dart run tool/pocketgull_foundry.dart build",
-    "test": "dart run tool/pocketgull_foundry.dart audit && python sources/validate_fonts.py",
+    "test": "dart run tool/pocketgull_foundry.dart audit && node scripts/run-font-validator.mjs",
     "audit": "dart run tool/pocketgull_foundry.dart audit",
-    "validate": "python sources/validate_fonts.py",
-    "serve": "dart run tool/pocketgull_foundry.dart serve 8080"
+    "validate": "node scripts/run-font-validator.mjs",
+    "checksums": "node scripts/generate_checksums.mjs",
+    "serve": "dart run tool/pocketgull_foundry.dart serve 8770"
   },
   "files": [
     "fonts/ttf/*.ttf",

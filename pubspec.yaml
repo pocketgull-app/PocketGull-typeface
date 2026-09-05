@@ -12,13 +12,29 @@ flutter:
   fonts:
     - family: PocketGull
       fonts:
+        - asset: fonts/ttf/PocketGull-Regular.ttf
+          weight: 400
         - asset: fonts/ttf/PocketGull-Fineliner.ttf
           weight: 400
         - asset: fonts/ttf/PocketGull-Bold.ttf
           weight: 700
+        - asset: fonts/ttf/PocketGull-Black.ttf
+          weight: 900
         - asset: fonts/ttf/PocketGull-Chiseltip.ttf
           weight: 900
+    - family: Pocket Gull
+      fonts:
+        - asset: fonts/ttf/PocketGull-Regular.ttf
+          weight: 400
+        - asset: fonts/ttf/PocketGull-Bold.ttf
+          weight: 700
+        - asset: fonts/ttf/PocketGull-Black.ttf
+          weight: 900
     - family: PocketGull Mono
+      fonts:
+        - asset: fonts/ttf/PocketGullMono-Regular.ttf
+          weight: 400
+    - family: Pocket Gull Mono
       fonts:
         - asset: fonts/ttf/PocketGullMono-Regular.ttf
           weight: 400

@@ -47,7 +47,7 @@
     </g>
   </g>
 
-  <!-- Right: Disambiguation & Tabular Sizes -->
+  <!-- Right: Disambiguation &amp; Tabular Sizes -->
   <g transform="translate(475, 185)">
     <!-- 0 vs O -->
     <rect x="0" y="0" width="180" height="85" fill="#FFFFFF" stroke="#CBD5E1"/>
@@ -112,7 +112,7 @@
     </g>
   </g>
 
-  <!-- Bottom: Medical Form & Optical Corrections -->
+  <!-- Bottom: Medical Form &amp; Optical Corrections -->
   <g transform="translate(45, 810)">
     <text x="0" y="0" class="font-mono" font-size="13" font-weight="700" fill="#0F172A">CLINICAL DOSAGE CORRECTIONS &amp; EHR TERMINOLOGY:</text>
 

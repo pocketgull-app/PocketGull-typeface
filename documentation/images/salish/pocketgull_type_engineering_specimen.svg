@@ -32,7 +32,7 @@
     <line x1="0" y1="240" x2="2408" y2="240" stroke="#0284C7" stroke-width="2.5" opacity="0.7"/>
   </g>
 
-  <!-- Section 1: Optical Metrics & Invariants -->
+  <!-- Section 1: Optical Metrics &amp; Invariants -->
   <g transform="translate(140, 480)">
     <text x="0" y="0" class="font-mono" font-size="32" font-weight="700" fill="#38BDF8">01 / GEOMETRIC INVARIANTS &amp; BOUNDING BOX ALLOCATION</text>
     
@@ -93,11 +93,11 @@
     </g>
   </g>
 
-  <!-- Section 3: Bioregional Landscape & Land-Based Epistemology -->
+  <!-- Section 3: Bioregional Landscape &amp; Land-Based Epistemology -->
   <g transform="translate(140, 2120)">
     <text x="0" y="0" class="font-mono" font-size="32" font-weight="700" fill="#38BDF8">03 / TRADITIONAL ECOLOGICAL KNOWLEDGE (TEK) &amp; LAND CARTOGRAPHY</text>
     <rect y="40" width="2408" height="420" rx="16" fill="#08233C" stroke="#0284C7" stroke-width="2"/>
-    <text x="50" y="110" class="font-title" font-size="40" font-weight="bold" fill="#0F766E">🌊 THE SALISH SEA, SNOQUALMIE PLUME & THE GREAT CEDAR CANOPY</text>
+    <text x="50" y="110" class="font-title" font-size="40" font-weight="bold" fill="#0F766E">🌊 THE SALISH SEA, SNOQUALMIE PLUME &amp; THE GREAT CEDAR CANOPY</text>
     <foreignObject x="50" y="150" width="2300" height="280">
       <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 24px; color: #E2E8F0; line-height: 1.6;">
         Where 800-year-old western redcedars drape with moss above churning tidal fiords. From Snoqualmie Falls plunging into emerald foam to the glaciated peak of Tahoma watching over the river deltas, the returning salmon sustain the life breath (ʔəshəliʔ).
@@ -107,7 +107,7 @@
     </foreignObject>
   </g>
 
-  <!-- Section 4: Pharmacopeia & Medical Lexicon Grid -->
+  <!-- Section 4: Pharmacopeia &amp; Medical Lexicon Grid -->
   <g transform="translate(140, 2660)">
     <text x="0" y="0" class="font-mono" font-size="32" font-weight="700" fill="#38BDF8">04 / SOVEREIGN PHARMACOPEIA &amp; CLINICAL TERMINOLOGY</text>
     <g transform="translate(0, 40)">
@@ -166,7 +166,7 @@
   <!-- Footer Technical Block -->
   <g transform="translate(140, 3360)">
     <line x1="0" y1="0" x2="2408" y2="0" stroke="#0284C7" stroke-width="2" opacity="0.7"/>
-    <text x="0" y="60" class="font-mono" font-size="24" fill="#94A3B8">POCKETGULL SUPERFAMILY • ARCHIVAL SPECIMEN • ISO 3166-2: NW-WA/BC • SIL OFL 1.1 • CERN ZENODO DOI: 10.5281/ZENODO.18882512</text>
+    <text x="0" y="60" class="font-mono" font-size="24" fill="#94A3B8">POCKETGULL SUPERFAMILY • ARCHIVAL SPECIMEN • ISO 3166-2: NW-WA/BC • SIL OFL 1.1 • CERN ZENODO DOI: 10.5281/ZENODO.22309379</text>
   </g>
 </svg>
 

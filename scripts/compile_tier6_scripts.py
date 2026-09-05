@@ -528,7 +528,7 @@ Auditing compiled font cuts for {title}:
 
 ## 4. Conclusion & Licensing
 
-All compiled fonts are released under the **SIL Open Font License 1.1** and archived with persistent CERN Zenodo DOI provenance (`10.5281/zenodo.18882512`).
+All compiled fonts are released under the **SIL Open Font License 1.1** and archived with persistent CERN Zenodo DOI provenance (`10.5281/zenodo.22309379`).
 """
 
     with open(doc_path, "w", encoding="utf-8") as f:

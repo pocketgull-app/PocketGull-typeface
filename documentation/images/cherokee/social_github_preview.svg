@@ -71,7 +71,7 @@
     <g transform="translate(0, 168)">
       <rect width="650" height="92" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"/>
       <rect width="4" height="92" rx="2" fill="#991B1B"/>
-      <text x="18" y="24" class="font-brand" font-size="12" font-weight="700" fill="#1E3A8A">🏹 THE BLUE RIDGE SMOKIES & THE OZARK RIVERCANE CORRIDORS</text>
+      <text x="18" y="24" class="font-brand" font-size="12" font-weight="700" fill="#1E3A8A">🏹 THE BLUE RIDGE SMOKIES &amp; THE OZARK RIVERCANE CORRIDORS</text>
       <foreignObject x="18" y="32" width="615" height="54">
         <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; color: #475569; line-height: 1.45;">
           From the misty, blue-hazed ridges of the Great Smoky Mountains where pure trout headwaters filter through ancient hemlock coves, to the spring-fed Illinois River and flowering redbuds of Tahlequah, health is the uninterrupted flow of balance (Tohi).
@@ -85,7 +85,7 @@
       <g transform="translate(0, 26)">
         <rect width="315" height="52" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
         <text x="14" y="22" class="font-mono" font-size="10" font-weight="bold" fill="#64748B">Sequoyah Syllabic Matrix</text>
-        <text x="14" y="40" class="font-native" font-size="15" font-weight="bold" fill="#1E3A8A">85 Canonical Syllables <tspan font-family="'JetBrains Mono'" font-size="11" font-weight="600" fill="#0F172A">(Uppercase & Lowercase Unicode 8.0)</tspan></text>
+        <text x="14" y="40" class="font-native" font-size="15" font-weight="bold" fill="#1E3A8A">85 Canonical Syllables <tspan font-family="'JetBrains Mono'" font-size="11" font-weight="600" fill="#0F172A">(Uppercase &amp; Lowercase Unicode 8.0)</tspan></text>
 
         <rect x="330" y="0" width="320" height="52" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
         <text x="344" y="22" class="font-mono" font-size="10" font-weight="bold" fill="#64748B">Optical Contrast Calibration</text>

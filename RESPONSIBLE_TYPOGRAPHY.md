@@ -7,7 +7,7 @@
 **Version**: 3.0.0 (Tier 6 Sovereign Scripts & Unified Foundry Pipeline)  
 **License**: SIL Open Font License 1.1 (OFL)  
 **Standard**: Google Fonts Specifications, OpenType 1.9, Louise Sloan 5:1 Optotypes, ISMP / FDA CDRH Guidelines, WCAG 2.1 AAA  
-**Permanent Archival**: CERN Zenodo Open Science Repository (`DOI: 10.5281/zenodo.18882512`)  
+**Permanent Archival**: CERN Zenodo Open Science Repository (`DOI: 10.5281/zenodo.22309379`)  
 
 ---
 

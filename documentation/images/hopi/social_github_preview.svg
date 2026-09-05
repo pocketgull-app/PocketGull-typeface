@@ -60,9 +60,9 @@
     </g>
 
     <!-- Sovereign Title -->
-    <text x="0" y="70" class="font-brand" font-size="34" font-weight="800" fill="#0F172A">Hopi & O’odham (Desert Mesas)</text>
-    <text x="0" y="105" class="font-native" font-size="24" font-weight="700" fill="#047857">Hopituskwa & Tohono O’odham</text>
-    <text x="0" y="132" class="font-mono" font-size="12" font-weight="600" fill="#64748B">IHS PHOENIX & TUCSON AREAS • SELLS HOSPITAL</text>
+    <text x="0" y="70" class="font-brand" font-size="34" font-weight="800" fill="#0F172A">Hopi &amp; O’odham (Desert Mesas)</text>
+    <text x="0" y="105" class="font-native" font-size="24" font-weight="700" fill="#047857">Hopituskwa &amp; Tohono O’odham</text>
+    <text x="0" y="132" class="font-mono" font-size="12" font-weight="600" fill="#64748B">IHS PHOENIX &amp; TUCSON AREAS • SELLS HOSPITAL</text>
 
     <!-- Horizontal Divider -->
     <line x1="0" y1="150" x2="650" y2="150" stroke="#CBD5E1" stroke-width="1.2"/>
@@ -71,7 +71,7 @@
     <g transform="translate(0, 168)">
       <rect width="650" height="92" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"/>
       <rect width="4" height="92" rx="2" fill="#047857"/>
-      <text x="18" y="24" class="font-brand" font-size="12" font-weight="700" fill="#B45309">🌽 THE HIGH SANDSTONE MESAS & TOWERING SAGUARO FORESTS</text>
+      <text x="18" y="24" class="font-brand" font-size="12" font-weight="700" fill="#B45309">🌽 THE HIGH SANDSTONE MESAS &amp; TOWERING SAGUARO FORESTS</text>
       <foreignObject x="18" y="32" width="615" height="54">
         <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 11px; color: #475569; line-height: 1.45;">
           From the timeless, wind-swept stone heights of Third Mesa (Orayvi) where blue corn roots plunge deep into arid sand, to the majestic Saguaro cactus (Ha:ṣan) giants guarding sacred Baboquivari Peak beneath crystalline starry skies, health is living in sacred balance (Sumi’nangwa).
@@ -88,7 +88,7 @@
         <text x="14" y="40" class="font-native" font-size="15" font-weight="bold" fill="#B45309">a:, e:, i:, o: <tspan font-family="'JetBrains Mono'" font-size="11" font-weight="600" fill="#0F172A">(Symmetric Optical Colon Spacing)</tspan></text>
 
         <rect x="330" y="0" width="320" height="52" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
-        <text x="344" y="22" class="font-mono" font-size="10" font-weight="bold" fill="#64748B">Barred Dentals & Hooks</text>
+        <text x="344" y="22" class="font-mono" font-size="10" font-weight="bold" fill="#64748B">Barred Dentals &amp; Hooks</text>
         <text x="344" y="40" class="font-native" font-size="15" font-weight="bold" fill="#047857">đ, d̨, n̨ <tspan font-family="'JetBrains Mono'" font-size="11" font-weight="600" fill="#0F172A">(1.4x Optical Aperture Clearance)</tspan></text>
       </g>
     </g>

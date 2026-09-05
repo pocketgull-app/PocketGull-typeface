@@ -124,10 +124,10 @@
 
   </g>
 
-  <!-- Bottom Land & Resilience Epilogue -->
+  <!-- Bottom Land &amp; Resilience Epilogue -->
   <g transform="translate(140, 2140)">
     <rect width="2120" height="140" rx="12" fill="#0F172A"/>
-    <text x="40" y="55" class="font-brand" font-size="28" font-weight="bold" fill="#F8FAFC">🌊 THE SALISH SEA, SNOQUALMIE PLUME & THE GREAT CEDAR CANOPY</text>
+    <text x="40" y="55" class="font-brand" font-size="28" font-weight="bold" fill="#F8FAFC">🌊 THE SALISH SEA, SNOQUALMIE PLUME &amp; THE GREAT CEDAR CANOPY</text>
     <text x="40" y="100" class="font-mono" font-size="20" fill="#94A3B8">POCKETGULL OPEN HEALTHCARE TYPOGRAPHY • DEDICATED TO TRIBAL WELL-BEING &amp; SELF-DETERMINATION</text>
   </g>
 </svg>

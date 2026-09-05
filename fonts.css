@@ -38,6 +38,65 @@
   font-display: swap;
 }
 
+/* Italic Superfamily Additions */
+@font-face {
+  font-family: 'PocketGull';
+  src: url('fonts/woff2/PocketGull-Italic.woff2') format('woff2'),
+       url('PocketGull-Italic.woff2') format('woff2'),
+       url('fonts/ttf/PocketGull-Italic.ttf') format('truetype'),
+       url('PocketGull-Italic.ttf') format('truetype');
+  font-weight: 400 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PocketGull';
+  src: url('fonts/woff2/PocketGull-BoldItalic.woff2') format('woff2'),
+       url('PocketGull-BoldItalic.woff2') format('woff2'),
+       url('fonts/ttf/PocketGull-BoldItalic.ttf') format('truetype'),
+       url('PocketGull-BoldItalic.ttf') format('truetype');
+  font-weight: 700 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* 1.5 PocketGull Variable Font (wght: 400-900, slnt: -10.5deg-0deg, opsz: 14-96) */
+@font-face {
+  font-family: 'PocketGull VF';
+  src: url('fonts/woff2/PocketGull-VF.woff2') format('woff2-variations'),
+       url('fonts/woff2/PocketGull-VF.woff2') format('woff2'),
+       url('PocketGull-VF.woff2') format('woff2'),
+       url('fonts/ttf/PocketGull-VF.ttf') format('truetype-variations'),
+       url('fonts/ttf/PocketGull-VF.ttf') format('truetype'),
+       url('PocketGull-VF.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: oblique -10.5deg 0deg;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PocketGull Italic';
+  src: url('fonts/woff2/PocketGull-Italic.woff2') format('woff2'),
+       url('PocketGull-Italic.woff2') format('woff2'),
+       url('fonts/ttf/PocketGull-Italic.ttf') format('truetype'),
+       url('PocketGull-Italic.ttf') format('truetype');
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PocketGull Bold Italic';
+  src: url('fonts/woff2/PocketGull-BoldItalic.woff2') format('woff2'),
+       url('PocketGull-BoldItalic.woff2') format('woff2'),
+       url('fonts/ttf/PocketGull-BoldItalic.ttf') format('truetype'),
+       url('PocketGull-BoldItalic.ttf') format('truetype');
+  font-weight: 700 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Dedicated Family Aliases */
 @font-face {
   font-family: 'PocketGull Bold';
@@ -72,6 +131,17 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'PocketGull Marker Raw';
+  src: url('fonts/woff2/PocketGull-MarkerRaw.woff2') format('woff2'),
+       url('PocketGull-MarkerRaw.woff2') format('woff2'),
+       url('fonts/ttf/PocketGull-MarkerRaw.ttf') format('truetype'),
+       url('PocketGull-MarkerRaw.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* 2. PocketGull Mono (Fixed 600 UPM Clinical Telemetry & Terminal) */
 @font-face {
   font-family: 'PocketGull Mono';
@@ -81,6 +151,89 @@
        url('PocketGullMono-Regular.ttf') format('truetype');
   font-weight: 400 500 600 700;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PocketGull Mono';
+  src: url('fonts/woff2/PocketGullMono-Italic.woff2') format('woff2'),
+       url('PocketGullMono-Italic.woff2') format('woff2'),
+       url('fonts/ttf/PocketGullMono-Italic.ttf') format('truetype'),
+       url('PocketGullMono-Italic.ttf') format('truetype');
+  font-weight: 400 500 600 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* 2.5 Google Fonts Official Family Aliases ('Pocket Gull' & 'Pocket Gull Mono') */
+@font-face {
+  font-family: 'Pocket Gull';
+  src: url('fonts/woff2/PocketGull-Regular.woff2') format('woff2'),
+       url('fonts/woff2/PocketGull-Fineliner.woff2') format('woff2'),
+       url('fonts/ttf/PocketGull-Regular.ttf') format('truetype'),
+       url('fonts/ttf/PocketGull-Fineliner.ttf') format('truetype');
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pocket Gull';
+  src: url('fonts/woff2/PocketGull-Bold.woff2') format('woff2'),
+       url('fonts/ttf/PocketGull-Bold.ttf') format('truetype');
+  font-weight: 700 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pocket Gull';
+  src: url('fonts/woff2/PocketGull-Black.woff2') format('woff2'),
+       url('fonts/woff2/PocketGull-Chiseltip.woff2') format('woff2'),
+       url('fonts/ttf/PocketGull-Black.ttf') format('truetype'),
+       url('fonts/ttf/PocketGull-Chiseltip.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pocket Gull';
+  src: url('fonts/woff2/PocketGull-Italic.woff2') format('woff2'),
+       url('fonts/ttf/PocketGull-Italic.ttf') format('truetype');
+  font-weight: 400 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pocket Gull';
+  src: url('fonts/woff2/PocketGull-BoldItalic.woff2') format('woff2'),
+       url('fonts/ttf/PocketGull-BoldItalic.ttf') format('truetype');
+  font-weight: 700 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pocket Gull Mono';
+  src: url('fonts/woff2/PocketGullMono-Regular.woff2') format('woff2'),
+       url('PocketGullMono-Regular.woff2') format('woff2'),
+       url('fonts/ttf/PocketGullMono-Regular.ttf') format('truetype'),
+       url('PocketGullMono-Regular.ttf') format('truetype');
+  font-weight: 400 500 600 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pocket Gull Mono';
+  src: url('fonts/woff2/PocketGullMono-Italic.woff2') format('woff2'),
+       url('PocketGullMono-Italic.woff2') format('woff2'),
+       url('fonts/ttf/PocketGullMono-Italic.ttf') format('truetype'),
+       url('PocketGullMono-Italic.ttf') format('truetype');
+  font-weight: 400 500 600 700;
+  font-style: italic;
   font-display: swap;
 }
 
@@ -236,4 +389,341 @@
   font-display: swap;
   unicode-range: U+E0A0-E0B6, U+2500-257F, U+26A1, U+2713-2714, U+276E-276F;
 }
+
+/* ==========================================================================
+   4. GOOGLE NOTO UNIVERSAL HARMONIZED FALLBACK (ZERO CLS METRIC OVERRIDES)
+   Enforces exact 1000 UPM vertical metric parity with Google Noto Sans
+   to eliminate Cumulative Layout Shift (CLS = 0.000) across global fallbacks.
+   ========================================================================== */
+@font-face {
+  font-family: 'PocketGull Noto Fallback';
+  src: local('Noto Sans'), local('Noto Sans CJK SC'), local('Noto Sans Devanagari'), local('Noto Sans Arabic'), local('sans-serif');
+  ascent-override: 95%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+  size-adjust: 100%;
+}
+
+/* ==========================================================================
+   5. PHILOCARDIA™: THE PHIL GEAR CARDIAC CHRONOMETER & HEART ALTERNATE
+   - Connected Fl Display Ligature ("Flight Sanctuary")
+   - Philocardia: Lowercase i with Optical S1/S2 Heart-Shaped Tittle
+   - Calibrated 60 / 72 BPM Sinus Rhythm Cardiac Regulation Engine
+   ========================================================================== */
+
+/* Former ligature exploration deactivated (fl-connected) */
+.fl-connected {
+  letter-spacing: normal;
+}
+.fl-connected::before {
+  display: none !important;
+}
+
+/* Philocardia™: Signature Heart-Tittle Stylistic Alternate */
+.philocardia-heart,
+.iphillyg-heart {
+  display: inline-block;
+  position: relative;
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.philocardia-heart::after,
+.iphillyg-heart::after {
+  content: '♥';
+  position: absolute;
+  top: -0.18em;
+  left: 50%;
+  transform: translateX(-50%) scale(var(--aura-scale, 0.68));
+  font-size: 0.72em;
+  line-height: 1;
+  color: var(--aura-color, var(--teal-accent, currentColor));
+  pointer-events: none;
+  filter: drop-shadow(0 0 var(--aura-glow, 3px) rgba(45, 212, 191, 0.45));
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.25s ease, filter 0.25s ease;
+}
+
+.night-flight .philocardia-heart::after,
+body.night-flight .philocardia-heart::after,
+body.red-dash .philocardia-heart::after,
+.night-flight .iphillyg-heart::after,
+body.night-flight .iphillyg-heart::after,
+body.red-dash .iphillyg-heart::after {
+  color: var(--teal-accent, #f87171);
+  filter: drop-shadow(0 0 4px rgba(248, 113, 113, 0.5));
+}
+
+.philocardia-heart:hover::after,
+.iphillyg-heart:hover::after {
+  transform: translateX(-50%) scale(0.95);
+  color: #f43f5e;
+  filter: drop-shadow(0 0 6px rgba(244, 63, 94, 0.7));
+}
+
+/* Physiological S1/S2 Cardiac Pulse Animation (72 BPM = 0.833s period) */
+@keyframes philocardia-beat-72 {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.18); } /* S1 Systole "lub" */
+  22% { transform: scale(1.04); }
+  32% { transform: scale(1.12); } /* S2 Diastole "dub" */
+  45% { transform: scale(1); }
+  100% { transform: scale(1); }   /* Rest interval */
+}
+
+/* Calibrated 60 BPM Cardiac Pulse (1.000s period) */
+@keyframes philocardia-beat-60 {
+  0% { transform: scale(1); }
+  12% { transform: scale(1.20); } /* S1 Systole */
+  20% { transform: scale(1.05); }
+  30% { transform: scale(1.14); } /* S2 Diastole */
+  42% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+/* Somatic 4-7-8 Box Breathing Resonance (16s cycle) */
+@keyframes philocardia-box-breath {
+  0%   { transform: scale(1.00); filter: drop-shadow(0 0 2px rgba(45,212,191,0.3)); color: #2dd4bf; }
+  25%  { transform: scale(1.28); filter: drop-shadow(0 0 10px rgba(45,212,191,0.8)); color: #38bdf8; } /* Inhale 4s */
+  50%  { transform: scale(1.28); filter: drop-shadow(0 0 10px rgba(45,212,191,0.8)); color: #38bdf8; } /* Hold 4s */
+  75%  { transform: scale(0.92); filter: drop-shadow(0 0 1px rgba(45,212,191,0.2)); color: #14b8a6; } /* Exhale 4s */
+  100% { transform: scale(1.00); filter: drop-shadow(0 0 2px rgba(45,212,191,0.3)); color: #2dd4bf; } /* Rest 4s */
+}
+
+.philocardia-pacing-72 {
+  animation: philocardia-beat-72 0.8333s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.philocardia-pacing-60 {
+  animation: philocardia-beat-60 1.0000s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.philocardia-pacing-breath {
+  animation: philocardia-box-breath 16s infinite ease-in-out;
+}
+
+/* Healer Mode Pill Styling */
+.healer-pill {
+  padding: 0.32rem 0.65rem;
+  font-size: 0.73rem;
+  font-family: monospace;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: #a1a1aa;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.healer-pill:hover {
+  border-color: #2dd4bf;
+  color: #f4f4f5;
+  background: rgba(45, 212, 191, 0.12);
+}
+
+.healer-pill.active {
+  border-color: #2dd4bf;
+  background: rgba(45, 212, 191, 0.22);
+  color: #2dd4bf;
+  box-shadow: 0 0 10px rgba(45, 212, 191, 0.25);
+}
+
+/* ==========================================================================
+   6. CARDIOPULMONARY PACING: BIOMORPHIC UI & A11Y FOCUS HALO (WCAG 2.2 AAA)
+   ========================================================================== */
+:root {
+  --bio-pulse-period: 0.8333s; /* 72 BPM */
+  --bio-breath-period: 16s;    /* 4-7-8 Box Breathing */
+  --bio-ease-cardiac: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --bio-ease-respiratory: ease-in-out;
+  --bio-halo-color: rgba(45, 212, 191, 0.65);
+  --bio-micro-lum: 1;
+  --bio-sync-opacity: 0.85;
+}
+
+/* Organic Breathing Focus Halo for WCAG 2.2 AAA Keyboard & Screen Navigation */
+:focus-visible {
+  outline: none !important;
+  border-color: #2dd4bf !important;
+  box-shadow: 0 0 0 2.5px rgba(45, 212, 191, 0.4), 0 0 14px var(--bio-halo-color) !important;
+  transition: box-shadow 0.25s var(--bio-ease-cardiac), border-color 0.25s ease;
+  animation: bio-focus-breathe var(--bio-pulse-period) infinite var(--bio-ease-cardiac);
+}
+
+@keyframes bio-focus-breathe {
+  0% {
+    box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.35), 0 0 8px rgba(45, 212, 191, 0.3);
+  }
+  25% {
+    box-shadow: 0 0 0 3.5px rgba(45, 212, 191, 0.65), 0 0 16px rgba(45, 212, 191, 0.65);
+  }
+  100% {
+    box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.35), 0 0 8px rgba(45, 212, 191, 0.3);
+  }
+}
+
+/* Universal Biomorphic UI Elements in Sync with Cardiopulmonary Clock */
+.bio-sync-pulse {
+  animation: bio-elem-pulse var(--bio-pulse-period) infinite var(--bio-ease-cardiac);
+}
+
+@keyframes bio-elem-pulse {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.03); } /* S1 Systole */
+  22% { transform: scale(1.01); }
+  32% { transform: scale(1.02); } /* S2 Diastole */
+  45% { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+
+.bio-sync-glow {
+  animation: bio-elem-glow var(--bio-pulse-period) infinite var(--bio-ease-cardiac);
+}
+
+@keyframes bio-elem-glow {
+  0% { border-color: rgba(45, 212, 191, 0.25); box-shadow: 0 0 0 rgba(45, 212, 191, 0); }
+  25% { border-color: rgba(45, 212, 191, 0.65); box-shadow: 0 0 12px var(--bio-halo-color); }
+  100% { border-color: rgba(45, 212, 191, 0.25); box-shadow: 0 0 0 rgba(45, 212, 191, 0); }
+}
+
+/* Hardware-Accelerated Variable Font Pacing Keyframes */
+@keyframes bio-harmonic-vf-72 {
+  0% {
+    font-variation-settings: 'wght' var(--pg-wght, 700), 'slnt' var(--pg-slnt, 0);
+  }
+  14% {
+    font-variation-settings: 'wght' calc(var(--pg-wght, 700) + 50), 'slnt' calc(var(--pg-slnt, 0) - 1.5);
+  }
+  28% {
+    font-variation-settings: 'wght' calc(var(--pg-wght, 700) + 10), 'slnt' var(--pg-slnt, 0);
+  }
+  42% {
+    font-variation-settings: 'wght' calc(var(--pg-wght, 700) + 30), 'slnt' calc(var(--pg-slnt, 0) - 0.8);
+  }
+  56% {
+    font-variation-settings: 'wght' var(--pg-wght, 700), 'slnt' var(--pg-slnt, 0);
+  }
+  100% {
+    font-variation-settings: 'wght' var(--pg-wght, 700), 'slnt' var(--pg-slnt, 0);
+  }
+}
+
+.bio-pulse-vf-active {
+  animation: bio-harmonic-vf-72 var(--bio-cardiac-period) infinite var(--bio-ease-systole);
+}
+
+.bio-sync-card {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ocular Ergonomics: Sub-Perceptual Micro-Luminance Vagal Wave (Dry-Eye & Asthenopia Prevention) */
+.ocular-rest-active {
+  animation: ocular-vagal-breath var(--bio-breath-period) infinite var(--bio-ease-respiratory);
+}
+
+@keyframes ocular-vagal-breath {
+  0%   { filter: brightness(1.00) contrast(1.00); }
+  25%  { filter: brightness(1.015) contrast(0.985); } /* Gentle softening on inhale */
+  50%  { filter: brightness(1.015) contrast(0.985); }
+  75%  { filter: brightness(0.99) contrast(1.01); }  /* Relaxing contrast on exhale */
+  100% { filter: brightness(1.00) contrast(1.00); }
+}
+
+/* 15-Second Radial Palpation Sweep Animation */
+@keyframes palpation-sweep-15s {
+  0% { stroke-dashoffset: 88; }
+  98% { stroke-dashoffset: 0; filter: drop-shadow(0 0 6px #2dd4bf); }
+  100% { stroke-dashoffset: 88; filter: none; }
+}
+
+.palpation-arc-active {
+  animation: palpation-sweep-15s 15s linear infinite;
+}
+
+/* ==========================================================================
+   7. CLINICAL SEMANTIC ITALIC STYLING (THE SECOND VOICE & SAFETY)
+   ========================================================================== */
+.font-italic,
+.italic-variety {
+  font-style: italic;
+}
+
+/* Gene Symbols vs Protein Products */
+.clinical-gene {
+  font-style: italic;
+  font-family: 'PocketGull Italic', 'PocketGull', sans-serif;
+  color: #38bdf8;
+  border-bottom: 1.5px dotted rgba(56, 189, 248, 0.5);
+  cursor: help;
+}
+
+.clinical-protein {
+  font-style: normal;
+  font-weight: 700;
+  font-family: 'PocketGull Bold', 'PocketGull', sans-serif;
+  color: #e2e8f0;
+}
+
+/* Binomial Pathogen Taxonomy */
+.clinical-pathogen {
+  font-style: italic;
+  font-family: 'PocketGull Italic', 'PocketGull', sans-serif;
+  color: #f43f5e;
+  letter-spacing: 0.02em;
+}
+
+/* Verbatim Patient Narrative Quotes */
+.clinical-patient-quote {
+  font-style: italic;
+  font-family: 'PocketGull Italic', 'PocketGull', sans-serif;
+  color: #fbbf24;
+  border-left: 3px solid #f59e0b;
+  padding-left: 0.75rem;
+  margin: 0.5rem 0;
+  display: block;
+}
+
+/* Prescriptive Latin Directives */
+.clinical-directive {
+  font-style: italic;
+  font-family: 'PocketGull Italic', 'PocketGull', sans-serif;
+  color: #a7f3d0;
+  font-weight: 600;
+}
+
+/* Interactive Roman vs. Italic Comparator */
+.italic-comparison-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .italic-comparison-box {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Vestibular & Reduced Motion Accessibility (WCAG 2.2 Criterion 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  :focus-visible {
+    animation: none !important;
+    box-shadow: 0 0 0 3px #2dd4bf !important;
+  }
+  .philocardia-pacing-72,
+  .philocardia-pacing-60,
+  .philocardia-pacing-breath,
+  .palpation-arc-active,
+  .bio-sync-pulse,
+  .bio-sync-glow,
+  .ocular-rest-active {
+    animation: none !important;
+  }
+}
+
+
 

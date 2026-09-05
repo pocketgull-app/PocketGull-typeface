@@ -38,7 +38,7 @@
   </g>
   
     <g transform="translate(2360.0, 80.0)">
-    <!-- Crisp Outer Border & Drop Shadow -->
+    <!-- Crisp Outer Border &amp; Drop Shadow -->
     <rect width="100.0" height="62.0" rx="2" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="0.8"/>
     <g transform="scale(0.010416666666666666, 0.011481481481481481)">
       <!-- Left Field: Nunavut Gold -->
@@ -53,7 +53,7 @@
   </g>
   
 
-  <!-- Left Half: Inuktitut Syllabics Core Anatomy & Rotational Sovereignty -->
+  <!-- Left Half: Inuktitut Syllabics Core Anatomy &amp; Rotational Sovereignty -->
   <g transform="translate(120, 120)">
     <rect x="0" y="0" width="240" height="34" rx="3" fill="#D52B1E"/>
     <text x="120" y="22" class="font-mono" font-size="14" fill="#FFFFFF" text-anchor="middle" font-weight="bold">TIER 6 • CASE STUDY 01</text>
@@ -92,7 +92,7 @@
     <rect width="1080" height="980" rx="6" fill="#FFFDF8" stroke="#E7E2D6" stroke-width="2"/>
     <line x1="0" y1="0" x2="1080" y2="0" stroke="#003896" stroke-width="5"/>
 
-    <!-- Header with Official Star & Locality Title -->
+    <!-- Header with Official Star &amp; Locality Title -->
     <g transform="translate(40, 45)">
       <polygon points="16,0 20,12 32,16 20,20 16,32 12,20 0,16 12,12" fill="#003896"/>
       <text x="45" y="24" class="font-syllabic" font-size="26" fill="#1F1B16" font-weight="bold">ᕿᑭᖅᑖᓗᒃ ᐋᓐᓂᐊᕕᒃ • QIKIQTANI GENERAL HOSPITAL</text>
@@ -100,7 +100,7 @@
       <line x1="0" y1="65" x2="1000" y2="65" stroke="#E7E2D6" stroke-width="1.5"/>
     </g>
 
-    <!-- Nunavut Localities & Health Network Bar -->
+    <!-- Nunavut Localities &amp; Health Network Bar -->
     <g transform="translate(40, 125)">
       <rect width="1000" height="34" rx="3" fill="#FAF8F5" stroke="#E7E2D6" stroke-width="1"/>
       <line x1="0" y1="0" x2="1000" y2="0" stroke="#FFD100" stroke-width="2"/>
@@ -129,7 +129,7 @@
       <text x="714" y="114" class="font-mono" font-size="11" fill="#003896">TABULAR FIGURES • MONO</text>
     </g>
 
-    <!-- Elder Wisdom, Healing, Longevity & Humour Banner -->
+    <!-- Elder Wisdom, Healing, Longevity &amp; Humour Banner -->
     <g transform="translate(40, 325)">
       <rect width="1000" height="42" rx="3" fill="#FAF8F5" stroke="#E7E2D6" stroke-width="1"/>
       <rect x="0" y="0" width="4" height="42" fill="#D52B1E"/>

@@ -30,15 +30,15 @@ The Indian Health Service (IHS), an agency within the U.S. Department of Health 
 | IHS Administrative Area | Primary Sovereign Jurisdictions | Orthography Focus | Life-Critical Clinical Touchpoint |
 | :--- | :--- | :--- | :--- |
 | **1. Navajo Area** | Navajo Nation (NDOH, Tséhootsooí, Tuba City, Gallup) | **Diné Bizaad** | High-tone nasals (ą́, ę́, į́, ǫ́), barred Ł/ł, saltillo ʼ. |
-| **2. Great Plains Area** | Očhéthi Šakówiŋ (Pine Ridge, Rosebud, Standing Rock, Cheyenne River) | **Lakȟótiyapi / Dakhótiyapi** | Consonantal carons (č, ȟ, ǩ, p̌, š, 	̌, ž), eng (ŋ), tone acutes. |
+| **2. Great Plains Area** | Očhéthi Šakówiŋ (Pine Ridge, Rosebud, Standing Rock, Cheyenne River) | **Lakȟótiyapi / Dakhótiyapi** | Consonantal carons (č, ȟ, ǩ, p̌, š, ť, ž), eng (ŋ), tone acutes. |
 | **3. Portland Area** | NPAIHB (43 Tribes: Tulalip, Puyallup, Muckleshoot, Yakama, Umatilla, Warm Springs) | **Lushootseed (dxʷləšucid), Sahaptin** | Schwa (ə), barred lambda (ƛ), lateral fricative (ɬ), glottal stop (ʔ), labializer (ʷ). |
 | **4. Alaska Area** | ANTHC, Southcentral Foundation, YKHC (229 Alaska Native Tribes) | **Iñupiaq, Central Yup'ik, Gwich'in** | Consonantal underdots, barred ł, vowel macrons, ejective apostrophes. |
-| **5. Oklahoma City Area** | Cherokee, Muscogee Creek, Choctaw, Chickasaw, Cheyenne & Arapaho | **Tsalagi, Mvskoke, Chahta, Chikashsha** | Schwa  (ʌ), barred ɨ, nasal underdots (ạ, ẹ, ị), Cherokee Syllabary. |
+| **5. Oklahoma City Area** | Cherokee, Muscogee Creek, Choctaw, Chickasaw, Cheyenne & Arapaho | **Tsalagi, Mvskoke, Chahta, Chikashsha** | Schwa (ʌ / ə), barred ɨ, nasal underdots (ạ, ẹ, ị), Cherokee Syllabary (ᏣᎳᎩ ᎦᏬᏂᎯᏍᏗ: ᎣᏏᏲ ᏙᎯ). |
 | **6. Phoenix Area** | Hopi, Gila River, San Carlos Apache, White Mountain Apache | **Hopi, Akimel O'odham, Ndee** | Vowel length colons, tone markers, glottal stops, nasal hooks. |
 | **7. Albuquerque Area** | 19 Pueblos of New Mexico (Laguna, Zuni, Taos, Acoma), Jicarilla & Mescalero Apache | **Keres, Tewa, Tiwa, Towa, Zuni** | Glottal stops (ʼ, ʔ), nasal hooks, barred letters, acute accents. |
-| **8. Bemidji Area** | Great Lakes Inter-Tribal Council (34 Tribes: Red Lake, White Earth, Leech Lake) | **Anishinaabemowin (Ojibwe)** | Double-vowel orthography (a, ii, oo), glottal ’, nasal vowels (ą). |
+| **8. Bemidji Area** | Great Lakes Inter-Tribal Council (34 Tribes: Red Lake, White Earth, Leech Lake) | **Anishinaabemowin (Ojibwe)** | Double-vowel orthography (aa, ii, oo), glottal ’, nasal vowels (ą). |
 | **9. Billings Area** | Blackfeet Community Hospital, Crow/Apsáalooke, Northern Cheyenne | **Niitsípowahsin, Apsáalooke** | Blackfoot syllabics, tone acutes (á, í, ó), glottal apostrophes. |
-| **10. California Area** | CRIHB (100+ Tribes: Yurok, Karuk, Hupa, Pomo, Miwok, Chumash) | **Yurok, Karuk, Hupa, Pomoan** | Glottalized stops (kʼ, 	ʼ), rhotic vowels, tone accents. |
+| **10. California Area** | CRIHB (100+ Tribes: Yurok, Karuk, Hupa, Pomo, Miwok, Chumash) | **Yurok, Karuk, Hupa, Pomoan** | Glottalized stops (kʼ, tʼ), rhotic vowels, tone accents. |
 | **11. Nashville Area** | Saint Regis Mohawk (Akwesasne), Seneca Nation, Eastern Band Cherokee | **Kanien'kéha, Onödowá'ga:'** | Nasal vowels (ę, ǫ, ę́, ǫ́), mid-dot length (·), glottal stop (ʔ). |
 | **12. Tucson Area** | Pascua Yaqui Tribe, Tohono O'odham Nation (Sells Hospital) | **O'odham, Yoeme (Yaqui)** | Barred d, glottal stop ʼ, tone diacritics. |
 | **Pacific Sovereignty** | Papa Ola Lōkahi (Native Hawaiian Health Care Systems) & Māori Whānau Ora | **ʻŌlelo Hawaiʻi, Te Reo Māori** | ʻOkina (U+02BB), Kahakō / Tohutō macrons (ā, ē, ī, ō, ū). |
@@ -163,7 +163,7 @@ Auditing compiled font cuts for Pan-Tribal Sovereign Indigenous Latin Orthograph
 
 Every sovereign Tribe, First Nation, and Indigenous health center deserves typography that respects the lexical sanctity of their language. PocketGull eliminates font fallback and diacritic clipping across all 574+ federally recognized American Indian tribes and 630+ First Nations.
 
-All compiled fonts are released under the **SIL Open Font License 1.1** and archived with persistent CERN Zenodo DOI provenance (10.5281/zenodo.18882512).
+All compiled fonts are released under the **SIL Open Font License 1.1** and archived with persistent CERN Zenodo DOI provenance (10.5281/zenodo.22309379).
 
 ---
 

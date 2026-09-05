@@ -7,33 +7,33 @@
    Utility Classes & Stylistic Sets
    ========================================================================== */
 .font-pocketgull {
-  font-family: 'PocketGull', 'PocketGull Fineliner', sans-serif;
+  font-family: 'Pocket Gull', 'PocketGull', 'Pocket Gull Regular', 'PocketGull-Regular', 'PocketGull Fineliner', sans-serif;
 }
 
 .font-pocketgull-bold {
-  font-family: 'PocketGull Bold', 'PocketGull', sans-serif;
+  font-family: 'Pocket Gull Bold', 'PocketGull Bold', 'Pocket Gull', 'PocketGull', sans-serif;
   font-weight: 700;
 }
 
 .font-pocketgull-fine {
-  font-family: 'PocketGull Fineliner', 'PocketGull', sans-serif;
+  font-family: 'Pocket Gull Regular', 'PocketGull-Regular', 'PocketGull Fineliner', 'Pocket Gull', 'PocketGull', sans-serif;
   font-weight: 400;
 }
 
 .font-pocketgull-chisel {
-  font-family: 'PocketGull Chiseltip', 'PocketGull', sans-serif;
+  font-family: 'Pocket Gull Black', 'PocketGull-Black', 'PocketGull Chiseltip', 'Pocket Gull', 'PocketGull', sans-serif;
   font-weight: 900;
 }
 
 .font-pocketgull-mono {
-  font-family: 'PocketGull Mono', monospace;
+  font-family: 'Pocket Gull Mono', 'PocketGull Mono', monospace;
   font-feature-settings: "tnum" 1, "zero" 1;
 }
 
 /* ISMP / FDA Clinical Disambiguation Safety Preset */
 .clinical-ismp-safe,
 .pocketgull-safe {
-  font-family: 'PocketGull', 'PocketGull Fineliner', sans-serif;
+  font-family: 'Pocket Gull', 'PocketGull', 'Pocket Gull Regular', 'PocketGull Fineliner', sans-serif;
   font-feature-settings: "zero" 1, "cv08" 1, "cv05" 1, "ss02" 1, "tnum" 1 !important;
   font-variant-numeric: slashed-zero tabular-nums !important;
 }
@@ -228,4 +228,84 @@
       background: linear-gradient(180deg, #ef4444, #b91c1c);
       box-shadow: 0 0 12px rgba(239, 68, 68, 0.7);
     }
+
+/* ==========================================================================
+   5. GOOGLE DESIGN & MATERIAL 3 (M3) ERGONOMIC CLINICAL TOKENS
+   - Fitts's Law 48px physical hitboxes for gloved ICU/COW navigation
+   - Tonal surface luminance steps replacing fatiguing harsh borders
+   - Tabular figures numeric stability eliminating horizontal jitter
+   ========================================================================== */
+
+/* Universal Fitts's Law touch-friendly hitboxes */
+.touch-target-48,
+.btn-m3,
+button.theme-nav-btn,
+button.preset-pill,
+button.weight-btn,
+.smoe-preset-btn,
+.samsa-glyph-btn {
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+/* Tabular Figures for Telemetric Stability (Zero Layout Jitter) */
+.tnum,
+.tabular-nums,
+.telemetry-val,
+.vitals-figure,
+.samsa-metric-val,
+.smoe-stat-val,
+#smoeTransferredPayload,
+#smoeSavingsPercent {
+  font-variant-numeric: tabular-nums !important;
+  font-feature-settings: "tnum" 1 !important;
+}
+
+/* Material 3 Tonal Surface Luminance Levels */
+.surface-tonal-1 {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.surface-tonal-2 {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.surface-tonal-3 {
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+/* Google PAIR Calibrated Trust Badges */
+.pair-trust-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-family: 'PocketGull Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.pair-trust-badge.edge-local {
+  background: rgba(45, 212, 191, 0.12);
+  color: #2dd4bf;
+  border: 1px solid rgba(45, 212, 191, 0.3);
+}
+
+.pair-trust-badge.cloud-deep {
+  background: rgba(56, 189, 248, 0.12);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.pair-trust-badge.skeptical-warn {
+  background: rgba(245, 158, 11, 0.12);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
 

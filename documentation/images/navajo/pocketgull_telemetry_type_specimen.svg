@@ -88,12 +88,12 @@
     </g>
   </g>
 
-  <!-- Bioregional Land & Healing Banner -->
+  <!-- Bioregional Land &amp; Healing Banner -->
   <g transform="translate(140, 2120)">
     <rect width="2408" height="1140" rx="20" fill="#131E33" stroke="#334155" stroke-width="2"/>
     <g transform="translate(60, 80)">
       <text x="0" y="0" class="font-mono" font-size="32" font-weight="bold" fill="#38BDF8">LAND-BASED HEALING &amp; TRADITIONAL KNOWLEDGE INTEGRATION</text>
-      <text x="0" y="70" class="font-native" font-size="44" font-weight="bold" fill="#F59E0B">🏜️ The Four Sacred Mountains & Red Mesa Sanctuaries</text>
+      <text x="0" y="70" class="font-native" font-size="44" font-weight="bold" fill="#F59E0B">🏜️ The Four Sacred Mountains &amp; Red Mesa Sanctuaries</text>
       <foreignObject x="0" y="110" width="2280" height="360">
         <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 28px; color: #E2E8F0; line-height: 1.65;">
           Bounded by Blanca Peak (East), Mount Taylor (South), San Francisco Peaks (West), and Hesperus Peak (North). From Canyon de Chelly’s sheer red sandstone spires to the sagebrush-scented breeze off high piñon mesas, health is living in sacred beauty (Hózhó).

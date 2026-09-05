@@ -188,7 +188,7 @@
     <text x="24" y="38" class="mono" font-size="16" fill="#F6B12B" font-weight="bold">(+) The Human Touch</text>
     <text x="24" y="62" class="body" font-size="13" fill="#78716C" font-style="italic">Organic Healing &amp; Empathy</text>
     
-    <!-- Humanist Quote & Gull Emblem -->
+    <!-- Humanist Quote &amp; Gull Emblem -->
     <g transform="translate(24, 95)">
       <text x="0" y="22" class="body" font-size="14" fill="#1F1B16" font-style="italic">“In a circle where empathy grows,</text>
       <text x="0" y="44" class="body" font-size="14" fill="#0D9488" font-style="italic">And care like a mountain stream flows...”</text>

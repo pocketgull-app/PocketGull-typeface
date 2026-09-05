@@ -66,31 +66,31 @@ void main() async {
     // 1. Social GitHub Preview (1280x640)
     stdout.write('  [1/5] Synthesizing social_github_preview.svg... ');
     final socialSvg = generateSocialPreview(t);
-    File('${targetDir.path}/social_github_preview.svg').writeAsStringSync(socialSvg);
+    File('${targetDir.path}/social_github_preview.svg').writeAsStringSync(sanitizeSvg(socialSvg));
     stdout.writeln('OK');
 
     // 2. Type Engineering Blueprint (2688x3600, 300 DPI)
     stdout.write('  [2/5] Synthesizing pocketgull_type_engineering_specimen.svg... ');
     final engSvg = generateTypeEngineeringPlate(t);
-    File('${targetDir.path}/pocketgull_type_engineering_specimen.svg').writeAsStringSync(engSvg);
+    File('${targetDir.path}/pocketgull_type_engineering_specimen.svg').writeAsStringSync(sanitizeSvg(engSvg));
     stdout.writeln('OK');
 
     // 3. Clinical Telemetry Specimen (2688x3600, 300 DPI)
     stdout.write('  [3/5] Synthesizing pocketgull_telemetry_type_specimen.svg... ');
     final telSvg = generateTelemetryTypePlate(t);
-    File('${targetDir.path}/pocketgull_telemetry_type_specimen.svg').writeAsStringSync(telSvg);
+    File('${targetDir.path}/pocketgull_telemetry_type_specimen.svg').writeAsStringSync(sanitizeSvg(telSvg));
     stdout.writeln('OK');
 
     // 4. Pedagogical Typeface Specimen (2688x3600, 300 DPI)
     stdout.write('  [4/5] Synthesizing pocketgull_pedagogical_typeface.svg... ');
     final pedSvg = generatePedagogicalPlate(t);
-    File('${targetDir.path}/pocketgull_pedagogical_typeface.svg').writeAsStringSync(pedSvg);
+    File('${targetDir.path}/pocketgull_pedagogical_typeface.svg').writeAsStringSync(sanitizeSvg(pedSvg));
     stdout.writeln('OK');
 
     // 5. PERMA+ Thoughts Card (2400x2400, 300 DPI)
     stdout.write('  [5/5] Synthesizing pocketgull_perma_thoughts_card.svg... ');
     final permaSvg = generatePermaThoughtsCard(t);
-    File('${targetDir.path}/pocketgull_perma_thoughts_card.svg').writeAsStringSync(permaSvg);
+    File('${targetDir.path}/pocketgull_perma_thoughts_card.svg').writeAsStringSync(sanitizeSvg(permaSvg));
     stdout.writeln('OK');
 
     // Rasterize 300 DPI PNGs via WSL Inkscape
@@ -756,6 +756,11 @@ TribalTradition choctawTradition(String backdrop) => TribalTradition(
   ],
 );
 
+String sanitizeSvg(String svg) {
+  final bareAmp = RegExp(r'&(?!(amp|lt|gt|quot|apos|#\d+|#x[0-9a-fA-F]+);)');
+  return svg.replaceAll(bareAmp, '&amp;');
+}
+
 // =============================================================================
 // PLATE 1: SOCIAL GITHUB PREVIEW (1280x640)
 // =============================================================================
@@ -778,8 +783,8 @@ String generateSocialPreview(TribalTradition t) {
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap');
       .font-brand { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; }
-      .font-mono { font-family: 'JetBrains Mono', monospace; }
-      .font-native { font-family: 'PocketGull', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
+      .font-mono { font-family: 'JetBrains Mono', 'Pocket Gull Mono', 'PocketGull Mono', monospace; }
+      .font-native { font-family: 'Pocket Gull', 'PocketGull', 'Pocket Gull Bold', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
     </style>
     <linearGradient id="bgGrad_${t.id}" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#FFFFFF"/>
@@ -1011,7 +1016,7 @@ String generateTypeEngineeringPlate(TribalTradition t) {
   <!-- Footer Technical Block -->
   <g transform="translate(140, 3360)">
     <line x1="0" y1="0" x2="2408" y2="0" stroke="#0284C7" stroke-width="2" opacity="0.7"/>
-    <text x="0" y="60" class="font-mono" font-size="24" fill="#94A3B8">POCKETGULL SUPERFAMILY • ARCHIVAL SPECIMEN • ISO 3166-2: ${t.regionTag} • SIL OFL 1.1 • CERN ZENODO DOI: 10.5281/ZENODO.18882512</text>
+    <text x="0" y="60" class="font-mono" font-size="24" fill="#94A3B8">POCKETGULL SUPERFAMILY • ARCHIVAL SPECIMEN • ISO 3166-2: ${t.regionTag} • SIL OFL 1.1 • CERN ZENODO DOI: 10.5281/ZENODO.22309379</text>
   </g>
 </svg>
 ''');
@@ -1028,8 +1033,8 @@ String generateTelemetryTypePlate(TribalTradition t) {
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@400;600;700&amp;display=swap');
       .font-brand { font-family: 'Plus Jakarta Sans', sans-serif; }
-      .font-mono { font-family: 'JetBrains Mono', monospace; }
-      .font-native { font-family: 'PocketGull', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
+      .font-mono { font-family: 'JetBrains Mono', 'Pocket Gull Mono', 'PocketGull Mono', monospace; }
+      .font-native { font-family: 'Pocket Gull', 'PocketGull', 'Pocket Gull Bold', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
     </style>
   </defs>
 
@@ -1167,8 +1172,8 @@ String generatePedagogicalPlate(TribalTradition t) {
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@400;600;700&amp;display=swap');
       .font-title { font-family: 'Plus Jakarta Sans', sans-serif; }
-      .font-mono { font-family: 'JetBrains Mono', monospace; }
-      .font-native { font-family: 'PocketGull', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
+      .font-mono { font-family: 'JetBrains Mono', 'Pocket Gull Mono', 'PocketGull Mono', monospace; }
+      .font-native { font-family: 'Pocket Gull', 'PocketGull', 'Pocket Gull Bold', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
     </style>
     <linearGradient id="polarWashi_${t.id}" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#FFFFFF"/>
@@ -1304,8 +1309,8 @@ String generatePermaThoughtsCard(TribalTradition t) {
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500;700&amp;display=swap');
       .font-brand { font-family: 'Plus Jakarta Sans', sans-serif; }
-      .font-mono { font-family: 'JetBrains Mono', monospace; }
-      .font-native { font-family: 'PocketGull', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
+      .font-mono { font-family: 'JetBrains Mono', 'Pocket Gull Mono', 'PocketGull Mono', monospace; }
+      .font-native { font-family: 'Pocket Gull', 'PocketGull', 'Pocket Gull Bold', 'PocketGull Bold', 'SansSerifCollection', sans-serif; }
     </style>
     <linearGradient id="permaBg_${t.id}" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#FFFFFF"/>

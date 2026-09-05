@@ -26,7 +26,7 @@
   <rect x="50" y="30" width="1100" height="26" rx="0" fill="#FFFDF8" stroke="#E7E2D6" stroke-width="0.8"/>
   <text x="600" y="48" class="font-syllabic" font-size="13" fill="#003896" text-anchor="middle" font-weight="bold">ᐳᒃᑭᑦᒐᓪ — ᐃᓚᐃᓐᓇᖓ, ᑭᓯᐊᓂ ᐱᐅᓂᖅᓴᖅ — CA-NU 🇨🇦 — WENIGER, ABER BESSER</text>
 
-  <!-- Exhibition Header with Official Flags & Country Code -->
+  <!-- Exhibition Header with Official Flags &amp; Country Code -->
   <g transform="translate(50, 75)">
     <line x1="0" y1="0" x2="1100" y2="0" stroke="#E7E2D6" stroke-width="1"/>
     <text x="0" y="36" class="font-title" font-size="36" fill="#1F1B16">POCKETGULL <tspan class="font-syllabic" fill="#D52B1E">ᐳᒃᑭᑦᒐᓪ</tspan></text>
@@ -47,7 +47,7 @@
   </g>
   
       <g transform="translate(1040.0, 15.0)">
-    <!-- Crisp Outer Border & Drop Shadow -->
+    <!-- Crisp Outer Border &amp; Drop Shadow -->
     <rect width="70.0" height="44.0" rx="2" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="0.8"/>
     <g transform="scale(0.007291666666666667, 0.008148148148148147)">
       <!-- Left Field: Nunavut Gold -->
@@ -108,7 +108,7 @@
     </g>
   </g>
 
-  <!-- Complete Vowel & Consonant Syllabics Matrix Ribbon -->
+  <!-- Complete Vowel &amp; Consonant Syllabics Matrix Ribbon -->
   <g transform="translate(50, 595)">
     <rect width="1100" height="420" fill="#FFFDF8" stroke="#E7E2D6" stroke-width="1"/>
     <line x1="0" y1="0" x2="1100" y2="0" stroke="#FFD100" stroke-width="3"/>

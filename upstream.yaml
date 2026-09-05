@@ -3,7 +3,10 @@ branch: main
 repository: https://github.com/pocketgull-app/pocketgull-typeface
 archive: ""
 files:
+  PocketGull-Regular.ttf: fonts/ttf/PocketGull-Regular.ttf
   PocketGull-Bold.ttf: fonts/ttf/PocketGull-Bold.ttf
+  PocketGull-Black.ttf: fonts/ttf/PocketGull-Black.ttf
+  PocketGullMono-Regular.ttf: fonts/ttf/PocketGullMono-Regular.ttf
   PocketGull-Fineliner.ttf: fonts/ttf/PocketGull-Fineliner.ttf
   PocketGull-Chiseltip.ttf: fonts/ttf/PocketGull-Chiseltip.ttf
-  PocketGullMono-Regular.ttf: fonts/ttf/PocketGullMono-Regular.ttf
+  PocketGull-MarkerRaw.ttf: fonts/ttf/PocketGull-MarkerRaw.ttf

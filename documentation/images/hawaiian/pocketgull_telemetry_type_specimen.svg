@@ -65,7 +65,7 @@
     <rect width="2408" height="840" rx="20" fill="#111C2E" stroke="#3B82F6" stroke-width="3"/>
     <g transform="translate(60, 80)">
       <text x="0" y="0" class="font-mono" font-size="36" font-weight="bold" fill="#60A5FA">ELECTRONIC PRESCRIBING &amp; CLINICAL ORDER (RPMS / EHR)</text>
-      <text x="0" y="60" class="font-native" font-size="44" font-weight="bold" fill="#CA8A04">Lāʻau Lapaʻau (Traditional & Clinical Rx)</text>
+      <text x="0" y="60" class="font-native" font-size="44" font-weight="bold" fill="#CA8A04">Lāʻau Lapaʻau (Traditional &amp; Clinical Rx)</text>
       
       <!-- Callout Box for Drug Direction -->
       <g transform="translate(0, 100)">
@@ -88,12 +88,12 @@
     </g>
   </g>
 
-  <!-- Bioregional Land & Healing Banner -->
+  <!-- Bioregional Land &amp; Healing Banner -->
   <g transform="translate(140, 2120)">
     <rect width="2408" height="1140" rx="20" fill="#131E33" stroke="#334155" stroke-width="2"/>
     <g transform="translate(60, 80)">
       <text x="0" y="0" class="font-mono" font-size="32" font-weight="bold" fill="#38BDF8">LAND-BASED HEALING &amp; TRADITIONAL KNOWLEDGE INTEGRATION</text>
-      <text x="0" y="70" class="font-native" font-size="44" font-weight="bold" fill="#CA8A04">🌺 The Ahupuaʻa Watershed, Emerald Knife Ridges & Turquoise Swells</text>
+      <text x="0" y="70" class="font-native" font-size="44" font-weight="bold" fill="#CA8A04">🌺 The Ahupuaʻa Watershed, Emerald Knife Ridges &amp; Turquoise Swells</text>
       <foreignObject x="0" y="110" width="2280" height="360">
         <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 28px; color: #E2E8F0; line-height: 1.65;">
           Stretching from misty cloud forests of Haleakalā and Mauna Kea through lush taro (Kalo) terraces to pristine coral reefs. Where scarlet ʻŌhiʻa blossoms grace black volcanic lava flows and ocean waves nourish the islands, health is the sacred triangle of Lōkahi (God, Humankind, Land).

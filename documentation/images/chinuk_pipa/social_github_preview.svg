@@ -23,7 +23,7 @@
   <!-- Base Polar Washi Paperboard Canvas -->
   <rect width="1280" height="640" fill="url(#polarWashiBg)"/>
 
-  <!-- Outer Tactile Deckle Framing in Organic Washi & Vexillology Accent -->
+  <!-- Outer Tactile Deckle Framing in Organic Washi &amp; Vexillology Accent -->
   <rect x="24" y="24" width="1232" height="592" fill="none" stroke="#E2DACB" stroke-width="1.5"/>
   <rect x="30" y="30" width="1220" height="580" fill="none" stroke="#E2DACB" stroke-width="0.8" stroke-dasharray="4,4"/>
 
@@ -48,7 +48,7 @@
       </g>
       
 
-  <!-- Right Side: Chinuk Pipa Typography & Seven Generations HUD on Washi -->
+  <!-- Right Side: Chinuk Pipa Typography &amp; Seven Generations HUD on Washi -->
   <g transform="translate(550, 60)">
     <!-- Header Ribbon: Country Code + Flags -->
     <g>
@@ -106,18 +106,18 @@
     <!-- Gold Trim Rule -->
     <rect x="0" y="0" width="52.0" height="2" fill="#F59E0B"/>
     <rect x="0" y="26.0" width="52.0" height="2" fill="#F59E0B"/>
-    <!-- Gold Center Star & Shield Symbol -->
+    <!-- Gold Center Star &amp; Shield Symbol -->
     <text x="26.0" y="15" font-family="'JetBrains Mono', monospace" font-size="8" font-weight="bold" fill="#FBBF24" text-anchor="middle" letter-spacing="0.05em">OREGON</text>
     <text x="26.0" y="23" font-family="'JetBrains Mono', monospace" font-size="6.5" font-weight="bold" fill="#FDE68A" text-anchor="middle">1859 • GRD</text>
   </g>
   
     </g>
 
-    <!-- Large Bilingual Title in Charcoal Letterpress & Redcedar Amber -->
+    <!-- Large Bilingual Title in Charcoal Letterpress &amp; Redcedar Amber -->
     <text x="0" y="80" class="font-brand" font-size="44" font-weight="800" fill="#1F1B16" letter-spacing="-0.02em">PocketGull <tspan fill="#C2410C">Chinuk Pipa</tspan></text>
     <text x="0" y="112" class="font-duployan" font-size="17" fill="#1E3A8A">𛰅𛰆𛱄𛰜 𛰸𛱁𛰸𛱁 • DUPLOYAN SHORTHAND (U+1BC00–U+1BC9F)</text>
 
-    <!-- Elder Wisdom & Living Language Foundation Ribbon -->
+    <!-- Elder Wisdom &amp; Living Language Foundation Ribbon -->
     <g transform="translate(0, 130)">
       <rect width="665" height="50" rx="3" fill="#FFFDF8" stroke="#E2DACB" stroke-width="1"/>
       <rect x="0" y="0" width="4" height="50" fill="#C2410C"/>
@@ -125,7 +125,7 @@
       <text x="14" y="38" class="font-body" font-size="11" fill="#1E3A8A" font-style="italic">Good Words • Good Heart • Sacred Family // Confederated Tribes of Grand Ronde</text>
     </g>
 
-    <!-- Stenographic Vector & Vowel Plate on Ivory Washi -->
+    <!-- Stenographic Vector &amp; Vowel Plate on Ivory Washi -->
     <g transform="translate(0, 195)">
       <rect width="665" height="88" rx="3" fill="#FFFDF8" stroke="#E2DACB" stroke-width="1"/>
       <line x1="0" y1="0" x2="665" y2="0" stroke="#F59E0B" stroke-width="2.5"/>
@@ -148,14 +148,14 @@
       <text x="584" y="21" class="font-mono" font-size="11" fill="#166534" text-anchor="middle" font-weight="bold">Mono 600 UPM</text>
     </g>
 
-    <!-- Clinical Hospital Vitals & Words of Healing Ribbon -->
+    <!-- Clinical Hospital Vitals &amp; Words of Healing Ribbon -->
     <g transform="translate(0, 345)">
       <rect width="665" height="80" rx="3" fill="#FFFDF8" stroke="#166534" stroke-width="1.2"/>
       <text x="18" y="25" class="font-brand" font-size="13" fill="#166534" font-weight="bold">DOCTOR TILIKUM // GRAND RONDE HEALTH &amp; WELLNESS CENTER (OREGON)</text>
       <text x="18" y="58" class="font-duployan" font-size="20" fill="#1F1B16">𛰃𛱑𛰙 𛰃𛱑𛰙: 72 bpm • 𛰸𛱆𛰚: 99% • 𛰜𛰅𛱑𛰅𛱑𛰙 𛰃𛱑𛰙 𛰃𛱑𛰙: STABLE</text>
     </g>
 
-    <!-- Seven Generations & Living Heritage Note + Colophon -->
+    <!-- Seven Generations &amp; Living Heritage Note + Colophon -->
     <g transform="translate(0, 442)">
       <text x="0" y="16" class="font-body" font-size="12" fill="#57534E">"Nsayka wawa kakwa nsayka tilixam munk-kemteks nsayka." (Our words teach our people)</text>
       <text x="0" y="38" class="font-mono" font-size="11" fill="#78716C">PHILLIP GEAR // UNIVERSAL WORLD SCRIPTS INITIATIVE // OFL 1.1 // US-OR 🇺🇸 // POCKETGULL.APP</text>

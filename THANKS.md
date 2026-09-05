@@ -26,6 +26,21 @@ His tireless promotion of disciplined software architecture, mastery of programm
 
 ---
 
+## 🌟 Emma
+
+We express our special thanks and deepest appreciation to **Emma** for her invaluable linguistic research, sovereign orthographic case study codex definitions, and character curation.
+
+Her precise guidance directly shaped the completion of our sovereign script coverage across:
+- **Chinuk Pipa (Duployan)**: The 17 stenographic affix signs and ligatures for Pacific Northwest Chinuk Wawa.
+- **Neo-Tifinagh (Amazigh)**: The 21 regional Tuareg letters, vowel matrices, and geometric bi-directional primitives.
+- **Cherokee Syllabary**: The archaic uppercase symbols and Louise Sloan optotypic balance across the Sequoyah matrix.
+- **Ethiopic Geʻez**: The 26 7-order vowel appendage variations across clinical consonant roots.
+- **West African (Adlam & Vai)**: The 8 Adlam supplementary marks and 20 Vai syllabic glyphs for healthcare literacy.
+
+Her meticulous attention to orthographic integrity and patient safety standards was pivotal to achieving 100% sovereign script completion in the v3.0.0 release.
+
+---
+
 ## 🪶 Sovereign Tribal, First Nations & Indigenous Language Keepers
 
 We extend our heartfelt gratitude and respect to the indigenous language teachers, elders, linguists, and community healthcare leaders whose cultural stewardship sustains native languages:

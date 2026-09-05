@@ -30,12 +30,12 @@
   <!-- Broadside Header -->
   <g transform="translate(160, 220)">
     <text x="0" y="40" class="font-mono" font-size="28" font-weight="bold" fill="#64748B" letter-spacing="0.1em">POCKETGULL PEDAGOGICAL BROADSIDE • SOVEREIGN INDIGENOUS TYPOGRAPHY</text>
-    <text x="0" y="130" class="font-title" font-size="72" font-weight="800" fill="#0F172A">Chahta & Mvskoke (Southeast & Oklahoma)</text>
-    <text x="0" y="200" class="font-native" font-size="48" font-weight="700" fill="#15803D">Chahta Yakni & Mvskoke Etvlwv • Choctaw Nation Health Services • IHS Oklahoma City Area</text>
+    <text x="0" y="130" class="font-title" font-size="72" font-weight="800" fill="#0F172A">Chahta &amp; Mvskoke (Southeast &amp; Oklahoma)</text>
+    <text x="0" y="200" class="font-native" font-size="48" font-weight="700" fill="#15803D">Chahta Yakni &amp; Mvskoke Etvlwv • Choctaw Nation Health Services • IHS Oklahoma City Area</text>
     <line x1="0" y1="240" x2="2368" y2="240" stroke="#CBD5E1" stroke-width="2"/>
   </g>
 
-  <!-- Master Alphabet & Syllable Specimen Wall -->
+  <!-- Master Alphabet &amp; Syllable Specimen Wall -->
   <g transform="translate(160, 560)">
     <text x="0" y="0" class="font-mono" font-size="30" font-weight="bold" fill="#475569">01 / COMPLETE SOVEREIGN GLYPH RUN &amp; ORTHOGRAPHIC INVENTORY</text>
     <rect y="30" width="2368" height="640" rx="16" fill="#FFFFFF" stroke="#E2DACB" stroke-width="2"/>
@@ -60,12 +60,12 @@
     </g>
   </g>
 
-  <!-- Section 2: Bioregional Landscape & Flora Immersion -->
+  <!-- Section 2: Bioregional Landscape &amp; Flora Immersion -->
   <g transform="translate(160, 1300)">
     <text x="0" y="0" class="font-mono" font-size="30" font-weight="bold" fill="#475569">02 / WALKING THE LANDS &amp; NATURE WITHOUT TRAVELING</text>
     <rect y="30" width="2368" height="520" rx="16" fill="#FFFFFF" stroke="#E2DACB" stroke-width="2"/>
     <g transform="translate(60, 100)">
-      <text x="0" y="0" class="font-title" font-size="44" font-weight="800" fill="#7C2D12">🌾 THE ROLLING RED HILLS, CYPRESS BAYOUS & ANCIENT MOUNDS</text>
+      <text x="0" y="0" class="font-title" font-size="44" font-weight="800" fill="#7C2D12">🌾 THE ROLLING RED HILLS, CYPRESS BAYOUS &amp; ANCIENT MOUNDS</text>
       <foreignObject x="0" y="35" width="2240" height="360">
         <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; color: #334155; line-height: 1.65;">
           From the sacred emergence mound of Nanih Waiya to the winding, cypress-shaded river cane brakes and flowering redbud ridges of Oklahoma. Where ancestral spring waters flow clean through rich red earth, health is the unbroken chain of generational care (Chahta Alla).

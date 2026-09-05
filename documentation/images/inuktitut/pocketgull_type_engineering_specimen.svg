@@ -29,7 +29,7 @@
     <line x1="0" y1="12" x2="806" y2="12" stroke="#0F172A" stroke-width="2"/>
   </g>
 
-  <!-- Col 1: Rotational Symmetry & Inktraps -->
+  <!-- Col 1: Rotational Symmetry &amp; Inktraps -->
   <g transform="translate(45, 95)">
     <text x="0" y="0" class="font-mono" font-size="11" font-weight="700" fill="#0284C7">I. ROTATIONAL SYMMETRY &amp; VERTEX INKTRAPS</text>
     <rect x="0" y="15" width="390" height="380" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
@@ -73,7 +73,7 @@
     </text>
   </g>
 
-  <!-- Col 2: Superdots & Superior Finals -->
+  <!-- Col 2: Superdots &amp; Superior Finals -->
   <g transform="translate(460, 95)">
     <text x="0" y="0" class="font-mono" font-size="11" font-weight="700" fill="#0284C7">II. SUPERDOTS &amp; SUPERIOR FINALS</text>
     <rect x="0" y="15" width="390" height="175" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
@@ -108,7 +108,7 @@
     </g>
   </g>
 
-  <!-- Section IV: Numeral Set Comparisons & Monospace Cell Normalization -->
+  <!-- Section IV: Numeral Set Comparisons &amp; Monospace Cell Normalization -->
   <g transform="translate(45, 500)">
     <text x="0" y="0" class="font-mono" font-size="11" font-weight="700" fill="#0284C7">IV. PROPORTIONAL SUPERFAMILY VS MONOSPACE 600 UPM CELL</text>
     <rect x="0" y="15" width="806" height="190" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
@@ -130,7 +130,7 @@
     </g>
   </g>
 
-  <!-- Section V: Syllabic Morpheme Anatomy & Healing Lexicon -->
+  <!-- Section V: Syllabic Morpheme Anatomy &amp; Healing Lexicon -->
   <g transform="translate(45, 715)">
     <text x="0" y="0" class="font-mono" font-size="11" font-weight="700" fill="#0284C7">V. SYLLABIC MORPHEME ANATOMY &amp; CLINICAL HEALING LEXICON</text>
     

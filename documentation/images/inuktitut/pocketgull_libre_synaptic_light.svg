@@ -25,7 +25,7 @@
   <!-- Base Canvas -->
   <rect width="1200" height="1720" fill="url(#washiBg)"/>
 
-  <!-- Outer Architectural Deckle Rules in Nunavut Gold & Inuksuk Red -->
+  <!-- Outer Architectural Deckle Rules in Nunavut Gold &amp; Inuksuk Red -->
   <rect x="30" y="30" width="1140" height="1660" fill="none" stroke="#E7E2D6" stroke-width="1.5"/>
   <rect x="36" y="36" width="1128" height="1648" fill="none" stroke="#E7E2D6" stroke-width="0.8" stroke-dasharray="4,4"/>
 
@@ -53,7 +53,7 @@
   </g>
   
       <g transform="translate(880.0, 18.0)">
-    <!-- Crisp Outer Border & Drop Shadow -->
+    <!-- Crisp Outer Border &amp; Drop Shadow -->
     <rect width="80.0" height="50.0" rx="2" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="0.8"/>
     <g transform="scale(0.008333333333333333, 0.009259259259259259)">
       <!-- Left Field: Nunavut Gold -->
@@ -130,7 +130,7 @@
     </g>
   </g>
 
-  <!-- Clinical Telehealth & Snellen 20/20 Showcase -->
+  <!-- Clinical Telehealth &amp; Snellen 20/20 Showcase -->
   <g transform="translate(70, 1120)">
     <rect width="1060" height="260" fill="#FFFDF8" stroke="#E7E2D6" stroke-width="1"/>
     <line x1="0" y1="0" x2="1060" y2="0" stroke="#FFD100" stroke-width="3"/>

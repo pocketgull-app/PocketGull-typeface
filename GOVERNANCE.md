@@ -7,13 +7,33 @@
 
 ## 🏛️ 1. Governance Principles
 
-PocketGull Typeface Superfamily is an open-source medical and ophthalmological typography project developed by **PocketGull LLC** in collaboration with clinical researchers, optometrists, vision scientists, and type designers.
+PocketGull Typeface Superfamily is an open-source medical, ophthalmological, and Pan-Tribal typography project developed by **PocketGull LLC** in collaboration with clinical researchers, optometrists, vision scientists, type designers, and Indigenous language keepers.
 
 Our governance model ensures:
 1. **Ophthalmological Rigor & Evidence Grounding**: All letterform metrics, stroke contrasts, x-height ratios, and counter spaces must be grounded in peer-reviewed vision science literature (Louise Sloan 5:1 acuity, Hermann Bouma crowding coefficients, ISO/TR 11548 Braille dimensions, DIN 1450 legibility standards).
 2. **Deterministic Safety Precedence**: Stylistic flourishes never compromise clinical readability or the Institute for Safe Medication Practices (ISMP) zero-error character disambiguation rules.
-3. **Radical Transparency & Libre Licensing**: 100% open-source licensing under the **SIL Open Font License 1.1 (OFL-1.1)**, open vector sources (UFO3 / Glyphs), reproducible build toolchains (gftools-builder, ontmake), and public issue tracking.
+3. **Radical Transparency & Libre Licensing**: 100% open-source licensing under the **SIL Open Font License 1.1 (OFL-1.1)**, open vector sources (UFO3 / Glyphs), reproducible build toolchains, and public issue tracking.
 4. **Binary Integrity & Memory Safety**: Zero W3C OpenType Sanitizer (OTS) violations, 2-byte word boundary alignment, and hermetic CI validation.
+5. **Indigenous Data Sovereignty (CARE Principles)**: Sacred motifs, oral phonetics, and clan registries are protected in private sovereign vaults with affirmative community consent required for orthographic additions.
+
+### 1.1 The Tripartite Governance Standard (Pillar VII)
+
+To prevent cultural co-optation, maintain mathematical vector determinism, and ensure flawless upstream open-source adoption, PocketGull establishes three inviolable governance covenants:
+
+* **🕊️ For the Elders (CARE Principles & Data Sovereignty)**:
+  * **Zero Base Model Training**: Publicly released font binaries and linguistic corpora may NEVER be ingested to train proprietary LLMs without affirmative community consent.
+  * **Sovereign Vault Isolation**: Sacred clan ceremonial motifs, sensitive oral phonetics, and elder contact registries are held exclusively in private sovereign vaults (`.foundry/docs/`).
+  * **Community Attestation**: New orthographic additions must be validated by native language keepers before clinical deployment.
+* **✒️ For the Typographers (Mathematical Determinism & OTS Safety)**:
+  * **2-Byte Word Boundary Invariant**: `loca[i] % 2 == 0` across all glyph records. Zero OTS memory eviction in DirectWrite or Chromium.
+  * **Bit-7 Flag Masking**: Point flags byte bit 7 (`0x80`) strictly zero.
+  * **Sloan Acuity & ISMP Disambiguation**: Louise Sloan 5:1 optotypes, mandatory `cv08` slashed zero, `cv05` curved l, `ss02` serifed I, `cv11` slashed Z.
+  * **Pure Dart 3.11 Toolchain**: Deterministic SFNT compilation, 0 duplicate nodes, hermetic table layout.
+* **🌐 For Google Fonts (Option 5 & Upstream Harmony)**:
+  * **Minimalist Versioning**: `head.fontRevision == 3.0`, `nameID 5 == 'Version 3.000; The PocketGull Project Authors; OFL 1.1'`.
+  * **Zero RFN Debt**: SIL Open Font License 1.1 with no Reserved Font Name restriction (see [TRADEMARKS.md](TRADEMARKS.md) for Lanham Act § 43(a) brand coexistence policy).
+  * **Full CFF & Zenodo DOI Sync**: Permanent DOI `10.5281/zenodo.22309379` mapped to CERN open science index.
+  * **114/114 Pre-Flight Checks**: Complete fontbakery check-googlefonts compliance, WOFF2 Brotli 11, designer profile dossier.
 
 ---
 
@@ -33,7 +53,12 @@ Our governance model ensures:
   * Photobiomodulation (670nm PBM) optical contrast calibration.
 
 ### 2.3 Core Maintainers
-* Review daily pull requests, maintain CI/CD pipelines, and enforce pre-flight test suites (alidate_fonts.py, ontbakery check-googlefonts).
+* Review daily pull requests, maintain CI/CD pipelines, and enforce pre-flight test suites (`sources/validate_fonts.py`, `fontbakery check-googlefonts`).
+
+### 2.4 Indigenous Community & Language Keepers Council
+* Governs orthographic expansion, syllabic accuracy, and cultural attestation across Indigenous scripts (Inuktitut, Chinuk Pipa, Cherokee, Choctaw, Dakota/Lakota, Hopi, Iñupiaq, Mohawk, Navajo, Ojibwe, Salish).
+* Ensures strict adherence to the **CARE Principles for Indigenous Data Sovereignty** (Collective Benefit, Authority to Control, Responsibility, Ethics).
+* Enforces that sacred motifs, elder registries, and sensitive oral phonetics are never checked into public version control and remain strictly in private sovereign vaults (`.foundry/docs/`).
 
 ---
 
@@ -41,9 +66,9 @@ Our governance model ensures:
 
 Significant architectural, metric, or glyph set changes follow a lightweight **Request for Comments (RFC)** process:
 
-1. **RFC Proposal**: Contributor opens an issue with the [TYPOGRAPHY-RFC] template or starts a GitHub Discussion.
-2. **Review Period**: 7-day public review period for community feedback and clinical verification.
-3. **Proof-of-Work Verification**: Implementation must provide 100% passing tests via sources/validate_fonts.py and Fontbakery (0 FAILs, 0 FATALs).
+1. **RFC Proposal**: Contributor opens an issue with the `[TYPOGRAPHY-RFC]` template or starts a GitHub Discussion.
+2. **Review Period**: 7-day public review period for community feedback, clinical verification, and language keeper attestation.
+3. **Proof-of-Work Verification**: Implementation must provide 100% passing tests via `sources/validate_fonts.py` and Fontbakery (0 FAILs, 0 FATALs).
 4. **Consensus & Merge**: Merged upon approval by the Lead Architect.
 
 ---
@@ -51,9 +76,17 @@ Significant architectural, metric, or glyph set changes follow a lightweight **R
 ## 🛡️ 4. Emergency Patch Protocol (STAT Override)
 
 In the event of an identified clinical safety hazard, OTS memory violation, or critical table corruption:
-1. Maintainers may push an emergency fix directly to a hotfix branch on main.
-2. The hotfix must satisfy the mandatory OTS sanitizer and alidate_fonts.py test suites.
-3. A post-mortem incident report will be published in SECURITY.md within 48 hours.
+1. Maintainers may push an emergency fix directly to a hotfix branch on `main`.
+2. The hotfix must satisfy the mandatory OTS sanitizer and `validate_fonts.py` test suites.
+3. A post-mortem incident report will be published in `SECURITY.md` within 48 hours.
+
+---
+
+## 🤖 5. Machine Learning Reservation & AI Ingestion Covenants
+
+1. **Text and Data Mining Reservation (TDMR)**: PocketGull expressly reserves all rights against text and data mining, automated scraping, extraction, and harvesting for the purposes of training generative AI, foundational models, or large language models under **Article 4(3) of EU Directive 2019/790** and international copyright conventions.
+2. **Machine-Readable Opt-Out**: Machine-readable reservations are asserted across `robots.txt`, `.aiignore`, `llms.txt`, and HTTP headers (`TDM-Reservation: 1`).
+3. **Humanitarian & Clinical Exemption**: Font binaries may be embedded freely in software, clinical EHR systems, medical telemetry devices, and printed educational materials under the SIL OFL 1.1 without restriction, but raw linguistic and glyph data may not be aggregated into base model training corpora.
 
 ---
 

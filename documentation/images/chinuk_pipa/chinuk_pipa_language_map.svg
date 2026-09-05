@@ -21,7 +21,7 @@
     <text x="0" y="72" class="font-brand" font-size="17" font-weight="500" fill="#57534E">Euclidean Stroke Geometry of Duployan Shorthand for Chinuk Wawa (U+1BC00–U+1BC9F)</text>
   </g>
 
-  <!-- Section 1: Consonant Vectors (Lines & Arcs) -->
+  <!-- Section 1: Consonant Vectors (Lines &amp; Arcs) -->
   <g transform="translate(80, 230)">
     <text x="0" y="0" class="font-mono" font-size="13" fill="#1C1917" font-weight="700">1. CONSONANT VECTOR PRIMITIVES (LINES AT 4 CARDINAL ANGLES &amp; QUARTER-ARCS):</text>
     <rect x="0" y="15" width="1040" height="340" fill="#FAFAF9" stroke="#E7E5E4" stroke-width="1.5"/>
@@ -50,7 +50,7 @@
         </g>
       </g>
 
-      <!-- Curves & Arcs -->
+      <!-- Curves &amp; Arcs -->
       <g transform="translate(0, 115)">
         <text x="0" y="0" class="font-mono" font-size="12" fill="#B45309" font-weight="700">CURVES &amp; QUARTER-CIRCLE ARCS:</text>
 
@@ -75,7 +75,7 @@
     </g>
   </g>
 
-  <!-- Section 2: Vocalic Circles & Glides -->
+  <!-- Section 2: Vocalic Circles &amp; Glides -->
   <g transform="translate(80, 625)">
     <text x="0" y="0" class="font-mono" font-size="13" fill="#1C1917" font-weight="700">2. VOCALIC CIRCLES &amp; COMPOUND GLIDES:</text>
     <rect x="0" y="15" width="1040" height="280" fill="#FAFAF9" stroke="#E7E5E4" stroke-width="1.5"/>

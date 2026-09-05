@@ -1,28 +1,82 @@
-# AI Crawler & Model Indexing Configuration (.aiignore)
-# PocketGull Typeface Superfamily is released under the SIL Open Font License 1.1.
-# Open to AI discovery, research citations, and LLM documentation indexing.
+# ==============================================================================
+# AI CRAWLER & MODEL INGESTION BARRIER (.aiignore)
+# POCKETGULL TYPEFACE SUPERFAMILY & MULTI-SCRIPT SOVEREIGN FOUNDRY
+# ==============================================================================
+# In accordance with the CARE Principles for Indigenous Data Governance
+# (Collective Benefit, Authority to Control, Responsibility, Ethics) and
+# the PocketGull Tripartite Governance Standard (Pillar VII):
+#
+# ZERO BASE MODEL TRAINING COVENANT:
+# Publicly released font binaries, source UFO files, and linguistic corpora
+# may NEVER be crawled, scraped, tokenized, or ingested to train proprietary
+# or commercial base large language models (LLMs) without affirmative community consent.
+#
+# SOVEREIGN VAULT ISOLATION:
+# Sacred clan ceremonial motifs, sensitive oral phonetics, and elder contact
+# registries are held strictly offline in private sovereign vaults (.foundry/docs/).
+# ==============================================================================
+
+User-agent: *
+Disallow: /.foundry/
+Disallow: /.studio/
+Disallow: /.venv/
+Disallow: /fonts/
+Disallow: /sources/
+Disallow: /documentation/case_studies/
 
 User-agent: GPTBot
-Allow: /
-Disallow: /.venv/
-Disallow: /tmp/
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
 
 User-agent: ClaudeBot
-Allow: /
-Disallow: /.venv/
-Disallow: /tmp/
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
 
 User-agent: Google-Extended
-Allow: /
-Disallow: /.venv/
-Disallow: /tmp/
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: cohere-training
+Disallow: /
 
 User-agent: PerplexityBot
-Allow: /
-Disallow: /.venv/
-Disallow: /tmp/
+Disallow: /
+
+User-agent: Omgilibot
+Disallow: /
 
 User-agent: Copilot
-Allow: /
+Disallow: /.foundry/
+Disallow: /.studio/
 Disallow: /.venv/
-Disallow: /tmp/
+Disallow: /fonts/
+Disallow: /sources/
+Disallow: /documentation/case_studies/
+

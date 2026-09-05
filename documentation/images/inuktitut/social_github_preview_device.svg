@@ -24,7 +24,7 @@
   <!-- Base Polar Washi Paperboard Canvas -->
   <rect width="1280" height="640" fill="url(#polarWashiBg)"/>
 
-  <!-- Outer Tactile Deckle Framing in Organic Washi & Vexillology Accent -->
+  <!-- Outer Tactile Deckle Framing in Organic Washi &amp; Vexillology Accent -->
   <rect x="24" y="24" width="1232" height="592" fill="none" stroke="#E2DACB" stroke-width="1.5"/>
   <rect x="30" y="30" width="1220" height="580" fill="none" stroke="#E2DACB" stroke-width="0.8" stroke-dasharray="4,4"/>
 
@@ -44,11 +44,11 @@
         <!-- Polar Washi Overlay Vignette -->
         <rect width="460" height="520" rx="4" fill="url(#photoWashiOverlay)" clip-path="url(#ghImgClip)"/>
 
-        <!-- Inuksuk & Flag Overlay Badge on Polar Washi -->
+        <!-- Inuksuk &amp; Flag Overlay Badge on Polar Washi -->
         <g transform="translate(20, 20)">
           <rect width="210" height="74" rx="3" fill="#FFFFFF" fill-opacity="0.94" stroke="#E2DACB" stroke-width="1"/>
             <g transform="translate(12.0, 12.0)">
-    <!-- Crisp Outer Border & Drop Shadow -->
+    <!-- Crisp Outer Border &amp; Drop Shadow -->
     <rect width="52.0" height="29.0" rx="2" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="0.8"/>
     <g transform="scale(0.005416666666666667, 0.00537037037037037)">
       <!-- Left Field: Nunavut Gold -->
@@ -70,7 +70,7 @@
       </g>
       
 
-  <!-- Right Side: Inuktitut Typography & Seven Generations HUD on Washi -->
+  <!-- Right Side: Inuktitut Typography &amp; Seven Generations HUD on Washi -->
   <g transform="translate(550, 60)">
     <!-- Header Ribbon: Country Code CA-NU + Official Museum Flags -->
     <g>
@@ -97,7 +97,7 @@
   </g>
   
         <g transform="translate(458.0, 0.0)">
-    <!-- Crisp Outer Border & Drop Shadow -->
+    <!-- Crisp Outer Border &amp; Drop Shadow -->
     <rect width="56.0" height="31.0" rx="2" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="0.8"/>
     <g transform="scale(0.005833333333333334, 0.005740740740740741)">
       <!-- Left Field: Nunavut Gold -->
@@ -113,11 +113,11 @@
   
     </g>
 
-    <!-- Large Bilingual Title in Charcoal Letterpress & Inuksuk Crimson -->
+    <!-- Large Bilingual Title in Charcoal Letterpress &amp; Inuksuk Crimson -->
     <text x="0" y="80" class="font-syllabic" font-size="44" fill="#1F1B16" letter-spacing="-0.02em">ᐳᒃᑭᑦᒐᓪ <tspan fill="#D52B1E">PocketGull</tspan></text>
     <text x="0" y="112" class="font-syllabic" font-size="17" fill="#003896">ᐃᓄᒃᑎᑐᑦ • CANADIAN ABORIGINAL SYLLABICS (U+1400–U+167F)</text>
 
-    <!-- Elder Wisdom & Seven Generations Quote Ribbon -->
+    <!-- Elder Wisdom &amp; Seven Generations Quote Ribbon -->
     <g transform="translate(0, 130)">
       <rect width="665" height="50" rx="3" fill="#FFFDF8" stroke="#E2DACB" stroke-width="1"/>
       <rect x="0" y="0" width="4" height="50" fill="#D52B1E"/>
@@ -148,14 +148,14 @@
       <text x="584" y="21" class="font-mono" font-size="11" fill="#0D9488" text-anchor="middle" font-weight="bold">Mono 600 UPM</text>
     </g>
 
-    <!-- Clinical Hospital Vitals & Words of Healing Ribbon -->
+    <!-- Clinical Hospital Vitals &amp; Words of Healing Ribbon -->
     <g transform="translate(0, 345)">
       <rect width="665" height="80" rx="3" fill="#FFFDF8" stroke="#D52B1E" stroke-width="1.2"/>
       <text x="18" y="25" class="font-syllabic" font-size="13" fill="#D52B1E" font-weight="bold">ᐋᓐᓂᐊᕕᒃ AANNIAVIK // QIKIQTANI GENERAL HOSPITAL (IQALUIT, NU)</text>
       <text x="18" y="58" class="font-syllabic" font-size="20" fill="#1F1B16">ᐆᒻᒪᑎ: 72 bpm • ᐊᓂᕐᓂᖃᕐᓇᖅ: 99% • ᑲᔪᓯᓂᖃᑦᓯᐊᕐᑐᖅ: STABLE</text>
     </g>
 
-    <!-- Seven Generations & Humour Note + Colophon -->
+    <!-- Seven Generations &amp; Humour Note + Colophon -->
     <g transform="translate(0, 442)">
       <text x="0" y="16" class="font-body" font-size="12" fill="#57534E">ᓯᕗᓂᒃᓴᕗᑦ ᑭᖑᕚᒃᓴᕗᑦ ᐱᓪᓗᒋᑦ: "Without humor, you freeze twice—once in body, once in spirit."</text>
       <text x="0" y="38" class="font-mono" font-size="11" fill="#78716C">PHILLIP GEAR // UNIVERSAL WORLD SCRIPTS INITIATIVE // OFL 1.1 // CA-NU 🇨🇦 // POCKETGULL.APP</text>

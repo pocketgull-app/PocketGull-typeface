@@ -1,8 +1,80 @@
+# ==============================================================================
+# POCKETGULL TYPEFACE SUPERFAMILY — ROBOTS.TXT
+# ==============================================================================
+# Standard Web Crawlers & Search Indexing (Googlebot, Bingbot, DuckDuckBot):
+# Permitted for search discoverability, academic citation, and open-source accessibility.
+# ==============================================================================
 User-agent: *
 Allow: /
+Disallow: /.foundry/
+Disallow: /.studio/
+Disallow: /.venv/
+Disallow: /sources/.venv/
+Disallow: /scratch/
 
-# Agentic Discovery
-# LLMs Text Manifest: https://typeface.pocketgull.app/llms.txt
+# ==============================================================================
+# INDIGENOUS DATA SOVEREIGNTY & ZERO BASE MODEL TRAINING COVENANT
+# Under the CARE Principles for Indigenous Data Governance (Collective Benefit,
+# Authority to Control, Responsibility, Ethics) and EU Directive 2019/790 Art. 4(3):
+# All commercial/proprietary AI training scrapers, model harvesters, and LLM
+# tokenization crawlers are strictly FORBIDDEN from scraping, downloading,
+# or ingesting font binaries, linguistic corpora, case studies, or source files.
+# ==============================================================================
+User-agent: GPTBot
+Disallow: /
 
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: cohere-training
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Omgilibot
+Disallow: /
+
+User-agent: Scrapy
+Disallow: /
+
+# Text and Data Mining Reservation (W3C TDMR Protocol)
+# Rights Reserved: All TDM rights reserved for AI training purposes under CARE Principles.
+# Policy URI: https://typeface.pocketgull.app/RESPONSIBLE_TYPOGRAPHY.md#pillar-vii-tripartite-governance--sovereignty-boundaries
+
+# Discovery & Sitemaps
 Sitemap: https://typeface.pocketgull.app/sitemap.xml
 Sitemap: https://pocketgull-app.github.io/PocketGull-typeface/sitemap.xml

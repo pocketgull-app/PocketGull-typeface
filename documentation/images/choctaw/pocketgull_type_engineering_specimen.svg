@@ -27,12 +27,12 @@
   <!-- Header Block -->
   <g transform="translate(140, 160)">
     <text x="0" y="50" class="font-mono" font-size="28" font-weight="700" fill="#38BDF8" letter-spacing="0.15em">POCKETGULL CLINICAL TYPEFOUNDRY • 1000 UPM ARCHITECTURAL BLUEPRINT</text>
-    <text x="0" y="130" class="font-title" font-size="64" font-weight="800" fill="#FFFFFF">CHAHTA & MVSKOKE (SOUTHEAST & OKLAHOMA)</text>
-    <text x="0" y="195" class="font-glyph" font-size="44" font-weight="700" fill="#B45309">Chahta Yakni & Mvskoke Etvlwv • Choctaw Nation Health Services • IHS Oklahoma City Area</text>
+    <text x="0" y="130" class="font-title" font-size="64" font-weight="800" fill="#FFFFFF">CHAHTA &amp; MVSKOKE (SOUTHEAST &amp; OKLAHOMA)</text>
+    <text x="0" y="195" class="font-glyph" font-size="44" font-weight="700" fill="#B45309">Chahta Yakni &amp; Mvskoke Etvlwv • Choctaw Nation Health Services • IHS Oklahoma City Area</text>
     <line x1="0" y1="240" x2="2408" y2="240" stroke="#0284C7" stroke-width="2.5" opacity="0.7"/>
   </g>
 
-  <!-- Section 1: Optical Metrics & Invariants -->
+  <!-- Section 1: Optical Metrics &amp; Invariants -->
   <g transform="translate(140, 480)">
     <text x="0" y="0" class="font-mono" font-size="32" font-weight="700" fill="#38BDF8">01 / GEOMETRIC INVARIANTS &amp; BOUNDING BOX ALLOCATION</text>
     
@@ -48,7 +48,7 @@
     <g transform="translate(1230, 40)">
       <rect width="1180" height="180" rx="12" fill="#08233C" stroke="#0284C7" stroke-width="2"/>
       <text x="30" y="50" class="font-mono" font-size="22" font-weight="bold" fill="#94A3B8">MVSKOKE VOWEL TRANSLITERATION</text>
-      <text x="30" y="120" class="font-glyph" font-size="48" font-weight="bold" fill="#B45309">v, e, u (Schwa & Barred ɨ)</text>
+      <text x="30" y="120" class="font-glyph" font-size="48" font-weight="bold" fill="#B45309">v, e, u (Schwa &amp; Barred ɨ)</text>
       <text x="30" y="155" class="font-mono" font-size="20" font-weight="600" fill="#38BDF8">Optical Baseline Stability</text>
     </g>
 
@@ -93,21 +93,21 @@
     </g>
   </g>
 
-  <!-- Section 3: Bioregional Landscape & Land-Based Epistemology -->
+  <!-- Section 3: Bioregional Landscape &amp; Land-Based Epistemology -->
   <g transform="translate(140, 2120)">
     <text x="0" y="0" class="font-mono" font-size="32" font-weight="700" fill="#38BDF8">03 / TRADITIONAL ECOLOGICAL KNOWLEDGE (TEK) &amp; LAND CARTOGRAPHY</text>
     <rect y="40" width="2408" height="420" rx="16" fill="#08233C" stroke="#0284C7" stroke-width="2"/>
-    <text x="50" y="110" class="font-title" font-size="40" font-weight="bold" fill="#B45309">🌾 THE ROLLING RED HILLS, CYPRESS BAYOUS & ANCIENT MOUNDS</text>
+    <text x="50" y="110" class="font-title" font-size="40" font-weight="bold" fill="#B45309">🌾 THE ROLLING RED HILLS, CYPRESS BAYOUS &amp; ANCIENT MOUNDS</text>
     <foreignObject x="50" y="150" width="2300" height="280">
       <div xmlns="http://www.w3.org/1999/xhtml" style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 24px; color: #E2E8F0; line-height: 1.6;">
         From the sacred emergence mound of Nanih Waiya to the winding, cypress-shaded river cane brakes and flowering redbud ridges of Oklahoma. Where ancestral spring waters flow clean through rich red earth, health is the unbroken chain of generational care (Chahta Alla).
         <br/><br/>
-        <strong style="color: #38BDF8;">Sovereignty Invariant:</strong> Clinical state calculations, drug dosages, and health records in Chahta & Mvskoke (Southeast & Oklahoma) strictly eliminate missing-glyph boxes (tofu), honoring ancestral land stewardship and self-determination.
+        <strong style="color: #38BDF8;">Sovereignty Invariant:</strong> Clinical state calculations, drug dosages, and health records in Chahta &amp; Mvskoke (Southeast &amp; Oklahoma) strictly eliminate missing-glyph boxes (tofu), honoring ancestral land stewardship and self-determination.
       </div>
     </foreignObject>
   </g>
 
-  <!-- Section 4: Pharmacopeia & Medical Lexicon Grid -->
+  <!-- Section 4: Pharmacopeia &amp; Medical Lexicon Grid -->
   <g transform="translate(140, 2660)">
     <text x="0" y="0" class="font-mono" font-size="32" font-weight="700" fill="#38BDF8">04 / SOVEREIGN PHARMACOPEIA &amp; CLINICAL TERMINOLOGY</text>
     <g transform="translate(0, 40)">
@@ -166,7 +166,7 @@
   <!-- Footer Technical Block -->
   <g transform="translate(140, 3360)">
     <line x1="0" y1="0" x2="2408" y2="0" stroke="#0284C7" stroke-width="2" opacity="0.7"/>
-    <text x="0" y="60" class="font-mono" font-size="24" fill="#94A3B8">POCKETGULL SUPERFAMILY • ARCHIVAL SPECIMEN • ISO 3166-2: SE-OK/MS/AL • SIL OFL 1.1 • CERN ZENODO DOI: 10.5281/ZENODO.18882512</text>
+    <text x="0" y="60" class="font-mono" font-size="24" fill="#94A3B8">POCKETGULL SUPERFAMILY • ARCHIVAL SPECIMEN • ISO 3166-2: SE-OK/MS/AL • SIL OFL 1.1 • CERN ZENODO DOI: 10.5281/ZENODO.22309379</text>
   </g>
 </svg>
 
