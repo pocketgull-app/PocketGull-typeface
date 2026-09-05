@@ -27,7 +27,7 @@ Located at the root of `pocketgull-typeface`, this configuration file governs ho
 * **License**: `OFL-1.1` (SIL Open Font License 1.1)
 * **Creators**: Phil Gear (`orcid: 0009-0008-1372-5381`, `affiliation: PocketGull LLC`) and The PocketGull Project Authors
 * **Keywords**: `typography`, `typeface`, `clinical-safety`, `ophthalmology`, `optotypes`, `ismp-medication-safety`, `braille`, `bionic-reading`, `open-science`, `cern-zenodo`, `wcag-aaa`
-* **Related Identifiers**: Cross-linked to the companion clinical platform ([DOI: 10.5281/zenodo.20647514](https://doi.org/10.5281/zenodo.20647514)), ORCID, and NPI Registry.
+* **Related Identifiers**: Cross-linked to the companion clinical intelligence platform ([DOI: 10.5281/zenodo.20647514](https://doi.org/10.5281/zenodo.20647514) / [zenodo.org/records/20647514](https://zenodo.org/records/20647514)), ORCID, and NPI Registry.
 
 ### B. `CITATION.cff` (Citation File Format 1.2.0)
 Powers GitHub’s native **"Cite this repository"** sidebar button, exporting instant BibTeX, APA, and EndNote citations for clinical researchers.

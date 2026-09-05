@@ -13,13 +13,25 @@
 
 <br/>
 
-### 🌐 [Live Interactive Specimen](https://typeface.pocketgull.app) &nbsp;•&nbsp; 🇫🇷 [Version Française](README.fr.md) &nbsp;•&nbsp; 📦 [UFO Sources](sources/) &nbsp;•&nbsp; 📄 [SIL OFL 1.1 License](OFL.txt) &nbsp;•&nbsp; 🏛️ [CERN Archival](documentation/CERN_ZENODO_ARCHIVAL_GUIDE.md)
+### 🌐 [Live Interactive Specimen](https://typeface.pocketgull.app) &nbsp;•&nbsp; 💾 [Download Fonts (.ZIP)](fonts/PocketGull-v3.0.0-Complete-Superfamily.zip) &nbsp;•&nbsp; 🇫🇷 [Version Française](README.fr.md) &nbsp;•&nbsp; 📦 [UFO Sources](sources/) &nbsp;•&nbsp; 📄 [SIL OFL 1.1 License](OFL.txt) &nbsp;•&nbsp; 🏛️ [CERN Archival](documentation/CERN_ZENODO_ARCHIVAL_GUIDE.md)
+
 
 </div>
 
 <div align="center">
 
-<img src="documentation/images/pocketgull_device_hero.jpg" alt="PocketGull Telemetry Device & Optotypic Interface" width="100%" />
+<table>
+  <tr>
+    <td width="64%" align="center" style="vertical-align: middle;">
+      <img src="documentation/images/pocketgull_device_hero.jpg" alt="PocketGull Telemetry Device & Optotypic Interface" width="100%" />
+      <br/><sub><strong>PocketGull Handheld Telemetry &amp; Optotypic Reader</strong></sub>
+    </td>
+    <td width="36%" align="center" style="vertical-align: middle;">
+      <img src="documentation/images/pocketgull_telemetry_screen_macro.jpg" alt="PocketGull Telemetry Interface Close-Up" width="100%" />
+      <br/><sub><strong>Screen Macro: Louise Sloan 5:1 Optotypes &amp; ISMP 0̸</strong></sub>
+    </td>
+  </tr>
+</table>
 
 <br/><br/>
 
@@ -146,8 +158,10 @@ Enable clinical dosage disambiguation:
 
 ## 🔬 Academic Citation & CERN / Zenodo DOI
 
-* **Official Published Zenodo Record**: [zenodo.org/records/22309379](https://zenodo.org/records/22309379)
-* **Permanent DOI**: [`10.5281/zenodo.22309379`](https://doi.org/10.5281/zenodo.22309379)
+* **Official Published Zenodo Record (Typeface)**: [zenodo.org/records/22309379](https://zenodo.org/records/22309379)
+* **Permanent DOI (Typeface)**: [`10.5281/zenodo.22309379`](https://doi.org/10.5281/zenodo.22309379)
+* **Companion Clinical Suite Record (Pocket-Gull)**: [zenodo.org/records/20647514](https://zenodo.org/records/20647514)
+* **Companion Clinical Suite DOI**: [`10.5281/zenodo.20647514`](https://doi.org/10.5281/zenodo.20647514)
 * **Preservation Archive**: CERN Data Centre (Geneva, Switzerland)
 
 If you use the PocketGull Typeface Superfamily in your clinical research, healthcare software, or vision science publications, please cite it using [`CITATION.cff`](CITATION.cff) or the BibTeX entry below:

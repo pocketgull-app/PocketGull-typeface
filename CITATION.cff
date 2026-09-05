@@ -36,6 +36,9 @@ identifiers:
   - type: doi
     value: "10.5281/zenodo.20647514"
     description: "PocketGull Clinical Intelligence Platform Companion DOI"
+  - type: url
+    value: "https://zenodo.org/records/20647514"
+    description: "PocketGull Clinical Intelligence Suite Official Zenodo Record"
 keywords:
   - "typography"
   - "typeface"
