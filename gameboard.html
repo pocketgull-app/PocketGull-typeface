@@ -627,6 +627,26 @@
       box-shadow: 0 0 18px rgba(244, 63, 94, 0.45);
     }
 
+
+    .paradigm-btn.active[data-paradigm="trible"] {
+      border-color: #f43f5e;
+      background: rgba(244, 63, 94, 0.2);
+      color: #fda4af;
+    }
+    .paradigm-btn.active[data-paradigm="sacred"] {
+      border-color: #c084fc;
+      background: rgba(168, 85, 247, 0.2);
+      color: #e9d5ff;
+    }
+    .trible-card-accent {
+      border-color: rgba(244, 63, 94, 0.35) !important;
+      background: rgba(244, 63, 94, 0.06) !important;
+    }
+    .sacred-card-accent {
+      border-color: rgba(168, 85, 247, 0.35) !important;
+      background: rgba(168, 85, 247, 0.06) !important;
+    }
+
   </style>
 </head>
 <body>
@@ -666,7 +686,7 @@
         <span>🌐</span>
         <span>Universal Medical Paradigm</span>
       </div>
-      <div class="paradigm-selector-bar" id="paradigmSelectorBar" role="radiogroup" aria-label="Medical Healing Paradigm">
+      <div class="paradigm-selector-bar" id="paradigmSelectorBar" role="radiogroup" aria-label="Medical Healing Paradigm" style="flex-wrap: wrap;">
         <button type="button" class="paradigm-btn active" data-paradigm="allopathic" title="Western Allopathic & Neurobiology: ETDRS Acuity, Motor Mapping, ISMP Safety">
           <span>🔵</span> Allopathic
         </button>
@@ -675,6 +695,12 @@
         </button>
         <button type="button" class="paradigm-btn" data-paradigm="ayurvedic" title="Ayurvedic Medicine: Tridosha Balance (Vata/Pitta/Kapha), Sushumna & Prana">
           <span>🟡</span> Ayurveda
+        </button>
+        <button type="button" class="paradigm-btn" data-paradigm="trible" title="Teachings of Tribility: Pacific Canoe Journey Model, Clan Pulling, Relational Co-Regulation">
+          <span>👥</span> Tribility
+        </button>
+        <button type="button" class="paradigm-btn" data-paradigm="sacred" title="Sacred & Multi-Faith Chaplaincy: Dharmachakra, Magen David, Celtic Cross, Hilal, Khanda">
+          <span>🕊️</span> Sacred
         </button>
       </div>
 
@@ -769,6 +795,48 @@
           <div class="board-char" style="font-family: 'PocketGull', sans-serif;">शान्ति</div>
           <div class="board-name">Shanti (Deep Peace)</div>
           <div class="board-desc">Threefold harmonic cessation of physical, mental, and spiritual strife.</div>
+        </div>
+
+        <!-- 11. Tribility: Kloshe Tumtum (Good Heart / Peace of Mind) -->
+        <div class="board-card trible-card-accent" data-board="tumtum">
+          <div class="board-char" style="font-family: 'PocketGull', sans-serif;">𛰃𛱑𛰙</div>
+          <div class="board-name">Kloshe Tumtum (Tribility)</div>
+          <div class="board-desc">The unified heart-spirit of the clan pulling together in peace.</div>
+        </div>
+
+        <!-- 12. Tribility: Tilikum (Interconnected Community) -->
+        <div class="board-card trible-card-accent" data-board="tilikum">
+          <div class="board-char" style="font-family: 'PocketGull', sans-serif;">𛰃𛱆𛰆</div>
+          <div class="board-name">Tilikum (Clan Kinship)</div>
+          <div class="board-desc">Interlocking communal circle where no one heals in isolation.</div>
+        </div>
+
+        <!-- 13. Sacred: Dharmachakra (8-Fold Path Wheel) -->
+        <div class="board-card sacred-card-accent" data-board="dharmachakra">
+          <div class="board-char" style="font-family: 'PocketGull', sans-serif;">☸</div>
+          <div class="board-name">☸ Dharmachakra</div>
+          <div class="board-desc">Eight radiant spokes of mindful presence, ethical equilibrium, and samadhi.</div>
+        </div>
+
+        <!-- 14. Sacred: Magen David (Interlocking Triangles) -->
+        <div class="board-card sacred-card-accent" data-board="magendavid">
+          <div class="board-char" style="font-family: 'PocketGull', sans-serif;">✡</div>
+          <div class="board-name">✡ Magen David (Bikur Cholim)</div>
+          <div class="board-desc">Pastoral visiting of the sick; heaven-earth hexagram balance.</div>
+        </div>
+
+        <!-- 15. Sacred: Celtic Monastic High Cross -->
+        <div class="board-card sacred-card-accent" data-board="celticcross">
+          <div class="board-char" style="font-family: 'PocketGull', sans-serif;">✝</div>
+          <div class="board-name">✝ Celtic Monastic Cross</div>
+          <div class="board-desc">Vertical transcendence intersected by the radiant solar nimbus halo.</div>
+        </div>
+
+        <!-- 16. Sacred: Hilal Crescent & Star -->
+        <div class="board-card sacred-card-accent" data-board="hilal">
+          <div class="board-char" style="font-family: 'PocketGull', sans-serif;">☪</div>
+          <div class="board-name">☪ Hilal Crescent & Star</div>
+          <div class="board-desc">Gentle nocturnal sanctuary; contemplative palliative tranquility.</div>
         </div>
       </div>
 
@@ -1334,6 +1402,142 @@
           { x: 45, y: 160, label: 'Relational Shanti', collected: false },
           { x: 130, y: 160, label: 'Cosmic Shanti', collected: false }
         ]
+      },
+
+      tumtum: {
+        id: 'tumtum',
+        name: 'Kloshe Tumtum • 𛰃𛱑𛰙 (Good Heart / Clan Spirit)',
+        moralTitle: 'The Law of the Canoe Journey: Pulling in Unity',
+        moralDesc: 'In the Pacific Northwest Canoe Journey, Tumtum represents the unified pulse of the heart, mind, and spirit. When the clan pulls in unison, waves that would capsize a solitary canoe are safely navigated with grace.',
+        paths: [
+          // Left heart chamber loop
+          { type: 'circle', cx: -65, cy: -60, r: 85 },
+          // Right heart chamber loop
+          { type: 'circle', cx: 65, cy: -60, r: 85 },
+          // Convergent bottom keel stem
+          { type: 'line', x1: -140, y1: -10, x2: 0, y2: 210 },
+          { type: 'line', x1: 140, y1: -10, x2: 0, y2: 210 },
+          { type: 'line', x1: -80, y1: 70, x2: 80, y2: 70 }
+        ],
+        targets: [
+          { x: -65, y: -60, label: 'Left Atrium / Compassion', collected: false },
+          { x: 65, y: -60, label: 'Right Atrium / Courage', collected: false },
+          { x: 0, y: 70, label: 'Keel Crossbar', collected: false },
+          { x: 0, y: 210, label: 'Canoe Prow Ground', collected: false }
+        ]
+      },
+
+      tilikum: {
+        id: 'tilikum',
+        name: 'Tilikum • 𛰃𛱆𛰆 (Sacred Clan Kinship)',
+        moralTitle: 'The Interconnected Circle of Belonging',
+        moralDesc: 'Healing is never an isolated achievement. Tilikum honors the relations—elders, children, caregivers, and ancestors—who surround the recovering person with an unbroken ring of unconditional care.',
+        paths: [
+          // Outer protective community ring
+          { type: 'circle', cx: 0, cy: 0, r: 190 },
+          // Inner hearth ring
+          { type: 'circle', cx: 0, cy: 0, r: 90 },
+          // 4 radial kinship bridges
+          { type: 'line', x1: -190, y1: 0, x2: 190, y2: 0 },
+          { type: 'line', x1: 0, y1: -190, x2: 0, y2: 190 }
+        ],
+        targets: [
+          { x: 0, y: -190, label: 'Elder Wisdom', collected: false },
+          { x: 190, y: 0, label: 'Healer Support', collected: false },
+          { x: 0, y: 190, label: 'Earth Ground', collected: false },
+          { x: -190, y: 0, label: 'Youth Vitality', collected: false },
+          { x: 0, y: 0, label: 'Community Hearth', collected: false }
+        ]
+      },
+
+      dharmachakra: {
+        id: 'dharmachakra',
+        name: 'Dharmachakra • ☸ (Eightfold Path Wheel)',
+        moralTitle: 'The Wheel of Mindful Equilibrium',
+        moralDesc: 'The 8 spokes represent right understanding, thought, speech, action, livelihood, effort, mindfulness, and concentration. Rolling along the wheel restores equanimity and clears sensory overload.',
+        paths: [
+          { type: 'circle', cx: 0, cy: 0, r: 185 },
+          { type: 'circle', cx: 0, cy: 0, r: 60 },
+          // 8 Spokes
+          { type: 'line', x1: -185, y1: 0, x2: 185, y2: 0 },
+          { type: 'line', x1: 0, y1: -185, x2: 0, y2: 185 },
+          { type: 'line', x1: -130, y1: -130, x2: 130, y2: 130 },
+          { type: 'line', x1: -130, y1: 130, x2: 130, y2: -130 }
+        ],
+        targets: [
+          { x: 0, y: -185, label: 'Right Mindfulness', collected: false },
+          { x: 130, y: -130, label: 'Right Resolve', collected: false },
+          { x: 185, y: 0, label: 'Right Action', collected: false },
+          { x: 130, y: 130, label: 'Right Livelihood', collected: false },
+          { x: 0, y: 185, label: 'Right Samadhi', collected: false },
+          { x: -130, y: 130, label: 'Right Effort', collected: false },
+          { x: -185, y: 0, label: 'Right Speech', collected: false },
+          { x: -130, y: -130, label: 'Right View', collected: false }
+        ]
+      },
+
+      magendavid: {
+        id: 'magendavid',
+        name: 'Magen David • ✡ (Hexagram Equilibrium)',
+        moralTitle: 'Bikur Cholim: The Sacred Act of Visiting the Sick',
+        moralDesc: 'Two interlocking equilateral triangles representing the balance between transcendence and earthly grounding. In Jewish pastoral tradition, visiting the sick lifts one-sixtieth of their illness.',
+        paths: [
+          // Upward pointing triangle
+          { type: 'poly', points: [{ x: 0, y: -210 }, { x: 180, y: 105 }, { x: -180, y: 105 }] },
+          // Downward pointing triangle
+          { type: 'poly', points: [{ x: 0, y: 210 }, { x: 180, y: -105 }, { x: -180, y: -105 }] }
+        ],
+        targets: [
+          { x: 0, y: -210, label: 'Crown / Keter', collected: false },
+          { x: 180, y: -105, label: 'Wisdom / Chokhmah', collected: false },
+          { x: 180, y: 105, label: 'Lovingkindness / Chesed', collected: false },
+          { x: 0, y: 210, label: 'Kingdom / Malkhut', collected: false },
+          { x: -180, y: 105, label: 'Strength / Gevurah', collected: false },
+          { x: -180, y: -105, label: 'Understanding / Binah', collected: false }
+        ]
+      },
+
+      celticcross: {
+        id: 'celticcross',
+        name: 'Celtic Monastic Cross • ✝ (Solar Nimbus Halo)',
+        moralTitle: 'The 9th-Century Scriptorium Sanctuary',
+        moralDesc: 'The ancient Celtic cross unites the four cardinal earthly directions with the eternal solar nimbus halo. It offers stability, grounding, and quiet shelter during profound vulnerability.',
+        paths: [
+          // Vertical pillar
+          { type: 'line', x1: 0, y1: -220, x2: 0, y2: 220 },
+          // Horizontal crossbar
+          { type: 'line', x1: -160, y1: -50, x2: 160, y2: -50 },
+          // Solar nimbus ring
+          { type: 'circle', cx: 0, cy: -50, r: 100 }
+        ],
+        targets: [
+          { x: 0, y: -220, label: 'Heavenly Crown', collected: false },
+          { x: -160, y: -50, label: 'Western Gate', collected: false },
+          { x: 0, y: -50, label: 'Central Nimbus', collected: false },
+          { x: 160, y: -50, label: 'Eastern Gate', collected: false },
+          { x: 0, y: 220, label: 'Earthly Anchor', collected: false }
+        ]
+      },
+
+      hilal: {
+        id: 'hilal',
+        name: 'Hilal & Morning Star • ☪ (Nocturnal Serenity)',
+        moralTitle: 'Dhikr & Tranquility in the Night',
+        moralDesc: 'The slender crescent cradling the radiant star symbolizes guidance through darkness. In palliative care, it reminds us that light returns after the longest night.',
+        paths: [
+          // Outer sweeping crescent
+          { type: 'bezier', p0: { x: 30, y: -180 }, p1: { x: -180, y: -120 }, p2: { x: -180, y: 120 }, p3: { x: 30, y: 180 } },
+          // Inner crescent return
+          { type: 'bezier', p0: { x: 30, y: 180 }, p1: { x: -100, y: 90 }, p2: { x: -100, y: -90 }, p3: { x: 30, y: -180 } },
+          // Morning star sanctuary
+          { type: 'circle', cx: 90, cy: 0, r: 40 }
+        ],
+        targets: [
+          { x: 30, y: -180, label: 'Upper Crescent Horn', collected: false },
+          { x: -130, y: 0, label: 'Deep Night Belly', collected: false },
+          { x: 30, y: 180, label: 'Lower Crescent Horn', collected: false },
+          { x: 90, y: 0, label: 'Morning Star of Guidance', collected: false }
+        ]
       }
     };
 
@@ -1727,6 +1931,7 @@
         if (currentParadigm === 'allopathic') {
           sound.setFrequency(528);
           setBoard('zero');
+          document.querySelectorAll('.board-card').forEach(c => c.classList.toggle('active', c.dataset.board === 'zero'));
           showToast('🔵 Western Allopathic: ISMP Disambiguation & Motor Mapping Active');
         } else if (currentParadigm === 'tcm') {
           sound.setFrequency(432);
@@ -1738,6 +1943,16 @@
           setBoard('om');
           document.querySelectorAll('.board-card').forEach(c => c.classList.toggle('active', c.dataset.board === 'om'));
           showToast('🟡 Ayurvedic Medicine: Pranava OM & Tridosha Grounding Active');
+        } else if (currentParadigm === 'trible') {
+          sound.setFrequency(432);
+          setBoard('tumtum');
+          document.querySelectorAll('.board-card').forEach(c => c.classList.toggle('active', c.dataset.board === 'tumtum'));
+          showToast('👥 Teachings of Tribility: Kloshe Tumtum & Canoe Journey Pulling Active');
+        } else if (currentParadigm === 'sacred') {
+          sound.setFrequency(528);
+          setBoard('dharmachakra');
+          document.querySelectorAll('.board-card').forEach(c => c.classList.toggle('active', c.dataset.board === 'dharmachakra'));
+          showToast('🕊️ Multi-Faith Chaplaincy: Dharmachakra & Palliative Directives Active');
         }
       });
     });
