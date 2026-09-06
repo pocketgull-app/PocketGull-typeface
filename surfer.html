@@ -499,7 +499,9 @@
 
       <div style="display: flex; gap: 0.6rem; align-items: center;">
         <!-- Healing Soundscape Preset Selector -->
-        <select id="selectTerrain" class="hud-btn" style="background: rgba(56, 189, 248, 0.2); border-color: #38bdf8; color: #38bdf8; cursor: pointer; outline: none; font-weight: 800;" title="Select Visual &amp; Physics Theme">
+        <select id="selectTerrain" class="hud-btn" style="background: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #10b981; cursor: pointer; outline: none; font-weight: 800;" title="Select Visual &amp; Physics Theme">
+          <option value="fable" selected>📜 Aesop's Fable Sanctuary</option>
+          <option value="edgesurf">🏄‍♂️ Edge Surf (Lagoon Waters)</option>
           <option value="cyber">⚡ Cyber Highway</option>
           <option value="edgesurf">🏄‍♂️ Edge Surf (Microsoft Classic)</option>
           <option value="skifree">⛷️ SkiFree Alpine (1991)</option>
@@ -523,10 +525,12 @@
   <!-- Start / Instructions Modal -->
   <div class="modal-overlay" id="startModal">
     <div class="start-card">
-      <div class="card-badge">OPEN-SOURCE WEBXR RHYTHM HIGHWAY</div>
-      <h1 class="card-title">SLOAN SURFER</h1>
+      <div class="card-badge" style="background: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #10b981;">
+        ANCIENT WISDOM &amp; CLINICAL OPTOTYPE SANCTUARY
+      </div>
+      <h1 class="card-title">SLOAN SURFER: AESOP’S FABLES</h1>
       <p class="card-desc">
-        A clinical optometry &amp; collaborative learning game inspired by Moonrider.xyz, Microsoft Edge Surf, and SkiFree. Designed as an intergenerational teaching stage: master Louise Sloan 5:1 optotypes, test life-critical ISMP medication safety, and build collaborative saccadic synchronization across clinical teams, students, and patients.
+        A serene, stress-free clinical learning journey inspired by <strong>Aesop’s Fables</strong>. Glide peacefully through sunlit meadows, gather typographic letters, unlock timeless teamwork and compassion morals, and discover how <em>"slow and steady wins the race"</em> in visual rehabilitation and collaborative care.
       </p>
 
       <!-- AGE-BASED CLINICAL DIFFICULTY TIERS -->
@@ -534,40 +538,52 @@
         Select Patient / User Age Level:
       </div>
 
-      <div class="tier-selector-grid" id="tierGrid">
-        <!-- 1. PEDIATRIC EXPLORER (Ages 4 - 12) -->
+      <div class="tier-selector-grid" id="tierGrid" style="grid-template-columns: repeat(4, 1fr);">
+        <!-- 1. COZY FABLE SANCTUARY (DEFAULT) -->
+        <div class="tier-card tier-pediatric selected" data-tier="cozy" style="border-color: #10b981; background: rgba(16, 185, 129, 0.15);">
+          <span class="tier-badge" style="background: #10b981; color: #020617;">Super Chill</span>
+          <div class="tier-title" style="color: #6ee7b7;">📜 Aesop’s Fables</div>
+          <div class="tier-desc">Inspired by the Tortoise & The Lion: gentle pace, magnetic letters, zero stress, and inspiring moral stories.</div>
+          <div class="tier-specs" style="color: #6ee7b7;">
+            Speed: 180 px/s (Chill)<br>
+            Magnet: 4.0× Aura<br>
+            Penalty: Never Reset
+          </div>
+        </div>
+
+        <!-- 2. PEDIATRIC EXPLORER -->
         <div class="tier-card tier-pediatric" data-tier="pediatric">
           <span class="tier-badge">Ages 4–12</span>
-          <div class="tier-title">👶 Pediatric Explorer</div>
-          <div class="tier-desc">Large, high-contrast Sloan optotypes, forgiving collision radii, and soothing 528Hz Solfeggio tones for young learners.</div>
+          <div class="tier-title">👶 Kids Journey</div>
+          <div class="tier-desc">Large high-contrast Sloan optotypes, forgiving magnetic halos, and soothing 528Hz DNA tones.</div>
           <div class="tier-specs">
-            Speed: 420 px/s (Gentle)<br>
-            Hitbox: 2.2× Large<br>
-            Penalty: Zero Miss Reset
+            Speed: 220 px/s<br>
+            Magnet: 3.5× Large<br>
+            Penalty: Zero Reset
           </div>
         </div>
 
-        <!-- 2. CLINICIAN / ADULT SPRINT (Ages 13 - 64) -->
-        <div class="tier-card tier-clinician selected" data-tier="clinician">
-          <span class="tier-badge">Ages 13–64</span>
-          <div class="tier-title">🩺 Clinician &amp; Adult</div>
-          <div class="tier-desc">Standard 5:1 Louise Sloan optotypes, rapid saccadic switching, 40Hz gamma focus, and full ISMP character disambiguation.</div>
-          <div class="tier-specs">
-            Speed: 680 px/s (Rapid)<br>
-            Hitbox: 1.5× Exact<br>
-            Penalty: Acuity Regression
-          </div>
-        </div>
-
-        <!-- 3. SENIOR & HEALING RECOVERY (Ages 65+ & Rehab) -->
+        <!-- 3. GENTLE RECOVERY -->
         <div class="tier-card tier-elder" data-tier="elder">
-          <span class="tier-badge">Ages 65+ &amp; Rehab</span>
-          <div class="tier-title">🌿 Senior &amp; Gentle Recovery</div>
-          <div class="tier-desc">Slow-pacing highway, high visual contrast for cataract/macular recovery, and vagal 60 BPM cardiac synchronization.</div>
+          <span class="tier-badge">Ages 65+</span>
+          <div class="tier-title">🌿 Senior Healing</div>
+          <div class="tier-desc">Slowest pace for physical recovery, high contrast, vagal 60 BPM cardiac relaxation.</div>
           <div class="tier-specs">
-            Speed: 360 px/s (Relaxed)<br>
-            Hitbox: 2.5× Wide<br>
-            Penalty: Soft Warning Only
+            Speed: 150 px/s<br>
+            Magnet: 4.5× Huge<br>
+            Penalty: Encouragement
+          </div>
+        </div>
+
+        <!-- 4. RHYTHMIC FLOW -->
+        <div class="tier-card tier-clinician" data-tier="clinician">
+          <span class="tier-badge">Brisk Flow</span>
+          <div class="tier-title">🏄 Highway Flow</div>
+          <div class="tier-desc">Smooth rhythmic pace for faster saccadic practice and 40Hz focus without punishing difficulty.</div>
+          <div class="tier-specs">
+            Speed: 360 px/s<br>
+            Magnet: 2.8× Exact<br>
+            Penalty: Encouragement
           </div>
         </div>
       </div>
@@ -580,7 +596,7 @@
       </div>
 
       <button class="primary-start-btn" id="btnStartRun">
-        <span id="btnStartRunText">▶ START CLINICIAN RUN (AGES 13–64)</span>
+        <span id="btnStartRunText">📜 ENTER AESOP’S FABLE SANCTUARY</span>
       </button>
     </div>
   </div>
@@ -851,38 +867,48 @@
     const HIGHWAY_Z_DEPTH = 1200;
     const PLAYER_Z = 60;
 
-    // ─── Age Tier Configurations ───
+    // ─── Super-Chill Fable & Sanctuary Cozy Configurations ───
     const AGE_TIERS = {
+      cozy: {
+        name: 'Cozy Fable Sanctuary (Zero Stress)',
+        speed: 180,              // Ultra-chill gentle glide (like Fable pastoral stroll)
+        spawnInterval: 1.8,      // Ample time to observe and appreciate each letter
+        hitboxMultiplier: 4.0,   // Massive magnetic collection aura
+        resetOnMiss: false,      // NEVER lose score or streak
+        soundscape: 'monastic',  // Warm cathedral chimes & 432Hz harmonic acoustic lute
+        buttonText: '🌸 ENTER COZY FABLE SANCTUARY'
+      },
       pediatric: {
         name: 'Pediatric Explorer (Ages 4–12)',
-        speed: 420,
-        spawnInterval: 0.95,
-        hitboxMultiplier: 2.2,
+        speed: 220,
+        spawnInterval: 1.4,
+        hitboxMultiplier: 3.5,
         resetOnMiss: false,
         soundscape: 'dna',
-        buttonText: '▶ START PEDIATRIC RUN (AGES 4–12)'
+        buttonText: '👶 START PEDIATRIC JOURNEY'
       },
       clinician: {
-        name: 'Clinician & Adult (Ages 13–64)',
-        speed: 680,
-        spawnInterval: 0.65,
-        hitboxMultiplier: 1.5,
-        resetOnMiss: true,
+        name: 'Brisk Highway Flow',
+        speed: 360,              // Reduced from frantic 680 down to smooth rhythmic flow
+        spawnInterval: 1.0,
+        hitboxMultiplier: 2.8,
+        resetOnMiss: false,      // No punishing resets, only gentle encouraging streaks
         soundscape: 'gamma',
-        buttonText: '▶ START CLINICIAN RUN (AGES 13–64)'
+        buttonText: '🏄 START HIGHWAY FLOW'
       },
       elder: {
-        name: 'Senior & Gentle Recovery (Ages 65+)',
-        speed: 360,
-        spawnInterval: 1.15,
-        hitboxMultiplier: 2.5,
+        name: 'Gentle Healing & Rehab (Ages 65+)',
+        speed: 150,              // Softest pace for therapeutic recovery
+        spawnInterval: 2.0,
+        hitboxMultiplier: 4.5,
         resetOnMiss: false,
         soundscape: 'cardiac',
-        buttonText: '▶ START SENIOR RUN (AGES 65+)'
+        buttonText: '🌿 START GENTLE HEALING'
       }
     };
 
-    let selectedAgeTierKey = 'clinician';
+    // Default to the Super-Chill Cozy Fable mode!
+    let selectedAgeTierKey = 'cozy';
 
     let isPlaying = false;
     let score = 0;
@@ -905,8 +931,51 @@
     let beatTimer = 0;
     let spawnTimer = 0;
 
+    
+    // ─── Aesop's Fables Allegories & Moral Teaching Lessons ───
+    const AESOP_FABLES = [
+      {
+        character: '🐢 The Tortoise',
+        quote: 'Slow and steady wins the race.',
+        principle: 'Perseverance & Patience',
+        color: '#10b981'
+      },
+      {
+        character: '🦁 The Lion & The Mouse',
+        quote: 'No act of kindness, no matter how small, is ever wasted.',
+        principle: 'Mutual Aid & Compassion',
+        color: '#f59e0b'
+      },
+      {
+        character: '🐜 The Ant & The Grasshopper',
+        quote: 'It is best to prepare for the days of necessity.',
+        principle: 'Diligence & Foresight',
+        color: '#38bdf8'
+      },
+      {
+        character: '🦅 The Bundle of Sticks',
+        quote: 'United we stand, divided we fall.',
+        principle: 'Strength in Teamwork & Cohesion',
+        color: '#c084fc'
+      },
+      {
+        character: '🕊️ The Dove & The Ant',
+        quote: 'One good turn deserves another.',
+        principle: 'Reciprocity & Gratitude',
+        color: '#ec4899'
+      },
+      {
+        character: '🦊 The Crow & The Pitcher',
+        quote: 'Little by little does the trick.',
+        principle: 'Wisdom, Resourcefulness & Care',
+        color: '#e2e8f0'
+      }
+    ];
+
+    let currentFableIndex = 0;
+
     // ─── SkiFree, Edge Surf & Collaborative Teamwork Mode ───
-    let currentTerrain = 'cyber'; // 'cyber' | 'edgesurf' | 'skifree' | 'pacific'
+    let currentTerrain = 'fable'; // 'cyber' | 'edgesurf' | 'skifree' | 'pacific'
     let isCoopMode = false;
     let teamSyncScore = 100;
 
@@ -999,7 +1068,13 @@
       let type = 'tree';
       let icon = '🌲';
 
-      if (currentTerrain === 'edgesurf') {
+      if (currentTerrain === 'fable') {
+        const r = Math.random();
+        if (r < 0.35) { type = 'flower'; icon = '🌸'; }
+        else if (r < 0.6) { type = 'wisp'; icon = '✨'; }
+        else if (r < 0.8) { type = 'butterfly'; icon = '🦋'; }
+        else { type = 'campfire'; icon = '🏕️'; }
+      } else if (currentTerrain === 'edgesurf') {
         const r = Math.random();
         if (r < 0.35) { type = 'buoy'; icon = '🔴'; }
         else if (r < 0.6) { type = 'turtle'; icon = '🐢'; }
@@ -1201,9 +1276,18 @@
         streakToast.style.color = '#c084fc';
         synth.playBrailleChord(streak);
       } else {
-        streakToast.textContent = '🎯 5:1 SLOAN FIXATION: ' + target.char + ' (+' + earned + ')';
-        streakToast.style.color = '#38bdf8';
-        synth.playSaberSlash(440, true);
+        if (currentTerrain === 'fable') {
+          // Display Aesop's Fable Wisdom
+          const fable = AESOP_FABLES[currentFableIndex % AESOP_FABLES.length];
+          streakToast.textContent = fable.character + ': "' + fable.quote + '" (+' + earned + ')';
+          streakToast.style.color = fable.color;
+          currentFableIndex++;
+          synth.playSaberSlash(440 + (currentFableIndex % 5) * 45, true);
+        } else {
+          streakToast.textContent = '🎯 5:1 SLOAN FIXATION: ' + target.char + ' (+' + earned + ')';
+          streakToast.style.color = '#38bdf8';
+          synth.playSaberSlash(440, true);
+        }
       }
 
       streakToast.classList.add('show');
@@ -1343,8 +1427,19 @@
         const projY = horizonY + (height * 0.48) * perspective + t.y * perspective;
         const projScale = Math.max(0.1, t.scale * perspective * 24);
 
+        // Cozy Fable Magnetic Attraction (Letters gently float toward the player's saber)
+        const activeSaber = t.hand === 'left' ? player.leftSaber : player.rightSaber;
+        const targetScreenX = centerX + activeSaber.x;
+        const targetScreenY = horizonY + activeSaber.y;
+        const distToPlayer = Math.hypot(projX - targetScreenX, projY - targetScreenY);
+
+        if (!t.hit && t.z <= PLAYER_Z + 180 && distToPlayer < 240) {
+          // Magnetic suction towards saber
+          t.x += ((player.x - t.x) * 0.08);
+        }
+
         // Test collision near player plane (PLAYER_Z)
-        if (!t.hit && t.z <= PLAYER_Z + 40 && t.z >= PLAYER_Z - 40) {
+        if (!t.hit && t.z <= PLAYER_Z + 100 && t.z >= PLAYER_Z - 80) {
           const activeSaber = t.hand === 'left' ? player.leftSaber : player.rightSaber;
           const distToSaber = Math.hypot(projX - (centerX + activeSaber.x), projY - (horizonY + activeSaber.y));
           
@@ -1438,6 +1533,16 @@
               setTimeout(() => streakToast.classList.remove('show'), 600);
               synth.playSaberSlash(720, true);
               triggerTactileImpulse([40], 280, 'normal');
+            } else if (currentTerrain === 'fable') {
+              // In Fable mode, touching wildflowers & wisps awards peaceful bonuses!
+              obs.hit = true;
+              score += 150;
+              streakToast.textContent = '✨ GATHERED ' + obs.icon + ' WILDFLOWER! +150';
+              streakToast.style.color = '#6ee7b7';
+              streakToast.classList.add('show');
+              setTimeout(() => streakToast.classList.remove('show'), 600);
+              synth.playBrailleChord(streak);
+              createShatterEffect(projX, projY, '#f472b6', 14);
             } else if (!isJumping) {
               // Hit obstacle while not jumping
               registerMiss();
