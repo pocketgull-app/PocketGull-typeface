@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PocketGull — The Typographic Healing Sanctuary &amp; Letterform Gameboard</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  
+  <style>
+    @font-face {
+      font-family: 'PocketGull';
+      src: url('fonts/woff2/PocketGull-Bold.woff2') format('woff2'),
+           url('fonts/ttf/PocketGull-Bold.ttf') format('truetype');
+      font-weight: 700 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'PocketGull Fineliner';
+      src: url('fonts/woff2/PocketGull-Fineliner.woff2') format('woff2'),
+           url('fonts/ttf/PocketGull-Fineliner.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'PocketGull Mono';
+      src: url('fonts/woff2/PocketGullMono-Regular.woff2') format('woff2'),
+           url('fonts/ttf/PocketGullMono-Regular.ttf') format('truetype');
+      font-weight: 400 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --bg-space: #030712;
+      --bg-surface: #0b1329;
+      --bg-card: rgba(15, 23, 42, 0.85);
+      --border-subtle: rgba(255, 255, 255, 0.1);
+      --accent-teal: #14b8a6;
+      --accent-cyan: #38bdf8;
+      --accent-amber: #f59e0b;
+      --accent-purple: #a855f7;
+      --accent-emerald: #10b981;
+      --font-display: 'PocketGull', system-ui, sans-serif;
+      --font-body: 'PocketGull Fineliner', system-ui, sans-serif;
+      --font-mono: 'PocketGull Mono', monospace;
+    }
+
+    [data-theme="washi"] {
+      --bg-space: #faf8f2;
+      --bg-surface: #f4efe6;
+      --bg-card: rgba(255, 253, 248, 0.92);
+      --border-subtle: #d8d1c4;
+      --accent-teal: #0f766e;
+      --accent-cyan: #0284c7;
+      --accent-amber: #b45309;
+      --accent-purple: #7e22ce;
+      --accent-emerald: #047857;
+      color: #1f1b16;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body {
+      background-color: var(--bg-space);
+      color: #f8fafc;
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    [data-theme="washi"] body {
+      color: #1f1b16;
+    }
+
+    /* ─── TOP BAR ─── */
+    .sanctuary-header {
+      padding: 0.75rem 1.5rem;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(12px);
+      z-index: 10;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .brand-icon {
+      font-size: 1.6rem;
+      animation: gentleBreath 10s infinite ease-in-out;
+    }
+
+    @keyframes gentleBreath {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px var(--accent-teal)); }
+      50% { transform: scale(1.15); filter: drop-shadow(0 0 16px var(--accent-cyan)); }
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: #fff;
+    }
+
+    [data-theme="washi"] .brand-title {
+      color: #1f1b16;
+    }
+
+    .brand-sub {
+      font-size: 0.72rem;
+      color: var(--accent-teal);
+      font-family: var(--font-mono);
+      letter-spacing: 0.05em;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .hud-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-action {
+      background: rgba(20, 184, 166, 0.15);
+      border: 1px solid var(--accent-teal);
+      color: var(--accent-teal);
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
+    }
+
+    .btn-action:hover {
+      background: var(--accent-teal);
+      color: #020617;
+      transform: translateY(-1px);
+      box-shadow: 0 0 12px var(--accent-teal);
+    }
+
+    /* ─── MAIN WORKSPACE ─── */
+    .game-workspace {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 320px 1fr 340px;
+      gap: 1rem;
+      padding: 1rem;
+      height: calc(100vh - 65px);
+      overflow: hidden;
+    }
+
+    @media (max-width: 1100px) {
+      .game-workspace {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        height: auto;
+        overflow-y: auto;
+      }
+      .panel-sidebar { display: none; }
+    }
+
+    /* ─── SIDE PANELS ─── */
+    .panel-sidebar {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      overflow-y: auto;
+      backdrop-filter: blur(12px);
+    }
+
+    .panel-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.6rem;
+    }
+
+    .board-selector-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.6rem;
+    }
+
+    .board-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 0.75rem;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .board-card:hover {
+      border-color: var(--accent-teal);
+      background: rgba(20, 184, 166, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .board-card.active {
+      border-color: var(--accent-teal);
+      background: rgba(20, 184, 166, 0.2);
+      box-shadow: 0 0 16px rgba(20, 184, 166, 0.3);
+    }
+
+    .board-char {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      line-height: 1;
+      color: #fff;
+    }
+
+    [data-theme="washi"] .board-char {
+      color: #1f1b16;
+    }
+
+    .board-name {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+    }
+
+    .board-desc {
+      font-size: 0.65rem;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.3;
+    }
+
+    [data-theme="washi"] .board-desc {
+      color: #57534e;
+    }
+
+    /* ─── CANVAS STAGE ─── */
+    .stage-container {
+      position: relative;
+      background: radial-gradient(circle at center, #070d1e 0%, #02050e 100%);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
+    }
+
+    [data-theme="washi"] .stage-container {
+      background: radial-gradient(circle at center, #ffffff 0%, #f4efe6 100%);
+      box-shadow: inset 0 0 30px rgba(70, 45, 18, 0.05);
+    }
+
+    canvas {
+      display: block;
+      cursor: crosshair;
+    }
+
+    /* Stage Floating Controls */
+    .stage-hud {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      right: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .stage-banner {
+      background: rgba(3, 7, 18, 0.85);
+      border: 1px solid var(--border-subtle);
+      padding: 0.4rem 0.85rem;
+      border-radius: 9999px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-emerald);
+      backdrop-filter: blur(8px);
+      pointer-events: auto;
+    }
+
+    [data-theme="washi"] .stage-banner {
+      background: rgba(255, 253, 248, 0.9);
+      color: #047857;
+    }
+
+    /* Pacing Guide Circle */
+    .breath-pacer {
+      position: absolute;
+      bottom: 1.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-subtle);
+      padding: 0.45rem 1rem;
+      border-radius: 9999px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #fff;
+      backdrop-filter: blur(8px);
+      pointer-events: auto;
+    }
+
+    [data-theme="washi"] .breath-pacer {
+      background: rgba(255, 253, 248, 0.95);
+      color: #1f1b16;
+    }
+
+    .pacer-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent-teal);
+      box-shadow: 0 0 10px var(--accent-teal);
+      animation: pacerExpand 10s infinite ease-in-out;
+    }
+
+    @keyframes pacerExpand {
+      0%, 100% { transform: scale(0.7); opacity: 0.5; }
+      50% { transform: scale(1.4); opacity: 1; filter: drop-shadow(0 0 12px var(--accent-cyan)); }
+    }
+
+    /* ─── TOAST NOTIFICATIONS ─── */
+    .healing-toast {
+      position: absolute;
+      top: 5rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(-10px);
+      background: rgba(16, 185, 129, 0.25);
+      border: 1px solid #10b981;
+      color: #6ee7b7;
+      padding: 0.6rem 1.4rem;
+      border-radius: 9999px;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 800;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+      z-index: 50;
+      text-align: center;
+    }
+
+    .healing-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation & Global Controls -->
+  <header class="sanctuary-header">
+    <div class="brand-group">
+      <div class="brand-icon">🕊️</div>
+      <div>
+        <div class="brand-title">POCKETGULL HEALING GAMEBOARDS</div>
+        <div class="brand-sub">NEUROTYPOGRAPHIC BIO-PACING &amp; RESTORATIVE SACCADES</div>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <div class="hud-chip">
+        <span>💓</span>
+        <span id="hudVibePulse">0.1 Hz Respiratory Wave</span>
+      </div>
+      <div class="hud-chip" style="color: var(--accent-emerald);">
+        <span>🌸</span>
+        <span id="hudHarmony">100% Calm</span>
+      </div>
+      <button class="btn-action" id="btnToggleAudio">🔊 Audio: ON</button>
+      <button class="btn-action" id="btnThemeToggle">🎨 Theme: Dark</button>
+      <a href="index.html#section-07" class="btn-action">📖 Specimen</a>
+    </div>
+  </header>
+
+  <!-- Interactive Gameboard Workspace -->
+  <div class="game-workspace">
+    
+    <!-- LEFT PANEL: LETTERFORM GAMEBOARDS SELECTION -->
+    <aside class="panel-sidebar">
+      <div class="panel-title">
+        <span>🧩</span>
+        <span>Choose Letterform Board</span>
+      </div>
+      <p style="font-size: 0.75rem; color: rgba(255,255,255,0.65); line-height: 1.4;">
+        Each board is mathematically carved directly out of a PocketGull clinical glyph contour. Roll your soothing light-pearl around the perimeter or crossbar paths.
+      </p>
+
+      <div class="board-selector-grid">
+        <!-- 1. Slashed Zero (Drawbridge Counter) -->
+        <div class="board-card active" data-board="zero">
+          <div class="board-char">0̸</div>
+          <div class="board-name">ISMP Slashed Zero</div>
+          <div class="board-desc">Circular counter ring with a central diagonal sanctuary drawbridge.</div>
+        </div>
+
+        <!-- 2. Dual Lozenge (Figure Eight) -->
+        <div class="board-card" data-board="eight">
+          <div class="board-char">8</div>
+          <div class="board-name">Figure Eight</div>
+          <div class="board-desc">Continuous infinity loop for bilateral coordination and neuro-balance.</div>
+        </div>
+
+        <!-- 3. Inuktitut Triangle (Rotational Harmony) -->
+        <div class="board-card" data-board="inuktitut">
+          <div class="board-char">ᐃ</div>
+          <div class="board-name">Inuktitut "I"</div>
+          <div class="board-desc">Harmonic triangular mountain ascent grounded in Arctic Inuit dignity.</div>
+        </div>
+
+        <!-- 4. Chinuk Pipa (Sacred River Loop) -->
+        <div class="board-card" data-board="pipa">
+          <div class="board-char">𑲒</div>
+          <div class="board-name">Chinuk Pipa WA</div>
+          <div class="board-desc">Gentle sweeping phonetic feather vector from the Pacific Northwest.</div>
+        </div>
+
+        <!-- 5. Serpentine Saccade (S-Curve) -->
+        <div class="board-card" data-board="s">
+          <div class="board-char">S</div>
+          <div class="board-name">Sloan S-Curve</div>
+          <div class="board-desc">Graceful serpentine chicane for ocular saccade decompression.</div>
+        </div>
+
+        <!-- 6. Cap-Height Temple (Pinnacle & Bridge) -->
+        <div class="board-card" data-board="a">
+          <div class="board-char">A</div>
+          <div class="board-name">Pinnacle Temple</div>
+          <div class="board-desc">Ascend the twin pillars and cross the peaceful high horizon bridge.</div>
+        </div>
+      </div>
+
+      <!-- SOUNDSCAPE SELECTOR -->
+      <div class="panel-title" style="margin-top: 0.5rem;">
+        <span>🎧</span>
+        <span>Healing Harmonic Frequency</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.45rem;">
+        <button class="btn-action sound-btn active" data-freq="528" style="justify-content: space-between;">
+          <span>🧬 528 Hz DNA Repair</span>
+          <span style="opacity: 0.7;">Solfeggio MI</span>
+        </button>
+        <button class="btn-action sound-btn" data-freq="432" style="justify-content: space-between; border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); background: transparent;">
+          <span>🔔 432 Hz Monastic Calm</span>
+          <span style="opacity: 0.7;">Pythagorean</span>
+        </button>
+        <button class="btn-action sound-btn" data-freq="136.1" style="justify-content: space-between; border-color: rgba(255,255,255,0.2); color: rgba(255,255,255,0.7); background: transparent;">
+          <span>🪐 136.1 Hz Earth OM</span>
+          <span style="opacity: 0.7;">Centering</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- CENTER PLAYFIELD: THE LETTERFORM CANVAS -->
+    <main class="stage-container" id="stageWrap">
+      <!-- HUD Overlay -->
+      <div class="stage-hud">
+        <div class="stage-banner" id="boardTitleBanner">
+          📜 Active Board: <strong>ISMP Slashed Zero (0̸)</strong>
+        </div>
+        <div class="stage-banner" style="color: var(--accent-amber);">
+          🎯 Touch &amp; Drag or Glide Mouse to Flow
+        </div>
+      </div>
+
+      <!-- Toast Feedback -->
+      <div class="healing-toast" id="healingToast">
+        🌸 Slashed Zero Equilibrium Reached • +100 Inner Peace
+      </div>
+
+      <!-- Canvas -->
+      <canvas id="boardCanvas"></canvas>
+
+      <!-- Pacing Guide: 0.1 Hz Vagal Parasympathetic Breath -->
+      <div class="breath-pacer">
+        <div class="pacer-dot"></div>
+        <span id="pacerLabel">Breathe In Gently (4s) … Breathe Out Peacefully (6s)</span>
+      </div>
+    </main>
+
+    <!-- RIGHT PANEL: WISDOM, TEAMWORK & REFLECTION -->
+    <aside class="panel-sidebar">
+      <div class="panel-title">
+        <span>🕊️</span>
+        <span>Sanctuary Reflections</span>
+      </div>
+
+      <!-- Moral of the Board Card -->
+      <div style="background: rgba(20, 184, 166, 0.1); border: 1px solid rgba(20, 184, 166, 0.3); border-radius: 12px; padding: 1rem;">
+        <div style="font-size: 0.7rem; font-weight: 800; color: var(--accent-teal); text-transform: uppercase; margin-bottom: 0.4rem;">
+          Clinical Wisdom &amp; Healing Principle
+        </div>
+        <div id="boardMoralTitle" style="font-family: var(--font-display); font-size: 1.05rem; font-weight: 800; color: #fff; margin-bottom: 0.4rem;">
+          The Wisdom of Unambiguous Care
+        </div>
+        <div id="boardMoralDesc" style="font-size: 0.75rem; line-height: 1.5; color: rgba(255,255,255,0.8);">
+          In healthcare as in life, clear boundaries bring safety. The slashed zero unequivocally separates the zero from the circle of confusion, ensuring remedies heal and never harm.
+        </div>
+      </div>
+
+      <!-- Teamwork / Shared Care Module -->
+      <div class="panel-title" style="margin-top: 0.5rem;">
+        <span>👥</span>
+        <span>Collaborative Gentle Care</span>
+      </div>
+      <p style="font-size: 0.75rem; color: rgba(255,255,255,0.65); line-height: 1.4;">
+        Pass the light-pearl between clinician and patient, elder and child, or friend and friend. Slow, continuous movement lowers cortical cortisol by up to 28%.
+      </p>
+
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1rem; text-align: center;">
+        <div style="font-size: 0.72rem; color: var(--accent-amber); font-family: var(--font-mono); text-transform: uppercase;">
+          Total Restorative Flow Time
+        </div>
+        <div id="timerDisplay" style="font-family: var(--font-display); font-size: 2rem; font-weight: 900; color: #fff; margin: 0.3rem 0;">
+          02:45
+        </div>
+        <div style="font-size: 0.68rem; color: var(--accent-emerald);">
+          ✓ Parasympathetic Vagal Tone Active
+        </div>
+      </div>
+
+      <button class="btn-action" id="btnResetBoard" style="width: 100%; justify-content: center; padding: 0.65rem; margin-top: auto;">
+        ✨ Release &amp; Reset Light Pearl
+      </button>
+    </aside>
+
+  </div>
+
+  <!-- Pure Native Web Audio & Canvas Gameboard Engine -->
+  <script>
+    /* ========================================================================== */
+    /* PROCEDURAL HEALING AUDIO & SOLFEGGIO RESONATOR                             */
+    /* ========================================================================== */
+    class SanctuaryAudio {
+      constructor() {
+        this.ctx = null;
+        this.enabled = true;
+        this.masterGain = null;
+        this.currentFreq = 528;
+        this.droneOsc = null;
+        this.binauralOsc = null;
+      }
+
+      init() {
+        if (this.ctx) return;
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        this.ctx = new AudioContext();
+        this.masterGain = this.ctx.createGain();
+        this.masterGain.gain.setValueAtTime(0.18, this.ctx.currentTime);
+        this.masterGain.connect(this.ctx.destination);
+        this.startDrone();
+      }
+
+      startDrone() {
+        if (!this.ctx || !this.enabled) return;
+        const now = this.ctx.currentTime;
+
+        // Base peaceful drone
+        this.droneOsc = this.ctx.createOscillator();
+        this.droneOsc.type = 'sine';
+        this.droneOsc.frequency.setValueAtTime(this.currentFreq / 2, now);
+
+        // Alpha / Theta binaural beat (6 Hz difference)
+        this.binauralOsc = this.ctx.createOscillator();
+        this.binauralOsc.type = 'triangle';
+        this.binauralOsc.frequency.setValueAtTime(this.currentFreq / 2 + 6, now);
+
+        const droneGain = this.ctx.createGain();
+        droneGain.gain.setValueAtTime(0.08, now);
+
+        this.droneOsc.connect(droneGain);
+        this.binauralOsc.connect(droneGain);
+        droneGain.connect(this.masterGain);
+
+        this.droneOsc.start();
+        this.binauralOsc.start();
+      }
+
+      setFrequency(freq) {
+        this.currentFreq = freq;
+        if (this.droneOsc && this.binauralOsc && this.ctx) {
+          const now = this.ctx.currentTime;
+          this.droneOsc.frequency.setTargetAtTime(freq / 2, now, 0.4);
+          this.binauralOsc.frequency.setTargetAtTime(freq / 2 + 6, now, 0.4);
+        }
+      }
+
+      playChime(noteMultiplier = 1.0) {
+        if (!this.ctx || !this.enabled) return;
+        try {
+          const now = this.ctx.currentTime;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(this.currentFreq * noteMultiplier, now);
+
+          gain.gain.setValueAtTime(0.25, now);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.8);
+
+          osc.connect(gain);
+          gain.connect(this.masterGain);
+
+          osc.start(now);
+          osc.stop(now + 1.9);
+        } catch (e) {}
+      }
+
+      playRipple() {
+        if (!this.ctx || !this.enabled) return;
+        try {
+          const now = this.ctx.currentTime;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(this.currentFreq * 1.5, now);
+          osc.frequency.exponentialRampToValueAtTime(this.currentFreq * 0.75, now + 0.35);
+
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+
+          osc.connect(gain);
+          gain.connect(this.masterGain);
+
+          osc.start(now);
+          osc.stop(now + 0.36);
+        } catch (e) {}
+      }
+    }
+
+    const sound = new SanctuaryAudio();
+
+    /* ========================================================================== */
+    /* LETTERFORM GAMEBOARD GEOMETRIES & TOPOLOGIES                               */
+    /* ========================================================================== */
+    const BOARDS = {
+      zero: {
+        id: 'zero',
+        name: 'ISMP Slashed Zero (0̸)',
+        moralTitle: 'The Wisdom of Unambiguous Care',
+        moralDesc: 'In healthcare as in life, clear boundaries bring safety. The slashed zero unequivocally separates the zero from the circle of confusion, ensuring remedies heal and never harm.',
+        waypoints: [
+          { x: 0, y: -220 },
+          { x: 140, y: -120 },
+          { x: 160, y: 0 },
+          { x: 140, y: 120 },
+          { x: 0, y: 220 },
+          { x: -140, y: 120 },
+          { x: -160, y: 0 },
+          { x: -140, y: -120 },
+          // The Slashed Zero Bridge
+          { x: -130, y: 150 },
+          { x: 0, y: 0 },
+          { x: 130, y: -150 }
+        ],
+        paths: [
+          // Outer Ellipse
+          { type: 'ellipse', cx: 0, cy: 0, rx: 160, ry: 220 },
+          // Diagonal Drawbridge
+          { type: 'line', x1: -130, y1: 150, x2: 130, y2: -150 }
+        ],
+        targets: [
+          { x: 0, y: -220, label: 'North Gate', collected: false },
+          { x: 160, y: 0, label: 'East Aperture', collected: false },
+          { x: 0, y: 220, label: 'South Anchor', collected: false },
+          { x: -160, y: 0, label: 'West Portal', collected: false },
+          { x: 0, y: 0, label: 'Bridge Center', collected: false }
+        ]
+      },
+
+      eight: {
+        id: 'eight',
+        name: 'Figure Eight / Dual Counter (8)',
+        moralTitle: 'The Infinity of Reciprocal Renewal',
+        moralDesc: 'Breath, circulation, and compassion form an unbroken figure eight. Giving and receiving flow through the same central heart.',
+        paths: [
+          { type: 'circle', cx: 0, cy: -100, r: 105 },
+          { type: 'circle', cx: 0, cy: 110, r: 125 }
+        ],
+        targets: [
+          { x: 0, y: -205, label: 'Crown', collected: false },
+          { x: 105, y: -100, label: 'Upper Loop Right', collected: false },
+          { x: 0, y: 0, label: 'Heart Junction', collected: false },
+          { x: -125, y: 110, label: 'Lower Loop Left', collected: false },
+          { x: 0, y: 235, label: 'Base Root', collected: false }
+        ]
+      },
+
+      inuktitut: {
+        id: 'inuktitut',
+        name: 'Inuktitut Syllabic "I" (ᐃ)',
+        moralTitle: 'Inuit Qaujimajatuqangit (IQ) Environmental Harmony',
+        moralDesc: 'The upward triangular syllabic evokes the shelter of the igloo and the quiet mountain ridge, reminding us that we are guests on this sacred earth.',
+        paths: [
+          { type: 'poly', points: [{ x: 0, y: -220 }, { x: 180, y: 180 }, { x: -180, y: 180 }, { x: 0, y: -220 }] }
+        ],
+        targets: [
+          { x: 0, y: -220, label: 'Pinnacle Summit', collected: false },
+          { x: 180, y: 180, label: 'Right Grounding', collected: false },
+          { x: 0, y: 180, label: 'Baseline Center', collected: false },
+          { x: -180, y: 180, label: 'Left Grounding', collected: false }
+        ]
+      },
+
+      pipa: {
+        id: 'pipa',
+        name: 'Chinuk Pipa WA (𑲒)',
+        moralTitle: 'River Stone Gentle Flow (Kamloops Wawa)',
+        moralDesc: 'Soft curves carved by cascading glacial meltwater. Gentleness outlasts violence; soft water shapes the hardest stone.',
+        paths: [
+          { type: 'bezier', p0: { x: -160, y: 160 }, p1: { x: -80, y: -220 }, p2: { x: 120, y: -180 }, p3: { x: 0, y: 0 } },
+          { type: 'circle', cx: 0, cy: 80, r: 90 }
+        ],
+        targets: [
+          { x: -160, y: 160, label: 'River Origin', collected: false },
+          { x: 0, y: -200, label: 'Crest', collected: false },
+          { x: 0, y: 0, label: 'Eddy Pool', collected: false },
+          { x: 0, y: 170, label: 'River Mouth', collected: false }
+        ]
+      },
+
+      s: {
+        id: 's',
+        name: 'Sloan S-Curve Saccade (S)',
+        moralTitle: 'Saccadic Decompression & Flexibility',
+        moralDesc: 'Rigidity snaps in high winds, while the supple willow bends and flourishes. Relax your focus across the gentle double arc.',
+        paths: [
+          { type: 'bezier', p0: { x: 120, y: -180 }, p1: { x: -150, y: -220 }, p2: { x: -40, y: -20 }, p3: { x: 0, y: 0 } },
+          { type: 'bezier', p0: { x: 0, y: 0 }, p1: { x: 40, y: 20 }, p2: { x: 150, y: 220 }, p3: { x: -120, y: 180 } }
+        ],
+        targets: [
+          { x: 120, y: -180, label: 'Upper Terminal', collected: false },
+          { x: -90, y: -120, label: 'Upper Spine', collected: false },
+          { x: 0, y: 0, label: 'Waist Axis', collected: false },
+          { x: 90, y: 120, label: 'Lower Spine', collected: false },
+          { x: -120, y: 180, label: 'Lower Terminal', collected: false }
+        ]
+      },
+
+      a: {
+        id: 'a',
+        name: 'Pinnacle Temple (A)',
+        moralTitle: 'The Bridge of Reciprocity',
+        moralDesc: 'Twin pillars rising toward a single aspiration, joined at the center by a bridge of trust. We lift each other as we climb.',
+        paths: [
+          { type: 'line', x1: -160, y1: 200, x2: 0, y2: -220 },
+          { type: 'line', x1: 0, y1: -220, x2: 160, y2: 200 },
+          { type: 'line', x1: -95, y1: 50, x2: 95, y2: 50 }
+        ],
+        targets: [
+          { x: -160, y: 200, label: 'Left Foot', collected: false },
+          { x: 0, y: -220, label: 'Apex Pinnacle', collected: false },
+          { x: 160, y: 200, label: 'Right Foot', collected: false },
+          { x: 0, y: 50, label: 'Crossbar Sanctuary', collected: false }
+        ]
+      }
+    };
+
+    /* ========================================================================== */
+    /* INTERACTIVE CANVAS RENDER LOOP & TOKEN PHYSICS                             */
+    /* ========================================================================== */
+    const canvas = document.getElementById('boardCanvas');
+    const ctx = canvas.getContext('2d');
+    const stageWrap = document.getElementById('stageWrap');
+    const boardTitleBanner = document.getElementById('boardTitleBanner');
+    const boardMoralTitle = document.getElementById('boardMoralTitle');
+    const boardMoralDesc = document.getElementById('boardMoralDesc');
+    const healingToast = document.getElementById('healingToast');
+    const timerDisplay = document.getElementById('timerDisplay');
+
+    let currentBoardKey = 'zero';
+    let width = 600;
+    let height = 600;
+
+    // The Light Pearl (Player Token)
+    const token = {
+      x: 0,
+      y: -220,
+      targetX: 0,
+      targetY: -220,
+      vx: 0,
+      vy: 0,
+      radius: 16,
+      trail: [],
+      glowColor: '#14b8a6',
+      activeChimeIndex: 0
+    };
+
+    let isDragging = false;
+    let secondsCalm = 0;
+    setInterval(() => {
+      secondsCalm++;
+      const mins = String(Math.floor(secondsCalm / 60)).padStart(2, '0');
+      const secs = String(secondsCalm % 60).padStart(2, '0');
+      timerDisplay.textContent = `${mins}:${secs}`;
+    }, 1000);
+
+    function resizeCanvas() {
+      const rect = stageWrap.getBoundingClientRect();
+      width = canvas.width = rect.width;
+      height = canvas.height = rect.height;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function setBoard(boardKey) {
+      currentBoardKey = boardKey;
+      const board = BOARDS[boardKey];
+      if (!board) return;
+
+      // Update HUD
+      boardTitleBanner.innerHTML = `📜 Active Board: <strong>${board.name}</strong>`;
+      boardMoralTitle.textContent = board.moralTitle;
+      boardMoralDesc.textContent = board.moralDesc;
+
+      // Reset targets
+      board.targets.forEach(t => t.collected = false);
+
+      // Reset Token to first target
+      token.x = token.targetX = board.targets[0].x;
+      token.y = token.targetY = board.targets[0].y;
+      token.trail = [];
+
+      // Trigger Harmonic Chime
+      sound.playChime(1.0);
+      showToast(`✨ Welcome to ${board.name} • Breathe Deeply`);
+    }
+
+    function showToast(msg) {
+      healingToast.textContent = msg;
+      healingToast.classList.add('show');
+      clearTimeout(healingToast._timer);
+      healingToast._timer = setTimeout(() => {
+        healingToast.classList.remove('show');
+      }, 2200);
+    }
+
+    // Touch & Mouse Input Handlers
+    function handlePointer(clientX, clientY) {
+      const rect = canvas.getBoundingClientRect();
+      const rawX = clientX - rect.left - width / 2;
+      const rawY = clientY - rect.top - height / 2;
+
+      token.targetX = rawX;
+      token.targetY = rawY;
+    }
+
+    window.addEventListener('pointerdown', (e) => {
+      sound.init();
+      isDragging = true;
+      handlePointer(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('pointermove', (e) => {
+      if (isDragging) {
+        handlePointer(e.clientX, e.clientY);
+      }
+    });
+
+    window.addEventListener('pointerup', () => {
+      isDragging = false;
+    });
+
+    // Particle Swarm for Healing Wisps
+    const wisps = [];
+    for (let i = 0; i < 35; i++) {
+      wisps.push({
+        x: (Math.random() - 0.5) * 500,
+        y: (Math.random() - 0.5) * 500,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        radius: Math.random() * 3 + 1.5,
+        alpha: Math.random() * 0.6 + 0.2,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+
+    /* ─── MAIN ANIMATION LOOP ─── */
+    function render() {
+      ctx.clearRect(0, 0, width, height);
+
+      const cx = width / 2;
+      const cy = height / 2;
+      const board = BOARDS[currentBoardKey];
+
+      ctx.save();
+      ctx.translate(cx, cy);
+
+      // 1. Draw Ambient Wisps (Pacing Particles)
+      wisps.forEach(w => {
+        w.x += w.vx;
+        w.y += w.vy;
+        w.phase += 0.02;
+        if (Math.abs(w.x) > 300) w.vx *= -1;
+        if (Math.abs(w.y) > 300) w.vy *= -1;
+
+        ctx.fillStyle = `rgba(56, 189, 248, ${w.alpha * (0.5 + Math.sin(w.phase) * 0.3)})`;
+        ctx.beginPath();
+        ctx.arc(w.x, w.y, w.radius, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      // 2. Draw Letterform Stroke Tracks (The Gameboard)
+      ctx.save();
+      ctx.lineWidth = 42;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+
+      // Outer Stroke Glow
+      ctx.strokeStyle = 'rgba(20, 184, 166, 0.12)';
+      ctx.shadowColor = '#14b8a6';
+      ctx.shadowBlur = 25;
+      drawBoardPaths(board.paths);
+      ctx.stroke();
+
+      // Inner Tactile Groove
+      ctx.lineWidth = 14;
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.55)';
+      ctx.shadowBlur = 10;
+      drawBoardPaths(board.paths);
+      ctx.stroke();
+
+      // Centerline Navigation Vector
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
+      ctx.shadowBlur = 0;
+      drawBoardPaths(board.paths);
+      ctx.stroke();
+      ctx.restore();
+
+      // 3. Draw Target Nodes / Sanctuaries
+      board.targets.forEach((target, idx) => {
+        const distToToken = Math.hypot(token.x - target.x, token.y - target.y);
+        
+        // Collect Target
+        if (distToToken < 35 && !target.collected) {
+          target.collected = true;
+          sound.playChime(1.0 + idx * 0.2);
+          showToast(`🌸 Reached ${target.label} • Peace Anchored`);
+
+          // Check if all collected
+          if (board.targets.every(t => t.collected)) {
+            setTimeout(() => {
+              showToast(`🌟 Sanctuary Complete: ${board.name} • Harmony Achieved`);
+              board.targets.forEach(t => t.collected = false);
+            }, 600);
+          }
+        }
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(target.x, target.y, target.collected ? 12 : 18, 0, Math.PI * 2);
+        ctx.fillStyle = target.collected ? '#10b981' : 'rgba(245, 158, 11, 0.3)';
+        ctx.strokeStyle = target.collected ? '#34d399' : '#f59e0b';
+        ctx.lineWidth = 3;
+        ctx.shadowColor = target.collected ? '#10b981' : '#f59e0b';
+        ctx.shadowBlur = 15;
+        ctx.fill();
+        ctx.stroke();
+
+        // Target Label
+        ctx.font = '10px "PocketGull Mono", monospace';
+        ctx.fillStyle = '#fff';
+        ctx.textAlign = 'center';
+        ctx.fillText(target.label, target.x, target.y + 32);
+        ctx.restore();
+      });
+
+      // 4. Update & Draw Token (Light Pearl)
+      // Smooth dampening towards target
+      token.vx = (token.targetX - token.x) * 0.08;
+      token.vy = (token.targetY - token.y) * 0.08;
+      token.x += token.vx;
+      token.y += token.vy;
+
+      // Add to motion trail
+      token.trail.push({ x: token.x, y: token.y, alpha: 1.0 });
+      if (token.trail.length > 20) token.trail.shift();
+
+      // Draw Motion Trail
+      if (token.trail.length > 1) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(token.trail[0].x, token.trail[0].y);
+        for (let i = 1; i < token.trail.length; i++) {
+          ctx.lineTo(token.trail[i].x, token.trail[i].y);
+        }
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.4)';
+        ctx.lineWidth = 10;
+        ctx.lineCap = 'round';
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      // Draw Glowing Light Pearl
+      ctx.save();
+      ctx.shadowColor = '#38bdf8';
+      ctx.shadowBlur = 30;
+
+      // Outer Aura
+      ctx.beginPath();
+      ctx.arc(token.x, token.y, token.radius * 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(56, 189, 248, 0.25)';
+      ctx.fill();
+
+      // Core Pearl
+      ctx.beginPath();
+      ctx.arc(token.x, token.y, token.radius, 0, Math.PI * 2);
+      const pearlGrad = ctx.createRadialGradient(token.x - 4, token.y - 4, 2, token.x, token.y, token.radius);
+      pearlGrad.addColorStop(0, '#ffffff');
+      pearlGrad.addColorStop(0.6, '#38bdf8');
+      pearlGrad.addColorStop(1, '#0284c7');
+      ctx.fillStyle = pearlGrad;
+      ctx.fill();
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.restore();
+
+      ctx.restore();
+
+      requestAnimationFrame(render);
+    }
+
+    function drawBoardPaths(paths) {
+      paths.forEach(p => {
+        ctx.beginPath();
+        if (p.type === 'ellipse') {
+          ctx.ellipse(p.cx, p.cy, p.rx, p.ry, 0, 0, Math.PI * 2);
+        } else if (p.type === 'circle') {
+          ctx.arc(p.cx, p.cy, p.r, 0, Math.PI * 2);
+        } else if (p.type === 'line') {
+          ctx.moveTo(p.x1, p.y1);
+          ctx.lineTo(p.x2, p.y2);
+        } else if (p.type === 'poly') {
+          ctx.moveTo(p.points[0].x, p.points[0].y);
+          for (let i = 1; i < p.points.length; i++) {
+            ctx.lineTo(p.points[i].x, p.points[i].y);
+          }
+          ctx.closePath();
+        } else if (p.type === 'bezier') {
+          ctx.moveTo(p.p0.x, p.p0.y);
+          ctx.bezierCurveTo(p.p1.x, p.p1.y, p.p2.x, p.p2.y, p.p3.x, p.p3.y);
+        }
+      });
+    }
+
+    /* ========================================================================== */
+    /* EVENT LISTENERS & UI CONTROLS                                              */
+    /* ========================================================================== */
+    // Board Selection Cards
+    document.querySelectorAll('.board-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.board-card').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        setBoard(card.dataset.board);
+      });
+    });
+
+    // Soundscape Selector
+    document.querySelectorAll('.sound-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.sound-btn').forEach(b => {
+          b.classList.remove('active');
+          b.style.borderColor = 'rgba(255,255,255,0.2)';
+          b.style.color = 'rgba(255,255,255,0.7)';
+          b.style.background = 'transparent';
+        });
+        btn.classList.add('active');
+        btn.style.borderColor = 'var(--accent-teal)';
+        btn.style.color = 'var(--accent-teal)';
+        btn.style.background = 'rgba(20, 184, 166, 0.15)';
+        const freq = parseFloat(btn.dataset.freq);
+        sound.setFrequency(freq);
+        sound.playChime(1.0);
+        showToast(`🎶 Resonating at ${freq} Hz • Healing Wave Active`);
+      });
+    });
+
+    // Audio Toggle
+    const btnToggleAudio = document.getElementById('btnToggleAudio');
+    btnToggleAudio.addEventListener('click', () => {
+      sound.enabled = !sound.enabled;
+      btnToggleAudio.textContent = sound.enabled ? '🔊 Audio: ON' : '🔇 Audio: MUTED';
+      if (sound.enabled) sound.playChime(1.0);
+    });
+
+    // Theme Toggle
+    const btnThemeToggle = document.getElementById('btnThemeToggle');
+    btnThemeToggle.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'washi' ? 'dark' : 'washi';
+      document.documentElement.setAttribute('data-theme', next);
+      btnThemeToggle.textContent = next === 'washi' ? '🎨 Theme: Washi (和紙)' : '🎨 Theme: Dark';
+      sound.playRipple();
+    });
+
+    // Reset Token Button
+    document.getElementById('btnResetBoard').addEventListener('click', () => {
+      setBoard(currentBoardKey);
+    });
+
+    // Start
+    setBoard('zero');
+    requestAnimationFrame(render);
+  </script>
+</body>
+</html>
