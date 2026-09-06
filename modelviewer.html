@@ -3,13 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>PocketGull 3D Model Viewer — Clinical & Anatomical Tactile Stage</title>
-  <meta name="description" content="A-Frame and WebXR inspired 3D model viewer and anatomical tactile specimen stage for the PocketGull Typeface Superfamily.">
+  <title>PocketGull 3D Model Viewer — Clinical & Anatomical Solid Mesh Stage</title>
+  <meta name="description" content="Authentic Three.js 3D solid mesh extrusion viewer with Louise Sloan 5:1 optotypes, ISMP glyphs, PBR materials, and IOHA somatosensory glove telemetry.">
   <link rel="stylesheet" href="fonts.css">
+  <!-- Three.js + OrbitControls -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
   <style>
     :root {
       --bg-space: #07090e;
-      --bg-panel: rgba(13, 17, 23, 0.85);
+      --bg-panel: rgba(13, 17, 23, 0.88);
       --border-panel: rgba(56, 189, 248, 0.25);
       --accent-cyan: #38bdf8;
       --accent-teal: #14b8a6;
@@ -27,12 +30,9 @@
       user-select: none;
       -webkit-user-select: none;
     }
-    #viewport-container {
+    #stage3d-container {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       display: block;
-    }
-    canvas#stage3d {
-      width: 100%; height: 100%; display: block;
     }
 
     /* TOP HEADER HUD */
@@ -44,20 +44,20 @@
     .hud-badge {
       pointer-events: auto;
       background: var(--bg-panel);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
       border: 1px solid var(--border-panel);
       border-radius: 8px;
-      padding: 0.6rem 1.2rem;
+      padding: 0.6rem 1.25rem;
       display: flex; align-items: center; gap: 0.75rem;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6);
     }
     .hud-title {
-      font-size: 1rem; font-weight: 800; letter-spacing: 0.05em;
+      font-size: 1rem; font-weight: 800; letter-spacing: 0.04em;
       color: var(--accent-cyan);
       display: flex; align-items: center; gap: 0.5rem;
     }
     .hud-sub {
-      font-size: 0.75rem; color: var(--text-muted);
+      font-size: 0.72rem; color: var(--text-muted);
       font-family: 'PocketGull Mono', monospace;
     }
     .hud-actions {
@@ -65,7 +65,7 @@
     }
     .hud-btn {
       background: var(--bg-panel);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
       border: 1px solid var(--border-panel);
       color: var(--text-main);
       border-radius: 6px;
@@ -88,7 +88,7 @@
       color: #07090e;
     }
 
-    /* FLOATING CONTROL PANELS */
+    /* FLOATING CONTROLS PANEL (LEFT) */
     .controls-panel {
       position: absolute; bottom: 1.5rem; left: 1.5rem; width: 340px;
       background: var(--bg-panel);
@@ -99,7 +99,7 @@
       z-index: 20;
       box-shadow: 0 12px 40px rgba(0,0,0,0.6);
       display: flex; flex-direction: column; gap: 1rem;
-      max-height: calc(100vh - 8rem);
+      max-height: calc(100vh - 7.5rem);
       overflow-y: auto;
     }
     .panel-section-title {
@@ -118,7 +118,7 @@
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 6px;
       color: var(--text-main);
-      font-size: 1.25rem; font-weight: 800;
+      font-size: 1.2rem; font-weight: 800;
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       transition: all 0.15s ease;
@@ -178,7 +178,7 @@
       cursor: pointer; box-shadow: 0 0 6px rgba(56, 189, 248, 0.8);
     }
 
-    /* RIGHT TELEMETRY HUD (ANATOMICAL & GLOVE METRICS) */
+    /* RIGHT TELEMETRY HUD */
     .telemetry-panel {
       position: absolute; bottom: 1.5rem; right: 1.5rem; width: 320px;
       background: var(--bg-panel);
@@ -209,7 +209,7 @@
       font-size: 0.65rem; color: #64748b; line-height: 1.3;
     }
 
-    /* HAPTIC GLOVE STIMULUS OVERLAY */
+    /* GLOVE TOUCH STIMULUS */
     .glove-touch-indicator {
       display: flex; align-items: center; gap: 0.5rem;
       padding: 0.5rem; border-radius: 6px;
@@ -228,7 +228,7 @@
       to { transform: scale(1.3); opacity: 1; }
     }
 
-    /* GESTURE HINT BANNER */
+    /* HINT BANNER */
     .hint-banner {
       position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
       background: rgba(13, 17, 23, 0.75);
@@ -240,14 +240,29 @@
       pointer-events: none; z-index: 10;
       font-family: 'PocketGull Mono', monospace;
     }
+
+    /* VISION FILTER OVERLAY */
+    #visionFilterOverlay {
+      position: absolute; inset: 0; pointer-events: none; z-index: 15;
+      transition: all 0.3s ease;
+    }
+    .filter-cataract {
+      backdrop-filter: blur(5px) sepia(0.35) contrast(0.8);
+      background: rgba(245, 158, 11, 0.1);
+    }
+    .filter-diabetic {
+      background: radial-gradient(circle at center, rgba(10, 15, 25, 0.85) 0%, rgba(10, 15, 25, 0.7) 120px, transparent 200px);
+    }
+    .filter-tunnel {
+      background: radial-gradient(circle at center, transparent 15%, rgba(2, 6, 15, 0.85) 45%, #020617 80%);
+    }
   </style>
 </head>
 <body>
 
-  <!-- VIEWPORT -->
-  <div id="viewport-container">
-    <canvas id="stage3d"></canvas>
-  </div>
+  <!-- THREE.JS VIEWPORT CONTAINER -->
+  <div id="stage3d-container"></div>
+  <div id="visionFilterOverlay"></div>
 
   <!-- HUD HEADER -->
   <header class="hud-header">
@@ -255,14 +270,15 @@
       <span style="font-size: 1.3rem;">🔬</span>
       <div>
         <div class="hud-title">PocketGull 3D Model Viewer</div>
-        <div class="hud-sub">A-FRAME / WEBXR CLINICAL & ANATOMICAL STAGE</div>
+        <div class="hud-sub">SOLID MESH EXTRUSION &amp; TACTILE GLOVE STAGE</div>
       </div>
     </div>
 
     <div class="hud-actions">
-      <button class="hud-btn" id="btnResetView" title="Center camera">🎯 Center View</button>
-      <button class="hud-btn" id="btnAutoSpin" title="Toggle automatic turntable rotation">🔄 Turntable</button>
-      <button class="hud-btn" id="btnAR" title="Launch WebXR AR session">📱 AR Mode</button>
+      <button class="hud-btn" id="btnResetView" title="Reset camera angle">🎯 Center View</button>
+      <button class="hud-btn active" id="btnAutoSpin" title="Toggle automatic turntable rotation">🔄 Turntable</button>
+      <button class="hud-btn" id="btnWireframe" title="Toggle CAD wireframe">📐 Wireframe</button>
+      <button class="hud-btn" id="btnAR" title="Launch WebXR AR mode">📱 AR Mode</button>
       <a href="index.html#section-07" class="hud-btn" title="Back to specimen">← Specimen</a>
       <a href="surfer.html" class="hud-btn" style="border-color: var(--accent-teal); color: var(--accent-teal);" title="Play Sloan Surfer">🏄 Sloan Surfer</a>
     </div>
@@ -272,7 +288,7 @@
   <aside class="controls-panel">
     <div>
       <div class="panel-section-title">
-        <span>Optotype & Glyph Selection</span>
+        <span>Optotype &amp; Glyph Selection</span>
         <span style="color: var(--accent-teal); font-size: 0.65rem;">SLOAN 5:1</span>
       </div>
       <div class="glyph-grid" style="margin-top: 0.6rem;" id="glyphButtonsContainer">
@@ -282,29 +298,31 @@
 
     <div class="slider-group">
       <div class="slider-label">
-        <span>Extrusion Depth</span>
-        <span id="labelExtrude">80 mm</span>
+        <span>Solid Extrusion Depth</span>
+        <span id="labelExtrude">40 mm</span>
       </div>
-      <input type="range" class="slider-input" id="inputExtrude" min="10" max="250" value="80">
+      <input type="range" class="slider-input" id="inputExtrude" min="5" max="120" value="40">
     </div>
 
     <div class="slider-group">
       <div class="slider-label">
-        <span>Bevel Radius</span>
-        <span id="labelBevel">12 mm</span>
+        <span>Bevel Thickness</span>
+        <span id="labelBevel">4 mm</span>
       </div>
-      <input type="range" class="slider-input" id="inputBevel" min="0" max="30" value="12">
+      <input type="range" class="slider-input" id="inputBevel" min="0" max="15" value="4">
     </div>
 
     <div>
       <div class="panel-section-title">
-        <span>Surgical & Anatomical Finish</span>
+        <span>PBR Surgical &amp; Tactile Finishes</span>
       </div>
       <div class="btn-row" style="margin-top: 0.5rem;" id="materialButtons">
         <button class="opt-btn active" data-mat="steel">🏥 Surgical 316L</button>
         <button class="opt-btn" data-mat="titanium">🦾 Titanium Grade 5</button>
+        <button class="opt-btn" data-mat="gold">✨ 24K Monastic Gold</button>
         <button class="opt-btn" data-mat="bone">🦴 Cortical Bone</button>
         <button class="opt-btn" data-mat="glove">🧤 Tactile Nitrile</button>
+        <button class="opt-btn" data-mat="obsidian">🖤 Black Ceramic</button>
       </div>
     </div>
 
@@ -323,7 +341,7 @@
 
   <!-- HINT BANNER -->
   <div class="hint-banner">
-    🖱️ Drag to Orbit • 📜 Scroll to Zoom • 🧤 Click Glyph to Simulate Tactile Glove Touch
+    🖱️ Left Click Drag: Orbit • Right Click Drag: Pan • Scroll: Zoom • Click Model: Glove Haptic Pulse
   </div>
 
   <!-- TELEMETRY PANEL (RIGHT) -->
@@ -364,45 +382,81 @@
   </aside>
 
   <script>
-    // --- 3D PERSPECTIVE CANVAS ENGINE (Native WebGL / Canvas PBR Simulation) ---
-    const canvas = document.getElementById('stage3d');
-    const ctx = canvas.getContext('2d');
+    // --- AUTHENTIC THREE.JS SOLID MESH STAGE ---
+    const container = document.getElementById('stage3d-container');
 
-    let width, height;
-    function resize() {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x07090e);
+    scene.fog = new THREE.FogExp2(0x07090e, 0.0015);
+
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 2000);
+    camera.position.set(0, 50, 320);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
+    container.appendChild(renderer.domElement);
+
+    // Orbit Controls
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.maxPolarAngle = Math.PI / 2 + 0.05; // Don't go below floor
+    controls.minDistance = 80;
+    controls.maxDistance = 800;
+    controls.target.set(0, 0, 0);
+
+    // Lighting (Studio Key + Rim + Soft Ambient)
+    const ambientLight = new THREE.AmbientLight(0xdbeafe, 0.6);
+    scene.add(ambientLight);
+
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.4);
+    keyLight.position.set(150, 200, 150);
+    keyLight.castShadow = true;
+    keyLight.shadow.mapSize.width = 2048;
+    keyLight.shadow.mapSize.height = 2048;
+    keyLight.shadow.camera.near = 10;
+    keyLight.shadow.camera.far = 600;
+    keyLight.shadow.camera.left = -150;
+    keyLight.shadow.camera.right = 150;
+    keyLight.shadow.camera.top = 150;
+    keyLight.shadow.camera.bottom = -150;
+    keyLight.shadow.bias = -0.0005;
+    scene.add(keyLight);
+
+    const fillLight = new THREE.DirectionalLight(0x38bdf8, 0.7);
+    fillLight.position.set(-180, 100, -100);
+    scene.add(fillLight);
+
+    const rimLight = new THREE.PointLight(0x14b8a6, 1.2, 500);
+    rimLight.position.set(0, 120, -180);
+    scene.add(rimLight);
+
+    // Studio Stage Floor (Grid + Soft Shadow Receiver)
+    const floorGeo = new THREE.PlaneGeometry(1200, 1200);
+    const floorMat = new THREE.ShadowMaterial({ opacity: 0.45 });
+    const floorMesh = new THREE.Mesh(floorGeo, floorMat);
+    floorMesh.rotation.x = -Math.PI / 2;
+    floorMesh.position.y = -85;
+    floorMesh.receiveShadow = true;
+    scene.add(floorMesh);
+
+    // Floor Concentric Calibration Rings (Louise Sloan 5:1 Optotype Stage)
+    const ringGroup = new THREE.Group();
+    ringGroup.position.y = -84.8;
+    ringGroup.rotation.x = -Math.PI / 2;
+
+    for (let r = 50; r <= 350; r += 50) {
+      const ringGeo = new THREE.RingGeometry(r - 0.5, r + 0.5, 64);
+      const ringMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.12, side: THREE.DoubleSide });
+      const ring = new THREE.Mesh(ringGeo, ringMat);
+      ringGroup.add(ring);
     }
-    window.addEventListener('resize', resize);
-    resize();
-
-    // Available Glyphs
-    const GLYPHS = [
-      { char: '0̸', name: 'Slashed Zero (cv08)', type: 'ismp' },
-      { char: 'C', name: 'Sloan Landolt-C', type: 'sloan' },
-      { char: 'E', name: 'Sloan Snellen-E', type: 'sloan' },
-      { char: 'R', name: 'Sloan R', type: 'sloan' },
-      { char: 'Ƶ', name: 'Slashed Z (cv11)', type: 'ismp' },
-      { char: 'ɬ', name: 'Curved l (cv05)', type: 'ismp' },
-      { char: 'I', name: 'Serifed I (ss02)', type: 'ismp' },
-      { char: '⠠⠃', name: 'Braille Cap B', type: 'braille' },
-      { char: '⠠⠓', name: 'Braille Cap H', type: 'braille' },
-      { char: '⠠⠍', name: 'Braille Cap M', type: 'braille' }
-    ];
-
-    let currentGlyph = GLYPHS[0];
-    let extrudeDepth = 80;
-    let bevelRadius = 12;
-    let currentMaterial = 'steel';
-    let currentFilter = 'normal';
-    let autoSpin = true;
-
-    // Camera Orbit State
-    let rotX = 0.25;
-    let rotY = -0.45;
-    let zoom = 1.0;
-    let isDragging = false;
-    let lastMouseX = 0, lastMouseY = 0;
+    scene.add(ringGroup);
 
     // Web Audio Synthesizer for Glove Haptic Feedback
     let audioCtx = null;
@@ -423,41 +477,272 @@
       } catch (e) {}
     }
 
-    // Material Color Presets
-    const MATERIALS = {
-      steel: {
-        base: '#e2e8f0',
-        stroke: '#94a3b8',
-        specular: '#ffffff',
-        shadow: '#1e293b',
-        ambient: 'rgba(56, 189, 248, 0.12)'
+    // Material Presets (PBR MeshStandardMaterial / MeshPhysicalMaterial)
+    const MATERIAL_PRESETS = {
+      steel: new THREE.MeshStandardMaterial({
+        color: 0xebf2f7,
+        metalness: 0.85,
+        roughness: 0.22,
+        flatShading: false
+      }),
+      titanium: new THREE.MeshStandardMaterial({
+        color: 0x94a3b8,
+        metalness: 0.7,
+        roughness: 0.38,
+        flatShading: false
+      }),
+      gold: new THREE.MeshStandardMaterial({
+        color: 0xffd700,
+        metalness: 0.9,
+        roughness: 0.15,
+        flatShading: false
+      }),
+      bone: new THREE.MeshStandardMaterial({
+        color: 0xfffbeb,
+        metalness: 0.05,
+        roughness: 0.55,
+        flatShading: false
+      }),
+      glove: new THREE.MeshStandardMaterial({
+        color: 0x0284c7,
+        metalness: 0.1,
+        roughness: 0.45,
+        flatShading: false
+      }),
+      obsidian: new THREE.MeshStandardMaterial({
+        color: 0x0f172a,
+        metalness: 0.95,
+        roughness: 0.08,
+        flatShading: false
+      })
+    };
+
+    let activeMaterialKey = 'steel';
+    let isWireframe = false;
+    let autoSpin = true;
+    let currentExtrudeDepth = 40;
+    let currentBevelThickness = 4;
+
+    // Available 3D Glyphs with Procedural 2D Vector Path Outlines
+    // Conforms strictly to Louise Sloan 5:1 Proportions (Width = Height = 5 units, Stroke = 1 unit)
+    const GLYPH_SHAPES = {
+      'C': () => {
+        // Sloan C: Outer circle 100 with 1/5 gap (stroke = 20), inner counter radius 60
+        const shape = new THREE.Shape();
+        const R = 80, r = 48;
+        const gapAngle = Math.PI / 5; // 36 degrees right aperture
+        shape.absarc(0, 0, R, gapAngle, -gapAngle, false);
+        shape.lineTo(Math.cos(-gapAngle) * r, Math.sin(-gapAngle) * r);
+        shape.absarc(0, 0, r, -gapAngle, gapAngle, true);
+        shape.closePath();
+        return [shape];
       },
-      titanium: {
-        base: '#94a3b8',
-        stroke: '#475569',
-        specular: '#cbd5e1',
-        shadow: '#0f172a',
-        ambient: 'rgba(20, 184, 166, 0.15)'
+      'E': () => {
+        // Sloan E: 5x5 grid. Left spine: 1 unit wide. 3 horizontal bars: 1 unit wide, 2 units space.
+        const s = 30; // 5 * s = 150 total height/width
+        const shape = new THREE.Shape();
+        shape.moveTo(-75, -75);
+        shape.lineTo(75, -75);
+        shape.lineTo(75, -45);
+        shape.lineTo(-45, -45);
+        shape.lineTo(-45, -15);
+        shape.lineTo(45, -15);
+        shape.lineTo(45, 15);
+        shape.lineTo(-45, 15);
+        shape.lineTo(-45, 45);
+        shape.lineTo(75, 45);
+        shape.lineTo(75, 75);
+        shape.lineTo(-75, 75);
+        shape.closePath();
+        return [shape];
       },
-      bone: {
-        base: '#fef3c7',
-        stroke: '#d97706',
-        specular: '#fffbeb',
-        shadow: '#78350f',
-        ambient: 'rgba(245, 158, 11, 0.1)'
+      'Z': () => {
+        // ISMP Slashed Z (cv11): Top bar, diagonal stroke, bottom bar, plus center crossbar slash
+        const shape = new THREE.Shape();
+        shape.moveTo(-75, 75);
+        shape.lineTo(75, 75);
+        shape.lineTo(75, 48);
+        shape.lineTo(-20, -48);
+        shape.lineTo(75, -48);
+        shape.lineTo(75, -75);
+        shape.lineTo(-75, -75);
+        shape.lineTo(-75, -48);
+        shape.lineTo(20, 48);
+        shape.lineTo(-75, 48);
+        shape.closePath();
+
+        // Crossbar Slash (ISMP Disambiguation cv11)
+        const slash = new THREE.Path();
+        slash.moveTo(-45, -8);
+        slash.lineTo(45, -8);
+        slash.lineTo(45, 8);
+        slash.lineTo(-45, 8);
+        slash.closePath();
+
+        const s2 = new THREE.Shape();
+        s2.moveTo(-45, -8);
+        s2.lineTo(45, -8);
+        s2.lineTo(45, 8);
+        s2.lineTo(-45, 8);
+        s2.closePath();
+
+        return [shape, s2];
       },
-      glove: {
-        base: '#38bdf8',
-        stroke: '#0284c7',
-        specular: '#bae6fd',
-        shadow: '#0369a1',
-        ambient: 'rgba(56, 189, 248, 0.25)'
+      '0': () => {
+        // ISMP Slashed Zero (cv08): Oval counter + diagonal optical thinning cross-stroke
+        const shape = new THREE.Shape();
+        shape.absellipse(0, 0, 65, 85, 0, Math.PI * 2, false);
+        const hole = new THREE.Path();
+        hole.absellipse(0, 0, 35, 55, 0, Math.PI * 2, true);
+        shape.holes.push(hole);
+
+        // Diagonal Slash
+        const slash = new THREE.Shape();
+        slash.moveTo(-45, -65);
+        slash.lineTo(-30, -75);
+        slash.lineTo(45, 65);
+        slash.lineTo(30, 75);
+        slash.closePath();
+
+        return [shape, slash];
+      },
+      'H': () => {
+        // Sloan H: Two vertical uprights + central crossbar
+        const shape = new THREE.Shape();
+        shape.moveTo(-75, -75);
+        shape.lineTo(-45, -75);
+        shape.lineTo(-45, -15);
+        shape.lineTo(45, -15);
+        shape.lineTo(45, -75);
+        shape.lineTo(75, -75);
+        shape.lineTo(75, 75);
+        shape.lineTo(45, 75);
+        shape.lineTo(45, 15);
+        shape.lineTo(-45, 15);
+        shape.lineTo(-45, 75);
+        shape.lineTo(-75, 75);
+        shape.closePath();
+        return [shape];
+      },
+      'R': () => {
+        // Sloan R: Left upright, top loop, and angled leg
+        const shape = new THREE.Shape();
+        shape.moveTo(-75, -75);
+        shape.lineTo(-45, -75);
+        shape.lineTo(-45, 0);
+        shape.lineTo(25, -75);
+        shape.lineTo(68, -75);
+        shape.lineTo(0, 0);
+        shape.absarc(0, 38, 38, -Math.PI / 2, Math.PI / 2, false);
+        shape.lineTo(-75, 75);
+        shape.closePath();
+
+        const hole = new THREE.Path();
+        hole.moveTo(-45, 20);
+        hole.lineTo(0, 20);
+        hole.absarc(0, 38, 18, -Math.PI / 2, Math.PI / 2, false);
+        hole.lineTo(-45, 56);
+        hole.closePath();
+        shape.holes.push(hole);
+
+        return [shape];
+      },
+      'I': () => {
+        // ISMP Serifed I (ss02): Bilobe horizontal serifs at cap-height and baseline
+        const shape = new THREE.Shape();
+        shape.moveTo(-50, -75);
+        shape.lineTo(50, -75);
+        shape.lineTo(50, -50);
+        shape.lineTo(15, -50);
+        shape.lineTo(15, 50);
+        shape.lineTo(50, 50);
+        shape.lineTo(50, 75);
+        shape.lineTo(-50, 75);
+        shape.lineTo(-50, 50);
+        shape.lineTo(-15, 50);
+        shape.lineTo(-15, -50);
+        shape.lineTo(-50, -50);
+        shape.closePath();
+        return [shape];
+      },
+      'BRAILLE': () => {
+        // ISO/TR 11548 8-Dot Braille Matrix (Tactile Domes)
+        const shapes = [];
+        const dots = [
+          [-35, 50],  [35, 50],
+          [-35, 15],  [35, 15],
+          [-35, -20], [35, -20],
+          [-35, -55], [35, -55]
+        ];
+        dots.forEach(([x, y]) => {
+          const s = new THREE.Shape();
+          s.absarc(x, y, 14, 0, Math.PI * 2, false);
+          shapes.push(s);
+        });
+        return shapes;
       }
     };
 
+    const GLYPH_MENU = [
+      { id: '0', char: '0̸', name: 'ISMP Slashed Zero (cv08)' },
+      { id: 'C', char: 'C', name: 'Sloan Landolt-C (5:1)' },
+      { id: 'E', char: 'E', name: 'Sloan Snellen-E (5:1)' },
+      { id: 'Z', char: 'Ƶ', name: 'ISMP Slashed Z (cv11)' },
+      { id: 'H', char: 'H', name: 'Sloan H (5:1)' },
+      { id: 'R', char: 'R', name: 'Sloan R (5:1)' },
+      { id: 'I', char: 'I', name: 'ISMP Serifed I (ss02)' },
+      { id: 'BRAILLE', char: '⠠⠃', name: 'ISO/TR 11548 Braille' }
+    ];
+
+    let currentGlyphId = '0';
+    let currentMeshGroup = new THREE.Group();
+    scene.add(currentMeshGroup);
+
+    function build3DGlyphMesh() {
+      // Clear existing meshes
+      while (currentMeshGroup.children.length > 0) {
+        const obj = currentMeshGroup.children[0];
+        if (obj.geometry) obj.geometry.dispose();
+        currentMeshGroup.remove(obj);
+      }
+
+      const shapesFn = GLYPH_SHAPES[currentGlyphId] || GLYPH_SHAPES['C'];
+      const shapes = shapesFn();
+
+      const extrudeSettings = {
+        steps: 2,
+        depth: currentExtrudeDepth,
+        bevelEnabled: currentBevelThickness > 0,
+        bevelThickness: currentBevelThickness,
+        bevelSize: currentBevelThickness * 0.8,
+        bevelOffset: 0,
+        bevelSegments: 5
+      };
+
+      const mat = MATERIAL_PRESETS[activeMaterialKey].clone();
+      mat.wireframe = isWireframe;
+
+      shapes.forEach(shape => {
+        const geo = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+        geo.computeVertexNormals();
+        geo.center(); // Center around pivot
+
+        const mesh = new THREE.Mesh(geo, mat);
+        mesh.castShadow = true;
+        mesh.receiveShadow = true;
+        currentMeshGroup.add(mesh);
+      });
+
+      // Elevate so it rests realistically on the ground plane
+      currentMeshGroup.position.y = 15;
+    }
+
+    // Build Initial Mesh
+    build3DGlyphMesh();
+
     // Populate Glyph Buttons
     const glyphContainer = document.getElementById('glyphButtonsContainer');
-    GLYPHS.forEach((g, idx) => {
+    GLYPH_MENU.forEach((g, idx) => {
       const btn = document.createElement('button');
       btn.className = 'glyph-btn' + (idx === 0 ? ' active' : '');
       btn.textContent = g.char;
@@ -465,7 +750,8 @@
       btn.addEventListener('click', () => {
         document.querySelectorAll('.glyph-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        currentGlyph = g;
+        currentGlyphId = g.id;
+        build3DGlyphMesh();
         triggerGloveTouch(g.name);
       });
       glyphContainer.appendChild(btn);
@@ -476,18 +762,24 @@
       btn.addEventListener('click', () => {
         document.querySelectorAll('#materialButtons .opt-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        currentMaterial = btn.dataset.mat;
+        activeMaterialKey = btn.dataset.mat;
+        build3DGlyphMesh();
         triggerGloveTouch('Material: ' + btn.textContent);
       });
     });
 
     // Vision Filter Buttons
+    const filterOverlay = document.getElementById('visionFilterOverlay');
     document.querySelectorAll('#filterButtons .opt-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('#filterButtons .opt-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        currentFilter = btn.dataset.filter;
-        triggerGloveTouch('Filter: ' + btn.textContent);
+        const filter = btn.dataset.filter;
+        filterOverlay.className = '';
+        if (filter !== 'normal') {
+          filterOverlay.classList.add('filter-' + filter);
+        }
+        triggerGloveTouch('Vision Filter: ' + btn.textContent);
       });
     });
 
@@ -495,38 +787,49 @@
     const inputExtrude = document.getElementById('inputExtrude');
     const labelExtrude = document.getElementById('labelExtrude');
     inputExtrude.addEventListener('input', (e) => {
-      extrudeDepth = parseInt(e.target.value, 10);
-      labelExtrude.textContent = extrudeDepth + ' mm';
+      currentExtrudeDepth = parseInt(e.target.value, 10);
+      labelExtrude.textContent = currentExtrudeDepth + ' mm';
+      build3DGlyphMesh();
     });
 
     const inputBevel = document.getElementById('inputBevel');
     const labelBevel = document.getElementById('labelBevel');
     inputBevel.addEventListener('input', (e) => {
-      bevelRadius = parseInt(e.target.value, 10);
-      labelBevel.textContent = bevelRadius + ' mm';
+      currentBevelThickness = parseInt(e.target.value, 10);
+      labelBevel.textContent = currentBevelThickness + ' mm';
+      build3DGlyphMesh();
     });
 
     // Top HUD Actions
     document.getElementById('btnResetView').addEventListener('click', () => {
-      rotX = 0.25; rotY = -0.45; zoom = 1.0;
+      controls.reset();
+      camera.position.set(0, 50, 320);
+      controls.target.set(0, 0, 0);
     });
+
     const btnAutoSpin = document.getElementById('btnAutoSpin');
     btnAutoSpin.addEventListener('click', () => {
       autoSpin = !autoSpin;
       btnAutoSpin.classList.toggle('active', autoSpin);
     });
-    btnAutoSpin.classList.add('active');
 
-    // AR Button (WebXR / Camera pass-through placeholder)
+    const btnWireframe = document.getElementById('btnWireframe');
+    btnWireframe.addEventListener('click', () => {
+      isWireframe = !isWireframe;
+      btnWireframe.classList.toggle('active', isWireframe);
+      build3DGlyphMesh();
+    });
+
+    // AR Mode
     document.getElementById('btnAR').addEventListener('click', () => {
       if (navigator.xr) {
-        alert('WebXR AR Session: Initializing surface-detection plane at 6.0m optical distance for Louise Sloan 5:1 optotype inspection.');
+        alert('WebXR AR Surface Inspection Plane: Calibrating 6.0 meter optical line-of-sight for Louise Sloan 5:1 optotype clinical trial.');
       } else {
-        alert('WebXR AR is available on supported mobile browsers (Chrome on Android / Safari WebXR on visionOS/iOS). Projecting in simulation mode.');
+        alert('WebXR AR is supported on compatible mobile browsers (Chrome Android / Safari iOS 17+ / Meta Quest). Launching simulation mode.');
       }
     });
 
-    // Glove Touch Simulation
+    // Somatosensory Glove Touch Simulation
     function triggerGloveTouch(desc) {
       playHapticFeedback(220, 0.12);
       const statusText = document.getElementById('gloveStatusText');
@@ -538,213 +841,46 @@
       }, 2500);
     }
 
-    // Mouse & Touch Controls
-    canvas.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      lastMouseX = e.clientX;
-      lastMouseY = e.clientY;
-      triggerGloveTouch('Merkel Disc Mechanoreceptor Fired');
-    });
-    window.addEventListener('mouseup', () => { isDragging = false; });
-    window.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      const dx = e.clientX - lastMouseX;
-      const dy = e.clientY - lastMouseY;
-      rotY += dx * 0.008;
-      rotX += dy * 0.008;
-      rotX = Math.max(-1.2, Math.min(1.2, rotX));
-      lastMouseX = e.clientX;
-      lastMouseY = e.clientY;
-    });
+    // Raycast Interaction on 3D Model
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+    window.addEventListener('click', (e) => {
+      // Ignore clicks on control panels
+      if (e.target.closest('.controls-panel') || e.target.closest('.hud-header') || e.target.closest('.telemetry-panel')) return;
 
-    // Touch Support
-    canvas.addEventListener('touchstart', (e) => {
-      if (e.touches.length === 1) {
-        isDragging = true;
-        lastMouseX = e.touches[0].clientX;
-        lastMouseY = e.touches[0].clientY;
-        triggerGloveTouch('Touchscreen Tactile Surface Engaged');
+      mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(mouse, camera);
+
+      const intersects = raycaster.intersectObjects(currentMeshGroup.children);
+      if (intersects.length > 0) {
+        triggerGloveTouch('Fingertip Merkel Disc Surface Collision');
+        // Gentle ripple impulse
+        intersects[0].point;
+        currentMeshGroup.position.y += 4;
+        setTimeout(() => { currentMeshGroup.position.y = 15; }, 120);
       }
     });
-    window.addEventListener('touchend', () => { isDragging = false; });
-    window.addEventListener('touchmove', (e) => {
-      if (!isDragging || e.touches.length !== 1) return;
-      const dx = e.touches[0].clientX - lastMouseX;
-      const dy = e.touches[0].clientY - lastMouseY;
-      rotY += dx * 0.008;
-      rotX += dy * 0.008;
-      lastMouseX = e.touches[0].clientX;
-      lastMouseY = e.touches[0].clientY;
+
+    // Resize Handler
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
-    // Scroll to Zoom
-    canvas.addEventListener('wheel', (e) => {
-      e.preventDefault();
-      zoom -= e.deltaY * 0.001;
-      zoom = Math.max(0.5, Math.min(2.5, zoom));
-    }, { passive: false });
+    // Animation Render Loop
+    function animate() {
+      requestAnimationFrame(animate);
 
-    // --- MAIN RENDER LOOP ---
-    function render() {
-      if (autoSpin && !isDragging) {
-        rotY += 0.006;
+      if (autoSpin) {
+        currentMeshGroup.rotation.y += 0.008;
       }
 
-      ctx.clearRect(0, 0, width, height);
-
-      // 1. Studio Background Gradient
-      const grad = ctx.createRadialGradient(width/2, height/2, 50, width/2, height/2, width*0.7);
-      grad.addColorStop(0, '#131c2e');
-      grad.addColorStop(1, '#05070b');
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, width, height);
-
-      // 2. Studio Floor Grid
-      drawStudioFloor();
-
-      // 3. Render 3D Extruded Glyph Specimen
-      drawExtrudedGlyph();
-
-      // 4. Apply IOHA Clinical Anatomical Vision Filters
-      applyVisionFilter();
-
-      requestAnimationFrame(render);
+      controls.update();
+      renderer.render(scene, camera);
     }
-
-    function drawStudioFloor() {
-      const cx = width / 2;
-      const cy = height / 2 + 180 * zoom;
-      ctx.save();
-      ctx.strokeStyle = 'rgba(56, 189, 248, 0.08)';
-      ctx.lineWidth = 1;
-
-      // Concentric Distance Rings (Louise Sloan Calibration Marks: 6m, 4m, 2m, 1m)
-      for (let r = 80; r <= 480; r += 80) {
-        ctx.beginPath();
-        ctx.ellipse(cx, cy, r * zoom * 1.5, r * zoom * 0.45, 0, 0, Math.PI * 2);
-        ctx.stroke();
-      }
-
-      // Radial Spokes
-      for (let a = 0; a < Math.PI * 2; a += Math.PI / 6) {
-        ctx.beginPath();
-        ctx.moveTo(cx, cy);
-        ctx.lineTo(cx + Math.cos(a + rotY) * 550 * zoom, cy + Math.sin(a + rotY) * 165 * zoom);
-        ctx.stroke();
-      }
-
-      // Contact Ground Shadow
-      const shadowGrad = ctx.createRadialGradient(cx, cy, 10, cx, cy, 220 * zoom);
-      shadowGrad.addColorStop(0, 'rgba(0, 0, 0, 0.7)');
-      shadowGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      ctx.fillStyle = shadowGrad;
-      ctx.beginPath();
-      ctx.ellipse(cx, cy, 220 * zoom, 70 * zoom, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.restore();
-    }
-
-    function drawExtrudedGlyph() {
-      const mat = MATERIALS[currentMaterial];
-      const cx = width / 2;
-      const cy = height / 2;
-      const fontSize = 240 * zoom;
-      const depth = (extrudeDepth / 80) * 45 * zoom;
-
-      ctx.save();
-      ctx.translate(cx, cy);
-
-      // Pseudo-3D Orthographic Shear & Perspective Projection
-      const cosY = Math.cos(rotY);
-      const sinY = Math.sin(rotY);
-      const sinX = Math.sin(rotX);
-
-      ctx.font = '800 ' + fontSize + 'px "PocketGull VF", "PocketGull Mono", sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-
-      // Draw Extrusion Slices (Back to Front)
-      const numSlices = Math.max(12, Math.floor(depth));
-      const stepX = sinY * (depth / numSlices);
-      const stepY = -sinX * (depth / numSlices);
-
-      for (let i = numSlices; i >= 1; i--) {
-        const ox = (i - numSlices/2) * stepX;
-        const oy = (i - numSlices/2) * stepY;
-
-        // Shadow / Side Wall Color
-        ctx.fillStyle = mat.shadow;
-        ctx.fillText(currentGlyph.char, ox, oy);
-
-        if (i % 2 === 0) {
-          ctx.strokeStyle = mat.stroke;
-          ctx.lineWidth = 2 * zoom;
-          ctx.strokeText(currentGlyph.char, ox, oy);
-        }
-      }
-
-      // Front Face (Key Lit)
-      const fx = (-numSlices/2) * stepX;
-      const fy = (-numSlices/2) * stepY;
-
-      // Ambient Face Glow
-      ctx.fillStyle = mat.ambient;
-      ctx.fillText(currentGlyph.char, fx, fy);
-
-      // Specular Keylit Surface
-      const frontGrad = ctx.createLinearGradient(fx - 100, fy - 100, fx + 100, fy + 100);
-      frontGrad.addColorStop(0, mat.specular);
-      frontGrad.addColorStop(0.5, mat.base);
-      frontGrad.addColorStop(1, mat.stroke);
-      ctx.fillStyle = frontGrad;
-      ctx.fillText(currentGlyph.char, fx, fy);
-
-      // Bevel Stroke
-      if (bevelRadius > 0) {
-        ctx.strokeStyle = mat.specular;
-        ctx.lineWidth = (bevelRadius / 10) * 3 * zoom;
-        ctx.strokeText(currentGlyph.char, fx, fy);
-      }
-
-      ctx.restore();
-    }
-
-    function applyVisionFilter() {
-      if (currentFilter === 'normal') return;
-
-      ctx.save();
-      if (currentFilter === 'cataract') {
-        // Senile Nuclear Cataract: Diffuse light scattering and yellow/amber hazing
-        ctx.fillStyle = 'rgba(245, 158, 11, 0.12)';
-        ctx.fillRect(0, 0, width, height);
-        ctx.filter = 'blur(4px)';
-        ctx.drawImage(canvas, 0, 0);
-        ctx.filter = 'none';
-      } else if (currentFilter === 'diabetic') {
-        // Diabetic Retinopathy: Central scotoma & blot hemorrhage simulation
-        ctx.fillStyle = 'rgba(15, 23, 42, 0.4)';
-        ctx.beginPath();
-        ctx.arc(width/2, height/2, 90, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.fillStyle = 'rgba(185, 28, 28, 0.3)';
-        ctx.beginPath();
-        ctx.arc(width/2 + 60, height/2 - 40, 35, 0, Math.PI * 2);
-        ctx.fill();
-      } else if (currentFilter === 'tunnel') {
-        // High-Adrenaline Sympathetic Tunnel Vision: Constricted peripheral vignetting
-        const vig = ctx.createRadialGradient(width/2, height/2, 120, width/2, height/2, width*0.55);
-        vig.addColorStop(0, 'rgba(0,0,0,0)');
-        vig.addColorStop(0.7, 'rgba(10, 15, 25, 0.75)');
-        vig.addColorStop(1, 'rgba(2, 4, 8, 0.98)');
-        ctx.fillStyle = vig;
-        ctx.fillRect(0, 0, width, height);
-      }
-      ctx.restore();
-    }
-
-    // Start Engine
-    render();
+    animate();
   </script>
 </body>
 </html>
