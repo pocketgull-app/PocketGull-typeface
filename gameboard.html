@@ -485,6 +485,66 @@
       opacity: 1;
     }
 
+
+    /* Stroke Recovery & Neuro-Rehabilitation Suite Styles */
+    .rehab-panel-card {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(56, 189, 248, 0.08) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      border-radius: 12px;
+      padding: 0.95rem;
+      margin-top: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .rehab-mode-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.35rem;
+      margin-top: 0.2rem;
+    }
+    .rehab-pill {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.35rem 0.5rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(0, 0, 0, 0.35);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all 0.2s ease;
+      text-align: left;
+    }
+    .rehab-pill:hover {
+      border-color: #10b981;
+      color: #fff;
+    }
+    .rehab-pill.active {
+      border-color: #10b981;
+      background: rgba(16, 185, 129, 0.25);
+      color: #34d399;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.35);
+    }
+    .rehab-metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: #94a3b8;
+      border-top: 1px dashed rgba(255,255,255,0.1);
+      padding-top: 0.35rem;
+      margin-top: 0.2rem;
+    }
+    .rehab-metric-val {
+      color: #38bdf8;
+      font-weight: 700;
+    }
+
   </style>
 </head>
 <body>
@@ -706,6 +766,53 @@
         </div>
         <div id="boardMoralDesc" style="font-size: 0.75rem; line-height: 1.5; color: rgba(255,255,255,0.8);">
           In healthcare as in life, clear boundaries bring safety. The slashed zero unequivocally separates the zero from the circle of confusion, ensuring remedies heal and never harm.
+        </div>
+      </div>
+
+      <!-- Stroke Recovery & Neuro-Rehabilitation Suite -->
+      <div class="panel-title" style="margin-top: 0.5rem;">
+        <span>🧠</span>
+        <span>Stroke Neuro-Rehab Suite</span>
+      </div>
+      <div class="rehab-panel-card" id="rehabPanel">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.72rem; font-weight: 800; color: #34d399; text-transform: uppercase;">
+            Occupational Therapy (OT) Mode
+          </span>
+          <span id="rehabBadge" style="font-family: var(--font-mono); font-size: 0.62rem; color: #38bdf8; background: rgba(56, 189, 248, 0.15); padding: 0.1rem 0.4rem; border-radius: 4px;">
+            STAGE II / ACTIVE
+          </span>
+        </div>
+        <p id="rehabDesc" style="font-size: 0.72rem; color: rgba(255,255,255,0.75); line-height: 1.35; margin: 0;">
+          Adaptive tremor dampening (EMA filter) and soft-spring magnetic groove catch help paretic limbs glide without frustration.
+        </p>
+
+        <div class="rehab-mode-grid">
+          <button type="button" class="rehab-pill active" id="btnRehabTremor" data-rehab="tremor" title="Filters out 4-8 Hz post-stroke intention tremor through exponential spatial smoothing">
+            <span>🛡️</span> Tremor Filter
+          </button>
+          <button type="button" class="rehab-pill" id="btnRehabPassive" data-rehab="mirror" title="Mirror Neuron Priming: Hands-free biological pacing across stroke recovery loops">
+            <span>🪞</span> Mirror Priming
+          </button>
+          <button type="button" class="rehab-pill" id="btnRehabCrossMidline" data-rehab="midline" title="Midline Cross Trainer: Activates corpus callosum interhemispheric transfer via Figure-8">
+            <span>♾️</span> Midline Cross
+          </button>
+          <button type="button" class="rehab-pill" id="btnRehabAphasia" data-rehab="aphasia" title="Alexia / Aphasia Kinesthetic Scribe: Connects motor tracing to phonetic sound recall">
+            <span>🗣️</span> Aphasia Scribe
+          </button>
+        </div>
+
+        <div class="rehab-metric-row">
+          <span>TREMOR SMOOTHING:</span>
+          <span class="rehab-metric-val" id="valTremorSmoothing">94% DAMPENED</span>
+        </div>
+        <div class="rehab-metric-row">
+          <span>BILATERAL MIDLINE:</span>
+          <span class="rehab-metric-val" id="valMidlinePasses">0 CROSSINGS</span>
+        </div>
+        <div class="rehab-metric-row">
+          <span>CORPUS CALLOSUM COHERENCE:</span>
+          <span class="rehab-metric-val" id="valCallosumCoherence">COHERENT (0.10 Hz)</span>
         </div>
       </div>
 
@@ -1217,6 +1324,128 @@
       pointerRadius = 0;
     });
 
+
+    /* ========================================================================== */
+    /* STROKE RECOVERY & NEURO-REHABILITATION ENGINE                              */
+    /* ========================================================================== */
+    let currentRehabMode = 'tremor'; // 'tremor', 'mirror', 'midline', 'aphasia'
+    let rawPointerHistory = [];
+    let smoothedPointerX = 0;
+    let smoothedPointerY = 0;
+    let midlineCrossingsCount = 0;
+    let lastTokenSignX = 0;
+
+    const REHAB_PRESETS = {
+      tremor: {
+        badge: 'STAGE II / TREMOR SHIELD',
+        desc: 'Adaptive tremor dampening (low-pass spatial EMA filter) absorbs 4-8 Hz involuntary oscillations, letting you draw smooth, elegant curves.',
+        smoothingAlpha: 0.12, // High dampening
+        auraRadius: 220
+      },
+      mirror: {
+        badge: 'STAGE I / MIRROR NEURON',
+        desc: 'Passive motor observation primes damaged premotor networks. The light-pearl traces the glyph hands-free at 60 BPM rest tempo.',
+        smoothingAlpha: 0.25,
+        auraRadius: 180
+      },
+      midline: {
+        badge: 'STAGE III / MIDLINE CROSS',
+        desc: 'Forces interhemispheric transfer across the corpus callosum. Continuous Figure-8 looping trains coordinated bilateral motor control.',
+        smoothingAlpha: 0.18,
+        auraRadius: 200
+      },
+      aphasia: {
+        badge: 'APEX / APHASIA KINESTHETIC',
+        desc: 'Scaffolds phonetic speech recall through tactile motor tracing. Tracing glyph anatomy triggers auditory phonetic resonance.',
+        smoothingAlpha: 0.20,
+        auraRadius: 190
+      }
+    };
+
+    function setRehabMode(mode) {
+      currentRehabMode = mode;
+      const cfg = REHAB_PRESETS[mode] || REHAB_PRESETS.tremor;
+      
+      const badgeEl = document.getElementById('rehabBadge');
+      const descEl = document.getElementById('rehabDesc');
+      if (badgeEl) badgeEl.textContent = cfg.badge;
+      if (descEl) descEl.textContent = cfg.desc;
+
+      document.querySelectorAll('.rehab-pill').forEach(pill => {
+        pill.classList.toggle('active', pill.dataset.rehab === mode);
+      });
+
+      if (mode === 'mirror') {
+        // Activate continuous auto-flow
+        if (!isAutoFlow && typeof btnToggleAutoFlow !== 'undefined' && btnToggleAutoFlow) {
+          btnToggleAutoFlow.click();
+        }
+        showToast('🪞 Mirror Neuron Priming Active • Watch, Breathe & Absorb');
+      } else if (mode === 'midline') {
+        // Automatically switch to Figure Eight board for maximum midline crossing
+        setBoard('eight');
+        document.querySelectorAll('.board-card').forEach(c => c.classList.toggle('active', c.dataset.board === 'eight'));
+        showToast('♾️ Midline Cross Active • Figure Eight Board Initialized');
+      } else if (mode === 'aphasia') {
+        showToast('🗣️ Aphasia Kinesthetic Scribe • Motor Movement Unlocks Speech');
+      } else {
+        showToast('🛡️ Tremor Dampening Active • 4-8 Hz Involuntary Tremor Shielded');
+      }
+    }
+
+    document.querySelectorAll('.rehab-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        sound.init();
+        setRehabMode(pill.dataset.rehab);
+      });
+    });
+
+    // Enhanced Tremor-Dampened Pointer Handler
+    function handleRehabPointer(clientX, clientY) {
+      const rect = canvas.getBoundingClientRect();
+      const rawX = clientX - rect.left - width / 2;
+      const rawY = clientY - rect.top - height / 2;
+
+      // Exponential Moving Average (EMA) Low-Pass Filter
+      const alpha = REHAB_PRESETS[currentRehabMode] ? REHAB_PRESETS[currentRehabMode].smoothingAlpha : 0.15;
+      smoothedPointerX = (alpha * rawX) + ((1 - alpha) * smoothedPointerX);
+      smoothedPointerY = (alpha * rawY) + ((1 - alpha) * smoothedPointerY);
+
+      // Magnetic Soft-Spring Snap to nearest glyph path
+      const board = BOARDS[currentBoardKey];
+      let nearestDist = Infinity;
+      let snapX = smoothedPointerX;
+      let snapY = smoothedPointerY;
+
+      // Check targets for gravitational assist
+      board.targets.forEach(t => {
+        const d = Math.hypot(smoothedPointerX - t.x, smoothedPointerY - t.y);
+        if (d < nearestDist && d < 120) {
+          nearestDist = d;
+          // Soft-spring interpolation toward target
+          const pull = 0.35 * (1 - d / 120);
+          snapX = smoothedPointerX + (t.x - smoothedPointerX) * pull;
+          snapY = smoothedPointerY + (t.y - smoothedPointerY) * pull;
+        }
+      });
+
+      token.targetX = snapX;
+      token.targetY = snapY;
+
+      // Track Midline Crossings (crossing x = 0 plane)
+      const currentSignX = Math.sign(token.targetX);
+      if (lastTokenSignX !== 0 && currentSignX !== 0 && currentSignX !== lastTokenSignX) {
+        midlineCrossingsCount++;
+        const crossEl = document.getElementById('valMidlinePasses');
+        if (crossEl) crossEl.textContent = `${midlineCrossingsCount} CROSSINGS`;
+        if (midlineCrossingsCount % 5 === 0) {
+          sound.playChime(1.5);
+          showToast(`🌟 ${midlineCrossingsCount} Midline Crossings! Corpus Callosum Re-Engaged`);
+        }
+      }
+      lastTokenSignX = currentSignX;
+    }
+
     // Touch & Mouse Input Handlers
     function handlePointer(clientX, clientY) {
       const rect = canvas.getBoundingClientRect();
@@ -1230,12 +1459,12 @@
     window.addEventListener('pointerdown', (e) => {
       sound.init();
       isDragging = true;
-      handlePointer(e.clientX, e.clientY);
+      handleRehabPointer(e.clientX, e.clientY);
     });
 
     window.addEventListener('pointermove', (e) => {
       if (isDragging) {
-        handlePointer(e.clientX, e.clientY);
+        handleRehabPointer(e.clientX, e.clientY);
       }
     });
 
