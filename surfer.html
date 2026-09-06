@@ -457,27 +457,27 @@
     <div class="hud-header">
       <div>
         <div class="brand-title">
-          <span>🏄</span> SLOAN SURFER
+          <span>🏄</span> SLOAN SURFER <span style="font-size: 1.15rem; font-weight: 700; color: #10b981; letter-spacing: 0.05em; opacity: 0.9;">• ᐃᓄᒃᑎᑐᑦ • 𑲒𑲅𑲋</span>
         </div>
-        <div class="brand-subtitle">THE POCKETGULL SACCADIC HIGHWAY • 5:1 OPTOTYPE RHYTHM</div>
+        <div class="brand-subtitle">POCKETGULL SANCTUARY • CHINUK PIPA (U+1BC00) &amp; INUKTITUT SYLLABICS (U+1400)</div>
       </div>
 
       <div class="telemetry-cluster">
         <div class="telemetry-card" id="cardTeamSync" style="display: none; border-color: #a855f7;">
           <div class="telemetry-val" id="hudTeamSync" style="color: #c084fc;">100%</div>
-          <div class="telemetry-label">Team Harmony</div>
+          <div class="telemetry-label">ᐃᓚᒌᑦ • Team Harmony</div>
         </div>
         <div class="telemetry-card">
           <div class="telemetry-val" id="hudAcuity">20/200</div>
-          <div class="telemetry-label">Visual Acuity</div>
+          <div class="telemetry-label">ᑕᑯᓐᓇᕈᓐᓇᕐᓂᖅ • Acuity</div>
         </div>
         <div class="telemetry-card">
           <div class="telemetry-val" id="hudBpm">75 BPM</div>
-          <div class="telemetry-label">Cardiac Rhythm</div>
+          <div class="telemetry-label">ᐆᒻᒪᑎ • Rhythm</div>
         </div>
         <div class="telemetry-card">
           <div class="telemetry-val" id="hudScore">000,000</div>
-          <div class="telemetry-label">Clinical Score</div>
+          <div class="telemetry-label">ᑭᓯᑦᓯᓯᒪᔪᑦ • Score</div>
         </div>
       </div>
     </div>
@@ -526,9 +526,9 @@
   <div class="modal-overlay" id="startModal">
     <div class="start-card">
       <div class="card-badge" style="background: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #10b981;">
-        ANCIENT WISDOM &amp; CLINICAL OPTOTYPE SANCTUARY
+        ᐃᓕᓐᓂᐊᕐᓂᖅ • CHINUK PIPA &amp; INUKTITUT INDIGENOUS SANCTUARY
       </div>
-      <h1 class="card-title">SLOAN SURFER: AESOP’S FABLES</h1>
+      <h1 class="card-title">SLOAN SURFER • ᐃᓄᒃᑎᑐᑦ</h1>
       <p class="card-desc">
         A serene, stress-free clinical learning journey inspired by <strong>Aesop’s Fables</strong>. Glide peacefully through sunlit meadows, gather typographic letters, unlock timeless teamwork and compassion morals, and discover how <em>"slow and steady wins the race"</em> in visual rehabilitation and collaborative care.
       </p>
@@ -1032,7 +1032,20 @@
       // Tactile Braille Celestial Chords
       { char: '⠠⠃', font: 'PocketGull Mono', color: '#c084fc', type: 'braille', points: 200, label: 'BRAILLE 8-DOT' },
       { char: '⠠⠓', font: 'PocketGull Mono', color: '#c084fc', type: 'braille', points: 200, label: 'BRAILLE 8-DOT' },
-      { char: '⠠⠍', font: 'PocketGull Mono', color: '#c084fc', type: 'braille', points: 200, label: 'BRAILLE 8-DOT' }
+      { char: '⠠⠍', font: 'PocketGull Mono', color: '#c084fc', type: 'braille', points: 200, label: 'BRAILLE 8-DOT' },
+
+      // Inuktitut Canadian Aboriginal Syllabics (U+1400)
+      { char: 'ᐃ', font: 'PocketGull Bold', color: '#38bdf8', type: 'inuktitut', points: 250, label: 'INUKTITUT "I" (ᐃ)' },
+      { char: 'ᓄ', font: 'PocketGull Bold', color: '#10b981', type: 'inuktitut', points: 250, label: 'INUKTITUT "NU" (ᓄ)' },
+      { char: 'ᒃ', font: 'PocketGull Bold', color: '#f59e0b', type: 'inuktitut', points: 250, label: 'INUKTITUT "K" (ᒃ)' },
+      { char: 'ᑎ', font: 'PocketGull Bold', color: '#ec4899', type: 'inuktitut', points: 250, label: 'INUKTITUT "TI" (ᑎ)' },
+      { char: 'ᑐ', font: 'PocketGull Bold', color: '#a855f7', type: 'inuktitut', points: 250, label: 'INUKTITUT "TU" (ᑐ)' },
+      { char: 'ᑦ', font: 'PocketGull Bold', color: '#38bdf8', type: 'inuktitut', points: 250, label: 'INUKTITUT "T" (ᑦ)' },
+
+      // Chinuk Pipa Stenography (U+1BC00 Kamloops Wawa)
+      { char: '𑲒', font: 'PocketGull Bold', color: '#6ee7b7', type: 'pipa', points: 300, label: 'CHINUK PIPA WA (𑲒)' },
+      { char: '𑲅', font: 'PocketGull Bold', color: '#6ee7b7', type: 'pipa', points: 300, label: 'CHINUK PIPA PA (𑲅)' },
+      { char: '𑲋', font: 'PocketGull Bold', color: '#6ee7b7', type: 'pipa', points: 300, label: 'CHINUK PIPA KA (𑲋)' }
     ];
 
     // Spawn an incoming 3D typographic target
@@ -1274,6 +1287,14 @@
         streakToast.textContent = '🛡️ ISMP DISAMBIGUATION: ' + target.label + ' (+' + earned + ')';
         streakToast.style.color = '#4ade80';
         synth.playSaberSlash(660, true);
+      } else if (target.type === 'inuktitut') {
+        streakToast.textContent = '❄️ INUKTITUT SYLLABIC: ' + target.label + ' (+' + earned + ')';
+        streakToast.style.color = '#38bdf8';
+        synth.playBrailleChord(streak + 2);
+      } else if (target.type === 'pipa') {
+        streakToast.textContent = '📜 CHINUK PIPA: ' + target.label + ' (+' + earned + ')';
+        streakToast.style.color = '#6ee7b7';
+        synth.playBrailleChord(streak + 4);
       } else if (target.type === 'braille') {
         streakToast.textContent = '⠠⠃ BRAILLE HARMONIC: ' + target.label + ' (+' + earned + ')';
         streakToast.style.color = '#c084fc';
