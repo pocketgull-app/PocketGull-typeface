@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>PocketGull Sloan Surfer — 3D Typographic Rhythm Highway (Moonrider Edition)</title>
+  <link rel="stylesheet" href="fonts.css">
+  <style>
+    :root {
+      --bg-space: #030712;
+      --neon-teal: #14b8a6;
+      --neon-cyan: #38bdf8;
+      --neon-amber: #f59e0b;
+      --neon-rose: #f43f5e;
+      --neon-purple: #a855f7;
+      --font-display: 'PocketGull Bold', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'PocketGull Mono', 'PocketGull', monospace, monospace;
+      --font-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: var(--bg-space);
+      color: #fff;
+      font-family: var(--font-ui);
+    }
+
+    #gameCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      touch-action: none;
+      display: block;
+    }
+
+    /* ─── HUD OVERLAY ─── */
+    .hud-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.5rem;
+    }
+
+    .hud-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .brand-subtitle {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--neon-cyan);
+      opacity: 0.85;
+      letter-spacing: 0.1em;
+      margin-top: 0.2rem;
+    }
+
+    .telemetry-cluster {
+      display: flex;
+      gap: 1.25rem;
+      font-family: var(--font-mono);
+    }
+
+    .telemetry-card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 8px;
+      padding: 0.6rem 1rem;
+      backdrop-filter: blur(12px);
+      text-align: right;
+    }
+
+    .telemetry-val {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .telemetry-label {
+      font-size: 0.65rem;
+      color: var(--neon-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Streak / Combo Center Indicator */
+    .streak-banner {
+      position: absolute;
+      top: 22%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      pointer-events: none;
+      transition: transform 0.15s ease-out;
+    }
+
+    .streak-number {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1;
+      color: #fff;
+      text-shadow: 0 0 20px var(--neon-teal), 0 0 40px var(--neon-cyan);
+    }
+
+    .streak-label {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      color: var(--neon-amber);
+      margin-top: 0.25rem;
+      text-transform: uppercase;
+    }
+
+    .streak-toast {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      font-weight: 800;
+      color: #4ade80;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.25s ease-out;
+      margin-top: 0.5rem;
+    }
+
+    .streak-toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Bottom Control Bar */
+    .hud-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+      pointer-events: auto;
+    }
+
+    .lane-guide {
+      display: flex;
+      gap: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.6);
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+    }
+
+    .hud-btn {
+      pointer-events: auto;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 0.55rem 1.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(8px);
+      text-decoration: none;
+    }
+
+    .hud-btn:hover {
+      background: var(--neon-cyan);
+      color: #020617;
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+    }
+
+    /* ─── START / PAUSE MODAL ─── */
+    .modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.88);
+      backdrop-filter: blur(16px);
+      z-index: 50;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+
+    .start-card {
+      max-width: 620px;
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 16px;
+      padding: 2.25rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 35px rgba(20, 184, 166, 0.2);
+      text-align: center;
+    }
+
+    .card-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.15em;
+      color: var(--neon-teal);
+      background: rgba(20, 184, 166, 0.15);
+      border: 1px solid var(--neon-teal);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #fff 0%, var(--neon-cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .card-desc {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.75);
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+
+    .instructions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+
+    .inst-box {
+      background: rgba(3, 7, 18, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 0.85rem;
+      font-size: 0.8rem;
+    }
+
+    .inst-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .inst-title {
+      font-family: var(--font-mono);
+      font-weight: 800;
+      color: var(--neon-cyan);
+      margin-bottom: 0.25rem;
+    }
+
+    .inst-sub {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.72rem;
+      line-height: 1.4;
+    }
+
+    .primary-start-btn {
+      background: linear-gradient(135deg, var(--neon-teal), var(--neon-cyan));
+      border: none;
+      color: #020617;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 900;
+      padding: 0.9rem 2.5rem;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(20, 184, 166, 0.6);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .primary-start-btn:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 35px rgba(56, 189, 248, 0.85);
+    }
+
+    @media (max-width: 640px) {
+      .instructions-grid {
+        grid-template-columns: 1fr;
+      }
+      .card-title {
+        font-size: 1.7rem;
+      }
+      .telemetry-card:nth-child(2) {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Game Canvas -->
+  <canvas id="gameCanvas"></canvas>
+
+  <!-- HUD Telemetry Layer -->
+  <div class="hud-layer">
+    <!-- Top Bar -->
+    <div class="hud-header">
+      <div>
+        <div class="brand-title">
+          <span>🏄</span> SLOAN SURFER
+        </div>
+        <div class="brand-subtitle">THE POCKETGULL SACCADIC HIGHWAY • 5:1 OPTOTYPE RHYTHM</div>
+      </div>
+
+      <div class="telemetry-cluster">
+        <div class="telemetry-card">
+          <div class="telemetry-val" id="hudAcuity">20/200</div>
+          <div class="telemetry-label">Visual Acuity</div>
+        </div>
+        <div class="telemetry-card">
+          <div class="telemetry-val" id="hudBpm">75 BPM</div>
+          <div class="telemetry-label">Cardiac Rhythm</div>
+        </div>
+        <div class="telemetry-card">
+          <div class="telemetry-val" id="hudScore">000,000</div>
+          <div class="telemetry-label">Clinical Score</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Center Combo & Saccade Streak -->
+    <div class="streak-banner" id="streakBanner">
+      <div class="streak-number" id="streakVal">0</div>
+      <div class="streak-label" id="streakTitle">SACCADE STREAK</div>
+      <div class="streak-toast" id="streakToast">✓ ISMP DISAMBIGUATION +500</div>
+    </div>
+
+    <!-- Bottom Controls & Navigation -->
+    <div class="hud-footer">
+      <div class="lane-guide">
+        <span>🎮 <strong>Controls:</strong> Mouse / Touch / Arrow Keys to Move Sabers</span>
+        <span>•</span>
+        <span>Left: <strong>Cyan Saber</strong> | Right: <strong>Amber Saber</strong></span>
+      </div>
+
+      <div style="display: flex; gap: 0.75rem;">
+        <button class="hud-btn" id="btnToggleSound">🔊 Audio: ON</button>
+        <button class="hud-btn" id="btnPauseGame">⏸ Pause</button>
+        <a href="index.html#multi-scale" class="hud-btn">📖 Back to Specimen</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Start / Instructions Modal -->
+  <div class="modal-overlay" id="startModal">
+    <div class="start-card">
+      <div class="card-badge">OPEN-SOURCE WEBXR RHYTHM HIGHWAY</div>
+      <h1 class="card-title">SLOAN SURFER</h1>
+      <p class="card-desc">
+        A clinical optometry rhythm game inspired by Moonrider.xyz. Surf the 3D typographic highway, slice Louise Sloan optotypes, disambiguate life-critical ISMP characters, and synchronize with 40 Hz gamma cardiac hemodynamics.
+      </p>
+
+      <div class="instructions-grid">
+        <div class="inst-box">
+          <div class="inst-icon">🎯</div>
+          <div class="inst-title">5:1 SLOAN OPTOTYPES</div>
+          <div class="inst-sub">Slice incoming Sloan optotypes (C, D, H, K, N, O, R, S, V, Z). Acuity sharpens from 20/200 to 20/20.</div>
+        </div>
+        <div class="inst-box">
+          <div class="inst-icon">🛡️</div>
+          <div class="inst-title">ISMP DISAMBIGUATION</div>
+          <div class="inst-sub">Slash only disambiguated characters (0̸ cv08, Ƶ cv11, ɬ cv05). Hitting ambiguous ones triggers optical collision.</div>
+        </div>
+        <div class="inst-box">
+          <div class="inst-icon">⠠⠃</div>
+          <div class="inst-title">BRAILLE HARMONICS</div>
+          <div class="inst-sub">Catch celestial 8-dot Braille patterns (U+2800) for synthesized harmonic chord bonuses.</div>
+        </div>
+      </div>
+
+      <button class="primary-start-btn" id="btnStartRun">
+        <span>▶ START SACCADE RUN</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Game Logic & Web Audio Synthesizer Engine -->
+  <script>
+    /* ========================================================================== */
+    /* SLOAN SURFER 3D ENGINE (100% NATIVE STANDALONE WEBGL / CANVAS & WEB AUDIO) */
+    /* ========================================================================== */
+
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    // UI Element Handles
+    const hudScore = document.getElementById('hudScore');
+    const hudAcuity = document.getElementById('hudAcuity');
+    const hudBpm = document.getElementById('hudBpm');
+    const streakVal = document.getElementById('streakVal');
+    const streakBanner = document.getElementById('streakBanner');
+    const streakToast = document.getElementById('streakToast');
+    const startModal = document.getElementById('startModal');
+    const btnStartRun = document.getElementById('btnStartRun');
+    const btnToggleSound = document.getElementById('btnToggleSound');
+    const btnPauseGame = document.getElementById('btnPauseGame');
+
+    // Canvas Resize Handling
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    // ─── Procedural Web Audio Cardiac Synthesizer ───
+    class CardiacSynthesizer {
+      constructor() {
+        this.ctx = null;
+        this.enabled = true;
+        this.bpm = 75;
+      }
+
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          this.ctx = new AudioContext();
+        }
+        if (this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      playSaberSlash(freq = 440, isCorrect = true) {
+        if (!this.ctx || !this.enabled) return;
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = isCorrect ? 'sine' : 'sawtooth';
+        osc.frequency.setValueAtTime(freq, now);
+        osc.frequency.exponentialRampToValueAtTime(isCorrect ? freq * 1.5 : freq * 0.4, now + 0.18);
+
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.2);
+      }
+
+      playBeatKick() {
+        if (!this.ctx || !this.enabled) return;
+        const now = this.ctx.currentTime;
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.frequency.setValueAtTime(140, now);
+        osc.frequency.exponentialRampToValueAtTime(40, now + 0.09);
+
+        gain.gain.setValueAtTime(0.5, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.13);
+      }
+
+      playBrailleChord(noteIdx = 0) {
+        if (!this.ctx || !this.enabled) return;
+        const notes = [261.63, 329.63, 392.00, 523.25, 659.25]; // C major pentatonic
+        const freq = notes[noteIdx % notes.length];
+        const now = this.ctx.currentTime;
+
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, now);
+
+        gain.gain.setValueAtTime(0.25, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.62);
+      }
+    }
+
+    const synth = new CardiacSynthesizer();
+
+    // ─── Game State & Configuration ───
+    const LANES = [-1, 0, 1]; // Left, Center, Right lane coordinates
+    const LANE_SPACING_X = 180;
+    const HIGHWAY_Z_DEPTH = 1200;
+    const PLAYER_Z = 60;
+
+    let isPlaying = false;
+    let score = 0;
+    let streak = 0;
+    let bestStreak = 0;
+    let acuityTier = 0;
+    const ACUITY_TABLE = ['20/200', '20/100', '20/70', '20/50', '20/40', '20/30', '20/25', '20/20'];
+
+    // Player Saber Gauntlets (Mouse / Touch Pos)
+    const player = {
+      x: 0,
+      y: 0,
+      leftSaber: { x: -60, y: 0, color: '#38bdf8', trail: [] },
+      rightSaber: { x: 60, y: 0, color: '#f59e0b', trail: [] }
+    };
+
+    // Active Objects on Highway
+    let targets = [];
+    let particles = [];
+    let beatTimer = 0;
+    let spawnTimer = 0;
+
+    // Target Dictionary
+    const TARGET_DEFINITIONS = [
+      // Louise Sloan Optotypes
+      { char: 'Z', font: 'PocketGull Bold', color: '#14b8a6', type: 'sloan', points: 100, label: 'SLOAN 5:1' },
+      { char: 'C', font: 'PocketGull Bold', color: '#38bdf8', type: 'sloan', points: 100, label: 'SLOAN 5:1' },
+      { char: 'D', font: 'PocketGull Bold', color: '#38bdf8', type: 'sloan', points: 100, label: 'SLOAN 5:1' },
+      { char: 'O', font: 'PocketGull Bold', color: '#14b8a6', type: 'sloan', points: 100, label: 'SLOAN 5:1' },
+      { char: 'H', font: 'PocketGull Bold', color: '#a855f7', type: 'sloan', points: 100, label: 'SLOAN 5:1' },
+      { char: 'K', font: 'PocketGull Bold', color: '#a855f7', type: 'sloan', points: 100, label: 'SLOAN 5:1' },
+      { char: 'N', font: 'PocketGull Bold', color: '#38bdf8', type: 'sloan', points: 100, label: 'SLOAN 5:1' },
+      { char: 'R', font: 'PocketGull Bold', color: '#14b8a6', type: 'sloan', points: 100, label: 'SLOAN 5:1' },
+      { char: 'S', font: 'PocketGull Bold', color: '#38bdf8', type: 'sloan', points: 100, label: 'SLOAN 5:1' },
+      { char: 'V', font: 'PocketGull Bold', color: '#14b8a6', type: 'sloan', points: 100, label: 'SLOAN 5:1' },
+
+      // ISMP Clinical Disambiguation (Bonus Valid Targets)
+      { char: '0̸', font: 'PocketGull Bold', color: '#4ade80', type: 'ismp', points: 250, label: 'cv08 SLASHED ZERO' },
+      { char: 'Ƶ', font: 'PocketGull Bold', color: '#4ade80', type: 'ismp', points: 250, label: 'cv11 CROSSBAR Z' },
+      { char: 'ɬ', font: 'PocketGull Bold', color: '#4ade80', type: 'ismp', points: 250, label: 'cv05 CURVED l' },
+
+      // Tactile Braille Celestial Chords
+      { char: '⠠⠃', font: 'PocketGull Mono', color: '#c084fc', type: 'braille', points: 200, label: 'BRAILLE 8-DOT' },
+      { char: '⠠⠓', font: 'PocketGull Mono', color: '#c084fc', type: 'braille', points: 200, label: 'BRAILLE 8-DOT' },
+      { char: '⠠⠍', font: 'PocketGull Mono', color: '#c084fc', type: 'braille', points: 200, label: 'BRAILLE 8-DOT' }
+    ];
+
+    // Spawn an incoming 3D typographic target
+    function spawnTarget() {
+      const def = TARGET_DEFINITIONS[Math.floor(Math.random() * TARGET_DEFINITIONS.length)];
+      const lane = LANES[Math.floor(Math.random() * LANES.length)];
+
+      // Hand assignment (left vs right saber)
+      const hand = lane <= 0 ? (Math.random() > 0.4 ? 'left' : 'right') : 'right';
+
+      targets.push({
+        char: def.char,
+        font: def.font,
+        color: def.color,
+        type: def.type,
+        points: def.points,
+        label: def.label,
+        lane: lane,
+        x: lane * LANE_SPACING_X,
+        y: (Math.random() - 0.5) * 80 - 20, // Slight vertical variety
+        z: HIGHWAY_Z_DEPTH,
+        scale: Math.max(0.6, 1.2 - acuityTier * 0.08), // Shrinks as acuity sharpens
+        hit: false,
+        hand: hand,
+        angle: (Math.random() - 0.5) * 0.2
+      });
+    }
+
+    // ─── Input Listeners (Mouse & Touch Tracking) ───
+    function updateSabers(clientX, clientY) {
+      const centerX = width / 2;
+      const centerY = height / 2;
+      const relX = clientX - centerX;
+      const relY = clientY - centerY;
+
+      player.x = relX;
+      player.y = relY;
+
+      // Dual sabers follow mouse position with dual-offset gauntlets
+      player.leftSaber.x = relX - 55;
+      player.leftSaber.y = relY + 30;
+      player.leftSaber.trail.push({ x: player.leftSaber.x, y: player.leftSaber.y, alpha: 1.0 });
+
+      player.rightSaber.x = relX + 55;
+      player.rightSaber.y = relY + 30;
+      player.rightSaber.trail.push({ x: player.rightSaber.x, y: player.rightSaber.y, alpha: 1.0 });
+
+      // Cap trail length
+      if (player.leftSaber.trail.length > 12) player.leftSaber.trail.shift();
+      if (player.rightSaber.trail.length > 12) player.rightSaber.trail.shift();
+    }
+
+    window.addEventListener('mousemove', (e) => updateSabers(e.clientX, e.clientY));
+    window.addEventListener('touchmove', (e) => {
+      if (e.touches.length > 0) {
+        updateSabers(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+
+    // ─── Particle Shatter Effects ───
+    function createShatterEffect(x, y, color, count = 24) {
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 8 + 3;
+        particles.push({
+          x: x,
+          y: y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - 2,
+          color: color,
+          size: Math.random() * 4 + 2,
+          life: 1.0,
+          decay: Math.random() * 0.03 + 0.02
+        });
+      }
+    }
+
+    // ─── Score & Saccadic Streak Progression ───
+    function registerHit(target, saberX, saberY) {
+      target.hit = true;
+      streak++;
+      if (streak > bestStreak) bestStreak = streak;
+
+      // Acuity calculation based on streak
+      acuityTier = Math.min(ACUITY_TABLE.length - 1, Math.floor(streak / 5));
+      hudAcuity.textContent = ACUITY_TABLE[acuityTier];
+
+      // Multiplier bonus
+      const multiplier = 1 + Math.floor(streak / 10) * 0.5;
+      const earned = Math.round(target.points * multiplier);
+      score += earned;
+      hudScore.textContent = String(score).padStart(6, '0');
+
+      // Streak Visual Punch
+      streakVal.textContent = streak;
+      streakBanner.style.transform = 'translate(-50%, -50%) scale(1.15)';
+      setTimeout(() => {
+        streakBanner.style.transform = 'translate(-50%, -50%) scale(1.0)';
+      }, 100);
+
+      // Toast feedback
+      if (target.type === 'ismp') {
+        streakToast.textContent = '🛡️ ISMP DISAMBIGUATION: ' + target.label + ' (+' + earned + ')';
+        streakToast.style.color = '#4ade80';
+        synth.playSaberSlash(660, true);
+      } else if (target.type === 'braille') {
+        streakToast.textContent = '⠠⠃ BRAILLE HARMONIC: ' + target.label + ' (+' + earned + ')';
+        streakToast.style.color = '#c084fc';
+        synth.playBrailleChord(streak);
+      } else {
+        streakToast.textContent = '🎯 5:1 SLOAN FIXATION: ' + target.char + ' (+' + earned + ')';
+        streakToast.style.color = '#38bdf8';
+        synth.playSaberSlash(440, true);
+      }
+
+      streakToast.classList.add('show');
+      clearTimeout(target._toastTimer);
+      target._toastTimer = setTimeout(() => streakToast.classList.remove('show'), 800);
+
+      createShatterEffect(saberX, saberY, target.color, 28);
+    }
+
+    function registerMiss() {
+      streak = 0;
+      streakVal.textContent = streak;
+      acuityTier = Math.max(0, acuityTier - 1);
+      hudAcuity.textContent = ACUITY_TABLE[acuityTier];
+      streakToast.textContent = '⚠️ SACCADIC MISS: FIXATION LOST';
+      streakToast.style.color = '#f43f5e';
+      streakToast.classList.add('show');
+      setTimeout(() => streakToast.classList.remove('show'), 700);
+      synth.playSaberSlash(180, false);
+    }
+
+    // ─── Main 3D Highway Render Loop ───
+    let lastTime = performance.now();
+
+    function renderGameLoop(currentTime) {
+      const dt = (currentTime - lastTime) / 1000;
+      lastTime = currentTime;
+
+      // Clear Frame
+      ctx.fillStyle = '#030712';
+      ctx.fillRect(0, 0, width, height);
+
+      const centerX = width / 2;
+      const horizonY = height * 0.44;
+
+      // 1. Draw 3D Perspective Highway Grid
+      ctx.save();
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.22)';
+      ctx.lineWidth = 1.5;
+
+      // Longitudinal Lane Lines
+      LANES.forEach(lane => {
+        const xOffset = lane * LANE_SPACING_X;
+        ctx.beginPath();
+        ctx.moveTo(centerX, horizonY);
+        ctx.lineTo(centerX + xOffset * 3.5, height);
+        ctx.stroke();
+      });
+
+      // Outer Highway Borders
+      ctx.strokeStyle = 'rgba(20, 184, 166, 0.45)';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(centerX, horizonY);
+      ctx.lineTo(centerX - LANE_SPACING_X * 4.2, height);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(centerX, horizonY);
+      ctx.lineTo(centerX + LANE_SPACING_X * 4.2, height);
+      ctx.stroke();
+
+      // Transverse Rhythmic Ties (Distance markers)
+      beatTimer = (beatTimer + dt * 4) % 1;
+      for (let i = 0; i < 14; i++) {
+        const prog = ((i / 14) + beatTimer / 14) % 1;
+        const lineY = horizonY + Math.pow(prog, 2.2) * (height - horizonY);
+        const halfSpan = Math.pow(prog, 1.8) * LANE_SPACING_X * 3.8;
+
+        ctx.strokeStyle = 'rgba(56, 189, 248, ' + (prog * 0.35) + ')';
+        ctx.lineWidth = 1 + prog * 2;
+        ctx.beginPath();
+        ctx.moveTo(centerX - halfSpan, lineY);
+        ctx.lineTo(centerX + halfSpan, lineY);
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      // 2. Spawn and Advance Incoming Targets
+      if (isPlaying) {
+        spawnTimer += dt;
+        // Spawns every 0.65s (approx 92 BPM)
+        if (spawnTimer > 0.65) {
+          spawnTimer = 0;
+          spawnTarget();
+          synth.playBeatKick();
+        }
+      }
+
+      // 3. Render and Test Targets
+      for (let i = targets.length - 1; i >= 0; i--) {
+        const t = targets[i];
+        if (isPlaying) {
+          t.z -= dt * 680; // Highway approach velocity
+        }
+
+        // Perspective Projection calculation
+        const perspective = 480 / Math.max(1, t.z);
+        const projX = centerX + t.x * perspective;
+        const projY = horizonY + (height * 0.48) * perspective + t.y * perspective;
+        const projScale = Math.max(0.1, t.scale * perspective * 24);
+
+        // Test collision near player plane (PLAYER_Z)
+        if (!t.hit && t.z <= PLAYER_Z + 40 && t.z >= PLAYER_Z - 40) {
+          const activeSaber = t.hand === 'left' ? player.leftSaber : player.rightSaber;
+          const distToSaber = Math.hypot(projX - (centerX + activeSaber.x), projY - (horizonY + activeSaber.y));
+          
+          if (distToSaber < projScale * 1.6) {
+            registerHit(t, centerX + activeSaber.x, horizonY + activeSaber.y);
+          }
+        }
+
+        // Missed target (passed behind camera)
+        if (!t.hit && t.z < -20) {
+          targets.splice(i, 1);
+          if (isPlaying) registerMiss();
+          continue;
+        }
+
+        // Remove if shattered and past
+        if (t.hit && t.z < -50) {
+          targets.splice(i, 1);
+          continue;
+        }
+
+        // Draw Target Glyph if still incoming
+        if (!t.hit && t.z > 0) {
+          ctx.save();
+          ctx.translate(projX, projY);
+          ctx.rotate(t.angle);
+
+          // 3D Extrusion Back-Plate Shadow
+          const extrudeOffset = perspective * 12;
+          ctx.fillStyle = 'rgba(2, 6, 23, 0.9)';
+          ctx.strokeStyle = t.color;
+          ctx.lineWidth = Math.max(1, 2.5 * perspective);
+
+          // Card Bounding Box
+          const boxW = projScale * 1.5;
+          const boxH = projScale * 1.5;
+
+          // Extruded lateral depth facet
+          ctx.fillStyle = 'rgba(15, 23, 42, 0.85)';
+          ctx.fillRect(-boxW / 2 + extrudeOffset, -boxH / 2 + extrudeOffset, boxW, boxH);
+          ctx.strokeRect(-boxW / 2 + extrudeOffset, -boxH / 2 + extrudeOffset, boxW, boxH);
+
+          // Front Face Plaque
+          ctx.fillStyle = 'rgba(15, 23, 42, 0.95)';
+          ctx.fillRect(-boxW / 2, -boxH / 2, boxW, boxH);
+          ctx.strokeRect(-boxW / 2, -boxH / 2, boxW, boxH);
+
+          // Render PocketGull Glyphs
+          ctx.font = '900 ' + (projScale * 0.9) + 'px ' + t.font + ', sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillStyle = '#fff';
+          ctx.shadowColor = t.color;
+          ctx.shadowBlur = 12 * perspective;
+          ctx.fillText(t.char, 0, 0);
+
+          // Hand Indicator Tag (Cyan = Left, Amber = Right)
+          ctx.shadowBlur = 0;
+          ctx.fillStyle = t.hand === 'left' ? 'var(--neon-cyan)' : 'var(--neon-amber)';
+          ctx.fillRect(-boxW / 2, boxH / 2 - 4 * perspective, boxW, 4 * perspective);
+
+          ctx.restore();
+        }
+      }
+
+      // 4. Render Particle Bursts
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= p.decay;
+
+        if (p.life <= 0) {
+          particles.splice(i, 1);
+          continue;
+        }
+
+        ctx.save();
+        ctx.globalAlpha = p.life;
+        ctx.fillStyle = p.color;
+        ctx.shadowColor = p.color;
+        ctx.shadowBlur = 8;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // 5. Render Glowing Light Sabers & Motion Trails
+      [player.leftSaber, player.rightSaber].forEach(saber => {
+        // Draw saber trail
+        if (saber.trail.length > 1) {
+          ctx.save();
+          ctx.beginPath();
+          ctx.moveTo(centerX + saber.trail[0].x, horizonY + saber.trail[0].y);
+          for (let k = 1; k < saber.trail.length; k++) {
+            ctx.lineTo(centerX + saber.trail[k].x, horizonY + saber.trail[k].y);
+          }
+          ctx.strokeStyle = saber.color;
+          ctx.lineWidth = 6;
+          ctx.shadowColor = saber.color;
+          ctx.shadowBlur = 16;
+          ctx.stroke();
+          ctx.restore();
+        }
+
+        // Draw saber hilt and glowing tip
+        const sx = centerX + saber.x;
+        const sy = horizonY + saber.y;
+
+        ctx.save();
+        ctx.shadowColor = saber.color;
+        ctx.shadowBlur = 24;
+        ctx.fillStyle = '#fff';
+        ctx.strokeStyle = saber.color;
+        ctx.lineWidth = 4;
+
+        // Saber Blade Line (projecting outward in 3D)
+        ctx.beginPath();
+        ctx.moveTo(sx, sy);
+        ctx.lineTo(sx, sy - 75);
+        ctx.stroke();
+
+        // Tip Flare
+        ctx.beginPath();
+        ctx.arc(sx, sy - 75, 5, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Hilt Base
+        ctx.fillStyle = '#334155';
+        ctx.fillRect(sx - 4, sy - 10, 8, 20);
+        ctx.restore();
+      });
+
+      requestAnimationFrame(renderGameLoop);
+    }
+
+    // ─── Button Listeners & Game Flow ───
+    btnStartRun.addEventListener('click', () => {
+      synth.init();
+      startModal.style.display = 'none';
+      isPlaying = true;
+      score = 0;
+      streak = 0;
+      acuityTier = 0;
+      hudScore.textContent = '000,000';
+      hudAcuity.textContent = ACUITY_TABLE[0];
+      targets = [];
+      particles = [];
+      synth.playBeatKick();
+    });
+
+    btnToggleSound.addEventListener('click', () => {
+      synth.enabled = !synth.enabled;
+      btnToggleSound.textContent = synth.enabled ? '🔊 Audio: ON' : '🔇 Audio: MUTED';
+    });
+
+    btnPauseGame.addEventListener('click', () => {
+      isPlaying = !isPlaying;
+      btnPauseGame.textContent = isPlaying ? '⏸ Pause' : '▶ Resume';
+      if (!isPlaying) {
+        startModal.style.display = 'flex';
+      }
+    });
+
+    // Start Animation Loop
+    requestAnimationFrame(renderGameLoop);
+  </script>
+</body>
+</html>
