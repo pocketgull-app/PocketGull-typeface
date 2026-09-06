@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "name": "pocketgull-typeface",
+  "docker": {
+    "image": "node:20-alpine",
+    "network": "none",
+    "readOnlyHostMount": true,
+    "workdir": "/workspace",
+    "command": "sh"
+  },
+  "windowsSandbox": {
+    "networking": "Disable",
+    "readOnly": true,
+    "logonCommand": "powershell.exe -NoExit -Command Set-Location 'C:\\Users\\WDAGUtilityAccount\\Desktop\\Project'"
+  }
+}
