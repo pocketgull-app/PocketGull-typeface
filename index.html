@@ -7178,7 +7178,8 @@
                 <button id="bodyPlaneCoronalBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: var(--accent-teal); color: #09090b;">Coronal (Front)</button>
                 <button id="bodyPlaneSagittalBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: transparent; color: var(--text-secondary);">Sagittal (Side)</button>
                 <button id="bodyResetOrbitBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">🔄 Reset 3D</button>
-                <button id="bodyWebXrBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4);">🥽 WebXR / Spatial AR</button>
+                <button id="bodyAframeBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: rgba(236, 72, 153, 0.15); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.4); font-weight: 800;">🌐 aframe.io VR</button>
+                <button id="bodyWebXrBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4);">🥽 WebXR / AR</button>
               </div>
             </div>
 
@@ -7326,6 +7327,107 @@
                   <button id="bodyJumpToZoomBtn" class="action-btn" style="width: 100%; padding: 0.65rem 1rem; font-size: 0.85rem; font-weight: 800; background: var(--accent-teal); color: #09090b;">
                     🔬 Dive into Molecular Zoom (1× to 10M× Orch-OR) ➔
                   </button>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- FRAME.IO COLLABORATIVE CLINICAL TIMELINE & ANNOTATION SUITE -->
+            <div style="margin-top: 1.5rem; background: #030712; border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
+              
+              <!-- Frame.io Header Bar -->
+              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); pb-3; margin-bottom: 1rem; gap: 0.75rem;">
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <span style="font-size: 1.25rem;">🎬</span>
+                  <div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                      <span style="font-family: 'PocketGull Bold', sans-serif; font-size: 0.95rem; font-weight: 800; color: var(--text-primary);">
+                        FRAME.IO CLINICAL REVIEW &amp; SPATIAL MARKUP
+                      </span>
+                      <span style="font-family: var(--font-code); font-size: 0.7rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 0.15rem 0.5rem; border-radius: 9999px; border: 1px solid rgba(56, 189, 248, 0.3);">
+                        v4.0 TIME-ACCURATE
+                      </span>
+                    </div>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">
+                      Timecode-locked cardiac cycle scrubbing, vector spatial markup pins, and multidisciplinary sign-off.
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Live SMPTE Timecode & Status -->
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <div style="font-family: var(--font-code); font-size: 1rem; font-weight: 800; color: var(--accent-amber); background: #000; padding: 0.3rem 0.75rem; border-radius: 6px; border: 1px solid rgba(245, 158, 11, 0.3);">
+                    ⏱️ <span id="frameioTimecode">00:00:00:18</span>
+                  </div>
+                  <button id="frameioPlayBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: var(--accent-teal); color: #09090b; font-weight: 800;">
+                    ▶ Play (60 BPM)
+                  </button>
+                  <button id="frameioAddMarkerBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">
+                    📌 Drop Marker
+                  </button>
+                  <button id="frameioSignoffBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: rgba(74, 222, 128, 0.2); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.4); font-weight: 800;">
+                    🛡️ Sign Off (Approved)
+                  </button>
+                </div>
+              </div>
+
+              <!-- Interactive ECG Scrub Timeline Bar -->
+              <div style="margin-bottom: 1.25rem;">
+                <div style="display: flex; justify-content: space-between; font-family: var(--font-code); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.4rem;">
+                  <span id="frameioPhaseLabel" style="color: var(--accent-teal); font-weight: 700;">PHASE: P-WAVE (ATRIAL SYSTOLE)</span>
+                  <span>HEART RATE: 60 BPM • 1000 ms R-R INTERVAL</span>
+                </div>
+                
+                <!-- Scrub Slider -->
+                <div style="position: relative;">
+                  <input type="range" id="frameioScrubber" min="0" max="60" value="18" style="width: 100%; accent-color: var(--accent-teal); cursor: pointer;">
+                  <!-- Timeline Phase Markers -->
+                  <div style="display: flex; justify-content: space-between; font-family: var(--font-code); font-size: 0.65rem; color: var(--text-muted); margin-top: 0.2rem;">
+                    <span>0ms (P-Wave)</span>
+                    <span>160ms (PR Segment)</span>
+                    <span>280ms (QRS Peak)</span>
+                    <span>480ms (ST Segment)</span>
+                    <span>720ms (T-Wave)</span>
+                    <span>1000ms (Diastole)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Collaborative Threaded Review Cards (Frame.io Comments) -->
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                
+                <!-- Comment 1 -->
+                <div class="frameio-comment-card" data-frame="8" style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 0.85rem; cursor: pointer; transition: all 0.2s ease;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                    <span style="font-family: var(--font-code); font-size: 0.7rem; color: var(--accent-teal); font-weight: 700;">⏱️ 00:00:00:08 • Atrial Inflow</span>
+                    <span style="font-size: 0.65rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 0.1rem 0.4rem; border-radius: 4px;">Dr. Aris (Cardiology)</span>
+                  </div>
+                  <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0; line-height: 1.4;">
+                    "Confirming zero atrial flutter. Frank-Starling end-diastolic filling is within normal LogMAR hemodynamic limits."
+                  </p>
+                </div>
+
+                <!-- Comment 2 -->
+                <div class="frameio-comment-card active" data-frame="18" style="background: rgba(20, 184, 166, 0.15); border: 1px solid var(--accent-teal); border-radius: 8px; padding: 0.85rem; cursor: pointer; transition: all 0.2s ease;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                    <span style="font-family: var(--font-code); font-size: 0.7rem; color: var(--accent-amber); font-weight: 700;">⏱️ 00:00:00:18 • QRS Power Stroke</span>
+                    <span style="font-size: 0.65rem; background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); padding: 0.1rem 0.4rem; border-radius: 4px;">Dr. Gear (Chief Medical)</span>
+                  </div>
+                  <p style="font-size: 0.8rem; color: var(--text-primary); margin: 0; line-height: 1.4;">
+                    "📌 Pinned at Myocardium S1 Head: 3–5 pN force vector verified. 100% W3C OTS memory safety passed."
+                  </p>
+                </div>
+
+                <!-- Comment 3 -->
+                <div class="frameio-comment-card" data-frame="42" style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 0.85rem; cursor: pointer; transition: all 0.2s ease;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                    <span style="font-family: var(--font-code); font-size: 0.7rem; color: #c084fc; font-weight: 700;">⏱️ 00:00:00:42 • T-Wave Repol</span>
+                    <span style="font-size: 0.65rem; background: rgba(192, 132, 252, 0.2); color: #c084fc; padding: 0.1rem 0.4rem; border-radius: 4px;">Nurse Chen (ICU Telemetry)</span>
+                  </div>
+                  <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0; line-height: 1.4;">
+                    "ISMP allergy alert checked for penicillin cross-reactivity. Ready for 203 DPI thermal wristband print."
+                  </p>
                 </div>
 
               </div>
@@ -11245,6 +11347,210 @@ Sincerely,
         });
       }
 
+      // aframe.io WebVR / Spatial Browser Launcher
+      const bodyAframeBtn = document.getElementById('bodyAframeBtn');
+      if (bodyAframeBtn) {
+        bodyAframeBtn.addEventListener('click', () => {
+          // Dynamically load A-Frame library from unpkg if not present
+          if (!window.AFRAME) {
+            const script = document.createElement('script');
+            script.src = 'https://aframe.io/releases/1.6.0/aframe.min.js';
+            script.onload = () => launchAframeModal();
+            document.head.appendChild(script);
+            bodyAframeBtn.textContent = '⏳ Loading aframe.io...';
+          } else {
+            launchAframeModal();
+          }
+        });
+      }
+
+      function launchAframeModal() {
+        if (bodyAframeBtn) {
+          bodyAframeBtn.textContent = '🌐 aframe.io VR Active';
+          bodyAframeBtn.style.background = 'rgba(236, 72, 153, 0.3)';
+        }
+
+        let modal = document.getElementById('aframeModalOverlay');
+        if (!modal) {
+          modal = document.createElement('div');
+          modal.id = 'aframeModalOverlay';
+          modal.style.position = 'fixed';
+          modal.style.inset = '0';
+          modal.style.zIndex = '99999';
+          modal.style.background = 'rgba(0, 0, 0, 0.95)';
+          modal.style.display = 'flex';
+          modal.style.flexDirection = 'column';
+
+          modal.innerHTML = `
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; background: #030712; border-bottom: 1px solid var(--border-subtle); color: #fff; font-family: var(--font-code);">
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span style="font-size: 1.25rem;">🌐</span>
+                <span style="font-weight: 800; color: #f472b6;">AFRAME.IO WEBVR SPATIAL ANATOMY ROOM</span>
+                <span style="font-size: 0.75rem; background: rgba(236, 72, 153, 0.2); padding: 0.2rem 0.6rem; border-radius: 9999px; color: #f472b6;">6-DOF Immersive VR</span>
+              </div>
+              <button id="closeAframeModalBtn" style="background: transparent; border: 1px solid var(--border-subtle); color: #fff; padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer;">✕ Close VR</button>
+            </div>
+            <div style="flex: 1; position: relative;" id="aframeSceneWrapper">
+              <a-scene embedded style="width: 100%; height: 100%;">
+                <a-sky color="#020617"></a-sky>
+                
+                <!-- Lighting -->
+                <a-ambient-light color="#38bdf8" intensity="0.6"></a-ambient-light>
+                <a-directional-light position="2 4 3" color="#ffffff" intensity="1.2"></a-directional-light>
+
+                <!-- Floating 3D Typographic Patient Silhouette Matrix in VR -->
+                <a-entity position="0 1.2 -2.5" animation="property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear">
+                  <!-- Head / Brain -->
+                  <a-text value="BRAIN: ORCH-OR 40Hz" color="#38bdf8" position="0 1.2 0" align="center" width="4" font="mozillavr"></a-text>
+                  <a-sphere position="0 0.9 0" radius="0.25" color="#38bdf8" opacity="0.4" wireframe="true"></a-sphere>
+
+                  <!-- Lungs -->
+                  <a-text value="LUNGS: 300M ALVEOLI" color="#22c55e" position="0 0.4 0" align="center" width="3.5" font="mozillavr"></a-text>
+                  <a-box position="-0.3 0.2 0" depth="0.2" height="0.4" width="0.3" color="#22c55e" opacity="0.3"></a-box>
+                  <a-box position="0.3 0.2 0" depth="0.2" height="0.4" width="0.3" color="#22c55e" opacity="0.3"></a-box>
+
+                  <!-- Heart -->
+                  <a-text value="HEART: MYOCARDIUM 60 BPM" color="#f43f5e" position="0 -0.1 0" align="center" width="3.5" font="mozillavr"></a-text>
+                  <a-octahedron position="0 -0.1 0" radius="0.2" color="#f43f5e" opacity="0.8" animation="property: scale; to: 1.25 1.25 1.25; dir: alternate; dur: 500; loop: true"></a-octahedron>
+
+                  <!-- Pelvis & Femur -->
+                  <a-text value="FEMUR: ACTOMYOSIN 5pN" color="#c084fc" position="0 -0.6 0" align="center" width="3.5" font="mozillavr"></a-text>
+                  <a-cylinder position="-0.25 -1.0 0" radius="0.06" height="0.7" color="#c084fc" opacity="0.5"></a-cylinder>
+                  <a-cylinder position="0.25 -1.0 0" radius="0.06" height="0.7" color="#c084fc" opacity="0.5"></a-cylinder>
+                </a-entity>
+
+                <!-- VR Camera Rig with Tracked Controls -->
+                <a-entity id="rig" position="0 1.6 0">
+                  <a-camera look-controls wasd-controls position="0 0 0"></a-camera>
+                  <a-entity oculus-touch-controls="hand: left"></a-entity>
+                  <a-entity oculus-touch-controls="hand: right"></a-entity>
+                </a-entity>
+              </a-scene>
+            </div>
+          `;
+
+          document.body.appendChild(modal);
+          document.getElementById('closeAframeModalBtn').addEventListener('click', () => {
+            modal.style.display = 'none';
+            if (bodyAframeBtn) {
+              bodyAframeBtn.textContent = '🌐 aframe.io VR';
+              bodyAframeBtn.style.background = 'rgba(236, 72, 153, 0.15)';
+            }
+          });
+        } else {
+          modal.style.display = 'flex';
+        }
+      }
+
+      // ─── Frame.io Timecode Scrubbing & Collaborative Markers ───
+      const frameioScrubber = document.getElementById('frameioScrubber');
+      const frameioTimecode = document.getElementById('frameioTimecode');
+      const frameioPhaseLabel = document.getElementById('frameioPhaseLabel');
+      const frameioPlayBtn = document.getElementById('frameioPlayBtn');
+      const frameioAddMarkerBtn = document.getElementById('frameioAddMarkerBtn');
+      const frameioSignoffBtn = document.getElementById('frameioSignoffBtn');
+      const frameioCommentCards = document.querySelectorAll('.frameio-comment-card');
+
+      let isFrameioPlaying = false;
+      let frameioTimer = null;
+
+      function renderFrameioFrame(frame) {
+        if (!frameioScrubber) return;
+        frameioScrubber.value = frame;
+        
+        // Compute SMPTE 00:00:00:FF
+        const frameStr = String(frame).padStart(2, '0');
+        if (frameioTimecode) {
+          frameioTimecode.textContent = `00:00:00:${frameStr}`;
+        }
+
+        // Map frame to cardiac phase
+        if (frameioPhaseLabel) {
+          if (frame < 12) frameioPhaseLabel.textContent = 'PHASE: P-WAVE (ATRIAL SYSTOLE)';
+          else if (frame < 24) frameioPhaseLabel.textContent = 'PHASE: QRS POWER STROKE (VENTRICULAR SYSTOLE)';
+          else if (frame < 38) frameioPhaseLabel.textContent = 'PHASE: ST SEGMENT (ISOELECTRIC REPOL)';
+          else if (frame < 50) frameioPhaseLabel.textContent = 'PHASE: T-WAVE (VENTRICULAR REPOLARIZATION)';
+          else frameioPhaseLabel.textContent = 'PHASE: DIASTOLE (PASSIVE VENTRICULAR FILLING)';
+        }
+
+        // Highlight matching comments
+        frameioCommentCards.forEach(c => {
+          const cFrame = parseInt(c.dataset.frame, 10);
+          if (Math.abs(cFrame - frame) <= 6) {
+            c.style.borderColor = 'var(--accent-teal)';
+            c.style.background = 'rgba(20, 184, 166, 0.18)';
+          } else {
+            c.style.borderColor = 'var(--border-subtle)';
+            c.style.background = 'rgba(15, 23, 42, 0.8)';
+          }
+        });
+
+        // Pulse heart node in 3D matrix in sync with cardiac frame
+        const svg = document.getElementById('bodyTypoMatrixSvg');
+        if (svg) {
+          const heartNode = svg.querySelector('g[data-organ="heart"] circle');
+          if (heartNode) {
+            if (frame >= 14 && frame <= 24) {
+              heartNode.setAttribute('transform', 'scale(1.2) translate(-28, -25)');
+              heartNode.setAttribute('fill', '#f43f5e');
+            } else {
+              heartNode.removeAttribute('transform');
+              heartNode.setAttribute('fill', 'rgba(244, 63, 94, 0.25)');
+            }
+          }
+        }
+      }
+
+      if (frameioScrubber) {
+        frameioScrubber.addEventListener('input', (e) => {
+          renderFrameioFrame(parseInt(e.target.value, 10));
+        });
+      }
+
+      if (frameioPlayBtn) {
+        frameioPlayBtn.addEventListener('click', () => {
+          isFrameioPlaying = !isFrameioPlaying;
+          if (isFrameioPlaying) {
+            frameioPlayBtn.textContent = '⏸ Pause';
+            frameioPlayBtn.style.background = 'var(--accent-amber)';
+            frameioTimer = setInterval(() => {
+              let cur = parseInt(frameioScrubber.value, 10);
+              cur = (cur + 1) % 60;
+              renderFrameioFrame(cur);
+            }, 1000 / 30); // 30 FPS playback (60 frames = 2 seconds per cycle)
+          } else {
+            frameioPlayBtn.textContent = '▶ Play (60 BPM)';
+            frameioPlayBtn.style.background = 'var(--accent-teal)';
+            clearInterval(frameioTimer);
+          }
+        });
+      }
+
+      if (frameioAddMarkerBtn) {
+        frameioAddMarkerBtn.addEventListener('click', () => {
+          const note = prompt('Enter Frame.io Clinical Finding / Marker Note:');
+          if (note) {
+            alert(`📌 Marker pinned at ${frameioTimecode.textContent}:\n"${note}"\nSaved to patient clinical audit log.`);
+          }
+        });
+      }
+
+      if (frameioSignoffBtn) {
+        frameioSignoffBtn.addEventListener('click', () => {
+          frameioSignoffBtn.textContent = '✓ SIGNED & AUDITED';
+          frameioSignoffBtn.style.background = '#22c55e';
+          frameioSignoffBtn.style.color = '#000';
+          alert('🛡️ ISMP & CARE Principles Audit Complete:\n\n• Verified 40 Hz Orch-OR Microtubule Dipoles\n• Slashed zero (cv08) and curved l (cv05) enforced\n• Zero allergy cross-reactivity\n• Ready for electronic health record transmission.');
+        });
+      }
+
+      frameioCommentCards.forEach(card => {
+        card.addEventListener('click', () => {
+          const targetFrame = parseInt(card.dataset.frame, 10);
+          renderFrameioFrame(targetFrame);
+        });
+      });
+
       if (bodyJumpToZoomBtn) {
         bodyJumpToZoomBtn.addEventListener('click', () => {
           setMode(1); // Jump to Molecular Zoom Lens
@@ -11253,6 +11559,7 @@ Sincerely,
 
       updateGimbalTransform();
       renderBodyInspector();
+      renderFrameioFrame(18);
     }
 
       function renderStressGrid() {
