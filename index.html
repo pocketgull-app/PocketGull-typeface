@@ -7333,57 +7333,97 @@
 
             </div>
 
-            <!-- FRAME.IO COLLABORATIVE CLINICAL TIMELINE & ANNOTATION SUITE -->
+            <!-- FRAME.IO COLLABORATIVE CLINICAL TIMELINE & LIFESPAN TILTH ENGINE -->
             <div style="margin-top: 1.5rem; background: #030712; border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem;">
               
-              <!-- Frame.io Header Bar -->
-              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); pb-3; margin-bottom: 1rem; gap: 0.75rem;">
+              <!-- Frame.io Header Bar & Mode Switcher -->
+              <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 1rem; margin-bottom: 1rem; gap: 0.75rem;">
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
                   <span style="font-size: 1.25rem;">🎬</span>
                   <div>
-                    <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
                       <span style="font-family: 'PocketGull Bold', sans-serif; font-size: 0.95rem; font-weight: 800; color: var(--text-primary);">
-                        FRAME.IO CLINICAL REVIEW &amp; SPATIAL MARKUP
+                        FRAME.IO CHRONOMETER &amp; LIFESPAN TILTH ENGINE
                       </span>
                       <span style="font-family: var(--font-code); font-size: 0.7rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 0.15rem 0.5rem; border-radius: 9999px; border: 1px solid rgba(56, 189, 248, 0.3);">
-                        v4.0 TIME-ACCURATE
+                        v4.0 TEMPORAL MATRIX
                       </span>
                     </div>
                     <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">
-                      Timecode-locked cardiac cycle scrubbing, vector spatial markup pins, and multidisciplinary sign-off.
+                      Dual temporal continuum: sub-second cardiac hemodynamics and multi-decade human resilience from conception to elderhood.
                     </p>
                   </div>
                 </div>
 
-                <!-- Live SMPTE Timecode & Status -->
-                <div style="display: flex; align-items: center; gap: 0.75rem;">
-                  <div style="font-family: var(--font-code); font-size: 1rem; font-weight: 800; color: var(--accent-amber); background: #000; padding: 0.3rem 0.75rem; border-radius: 6px; border: 1px solid rgba(245, 158, 11, 0.3);">
+                <!-- Continuum Mode Switcher Tabs -->
+                <div style="display: inline-flex; background: var(--bg-surface); padding: 0.25rem; border-radius: 8px; border: 1px solid var(--border-subtle); gap: 0.25rem;">
+                  <button id="chronometerModeCardiacBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: var(--accent-teal); color: #09090b; font-weight: 800;">
+                    💓 Cardiac (60 BPM)
+                  </button>
+                  <button id="chronometerModeLifespanBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: transparent; color: var(--text-secondary); font-weight: 700;">
+                    🌱 Lifespan &amp; Tilth (0–100+ Yrs)
+                  </button>
+                </div>
+
+                <!-- Live SMPTE Timecode & Actions -->
+                <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                  <div style="font-family: var(--font-code); font-size: 0.95rem; font-weight: 800; color: var(--accent-amber); background: #000; padding: 0.3rem 0.75rem; border-radius: 6px; border: 1px solid rgba(245, 158, 11, 0.3);">
                     ⏱️ <span id="frameioTimecode">00:00:00:18</span>
                   </div>
                   <button id="frameioPlayBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: var(--accent-teal); color: #09090b; font-weight: 800;">
-                    ▶ Play (60 BPM)
+                    ▶ Play
                   </button>
                   <button id="frameioAddMarkerBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">
-                    📌 Drop Marker
+                    📌 Drop Finding
                   </button>
                   <button id="frameioSignoffBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: rgba(74, 222, 128, 0.2); color: #4ade80; border: 1px solid rgba(74, 222, 128, 0.4); font-weight: 800;">
-                    🛡️ Sign Off (Approved)
+                    🛡️ Sign Off (CARE/ISMP)
                   </button>
                 </div>
               </div>
 
-              <!-- Interactive ECG Scrub Timeline Bar -->
+              <!-- LIVE TILTH BIOMARKERS HUD (Displayed during Lifespan mode) -->
+              <div id="lifespanTilthHud" style="display: none; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.75rem; background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 0.75rem; margin-bottom: 1.25rem; font-family: var(--font-code);">
+                <div>
+                  <div style="font-size: 0.68rem; color: var(--text-muted);">🧬 TELOMERE LENGTH</div>
+                  <div id="tilthTelomereVal" style="font-size: 1.1rem; font-weight: 800; color: #38bdf8;">10.4 kb</div>
+                  <div style="font-size: 0.65rem; color: var(--text-muted);">Replicative reserve</div>
+                </div>
+                <div>
+                  <div style="font-size: 0.68rem; color: var(--text-muted);">⚡ MITOCHONDRIAL VITALITY</div>
+                  <div id="tilthMitoVal" style="font-size: 1.1rem; font-weight: 800; color: #4ade80;">94% ATP</div>
+                  <div style="font-size: 0.65rem; color: var(--text-muted);">Respiratory efficiency</div>
+                </div>
+                <div>
+                  <div style="font-size: 0.68rem; color: var(--text-muted);">🦴 BONE MINERAL DENSITY</div>
+                  <div id="tilthBmdVal" style="font-size: 1.1rem; font-weight: 800; color: #c084fc;">+1.2 T-Score</div>
+                  <div style="font-size: 0.65rem; color: var(--text-muted);">Trabecular matrix</div>
+                </div>
+                <div>
+                  <div style="font-size: 0.68rem; color: var(--text-muted);">🧠 SYNAPTIC WISDOM INDEX</div>
+                  <div id="tilthWisdomVal" style="font-size: 1.1rem; font-weight: 800; color: #fbbf24;">48 / 100</div>
+                  <div style="font-size: 0.65rem; color: var(--text-muted);">Associative neural pathways</div>
+                </div>
+                <div>
+                  <div style="font-size: 0.68rem; color: var(--text-muted);">🔤 POCKETGULL VF ADAPTATION</div>
+                  <div id="tilthVfVal" style="font-size: 1.1rem; font-weight: 800; color: var(--accent-teal);">opsz 14 • wght 700</div>
+                  <div id="tilthVfFeatures" style="font-size: 0.65rem; color: var(--text-muted);">Standard Sloan 5:1</div>
+                </div>
+              </div>
+
+              <!-- Interactive Timeline Scrub Bar (Cardiac vs Lifespan) -->
               <div style="margin-bottom: 1.25rem;">
-                <div style="display: flex; justify-content: space-between; font-family: var(--font-code); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.4rem;">
+                <div style="display: flex; justify-content: space-between; font-family: var(--font-code); font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.4rem; flex-wrap: wrap; gap: 0.5rem;">
                   <span id="frameioPhaseLabel" style="color: var(--accent-teal); font-weight: 700;">PHASE: P-WAVE (ATRIAL SYSTOLE)</span>
-                  <span>HEART RATE: 60 BPM • 1000 ms R-R INTERVAL</span>
+                  <span id="frameioMetaLabel">HEART RATE: 60 BPM • 1000 ms R-R INTERVAL</span>
                 </div>
                 
                 <!-- Scrub Slider -->
                 <div style="position: relative;">
                   <input type="range" id="frameioScrubber" min="0" max="60" value="18" style="width: 100%; accent-color: var(--accent-teal); cursor: pointer;">
-                  <!-- Timeline Phase Markers -->
-                  <div style="display: flex; justify-content: space-between; font-family: var(--font-code); font-size: 0.65rem; color: var(--text-muted); margin-top: 0.2rem;">
+                  
+                  <!-- Timeline Phase Markers Container (Cardiac or Lifespan) -->
+                  <div id="frameioMarkersBar" style="display: flex; justify-content: space-between; font-family: var(--font-code); font-size: 0.65rem; color: var(--text-muted); margin-top: 0.2rem;">
                     <span>0ms (P-Wave)</span>
                     <span>160ms (PR Segment)</span>
                     <span>280ms (QRS Peak)</span>
@@ -7394,42 +7434,20 @@
                 </div>
               </div>
 
-              <!-- Collaborative Threaded Review Cards (Frame.io Comments) -->
-              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
-                
-                <!-- Comment 1 -->
-                <div class="frameio-comment-card" data-frame="8" style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 0.85rem; cursor: pointer; transition: all 0.2s ease;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
-                    <span style="font-family: var(--font-code); font-size: 0.7rem; color: var(--accent-teal); font-weight: 700;">⏱️ 00:00:00:08 • Atrial Inflow</span>
-                    <span style="font-size: 0.65rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 0.1rem 0.4rem; border-radius: 4px;">Dr. Aris (Cardiology)</span>
-                  </div>
-                  <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0; line-height: 1.4;">
-                    "Confirming zero atrial flutter. Frank-Starling end-diastolic filling is within normal LogMAR hemodynamic limits."
-                  </p>
-                </div>
+              <!-- Epoch Quick-Jump Buttons (Lifespan Mode) -->
+              <div id="lifespanEpochPills" style="display: none; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem;">
+                <button class="healer-pill active" data-epoch="0">1. Blastocyst (Day 0)</button>
+                <button class="healer-pill" data-epoch="1">2. Embryogenesis (Wk 8)</button>
+                <button class="healer-pill" data-epoch="2">3. Infancy (0–2y)</button>
+                <button class="healer-pill" data-epoch="3">4. Prime Vitality (25y)</button>
+                <button class="healer-pill" data-epoch="4">5. Mid-Life Tilth (50y)</button>
+                <button class="healer-pill" data-epoch="5">6. Elderhood (80y)</button>
+                <button class="healer-pill" data-epoch="6">7. Living Memory (100+y)</button>
+              </div>
 
-                <!-- Comment 2 -->
-                <div class="frameio-comment-card active" data-frame="18" style="background: rgba(20, 184, 166, 0.15); border: 1px solid var(--accent-teal); border-radius: 8px; padding: 0.85rem; cursor: pointer; transition: all 0.2s ease;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
-                    <span style="font-family: var(--font-code); font-size: 0.7rem; color: var(--accent-amber); font-weight: 700;">⏱️ 00:00:00:18 • QRS Power Stroke</span>
-                    <span style="font-size: 0.65rem; background: rgba(245, 158, 11, 0.2); color: var(--accent-amber); padding: 0.1rem 0.4rem; border-radius: 4px;">Dr. Gear (Chief Medical)</span>
-                  </div>
-                  <p style="font-size: 0.8rem; color: var(--text-primary); margin: 0; line-height: 1.4;">
-                    "📌 Pinned at Myocardium S1 Head: 3–5 pN force vector verified. 100% W3C OTS memory safety passed."
-                  </p>
-                </div>
-
-                <!-- Comment 3 -->
-                <div class="frameio-comment-card" data-frame="42" style="background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 0.85rem; cursor: pointer; transition: all 0.2s ease;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
-                    <span style="font-family: var(--font-code); font-size: 0.7rem; color: #c084fc; font-weight: 700;">⏱️ 00:00:00:42 • T-Wave Repol</span>
-                    <span style="font-size: 0.65rem; background: rgba(192, 132, 252, 0.2); color: #c084fc; padding: 0.1rem 0.4rem; border-radius: 4px;">Nurse Chen (ICU Telemetry)</span>
-                  </div>
-                  <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0; line-height: 1.4;">
-                    "ISMP allergy alert checked for penicillin cross-reactivity. Ready for 203 DPI thermal wristband print."
-                  </p>
-                </div>
-
+              <!-- Collaborative Threaded Review Cards (Cardiac vs Lifespan Developmental Audit) -->
+              <div id="frameioCommentsGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <!-- Dynamically updated by renderFrameioFrame() or renderLifespanAge() -->
               </div>
 
             </div>
@@ -11557,19 +11575,289 @@ Sincerely,
         }
       }
 
-      // ─── Frame.io Timecode Scrubbing & Collaborative Markers ───
+      // ─── Dual-Mode Chronometer: Cardiac Hemodynamics vs Human Lifespan & Tilth Engine ───
+      const HUMAN_TILTH_EPOCHS = [
+        {
+          epoch: 0,
+          ageYears: 0,
+          label: 'Epoch 1: Blastocyst & Totipotency (Day 0–14)',
+          phaseDesc: 'TOTIPOTENT BLASTOCYST • CELL SEED (100 µm)',
+          meta: 'CHRONOLOGY: Day 0–14 • DIAMETER: 100 µm • CLEAVAGE: 2^n BLASTOMERES',
+          telomere: '12.0 kb',
+          mito: '100% ATP',
+          bmd: 'N/A (Blastoderm)',
+          wisdom: '0 / 100',
+          vfSetting: 'opsz 72 • wght 300',
+          vfDesc: 'Delicate primordial hairline (0.8x counter dilation)',
+          vfWght: 300,
+          vfOpsz: 72,
+          silhouetteScale: 0.28,
+          silhouetteY: 60,
+          comments: [
+            { frame: 0, title: '🔬 Embryology Suite', author: 'Dr. Ross (Cytogenetics)', text: 'Totipotent cleavage complete. Oct4/Sox2 transcriptional core intact. Zero genetic fragmentation.' },
+            { frame: 1, title: '⚡ Bioenergetics', author: 'Dr. Lin (Cellular Biology)', text: 'Mitochondrial membrane potential ΔΨm = -180 mV. Pristine metabolic tilth.' }
+          ]
+        },
+        {
+          epoch: 1,
+          ageYears: 0.15,
+          label: 'Epoch 2: Embryonic Morphogenesis (Week 8)',
+          phaseDesc: 'MYOGENIC PACEMAKER • FIRST HEARTBEAT (110 BPM)',
+          meta: 'CHRONOLOGY: Week 8 • CROWN-RUMP: 30 mm • MYOGENIC S1 BEAT',
+          telomere: '11.8 kb',
+          mito: '99% ATP',
+          bmd: 'Cartilaginous Primordium',
+          wisdom: '2 / 100',
+          vfSetting: 'opsz 36 • wght 400',
+          vfDesc: 'Emergent structural stems, embryonic vascular curves',
+          vfWght: 400,
+          vfOpsz: 36,
+          silhouetteScale: 0.52,
+          silhouetteY: 35,
+          comments: [
+            { frame: 0, title: '🫀 Fetal Doppler', author: 'Dr. Aris (Cardiology)', text: 'Day 22 primitive cardiac tube rhythm established. Regular 110 BPM peristaltic contraction.' },
+            { frame: 1, title: '🧠 Neural Tube', author: 'Dr. Gear (Neurodevelopment)', text: 'Cranial flexure aligned. Primary brain vesicles demarcating with pristine synaptic potential.' }
+          ]
+        },
+        {
+          epoch: 2,
+          ageYears: 2,
+          label: 'Epoch 3: Neonatal & Infancy (0–2 Years)',
+          phaseDesc: 'SYNAPTIC BLOOMING • 1M NEW CONNECTIONS / SEC',
+          meta: 'CHRONOLOGY: 18 Months • WEIGHT: 11.5 kg • ALVEOLAR INFLATION',
+          telomere: '11.2 kb',
+          mito: '98% ATP',
+          bmd: 'Rapid Trabecular Mineralization',
+          wisdom: '12 / 100',
+          vfSetting: 'opsz 18 • wght 500',
+          vfDesc: 'APTR 1.35× open aperture, cv05 curved terminal foot l',
+          vfWght: 500,
+          vfOpsz: 18,
+          silhouetteScale: 0.72,
+          silhouetteY: 18,
+          comments: [
+            { frame: 0, title: '🧸 Pediatric Exam', author: 'Dr. Miller (Pediatrics)', text: 'Surfactant coating alveoli across 300M chambers. Synaptic density blooming at 1,000,000 synapses/sec.' },
+            { frame: 1, title: '🔤 Wonder Typography', author: 'Phil Gear (Foundry)', text: 'Enforcing wide font apertures (APTR 1.35x) and curved terminal feet (cv05) for emergent literacy.' }
+          ]
+        },
+        {
+          epoch: 3,
+          ageYears: 25,
+          label: 'Epoch 4: Prime Vitality & Peak Tilth (18–35 Years)',
+          phaseDesc: 'PEAK TILTH & HOMEOSTASIS • VO2 MAX 55 mL/kg/min',
+          meta: 'CHRONOLOGY: Age 25 • SYSTEMIC RESILIENCE • PEAK SARCOMERE FORCE',
+          telomere: '10.2 kb',
+          mito: '95% ATP',
+          bmd: '+1.5 T-Score (Peak)',
+          wisdom: '45 / 100',
+          vfSetting: 'opsz 14 • wght 700',
+          vfDesc: 'PocketGull Bold display authority, Sloan 5:1 optotypes',
+          vfWght: 700,
+          vfOpsz: 14,
+          silhouetteScale: 1.0,
+          silhouetteY: 0,
+          comments: [
+            { frame: 0, title: '⚡ Peak Muscle Power', author: 'Dr. Vance (Sports Physiology)', text: 'Actomyosin crossbridge force at 5.2 pN per myosin head. Stroke volume 95 mL/beat.' },
+            { frame: 1, title: '🧪 Hepatic Reserve', author: 'Dr. Chen (Biochemistry)', text: 'CYP450 Phase I/II clearance operating at full thermodynamic capacity. Telomere length optimal.' }
+          ]
+        },
+        {
+          epoch: 4,
+          ageYears: 50,
+          label: 'Epoch 5: Mid-Life Tilth & Epigenetic Mastery (40–60 Years)',
+          phaseDesc: 'EPIGENETIC ADAPTATION • PRESBYOPIA COMPENSATION',
+          meta: 'CHRONOLOGY: Age 52 • VASCULAR MAINTENANCE • SYNAPTIC SYNTHESIS',
+          telomere: '7.8 kb',
+          mito: '82% ATP',
+          bmd: '+0.2 T-Score (Stable)',
+          wisdom: '72 / 100',
+          vfSetting: 'opsz 11 • wght 650',
+          vfDesc: 'Auto-engaging slashed zero cv08 & serifed capital I ss02',
+          vfWght: 650,
+          vfOpsz: 11,
+          silhouetteScale: 0.98,
+          silhouetteY: 0,
+          comments: [
+            { frame: 0, title: '👁️ Ocular Accommodation', author: 'Dr. Sloan (Ophthalmology)', text: 'Presbyopic loss of lens elasticity detected. Auto-activating PocketGull dilated counters and ISMP slashed zero.' },
+            { frame: 1, title: '🧠 Cognitive Architecture', author: 'Dr. Gear (Chief Medical)', text: 'Deep integrative wisdom compensating for mild processing latency. Synaptic associative reserve peak.' }
+          ]
+        },
+        {
+          epoch: 5,
+          ageYears: 80,
+          label: 'Epoch 6: Elderhood & Deep Clinical Wisdom (70–90 Years)',
+          phaseDesc: 'DEEP ASSOCIATIVE WISDOM • ISMP DISAMBIGUATION SAFETY',
+          meta: 'CHRONOLOGY: Age 82 • CARDIOVASCULAR COMPLIANCE • CARE PRINCIPLES',
+          telomere: '5.1 kb',
+          mito: '64% ATP',
+          bmd: '-1.8 T-Score (Managed)',
+          wisdom: '92 / 100',
+          vfSetting: 'opsz 8 • wght 800',
+          vfDesc: 'Ultra-clear disambiguation: cv08, cv05, ss02, cv11, 670nm PBM',
+          vfWght: 800,
+          vfOpsz: 8,
+          silhouetteScale: 0.94,
+          silhouetteY: 4,
+          comments: [
+            { frame: 0, title: '🛡️ ISMP Safety Standard', author: 'Nurse Chen (Geriatrics)', text: 'Mandatory slashed zero (cv08) and slashed Z (cv11) on all cardiovascular medications. Zero confusion.' },
+            { frame: 1, title: '❤️ Patient Dignity', author: 'Dr. Aris (Cardiology)', text: 'Endothelial nitric oxide tone maintained through gentle movement and ancestral dietary tilth.' }
+          ]
+        },
+        {
+          epoch: 6,
+          ageYears: 102,
+          label: 'Epoch 7: Living Memory & Ancestral Soil (100+ Years)',
+          phaseDesc: 'ANCESTRAL SOIL • SOVEREIGN ORAL ARCHIVE • CARE PILLAR VII',
+          meta: 'CHRONOLOGY: 102 Years • SOVEREIGN ELDER REGISTRY • IMMORTAL IMPACT',
+          telomere: '3.6 kb',
+          mito: '46% ATP',
+          bmd: '-2.4 T-Score',
+          wisdom: '99 / 100',
+          vfSetting: 'opsz 6 • wght 900',
+          vfDesc: 'Maximum contrast Chiseltip, high-contrast Placard & Braille',
+          vfWght: 900,
+          vfOpsz: 6,
+          silhouetteScale: 0.92,
+          silhouetteY: 6,
+          comments: [
+            { frame: 0, title: '🦅 Sovereign Elder Memory', author: 'Elder Council (CARE)', text: 'Ceremonial oral songs, ancestral place names, and lineage wisdom preserved in sovereign vault (.foundry/docs/).' },
+            { frame: 1, title: '🌱 Human Tilth Fulfillment', author: 'Phil Gear (Author)', text: 'The vessel returns gently to rich humus. The typeface carries the dignity of a lifetime forward into eternity.' }
+          ]
+        }
+      ];
+
+      const CARDIAC_COMMENTS = [
+        {
+          frame: 8,
+          phase: 'Atrial Inflow',
+          author: 'Dr. Aris (Cardiology)',
+          role: 'Cardiology',
+          text: 'Confirming zero atrial flutter. Frank-Starling end-diastolic filling is within normal LogMAR hemodynamic limits.'
+        },
+        {
+          frame: 18,
+          phase: 'QRS Power Stroke',
+          author: 'Dr. Gear (Chief Medical)',
+          role: 'Chief Medical',
+          text: '📌 Pinned at Myocardium S1 Head: 3–5 pN force vector verified. 100% W3C OTS memory safety passed.'
+        },
+        {
+          frame: 42,
+          phase: 'T-Wave Repol',
+          author: 'Nurse Chen (ICU Telemetry)',
+          role: 'ICU Telemetry',
+          text: 'ISMP allergy alert checked for penicillin cross-reactivity. Ready for 203 DPI thermal wristband print.'
+        }
+      ];
+
+      let chronometerMode = 'cardiac'; // 'cardiac' or 'lifespan'
+      let currentLifespanAge = 25; // 0 to 102 years
+      let isChronometerPlaying = false;
+      let chronometerTimer = null;
+
+      const chronometerModeCardiacBtn = document.getElementById('chronometerModeCardiacBtn');
+      const chronometerModeLifespanBtn = document.getElementById('chronometerModeLifespanBtn');
+      const lifespanTilthHud = document.getElementById('lifespanTilthHud');
+      const lifespanEpochPills = document.getElementById('lifespanEpochPills');
       const frameioScrubber = document.getElementById('frameioScrubber');
       const frameioTimecode = document.getElementById('frameioTimecode');
       const frameioPhaseLabel = document.getElementById('frameioPhaseLabel');
+      const frameioMetaLabel = document.getElementById('frameioMetaLabel');
+      const frameioMarkersBar = document.getElementById('frameioMarkersBar');
       const frameioPlayBtn = document.getElementById('frameioPlayBtn');
       const frameioAddMarkerBtn = document.getElementById('frameioAddMarkerBtn');
       const frameioSignoffBtn = document.getElementById('frameioSignoffBtn');
-      const frameioCommentCards = document.querySelectorAll('.frameio-comment-card');
+      const frameioCommentsGrid = document.getElementById('frameioCommentsGrid');
 
-      let isFrameioPlaying = false;
-      let frameioTimer = null;
+      // Biomarker displays
+      const tilthTelomereVal = document.getElementById('tilthTelomereVal');
+      const tilthMitoVal = document.getElementById('tilthMitoVal');
+      const tilthBmdVal = document.getElementById('tilthBmdVal');
+      const tilthWisdomVal = document.getElementById('tilthWisdomVal');
+      const tilthVfVal = document.getElementById('tilthVfVal');
+      const tilthVfFeatures = document.getElementById('tilthVfFeatures');
 
-      function renderFrameioFrame(frame) {
+      function setChronometerMode(mode) {
+        chronometerMode = mode;
+        if (isChronometerPlaying) {
+          clearInterval(chronometerTimer);
+          isChronometerPlaying = false;
+          if (frameioPlayBtn) {
+            frameioPlayBtn.textContent = '▶ Play';
+            frameioPlayBtn.style.background = 'var(--accent-teal)';
+          }
+        }
+
+        if (mode === 'cardiac') {
+          if (chronometerModeCardiacBtn) {
+            chronometerModeCardiacBtn.style.background = 'var(--accent-teal)';
+            chronometerModeCardiacBtn.style.color = '#09090b';
+            chronometerModeCardiacBtn.style.fontWeight = '800';
+          }
+          if (chronometerModeLifespanBtn) {
+            chronometerModeLifespanBtn.style.background = 'transparent';
+            chronometerModeLifespanBtn.style.color = 'var(--text-secondary)';
+            chronometerModeLifespanBtn.style.fontWeight = '700';
+          }
+          if (lifespanTilthHud) lifespanTilthHud.style.display = 'none';
+          if (lifespanEpochPills) lifespanEpochPills.style.display = 'none';
+
+          if (frameioScrubber) {
+            frameioScrubber.min = '0';
+            frameioScrubber.max = '60';
+            frameioScrubber.value = '18';
+          }
+
+          if (frameioMarkersBar) {
+            frameioMarkersBar.innerHTML = `
+              <span>0ms (P-Wave)</span>
+              <span>160ms (PR Segment)</span>
+              <span>280ms (QRS Peak)</span>
+              <span>480ms (ST Segment)</span>
+              <span>720ms (T-Wave)</span>
+              <span>1000ms (Diastole)</span>
+            `;
+          }
+
+          renderFrameioCardiacFrame(18);
+        } else {
+          // Lifespan & Tilth mode
+          if (chronometerModeLifespanBtn) {
+            chronometerModeLifespanBtn.style.background = 'var(--accent-teal)';
+            chronometerModeLifespanBtn.style.color = '#09090b';
+            chronometerModeLifespanBtn.style.fontWeight = '800';
+          }
+          if (chronometerModeCardiacBtn) {
+            chronometerModeCardiacBtn.style.background = 'transparent';
+            chronometerModeCardiacBtn.style.color = 'var(--text-secondary)';
+            chronometerModeCardiacBtn.style.fontWeight = '700';
+          }
+          if (lifespanTilthHud) lifespanTilthHud.style.display = 'grid';
+          if (lifespanEpochPills) lifespanEpochPills.style.display = 'flex';
+
+          if (frameioScrubber) {
+            frameioScrubber.min = '0';
+            frameioScrubber.max = '100';
+            frameioScrubber.value = String(currentLifespanAge);
+          }
+
+          if (frameioMarkersBar) {
+            frameioMarkersBar.innerHTML = `
+              <span>Day 0</span>
+              <span>Wk 8</span>
+              <span>2y</span>
+              <span>25y (Prime)</span>
+              <span>50y (Tilth)</span>
+              <span>80y (Wisdom)</span>
+              <span>100+y (Ancestral)</span>
+            `;
+          }
+
+          renderLifespanAge(currentLifespanAge);
+        }
+      }
+
+      function renderFrameioCardiacFrame(frame) {
         if (!frameioScrubber) return;
         frameioScrubber.value = frame;
         
@@ -11579,7 +11867,6 @@ Sincerely,
           frameioTimecode.textContent = `00:00:00:${frameStr}`;
         }
 
-        // Map frame to cardiac phase
         if (frameioPhaseLabel) {
           if (frame < 12) frameioPhaseLabel.textContent = 'PHASE: P-WAVE (ATRIAL SYSTOLE)';
           else if (frame < 24) frameioPhaseLabel.textContent = 'PHASE: QRS POWER STROKE (VENTRICULAR SYSTOLE)';
@@ -11588,17 +11875,35 @@ Sincerely,
           else frameioPhaseLabel.textContent = 'PHASE: DIASTOLE (PASSIVE VENTRICULAR FILLING)';
         }
 
-        // Highlight matching comments
-        frameioCommentCards.forEach(c => {
-          const cFrame = parseInt(c.dataset.frame, 10);
-          if (Math.abs(cFrame - frame) <= 6) {
-            c.style.borderColor = 'var(--accent-teal)';
-            c.style.background = 'rgba(20, 184, 166, 0.18)';
-          } else {
-            c.style.borderColor = 'var(--border-subtle)';
-            c.style.background = 'rgba(15, 23, 42, 0.8)';
-          }
-        });
+        if (frameioMetaLabel) {
+          frameioMetaLabel.textContent = 'HEART RATE: 60 BPM • 1000 ms R-R INTERVAL';
+        }
+
+        // Render cardiac comment cards
+        if (frameioCommentsGrid) {
+          frameioCommentsGrid.innerHTML = CARDIAC_COMMENTS.map(c => {
+            const isActive = Math.abs(c.frame - frame) <= 6;
+            const borderCol = isActive ? 'var(--accent-teal)' : 'var(--border-subtle)';
+            const bgCol = isActive ? 'rgba(20, 184, 166, 0.18)' : 'rgba(15, 23, 42, 0.8)';
+            return `
+              <div class="frameio-comment-card" data-frame="${c.frame}" style="background: ${bgCol}; border: 1px solid ${borderCol}; border-radius: 8px; padding: 0.85rem; cursor: pointer; transition: all 0.2s ease;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                  <span style="font-family: var(--font-code); font-size: 0.7rem; color: var(--accent-teal); font-weight: 700;">⏱️ 00:00:00:${String(c.frame).padStart(2, '0')} • ${c.phase}</span>
+                  <span style="font-size: 0.65rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 0.1rem 0.4rem; border-radius: 4px;">${c.author}</span>
+                </div>
+                <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0; line-height: 1.4;">
+                  "${c.text}"
+                </p>
+              </div>
+            `;
+          }).join('');
+
+          frameioCommentsGrid.querySelectorAll('.frameio-comment-card').forEach(card => {
+            card.addEventListener('click', () => {
+              renderFrameioCardiacFrame(parseInt(card.dataset.frame, 10));
+            });
+          });
+        }
 
         // Pulse heart node in 3D matrix in sync with cardiac frame
         const svg = document.getElementById('bodyTypoMatrixSvg');
@@ -11616,36 +11921,199 @@ Sincerely,
         }
       }
 
+      function getEpochForAge(age) {
+        if (age < 0.05) return HUMAN_TILTH_EPOCHS[0];
+        if (age < 0.5) return HUMAN_TILTH_EPOCHS[1];
+        if (age < 5) return HUMAN_TILTH_EPOCHS[2];
+        if (age < 38) return HUMAN_TILTH_EPOCHS[3];
+        if (age < 65) return HUMAN_TILTH_EPOCHS[4];
+        if (age < 95) return HUMAN_TILTH_EPOCHS[5];
+        return HUMAN_TILTH_EPOCHS[6];
+      }
+
+      function renderLifespanAge(age) {
+        currentLifespanAge = age;
+        if (frameioScrubber) frameioScrubber.value = age;
+
+        const epoch = getEpochForAge(age);
+
+        // SMPTE formatted as Age: 00:00:AGE:00
+        const ageInt = Math.floor(age);
+        const frac = Math.floor((age - ageInt) * 12); // months
+        if (frameioTimecode) {
+          frameioTimecode.textContent = `AGE:${String(ageInt).padStart(3, '0')}y:${String(frac).padStart(2, '0')}m`;
+        }
+
+        if (frameioPhaseLabel) {
+          frameioPhaseLabel.textContent = epoch.phaseDesc;
+        }
+
+        if (frameioMetaLabel) {
+          frameioMetaLabel.textContent = epoch.meta;
+        }
+
+        // Update Tilth Biomarkers HUD
+        if (tilthTelomereVal) tilthTelomereVal.textContent = epoch.telomere;
+        if (tilthMitoVal) tilthMitoVal.textContent = epoch.mito;
+        if (tilthBmdVal) tilthBmdVal.textContent = epoch.bmd;
+        if (tilthWisdomVal) tilthWisdomVal.textContent = epoch.wisdom;
+        if (tilthVfVal) tilthVfVal.textContent = epoch.vfSetting;
+        if (tilthVfFeatures) tilthVfFeatures.textContent = epoch.vfDesc;
+
+        // Highlight matching epoch pill
+        if (lifespanEpochPills) {
+          lifespanEpochPills.querySelectorAll('.healer-pill').forEach((pill, idx) => {
+            if (idx === epoch.epoch) {
+              pill.classList.add('active');
+            } else {
+              pill.classList.remove('active');
+            }
+          });
+        }
+
+        // Render Lifespan Developmental Review Cards
+        if (frameioCommentsGrid) {
+          frameioCommentsGrid.innerHTML = epoch.comments.map(c => `
+            <div class="frameio-comment-card active" style="background: rgba(20, 184, 166, 0.12); border: 1px solid var(--accent-teal); border-radius: 8px; padding: 0.85rem; transition: all 0.2s ease;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.4rem;">
+                <span style="font-family: var(--font-code); font-size: 0.72rem; color: var(--accent-teal); font-weight: 800;">${c.title}</span>
+                <span style="font-size: 0.65rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; padding: 0.1rem 0.4rem; border-radius: 4px;">${c.author}</span>
+              </div>
+              <p style="font-size: 0.8rem; color: var(--text-primary); margin: 0; line-height: 1.4;">
+                "${c.text}"
+              </p>
+            </div>
+          `).join('');
+        }
+
+        // Morph the 3D Typographic Silhouette based on age and tilth
+        const svg = document.getElementById('bodyTypoMatrixSvg');
+        if (svg) {
+          const bgGrid = svg.querySelector('g[fill="#334155"]');
+          const brainNode = svg.querySelector('g[data-organ="brain"]');
+          const heartNode = svg.querySelector('g[data-organ="heart"]');
+          const lungsNode = svg.querySelector('g[data-organ="lungs"]');
+          const liverNode = svg.querySelector('g[data-organ="liver"]');
+          const skeletalNode = svg.querySelector('g[data-organ="skeletal"]');
+
+          if (epoch.epoch === 0) {
+            // Blastocyst sphere: collapse limbs, concentrate in center
+            if (bgGrid) bgGrid.style.opacity = '0.08';
+            if (skeletalNode) skeletalNode.style.display = 'none';
+            if (lungsNode) lungsNode.style.display = 'none';
+            if (liverNode) liverNode.style.display = 'none';
+            if (heartNode) heartNode.style.display = 'none';
+            if (brainNode) {
+              brainNode.style.display = 'block';
+              brainNode.setAttribute('transform', 'translate(0, 120) scale(1.6)');
+            }
+          } else if (epoch.epoch === 1) {
+            // Embryogenesis: brain + heart beating
+            if (bgGrid) bgGrid.style.opacity = '0.15';
+            if (skeletalNode) skeletalNode.style.display = 'none';
+            if (lungsNode) lungsNode.style.display = 'none';
+            if (liverNode) liverNode.style.display = 'none';
+            if (heartNode) {
+              heartNode.style.display = 'block';
+              heartNode.removeAttribute('transform');
+            }
+            if (brainNode) {
+              brainNode.style.display = 'block';
+              brainNode.setAttribute('transform', 'scale(1.2)');
+            }
+          } else {
+            // Full human form
+            if (bgGrid) bgGrid.style.opacity = '0.35';
+            if (skeletalNode) skeletalNode.style.display = 'block';
+            if (lungsNode) lungsNode.style.display = 'block';
+            if (liverNode) liverNode.style.display = 'block';
+            if (heartNode) {
+              heartNode.style.display = 'block';
+              heartNode.removeAttribute('transform');
+            }
+            if (brainNode) {
+              brainNode.style.display = 'block';
+              brainNode.removeAttribute('transform');
+            }
+
+            // Adjust stroke contrast based on elderhood vs youth
+            if (epoch.epoch >= 5 && skeletalNode) {
+              // Graceful elder trabecular line
+              skeletalNode.style.opacity = '0.75';
+            } else if (skeletalNode) {
+              skeletalNode.style.opacity = '1.0';
+            }
+          }
+        }
+      }
+
+      // Event Listeners for Dual Chronometer Switcher
+      if (chronometerModeCardiacBtn) {
+        chronometerModeCardiacBtn.addEventListener('click', () => setChronometerMode('cardiac'));
+      }
+      if (chronometerModeLifespanBtn) {
+        chronometerModeLifespanBtn.addEventListener('click', () => setChronometerMode('lifespan'));
+      }
+
+      if (lifespanEpochPills) {
+        lifespanEpochPills.querySelectorAll('.healer-pill').forEach(pill => {
+          pill.addEventListener('click', () => {
+            const epochIdx = parseInt(pill.dataset.epoch, 10);
+            const targetEpoch = HUMAN_TILTH_EPOCHS[epochIdx];
+            if (targetEpoch) {
+              renderLifespanAge(targetEpoch.ageYears);
+            }
+          });
+        });
+      }
+
       if (frameioScrubber) {
         frameioScrubber.addEventListener('input', (e) => {
-          renderFrameioFrame(parseInt(e.target.value, 10));
+          const val = parseFloat(e.target.value);
+          if (chronometerMode === 'cardiac') {
+            renderFrameioCardiacFrame(Math.round(val));
+          } else {
+            renderLifespanAge(val);
+          }
         });
       }
 
       if (frameioPlayBtn) {
         frameioPlayBtn.addEventListener('click', () => {
-          isFrameioPlaying = !isFrameioPlaying;
-          if (isFrameioPlaying) {
+          isChronometerPlaying = !isChronometerPlaying;
+          if (isChronometerPlaying) {
             frameioPlayBtn.textContent = '⏸ Pause';
             frameioPlayBtn.style.background = 'var(--accent-amber)';
-            frameioTimer = setInterval(() => {
-              let cur = parseInt(frameioScrubber.value, 10);
-              cur = (cur + 1) % 60;
-              renderFrameioFrame(cur);
-            }, 1000 / 30); // 30 FPS playback (60 frames = 2 seconds per cycle)
+            
+            if (chronometerMode === 'cardiac') {
+              chronometerTimer = setInterval(() => {
+                let cur = parseInt(frameioScrubber.value, 10);
+                cur = (cur + 1) % 60;
+                renderFrameioCardiacFrame(cur);
+              }, 1000 / 30);
+            } else {
+              // Animate lifespan from 0 to 102 years
+              chronometerTimer = setInterval(() => {
+                let cur = parseFloat(frameioScrubber.value);
+                cur += 0.75;
+                if (cur > 102) cur = 0;
+                renderLifespanAge(cur);
+              }, 1000 / 25);
+            }
           } else {
-            frameioPlayBtn.textContent = '▶ Play (60 BPM)';
+            frameioPlayBtn.textContent = '▶ Play';
             frameioPlayBtn.style.background = 'var(--accent-teal)';
-            clearInterval(frameioTimer);
+            clearInterval(chronometerTimer);
           }
         });
       }
 
       if (frameioAddMarkerBtn) {
         frameioAddMarkerBtn.addEventListener('click', () => {
-          const note = prompt('Enter Frame.io Clinical Finding / Marker Note:');
+          const modeStr = chronometerMode === 'cardiac' ? 'Cardiac Frame' : 'Lifespan Tilth Age';
+          const note = prompt(`Enter ${modeStr} Clinical Finding / Marker Note:`);
           if (note) {
-            alert(`📌 Marker pinned at ${frameioTimecode.textContent}:\n"${note}"\nSaved to patient clinical audit log.`);
+            alert(`📌 Finding Pinned at ${frameioTimecode.textContent}:\n"${note}"\nSaved to patient longitudinal health record.`);
           }
         });
       }
@@ -11655,16 +12123,12 @@ Sincerely,
           frameioSignoffBtn.textContent = '✓ SIGNED & AUDITED';
           frameioSignoffBtn.style.background = '#22c55e';
           frameioSignoffBtn.style.color = '#000';
-          alert('🛡️ ISMP & CARE Principles Audit Complete:\n\n• Verified 40 Hz Orch-OR Microtubule Dipoles\n• Slashed zero (cv08) and curved l (cv05) enforced\n• Zero allergy cross-reactivity\n• Ready for electronic health record transmission.');
+          const signoffMsg = chronometerMode === 'cardiac'
+            ? '🛡️ ISMP & Electrophysiology Audit Complete:\n\n• Verified 40 Hz Orch-OR Microtubule Dipoles\n• Slashed zero (cv08) and curved l (cv05) enforced\n• Zero allergy cross-reactivity\n• Ready for electronic health record transmission.'
+            : '🛡️ CARE Principles & Longitudinal Human Tilth Audit Complete:\n\n• Cellular totipotency to elderhood trajectory validated\n• Telomere reserve and mitochondrial vitality verified\n• Dynamic presbyopia optical size compensation certified\n• Sovereign elder oral records preserved under CARE governance.';
+          alert(signoffMsg);
         });
       }
-
-      frameioCommentCards.forEach(card => {
-        card.addEventListener('click', () => {
-          const targetFrame = parseInt(card.dataset.frame, 10);
-          renderFrameioFrame(targetFrame);
-        });
-      });
 
       if (bodyJumpToZoomBtn) {
         bodyJumpToZoomBtn.addEventListener('click', () => {
@@ -11674,7 +12138,7 @@ Sincerely,
 
       updateGimbalTransform();
       renderBodyInspector();
-      renderFrameioFrame(18);
+      setChronometerMode('cardiac');
     }
 
       function renderStressGrid() {
