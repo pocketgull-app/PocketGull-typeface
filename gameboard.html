@@ -438,6 +438,20 @@
         Each board is mathematically carved directly out of a PocketGull clinical glyph contour. Roll your soothing light-pearl around the perimeter or crossbar paths.
       </p>
 
+      <!-- Custom Typed Glyph Sanctuary Input -->
+      <div style="background: rgba(20, 184, 166, 0.1); border: 1px solid var(--accent-teal); border-radius: 12px; padding: 0.85rem; margin-bottom: 0.25rem;">
+        <div style="font-size: 0.72rem; font-weight: 800; color: var(--accent-teal); text-transform: uppercase; margin-bottom: 0.4rem; display: flex; justify-content: space-between; align-items: center;">
+          <span>Type Any Letter Sanctuary</span>
+          <span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent-cyan);">A–Z / Symbols</span>
+        </div>
+        <div style="display: flex; gap: 0.5rem;">
+          <input id="inputCustomGlyph" type="text" maxlength="2" value="B" style="width: 52px; background: rgba(0,0,0,0.5); border: 1px solid var(--border-subtle); color: #fff; text-align: center; font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; border-radius: 8px; outline: none;">
+          <button id="btnBuildCustomBoard" class="btn-action" style="flex: 1; justify-content: center; font-size: 0.75rem;">
+            ✨ Generate Board
+          </button>
+        </div>
+      </div>
+
       <div class="board-selector-grid">
         <!-- 1. Slashed Zero (Drawbridge Counter) -->
         <div class="board-card active" data-board="zero">
@@ -524,6 +538,12 @@
       <canvas id="boardCanvas"></canvas>
 
       <!-- Pacing Guide: 0.1 Hz Vagal Parasympathetic Breath -->
+      <div style="position: absolute; bottom: 1.25rem; right: 1.25rem; z-index: 20;">
+        <button id="btnToggleAutoFlow" class="btn-action" style="background: rgba(15, 23, 42, 0.85); border-color: var(--accent-cyan); color: var(--accent-cyan); padding: 0.5rem 1rem; border-radius: 9999px; backdrop-filter: blur(8px);" title="Toggle Continuous Restorative Auto-Glide">
+          🌊 Auto-Flow: OFF
+        </button>
+      </div>
+
       <div class="breath-pacer">
         <div class="pacer-dot"></div>
         <span id="pacerLabel">Breathe In Gently (4s) … Breathe Out Peacefully (6s)</span>
@@ -1020,6 +1040,21 @@
       });
 
       // 4. Update & Draw Token (Light Pearl)
+      if (isAutoFlow) {
+        autoFlowAngle += 0.015;
+        // Orbit through board targets gracefully
+        const tLen = board.targets.length;
+        if (tLen > 0) {
+          const tIdx = Math.floor((autoFlowAngle / (Math.PI * 2) * tLen)) % tLen;
+          const nextIdx = (tIdx + 1) % tLen;
+          const subProg = (autoFlowAngle / (Math.PI * 2) * tLen) % 1;
+          const currT = board.targets[tIdx];
+          const nextT = board.targets[nextIdx];
+
+          token.targetX = currT.x + (nextT.x - currT.x) * subProg;
+          token.targetY = currT.y + (nextT.y - currT.y) * subProg;
+        }
+      }
       // Smooth dampening towards target
       token.vx = (token.targetX - token.x) * 0.08;
       token.vy = (token.targetY - token.y) * 0.08;
@@ -1147,6 +1182,105 @@
       btnThemeToggle.textContent = next === 'washi' ? '🎨 Theme: Washi (和紙)' : '🎨 Theme: Dark';
       sound.playRipple();
     });
+
+    // ─── Continuous Gentle Auto-Flow Engine ───
+    let isAutoFlow = false;
+    let autoFlowAngle = 0;
+    const btnToggleAutoFlow = document.getElementById('btnToggleAutoFlow');
+
+    if (btnToggleAutoFlow) {
+      btnToggleAutoFlow.addEventListener('click', () => {
+        sound.init();
+        isAutoFlow = !isAutoFlow;
+        btnToggleAutoFlow.textContent = isAutoFlow ? '🌊 Auto-Flow: ON' : '🌊 Auto-Flow: OFF';
+        btnToggleAutoFlow.style.borderColor = isAutoFlow ? '#10b981' : 'var(--accent-cyan)';
+        btnToggleAutoFlow.style.color = isAutoFlow ? '#10b981' : 'var(--accent-cyan)';
+        if (isAutoFlow) showToast('🌊 Gentle Auto-Flow Active • Rest Your Hands & Breathe');
+      });
+    }
+
+    // ─── Custom Glyph Board Generator ───
+    const inputCustomGlyph = document.getElementById('inputCustomGlyph');
+    const btnBuildCustomBoard = document.getElementById('btnBuildCustomBoard');
+
+    function buildGlyphBoard(glyphChar) {
+      const ch = (glyphChar || 'B').trim().toUpperCase();
+      const boardKey = 'custom_' + ch;
+
+      // Calculate procedural paths based on letterform geometry
+      const paths = [];
+      const targets = [];
+
+      if (ch === 'B' || ch === 'P' || ch === 'R') {
+        // Vertical spine
+        paths.push({ type: 'line', x1: -120, y1: -220, x2: -120, y2: 220 });
+        // Upper bowl
+        paths.push({ type: 'circle', cx: -20, cy: -110, r: 100 });
+        targets.push({ x: -120, y: -220, label: 'Spine Top', collected: false });
+        targets.push({ x: 80, y: -110, label: 'Upper Crest', collected: false });
+        targets.push({ x: -120, y: 0, label: 'Waist Cross', collected: false });
+
+        if (ch === 'B') {
+          // Lower bowl
+          paths.push({ type: 'circle', cx: -10, cy: 110, r: 110 });
+          targets.push({ x: 100, y: 110, label: 'Lower Swell', collected: false });
+          targets.push({ x: -120, y: 220, label: 'Spine Base', collected: false });
+        } else if (ch === 'R') {
+          // Diagonal leg
+          paths.push({ type: 'line', x1: -120, y1: 0, x2: 120, y2: 220 });
+          targets.push({ x: 120, y: 220, label: 'Diagonal Terminal', collected: false });
+        }
+      } else if (ch === 'C' || ch === 'G' || ch === 'O' || ch === 'Q') {
+        // Broad sweeping counter loop
+        paths.push({ type: 'ellipse', cx: 0, cy: 0, rx: 170, ry: 220 });
+        targets.push({ x: 0, y: -220, label: 'North Arch', collected: false });
+        targets.push({ x: -170, y: 0, label: 'West Wall', collected: false });
+        targets.push({ x: 0, y: 220, label: 'South Arch', collected: false });
+        if (ch === 'C') {
+          targets.push({ x: 140, y: -120, label: 'Upper Beak', collected: false });
+          targets.push({ x: 140, y: 120, label: 'Lower Foot', collected: false });
+        } else {
+          targets.push({ x: 170, y: 0, label: 'East Wall', collected: false });
+        }
+      } else {
+        // Universal Humanist Grid
+        paths.push({ type: 'line', x1: -140, y1: -220, x2: 140, y2: -220 });
+        paths.push({ type: 'line', x1: 0, y1: -220, x2: 0, y2: 220 });
+        paths.push({ type: 'line', x1: -140, y1: 220, x2: 140, y2: 220 });
+        paths.push({ type: 'circle', cx: 0, cy: 0, r: 120 });
+        targets.push({ x: 0, y: -220, label: 'Crown Pillar', collected: false });
+        targets.push({ x: 120, y: 0, label: 'Harmonic Ring', collected: false });
+        targets.push({ x: 0, y: 220, label: 'Root Ground', collected: false });
+        targets.push({ x: -120, y: 0, label: 'Saccade Pivot', collected: false });
+      }
+
+      BOARDS[boardKey] = {
+        id: boardKey,
+        name: `PocketGull Custom '${ch}' Sanctuary`,
+        moralTitle: `The Inherent Harmony of Letter '${ch}'`,
+        moralDesc: `Every character in the alphabet holds a natural architectural rhythm. Gliding along '${ch}' grounds the thoughts, restores bilateral coordination, and fosters gentle mindfulness.`,
+        paths: paths,
+        targets: targets
+      };
+
+      setBoard(boardKey);
+    }
+
+    if (btnBuildCustomBoard) {
+      btnBuildCustomBoard.addEventListener('click', () => {
+        sound.init();
+        buildGlyphBoard(inputCustomGlyph.value);
+      });
+    }
+
+    if (inputCustomGlyph) {
+      inputCustomGlyph.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          sound.init();
+          buildGlyphBoard(inputCustomGlyph.value);
+        }
+      });
+    }
 
     // Reset Token Button
     document.getElementById('btnResetBoard').addEventListener('click', () => {
