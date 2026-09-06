@@ -7100,8 +7100,14 @@
           <div class="ismp-card" style="padding: 2rem;">
             
             <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem;">
-              <div style="display: flex; align-items: center; gap: 0.5rem;">
-                <span style="font-family: var(--font-code); font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">SCALE TIER:</span>
+              <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                <span style="font-family: var(--font-code); font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">AUDIENCE:</span>
+                <div style="display: inline-flex; background: var(--bg-surface); padding: 0.25rem; border-radius: 8px; border: 1px solid var(--border-subtle); gap: 0.25rem;">
+                  <button id="modeAdultBtn" class="active" style="padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.8rem; font-weight: 800; border: none; cursor: pointer; background: var(--accent-teal); color: #09090b;">🔬 Clinical Specialist</button>
+                  <button id="modeChildBtn" style="padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">🧸 Children & Wonder</button>
+                </div>
+
+                <span style="font-family: var(--font-code); font-size: 0.8rem; color: var(--text-muted); font-weight: 700; margin-left: 0.75rem;">SCALE TIER:</span>
                 <div style="display: inline-flex; background: var(--bg-surface); padding: 0.25rem; border-radius: 8px; border: 1px solid var(--border-subtle); gap: 0.25rem;">
                   <button class="spatial-tier-btn active" data-tier="0" style="padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.8rem; font-weight: 800; border: none; cursor: pointer; background: var(--accent-teal); color: #09090b;">1. Gross (1×)</button>
                   <button class="spatial-tier-btn" data-tier="1" style="padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.8rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">2. Tissue (100×)</button>
@@ -7111,8 +7117,13 @@
                 </div>
               </div>
 
-              <div id="spatialScaleBadge" style="font-family: var(--font-code); font-size: 0.85rem; color: var(--accent-amber); font-weight: 700;">
-                SPATIAL SCALE: 10–12 cm
+              <div style="display: flex; align-items: center; gap: 0.75rem;">
+                <span id="knowledgeGateBadge" style="display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.25rem 0.6rem; border-radius: 9999px; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); font-family: var(--font-code); font-size: 0.75rem; color: #38bdf8; font-weight: 700;">
+                  🛡️ CARE & ISMP Gated
+                </span>
+                <div id="spatialScaleBadge" style="font-family: var(--font-code); font-size: 0.85rem; color: var(--accent-amber); font-weight: 700;">
+                  SPATIAL SCALE: 10–12 cm
+                </div>
               </div>
             </div>
 
@@ -10264,7 +10275,7 @@ Sincerely,
       renderPhoropter(0);
 
       // 3. Macro-to-Molecular Spatial Zoom
-      const SPATIAL_TIERS = [
+      const SPATIAL_TIERS_ADULT = [
         {
           scale: '10–12 cm (1× Zoom)',
           title: 'Gross Four-Chambered Myocardial Pump',
@@ -10403,7 +10414,130 @@ Sincerely,
         }
       ];
 
+      const SPATIAL_TIERS_CHILD = [
+        {
+          scale: 'Your Whole Heart (About the size of your fist!)',
+          title: 'The Great Heart Hero Pump',
+          desc: 'Thump-thump! Thump-thump! Your heart is a mighty muscular engine that beats over 100,000 times every day, sending fresh oxygen and warmth to your toes, fingers, and dreaming brain.',
+          kinetics: '✨ Energy Power: Beating over 100,000 times today without ever stopping to nap!',
+          svg: `<svg viewBox="0 0 200 150" style="width: 100%; height: 160px;">
+                  <path d="M 100,45 C 90,15 45,15 45,55 C 45,95 100,135 100,135 C 100,135 155,95 155,55 C 155,15 110,15 100,45 Z" fill="#f43f5e" stroke="#fb7185" stroke-width="4" />
+                  <!-- Friendly smiling heart face -->
+                  <circle cx="80" cy="65" r="4" fill="#fff" />
+                  <circle cx="120" cy="65" r="4" fill="#fff" />
+                  <circle cx="81" cy="65" r="2" fill="#09090b" />
+                  <circle cx="121" cy="65" r="2" fill="#09090b" />
+                  <path d="M 90,82 Q 100,92 110,82" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" />
+                  <!-- Rosy cheeks -->
+                  <circle cx="72" cy="74" r="5" fill="#fda4af" opacity="0.6" />
+                  <circle cx="128" cy="74" r="5" fill="#fda4af" opacity="0.6" />
+                  <text x="50" y="25" fill="#fef08a" font-size="8" font-family="'PocketGull Bold'">OXYGEN EXPRESSWAY</text>
+                </svg>`
+        },
+        {
+          scale: 'Tiniest Muscle Fibers (Look through a magical magnifying glass!)',
+          title: 'The Cellular Team Holding Hands',
+          desc: 'Under the microscope, heart cells look like little smiling friends holding hands tightly in long chains. When one cell gets excited to jump, it whispers to its neighbor in less than a blink!',
+          kinetics: '🤝 Teamwork Speed: Messages jump across hands in 1/1,000th of a second!',
+          svg: `<svg viewBox="0 0 240 120" style="width: 100%; height: 160px;">
+                  <g stroke="#38bdf8" stroke-width="3" fill="none">
+                    <path d="M 20,40 Q 120,30 220,40" /><path d="M 20,80 Q 120,70 220,80" />
+                  </g>
+                  <!-- Cheerful handshake bridges -->
+                  <rect x="75" y="36" width="18" height="48" rx="6" fill="#f59e0b" stroke="#fbbf24" stroke-width="2" />
+                  <text x="80" y="62" fill="#000" font-size="8" font-family="'PocketGull Bold'">🤝</text>
+                  <rect x="155" y="36" width="18" height="48" rx="6" fill="#f59e0b" stroke="#fbbf24" stroke-width="2" />
+                  <text x="160" y="62" fill="#000" font-size="8" font-family="'PocketGull Bold'">🤝</text>
+                  <!-- Cellular command centers -->
+                  <ellipse cx="40" cy="60" rx="14" ry="10" fill="#a855f7" opacity="0.7" />
+                  <ellipse cx="120" cy="60" rx="14" ry="10" fill="#a855f7" opacity="0.7" />
+                  <ellipse cx="200" cy="60" rx="14" ry="10" fill="#a855f7" opacity="0.7" />
+                  <text x="45" y="25" fill="#38bdf8" font-size="7" font-family="'PocketGull Bold'">CELL TEAM BRIDGES</text>
+                  <text x="100" y="105" fill="#f59e0b" font-size="7" font-family="'PocketGull Mono'">HANDSHAKE GATES</text>
+                </svg>`
+        },
+        {
+          scale: 'Inside the Cellular Powerhouse',
+          title: 'The Sparkle Batteries & Firefly Sparks',
+          desc: 'Inside every cell are tiny sparkling bean-shaped powerplants called mitochondria. They turn the apples and blueberries you eat into little golden sparks of pure running energy!',
+          kinetics: '⚡ Power Rating: Millions of microscopic sparklers lighting up every heartbeat!',
+          svg: `<svg viewBox="0 0 240 120" style="width: 100%; height: 160px;">
+                  <!-- Cute glowing bean -->
+                  <ellipse cx="120" cy="60" rx="85" ry="42" fill="#3b0764" stroke="#c084fc" stroke-width="3" />
+                  <!-- Wavy energy river -->
+                  <path d="M 55,60 Q 75,35 95,60 T 135,60 T 175,60" fill="none" stroke="#e879f9" stroke-width="3.5" stroke-linecap="round" />
+                  <!-- Golden sparkles -->
+                  <g fill="#fbbf24">
+                    <circle cx="80" cy="45" r="4" /><circle cx="150" cy="40" r="3.5" /><circle cx="110" cy="75" r="4.5" />
+                    <polygon points="170,75 173,83 181,85 174,89 176,97 170,92 164,97 166,89 159,85 167,83" fill="#fef08a" />
+                  </g>
+                  <text x="65" y="22" fill="#fef08a" font-size="8" font-family="'PocketGull Bold'">THE CELLULAR BATTERY BEAN</text>
+                  <text x="75" y="112" fill="#c084fc" font-size="7" font-family="'PocketGull Mono'">GOLDEN ENERGY SPARKS</text>
+                </svg>`
+        },
+        {
+          scale: 'Rowing Engines (Nanometer Scale)',
+          title: 'The Tiny Molecular Rowing Crew',
+          desc: 'Deep inside your muscles are millions of tiny molecular rowers called Myosins. When calcium enters like a starting bell, all the little green oars catch the rope together and PULL!',
+          kinetics: '🚣 Rowing Stroke: Pulling like a crew team with 5 pico-Newtons of gentle strength!',
+          svg: `<svg viewBox="0 0 260 120" style="width: 100%; height: 160px;">
+                  <!-- Golden rope / stepping stones -->
+                  <g fill="#fbbf24">
+                    <circle cx="35" cy="30" r="8" /><circle cx="65" cy="30" r="8" />
+                    <circle cx="95" cy="30" r="8" /><circle cx="125" cy="30" r="8" />
+                    <circle cx="155" cy="30" r="8" /><circle cx="185" cy="30" r="8" /><circle cx="215" cy="30" r="8" />
+                  </g>
+                  <!-- Rowing arms -->
+                  <path d="M 50,105 L 75,55 L 95,36" fill="none" stroke="#22c55e" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M 140,105 L 165,55 L 185,36" fill="none" stroke="#22c55e" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <!-- Friendly cheer flag -->
+                  <text x="25" y="16" fill="#fde047" font-size="7.5" font-family="'PocketGull Bold'">GOLDEN STEPPING STONES</text>
+                  <text x="145" y="95" fill="#4ade80" font-size="7.5" font-family="'PocketGull Bold'">LITTLE ROWING OARS</text>
+                  <text x="75" y="115" fill="#38bdf8" font-size="6.5" font-family="'PocketGull Mono'">HEAVE-HO! PULL TOGETHER!</text>
+                </svg>`
+        },
+        {
+          scale: 'Quantum Nano-World (10,000,000× Wonder Magnification)',
+          title: 'The Dancing Crystal Bells & Cellular Monorails',
+          desc: 'Stuart Hameroff & Roger Penrose discovered that deep in your brain and cells, tiny blue and green crystal blocks stack into tall towers called microtubules. They sing and hum together 40 times each second, like a choir of whispering fairy bells!',
+          kinetics: '🎶 Harmony Tone: 40 gentle chimes each second • Nature’s living computer!',
+          svg: `<svg viewBox="0 0 280 130" style="width: 100%; height: 165px;">
+                  <!-- Colorful stacked building blocks -->
+                  <g>
+                    <!-- Blue blocks -->
+                    <rect x="30" y="30" width="24" height="20" rx="6" fill="#3b82f6" stroke="#60a5fa" stroke-width="2" />
+                    <rect x="60" y="30" width="24" height="20" rx="6" fill="#3b82f6" stroke="#60a5fa" stroke-width="2" />
+                    <rect x="90" y="30" width="24" height="20" rx="6" fill="#3b82f6" stroke="#60a5fa" stroke-width="2" />
+                    <rect x="120" y="30" width="24" height="20" rx="6" fill="#3b82f6" stroke="#60a5fa" stroke-width="2" />
+                    <rect x="150" y="30" width="24" height="20" rx="6" fill="#3b82f6" stroke="#60a5fa" stroke-width="2" />
+                    <rect x="180" y="30" width="24" height="20" rx="6" fill="#3b82f6" stroke="#60a5fa" stroke-width="2" />
+                    <rect x="210" y="30" width="24" height="20" rx="6" fill="#3b82f6" stroke="#60a5fa" stroke-width="2" />
+                    <!-- Green blocks -->
+                    <rect x="35" y="55" width="24" height="20" rx="6" fill="#10b981" stroke="#34d399" stroke-width="2" />
+                    <rect x="65" y="55" width="24" height="20" rx="6" fill="#10b981" stroke="#34d399" stroke-width="2" />
+                    <rect x="95" y="55" width="24" height="20" rx="6" fill="#10b981" stroke="#34d399" stroke-width="2" />
+                    <rect x="125" y="55" width="24" height="20" rx="6" fill="#10b981" stroke="#34d399" stroke-width="2" />
+                    <rect x="155" y="55" width="24" height="20" rx="6" fill="#10b981" stroke="#34d399" stroke-width="2" />
+                    <rect x="185" y="55" width="24" height="20" rx="6" fill="#10b981" stroke="#34d399" stroke-width="2" />
+                    <rect x="215" y="55" width="24" height="20" rx="6" fill="#10b981" stroke="#34d399" stroke-width="2" />
+                  </g>
+                  <!-- Musical chimes / sparkles -->
+                  <g fill="#fde047">
+                    <text x="40" y="22" font-size="10">🎵</text>
+                    <text x="105" y="22" font-size="10">✨</text>
+                    <text x="170" y="22" font-size="10">🎶</text>
+                  </g>
+                  <text x="35" y="100" fill="#38bdf8" font-size="8" font-family="'PocketGull Bold'">BLUE & GREEN CRYSTAL BLOCKS</text>
+                  <text x="55" y="118" fill="#fde047" font-size="7" font-family="'PocketGull Mono'">HUMMING 40 TIMES PER SECOND</text>
+                </svg>`
+        }
+      ];
+
+      let isChildrenMode = false;
       let currentSpatialTier = 0;
+      const modeAdultBtn = document.getElementById('modeAdultBtn');
+      const modeChildBtn = document.getElementById('modeChildBtn');
+      const knowledgeGateBadge = document.getElementById('knowledgeGateBadge');
       const spatialScaleBadge = document.getElementById('spatialScaleBadge');
       const spatialSvgContainer = document.getElementById('spatialSvgContainer');
       const spatialTitle = document.getElementById('spatialTitle');
@@ -10412,26 +10546,69 @@ Sincerely,
       const tierBtns = document.querySelectorAll('.spatial-tier-btn');
       const spatialStage = document.getElementById('spatialZoomStage');
 
-      function renderSpatialTier(tierIdx) {
-        currentSpatialTier = (tierIdx + SPATIAL_TIERS.length) % SPATIAL_TIERS.length;
-        const tier = SPATIAL_TIERS[currentSpatialTier];
+      function getActiveTiers() {
+        return isChildrenMode ? SPATIAL_TIERS_CHILD : SPATIAL_TIERS_ADULT;
+      }
 
-        spatialScaleBadge.textContent = `SPATIAL SCALE: ${tier.scale}`;
+      function renderSpatialTier(tierIdx) {
+        const tiers = getActiveTiers();
+        currentSpatialTier = (tierIdx + tiers.length) % tiers.length;
+        const tier = tiers[currentSpatialTier];
+
+        spatialScaleBadge.textContent = isChildrenMode ? `WONDER SCALE: ${tier.scale}` : `SPATIAL SCALE: ${tier.scale}`;
         spatialSvgContainer.innerHTML = tier.svg;
         spatialTitle.textContent = tier.title;
         spatialDesc.textContent = tier.desc;
         spatialKinetics.textContent = tier.kinetics;
 
+        if (isChildrenMode) {
+          spatialTitle.style.color = '#38bdf8';
+          spatialKinetics.style.color = '#fde047';
+          knowledgeGateBadge.textContent = '🧸 Wonder Mode (All Ages)';
+          knowledgeGateBadge.style.borderColor = '#38bdf8';
+          knowledgeGateBadge.style.color = '#38bdf8';
+          knowledgeGateBadge.style.background = 'rgba(56, 189, 248, 0.15)';
+        } else {
+          spatialTitle.style.color = 'var(--text-primary)';
+          spatialKinetics.style.color = 'var(--accent-teal)';
+          knowledgeGateBadge.textContent = '🛡️ CARE & ISMP Gated';
+          knowledgeGateBadge.style.borderColor = 'rgba(56, 189, 248, 0.4)';
+          knowledgeGateBadge.style.color = '#38bdf8';
+          knowledgeGateBadge.style.background = 'rgba(56, 189, 248, 0.15)';
+        }
+
         tierBtns.forEach((b, i) => {
           if (i === currentSpatialTier) {
-            b.style.background = 'var(--accent-teal)';
-            b.style.color = '#fff';
+            b.style.background = isChildrenMode ? '#38bdf8' : 'var(--accent-teal)';
+            b.style.color = '#09090b';
           } else {
             b.style.background = 'transparent';
             b.style.color = 'var(--text-secondary)';
           }
         });
       }
+
+      modeAdultBtn.addEventListener('click', () => {
+        isChildrenMode = false;
+        modeAdultBtn.classList.add('active');
+        modeAdultBtn.style.background = 'var(--accent-teal)';
+        modeAdultBtn.style.color = '#09090b';
+        modeChildBtn.classList.remove('active');
+        modeChildBtn.style.background = 'transparent';
+        modeChildBtn.style.color = 'var(--text-secondary)';
+        renderSpatialTier(currentSpatialTier);
+      });
+
+      modeChildBtn.addEventListener('click', () => {
+        isChildrenMode = true;
+        modeChildBtn.classList.add('active');
+        modeChildBtn.style.background = '#38bdf8';
+        modeChildBtn.style.color = '#09090b';
+        modeAdultBtn.classList.remove('active');
+        modeAdultBtn.style.background = 'transparent';
+        modeAdultBtn.style.color = 'var(--text-secondary)';
+        renderSpatialTier(currentSpatialTier);
+      });
 
       tierBtns.forEach(btn => {
         btn.addEventListener('click', () => renderSpatialTier(parseInt(btn.dataset.tier, 10)));
