@@ -7023,6 +7023,9 @@
             <button class="phoropter-mode-btn" id="modeSpatialBtn" style="padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">
               🔍 Molecular Zoom Lens (1× to 1M×)
             </button>
+            <button class="phoropter-mode-btn" id="modeBodyBtn" style="padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">
+              🧬 3D Typographic Body Matrix
+            </button>
             <button class="phoropter-mode-btn" id="modeStressBtn" style="padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">
               🎲 Random Optotype Stress-Test
             </button>
@@ -7143,6 +7146,174 @@
 
               <div id="spatialKinetics" style="font-family: var(--font-code); font-size: 0.85rem; color: #4ade80; background: rgba(74, 222, 128, 0.1); padding: 0.4rem 1rem; border-radius: 6px; border: 1px solid rgba(74, 222, 128, 0.25); margin-top: 1rem;">
                 W_ventricular = ∫ P dV + 1/2 m v²
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- VIEW D: 3D TOUCHABLE TYPOGRAPHIC BODY MATRIX -->
+        <div id="viewBody" class="phoropter-view" style="display: none;">
+          <div class="ismp-card" style="padding: 2rem;">
+            
+            <!-- Matrix Control Bar -->
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                <span style="font-family: var(--font-code); font-size: 0.8rem; color: var(--text-muted); font-weight: 700;">TRANSLATION MATRIX:</span>
+                <div id="bodyMatrixLangBtns" style="display: inline-flex; background: var(--bg-surface); padding: 0.25rem; border-radius: 8px; border: 1px solid var(--border-subtle); gap: 0.25rem; flex-wrap: wrap;">
+                  <button class="body-lang-btn active" data-lang="en" style="padding: 0.35rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 800; border: none; cursor: pointer; background: var(--accent-teal); color: #09090b;">🇺🇸 EN</button>
+                  <button class="body-lang-btn" data-lang="es" style="padding: 0.35rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">🇲🇽 ES</button>
+                  <button class="body-lang-btn" data-lang="zh" style="padding: 0.35rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">🇨🇳 中文</button>
+                  <button class="body-lang-btn" data-lang="ar" style="padding: 0.35rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">🇸🇦 العربية</button>
+                  <button class="body-lang-btn" data-lang="hi" style="padding: 0.35rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">🇮🇳 हिन्दी</button>
+                  <button class="body-lang-btn" data-lang="chr" style="padding: 0.35rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">🦅 ᏣᎳᎩ</button>
+                  <button class="body-lang-btn" data-lang="chn" style="padding: 0.35rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">🌲 Chinuk</button>
+                  <button class="body-lang-btn" data-lang="brl" style="padding: 0.35rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">⠠⠃ Braille</button>
+                </div>
+              </div>
+
+              <!-- Anatomical Plane Selector & Reset -->
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <button id="bodyPlaneCoronalBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: var(--accent-teal); color: #09090b;">Coronal (Front)</button>
+                <button id="bodyPlaneSagittalBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: transparent; color: var(--text-secondary);">Sagittal (Side)</button>
+                <button id="bodyResetOrbitBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">🔄 Reset 3D</button>
+              </div>
+            </div>
+
+            <!-- Two-Column Touchable Stage: 3D Orbit Matrix + Live Anatomical Inspector -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; align-items: start;">
+              
+              <!-- Left: Interactive 3D Typographic Body Viewer (Touch/Drag/Orbit) -->
+              <div id="body3dStage" style="background: radial-gradient(circle at center, #0f172a 0%, #020617 100%); border: 1px solid var(--border-subtle); border-radius: 12px; height: 480px; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center; cursor: grab; user-select: none; perspective: 1000px;">
+                
+                <div style="position: absolute; top: 12px; left: 16px; font-family: var(--font-code); font-size: 0.75rem; color: var(--accent-teal); z-index: 10; pointer-events: none;">
+                  🧬 3D TYPOGRAPHIC MATRIX • TOUCH / DRAG TO ORBIT
+                </div>
+
+                <div id="bodyYawBadge" style="position: absolute; top: 12px; right: 16px; font-family: var(--font-code); font-size: 0.75rem; color: var(--accent-amber); z-index: 10; pointer-events: none;">
+                  AZIMUTH: 0° • PITCH: 0°
+                </div>
+
+                <!-- 3D Transform Pivot Gimbal -->
+                <div id="body3dGimbal" style="width: 280px; height: 420px; position: relative; transform-style: preserve-3d; transition: transform 0.05s linear;">
+                  <!-- The Typographic Human Matrix (SVG constructed entirely with PocketGull glyphs and character cells) -->
+                  <svg id="bodyTypoMatrixSvg" viewBox="0 0 280 420" style="width: 100%; height: 100%; overflow: visible;">
+                    <defs>
+                      <filter id="organGlow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="3" result="blur" />
+                        <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                      </filter>
+                    </defs>
+
+                    <!-- Background Silhouette Matrix Grid (PocketGull Mono monospace telemetry dots) -->
+                    <g fill="#334155" opacity="0.35" font-family="'PocketGull Mono', monospace" font-size="7">
+                      <!-- Head -->
+                      <text x="140" y="30" text-anchor="middle">:: ::: ::</text>
+                      <text x="140" y="40" text-anchor="middle">: O R C H :</text>
+                      <text x="140" y="50" text-anchor="middle">:: ::: ::</text>
+                      <!-- Neck -->
+                      <text x="140" y="65" text-anchor="middle">| | |</text>
+                      <!-- Torso Matrix Lines -->
+                      <text x="140" y="85" text-anchor="middle">. - = = = + = = = - .</text>
+                      <text x="140" y="100" text-anchor="middle">| | P U L M O N A R Y | |</text>
+                      <text x="140" y="115" text-anchor="middle">| | C A R D I A C | |</text>
+                      <text x="140" y="130" text-anchor="middle">| | H E P A T I C | |</text>
+                      <text x="140" y="145" text-anchor="middle">| | G E N O M I C | |</text>
+                      <text x="140" y="160" text-anchor="middle">. - = = = = = = = - .</text>
+                      <!-- Pelvis & Limbs -->
+                      <text x="140" y="180" text-anchor="middle">/ \\ / \\</text>
+                      <text x="140" y="200" text-anchor="middle">| | | |</text>
+                      <text x="140" y="230" text-anchor="middle">F E M U R</text>
+                      <text x="140" y="260" text-anchor="middle">| | | |</text>
+                      <text x="140" y="290" text-anchor="middle">T I B I A</text>
+                      <text x="140" y="320" text-anchor="middle">| | | |</text>
+                      <text x="140" y="350" text-anchor="middle">_ _ _ _</text>
+                    </g>
+
+                    <!-- Interactive Touch Hotspot Nodes (Living Typographic Organs) -->
+                    <!-- 1. Brain / Orch-OR -->
+                    <g class="body-organ-node active" data-organ="brain" style="cursor: pointer;">
+                      <circle cx="140" cy="42" r="26" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" stroke-width="1.5" />
+                      <text x="140" y="38" fill="#38bdf8" font-family="'PocketGull Bold'" font-size="10" font-weight="800" text-anchor="middle" id="nodeBrainIcon">🧠</text>
+                      <text x="140" y="52" fill="#38bdf8" font-family="'PocketGull Bold'" font-size="6.5" font-weight="800" text-anchor="middle" id="nodeBrainLabel">BRAIN</text>
+                    </g>
+
+                    <!-- 2. Lungs / Pulmonary -->
+                    <g class="body-organ-node" data-organ="lungs" style="cursor: pointer;">
+                      <ellipse cx="108" cy="108" rx="20" ry="24" fill="rgba(34, 197, 94, 0.15)" stroke="#22c55e" stroke-width="1.5" />
+                      <ellipse cx="172" cy="108" rx="20" ry="24" fill="rgba(34, 197, 94, 0.15)" stroke="#22c55e" stroke-width="1.5" />
+                      <text x="108" y="112" fill="#22c55e" font-family="'PocketGull Bold'" font-size="9" text-anchor="middle">🫁</text>
+                      <text x="172" y="112" fill="#22c55e" font-family="'PocketGull Bold'" font-size="9" text-anchor="middle">🫁</text>
+                      <text x="140" y="94" fill="#22c55e" font-family="'PocketGull Bold'" font-size="6.5" font-weight="800" text-anchor="middle" id="nodeLungsLabel">LUNGS</text>
+                    </g>
+
+                    <!-- 3. Heart / Myocardium -->
+                    <g class="body-organ-node" data-organ="heart" style="cursor: pointer;">
+                      <circle cx="140" cy="126" r="18" fill="rgba(244, 63, 94, 0.25)" stroke="#f43f5e" stroke-width="2" filter="url(#organGlow)" />
+                      <text x="140" y="124" fill="#f43f5e" font-family="'PocketGull Bold'" font-size="11" text-anchor="middle">🫀</text>
+                      <text x="140" y="136" fill="#fb7185" font-family="'PocketGull Bold'" font-size="6.5" font-weight="800" text-anchor="middle" id="nodeHeartLabel">HEART</text>
+                    </g>
+
+                    <!-- 4. Liver & Metabolism -->
+                    <g class="body-organ-node" data-organ="liver" style="cursor: pointer;">
+                      <rect x="110" y="152" width="60" height="22" rx="6" fill="rgba(245, 158, 11, 0.15)" stroke="#f59e0b" stroke-width="1.5" />
+                      <text x="140" y="166" fill="#fbbf24" font-family="'PocketGull Bold'" font-size="6.5" font-weight="800" text-anchor="middle" id="nodeLiverLabel">METABOLISM / LIVER</text>
+                    </g>
+
+                    <!-- 5. Musculoskeletal / DNA Crossbridge -->
+                    <g class="body-organ-node" data-organ="skeletal" style="cursor: pointer;">
+                      <rect x="95" y="215" width="22" height="70" rx="6" fill="rgba(192, 132, 252, 0.15)" stroke="#c084fc" stroke-width="1.5" />
+                      <rect x="163" y="215" width="22" height="70" rx="6" fill="rgba(192, 132, 252, 0.15)" stroke="#c084fc" stroke-width="1.5" />
+                      <text x="106" y="254" fill="#c084fc" font-family="'PocketGull Bold'" font-size="6" font-weight="800" text-anchor="middle">FEMUR</text>
+                      <text x="174" y="254" fill="#c084fc" font-family="'PocketGull Bold'" font-size="6" font-weight="800" text-anchor="middle">FEMUR</text>
+                      <text x="140" y="280" fill="#c084fc" font-family="'PocketGull Bold'" font-size="6.5" font-weight="800" text-anchor="middle" id="nodeSkeletalLabel">SKELETAL ACTIN</text>
+                    </g>
+                  </svg>
+                </div>
+
+                <div style="position: absolute; bottom: 12px; left: 16px; font-family: var(--font-code); font-size: 0.7rem; color: var(--text-muted); pointer-events: none;">
+                  👆 TAP ANY ORGAN NODE TO INSPECT TRANSLATION
+                </div>
+              </div>
+
+              <!-- Right: Live Multilingual Anatomical Inspector HUD -->
+              <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.75rem; min-height: 480px; display: flex; flex-direction: column; justify-content: space-between;">
+                
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-subtle); padding-bottom: 0.75rem; margin-bottom: 1rem;">
+                    <span id="bodyInspectorFlagBadge" style="font-size: 1.25rem;">🇺🇸</span>
+                    <span id="bodyInspectorSnomed" style="font-family: var(--font-code); font-size: 0.75rem; color: var(--accent-amber);">SNOMED: 302509004</span>
+                  </div>
+
+                  <!-- Primary Localized Anatomical Term -->
+                  <div id="bodyInspectorTerm" style="font-family: 'PocketGull Bold', sans-serif; font-size: 2.25rem; font-weight: 800; color: var(--text-primary); line-height: 1.15; margin-bottom: 0.35rem;">
+                    Heart (Myocardium)
+                  </div>
+
+                  <!-- Phonetic & Orthography Bar -->
+                  <div id="bodyInspectorPhonetic" style="font-family: var(--font-code); font-size: 0.85rem; color: var(--accent-teal); margin-bottom: 1rem;">
+                    IPA: /maɪ.oʊˈkɑːr.di.əm/ • Latin Clinical
+                  </div>
+
+                  <!-- Clinical & Mechanistic Description -->
+                  <div id="bodyInspectorDesc" style="font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem;">
+                    Four-chambered muscular perfusion pump governing systemic hemodynamics. End-diastolic sarcomere stretch produces 60–100 mL stroke volume per beat.
+                  </div>
+
+                  <!-- Dynamic Biomechanical Formula / Wonder Card -->
+                  <div id="bodyInspectorFormula" style="font-family: var(--font-code); font-size: 0.8rem; color: #38bdf8; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 0.75rem; margin-bottom: 1.25rem;">
+                    ⚡ Stroke Work: W_ventricular = ∫ P dV + 1/2 m v²
+                  </div>
+                </div>
+
+                <!-- Deep Molecular Link Action -->
+                <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center;">
+                  <button id="bodyJumpToZoomBtn" class="action-btn" style="width: 100%; padding: 0.65rem 1rem; font-size: 0.85rem; font-weight: 800; background: var(--accent-teal); color: #09090b;">
+                    🔬 Dive into Molecular Zoom (1× to 10M× Orch-OR) ➔
+                  </button>
+                </div>
+
               </div>
 
             </div>
@@ -9986,19 +10157,21 @@ Sincerely,
       // 1. Mode Switching
       const modePopulationBtn = document.getElementById('modePopulationBtn');
       const modeSpatialBtn = document.getElementById('modeSpatialBtn');
+      const modeBodyBtn = document.getElementById('modeBodyBtn');
       const modeStressBtn = document.getElementById('modeStressBtn');
       const viewPopulation = document.getElementById('viewPopulation');
       const viewSpatial = document.getElementById('viewSpatial');
+      const viewBody = document.getElementById('viewBody');
       const viewStress = document.getElementById('viewStress');
 
-      const modeBtns = [modePopulationBtn, modeSpatialBtn, modeStressBtn];
-      const views = [viewPopulation, viewSpatial, viewStress];
+      const modeBtns = [modePopulationBtn, modeSpatialBtn, modeBodyBtn, modeStressBtn];
+      const views = [viewPopulation, viewSpatial, viewBody, viewStress];
 
       function setMode(idx) {
         modeBtns.forEach((b, i) => {
           if (i === idx) {
             b.style.background = 'var(--accent-teal)';
-            b.style.color = '#fff';
+            b.style.color = '#09090b';
             views[i].style.display = 'block';
           } else {
             b.style.background = 'transparent';
@@ -10010,8 +10183,14 @@ Sincerely,
 
       modePopulationBtn.addEventListener('click', () => setMode(0));
       modeSpatialBtn.addEventListener('click', () => setMode(1));
+      if (modeBodyBtn) {
+        modeBodyBtn.addEventListener('click', () => {
+          setMode(2);
+          initBodyMatrix();
+        });
+      }
       modeStressBtn.addEventListener('click', () => {
-        setMode(2);
+        setMode(3);
         renderStressGrid();
       });
 
@@ -10668,9 +10847,285 @@ Sincerely,
       ];
 
       const stressGrid = document.getElementById('stressGrid');
-      const regenStressBtn = document.getElementById('regenStressBtn');
+      // ─── 4. 3D Touchable Typographic Body Matrix Engine ───
+      const BODY_ANATOMY_DATA = {
+        brain: {
+          icon: '🧠',
+          snomed: '12738006',
+          planes: { coronal: { yaw: 0, pitch: 0 }, sagittal: { yaw: 90, pitch: 0 } },
+          translations: {
+            en: { term: 'Cerebral Cortex (Brain)', ipa: 'səˈriː.brəl ˈkɔːr.tɛks', script: 'Latin Clinical', desc: 'Higher cognitive processor & Orch-OR quantum microtubule dipole lattice. 86 billion neurons firing at gamma resonance (40 Hz).', formula: '🧠 Consciousness: Orch-OR E = ℏ/τ • 40 Hz Gamma Dipoles' },
+            es: { term: 'Corteza Cerebral (Cerebro)', ipa: 'kor-ˈte-sa se-re-ˈβral', script: 'Latin Extended', desc: 'Centro de procesamiento cognitivo superior y red neuronal de resonancia gamma (40 Hz).', formula: '🧠 Dinámica Cuántica: Red microtubular Orch-OR • 86 mil millones de neuronas' },
+            zh: { term: '大脑皮层 (脑)', ipa: 'dà nǎo pí céng', script: 'Simplified Hanzi', desc: '高级认知处理中心与微管量子偶极网络。860亿神经元以40 Hz伽马谐振同步放电。', formula: '🧠 量子谐振: Orch-OR E = ℏ/τ • 40 Hz 神经元微管偶极' },
+            ar: { term: 'القشرة المخية (الدماغ)', ipa: 'al-qishrah al-mukh-khiyyah', script: 'Arabic Clinical', desc: 'مركز المعالجة الإدراكية العليا وشبكة الأنابيب الدقيقة العصبية بتردد 40 هرتز.', formula: '🧠 التوافق الكمي: 86 مليار خلية عصبية • رنين غاما 40 Hz' },
+            hi: { term: 'मस्तिष्क (प्रमस्तिष्क वल्कुट)', ipa: 'mastishk (pramastishk)', script: 'Devanagari', desc: 'उच्च संज्ञान केंद्र एवं माइक्रोट्यूब्यूल क्वांटम जालक। 86 अरब तंत्रिका कोशिकाएं।', formula: '🧠 चेतना यांत्रिकी: Orch-OR 40 Hz गामा अनुनाद' },
+            chr: { term: 'ᎤᏍᎪᎵ (Uskoli - Brain)', ipa: 'u-sko-li', script: 'Cherokee Syllabary', desc: 'ᎦᎾᏄᎪᏫᏍᎩ ᎠᏓᏅᏙ ᎠᎴ ᎠᏓᏅᏖᎵᏙᎯ • ᏎᎵᎦ ᎦᏬᏂᎯᏍᏗ ᎠᏂᏔᎵ ᎤᎾᏤᎵᎦ.', formula: '🧠 ᎦᎸᎳᏗ ᎠᏓᏅᏖᏛ: 40 Hz ᎤᏬᏂᎯᏍᏗ ᎠᏓᏅᏙ' },
+            chn: { term: 'Látɛt (Head / Mind)', ipa: 'lá-tɛt', script: 'Chinuk Pipa Duployan', desc: 'Kopa tumtum pi latet kaskas • Hayas kloshe kopa kanawe tikegh.', formula: '🧠 Pipa Tene: 40 chimes kopa tenas sun' },
+            brl: { term: '⠠⠉⠑⠗⠑⠃⠗⠁⠇ ⠠⠉⠕⠗⠞⠑⠭', ipa: 'ISO/TR 11548', script: 'Braille 8-Dot', desc: 'Tactile neural cortex mapping • 86 billion cell junctions.', formula: '🧠 ⠼⠙⠚ ⠠⠓⠵ ⠠⠛⠁⠍⠍⠁ ⠠⠕⠗⠉⠓' }
+          }
+        },
+        lungs: {
+          icon: '🫁',
+          snomed: '39607008',
+          planes: { coronal: { yaw: 0, pitch: 0 }, sagittal: { yaw: -60, pitch: 5 } },
+          translations: {
+            en: { term: 'Pulmonary Alveoli (Lungs)', ipa: 'ˈpʊl.mə.nɛr.i ælˈviː.ə.laɪ', script: 'Latin Clinical', desc: 'Gas exchange interface across 300 million alveoli. Fick’s diffusion law governs passive O2 uptake and CO2 clearance across a 0.5 µm blood-air barrier.', formula: '🫁 Gas Diffusion: V_gas = (A · D · ΔP) / T • 300M Alveoli' },
+            es: { term: 'Alvéolos Pulmonares (Pulmones)', ipa: 'al-ˈβe-o-los pul-mo-ˈna-ɾes', script: 'Latin Extended', desc: 'Intercambio gaseoso en 300 millones de alvéolos. Difusión pasiva de O2 y eliminación de CO2 a través de barrera hematoaérea de 0.5 µm.', formula: '🫁 Difusión de Fick: V_gas = (A · D · ΔP) / T' },
+            zh: { term: '肺泡气体交换 (肺)', ipa: 'fèi pào qì tǐ jiāo huàn', script: 'Simplified Hanzi', desc: '3亿肺泡组成的气血交换屏障（0.5微米厚度），依菲克扩散定律实现O2吸收与CO2排出。', formula: '🫁 气体扩散: 菲克定律 V = (A·D·ΔP)/T • 3亿肺泡' },
+            ar: { term: 'الحويصلات الرئوية (الرئتان)', ipa: 'al-huwaysilat ar-ri’awiyyah', script: 'Arabic Clinical', desc: 'تبادل الغازات عبر 300 مليون حويصلة رئوية وفق قانون فيك للانتشار.', formula: '🫁 انتشار الغاز: مساحة 100 م² • حاجز 0.5 ميكرومتر' },
+            hi: { term: 'फुफ्फुस वायुकोश (फेफड़े)', ipa: 'phupphus vayukosh', script: 'Devanagari', desc: '30 करोड़ वायुकोशों द्वारा गैस विनिमय। 0.5 माइक्रोमीटर पतली झिल्ली द्वारा ऑक्सीजन संवहन।', formula: '🫁 गैस विसरण: V = (A · D · ΔP) / T' },
+            chr: { term: 'ᏧᏥᏍᏠᎯᏍᏗ (Tsutsisdlohisdi)', ipa: 'tsu-tsi-sdlo-hi-sdi', script: 'Cherokee Syllabary', desc: 'ᎠᏍᏈᏄᎵ ᎤᏬᏂᎯᏍᏗ ᎤᏃᎴ ᎠᎴ ᎩᎬ ᏕᎦᏁᎶᏅᎢ • 300 ᎢᏳᏆᏅᏛ ᏕᎦᎶᏒᎢ.', formula: '🫁 ᎤᏃᎴ ᎦᏬᏂᏍᎩ: O2 / CO2 ᎤᏃᎴ ᎠᏓᏁᎯ' },
+            chn: { term: 'Wawatax (Lungs / Breath)', ipa: 'wa-wa-tax', script: 'Chinuk Pipa Duployan', desc: 'Hiyu wind kopa memaloost pi kopa chee skookum tumtum.', formula: '🫁 Kloshe Wind: 300 Million tenas pockets' },
+            brl: { term: '⠠⠏⠥⠇⠍⠕⠝⠁⠗⠽ ⠠⠁⠇⠧⠑⠕⠇⠊', ipa: 'ISO/TR 11548', script: 'Braille 8-Dot', desc: 'Tactile respiratory alveolar tree • Gas diffusion membrane.', formula: '🫁 ⠠⠕⠼⠃ ⠠⠉⠕⠼⠃ ⠠⠛⠁⠎ ⠠⠑⠭⠉⠓⠁⠝⠛⠑' }
+          }
+        },
+        heart: {
+          icon: '🫀',
+          snomed: '302509004',
+          planes: { coronal: { yaw: 0, pitch: 0 }, sagittal: { yaw: 30, pitch: -10 } },
+          translations: {
+            en: { term: 'Heart (Myocardium)', ipa: 'maɪ.oʊˈkɑːr.di.əm', script: 'Latin Clinical', desc: 'Four-chambered muscular perfusion pump governing systemic hemodynamics. End-diastolic sarcomere stretch produces 60–100 mL stroke volume per beat.', formula: '⚡ Stroke Work: W_ventricular = ∫ P dV + 1/2 m v²' },
+            es: { term: 'Músculo Cardíaco (Miocardio)', ipa: 'mús-ku-lo kar-ˈdja-ko', script: 'Latin Extended', desc: 'Bomba hemodinámica de cuatro cavidades con sincronización auriculoventricular. Expulsa 60–100 mL/latido.', formula: '⚡ Trabajo Ventricular: W = ∫ P dV + 1/2 m v²' },
+            zh: { term: '心肌 (心脏)', ipa: 'xīn jī (xīn zàng)', script: 'Simplified Hanzi', desc: '四腔室肌肉血液灌注泵系统。舒张末期肌节拉伸产生每搏60–100毫升输出量。', formula: '⚡ 每搏功: W = ∫ P dV + 1/2 m v² • 60–100 mL/搏' },
+            ar: { term: 'عضلة القلب (الميوكارديوم)', ipa: '‘adˤalat al-qalb', script: 'Arabic Clinical', desc: 'مضخة الدورة الدموية رباعية الحجرات. تضخ 60–100 مل في كل نبضة.', formula: '⚡ شغل البطين: W = ∫ P dV + 1/2 m v²' },
+            hi: { term: 'हृत्पेशी (हृदयम्)', ipa: 'hridayam (hrit-peshee)', script: 'Devanagari', desc: 'चार कक्षीय रक्त संचार पम्प। प्रत्येक धड़कन पर 60–100 मिलीलीटर रक्त का संचरण।', formula: '⚡ निलय कार्य: W = ∫ P dV + 1/2 m v²' },
+            chr: { term: 'ᎣᎾᏌᎶᏍᎩ ᎠᏓᏅᏙ (O-na-sa-lo-sgi)', ipa: 'o-na-sa-lo-sgi a-da-nv-do', script: 'Cherokee Syllabary', desc: 'ᏅᎩ ᏕᎦᎧᏛᎢ ᎩᎬ ᎦᏌᏙᎯᏍᎩ • 60-100 mL ᎩᎬ ᎠᏂᎦᏘᏲᎯᎯ.', formula: '⚡ ᎠᏓᏅᏙ ᎤᎵᏍᎨᏛ: W = ∫ P dV + 1/2 m v²' },
+            chn: { term: 'Tumtum (Heart / Beat)', ipa: 'tum-tum', script: 'Chinuk Pipa Duployan', desc: 'Tlush tumtum kopa pilpil • 100,000 beats kopa tenas sun.', formula: '⚡ Tumtum Power: 60–100 mL kopa beat' },
+            brl: { term: '⠠⠓⠑⠁⠗⠞ ⠠⠍⠽⠕⠉⠁⠗⠙⠊⠥⠍', ipa: 'ISO/TR 11548', script: 'Braille 8-Dot', desc: 'Tactile 4-chambered myocardial pump • Hemodynamic vector.', formula: '⚡ ⠠⠺ ⠶ ⠱ ⠠⠏ ⠙⠠⠧ ⠐⠖ ⠂⠲⠆ ⠍ ⠧⠔⠼⠃' }
+          }
+        },
+        liver: {
+          icon: '🥩',
+          snomed: '181277001',
+          planes: { coronal: { yaw: 0, pitch: 0 }, sagittal: { yaw: -45, pitch: 10 } },
+          translations: {
+            en: { term: 'Hepatic Parenchyma (Liver)', ipa: 'hɪˈpæt.ɪk pəˈrɛŋ.kɪ.mə', script: 'Latin Clinical', desc: 'Metabolic & enzymatic reactor containing 100,000 functional hepatic lobules. Governs glycogen storage, urea synthesis, and CYP450 phase I/II detoxification.', formula: '🧪 Hepatic Clearance: Cl_h = Q · E_h • CYP450 Biotransformation' },
+            es: { term: 'Parénquima Hepático (Hígado)', ipa: 'pa-ˈɾeŋ-ki-ma e-ˈpa-ti-ko', script: 'Latin Extended', desc: 'Reactor metabólico de 100,000 lobulillos hepáticos. Regula glucógeno, urea y desintoxicación CYP450.', formula: '🧪 Aclaramiento Hepático: Cl_h = Q · E_h' },
+            zh: { term: '肝实质细胞 (肝脏)', ipa: 'gān shí zhì (gān zàng)', script: 'Simplified Hanzi', desc: '体内生物化学与酶促反应中心，含10万个肝小叶。主管糖原合成、尿素循环与CYP450解毒。', formula: '🧪 肝清除率: Cl_h = Q · E_h • CYP450 酶解代谢' },
+            ar: { term: 'النسيج الكبدي (الكبد)', ipa: 'an-naseej al-kabidi', script: 'Arabic Clinical', desc: 'المفاعل الأيضي للإنزيمات وتخزين الجليكوجين وتصفية السموم عبر CYP450.', formula: '🧪 التصفية الكبدية: Cl_h = Q · E_h • 100,000 فصيص كبدي' },
+            hi: { term: 'यकृत् ऊतक (जिगर / यकृत)', ipa: 'yakrit ootak', script: 'Devanagari', desc: '1 लाख यकृत पालियों द्वारा चयापचय नियंत्रण, ग्लाइकोजन संचय एवं विषहरण।', formula: '🧪 यकृत निकासी: Cl_h = Q · E_h • CYP450' },
+            chr: { term: 'ᎤᎶᏅᎩ (U-lo-nv-gi - Liver)', ipa: 'u-lo-nv-gi', script: 'Cherokee Syllabary', desc: 'ᎤᎵᏍᎨᏛ ᎤᏓᏁᎸ ᎠᏓᏁᎶᎯᏍᎩ • 100,000 ᎢᏳᏩᎫᏗ ᎦᏅᎯᏒᎢ.', formula: '🧪 ᎤᏣᏘ ᎤᏬᏂᎯᏍᏗ: CYP450 ᎠᏥᎸ ᎠᏓᏅᏁᎯ' },
+            chn: { term: 'Klipkoot (Liver / Guts)', ipa: 'klip-koot', script: 'Chinuk Pipa Duployan', desc: 'Metabolic kloshe kopa makmak pi pilpil.', formula: '🧪 Tlush Cleansing: 100,000 lobules' },
+            brl: { term: '⠠⠓⠑⠏⠁⠞⠊⠉ ⠠⠇⠕⠃⠥⠇⠑', ipa: 'ISO/TR 11548', script: 'Braille 8-Dot', desc: 'Tactile hepatic lobule grid • Enzymatic clearance reactor.', formula: '🧪 ⠠⠉⠇⠨⠓ ⠶ ⠠⠟ ⠐⠄ ⠠⠑⠨⠓' }
+          }
+        },
+        skeletal: {
+          icon: '🦴',
+          snomed: '71341001',
+          planes: { coronal: { yaw: 0, pitch: 0 }, sagittal: { yaw: 0, pitch: -20 } },
+          translations: {
+            en: { term: 'Musculoskeletal Actin-Myosin (Femur)', ipa: 'ˈæk.tɪn ˈmaɪ.ə.sɪn ˈfiː.mər', script: 'Latin Clinical', desc: 'Lever biomechanics & crossbridge sliding filament cycles. Hydrolyzes ATP to generate locomotion against gravitational load.', formula: '🦴 Crossbridge Force: F_muscle = σ · A_pennation • 3–5 pN/Head' },
+            es: { term: 'Actina-Miosina Músculo-Esquelética (Fémur)', ipa: 'ak-ˈti-na mjo-ˈsi-na ˈfe-muɾ', script: 'Latin Extended', desc: 'Palancas biomecánicas y ciclo de puentes cruzados. Hidrólisis de ATP para vencer la carga de gravedad.', formula: '🦴 Fuerza Muscular: F = σ · A_pennation' },
+            zh: { term: '骨骼肌肌动-肌球蛋白 (股骨)', ipa: 'gǔ gé jī jī dòng dàn bái', script: 'Simplified Hanzi', desc: '骨杠杆生物力学与肌丝滑行交叉桥循环。通过水解ATP产生3–5 pN微观牵引力。', formula: '🦴 肌肉拉力: F = σ · A • 3–5 pN/肌球蛋白头' },
+            ar: { term: 'الألياف العضلية الهيكلية (عظم الفخذ)', ipa: 'al-alyaf al-‘adˤaliyyah', script: 'Arabic Clinical', desc: 'ميكانيكا الروافع الحيوية وانزلاق الألياف لإنتاج الحركة ومقاومة الجاذبية.', formula: '🦴 القوة العضلية: 3–5 بيكونيوتن لكل رأس ميوسين' },
+            hi: { term: 'कंकाल पेशी तंत्र (ऊर्वस्थि / फीमर)', ipa: 'kankal peshee tantra', script: 'Devanagari', desc: 'अस्थि उत्तोलक यांत्रिकी एवं एक्टिन-मायोसिन सेतु चक्र। गुरुत्वाकर्षण विरुद्ध गति निर्माण।', formula: '🦴 मांसपेशी बल: F = σ · A • 3–5 pN' },
+            chr: { term: 'ᎪᎳ ᎠᎴ ᎤᏍᏈᏄᎵ (Gola ale Usgwinuli)', ipa: 'go-la a-le u-sgwi-nu-li', script: 'Cherokee Syllabary', desc: 'ᎤᏓᏁᎶᏗ ᎦᏅᎯᏒᎢ ᏧᏍᏈᏄᎵ ᎠᎴ ᏧᎪᎳ • 3-5 pN ᎤᎵᏍᎨᏛ ᎤᏬᏂᎯᏍᏗ.', formula: '🦴 ᎠᏓᏅᏬᏍᎩ ᎤᎵᏂᎬᎬ: F = σ · A' },
+            chn: { term: 'Itlokum (Bones & Muscles)', ipa: 'it-lo-kum', script: 'Chinuk Pipa Duployan', desc: 'Skookum bone pi muscle kopa klatwa kopa stik.', formula: '🦴 Skookum Pull: 3–5 pN per head' },
+            brl: { term: '⠠⠍⠥⠎⠉⠥⠇⠕⠎⠅⠑⠇⠑⠞⠁⠇ ⠠⠁⠉⠞⠊⠝', ipa: 'ISO/TR 11548', script: 'Braille 8-Dot', desc: 'Tactile musculoskeletal lever grid • Actomyosin sliding filament.', formula: '🦴 ⠠⠋ ⠶ ⠨⠎ ⠐⠄ ⠠⠁ ⠐⠂ ⠼⠉⠤⠼⠑ ⠏⠠⠝' }
+          }
+        }
+      };
+
+      let currentBodyOrgan = 'heart';
+      let currentBodyLang = 'en';
+      let bodyYaw = 0;
+      let bodyPitch = 0;
+      let isBodyDragging = false;
+      let bodyDragStartX = 0;
+      let bodyDragStartY = 0;
+      let bodyGimbalInitialized = false;
+
+      function initBodyMatrix() {
+        if (bodyGimbalInitialized) return;
+        bodyGimbalInitialized = true;
+
+        const body3dStage = document.getElementById('body3dStage');
+        const body3dGimbal = document.getElementById('body3dGimbal');
+        const bodyYawBadge = document.getElementById('bodyYawBadge');
+        const bodyNodes = document.querySelectorAll('.body-organ-node');
+        const bodyLangBtns = document.querySelectorAll('.body-lang-btn');
+        const bodyPlaneCoronalBtn = document.getElementById('bodyPlaneCoronalBtn');
+        const bodyPlaneSagittalBtn = document.getElementById('bodyPlaneSagittalBtn');
+        const bodyResetOrbitBtn = document.getElementById('bodyResetOrbitBtn');
+        const bodyJumpToZoomBtn = document.getElementById('bodyJumpToZoomBtn');
+
+        function updateGimbalTransform() {
+          if (!body3dGimbal) return;
+          body3dGimbal.style.transform = `rotateY(${bodyYaw}deg) rotateX(${bodyPitch}deg)`;
+          if (bodyYawBadge) {
+            bodyYawBadge.textContent = `AZIMUTH: ${Math.round(bodyYaw)}° • PITCH: ${Math.round(bodyPitch)}°`;
+          }
+        }
+
+        // Render Inspector Details
+        function renderBodyInspector() {
+          const organData = BODY_ANATOMY_DATA[currentBodyOrgan];
+          if (!organData) return;
+          const langData = organData.translations[currentBodyLang] || organData.translations.en;
+
+          const flags = { en: '🇺🇸', es: '🇲🇽', zh: '🇨🇳', ar: '🇸🇦', hi: '🇮🇳', chr: '🦅', chn: '🌲', brl: '⠠⠃' };
+          const flagBadge = document.getElementById('bodyInspectorFlagBadge');
+          const snomedBadge = document.getElementById('bodyInspectorSnomed');
+          const termDiv = document.getElementById('bodyInspectorTerm');
+          const phoneticDiv = document.getElementById('bodyInspectorPhonetic');
+          const descDiv = document.getElementById('bodyInspectorDesc');
+          const formulaDiv = document.getElementById('bodyInspectorFormula');
+
+          if (flagBadge) flagBadge.textContent = flags[currentBodyLang] || '🌐';
+          if (snomedBadge) snomedBadge.textContent = `SNOMED: ${organData.snomed}`;
+          if (termDiv) {
+            termDiv.textContent = langData.term;
+            termDiv.style.direction = currentBodyLang === 'ar' ? 'rtl' : 'ltr';
+          }
+          if (phoneticDiv) {
+            phoneticDiv.textContent = `IPA: /${langData.ipa}/ • ${langData.script}`;
+          }
+          if (descDiv) {
+            descDiv.textContent = isChildrenMode ? getChildOrganDesc(currentBodyOrgan) : langData.desc;
+          }
+          if (formulaDiv) {
+            formulaDiv.textContent = isChildrenMode ? getChildOrganFormula(currentBodyOrgan) : langData.formula;
+          }
+
+          // Highlight Active Node in SVG
+          bodyNodes.forEach(node => {
+            if (node.dataset.organ === currentBodyOrgan) {
+              node.classList.add('active');
+              const circle = node.querySelector('circle') || node.querySelector('rect') || node.querySelector('ellipse');
+              if (circle) circle.setAttribute('stroke-width', '3');
+            } else {
+              node.classList.remove('active');
+              const circle = node.querySelector('circle') || node.querySelector('rect') || node.querySelector('ellipse');
+              if (circle) circle.setAttribute('stroke-width', '1.5');
+            }
+          });
+        }
+
+        function getChildOrganDesc(organ) {
+          switch (organ) {
+            case 'brain': return 'The Magical Thought Palace! Where all your dreams, laughter, questions, and big ideas sparkle like twinkling stars.';
+            case 'lungs': return 'The Two Air Balloons! Breathing in fresh mountain breeze and sweet ocean air to power your running shoes!';
+            case 'heart': return 'The Great Heart Hero Pump! Thump-thump! Beating over 100,000 times today without ever taking a nap.';
+            case 'liver': return 'The Master Kitchen Chef! Turning breakfast pancakes and berries into pure superhero energy!';
+            case 'skeletal': return 'The Jumping Tree Trunks! Strong bones and flexible muscles letting you leap, dance, and climb tall trees!';
+            default: return '';
+          }
+        }
+
+        function getChildOrganFormula(organ) {
+          switch (organ) {
+            case 'brain': return '✨ Wonder Power: 86 Billion idea sparklers thinking together!';
+            case 'lungs': return '🎈 Breath Power: 300 Million tiny balloon helpers filling with fresh air!';
+            case 'heart': return '💖 Love & Strength: Over 100,000 strong beats every single day!';
+            case 'liver': return '🍓 Kitchen Magic: Turning fruit & veggies into running sparks!';
+            case 'skeletal': return '🏃 Playground Speed: Leaping and skipping with friendly muscle rowers!';
+            default: return '';
+          }
+        }
+
+        // Pointer / Touch 3D Orbit Drag Handlers
+        body3dStage.addEventListener('pointerdown', (e) => {
+          isBodyDragging = true;
+          bodyDragStartX = e.clientX;
+          bodyDragStartY = e.clientY;
+          body3dStage.style.cursor = 'grabbing';
+          body3dStage.setPointerCapture(e.pointerId);
+        });
+
+        body3dStage.addEventListener('pointermove', (e) => {
+          if (!isBodyDragging) return;
+          const dx = e.clientX - bodyDragStartX;
+          const dy = e.clientY - bodyDragStartY;
+          bodyYaw += dx * 0.5;
+          bodyPitch = Math.max(-45, Math.min(45, bodyPitch - dy * 0.4));
+          bodyDragStartX = e.clientX;
+          bodyDragStartY = e.clientY;
+          updateGimbalTransform();
+        });
+
+        body3dStage.addEventListener('pointerup', (e) => {
+          isBodyDragging = false;
+          body3dStage.style.cursor = 'grab';
+          body3dStage.releasePointerCapture(e.pointerId);
+        });
+
+        body3dStage.addEventListener('pointercancel', (e) => {
+          isBodyDragging = false;
+          body3dStage.style.cursor = 'grab';
+        });
+
+        // Organ Node Tap Handlers
+        bodyNodes.forEach(node => {
+          node.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentBodyOrgan = node.dataset.organ;
+            renderBodyInspector();
+          });
+        });
+
+        // Language Buttons
+        bodyLangBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            bodyLangBtns.forEach(b => {
+              b.style.background = 'transparent';
+              b.style.color = 'var(--text-secondary)';
+            });
+            btn.style.background = 'var(--accent-teal)';
+            btn.style.color = '#09090b';
+            currentBodyLang = btn.dataset.lang;
+            renderBodyInspector();
+          });
+        });
+
+        // Plane Selector
+        if (bodyPlaneCoronalBtn) {
+          bodyPlaneCoronalBtn.addEventListener('click', () => {
+            bodyYaw = 0;
+            bodyPitch = 0;
+            bodyPlaneCoronalBtn.style.background = 'var(--accent-teal)';
+            bodyPlaneCoronalBtn.style.color = '#09090b';
+            if (bodyPlaneSagittalBtn) {
+              bodyPlaneSagittalBtn.style.background = 'transparent';
+              bodyPlaneSagittalBtn.style.color = 'var(--text-secondary)';
+            }
+            updateGimbalTransform();
+          });
+        }
+
+        if (bodyPlaneSagittalBtn) {
+          bodyPlaneSagittalBtn.addEventListener('click', () => {
+            bodyYaw = 90;
+            bodyPitch = 0;
+            bodyPlaneSagittalBtn.style.background = 'var(--accent-teal)';
+            bodyPlaneSagittalBtn.style.color = '#09090b';
+            if (bodyPlaneCoronalBtn) {
+              bodyPlaneCoronalBtn.style.background = 'transparent';
+              bodyPlaneCoronalBtn.style.color = 'var(--text-secondary)';
+            }
+            updateGimbalTransform();
+          });
+        }
+
+        if (bodyResetOrbitBtn) {
+          bodyResetOrbitBtn.addEventListener('click', () => {
+            bodyYaw = 0;
+            bodyPitch = 0;
+            updateGimbalTransform();
+          });
+        }
+
+        if (bodyJumpToZoomBtn) {
+          bodyJumpToZoomBtn.addEventListener('click', () => {
+            setMode(1); // Jump to Molecular Zoom Lens
+          });
+        }
+
+        updateGimbalTransform();
+        renderBodyInspector();
+      }
 
       function renderStressGrid() {
+        if (!stressGrid) return;
         stressGrid.innerHTML = '';
         STRESS_SCRIPTS.forEach(script => {
           const randArr = new Uint32Array(8);
@@ -10704,7 +11159,10 @@ Sincerely,
         });
       }
 
-      regenStressBtn.addEventListener('click', renderStressGrid);
+      const regenStressBtn = document.getElementById('regenStressBtn');
+      if (regenStressBtn) {
+        regenStressBtn.addEventListener('click', renderStressGrid);
+      }
 
       // ─── 5. Doc Drill Learning & Research Engine ───
       const DRILL_PANEL_ID = 'docDrillPanel';
