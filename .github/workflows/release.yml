@@ -61,7 +61,7 @@ jobs:
           sha256sum fonts/ttf/*.ttf fonts/woff2/*.woff2 >> SHA256SUMS.txt
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           name: "PocketGull Typeface ${{ github.ref_name }}"
           generate_release_notes: true
