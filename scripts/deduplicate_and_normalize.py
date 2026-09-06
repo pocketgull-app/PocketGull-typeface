@@ -81,7 +81,7 @@ def deduplicate_glyph(glyph):
 
 def process_font(font_path: Path):
     print(f"Processing: {font_path.name} ...")
-    font = TTFont(str(font_path))
+    font = TTFont(str(font_path), lazy=False)
     modified = False
 
     # 1. Deduplicate glyf contours
@@ -119,9 +119,13 @@ def process_font(font_path: Path):
                 modified = True
 
     if modified:
-        font.save(str(font_path))
+        tmp_p = font_path.with_suffix(".tmp_norm")
+        font.save(str(tmp_p))
+        font.close()
+        os.replace(tmp_p, font_path)
         print(f"  [SAVED] {font_path.name}")
     else:
+        font.close()
         print(f"  [CLEAN] No changes needed")
 
 def main():

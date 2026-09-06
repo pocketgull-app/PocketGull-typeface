@@ -24,7 +24,7 @@ import sys
 import time
 from pathlib import Path
 from fontTools.ttLib import TTFont
-from fontTools.ttLib.tables._g_l_y_f import Glyph
+from fontTools.ttLib.tables._g_l_y_f import Glyph, GlyphCoordinates
 from fontTools.ttLib.tables.ttProgram import Program
 
 # Ensure UTF-8 output on Windows consoles
@@ -47,13 +47,20 @@ TARGET_FONTS = [
     {"filename": "PocketGullMono-Italic.ttf", "weight": 400, "is_mono": True, "src_weight": "regular"},
 ]
 
+def resolve_font_path(filename):
+    for base in [Path(r"C:\Windows\Fonts"), Path("/mnt/c/Windows/Fonts")]:
+        p = base / filename
+        if p.exists():
+            return p
+    return Path(r"C:\Windows\Fonts") / filename
+
 REF_FONTS = {
-    "ebrima_regular": Path(r"C:\Windows\Fonts\ebrima.ttf"),
-    "ebrima_bold": Path(r"C:\Windows\Fonts\ebrimabd.ttf"),
-    "gadugi_regular": Path(r"C:\Windows\Fonts\gadugi.ttf"),
-    "gadugi_bold": Path(r"C:\Windows\Fonts\gadugib.ttf"),
-    "sans_serif_regular": Path(r"C:\Windows\Fonts\SansSerifCollection.ttf"),
-    "sans_serif_bold": Path(r"C:\Windows\Fonts\SansSerifCollection.ttf"),
+    "ebrima_regular": resolve_font_path("ebrima.ttf"),
+    "ebrima_bold": resolve_font_path("ebrimabd.ttf"),
+    "gadugi_regular": resolve_font_path("gadugi.ttf"),
+    "gadugi_bold": resolve_font_path("gadugib.ttf"),
+    "sans_serif_regular": resolve_font_path("SansSerifCollection.ttf"),
+    "sans_serif_bold": resolve_font_path("SansSerifCollection.ttf"),
 }
 
 SCRIPT_SPECS = [
@@ -328,7 +335,8 @@ def compile_all_tier6_scripts():
 
                 # Decompose all glyphs (simple or composite) to flat coordinates
                 if src_glyph.numberOfContours != 0:
-                    coords, endPts, flags = src_glyph.getCoordinates(ref_glyf)
+                    raw_coords, endPts, flags = src_glyph.getCoordinates(ref_glyf)
+                    coords = GlyphCoordinates(raw_coords)
                     # Scale to 1000 UPM
                     coords.transform(((scale, 0), (0, scale)))
                     coords.toInt()

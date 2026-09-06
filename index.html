@@ -9764,13 +9764,35 @@ Sincerely,
       if (thermalDoseText) thermalDoseText.textContent = data.dose;
       if (thermalAllergyText) thermalAllergyText.textContent = data.allergy;
       
+      const rxHeader = document.getElementById('thermalRxHeader');
+      const rxBody = document.getElementById('thermalRxBody');
+
       if (thermalHospitalLabel) {
+        // Maintain canonical LTR clinical chassis (Barcode, Bed, MRN, Sloan 5:1 badge)
+        thermalHospitalLabel.removeAttribute('dir');
+        thermalHospitalLabel.style.textAlign = 'left';
+      }
+
+      if (rxHeader && rxBody) {
         if (data.rtl) {
-          thermalHospitalLabel.setAttribute('dir', 'rtl');
-          thermalHospitalLabel.style.textAlign = 'right';
+          rxHeader.setAttribute('dir', 'rtl');
+          rxHeader.style.textAlign = 'right';
+          rxBody.setAttribute('dir', 'rtl');
+          rxBody.style.textAlign = 'right';
         } else {
-          thermalHospitalLabel.removeAttribute('dir');
-          thermalHospitalLabel.style.textAlign = 'left';
+          rxHeader.removeAttribute('dir');
+          rxHeader.style.textAlign = 'left';
+          rxBody.removeAttribute('dir');
+          rxBody.style.textAlign = 'left';
+        }
+
+        // Harmonized font fallback for cursive scripts (Arabic/Farsi) to ensure 100% connected Naskh
+        if (lang === 'ar' || lang === 'fa') {
+          rxHeader.style.fontFamily = '"Noto Sans Arabic", "Segoe UI", Tahoma, "PocketGull Bold", sans-serif';
+          rxBody.style.fontFamily = '"Noto Sans Arabic", "Segoe UI", Tahoma, "PocketGull Mono", monospace';
+        } else {
+          rxHeader.style.fontFamily = '"PocketGull Bold", sans-serif';
+          rxBody.style.fontFamily = "'PocketGull Mono', monospace";
         }
       }
 
