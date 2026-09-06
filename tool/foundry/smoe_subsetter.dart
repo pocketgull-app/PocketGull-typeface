@@ -95,6 +95,122 @@ class SmoeScriptRegistry {
       endUnicode: 0xA63F,
       description: 'Complex 6-stroke syllabic balancing and 2:1 counter ratio',
     ),
+    // ── Tier 2: RTL & Semitic Scripts ──────────────────────────────────────
+    ScriptExpert(
+      name: 'Arabic & Perso-Arabic',
+      tag: 'ARAB',
+      startUnicode: 0x0600,
+      endUnicode: 0x06FF,
+      description: 'UAX #9 BiDi contextual dual-joining shaping & diacritic stacking',
+    ),
+    ScriptExpert(
+      name: 'Hebrew & Yiddish',
+      tag: 'HEBR',
+      startUnicode: 0x0590,
+      endUnicode: 0x05FF,
+      description: 'Niqqud vowel point clearance and clinical dosage numeral isolation',
+    ),
+    ScriptExpert(
+      name: 'Syriac',
+      tag: 'SYRC',
+      startUnicode: 0x0700,
+      endUnicode: 0x074F,
+      description: 'Estrangela & Serto cursive ligatures with Middle Eastern EHR alignment',
+    ),
+    ScriptExpert(
+      name: 'Thaana (Maldivian)',
+      tag: 'THAA',
+      startUnicode: 0x0780,
+      endUnicode: 0x07BF,
+      description: 'RTL non-cursive vowel diacritic ascender balancing',
+    ),
+    // ── Tier 3: Indic Core ────────────────────────────────────────────────
+    ScriptExpert(
+      name: 'Devanagari (Hindi, Marathi, Sanskrit)',
+      tag: 'DEVA',
+      startUnicode: 0x0900,
+      endUnicode: 0x097F,
+      description: 'Shirorekha continuous headline alignment & conjunct ligatures',
+    ),
+    ScriptExpert(
+      name: 'Bengali & Assamese',
+      tag: 'BENG',
+      startUnicode: 0x0980,
+      endUnicode: 0x09FF,
+      description: 'Triangular stroke counter balance & Matra vowel reordering',
+    ),
+    ScriptExpert(
+      name: 'Tamil',
+      tag: 'TAML',
+      startUnicode: 0x0B80,
+      endUnicode: 0x0BFF,
+      description: 'Dravidian non-shirorekha rounded ductus & consonant-vowel ligatures',
+    ),
+    ScriptExpert(
+      name: 'Telugu',
+      tag: 'TELU',
+      startUnicode: 0x0C00,
+      endUnicode: 0x0C7F,
+      description: 'Circular vowel loop harmony & subscript consonant clusters',
+    ),
+    // ── Tier 4: Southeast Asian Scripts ───────────────────────────────────
+    ScriptExpert(
+      name: 'Thai',
+      tag: 'THAI',
+      startUnicode: 0x0E00,
+      endUnicode: 0x0E7F,
+      description: 'Multi-level tone mark stacking & loopless/looped clinical legibility',
+    ),
+    ScriptExpert(
+      name: 'Lao',
+      tag: 'LAOO',
+      startUnicode: 0x0E80,
+      endUnicode: 0x0EFF,
+      description: 'Curvilinear ascender clearance & tone mark placement',
+    ),
+    ScriptExpert(
+      name: 'Khmer',
+      tag: 'KHMR',
+      startUnicode: 0x1780,
+      endUnicode: 0x17FF,
+      description: 'Coeng subscript consonants & complex multi-tier ligatures',
+    ),
+    ScriptExpert(
+      name: 'Burmese (Myanmar)',
+      tag: 'MYMR',
+      startUnicode: 0x1000,
+      endUnicode: 0x109F,
+      description: 'Circular loop geometry & stacked consonant medials',
+    ),
+    ScriptExpert(
+      name: 'Tibetan',
+      tag: 'TIBT',
+      startUnicode: 0x0F00,
+      endUnicode: 0x0FFF,
+      description: 'Tsheg delimiter spacing & vertically stacked subjoined consonants',
+    ),
+    // ── Tier 5: CJK Clinical Core ─────────────────────────────────────────
+    ScriptExpert(
+      name: 'CJK Unified Clinical Radicals',
+      tag: 'HANI',
+      startUnicode: 0x2E80,
+      endUnicode: 0x2FD5,
+      description: 'Optical balance for top 3,500 clinical pharmacopeia ideographs',
+    ),
+    ScriptExpert(
+      name: 'Japanese Hiragana & Katakana',
+      tag: 'KANA',
+      startUnicode: 0x3040,
+      endUnicode: 0x30FF,
+      description: 'Humanist brush curve harmony & pharmaceutical Dakuten distinction',
+    ),
+    ScriptExpert(
+      name: 'Korean Hangul Syllables',
+      tag: 'HANG',
+      startUnicode: 0xAC00,
+      endUnicode: 0xD7AF,
+      description: 'Featural block modular architecture & medical triage legibility',
+    ),
     ScriptExpert(
       name: 'Medical ICU Telemetry',
       tag: 'TELM',
@@ -128,7 +244,7 @@ class SmoeSubsetter {
       print('      ↳ ${exp.description}');
     }
 
-    print('\n[SUCCESS] All 11 SMoE script experts registered and valid for dynamic dispatch.\n');
+    print('\n[SUCCESS] All ${SmoeScriptRegistry.experts.length} SMoE script experts registered and valid for dynamic dispatch.\n');
   }
 }
 
