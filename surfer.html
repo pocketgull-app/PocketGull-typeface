@@ -379,10 +379,17 @@
         <span>Left: <strong>Cyan Saber</strong> | Right: <strong>Amber Saber</strong></span>
       </div>
 
-      <div style="display: flex; gap: 0.75rem;">
+      <div style="display: flex; gap: 0.6rem; align-items: center;">
+        <!-- Healing Soundscape Preset Selector -->
+        <select id="selectSoundscape" class="hud-btn" style="background: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #10b981; cursor: pointer; outline: none; font-weight: 800;">
+          <option value="dna">🧬 528Hz Solfeggio DNA</option>
+          <option value="gamma">🧠 40Hz Gamma Focus</option>
+          <option value="monastic">🔔 432Hz Monastic Chime</option>
+          <option value="cardiac">🫀 60 BPM Cardiac Pulse</option>
+        </select>
         <button class="hud-btn" id="btnToggleSound">🔊 Audio: ON</button>
         <button class="hud-btn" id="btnPauseGame">⏸ Pause</button>
-        <a href="index.html#multi-scale" class="hud-btn">📖 Back to Specimen</a>
+        <a href="index.html#section-07" class="hud-btn">📖 Specimen</a>
       </div>
     </div>
   </div>
@@ -449,41 +456,147 @@
       height = canvas.height = window.innerHeight;
     });
 
-    // ─── Procedural Web Audio Cardiac Synthesizer ───
-    class CardiacSynthesizer {
+        // ─── Procedural Neuroacoustic & Healing MIDI Synthesizer ───
+    class NeuroacousticHealingSynthesizer {
       constructor() {
         this.ctx = null;
         this.enabled = true;
-        this.bpm = 75;
+        this.masterGain = null;
+        this.currentTune = 'dna';
+        this.binauralLeft = null;
+        this.binauralRight = null;
+        this.stepCount = 0;
+
+        // Soundscape Presets with Solfeggio & Gamma Frequencies
+        this.PRESETS = {
+          dna: {
+            root: 528,
+            binauralBeat: 8.0, // Alpha 8Hz
+            scale: [528, 594, 660, 792, 880, 1056],
+            wave: 'sine',
+            name: '528Hz Solfeggio DNA Repair'
+          },
+          gamma: {
+            root: 216,
+            binauralBeat: 40.0, // 40Hz Gamma Focus
+            scale: [216, 256, 288, 324, 384, 432],
+            wave: 'triangle',
+            name: '40Hz Gamma Sensory Synchrony'
+          },
+          monastic: {
+            root: 432,
+            binauralBeat: 4.5, // Theta 4.5Hz
+            scale: [216, 288, 324, 432, 576, 648],
+            wave: 'sine',
+            name: '432Hz Monastic Chimes'
+          },
+          cardiac: {
+            root: 130.81,
+            binauralBeat: 1.0, // 60 BPM Vagal rhythm
+            scale: [130.81, 164.81, 196.00, 220.00, 261.63],
+            wave: 'triangle',
+            name: '60 BPM Cardiac Vagal Tone'
+          }
+        };
       }
 
       init() {
         if (!this.ctx) {
           const AudioContext = window.AudioContext || window.webkitAudioContext;
           this.ctx = new AudioContext();
+          this.masterGain = this.ctx.createGain();
+          this.masterGain.gain.setValueAtTime(0.28, this.ctx.currentTime);
+          this.masterGain.connect(this.ctx.destination);
         }
         if (this.ctx.state === 'suspended') {
           this.ctx.resume();
         }
+        this.startBinauralDrone();
       }
 
-      playSaberSlash(freq = 440, isCorrect = true) {
+      setTune(tuneKey) {
+        if (this.PRESETS[tuneKey]) {
+          this.currentTune = tuneKey;
+          if (this.ctx && this.enabled) {
+            this.startBinauralDrone();
+          }
+        }
+      }
+
+      startBinauralDrone() {
+        this.stopBinauralDrone();
         if (!this.ctx || !this.enabled) return;
+        const preset = this.PRESETS[this.currentTune];
+        const root = preset.root;
+        const beat = preset.binauralBeat;
+
+        this.binauralLeft = this.ctx.createOscillator();
+        const gL = this.ctx.createGain();
+        gL.gain.setValueAtTime(0.05, this.ctx.currentTime);
+        this.binauralLeft.type = 'sine';
+        this.binauralLeft.frequency.setValueAtTime(root, this.ctx.currentTime);
+
+        this.binauralRight = this.ctx.createOscillator();
+        const gR = this.ctx.createGain();
+        gR.gain.setValueAtTime(0.05, this.ctx.currentTime);
+        this.binauralRight.type = 'sine';
+        this.binauralRight.frequency.setValueAtTime(root + beat, this.ctx.currentTime);
+
+        if (this.ctx.createStereoPanner) {
+          const panL = this.ctx.createStereoPanner();
+          panL.pan.setValueAtTime(-0.85, this.ctx.currentTime);
+          this.binauralLeft.connect(gL);
+          gL.connect(panL);
+          panL.connect(this.masterGain);
+
+          const panR = this.ctx.createStereoPanner();
+          panR.pan.setValueAtTime(0.85, this.ctx.currentTime);
+          this.binauralRight.connect(gR);
+          gR.connect(panR);
+          panR.connect(this.masterGain);
+        } else {
+          this.binauralLeft.connect(gL);
+          gL.connect(this.masterGain);
+          this.binauralRight.connect(gR);
+          gR.connect(this.masterGain);
+        }
+
+        this.binauralLeft.start();
+        this.binauralRight.start();
+      }
+
+      stopBinauralDrone() {
+        if (this.binauralLeft) {
+          try { this.binauralLeft.stop(); this.binauralLeft.disconnect(); } catch(e){}
+          this.binauralLeft = null;
+        }
+        if (this.binauralRight) {
+          try { this.binauralRight.stop(); this.binauralRight.disconnect(); } catch(e){}
+          this.binauralRight = null;
+        }
+      }
+
+      playSaberSlash(noteShift = 0, isCorrect = true) {
+        if (!this.ctx || !this.enabled) return;
+        const preset = this.PRESETS[this.currentTune];
+        const scale = preset.scale;
         const now = this.ctx.currentTime;
+
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
 
-        osc.type = isCorrect ? 'sine' : 'sawtooth';
+        const freq = isCorrect ? scale[noteShift % scale.length] : 180;
+        osc.type = isCorrect ? preset.wave : 'sawtooth';
         osc.frequency.setValueAtTime(freq, now);
-        osc.frequency.exponentialRampToValueAtTime(isCorrect ? freq * 1.5 : freq * 0.4, now + 0.18);
+        osc.frequency.exponentialRampToValueAtTime(isCorrect ? freq * 1.33 : freq * 0.5, now + 0.18);
 
-        gain.gain.setValueAtTime(0.3, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+        gain.gain.setValueAtTime(0.32, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
 
         osc.connect(gain);
-        gain.connect(this.ctx.destination);
+        gain.connect(this.masterGain);
         osc.start(now);
-        osc.stop(now + 0.2);
+        osc.stop(now + 0.25);
       }
 
       playBeatKick() {
@@ -493,40 +606,73 @@
         const gain = this.ctx.createGain();
 
         osc.frequency.setValueAtTime(140, now);
-        osc.frequency.exponentialRampToValueAtTime(40, now + 0.09);
+        osc.frequency.exponentialRampToValueAtTime(38, now + 0.09);
 
-        gain.gain.setValueAtTime(0.5, now);
+        gain.gain.setValueAtTime(0.45, now);
         gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
 
         osc.connect(gain);
-        gain.connect(this.ctx.destination);
+        gain.connect(this.masterGain);
         osc.start(now);
         osc.stop(now + 0.13);
+
+        // Ambient melodic pulse on rhythmic quarter steps
+        this.stepCount++;
+        if (this.stepCount % 2 === 0) {
+          this.playArpChime(this.stepCount);
+        }
       }
 
-      playBrailleChord(noteIdx = 0) {
+      playArpChime(step) {
         if (!this.ctx || !this.enabled) return;
-        const notes = [261.63, 329.63, 392.00, 523.25, 659.25]; // C major pentatonic
-        const freq = notes[noteIdx % notes.length];
+        const preset = this.PRESETS[this.currentTune];
+        const scale = preset.scale;
+        const note = scale[(step / 2) % scale.length];
         const now = this.ctx.currentTime;
 
         const osc = this.ctx.createOscillator();
         const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(note, now);
 
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(freq, now);
-
-        gain.gain.setValueAtTime(0.25, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(0.12, now + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.7);
 
         osc.connect(gain);
-        gain.connect(this.ctx.destination);
+        gain.connect(this.masterGain);
         osc.start(now);
-        osc.stop(now + 0.62);
+        osc.stop(now + 0.72);
+      }
+
+      playBrailleChord(streakCount = 0) {
+        if (!this.ctx || !this.enabled) return;
+        const preset = this.PRESETS[this.currentTune];
+        const scale = preset.scale;
+        const now = this.ctx.currentTime;
+
+        // Triad harmony
+        [0, 2, 4].forEach((offset, idx) => {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          const freq = scale[(streakCount + offset) % scale.length];
+
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now + idx * 0.04);
+
+          gain.gain.setValueAtTime(0.0001, now + idx * 0.04);
+          gain.gain.exponentialRampToValueAtTime(0.2, now + idx * 0.04 + 0.03);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.85);
+
+          osc.connect(gain);
+          gain.connect(this.masterGain);
+          osc.start(now + idx * 0.04);
+          osc.stop(now + 0.88);
+        });
       }
     }
 
-    const synth = new CardiacSynthesizer();
+    const synth = new NeuroacousticHealingSynthesizer();
 
     // ─── Game State & Configuration ───
     const LANES = [-1, 0, 1]; // Left, Center, Right lane coordinates
@@ -946,6 +1092,13 @@
       particles = [];
       synth.playBeatKick();
     });
+
+    const selectSoundscape = document.getElementById('selectSoundscape');
+    if (selectSoundscape) {
+      selectSoundscape.addEventListener('change', (e) => {
+        synth.setTune(e.target.value);
+      });
+    }
 
     btnToggleSound.addEventListener('click', () => {
       synth.enabled = !synth.enabled;
