@@ -33,6 +33,7 @@ TARGET_FONTS = [
     {"filename": "PocketGull-Bold.ttf", "weight": 700, "is_mono": False},
     {"filename": "PocketGull-Chiseltip.ttf", "weight": 900, "is_mono": False},
     {"filename": "PocketGullMono-Regular.ttf", "weight": 400, "is_mono": True},
+    {"filename": "PocketGullMono-Italic.ttf", "weight": 400, "is_mono": True},
 ]
 
 def compile_chinuk_pipa():
@@ -97,18 +98,46 @@ def compile_chinuk_pipa():
                 # Scale wide glyphs to fit within printable bounds (max 520 units)
                 dest_adv = 600
                 if glyph.numberOfContours > 0:
-                    w = glyph.xMax - glyph.xMin
-                    scale = 520.0 / w if w > 520 else 1.0
                     coords, endPts, flags = glyph.getCoordinates(ref_glyf)
-                    
-                    if scale != 1.0:
-                        coords.transform(((scale, 0), (0, scale)))
-                        coords.toInt()
-                    
-                    # Horizontal centering in 600 UPM cell
-                    cur_min_x = min(coords._a[0::2])
-                    cur_max_x = max(coords._a[0::2])
-                    cur_w = cur_max_x - cur_min_x
+                    xs = coords._a[0::2]
+                    ys = coords._a[1::2]
+                    w = max(xs) - min(xs)
+                    h = max(ys) - min(ys)
+                    orig_cx = (min(xs) + max(xs)) / 2.0
+                    orig_cy = (min(ys) + max(ys)) / 2.0
+
+                    # Optical readability scale factor: Cap-Height to Baseline (y=0..720)
+                    # For small circle vowels and short stems (h < 260): scale generously
+                    if h < 220:
+                        scale_y = 2.4
+                        scale_x = 2.1
+                    elif h < 340:
+                        scale_y = 1.9
+                        scale_x = 1.65
+                    elif h < 480:
+                        scale_y = 1.5
+                        scale_x = 1.35
+                    else:
+                        scale_y = 1.25
+                        scale_x = 1.15
+
+                    coords.translate((-orig_cx, -orig_cy))
+                    coords.transform(((scale_x, 0), (0, scale_y)))
+                    # Target vertical placement: center along optical median (y = 360)
+                    target_cy = 360.0
+                    coords.translate((0, target_cy))
+
+                    # Fit width within mono cell (max 530 units)
+                    xs_scaled = coords._a[0::2]
+                    cur_w = max(xs_scaled) - min(xs_scaled)
+                    if cur_w > 530:
+                        scale_fit = 530.0 / cur_w
+                        coords.transform(((scale_fit, 0), (0, scale_fit)))
+                        xs_scaled = coords._a[0::2]
+                        cur_w = max(xs_scaled) - min(xs_scaled)
+
+                    # Center horizontally in 600 UPM cell
+                    cur_min_x = min(xs_scaled)
                     dx = int((600 - cur_w) / 2) - cur_min_x
                     coords.translate((dx, 0))
                     coords.toInt()
@@ -119,9 +148,41 @@ def compile_chinuk_pipa():
                 else:
                     dest_lsb = 0
             else:
-                # Proportional font: Preserve natural advance and sidebearings
-                dest_adv = src_adv
-                dest_lsb = src_lsb
+                # Proportional font: Optical scaling for cap-height to baseline balance
+                if glyph.numberOfContours > 0:
+                    coords, endPts, flags = glyph.getCoordinates(ref_glyf)
+                    xs = coords._a[0::2]
+                    ys = coords._a[1::2]
+                    h = max(ys) - min(ys)
+                    orig_cx = (min(xs) + max(xs)) / 2.0
+                    orig_cy = (min(ys) + max(ys)) / 2.0
+
+                    if h < 220:
+                        scale_y = 2.4
+                        scale_x = 2.1
+                    elif h < 340:
+                        scale_y = 1.9
+                        scale_x = 1.65
+                    elif h < 480:
+                        scale_y = 1.5
+                        scale_x = 1.35
+                    else:
+                        scale_y = 1.25
+                        scale_x = 1.15
+
+                    coords.translate((-orig_cx, -orig_cy))
+                    coords.transform(((scale_x, 0), (0, scale_y)))
+                    target_cy = 360.0
+                    coords.translate((orig_cx * scale_x, target_cy))
+                    coords.toInt()
+
+                    glyph.coordinates = coords
+                    glyph.recalcBounds(glyf_table)
+                    dest_adv = int(src_adv * scale_x)
+                    dest_lsb = glyph.xMin
+                else:
+                    dest_adv = src_adv
+                    dest_lsb = src_lsb
 
             # Add to glyph table
             glyf_table[dest_gname] = glyph

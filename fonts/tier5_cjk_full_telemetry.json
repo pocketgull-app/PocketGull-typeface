@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-09-06T07:44:59Z",
+  "script": "Tier 5: CJK Clinical Core (Top 3,500 Hanzi, Radicals, Kana, Hangul)",
+  "codepoints_synthesized": 4806,
+  "fonts_updated": [
+    {
+      "filename": "PocketGull-Fineliner.ttf",
+      "weight": 400,
+      "is_mono": false,
+      "glyphs_added": 3563,
+      "time_ms": 15597.42
+    },
+    {
+      "filename": "PocketGull-Bold.ttf",
+      "weight": 700,
+      "is_mono": false,
+      "glyphs_added": 3563,
+      "time_ms": 15417.85
+    },
+    {
+      "filename": "PocketGull-Chiseltip.ttf",
+      "weight": 900,
+      "is_mono": false,
+      "glyphs_added": 3563,
+      "time_ms": 14694.14
+    },
+    {
+      "filename": "PocketGullMono-Regular.ttf",
+      "weight": 400,
+      "is_mono": true,
+      "glyphs_added": 3563,
+      "time_ms": 14426.16
+    }
+  ],
+  "total_glyphs_compiled": 14252,
+  "runtime_ms": 60346.52,
+  "manual_hours_benchmark": 8500.0,
+  "acceleration_factor": 637657
+}

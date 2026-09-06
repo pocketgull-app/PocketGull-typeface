@@ -386,7 +386,7 @@
       background: radial-gradient(circle at center, transparent 40%, rgba(4, 8, 19, 0.65) 90%, rgba(4, 8, 19, 0.95) 100%);
     }
 
-    /* Centerpiece: Philocardia™ Tactile Heart & Clinical Pulse Chronometer */
+    /* Centerpiece: Philocardia Tactile Heart & Clinical Pulse Chronometer */
     .pebble-breathing-anchor {
       position: absolute;
       top: 50%;
@@ -1311,7 +1311,7 @@
     </div>
 
     <div class="top-controls">
-      <button class="btn btn-philocardia active" id="btnPhilocardia" title="Toggle Philocardia™ Clinical Pulse Regulation HUD (60/72 BPM Normocardia & 15s Radial Palpation Arc - Press H)">
+      <button class="btn btn-philocardia active" id="btnPhilocardia" title="Toggle Philocardia Clinical Pulse Regulation HUD (60/72 BPM Normocardia & 15s Radial Palpation Arc - Press H)">
         ♥ Philocardia (72 BPM)
       </button>
       <button class="btn" id="btnCrewRoles" title="Open Passenger Expedition Crew Lobby & Team Building">
@@ -1393,8 +1393,8 @@
         <span class="cardinal-gate gate-north">ᐁ</span>
       </div>
 
-      <!-- Philocardia™ Tactile Heart & Clinical Pulse Chronometer (Zero-Watch Palpation HUD) -->
-      <div class="pebble-breathing-anchor" id="pebbleAnchor" title="Philocardia™ Clinical Pulse Regulation & Zero-Watch 15s Radial Palpation Chronometer">
+      <!-- Philocardia Tactile Heart & Clinical Pulse Chronometer (Zero-Watch Palpation HUD) -->
+      <div class="pebble-breathing-anchor" id="pebbleAnchor" title="Philocardia Clinical Pulse Regulation & Zero-Watch 15s Radial Palpation Chronometer">
         <div class="pebble-stone-container">
           <!-- 15-Second Radial Pulse Palpation SVG Dial -->
           <svg class="philocardia-dial-svg" id="philocardiaDialSvg" viewBox="0 0 240 240" aria-label="15-Second Radial Pulse Palpation Chronometer">
@@ -1425,7 +1425,7 @@
           </div>
         </div>
 
-        <div class="breathing-caption" id="breathingCaption">Philocardia™ · 72 BPM Sinus Rhythm</div>
+        <div class="breathing-caption" id="breathingCaption">Philocardia · 72 BPM Sinus Rhythm</div>
         <div class="philocardia-hud-sub" id="philocardiaHudSub">
           <span class="palpation-tag">RADIAL PALPATION</span>
           <span class="palpation-timer" id="palpationTimer">0.0s</span> / 15s
@@ -2138,7 +2138,7 @@
     });
 
     // =========================================================================
-    // PHILOCARDIA™: Clinical Cardiac Regulation & Zero-Watch 15s Radial Palpation HUD
+    // PHILOCARDIA: Clinical Cardiac Regulation & Zero-Watch 15s Radial Palpation HUD
     // Dedicated to Phil Gear · Calibrated S1/S2 Sinus Rhythm & Autonomic Co-Regulation
     // =========================================================================
     const btnPhilocardia = document.getElementById('btnPhilocardia');
@@ -2238,7 +2238,7 @@
           btnPhilocardia.classList.add('active');
           btnPhilocardia.innerHTML = '♥ Philocardia (72 BPM)';
           if (brandTitle) brandTitle.innerHTML = 'Fl<span class="philocardia-heart" data-original="i">ı</span>ght Sanctuary';
-          breathingCaption.textContent = "Philocardia™ · 72 BPM Standard Normocardia";
+          breathingCaption.textContent = "Philocardia · 72 BPM Standard Normocardia";
           pebblePrompt.innerHTML = "72 BPM<br>NORMOCARDIA";
           pebbleStone.classList.add('heart-shape');
           if (pebbleHeart) pebbleHeart.style.display = 'block';
@@ -2246,7 +2246,7 @@
           btnPhilocardia.classList.add('active');
           btnPhilocardia.innerHTML = '♥ Philocardia (60 BPM)';
           if (brandTitle) brandTitle.innerHTML = 'Fl<span class="philocardia-heart" data-original="i">ı</span>ght Sanctuary';
-          breathingCaption.textContent = "Philocardia™ · 60 BPM Deep Rest & Sleep Rhythm";
+          breathingCaption.textContent = "Philocardia · 60 BPM Deep Rest & Sleep Rhythm";
           pebblePrompt.innerHTML = "60 BPM<br>REST PACE";
           pebbleStone.classList.add('heart-shape');
           if (pebbleHeart) pebbleHeart.style.display = 'block';
@@ -2254,7 +2254,7 @@
           btnPhilocardia.classList.remove('active');
           btnPhilocardia.innerHTML = '🧘 Philocardia (Breath)';
           if (brandTitle) brandTitle.innerHTML = 'Fl<span class="philocardia-heart" data-original="i">ı</span>ght Sanctuary';
-          breathingCaption.textContent = "Philocardia™ · 0.10 Hz Resonant Vagal Breath";
+          breathingCaption.textContent = "Philocardia · 0.10 Hz Resonant Vagal Breath";
           pebblePrompt.innerHTML = "0.10 Hz<br>VAGAL BREATH";
           pebbleStone.classList.remove('heart-shape');
           if (pebbleHeart) pebbleHeart.style.display = 'none';
@@ -2262,7 +2262,7 @@
           btnPhilocardia.classList.remove('active');
           btnPhilocardia.innerHTML = '♡ Philocardia (Off)';
           if (brandTitle) brandTitle.innerHTML = 'Flight Sanctuary';
-          breathingCaption.textContent = "Philocardia™ · Idle (Click to Regulate Pulse)";
+          breathingCaption.textContent = "Philocardia · Idle (Click to Regulate Pulse)";
           pebblePrompt.innerHTML = "TOUCH / CLICK<br>TO PACE";
           pebbleStone.classList.remove('heart-shape');
           if (pebbleHeart) pebbleHeart.style.display = 'none';
@@ -2352,7 +2352,7 @@
 
         document.documentElement.style.setProperty('--breath-scale', scale.toFixed(3));
         document.documentElement.style.setProperty('--breath-weight', weight);
-        if (breathingCaption) breathingCaption.textContent = `Philocardia™ · ${breathLabel}`;
+        if (breathingCaption) breathingCaption.textContent = `Philocardia · ${breathLabel}`;
 
         const fraction10 = breathCycleSec / 10.0;
         if (dialQuadrantArc) {

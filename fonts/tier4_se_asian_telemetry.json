@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-09-06T07:31:51Z",
+  "script": "Tier 4: Southeast Asian (Thai, Lao, Khmer, Burmese, Tibetan)",
+  "codepoints_synthesized": 746,
+  "fonts_updated": [
+    {
+      "filename": "PocketGull-Fineliner.ttf",
+      "weight": 400,
+      "is_mono": false,
+      "glyphs_added": 746,
+      "time_ms": 4574.6
+    },
+    {
+      "filename": "PocketGull-Bold.ttf",
+      "weight": 700,
+      "is_mono": false,
+      "glyphs_added": 746,
+      "time_ms": 8260.37
+    },
+    {
+      "filename": "PocketGull-Chiseltip.ttf",
+      "weight": 900,
+      "is_mono": false,
+      "glyphs_added": 746,
+      "time_ms": 8117.88
+    },
+    {
+      "filename": "PocketGullMono-Regular.ttf",
+      "weight": 400,
+      "is_mono": true,
+      "glyphs_added": 746,
+      "time_ms": 8334.35
+    }
+  ],
+  "total_glyphs_compiled": 2984,
+  "runtime_ms": 29307.87,
+  "manual_hours_benchmark": 2238.0,
+  "acceleration_factor": 274902
+}

@@ -71,6 +71,7 @@
        url('fonts/ttf/PocketGull-VF.ttf') format('truetype'),
        url('PocketGull-VF.ttf') format('truetype');
   font-weight: 400 900;
+  font-stretch: 75% 100%;
   font-style: oblique -10.5deg 0deg;
   font-display: swap;
 }
@@ -142,6 +143,40 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'PocketGull Micro';
+  src: url('fonts/woff2/PocketGull-Micro.woff2') format('woff2'),
+       url('PocketGull-Micro.woff2') format('woff2'),
+       url('fonts/ttf/PocketGull-Micro.ttf') format('truetype'),
+       url('PocketGull-Micro.ttf') format('truetype');
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PocketGull Condensed';
+  src: url('fonts/woff2/PocketGull-CondensedBold.woff2') format('woff2'),
+       url('PocketGull-CondensedBold.woff2') format('woff2'),
+       url('fonts/ttf/PocketGull-CondensedBold.ttf') format('truetype'),
+       url('PocketGull-CondensedBold.ttf') format('truetype');
+  font-weight: 700 800;
+  font-stretch: condensed;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PocketGull Soft';
+  src: url('fonts/woff2/PocketGull-Soft.woff2') format('woff2'),
+       url('PocketGull-Soft.woff2') format('woff2'),
+       url('fonts/ttf/PocketGull-Soft.ttf') format('truetype'),
+       url('PocketGull-Soft.ttf') format('truetype');
+  font-weight: 700 800;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* 2. PocketGull Mono (Fixed 600 UPM Clinical Telemetry & Terminal) */
 @font-face {
   font-family: 'PocketGull Mono';
@@ -149,7 +184,18 @@
        url('PocketGullMono-Regular.woff2') format('woff2'),
        url('fonts/ttf/PocketGullMono-Regular.ttf') format('truetype'),
        url('PocketGullMono-Regular.ttf') format('truetype');
-  font-weight: 400 500 600 700;
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PocketGull Mono';
+  src: url('fonts/woff2/PocketGullMono-Bold.woff2') format('woff2'),
+       url('PocketGullMono-Bold.woff2') format('woff2'),
+       url('fonts/ttf/PocketGullMono-Bold.ttf') format('truetype'),
+       url('PocketGullMono-Bold.ttf') format('truetype');
+  font-weight: 700 800;
   font-style: normal;
   font-display: swap;
 }
@@ -160,7 +206,7 @@
        url('PocketGullMono-Italic.woff2') format('woff2'),
        url('fonts/ttf/PocketGullMono-Italic.ttf') format('truetype'),
        url('PocketGullMono-Italic.ttf') format('truetype');
-  font-weight: 400 500 600 700;
+  font-weight: 400 500;
   font-style: italic;
   font-display: swap;
 }
@@ -405,7 +451,7 @@
 }
 
 /* ==========================================================================
-   5. PHILOCARDIA™: THE PHIL GEAR CARDIAC CHRONOMETER & HEART ALTERNATE
+   5. PHILOCARDIA: THE PHIL GEAR CARDIAC CHRONOMETER & HEART ALTERNATE
    - Connected Fl Display Ligature ("Flight Sanctuary")
    - Philocardia: Lowercase i with Optical S1/S2 Heart-Shaped Tittle
    - Calibrated 60 / 72 BPM Sinus Rhythm Cardiac Regulation Engine
@@ -419,7 +465,7 @@
   display: none !important;
 }
 
-/* Philocardia™: Signature Heart-Tittle Stylistic Alternate */
+/* Philocardia: Signature Heart-Tittle Stylistic Alternate */
 .philocardia-heart,
 .iphillyg-heart {
   display: inline-block;

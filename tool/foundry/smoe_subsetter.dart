@@ -218,6 +218,130 @@ class SmoeScriptRegistry {
       endUnicode: 0xE0B6,
       description: 'Powerline chevrons, status tags, and fixed 600 UPM terminal HUDs',
     ),
+    // =========================================================================
+    // TIER 2: RTL & Semitic (BiDi & Cursive Dynamics)
+    // =========================================================================
+    ScriptExpert(
+      name: 'Arabic & Perso-Arabic',
+      tag: 'ARAB',
+      startUnicode: 0x0600,
+      endUnicode: 0x06FF,
+      description: 'Cursive baseline joining, contextual four-form substitution, and UAX #9 BiDi isolation',
+    ),
+    ScriptExpert(
+      name: 'Hebrew & Yiddish',
+      tag: 'HEBR',
+      startUnicode: 0x0590,
+      endUnicode: 0x05FF,
+      description: 'Right-to-left block letterforms, cantillation marks, and clinical dosage clarity',
+    ),
+    ScriptExpert(
+      name: 'Syriac (Estrangela / Serto / Madnhaya)',
+      tag: 'SYRC',
+      startUnicode: 0x0700,
+      endUnicode: 0x074F,
+      description: 'Continuous cursive baseline ligature flow and ancient medical manuscript lineage',
+    ),
+    ScriptExpert(
+      name: 'Thaana (Divehi)',
+      tag: 'THAA',
+      startUnicode: 0x0780,
+      endUnicode: 0x07BF,
+      description: 'Maldivian angled ascender strokes and right-to-left decimal isolation',
+    ),
+    // =========================================================================
+    // TIER 3: Indic Core (Complex Matra Reordering & Conjuncts)
+    // =========================================================================
+    ScriptExpert(
+      name: 'Devanagari (Hindi, Marathi, Sanskrit)',
+      tag: 'DEVA',
+      startUnicode: 0x0900,
+      endUnicode: 0x097F,
+      description: 'Shirorekha hanging headline continuity, half-forms, and critical prescription ligatures',
+    ),
+    ScriptExpert(
+      name: 'Bengali & Assamese',
+      tag: 'BENG',
+      startUnicode: 0x0980,
+      endUnicode: 0x09FF,
+      description: 'Matra headline integration, triangular conjunct dynamics, and East Indian pharmacopeia',
+    ),
+    ScriptExpert(
+      name: 'Tamil',
+      tag: 'TAML',
+      startUnicode: 0x0B80,
+      endUnicode: 0x0BFF,
+      description: 'Linearized non-conjunct syllable balance and South Indian public health signage',
+    ),
+    ScriptExpert(
+      name: 'Telugu',
+      tag: 'TELU',
+      startUnicode: 0x0C00,
+      endUnicode: 0x0C7F,
+      description: 'Circular vowel-modifier loops, talakattu tick-marks, and sub-base consonant stacking',
+    ),
+    // =========================================================================
+    // TIER 4: Southeast Asian (Unsegmented & Stacking Scripts)
+    // =========================================================================
+    ScriptExpert(
+      name: 'Thai',
+      tag: 'THAI',
+      startUnicode: 0x0E00,
+      endUnicode: 0x0E7F,
+      description: 'Multi-level tone-mark stacking without word boundaries; zero vertical collision',
+    ),
+    ScriptExpert(
+      name: 'Lao',
+      tag: 'LAOO',
+      startUnicode: 0x0E80,
+      endUnicode: 0x0EFF,
+      description: 'Curvilinear looped anatomy with vertical vowel placement for clinical instructions',
+    ),
+    ScriptExpert(
+      name: 'Khmer (Cambodian)',
+      tag: 'KHMR',
+      startUnicode: 0x1780,
+      endUnicode: 0x17FF,
+      description: 'Coeng subscript consonant clustering and intricate hair-space visual balance',
+    ),
+    ScriptExpert(
+      name: 'Burmese (Myanmar)',
+      tag: 'MYMR',
+      startUnicode: 0x1000,
+      endUnicode: 0x109F,
+      description: 'Perfect circular arcs, medial consonant ligatures, and medicinal plant taxonomies',
+    ),
+    ScriptExpert(
+      name: 'Tibetan',
+      tag: 'TIBT',
+      startUnicode: 0x0F00,
+      endUnicode: 0x0FFF,
+      description: 'Subjoined root consonants, tsheg syllable delimiters, and Sowa Rigpa medical codices',
+    ),
+    // =========================================================================
+    // TIER 5: CJK Clinical Core (High-Density Multi-Stroke Ideographs)
+    // =========================================================================
+    ScriptExpert(
+      name: 'CJK Clinical Radicals & Ideographs',
+      tag: 'HANI',
+      startUnicode: 0x4E00,
+      endUnicode: 0x9FFF,
+      description: 'Square 1000 UPM em-box grid, internal white-space breathing, and medical terminology',
+    ),
+    ScriptExpert(
+      name: 'Japanese Kana (Hiragana & Katakana)',
+      tag: 'KANA',
+      startUnicode: 0x3040,
+      endUnicode: 0x30FF,
+      description: 'Fluid phonetic curves, dakuten/handakuten dot clearance, and pharmaceutical katakana',
+    ),
+    ScriptExpert(
+      name: 'Korean Hangul Syllables',
+      tag: 'HANG',
+      startUnicode: 0xAC00,
+      endUnicode: 0xD7AF,
+      description: 'Featural alphabetic block-syllable construction and high-legibility clinical charts',
+    ),
   ];
 }
 
@@ -240,7 +364,7 @@ class SmoeSubsetter {
     for (final exp in SmoeScriptRegistry.experts) {
       final rangeStr = 'U+${exp.startUnicode.toRadixString(16).toUpperCase().padLeft(4, '0')}..U+${exp.endUnicode.toRadixString(16).toUpperCase().padLeft(4, '0')}';
       final totalInBlock = exp.endUnicode - exp.startUnicode + 1;
-      print('  • [Expert: ${exp.tag.padRight(4)}] ${exp.name.padRight(32)} ($rangeStr, $totalInBlock CPs)');
+      print('  • [Expert: ${exp.tag.padRight(4)}] ${exp.name.padRight(36)} ($rangeStr, $totalInBlock CPs)');
       print('      ↳ ${exp.description}');
     }
 

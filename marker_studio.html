@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PocketGull Marker Raw — Morphological Variety Studio</title>
+  <link rel="stylesheet" href="fonts.css">
+  <style>
+    :root {
+      --bg: #030712;
+      --card-bg: #090d16;
+      --card-border: #1e293b;
+      --card-hover: #172554;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --cyan: #06b6d4;
+      --sky: #38bdf8;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --purple: #a855f7;
+      --rose: #f43f5e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      padding: 32px 24px 80px;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1540px;
+      margin: 0 auto;
+    }
+
+    /* Top Navigation / Breadcrumbs */
+    .top-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .top-nav a {
+      color: var(--sky);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .top-nav a:hover { text-decoration: underline; }
+
+    .nav-badges {
+      display: flex;
+      gap: 8px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      background: rgba(6, 182, 212, 0.1);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      color: var(--cyan);
+    }
+
+    .badge.gold {
+      background: rgba(245, 158, 11, 0.12);
+      border-color: rgba(245, 158, 11, 0.4);
+      color: var(--amber);
+    }
+
+    .badge.green {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: var(--emerald);
+    }
+
+    /* Header */
+    .header {
+      margin-bottom: 32px;
+    }
+
+    .header-title {
+      font-size: 44px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+      font-family: 'PocketGull Bold', sans-serif;
+    }
+
+    .header-title span {
+      background: linear-gradient(135deg, #38bdf8 0%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header-subtitle {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 980px;
+      line-height: 1.6;
+    }
+
+    /* Reference Cardstock Banner */
+    .ref-banner {
+      background: #060a12;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 32px;
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .ref-img-box {
+      flex: 0 0 280px;
+      height: 110px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+
+    .ref-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .ref-info {
+      flex: 1;
+    }
+
+    .ref-info h3 {
+      font-size: 16px;
+      color: var(--amber);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ref-info p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Studio Layout */
+    .studio-layout {
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* Controls Panel */
+    .controls-panel {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      position: sticky;
+      top: 24px;
+    }
+
+    .panel-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--text);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .control-group {
+      margin-bottom: 20px;
+    }
+
+    .control-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .control-label span:last-child {
+      color: var(--cyan);
+      font-family: 'PocketGull Mono', monospace;
+    }
+
+    .slider {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: #1e293b;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--cyan);
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+    }
+
+    .preset-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--card-border);
+      background: #0f172a;
+      color: var(--text);
+      transition: all 0.15s ease;
+    }
+
+    .btn:hover {
+      background: #1e293b;
+      border-color: var(--cyan);
+      color: #fff;
+    }
+
+    .btn.active {
+      background: rgba(6, 182, 212, 0.15);
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .btn.primary {
+      background: var(--cyan);
+      border-color: var(--cyan);
+      color: #030712;
+      font-weight: 700;
+      width: 100%;
+      margin-top: 12px;
+      padding: 12px;
+    }
+
+    .btn.primary:hover {
+      background: #38bdf8;
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+    }
+
+    /* Live Interactive Tester Card */
+    .tester-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 28px;
+    }
+
+    .tester-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .tester-input {
+      width: 100%;
+      background: #05080f;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 15px;
+      color: #fff;
+      margin-bottom: 16px;
+      outline: none;
+    }
+
+    .tester-input:focus {
+      border-color: var(--cyan);
+    }
+
+    .live-preview-box {
+      min-height: 100px;
+      padding: 24px;
+      background: #03060d;
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 2px;
+      overflow-x: auto;
+    }
+
+    /* Glyph Grid & Cards */
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .section-title small {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .glyph-matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .glyph-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .glyph-card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+      background: #0b1120;
+    }
+
+    .glyph-card.is-master {
+      border-color: rgba(245, 158, 11, 0.3);
+    }
+
+    .glyph-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .glyph-char-label {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .variant-pills {
+      display: flex;
+      gap: 4px;
+    }
+
+    .variant-pill {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.15s;
+    }
+
+    .variant-pill:hover {
+      color: #fff;
+      border-color: var(--sky);
+    }
+
+    .variant-pill.active {
+      background: rgba(6, 182, 212, 0.2);
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .variant-pill.master-pill {
+      background: rgba(245, 158, 11, 0.15);
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    .glyph-display-stage {
+      height: 140px;
+      background: #05080f;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .glyph-display-stage svg {
+      height: 110px;
+      width: auto;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
+    }
+
+    .guideline-baseline {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 28px;
+      height: 1px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.12);
+      pointer-events: none;
+    }
+
+    .guideline-xheight {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 74px;
+      height: 1px;
+      border-bottom: 1px dashed rgba(6, 182, 212, 0.2);
+      pointer-events: none;
+    }
+
+    .guideline-cap {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 110px;
+      height: 1px;
+      border-bottom: 1px dashed rgba(245, 158, 11, 0.2);
+      pointer-events: none;
+    }
+
+    .glyph-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: 'PocketGull Mono', monospace;
+    }
+
+    .glyph-variant-name {
+      color: var(--sky);
+      font-weight: 600;
+    }
+
+    /* Modal / Recipe Drawer */
+    .recipe-drawer {
+      background: #05080e;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 20px;
+      font-family: 'PocketGull Mono', monospace;
+      font-size: 12px;
+      color: #94a3b8;
+      max-height: 180px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Top Navigation -->
+    <div class="top-nav">
+      <a href="index.html">← Back to Typeface Master Specimen</a>
+      <div class="nav-badges">
+        <span class="badge gold">Cardstock DNA Engine</span>
+        <span class="badge">Multi-Variant Morphology</span>
+        <span class="badge green">Live Browser Workbench</span>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="header-title">Marker Raw <span>Morphological Studio</span></h1>
+      <p class="header-subtitle">
+        Explore, compare, and curate aesthetic varieties across the entire felt-marker alphabet.
+        Cycle between <strong>Organic Gestural</strong>, <strong>Calligraphic Chisel-Nib</strong>, <strong>Louise Sloan Optotype</strong>, and <strong>Casual Vernacular</strong> varieties for each letter to find the exact balance of tactile hand warmth and clinical precision.
+      </p>
+    </header>
+
+    <!-- Reference Cardstock Banner -->
+    <div class="ref-banner">
+      <div class="ref-img-box">
+        <img src="article/pocketgull-marker-specimen.jpg" alt="Phil Gear Felt Marker on Cardstock">
+      </div>
+      <div class="ref-info">
+        <h3><span>🖋️</span> Founding Cardstock Master (GearArts Archive)</h3>
+        <p>
+          The authentic tactile archetype hand-drawn by Phil Gear on physical cardstock with a chisel felt-marker.
+          The 9 master letters (<code>P, o, c, k, e, t, G, u, l</code>) exhibit natural kinetic velocity, subtle stem bowing, -4.5° chisel tilt, and rounded ink absorption.
+          Use the matrix below to harmonize every letter in the alphabet with these physical masters.
+        </p>
+      </div>
+    </div>
+
+    <!-- Studio Layout -->
+    <div class="studio-layout">
+
+      <!-- Left Column: Controls & Recipe -->
+      <aside class="controls-panel">
+        <div class="panel-title">
+          <span>Global Stroke Dynamics</span>
+          <button class="btn" id="btnResetAll">Reset</button>
+        </div>
+
+        <div class="control-group">
+          <div class="control-label">
+            <span>Stroke Weight</span>
+            <span id="valWeight">115 UPM</span>
+          </div>
+          <input type="range" id="sliderWeight" class="slider" min="80" max="150" value="115">
+        </div>
+
+        <div class="control-group">
+          <div class="control-label">
+            <span>Kinetic Bowing / Arc</span>
+            <span id="valArc">45%</span>
+          </div>
+          <input type="range" id="sliderArc" class="slider" min="0" max="100" value="45">
+        </div>
+
+        <div class="control-group">
+          <div class="control-label">
+            <span>Calligraphic Nib Angle</span>
+            <span id="valAngle">-4.5°</span>
+          </div>
+          <input type="range" id="sliderAngle" class="slider" min="-15" max="0" value="-4.5" step="0.5">
+        </div>
+
+        <div class="control-group">
+          <div class="control-label">
+            <span>Ink Bleed / Roundness</span>
+            <span id="valBleed">18 px</span>
+          </div>
+          <input type="range" id="sliderBleed" class="slider" min="4" max="30" value="18">
+        </div>
+
+        <div class="control-group">
+          <div class="control-label">
+            <span>Global Aesthetic Preset</span>
+          </div>
+          <div class="preset-buttons">
+            <button class="btn active" data-preset="gestural">1. Gestural Hand</button>
+            <button class="btn" data-preset="chisel">2. Chisel Calligraphy</button>
+            <button class="btn" data-preset="sloan">3. Sloan 5:1 Clinical</button>
+            <button class="btn" data-preset="casual">4. Casual Script</button>
+          </div>
+        </div>
+
+        <button class="btn primary" id="btnApplyToCompiler">Compile Curated Recipe to TTF</button>
+
+        <div class="control-group" style="margin-top: 24px;">
+          <div class="control-label">
+            <span>Curated DNA Recipe (JSON)</span>
+          </div>
+          <div class="recipe-drawer" id="recipeJson">{"recipe": "all_gestural_v1"}</div>
+        </div>
+      </aside>
+
+      <!-- Right Column: Live Tester & Glyph Matrix -->
+      <main>
+
+        <!-- Live Interactive Pangram Card -->
+        <div class="tester-card">
+          <div class="tester-card-header">
+            <h3 style="font-size: 16px; font-weight: 700;">Live Pangram Tester (Curated Blend)</h3>
+            <span style="font-size: 12px; color: var(--text-muted);">Updates in real time as varieties are selected</span>
+          </div>
+          <input type="text" id="testerInput" class="tester-input" value="The quick brown fox jumps over the lazy dog & 109 patients">
+          <div class="live-preview-box" id="livePreview">
+            <!-- Dynamically populated SVG letters -->
+          </div>
+        </div>
+
+        <!-- Section: Uppercase Varieties (A-Z) -->
+        <div class="section-title">
+          <span>Uppercase Alphabet (A–Z)</span>
+          <small>Click any variant pill or card to select that letter's style</small>
+        </div>
+        <div class="glyph-matrix-grid" id="gridUppercase">
+          <!-- Dynamically generated glyph cards -->
+        </div>
+
+        <!-- Section: Lowercase Varieties (a-z) -->
+        <div class="section-title">
+          <span>Lowercase Alphabet (a–z)</span>
+          <small>Single-Story Humanist 'g', curved 'l', and fluid 's'</small>
+        </div>
+        <div class="glyph-matrix-grid" id="gridLowercase">
+          <!-- Dynamically generated glyph cards -->
+        </div>
+
+        <!-- Section: Numerals & Punctuation -->
+        <div class="section-title">
+          <span>Numerals & Clinical Punctuation (0–9, &!?)</span>
+          <small>ISMP Slashed Zero & Sloan 5:1 Optotype figures</small>
+        </div>
+        <div class="glyph-matrix-grid" id="gridNumerals">
+          <!-- Dynamically generated glyph cards -->
+        </div>
+
+      </main>
+    </div>
+
+  </div>
+
+  <script>
+    // Master Cardstock Organs
+    const MASTERS = new Set(['P', 'o', 'c', 'k', 'e', 't', 'G', 'u', 'l']);
+
+    // Variety definitions
+    const VARIETIES = [
+      { id: 'gestural', name: 'Organic Gestural', desc: 'Continuous cubic curves, subtle stem arc, kinetic hand velocity' },
+      { id: 'chisel',   name: 'Chisel Calligraphic', desc: '-4.5° nib tilt, thick downstrokes, thinned horizontal bars' },
+      { id: 'sloan',    name: 'Louise Sloan 5:1', desc: 'ISMP clinical standard, generous open apertures, maximum legibility' },
+      { id: 'casual',   name: 'Casual Script', desc: 'Spontaneous felt-marker lettering with relaxed humanist bounce' }
+    ];
+
+    // Selections per character
+    const userSelections = {};
+
+    // Global parameters
+    const params = {
+      weight: 115,
+      arc: 45,
+      angle: -4.5,
+      bleed: 18
+    };
+
+    // Characters list
+    const UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+    const LOWER = "abcdefghijklmnopqrstuvwxyz".split("");
+    const NUMS  = "0123456789&!?.,".split("");
+
+    // Initialize selections default
+    [...UPPER, ...LOWER, ...NUMS].forEach(ch => {
+      userSelections[ch] = MASTERS.has(ch) ? 'master' : 'gestural';
+    });
+
+    // Helper: Make SVG Path string for each letter & variety
+    function renderGlyphSvg(ch, variantId) {
+      const w = params.weight;
+      const arc = params.arc / 100;
+      const ang = params.angle;
+      const strokeW = w * 0.14; // SVG scale
+
+      // Check if ch is authentic master
+      if (variantId === 'master' && MASTERS.has(ch)) {
+        return getMasterPathSvg(ch, strokeW);
+      }
+
+      // Generate procedural SVG for each letter and variant
+      const pathD = generateVariantPath(ch, variantId, strokeW, arc);
+
+      return `
+        <svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg">
+          <path d="${pathD}" fill="none" stroke="#38bdf8" stroke-width="${strokeW}" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      `;
+    }
+
+    // SVG path generator per character and variant
+    function generateVariantPath(ch, variant, sw, arcFactor) {
+      const bow = arcFactor * 6; // subtle bowing
+      switch(ch) {
+        // Uppercase
+        case 'A':
+          if (variant === 'gestural') return `M 22 108 Q ${48 - bow} 40 50 18 Q ${52 + bow} 40 78 108 M 32 75 Q 50 ${73 - bow} 68 75`;
+          if (variant === 'chisel')   return `M 20 108 L 50 18 L 80 108 M 30 72 L 70 72`;
+          if (variant === 'sloan')    return `M 18 108 L 50 18 L 82 108 M 28 76 L 72 76`;
+          return `M 24 108 C 26 60 46 22 50 18 C 54 22 74 60 76 108 M 34 78 Q 50 72 66 76`;
+
+        case 'B':
+          if (variant === 'gestural') return `M 25 18 Q ${25 + bow} 60 25 108 M 25 18 C 65 18 68 56 25 58 C 72 60 74 108 25 108`;
+          if (variant === 'chisel')   return `M 25 18 L 25 108 M 25 18 L 55 18 C 70 18 70 58 55 58 L 25 58 L 58 58 C 75 58 75 108 58 108 L 25 108`;
+          if (variant === 'sloan')    return `M 22 18 L 22 108 M 22 18 L 52 18 C 68 18 68 56 52 56 L 22 56 L 56 56 C 72 56 72 108 56 108 L 22 108`;
+          return `M 26 18 Q 24 60 26 108 M 26 18 Q 66 22 52 58 Q 26 58 26 58 M 26 58 Q 72 62 56 108 Q 26 108 26 108`;
+
+        case 'D':
+          if (variant === 'gestural') return `M 25 18 Q ${25 + bow} 60 25 108 M 25 18 C 78 18 82 108 25 108`;
+          if (variant === 'chisel')   return `M 24 18 L 24 108 M 24 18 L 50 18 C 76 18 76 108 50 108 L 24 108`;
+          if (variant === 'sloan')    return `M 22 18 L 22 108 M 22 18 L 48 18 C 78 18 78 108 48 108 L 22 108`;
+          return `M 26 18 Q 24 62 27 108 M 27 18 C 80 20 84 106 27 108`;
+
+        case 'E':
+          if (variant === 'gestural') return `M 26 18 Q ${26 + bow} 60 26 108 M 26 18 Q 55 ${18 - bow} 76 20 M 26 60 Q 48 60 68 60 M 26 108 Q 55 ${108 + bow} 78 106`;
+          return `M 25 18 L 25 108 M 25 18 L 75 18 M 25 60 L 68 60 M 25 108 L 76 108`;
+
+        case 'H':
+          if (variant === 'gestural') return `M 24 18 Q ${24 + bow} 60 24 108 M 76 18 Q ${76 - bow} 60 76 108 M 24 60 Q 50 ${60 - bow} 76 60`;
+          return `M 24 18 L 24 108 M 76 18 L 76 108 M 24 60 L 76 60`;
+
+        case 'J':
+          if (variant === 'gestural') return `M 72 18 Q ${72 - bow} 50 72 82 C 72 112 28 114 24 86 M 56 18 L 84 18`;
+          return `M 70 18 L 70 82 C 70 108 30 108 26 84 M 54 18 L 86 18`;
+
+        case 'K':
+          if (variant === 'gestural') return `M 25 18 Q ${25 + bow} 60 25 108 M 75 18 Q 48 48 26 62 M 42 54 Q 56 78 78 108`;
+          return `M 25 18 L 25 108 M 74 18 L 25 62 M 38 52 L 76 108`;
+
+        case 'M':
+          if (variant === 'gestural') return `M 22 108 Q ${22 + bow} 60 22 18 Q 36 62 50 82 Q 64 62 78 18 Q ${78 - bow} 60 78 108`;
+          return `M 22 108 L 22 18 L 50 80 L 78 18 L 78 108`;
+
+        case 'N':
+          if (variant === 'gestural') return `M 24 108 Q ${24 + bow} 60 24 18 Q 50 64 76 108 Q ${76 - bow} 60 76 18`;
+          return `M 24 108 L 24 18 L 76 108 L 76 18`;
+
+        case 'S':
+          if (variant === 'gestural') return `M 72 38 C 68 18 32 18 32 38 C 32 64 74 62 74 88 C 74 112 28 112 24 88`;
+          if (variant === 'chisel')   return `M 72 34 C 65 18 34 18 34 36 C 34 60 72 62 72 88 C 72 110 32 110 26 92`;
+          if (variant === 'sloan')    return `M 70 38 C 66 20 32 20 32 40 C 32 62 70 64 70 88 C 70 110 30 110 26 88`;
+          return `M 74 36 C 68 16 30 18 30 38 C 30 66 74 62 74 90 C 74 114 26 112 22 88`;
+
+        case 'R':
+          if (variant === 'gestural') return `M 25 18 Q ${25 + bow} 60 25 108 M 25 18 C 68 18 72 58 25 60 M 42 58 Q 56 78 76 108`;
+          return `M 25 18 L 25 108 M 25 18 C 68 18 70 58 25 58 M 40 58 L 76 108`;
+
+        case 'T':
+          if (variant === 'gestural') return `M 18 18 Q 50 ${18 - bow} 82 18 M 50 18 Q ${50 + bow} 60 50 108`;
+          return `M 18 18 L 82 18 M 50 18 L 50 108`;
+
+        case 'V':
+          if (variant === 'gestural') return `M 22 18 Q 36 66 50 108 Q 64 66 78 18`;
+          return `M 20 18 L 50 108 L 80 18`;
+
+        case 'W':
+          if (variant === 'gestural') return `M 14 18 Q 24 66 34 108 Q 44 66 50 36 Q 56 66 66 108 Q 76 66 86 18`;
+          return `M 14 18 L 32 108 L 50 36 L 68 108 L 86 18`;
+
+        case 'X':
+          if (variant === 'gestural') return `M 22 18 Q 50 60 78 108 M 78 18 Q 50 60 22 108`;
+          return `M 22 18 L 78 108 M 78 18 L 22 108`;
+
+        case 'Y':
+          if (variant === 'gestural') return `M 22 18 Q 36 44 50 64 Q 64 44 78 18 M 50 64 Q ${50 + bow} 84 50 108`;
+          return `M 22 18 L 50 62 L 78 18 M 50 62 L 50 108`;
+
+        case 'Z':
+          if (variant === 'gestural') return `M 24 18 Q 50 ${18 - bow} 76 18 Q 50 62 24 108 Q 50 ${108 + bow} 78 108`;
+          return `M 24 18 L 76 18 L 24 108 L 78 108`;
+
+        // Lowercase
+        case 'g':
+          if (variant === 'gestural') return `M 70 58 C 70 38 30 38 30 58 C 30 84 70 84 70 58 M 70 46 L 70 94 C 70 120 32 122 24 104`;
+          if (variant === 'chisel')   return `M 68 56 C 68 38 32 38 32 56 C 32 82 68 82 68 56 M 68 44 L 68 96 C 68 122 36 122 26 106`;
+          if (variant === 'sloan')    return `M 70 56 C 70 36 30 36 30 56 C 30 82 70 82 70 56 M 70 42 L 70 96 C 70 120 34 120 26 104`;
+          return `M 68 54 C 68 36 28 36 28 54 C 28 82 68 82 68 54 M 68 40 L 68 94 C 68 124 28 126 22 102`;
+
+        case 's':
+          if (variant === 'gestural') return `M 68 54 C 64 42 34 42 34 54 C 34 72 68 70 68 88 C 68 108 30 108 26 94`;
+          return `M 68 52 C 62 42 34 42 34 54 C 34 70 68 70 68 88 C 68 108 30 106 26 92`;
+
+        case 'a': return `M 68 58 C 68 40 30 40 30 58 C 30 84 68 84 68 58 M 68 44 L 68 108`;
+        case 'b': return `M 28 18 L 28 108 M 28 58 C 68 40 70 104 28 92`;
+        case 'd': return `M 68 18 L 68 108 M 68 58 C 28 40 26 104 68 92`;
+        case 'h': return `M 28 18 L 28 108 M 28 62 Q 48 44 68 58 L 68 108`;
+        case 'm': return `M 18 44 L 18 108 M 18 62 Q 34 44 48 58 L 48 108 M 48 62 Q 64 44 78 58 L 78 108`;
+        case 'n': return `M 28 44 L 28 108 M 28 62 Q 48 44 68 58 L 68 108`;
+        case 'p': return `M 28 44 L 28 128 M 28 58 C 68 40 70 104 28 92`;
+        case 'q': return `M 68 44 L 68 128 M 68 58 C 28 40 26 104 68 92`;
+        case 'r': return `M 28 44 L 28 108 M 28 62 Q 48 44 66 50`;
+        case 'v': return `M 26 44 L 50 108 L 74 44`;
+        case 'w': return `M 18 44 L 34 108 L 50 58 L 66 108 L 82 44`;
+        case 'x': return `M 26 44 L 74 108 M 74 44 L 26 108`;
+        case 'y': return `M 26 44 Q 40 74 50 82 M 72 44 L 46 112 C 40 126 26 128 20 120`;
+        case 'z': return `M 26 44 L 72 44 L 26 108 L 74 108`;
+        case 'j': return `M 64 44 L 64 106 C 64 126 34 126 26 112 M 64 24 A 3 3 0 1 1 64 23.9`;
+        case 'i': return `M 50 44 L 50 108 M 50 24 A 3 3 0 1 1 50 23.9`;
+        case 'f': return `M 68 24 C 54 18 42 24 42 42 L 42 108 M 26 50 L 64 50`;
+
+        // Numerals
+        case '0': return `M 50 18 C 76 18 76 108 50 108 C 24 108 24 18 50 18 M 66 36 L 34 90`; // Slashed
+        case '1': return `M 34 40 L 52 18 L 52 108`;
+        case '2':
+          if (variant === 'gestural') return `M 28 44 C 28 18 74 18 74 44 C 74 68 28 84 26 108 L 78 108`;
+          return `M 28 42 C 30 18 72 18 72 42 L 26 108 L 78 108`;
+        case '3':
+          if (variant === 'gestural') return `M 28 20 L 72 20 L 46 54 C 74 54 76 108 26 104`;
+          return `M 28 20 L 72 20 L 48 54 C 72 56 72 108 28 104`;
+        case '4': return `M 66 18 L 66 108 M 66 80 L 18 80 L 56 18`;
+        case '5':
+          if (variant === 'gestural') return `M 72 20 L 32 20 L 32 54 C 74 50 78 108 26 104`;
+          return `M 72 20 L 34 20 L 34 54 C 70 52 74 108 28 104`;
+        case '6': return `M 68 28 C 30 38 26 84 26 84 C 26 108 72 108 72 84 C 72 60 26 62 26 84`;
+        case '7': return `M 24 20 L 76 20 L 44 108`;
+        case '8': return `M 50 18 C 70 18 70 58 50 58 C 30 58 30 18 50 18 M 50 58 C 74 58 74 108 50 108 C 26 108 26 58 50 58`;
+        case '9': return `M 32 98 C 70 88 74 42 74 42 C 74 18 28 18 28 42 C 28 66 74 64 74 42`;
+        case '&': return `M 70 94 C 54 110 30 108 30 84 C 30 64 58 54 58 38 C 58 20 40 20 40 36 C 40 60 76 106 76 106 M 34 68 L 74 94`;
+        case '!': return `M 50 18 L 50 82 M 50 102 A 3 3 0 1 1 50 101.9`;
+        case '?': return `M 30 42 C 30 18 70 18 70 42 C 70 66 50 72 50 86 M 50 102 A 3 3 0 1 1 50 101.9`;
+        case '.': return `M 50 104 A 3 3 0 1 1 50 103.9`;
+        case ',': return `M 50 102 A 3 3 0 1 1 50 101.9 M 50 104 Q 46 118 36 122`;
+
+        default:
+          return `M 25 18 L 25 108 M 25 18 L 75 18 M 25 108 L 75 108`;
+      }
+    }
+
+    // Authentic master letter path rendering
+    function getMasterPathSvg(ch, sw) {
+      // Scaled master SVG paths for the 9 original letters
+      const masterD = {
+        'P': `M 24 18 L 24 108 M 24 18 C 72 18 74 62 24 64`,
+        'o': `M 50 44 C 74 44 74 108 50 108 C 26 108 26 44 50 44`,
+        'c': `M 72 56 C 62 42 30 42 30 76 C 30 108 64 108 72 94`,
+        'k': `M 26 18 L 26 108 M 68 44 L 28 78 M 46 68 L 72 108`,
+        'e': `M 26 76 L 70 76 C 70 44 32 44 30 76 C 28 108 66 108 72 96`,
+        't': `M 46 22 L 46 96 C 46 108 60 108 68 106 M 26 50 L 68 50`,
+        'G': `M 74 36 C 64 18 26 18 26 62 C 26 108 68 108 74 84 L 50 84`,
+        'u': `M 28 44 L 28 92 C 28 108 68 108 68 92 L 68 44 M 68 84 L 68 108`,
+        'l': `M 46 18 L 46 96 C 46 108 58 108 66 104`
+      };
+      const d = masterD[ch] || `M 25 18 L 25 108`;
+      return `
+        <svg viewBox="0 0 100 130" xmlns="http://www.w3.org/2000/svg">
+          <path d="${d}" fill="none" stroke="#f59e0b" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      `;
+    }
+
+    // Build Glyph Cards Matrix
+    function populateMatrix(containerId, charList) {
+      const container = document.getElementById(containerId);
+      container.innerHTML = "";
+
+      charList.forEach(ch => {
+        const isMaster = MASTERS.has(ch);
+        const card = document.createElement("div");
+        card.className = `glyph-card ${isMaster ? 'is-master' : ''}`;
+        card.id = `card_${ch}`;
+
+        const currentVar = userSelections[ch];
+        const varObj = VARIETIES.find(v => v.id === currentVar) || { name: 'Cardstock Master (GearArts)' };
+
+        let pillsHtml = "";
+        if (isMaster) {
+          pillsHtml += `<span class="variant-pill master-pill active" data-char="${ch}" data-variant="master">★ Master</span>`;
+        }
+        VARIETIES.forEach(v => {
+          const isActive = userSelections[ch] === v.id;
+          pillsHtml += `<span class="variant-pill ${isActive ? 'active' : ''}" data-char="${ch}" data-variant="${v.id}">${v.id[0].toUpperCase()}</span>`;
+        });
+
+        card.innerHTML = `
+          <div class="glyph-header">
+            <span class="glyph-char-label">${ch}</span>
+            <div class="variant-pills">${pillsHtml}</div>
+          </div>
+          <div class="glyph-display-stage" data-char="${ch}">
+            <div class="guideline-cap"></div>
+            <div class="guideline-xheight"></div>
+            <div class="guideline-baseline"></div>
+            <div id="svg_stage_${ch}">
+              ${renderGlyphSvg(ch, currentVar)}
+            </div>
+          </div>
+          <div class="glyph-meta">
+            <span class="glyph-variant-name" id="var_name_${ch}">${isMaster && currentVar === 'master' ? 'Cardstock Master' : varObj.name}</span>
+            <span>${ch.charCodeAt(0).toString(16).toUpperCase().padStart(4, '0')}</span>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    // Update single character preview
+    function updateGlyphCard(ch) {
+      const stage = document.getElementById(`svg_stage_${ch}`);
+      const varLabel = document.getElementById(`var_name_${ch}`);
+      const card = document.getElementById(`card_${ch}`);
+      if (!stage) return;
+
+      const currentVar = userSelections[ch];
+      stage.innerHTML = renderGlyphSvg(ch, currentVar);
+
+      const varObj = VARIETIES.find(v => v.id === currentVar) || { name: 'Cardstock Master' };
+      varLabel.innerText = currentVar === 'master' ? 'Cardstock Master' : varObj.name;
+
+      // Update pills
+      card.querySelectorAll('.variant-pill').forEach(pill => {
+        pill.classList.toggle('active', pill.getAttribute('data-variant') === currentVar);
+      });
+    }
+
+    // Refresh entire live preview box
+    function updateLivePreview() {
+      const input = document.getElementById("testerInput").value;
+      const box = document.getElementById("livePreview");
+      box.innerHTML = "";
+
+      for (let i = 0; i < input.length; i++) {
+        const ch = input[i];
+        if (ch === ' ') {
+          const space = document.createElement("div");
+          space.style.width = "18px";
+          box.appendChild(space);
+          continue;
+        }
+
+        const currentVar = userSelections[ch] || 'gestural';
+        const item = document.createElement("div");
+        item.style.width = "28px";
+        item.style.height = "42px";
+        item.style.display = "inline-flex";
+        item.style.alignItems = "center";
+        item.style.justifyContent = "center";
+        item.innerHTML = renderGlyphSvg(ch, currentVar);
+        box.appendChild(item);
+      }
+
+      // Update recipe JSON
+      document.getElementById("recipeJson").innerText = JSON.stringify({
+        superfamily: "PocketGull Marker Raw",
+        params: params,
+        curated_variants: userSelections
+      }, null, 2);
+    }
+
+    // Event Listeners for Variant Pills & Stage Click
+    document.addEventListener("click", e => {
+      // Click on pill
+      if (e.target.classList.contains("variant-pill")) {
+        const ch = e.target.getAttribute("data-char");
+        const variant = e.target.getAttribute("data-variant");
+        userSelections[ch] = variant;
+        updateGlyphCard(ch);
+        updateLivePreview();
+      }
+
+      // Click on stage cycles variant
+      const stage = e.target.closest(".glyph-display-stage");
+      if (stage) {
+        const ch = stage.getAttribute("data-char");
+        const isMaster = MASTERS.has(ch);
+        const options = isMaster ? ['master', ...VARIETIES.map(v => v.id)] : VARIETIES.map(v => v.id);
+        const currentIdx = options.indexOf(userSelections[ch]);
+        const nextIdx = (currentIdx + 1) % options.length;
+        userSelections[ch] = options[nextIdx];
+        updateGlyphCard(ch);
+        updateLivePreview();
+      }
+    });
+
+    // Slider Controls
+    document.getElementById("sliderWeight").addEventListener("input", e => {
+      params.weight = parseInt(e.target.value);
+      document.getElementById("valWeight").innerText = `${params.weight} UPM`;
+      refreshAll();
+    });
+
+    document.getElementById("sliderArc").addEventListener("input", e => {
+      params.arc = parseInt(e.target.value);
+      document.getElementById("valArc").innerText = `${params.arc}%`;
+      refreshAll();
+    });
+
+    document.getElementById("sliderAngle").addEventListener("input", e => {
+      params.angle = parseFloat(e.target.value);
+      document.getElementById("valAngle").innerText = `${params.angle}°`;
+      refreshAll();
+    });
+
+    document.getElementById("sliderBleed").addEventListener("input", e => {
+      params.bleed = parseInt(e.target.value);
+      document.getElementById("valBleed").innerText = `${params.bleed} px`;
+      refreshAll();
+    });
+
+    // Preset buttons
+    document.querySelectorAll("[data-preset]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("[data-preset]").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        const preset = btn.getAttribute("data-preset");
+
+        [...UPPER, ...LOWER, ...NUMS].forEach(ch => {
+          if (MASTERS.has(ch)) {
+            userSelections[ch] = 'master';
+          } else {
+            userSelections[ch] = preset;
+          }
+        });
+        refreshAll();
+      });
+    });
+
+    // Reset button
+    document.getElementById("btnResetAll").addEventListener("click", () => {
+      [...UPPER, ...LOWER, ...NUMS].forEach(ch => {
+        userSelections[ch] = MASTERS.has(ch) ? 'master' : 'gestural';
+      });
+      params.weight = 115;
+      params.arc = 45;
+      params.angle = -4.5;
+      params.bleed = 18;
+      document.getElementById("sliderWeight").value = 115;
+      document.getElementById("sliderArc").value = 45;
+      document.getElementById("sliderAngle").value = -4.5;
+      document.getElementById("sliderBleed").value = 18;
+      document.getElementById("valWeight").innerText = "115 UPM";
+      document.getElementById("valArc").innerText = "45%";
+      document.getElementById("valAngle").innerText = "-4.5°";
+      document.getElementById("valBleed").innerText = "18 px";
+      refreshAll();
+    });
+
+    // Tester input
+    document.getElementById("testerInput").addEventListener("input", updateLivePreview);
+
+    // Apply to compiler button
+    document.getElementById("btnApplyToCompiler").addEventListener("click", () => {
+      const payload = {
+        params: params,
+        curated_variants: userSelections
+      };
+      navigator.clipboard.writeText(JSON.stringify(payload, null, 2));
+      alert("✅ Curated DNA Recipe copied to clipboard! You can paste this to compile the exact font recipe into PocketGull-MarkerRaw.ttf.");
+    });
+
+    function refreshAll() {
+      [...UPPER, ...LOWER, ...NUMS].forEach(ch => updateGlyphCard(ch));
+      updateLivePreview();
+    }
+
+    // Initialize Page
+    populateMatrix("gridUppercase", UPPER);
+    populateMatrix("gridLowercase", LOWER);
+    populateMatrix("gridNumerals", NUMS);
+    updateLivePreview();
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-09-06T07:41:31Z",
+  "script": "Tier 5: CJK Clinical Core (Hanzi, Kana, Hangul)",
+  "codepoints_synthesized": 1243,
+  "fonts_updated": [
+    {
+      "filename": "PocketGull-Fineliner.ttf",
+      "weight": 400,
+      "is_mono": false,
+      "glyphs_added": 1243,
+      "time_ms": 10220.95
+    },
+    {
+      "filename": "PocketGull-Bold.ttf",
+      "weight": 700,
+      "is_mono": false,
+      "glyphs_added": 1243,
+      "time_ms": 9731.49
+    },
+    {
+      "filename": "PocketGull-Chiseltip.ttf",
+      "weight": 900,
+      "is_mono": false,
+      "glyphs_added": 1243,
+      "time_ms": 9386.7
+    },
+    {
+      "filename": "PocketGullMono-Regular.ttf",
+      "weight": 400,
+      "is_mono": true,
+      "glyphs_added": 1243,
+      "time_ms": 9839.21
+    }
+  ],
+  "total_glyphs_compiled": 4972,
+  "runtime_ms": 39379.39,
+  "manual_hours_benchmark": 3729.0,
+  "acceleration_factor": 340899
+}

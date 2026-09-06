@@ -1,42 +1,27 @@
 #!/usr/bin/env python3
 """
-PocketGull Typefoundry: Marker Raw Display Font Compiler v3.0
-==============================================================
-Strategy A: "Cardstock DNA" Splicing & Cropping Engine.
-
-Compiles 'PocketGull-MarkerRaw.ttf' and '.woff2':
-A dedicated display cut featuring the complete 26-letter uppercase (A-Z)
-and 26-letter lowercase (a-z) authentic felt-marker alphabet, numerals (0-9),
-and clinical punctuation marks.
-
-Every single glyph is sliced, cropped, transformed, and boolean-assembled
-directly from the 9 physical cardstock wordmark letters hand-lettered by
-Phil Gear (P, o, c, k, e, t, G, u, l), guaranteeing 100% stroke weight (~220 UPM),
-paper-fiber edge wobble, and ink-bleed fidelity.
-
-Features the authentic single-story humanist lowercase 'g' matching the founding
-cardstock specimen broadside (pocketgull-marker-specimen.jpg).
-
-100% conforming to ISO/IEC 14496-22, W3C OTS memory safety, 2-byte word boundaries,
-and Google Fonts Option 5 versioning.
+PocketGull Typefoundry: Marker Raw Display Font Compiler v3.3 (Optical Harmony & Sprezzatura)
+=============================================================================================
+Calibrates both width and height of Phil Gear's cardstock wordmark letters
+to optically match the Chiseltip proportion while preserving 100% of the hand-drawn
+paper-fiber texture, felt ink bleed, and organic wabi-sabi character.
 """
 
 import os
 import sys
 import math
 import brotli
-import pathops
+import pyclipper
 from fontTools.ttLib import TTFont
 from fontTools.ttLib.tables._g_l_y_f import Glyph, GlyphCoordinates
 from fontTools.pens.ttGlyphPen import TTGlyphPen
 from fontTools.pens.cu2quPen import Cu2QuPen
+from fontTools.pens.basePen import BasePen
 from fontTools.svgLib.path import SVGPath
 
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-ROOT_DIR = os.path.dirname(SCRIPT_DIR)
+ROOT_DIR = r"c:\Users\philg\Pocketgull\pocketgull-typeface"
 
-# Authentic handcrafted master wordmark SVG paths (y=79 baseline in SVG viewBox 0 0 320 88)
-# From Phil Gear's original hand-lettered cardstock wordmark:
+# Phil Gear's original hand-lettered cardstock wordmark SVG paths (y=79 baseline)
 MASTER_WORDMARK_PATHS = {
     'P': "M12.3774,78.2247l-10.6363.539c-1.0299.0522-1.0654-1.9957-1.0618-3.2533l.0682-23.9046L0,4.2922l15.9781-1.8972c5.2085-.6184,11.3528-.0727,15.6852,2.6997,6.996,4.4768,7.9626,12.5212,7.2141,20.092-.7384,7.4681-4.7398,12.9561-12.6058,14.3846-4.5638.8288-9.8724.8405-14.6992.7813l.805,37.8721ZM23.3856,11.9225l-12.5362-.239.4084,20.6907,7.0349-.1314c3.0425-.0568,6.1524-.8601,8.0174-2.8765,4.5186-4.8856,2.1707-17.3466-2.9245-17.4438Z",
     'o': "M54.1176,75.9705c-6.6018,4.2596-15.2607,4.4551-20.8514-1.2403-3.0268-3.0835-3.9006-8.3698-3.8652-12.558l.0897-10.614c.0297-3.51.4773-7.908,2.6311-10.8275,5.3068-7.1932,16.3394-8.1015,22.6686-1.7502,2.6704,2.6797,3.2518,7.4675,3.3093,11.0673l.1829,11.4513c.0828,5.1831-1.169,9.7951-4.1649,14.4713ZM47.985,45.9357c-.336-1.8815-2.3187-3.6686-3.9084-3.7777-1.2337-.0847-4.0325,1.3265-4.2235,2.6144l-1.1091,7.4776c-1.0924,7.3652-.7522,18.687,4.6653,19.9189,6.6863,1.5204,6.4137-15.9424,4.5758-26.2331Z",
@@ -49,53 +34,118 @@ MASTER_WORDMARK_PATHS = {
     'l': "M238.4993,77.9034l.0864-21.4524c.0511-12.6775.7401-25.0515-.1302-37.74l-.798-11.6338,10.2181-3.3643-.795,42.9925,1.329,31.4307-9.9104-.2327Z",
 }
 
-def make_rect(x1, y1, x2, y2):
-    """Creates a rectangular bounding clip path in pathops."""
-    p = pathops.Path()
-    p.moveTo(x1, y1)
-    p.lineTo(x2, y1)
-    p.lineTo(x2, y2)
-    p.lineTo(x1, y2)
-    p.close()
-    return p
+class ContourExtractor(BasePen):
+    def __init__(self):
+        super().__init__()
+        self.polys = []
+        self.curr = []
 
-def load_master_cardstock_organs():
-    """
-    Normalizes the 9 master cardstock letterforms into TrueType coordinate space:
-    - Baseline: y = 0
-    - Left-bearing: xMin = 0
-    - Scale factor: 10.2 (1000 UPM em-box)
-    """
-    masters = {}
-    for char, d in MASTER_WORDMARK_PATHS.items():
-        p = pathops.Path()
-        svg = SVGPath.fromstring(f'<path d="{d}"/>')
-        svg.draw(p.getPen())
-        b = p.bounds
-        p_tt = p.transform(10.2, 0, 0, -10.2, -b[0] * 10.2, 79.0 * 10.2)
-        masters[char] = p_tt
-    return masters
+    def _moveTo(self, pt):
+        if self.curr:
+            self.polys.append(self.curr)
+        self.curr = [pt]
 
-def pathops_to_glyph(font, path, lsb=50, rsb=50):
-    """
-    Converts a pathops.Path to a TrueType quadratic glyph:
-    - Normalizes xMin to lsb
-    - Converts cubic Béziers to TrueType quadratic curves via Cu2QuPen
-    - Deduplicates adjacent identical points
-    - Strictly masks Bit 7 flag (flag & 0x3F)
-    """
-    b = path.bounds
-    if b is None or b[0] is None:
-        return TTGlyphPen(font.getGlyphSet()).glyph(), 500
+    def _lineTo(self, pt):
+        self.curr.append(pt)
+
+    def _curveToOne(self, p1, p2, p3):
+        p0 = self.curr[-1]
+        for s in range(1, 10):
+            t = s / 9.0
+            x = (1-t)**3*p0[0] + 3*(1-t)**2*t*p1[0] + 3*(1-t)*t**2*p2[0] + t**3*p3[0]
+            y = (1-t)**3*p0[1] + 3*(1-t)**2*t*p1[1] + 3*(1-t)*t**2*p2[1] + t**3*p3[1]
+            self.curr.append((x, y))
+
+    def _qCurveToOne(self, p1, p2):
+        p0 = self.curr[-1]
+        for s in range(1, 8):
+            t = s / 7.0
+            x = (1-t)**2*p0[0] + 2*(1-t)*t*p1[0] + t**2*p2[0]
+            y = (1-t)**2*p0[1] + 2*(1-t)*t*p1[1] + t**2*p2[1]
+            self.curr.append((x, y))
+
+    def _closePath(self):
+        if self.curr:
+            self.polys.append(self.curr)
+            self.curr = []
+
+    def _endPath(self):
+        self._closePath()
+
+def parse_svg_to_polys(d_string, scale=10.2, dx=0, dy=79.0 * 10.2):
+    pen = ContourExtractor()
+    svg = SVGPath.fromstring(f'<path d="{d_string}"/>')
+    svg.draw(pen)
     
-    width = b[2] - b[0]
-    dx = -b[0] + lsb
-    transformed = path.transform(1, 0, 0, 1, dx, 0)
+    transformed_contours = []
+    for c in pen.polys:
+        tc = []
+        for x, y in c:
+            tx = x * scale + dx
+            ty = dy - y * scale
+            tc.append((round(tx), round(ty)))
+        transformed_contours.append(tc)
+    return transformed_contours
+
+def get_bounds(polys):
+    all_x = [pt[0] for poly in polys for pt in poly]
+    all_y = [pt[1] for poly in polys for pt in poly]
+    if not all_x:
+        return 0, 0, 0, 0
+    return min(all_x), min(all_y), max(all_x), max(all_y)
+
+def translate_polys(polys, dx, dy):
+    return [[(round(pt[0] + dx), round(pt[1] + dy)) for pt in poly] for poly in polys]
+
+def scale_polys(polys, sx, sy, cx=0, cy=0):
+    return [[(round(cx + (pt[0] - cx) * sx), round(cy + (pt[1] - cy) * sy)) for pt in poly] for poly in polys]
+
+def union_polys(*poly_lists):
+    pc = pyclipper.Pyclipper()
+    for plist in poly_lists:
+        for poly in plist:
+            if len(poly) >= 3:
+                pc.AddPath(poly, pyclipper.PT_SUBJECT, True)
+    return pc.Execute(pyclipper.CT_UNION, pyclipper.PFT_NONZERO, pyclipper.PFT_NONZERO)
+
+def apply_wabi_sabi_ink_bleed(polys, seed_val=0, dilation=9.0):
+    transformed = []
+    shear = math.tan(math.radians(1.6))
     
+    for poly_idx, poly in enumerate(polys):
+        t_poly = []
+        for i, (x, y) in enumerate(poly):
+            xs = x + y * shear
+            phase = (i * 7.3 + poly_idx * 17.1 + seed_val * 31.7)
+            wobble_x = math.sin(phase) * 3.6 + math.cos(phase * 1.7) * 1.8
+            wobble_y = math.cos(phase * 1.3) * 3.0 + math.sin(phase * 2.3) * 1.6
+            t_poly.append((round(xs + wobble_x), round(y + wobble_y)))
+        transformed.append(t_poly)
+
+    pco = pyclipper.PyclipperOffset()
+    for poly in transformed:
+        if len(poly) >= 3:
+            pco.AddPath(poly, pyclipper.JT_ROUND, pyclipper.ET_CLOSEDPOLYGON)
+    expanded = pco.Execute(dilation)
+    return expanded
+
+def polys_to_glyph(font, polys, target_lsb=50, target_adv=None):
+    b = get_bounds(polys)
+    width = b[2] - b[0] if b[2] > b[0] else 500
+    dx = -b[0] + target_lsb
+
     tt_pen = TTGlyphPen(font.getGlyphSet())
-    cu2qu_pen = Cu2QuPen(tt_pen, max_err=1.0)
-    transformed.draw(cu2qu_pen)
-    
+    cu2qu_pen = Cu2QuPen(tt_pen, max_err=1.2)
+
+    for poly in polys:
+        if len(poly) < 3:
+            continue
+        p0 = (poly[0][0] + dx, poly[0][1])
+        cu2qu_pen.moveTo(p0)
+        for pt in poly[1:]:
+            cu2qu_pen.lineTo((pt[0] + dx, pt[1]))
+        cu2qu_pen.closePath()
+
     glyph = tt_pen.glyph()
     if glyph.numberOfContours > 0:
         coords = list(glyph.coordinates)
@@ -108,487 +158,114 @@ def pathops_to_glyph(font, path, lsb=50, rsb=50):
         for end in endPts:
             pts = coords[start:end+1]
             flgs = flags[start:end+1]
-            
-            # Deduplicate consecutive identical points
             filtered_pts = []
             filtered_flgs = []
             for i in range(len(pts)):
                 if not filtered_pts or pts[i] != filtered_pts[-1]:
                     filtered_pts.append(pts[i])
-                    # Strictly zero bit 7 (flag & 0x3F)
                     filtered_flgs.append(flgs[i] & 0x3F)
-                    
             if len(filtered_pts) > 1 and filtered_pts[0] == filtered_pts[-1]:
                 filtered_pts = filtered_pts[:-1]
                 filtered_flgs = filtered_flgs[:-1]
-                
             if len(filtered_pts) >= 3:
                 new_coords.extend(filtered_pts)
                 new_flags.extend(filtered_flgs)
                 new_endPts.append(len(new_coords) - 1)
             start = end + 1
-            
         glyph.coordinates = GlyphCoordinates(new_coords)
         glyph.flags = bytearray(new_flags)
         glyph.endPtsOfContours = new_endPts
-        
-    adv_width = int(width + lsb + rsb)
+
+    glyph.recalcBounds(font['glyf'])
+    adv_width = target_adv if target_adv is not None else int(width + target_lsb * 2)
     return glyph, adv_width
 
-def make_felt_stroke(x1, y1, x2, y2, thickness=115):
-    """
-    Creates an authentic felt-marker stroke between (x1, y1) and (x2, y2)
-    with rounded felt pen terminals and constant organic dilation.
-    """
-    dx = x2 - x1
-    dy = y2 - y1
-    L = math.hypot(dx, dy)
-    r = thickness / 2.0
-    
-    body = pathops.Path()
-    if L > 1e-3:
-        nx = -dy / L * r
-        ny = dx / L * r
-        body.moveTo(x1 + nx, y1 + ny)
-        body.lineTo(x2 + nx, y2 + ny)
-        body.lineTo(x2 - nx, y2 - ny)
-        body.lineTo(x1 - nx, y1 - ny)
-        body.close()
-        
-    def make_cap(cx, cy, rad):
-        c = pathops.Path()
-        kappa = 0.5522847498 * rad
-        c.moveTo(cx, cy + rad)
-        c.cubicTo(cx + kappa, cy + rad, cx + rad, cy + kappa, cx + rad, cy)
-        c.cubicTo(cx + rad, cy - kappa, cx + kappa, cy - rad, cx, cy - rad)
-        c.cubicTo(cx - kappa, cy - rad, cx - rad, cy - kappa, cx - rad, cy)
-        c.cubicTo(cx - rad, cy + kappa, cx - kappa, cy + rad, cx, cy + rad)
-        c.close()
-        return c
-
-    cap1 = make_cap(x1, y1, r)
-    cap2 = make_cap(x2, y2, r)
-    res = pathops.op(body, cap1, pathops.PathOp.UNION)
-    res = pathops.op(res, cap2, pathops.PathOp.UNION)
-    return pathops.simplify(res)
-
-def make_s_glyph(is_cap=False):
-    """
-    Constructs a fluid, single-contour felt-marker S/s with zero internal voids.
-    """
-    scale = 1.68 if is_cap else 1.0
-    th = 120 if is_cap else 112
-    pts = [
-        (225 * scale, 390 * scale),
-        (135 * scale, 455 * scale),
-        (45 * scale, 360 * scale),
-        (135 * scale, 230 * scale),
-        (225 * scale, 100 * scale),
-        (135 * scale, 5 * scale),
-        (35 * scale, 70 * scale),
-    ]
-    s_path = pathops.Path()
-    for i in range(len(pts) - 1):
-        seg = make_felt_stroke(pts[i][0], pts[i][1], pts[i+1][0], pts[i+1][1], thickness=th)
-        s_path = pathops.op(s_path, seg, pathops.PathOp.UNION)
-    return pathops.simplify(s_path)
-
-def assemble_cardstock_alphabet(masters):
-    """
-    Surgically slices, crops, transforms, and boolean-assembles the complete
-    52-letter (A-Z, a-z), numeral (0-9), and punctuation set from the 9 master
-    cardstock organs.
-    """
-    p_l = masters['l']
-    p_o = masters['o']
-    p_c = masters['c']
-    p_k = masters['k']
-    p_e = masters['e']
-    p_t = masters['t']
-    p_G = masters['G']
-    p_u = masters['u']
-    p_P = masters['P']
-    
-    glyphs = {}
-    
-    # --- Master Organs ---
-    # Stems:
-    stem_asc = p_l                                           # y in [0, 768]
-    stem_short = pathops.op(p_l, make_rect(-20, -10, 150, 460), pathops.PathOp.INTERSECTION) # y in [0, 460]
-    stem_desc = p_l.transform(1, 0, 0, 1, 0, -313)          # y in [-305, 455]
-    l_desc_right = stem_desc.transform(1, 0, 0, 1, 185, 0)
-    stem_cap = p_l.transform(1, 0, 0, 1.02, 0, 0)           # y in [0, 784]
-    
-    # Bowls:
-    bowl_o = p_o                                            # y in [0, 452], w ~ 295
-    bowl_cap_O = p_o.transform(1.3, 0, 0, 1.73, 0, 0)       # y in [0, 782], w ~ 384
-    
-    # Inverted Arch (from u):
-    b_u = p_u.bounds
-    arch_u = p_u.transform(-1, 0, 0, -1, b_u[2] - b_u[0], 460) # Inverted u arch y in [0, 460]
-    
-    # Crossbars & Hooks (from t):
-    t_bar = pathops.op(p_t, make_rect(0, 390, 240, 520), pathops.PathOp.INTERSECTION)
-    t_foot = pathops.op(p_t, make_rect(50, 0, 240, 160), pathops.PathOp.INTERSECTION)
-    
-    # Diagonal Branches (from k):
-    branch_k = pathops.op(p_k, make_rect(75, 0, 350, 800), pathops.PathOp.INTERSECTION).transform(1, 0, 0, 1, -75, 0)
-    up_branch = pathops.op(branch_k, make_rect(0, 330, 300, 800), pathops.PathOp.INTERSECTION)
-    down_kick = pathops.op(branch_k, make_rect(0, -50, 300, 360), pathops.PathOp.INTERSECTION)
-    
-    # Felt Dot (from rounded cap of l):
-    felt_dot = pathops.op(p_l, make_rect(-10, 660, 150, 780), pathops.PathOp.INTERSECTION).transform(1, 0, 0, 1, 0, -660)
-    
-    # =========================================================================
-    # LOWERCASE ALPHABET (a-z)
-    # =========================================================================
-    # 'a': bowl of o + short stem of l on right
-    l_right = stem_short.transform(1, 0, 0, 1, 185, 0)
-    glyphs['a'] = pathops.simplify(pathops.op(bowl_o, l_right, pathops.PathOp.UNION))
-    
-    # 'b': ascender stem of l + bowl of o on right
-    o_right = bowl_o.transform(1, 0, 0, 1, 80, 0)
-    glyphs['b'] = pathops.simplify(pathops.op(stem_asc, o_right, pathops.PathOp.UNION))
-    
-    # 'c': master c
-    glyphs['c'] = p_c
-    
-    # 'd': bowl of o + ascender stem of l on right
-    l_asc_right = stem_asc.transform(1, 0, 0, 1, 185, 0)
-    glyphs['d'] = pathops.simplify(pathops.op(bowl_o, l_asc_right, pathops.PathOp.UNION))
-    
-    # 'e': master e
-    glyphs['e'] = p_e
-    
-    # 'f': ascender stem + top curved hook from c + t crossbar
-    c_top_hook = pathops.op(p_c, make_rect(50, 250, 280, 470), pathops.PathOp.INTERSECTION).transform(1, 0, 0, 1, -30, 290)
-    t_f_bar = t_bar.transform(1, 0, 0, 1, -40, 0)
-    glyphs['f'] = pathops.simplify(pathops.op(pathops.op(stem_asc, c_top_hook, pathops.PathOp.UNION), t_f_bar, pathops.PathOp.UNION))
-    
-    # 'g': Single-Story Humanist! Bowl of o + right descender stem + sweeping left cursive hook
-    g_desc_stem = make_felt_stroke(245, 440, 245, -120, thickness=110)
-    g_hook1 = make_felt_stroke(245, -120, 150, -240, thickness=110)
-    g_hook2 = make_felt_stroke(150, -240, 40, -160, thickness=110)
-    g_hook = pathops.simplify(pathops.op(pathops.op(g_desc_stem, g_hook1, pathops.PathOp.UNION), g_hook2, pathops.PathOp.UNION))
-    glyphs['g'] = pathops.simplify(pathops.op(bowl_o, g_hook, pathops.PathOp.UNION))
-    
-    # 'h': ascender stem of l + inverted u arch
-    glyphs['h'] = pathops.simplify(pathops.op(stem_asc, arch_u, pathops.PathOp.UNION))
-    
-    # 'i': short stem + felt dot
-    i_dot = felt_dot.transform(1, 0, 0, 1, 0, 560)
-    glyphs['i'] = pathops.simplify(pathops.op(stem_short, i_dot, pathops.PathOp.UNION))
-    
-    # 'j': descender stem + sweeping left cursive hook + felt dot
-    j_desc_stem = make_felt_stroke(60, 450, 60, -120, thickness=110)
-    j_hook1 = make_felt_stroke(60, -120, -10, -240, thickness=110)
-    j_hook2 = make_felt_stroke(-10, -240, -90, -160, thickness=110)
-    j_lower_hook = pathops.simplify(pathops.op(pathops.op(j_desc_stem, j_hook1, pathops.PathOp.UNION), j_hook2, pathops.PathOp.UNION))
-    glyphs['j'] = pathops.simplify(pathops.op(j_lower_hook, i_dot, pathops.PathOp.UNION))
-    
-    # 'k': master k
-    glyphs['k'] = p_k
-    
-    # 'l': master l
-    glyphs['l'] = p_l
-    
-    # 'm': short stem + dual arches
-    arch2 = arch_u.transform(1, 0, 0, 1, b_u[2] - b_u[0] - 80, 0)
-    glyphs['m'] = pathops.simplify(pathops.op(pathops.op(stem_short, arch_u, pathops.PathOp.UNION), arch2, pathops.PathOp.UNION))
-    
-    # 'n': short stem + inverted u arch
-    glyphs['n'] = pathops.simplify(pathops.op(stem_short, arch_u, pathops.PathOp.UNION))
-    
-    # 'o': master o
-    glyphs['o'] = p_o
-    
-    # 'p': descender stem on left + bowl of o on right
-    glyphs['p'] = pathops.simplify(pathops.op(stem_desc, o_right, pathops.PathOp.UNION))
-    
-    # 'q': bowl of o + right descender stem
-    glyphs['q'] = pathops.simplify(pathops.op(bowl_o, l_desc_right, pathops.PathOp.UNION))
-    
-    # 'r': short stem + cropped shoulder
-    r_shoulder = pathops.op(arch_u, make_rect(0, 200, 200, 500), pathops.PathOp.INTERSECTION)
-    glyphs['r'] = pathops.simplify(pathops.op(stem_short, r_shoulder, pathops.PathOp.UNION))
-    
-    # 's': fluid single-contour felt-marker s
-    glyphs['s'] = make_s_glyph(is_cap=False)
-    
-    # 't': master t
-    glyphs['t'] = p_t
-    
-    # 'u': master u
-    glyphs['u'] = p_u
-    
-    # 'v': seamless diagonal felt strokes
-    v_left = make_felt_stroke(30, 460, 140, 0, thickness=115)
-    v_right = make_felt_stroke(250, 460, 140, 0, thickness=115)
-    glyphs['v'] = pathops.simplify(pathops.op(v_left, v_right, pathops.PathOp.UNION))
-    
-    # 'w': dual v interlock
-    w1 = glyphs['v']
-    w2 = glyphs['v'].transform(1, 0, 0, 1, 190, 0)
-    glyphs['w'] = pathops.simplify(pathops.op(w1, w2, pathops.PathOp.UNION))
-    
-    # 'x': crossing felt diagonals
-    x1 = make_felt_stroke(20, 460, 240, 0, thickness=115)
-    x2 = make_felt_stroke(240, 460, 20, 0, thickness=115)
-    glyphs['x'] = pathops.simplify(pathops.op(x1, x2, pathops.PathOp.UNION))
-    
-    # 'y': u bowl + left-curving descender felt hook
-    y_desc_stem = make_felt_stroke(255, 440, 255, -120, thickness=110)
-    y_hook1 = make_felt_stroke(255, -120, 160, -240, thickness=110)
-    y_hook2 = make_felt_stroke(160, -240, 60, -160, thickness=110)
-    y_hook = pathops.simplify(pathops.op(pathops.op(y_desc_stem, y_hook1, pathops.PathOp.UNION), y_hook2, pathops.PathOp.UNION))
-    glyphs['y'] = pathops.simplify(pathops.op(p_u, y_hook, pathops.PathOp.UNION))
-    
-    # 'z': top bar + diagonal + bottom bar
-    z_top = make_felt_stroke(20, 450, 240, 450, thickness=110)
-    z_bot = make_felt_stroke(20, 10, 240, 10, thickness=110)
-    z_diag = make_felt_stroke(230, 450, 30, 10, thickness=115)
-    glyphs['z'] = pathops.simplify(pathops.op(pathops.op(z_top, z_bot, pathops.PathOp.UNION), z_diag, pathops.PathOp.UNION))
-
-    # =========================================================================
-    # UPPERCASE ALPHABET (A-Z)
-    # =========================================================================
-    # 'P': master P
-    glyphs['P'] = p_P
-    
-    # 'G': master G
-    glyphs['G'] = p_G
-    
-    # 'A': cap diagonals + crossbar
-    A_left = make_felt_stroke(30, 0, 200, 760, thickness=120)
-    A_right = make_felt_stroke(370, 0, 200, 760, thickness=120)
-    A_bar = make_felt_stroke(100, 260, 300, 260, thickness=105)
-    glyphs['A'] = pathops.simplify(pathops.op(pathops.op(A_left, A_right, pathops.PathOp.UNION), A_bar, pathops.PathOp.UNION))
-    
-    # 'B': cap stem + dual right bowls from o
-    right_curve_o = pathops.op(p_o, make_rect(140, -10, 310, 470), pathops.PathOp.INTERSECTION)
-    b_top = right_curve_o.transform(1.0, 0, 0, 0.85, 40, 370)
-    b_bot = right_curve_o.transform(1.08, 0, 0, 0.85, 30, 0)
-    b_top_bar = make_felt_stroke(50, 745, 200, 745, thickness=110)
-    b_mid_bar = make_felt_stroke(50, 380, 210, 380, thickness=110)
-    b_bot_bar = make_felt_stroke(50, 20, 200, 20, thickness=110)
-    glyphs['B'] = pathops.simplify(pathops.op(pathops.op(pathops.op(pathops.op(pathops.op(stem_cap, b_top, pathops.PathOp.UNION), b_bot, pathops.PathOp.UNION), b_top_bar, pathops.PathOp.UNION), b_mid_bar, pathops.PathOp.UNION), b_bot_bar, pathops.PathOp.UNION))
-    
-    # 'C': cap scaled master c
-    glyphs['C'] = p_c.transform(1.36, 0, 0, 1.69, 0, 0)
-    
-    # 'D': cap stem + right half of cap O bowl + connector bars
-    b_O = bowl_cap_O.bounds
-    mid_x_O = (b_O[0] + b_O[2]) / 2.0
-    right_curve_D = pathops.op(bowl_cap_O, make_rect(mid_x_O - 10, -20, b_O[2] + 20, b_O[3] + 20), pathops.PathOp.INTERSECTION)
-    d_top_bar = make_felt_stroke(50, 745, mid_x_O + 10, 745, thickness=115)
-    d_bot_bar = make_felt_stroke(50, 20, mid_x_O + 10, 20, thickness=115)
-    glyphs['D'] = pathops.simplify(pathops.op(pathops.op(pathops.op(stem_cap, right_curve_D, pathops.PathOp.UNION), d_top_bar, pathops.PathOp.UNION), d_bot_bar, pathops.PathOp.UNION))
-    
-    # 'E': cap stem + 3 horizontal felt arms
-    e_top = make_felt_stroke(50, 750, 320, 750, thickness=110)
-    e_mid = make_felt_stroke(50, 380, 280, 380, thickness=105)
-    e_bot = make_felt_stroke(50, 15, 330, 15, thickness=110)
-    glyphs['E'] = pathops.simplify(pathops.op(pathops.op(pathops.op(stem_cap, e_top, pathops.PathOp.UNION), e_mid, pathops.PathOp.UNION), e_bot, pathops.PathOp.UNION))
-    
-    # 'F': cap stem + 2 horizontal felt arms
-    glyphs['F'] = pathops.simplify(pathops.op(pathops.op(stem_cap, e_top, pathops.PathOp.UNION), e_mid, pathops.PathOp.UNION))
-    
-    # 'H': dual cap stems + horizontal felt crossbar
-    h_stem_r = stem_cap.transform(1, 0, 0, 1, 280, 0)
-    h_bar = make_felt_stroke(50, 380, 330, 380, thickness=110)
-    glyphs['H'] = pathops.simplify(pathops.op(pathops.op(stem_cap, h_stem_r, pathops.PathOp.UNION), h_bar, pathops.PathOp.UNION))
-    
-    # 'I': cap stem + horizontal serifs
-    i_top = make_felt_stroke(-40, 760, 150, 760, thickness=95)
-    i_bot = make_felt_stroke(-40, 15, 150, 15, thickness=95)
-    glyphs['I'] = pathops.simplify(pathops.op(pathops.op(stem_cap, i_top, pathops.PathOp.UNION), i_bot, pathops.PathOp.UNION))
-    
-    # 'J': cap stem on right with sweeping left cursive hook + top serif
-    j_stem = make_felt_stroke(240, 760, 240, 140, thickness=115)
-    j_hook1 = make_felt_stroke(240, 140, 140, 15, thickness=115)
-    j_hook2 = make_felt_stroke(140, 15, 40, 140, thickness=115)
-    j_serif = make_felt_stroke(140, 760, 300, 760, thickness=100)
-    glyphs['J'] = pathops.simplify(pathops.op(pathops.op(pathops.op(j_stem, j_hook1, pathops.PathOp.UNION), j_hook2, pathops.PathOp.UNION), j_serif, pathops.PathOp.UNION))
-    
-    # 'K': cap stem + bold full-cap diagonal felt arms
-    k_upper = make_felt_stroke(110, 360, 360, 760, thickness=115)
-    k_lower = make_felt_stroke(200, 440, 370, 15, thickness=115)
-    glyphs['K'] = pathops.simplify(pathops.op(pathops.op(stem_cap, k_upper, pathops.PathOp.UNION), k_lower, pathops.PathOp.UNION))
-    
-    # 'L': cap stem + bottom arm
-    glyphs['L'] = pathops.simplify(pathops.op(stem_cap, e_bot, pathops.PathOp.UNION))
-    
-    # 'M': dual cap stems + center meeting felt diagonals
-    m_stem_r = stem_cap.transform(1, 0, 0, 1, 380, 0)
-    m_d1 = make_felt_stroke(60, 760, 240, 120, thickness=115)
-    m_d2 = make_felt_stroke(420, 760, 240, 120, thickness=115)
-    glyphs['M'] = pathops.simplify(pathops.op(pathops.op(pathops.op(stem_cap, m_stem_r, pathops.PathOp.UNION), m_d1, pathops.PathOp.UNION), m_d2, pathops.PathOp.UNION))
-    
-    # 'N': dual cap stems + diagonal felt stroke
-    n_diag = make_felt_stroke(60, 760, 330, 15, thickness=120)
-    glyphs['N'] = pathops.simplify(pathops.op(pathops.op(stem_cap, h_stem_r, pathops.PathOp.UNION), n_diag, pathops.PathOp.UNION))
-    
-    # 'O': cap scaled master o
-    glyphs['O'] = bowl_cap_O
-    
-    # 'Q': cap O + bold marker tail flick
-    q_tail = make_felt_stroke(230, 220, 390, -40, thickness=120)
-    glyphs['Q'] = pathops.simplify(pathops.op(bowl_cap_O, q_tail, pathops.PathOp.UNION))
-    
-    # 'R': master P + solid diagonal felt leg
-    r_leg = make_felt_stroke(170, 390, 360, 15, thickness=120)
-    glyphs['R'] = pathops.simplify(pathops.op(p_P, r_leg, pathops.PathOp.UNION))
-    
-    # 'S': fluid single-contour felt-marker S
-    glyphs['S'] = make_s_glyph(is_cap=True)
-    
-    # 'T': center cap stem + wide top crossbar
-    t_cap_bar = make_felt_stroke(0, 750, 440, 750, thickness=120)
-    t_center_stem = stem_cap.transform(1, 0, 0, 1, 165, 0)
-    glyphs['T'] = pathops.simplify(pathops.op(t_center_stem, t_cap_bar, pathops.PathOp.UNION))
-    
-    # 'U': cap scaled master u
-    glyphs['U'] = p_u.transform(1.36, 0, 0, 1.67, 0, 0)
-    
-    # 'V': cap felt diagonals meeting at baseline
-    V_left = make_felt_stroke(40, 760, 220, 0, thickness=120)
-    V_right = make_felt_stroke(400, 760, 220, 0, thickness=120)
-    glyphs['V'] = pathops.simplify(pathops.op(V_left, V_right, pathops.PathOp.UNION))
-    
-    # 'W': dual cap V interlocking
-    W1 = glyphs['V']
-    W2 = glyphs['V'].transform(1, 0, 0, 1, 280, 0)
-    glyphs['W'] = pathops.simplify(pathops.op(W1, W2, pathops.PathOp.UNION))
-    
-    # 'X': crossing cap felt diagonals
-    X1 = make_felt_stroke(40, 760, 360, 0, thickness=120)
-    X2 = make_felt_stroke(360, 760, 40, 0, thickness=120)
-    glyphs['X'] = pathops.simplify(pathops.op(X1, X2, pathops.PathOp.UNION))
-    
-    # 'Y': upper fork + tail stem
-    y_cap_fork = glyphs['V'].transform(1, 0, 0, 0.6, 0, 310)
-    y_cap_stem = make_felt_stroke(220, 330, 220, 0, thickness=115)
-    glyphs['Y'] = pathops.simplify(pathops.op(y_cap_fork, y_cap_stem, pathops.PathOp.UNION))
-    
-    # 'Z': cap z
-    Z_top = make_felt_stroke(30, 750, 350, 750, thickness=115)
-    Z_bot = make_felt_stroke(30, 15, 350, 15, thickness=115)
-    Z_diag = make_felt_stroke(340, 750, 40, 15, thickness=120)
-    glyphs['Z'] = pathops.simplify(pathops.op(pathops.op(Z_top, Z_bot, pathops.PathOp.UNION), Z_diag, pathops.PathOp.UNION))
-
-    # =========================================================================
-    # NUMERALS (0-9)
-    # =========================================================================
-    # '0': cap O
-    glyphs['0'] = bowl_cap_O
-    
-    # '1': cap stem + top angled flick
-    one_flick = make_felt_stroke(10, 560, 60, 760, thickness=100)
-    glyphs['1'] = pathops.simplify(pathops.op(stem_cap, one_flick, pathops.PathOp.UNION))
-    
-    # '2': top arch + diagonal + baseline bar
-    two_top = make_felt_stroke(60, 560, 190, 750, thickness=115)
-    two_arch = make_felt_stroke(190, 750, 310, 560, thickness=115)
-    two_diag = make_felt_stroke(310, 560, 40, 15, thickness=120)
-    two_bot = make_felt_stroke(30, 15, 330, 15, thickness=115)
-    glyphs['2'] = pathops.simplify(pathops.op(pathops.op(pathops.op(two_top, two_arch, pathops.PathOp.UNION), two_diag, pathops.PathOp.UNION), two_bot, pathops.PathOp.UNION))
-    
-    # '3': top bar + diagonal + bottom sweeping bowl
-    three_top = make_felt_stroke(60, 750, 310, 750, thickness=110)
-    three_diag = make_felt_stroke(300, 750, 180, 420, thickness=110)
-    three_b1 = make_felt_stroke(180, 420, 330, 260, thickness=115)
-    three_b2 = make_felt_stroke(330, 260, 200, 15, thickness=115)
-    three_b3 = make_felt_stroke(200, 15, 60, 100, thickness=115)
-    glyphs['3'] = pathops.simplify(pathops.op(pathops.op(pathops.op(pathops.op(three_top, three_diag, pathops.PathOp.UNION), three_b1, pathops.PathOp.UNION), three_b2, pathops.PathOp.UNION), three_b3, pathops.PathOp.UNION))
-    
-    # '4': left stem + crossbar + right full stem
-    four_cross = make_felt_stroke(10, 230, 380, 230, thickness=110)
-    four_l = make_felt_stroke(50, 760, 20, 230, thickness=110)
-    four_r = stem_cap.transform(1, 0, 0, 1, 220, 0)
-    glyphs['4'] = pathops.simplify(pathops.op(pathops.op(four_cross, four_l, pathops.PathOp.UNION), four_r, pathops.PathOp.UNION))
-    
-    # '5': top bar + left drop + bottom sweeping bowl
-    five_top = make_felt_stroke(70, 750, 310, 750, thickness=110)
-    five_vert = make_felt_stroke(80, 750, 80, 420, thickness=110)
-    five_b1 = make_felt_stroke(80, 420, 330, 300, thickness=115)
-    five_b2 = make_felt_stroke(330, 300, 200, 15, thickness=115)
-    five_b3 = make_felt_stroke(200, 15, 60, 90, thickness=115)
-    glyphs['5'] = pathops.simplify(pathops.op(pathops.op(pathops.op(pathops.op(five_top, five_vert, pathops.PathOp.UNION), five_b1, pathops.PathOp.UNION), five_b2, pathops.PathOp.UNION), five_b3, pathops.PathOp.UNION))
-    
-    # '6': o bowl + sweeping upward spine
-    six_spine = pathops.op(p_c, make_rect(0, 150, 280, 470), pathops.PathOp.INTERSECTION).transform(1.2, 0, 0, 1.4, 0, 130)
-    glyphs['6'] = pathops.simplify(pathops.op(bowl_o, six_spine, pathops.PathOp.UNION))
-    
-    # '7': top horizontal arm + descending diagonal
-    seven_top = make_felt_stroke(30, 750, 350, 750, thickness=115)
-    seven_diag = make_felt_stroke(340, 750, 80, 0, thickness=120)
-    glyphs['7'] = pathops.simplify(pathops.op(seven_top, seven_diag, pathops.PathOp.UNION))
-    
-    # '8': dual stacked bowls
-    eight_top = bowl_o.transform(0.9, 0, 0, 0.85, 20, 360)
-    eight_bot = bowl_o.transform(1.05, 0, 0, 0.95, 0, 0)
-    glyphs['8'] = pathops.simplify(pathops.op(eight_top, eight_bot, pathops.PathOp.UNION))
-    
-    # '9': inverted 6
-    b_6 = glyphs['6'].bounds
-    glyphs['9'] = glyphs['6'].transform(-1, 0, 0, -1, b_6[2] - b_6[0], 760)
-
-    # =========================================================================
-    # PUNCTUATION & MARKS
-    # =========================================================================
-    glyphs['period'] = felt_dot
-    glyphs['comma'] = pathops.simplify(pathops.op(felt_dot, t_foot.transform(0.7, 0, 0, 0.7, -10, -70), pathops.PathOp.UNION))
-    glyphs['colon'] = pathops.simplify(pathops.op(felt_dot, felt_dot.transform(1, 0, 0, 1, 0, 300), pathops.PathOp.UNION))
-    glyphs['semicolon'] = pathops.simplify(pathops.op(glyphs['comma'], felt_dot.transform(1, 0, 0, 1, 0, 300), pathops.PathOp.UNION))
-    
-    exclam_stem = stem_cap.transform(1, 0, 0, 0.65, 0, 250)
-    glyphs['exclam'] = pathops.simplify(pathops.op(exclam_stem, felt_dot, pathops.PathOp.UNION))
-    
-    q_arc1 = make_felt_stroke(40, 560, 160, 750, thickness=110)
-    q_arc2 = make_felt_stroke(160, 750, 270, 560, thickness=110)
-    q_diag = make_felt_stroke(270, 560, 150, 260, thickness=110)
-    q_vert = make_felt_stroke(150, 260, 150, 180, thickness=110)
-    q_top = pathops.simplify(pathops.op(pathops.op(pathops.op(q_arc1, q_arc2, pathops.PathOp.UNION), q_diag, pathops.PathOp.UNION), q_vert, pathops.PathOp.UNION))
-    glyphs['question'] = pathops.simplify(pathops.op(q_top, felt_dot.transform(1, 0, 0, 1, 100, 0), pathops.PathOp.UNION))
-    
-    glyphs['hyphen'] = make_felt_stroke(20, 230, 180, 230, thickness=100)
-    glyphs['slash'] = make_felt_stroke(40, 0, 220, 750, thickness=110)
-    glyphs['parenleft'] = pathops.op(p_c, make_rect(0, 50, 160, 420), pathops.PathOp.INTERSECTION).transform(1.1, 0, 0, 1.8, 0, -10)
-    glyphs['parenright'] = glyphs['parenleft'].transform(-1, 0, 0, 1, 180, 0)
-    
-    # Authentic & ampersand from specimen broadside
-    amp_bot = glyphs['8'].transform(0.85, 0, 0, 0.85, 0, 0)
-    amp_arm = make_felt_stroke(80, 40, 360, 420, thickness=110)
-    glyphs['ampersand'] = pathops.simplify(pathops.op(amp_bot, amp_arm, pathops.PathOp.UNION))
-    
-    return glyphs
-
-def build_marker_raw():
+def build_wabi_sabi_font():
     src_ttf = os.path.join(ROOT_DIR, 'fonts', 'ttf', 'PocketGull-Chiseltip.ttf')
     out_ttf = os.path.join(ROOT_DIR, 'fonts', 'ttf', 'PocketGull-MarkerRaw.ttf')
     out_woff2 = os.path.join(ROOT_DIR, 'fonts', 'woff2', 'PocketGull-MarkerRaw.woff2')
-    
+
     print("==================================================================")
-    print("PocketGull Marker Raw Compiler v3.0: Strategy A Cardstock DNA")
+    print("PocketGull Marker Raw Compiler v3.3: Optical Proportion Balance")
     print("==================================================================")
-    print(f"[INFO] Loading base template: {src_ttf} ...")
+    print(f"[INFO] Loading source template: {src_ttf} ...")
     font = TTFont(src_ttf)
     glyf = font['glyf']
     hmtx = font['hmtx']
-    cmap = font.getBestCmap()
+
+    # 1. Parse authentic cardstock wordmark letters (P, o, c, k, e, t, G, u, l)
+    print("[1/4] Calibrating authentic cardstock letters to typographic em-box...")
+    masters = {}
+    for char, d in MASTER_WORDMARK_PATHS.items():
+        polys = parse_svg_to_polys(d)
+        b = get_bounds(polys)
+        norm = translate_polys(polys, -b[0], -b[1])
+        masters[char] = norm
+
+    # Chiseltip target optical metrics for each letter
+    target_metrics = {
+        'P': (518, 714, 632, 60),
+        'G': (621, 724, 740, 55),
+        'o': (552, 563, 637, 45),
+        'c': (472, 563, 539, 45),
+        'k': (593, 760, 659, 55),
+        'e': (534, 563, 618, 45),
+        't': (403, 664, 460, 35),
+        'u': (539, 553, 670, 65),
+        'l': (191, 760, 323, 65),
+    }
+
+    cardstock_scaled = {}
+    for char, (tgt_w, tgt_h, tgt_adv, tgt_lsb) in target_metrics.items():
+        b = get_bounds(masters[char])
+        cur_w = b[2] - b[0]
+        cur_h = b[3] - b[1]
+        sx = tgt_w / cur_w
+        sy = tgt_h / cur_h
+        cardstock_scaled[char] = (scale_polys(masters[char], sx, sy), tgt_adv, tgt_lsb)
+
+    # Authentic single-story humanist lowercase 'g' from cardstock broadside
+    # o bowl + sweeping parabolic descender
+    o_bowl, _, _ = cardstock_scaled['o']
+    b_ob = get_bounds(o_bowl)
+    g_desc_pts = [
+        (b_ob[2] - 15, b_ob[3] - 10),
+        (b_ob[2], 100),
+        (b_ob[2] - 10, -60),
+        (b_ob[2] - 60, -200),
+        ((b_ob[0] + b_ob[2]) / 2.0, -240),
+        (b_ob[0] + 20, -180),
+        (b_ob[0] + 10, -110),
+    ]
+    def make_calligraphic_descender(points, stroke_w=170):
+        dense = []
+        for i in range(len(points) - 1):
+            p1 = points[i]
+            p2 = points[i+1]
+            for s in range(12):
+                t = s / 12.0
+                dense.append((p1[0]*(1-t) + p2[0]*t, p1[1]*(1-t) + p2[1]*t))
+        dense.append(points[-1])
+        l_pts = []
+        r_pts = []
+        r = stroke_w / 2.0
+        for i in range(len(dense)):
+            x, y = dense[i]
+            if i == 0: dx, dy = dense[1][0] - x, dense[1][1] - y
+            elif i == len(dense)-1: dx, dy = x - dense[i-1][0], y - dense[i-1][1]
+            else: dx, dy = dense[i+1][0] - dense[i-1][0], dense[i+1][1] - dense[i-1][1]
+            L = math.hypot(dx, dy)
+            if L < 1e-5: nx, ny = 0, r
+            else: nx, ny = -dy/L*r, dx/L*r
+            l_pts.append((round(x + nx), round(y + ny)))
+            r_pts.append((round(x - nx), round(y - ny)))
+        return [l_pts + list(reversed(r_pts))]
+
+    g_loop = make_calligraphic_descender(g_desc_pts, stroke_w=170)
+    cardstock_scaled['g'] = (union_polys(o_bowl, g_loop), 643, 45)
+
+    print("\n[2/4] Infusing full superfamily glyphs with wabi-sabi felt-marker edge flow...")
     
-    print("[1/4] Normalizing 9 master cardstock organs (1000 UPM, baseline y=0)...")
-    masters = load_master_cardstock_organs()
-    for char, p in masters.items():
-        b = p.bounds
-        print(f"  • Master '{char}': width={b[2]-b[0]:.1f}, y=[{b[1]:.1f} .. {b[3]:.1f}]")
-        
-    print("\n[2/4] Slicing, cropping, and assembling full Cardstock DNA alphabet...")
-    dna_glyphs = assemble_cardstock_alphabet(masters)
-    
-    print(f"  -> Successfully assembled {len(dna_glyphs)} unique Cardstock DNA letterforms.")
-    
-    # Map characters to glyph names
     char_to_glyphname = {
         'A': 'A', 'B': 'B', 'C': 'C', 'D': 'D', 'E': 'E', 'F': 'F', 'G': 'G',
         'H': 'H', 'I': 'I', 'J': 'J', 'K': 'K', 'L': 'L', 'M': 'M', 'N': 'N',
@@ -600,71 +277,80 @@ def build_marker_raw():
         'v': 'v', 'w': 'w', 'x': 'x', 'y': 'y', 'z': 'z',
         '0': 'zero', '1': 'one', '2': 'two', '3': 'three', '4': 'four',
         '5': 'five', '6': 'six', '7': 'seven', '8': 'eight', '9': 'nine',
-        'period': 'period', 'comma': 'comma', 'colon': 'colon', 'semicolon': 'semicolon',
-        'exclam': 'exclam', 'question': 'question', 'hyphen': 'hyphen',
-        'slash': 'slash', 'parenleft': 'parenleft', 'parenright': 'parenright',
-        'ampersand': 'ampersand',
+        '.': 'period', ',': 'comma', ':': 'colon', ';': 'semicolon',
+        '!': 'exclam', '?': 'question', '-': 'hyphen', '/': 'slash',
+        '(': 'parenleft', ')': 'parenright', '&': 'ampersand',
     }
-    
-    print("\n[3/4] Compiling and injecting TrueType quadratic glyph records...")
-    injected_count = 0
-    for key, path in dna_glyphs.items():
-        gname = char_to_glyphname.get(key, key)
-        glyph, adv = pathops_to_glyph(font, path, lsb=50, rsb=50)
+
+    injected = 0
+    for char, gname in char_to_glyphname.items():
+        seed_val = ord(char)
+        
+        if char in cardstock_scaled:
+            raw_polys, tgt_adv, tgt_lsb = cardstock_scaled[char]
+            styled_polys = apply_wabi_sabi_ink_bleed(raw_polys, seed_val=seed_val, dilation=5.0)
+            glyph, adv = polys_to_glyph(font, styled_polys, target_lsb=tgt_lsb, target_adv=tgt_adv)
+        else:
+            extractor = ContourExtractor()
+            glyf[gname].draw(extractor, glyf)
+            raw_polys = extractor.polys
+            styled_polys = apply_wabi_sabi_ink_bleed(raw_polys, seed_val=seed_val, dilation=11.5)
+            orig_adv, orig_lsb = hmtx[gname]
+            target_adv = int(orig_adv * 1.02)
+            target_lsb = max(35, int(orig_lsb * 0.95))
+            glyph, adv = polys_to_glyph(font, styled_polys, target_lsb=target_lsb, target_adv=target_adv)
+
         glyf[gname] = glyph
-        hmtx[gname] = (adv, 50)
-        injected_count += 1
-        if key in "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789":
-            print(f"  • Injected '{key}' ({gname}): adv={adv} UPM, {glyph.numberOfContours} contours, {len(glyph.coordinates)} pts")
-            
-    print(f"  -> Injected {injected_count} authentic Cardstock DNA glyphs into 'glyf' & 'hmtx'.")
-    
-    # 4. OpenType Option 5 Naming Table
-    print("\n[4/4] Updating OpenType metadata & Option 5 naming table...")
+        hmtx[gname] = (adv, glyph.xMin)
+        injected += 1
+        if char in "POCKTGUL":
+            print(f"  • Injected '{char}' ({gname}): adv={adv} UPM, {glyph.numberOfContours} contours, box=({glyph.xMin},{glyph.yMin},{glyph.xMax},{glyph.yMax})")
+
+    print(f"  -> Injected {injected} master wabi-sabi glyphs into 'glyf' & 'hmtx'.")
+
+    # 3. Metadata
+    print("\n[3/4] Updating OpenType metadata & Option 5 naming table...")
     family_name = "PocketGull Marker Raw"
     style_name = "Regular"
     full_name = "PocketGull Marker Raw"
     ps_name = "PocketGull-MarkerRaw"
-    version_str = "Version 3.000; The PocketGull Project Authors; OFL 1.1"
+    version_str = "Version 3.300; The PocketGull Project Authors; OFL 1.1"
     copyright_str = "Copyright 2026 The PocketGull Project Authors (https://github.com/pocketgull-app/pocketgull-typeface)"
-    
+
     name_table = font['name']
     name_table.names = [n for n in name_table.names if n.nameID not in [1, 2, 3, 4, 5, 6, 16, 17]]
-    
+
     def add_name(name_id, text):
         name_table.addMultilingualName({'en': text}, font, nameID=name_id)
-        
+
     add_name(0, copyright_str)
     add_name(1, family_name)
     add_name(2, style_name)
-    add_name(3, f"3.000;POCK;{ps_name}")
+    add_name(3, f"3.300;POCK;{ps_name}")
     add_name(4, full_name)
     add_name(5, version_str)
     add_name(6, ps_name)
     add_name(16, family_name)
     add_name(17, style_name)
-    
-    font['head'].fontRevision = 3.0
-    font['head'].macStyle = 0x0000  # Regular
-    
+
+    font['head'].fontRevision = 3.3
+    font['head'].macStyle = 0x0000
+
     if 'OS/2' in font:
-        font['OS/2'].usWeightClass = 900  # Black Display
-        font['OS/2'].fsSelection = font['OS/2'].fsSelection & ~0x01 & ~0x20 | 0x40  # Regular, Clear Bold & Italic
+        font['OS/2'].usWeightClass = 900
+        font['OS/2'].fsSelection = font['OS/2'].fsSelection & ~0x01 & ~0x20 | 0x40
         font['OS/2'].achVendID = 'POCK'
-    
-    # Save TTF
+
     print(f"Saving compiled TTF: {out_ttf} ...")
     font.save(out_ttf)
     font.close()
-    
-    # Recompress to WOFF2 via Brotli Q11
+
     ttf_reopen = TTFont(out_ttf)
     ttf_reopen.flavor = 'woff2'
     ttf_reopen.save(out_woff2)
     ttf_reopen.close()
     print(f"Saved WOFF2: {out_woff2}")
-    print("✅ PocketGull Marker Raw successfully compiled with 100% Cardstock DNA!\n")
+    print("[SUCCESS] PocketGull Marker Raw v3.3 successfully compiled with optical balance!")
 
 if __name__ == '__main__':
-    build_marker_raw()
-
+    build_wabi_sabi_font()

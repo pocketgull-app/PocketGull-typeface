@@ -44,6 +44,7 @@ TARGET_FONTS = [
     {"filename": "PocketGull-Bold.ttf", "weight": 700, "is_mono": False, "src_weight": "bold"},
     {"filename": "PocketGull-Chiseltip.ttf", "weight": 900, "is_mono": False, "src_weight": "bold"},
     {"filename": "PocketGullMono-Regular.ttf", "weight": 400, "is_mono": True, "src_weight": "regular"},
+    {"filename": "PocketGullMono-Italic.ttf", "weight": 400, "is_mono": True, "src_weight": "regular"},
 ]
 
 REF_FONTS = {
@@ -342,9 +343,20 @@ def compile_all_tier6_scripts():
                         # Monospace 600 UPM cell normalization
                         cur_min_x = min(coords._a[0::2])
                         cur_max_x = max(coords._a[0::2])
+                        cur_min_y = min(coords._a[1::2])
+                        cur_max_y = max(coords._a[1::2])
                         cur_w = cur_max_x - cur_min_x
-                        if cur_w > 520:
-                            m_scale = 520.0 / cur_w
+                        cur_h = cur_max_y - cur_min_y
+
+                        # Cap-height and width bounding:
+                        # In PocketGullMono, Latin caps are ~715-720 UPM and lowercase are ~540 UPM.
+                        # For sovereign scripts (Adlam, Vai, Ethiopic, Cherokee, etc.),
+                        # prevent oversized symbols from exceeding cap-height (730 UPM) or cell width (530 UPM).
+                        s_h = 730.0 / cur_h if cur_h > 730 else 1.0
+                        s_w = 530.0 / cur_w if cur_w > 530 else 1.0
+                        m_scale = min(s_h, s_w)
+
+                        if m_scale < 1.0:
                             coords.transform(((m_scale, 0), (0, m_scale)))
                             coords.toInt()
                             cur_min_x = min(coords._a[0::2])

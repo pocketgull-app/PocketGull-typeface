@@ -1,0 +1,41 @@
+{
+  "timestamp": "2026-09-06T09:07:39Z",
+  "scripts": [
+    "Adlam (U+1E900 - U+1E95F)",
+    "Vai (U+A500 - U+A63F)"
+  ],
+  "assigned_codepoints": 388,
+  "historical_origin": "Vai: Mɔmɔlu Duwalu Bukɛlɛ (1833, Liberia); Adlam: Ibrahima & Abdoulaye Barry (1989, Guinea)",
+  "clinical_lexicon": [
+    {
+      "term": "Cellal (Adlam: 𞤕𞤫𞤤𞤤𞤢𞤤)",
+      "language": "Pulaar",
+      "meaning": "Health / Vitality",
+      "clinical_use": "General health status"
+    },
+    {
+      "term": "Safroowo (Adlam: 𞤅𞤢𞤁𞤪𞤮𞤮𞤱𞤮)",
+      "language": "Pulaar",
+      "meaning": "Doctor / Healer",
+      "clinical_use": "Caregiver attestation"
+    },
+    {
+      "term": "Lekki (Adlam: 𞤂𞤫𞤳𞤳𞤭)",
+      "language": "Pulaar",
+      "meaning": "Medicine / Remedy",
+      "clinical_use": "Prescription dosing"
+    },
+    {
+      "term": "ꔛꘋ (Kɛmɛ)",
+      "language": "Vai",
+      "meaning": "Life / Soul",
+      "clinical_use": "Vital signs indicator"
+    },
+    {
+      "term": "ꔔꕞꔤ (Dala)",
+      "language": "Vai",
+      "meaning": "Hospital / Healing house",
+      "clinical_use": "Clinic header"
+    }
+  ]
+}

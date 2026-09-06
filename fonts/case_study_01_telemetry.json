@@ -1,42 +1,49 @@
 {
-  "timestamp": "2026-09-04T08:50:47Z",
+  "timestamp": "2026-09-06T09:08:32Z",
   "case_study": 1,
   "script": "Canadian Aboriginal Syllabics (Inuktitut / Cree / Ojibwe)",
   "region": "Arctic & Subarctic / Nunavut, NWT, Northern Quebec",
   "clinical_focus": "Nunavut telehealth, northern emergency medical evacuation, and Inuit health care plans.",
   "codepoints_synthesized": 640,
-  "total_glyphs_compiled": 2560,
-  "runtime_ms": 11049.06,
-  "manual_hours_benchmark": 1920.0,
-  "acceleration_factor": 625573,
+  "total_glyphs_compiled": 3200,
+  "runtime_ms": 52766.11,
+  "manual_hours_benchmark": 2400.0,
+  "acceleration_factor": 163741,
   "fonts_updated": [
     {
       "filename": "PocketGull-Fineliner.ttf",
       "weight": 400,
       "is_mono": false,
       "glyphs_added": 640,
-      "time_ms": 2877.87
+      "time_ms": 13732.68
     },
     {
       "filename": "PocketGull-Bold.ttf",
       "weight": 700,
       "is_mono": false,
       "glyphs_added": 640,
-      "time_ms": 2764.83
+      "time_ms": 15987.19
     },
     {
       "filename": "PocketGull-Chiseltip.ttf",
       "weight": 900,
       "is_mono": false,
       "glyphs_added": 640,
-      "time_ms": 2652.78
+      "time_ms": 15856.14
     },
     {
       "filename": "PocketGullMono-Regular.ttf",
       "weight": 400,
       "is_mono": true,
       "glyphs_added": 640,
-      "time_ms": 2737.98
+      "time_ms": 3640.62
+    },
+    {
+      "filename": "PocketGullMono-Italic.ttf",
+      "weight": 400,
+      "is_mono": true,
+      "glyphs_added": 640,
+      "time_ms": 3532.19
     }
   ]
 }

@@ -45,6 +45,10 @@ PocketGull is an open-source clinical sans-serif, display, and telemetry monospa
 ### 7. DirectWrite / ClearType Antialiasing (`gasp`)
 - Version 1 `gasp` table mapping `0xFFFF` to `GASP_DOGRAY` (0x02) and `GASP_SYMMETRIC_SMOOTHING` (0x04).
 
+### 8. Optical x-Height & Baseline Grounding Invariant
+- **Unicode Braille (`U+2800`–`U+28FF`)**: The 6-dot cell must ground on the Latin baseline ($y = 0$) with Dot 3 tangent to 0, Dot 1 tangent to Latin x-height ($y \approx 540\text{ UPM}$), and dot radius boosted to $r = 78\text{ UPM}$ to prevent floating or optical weight deficit beside English text.
+- **Chinuk Pipa & Stenographies (`U+1BC00`–`U+1BC9F`)**: Circle vowels ($a, o, u$) must be scaled ($1.5\times\text{--}1.85\times$) to fill lowercase counter height ($y \approx 540\text{ UPM}$), with consonant vector stems anchored along the optical waist ($y = 270\text{ UPM}$) to eliminate miniature speck artifacts.
+
 ---
 
 ## 🚀 Google Fonts Upstream Packaging & Launch Standards

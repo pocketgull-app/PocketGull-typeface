@@ -116,26 +116,19 @@ void runRealign() {
   print('======================================================================\n');
 
   final root = findProjectRoot();
-  final ttfDir = Directory('$root${Platform.pathSeparator}fonts${Platform.pathSeparator}ttf');
-
-  final targetStems = [
-    'PocketGull-Regular',
-    'PocketGull-Bold',
-    'PocketGull-Black',
-    'PocketGull-BoldItalic',
-    'PocketGull-Fineliner',
-    'PocketGull-Italic',
-    'PocketGull-Chiseltip',
-    'PocketGull-MarkerRaw',
-    'PocketGullMono-Regular',
-    'PocketGullMono-Italic',
-    'PocketGull-VF',
+  final ttfDirs = [
+    Directory('$root${Platform.pathSeparator}fonts${Platform.pathSeparator}ttf'),
+    Directory('$root${Platform.pathSeparator}ofl${Platform.pathSeparator}pocketgull'),
+    Directory('$root${Platform.pathSeparator}ofl${Platform.pathSeparator}pocketgullmono'),
   ];
 
-  for (final stem in targetStems) {
-    final ttf = File('${ttfDir.path}${Platform.pathSeparator}$stem.ttf');
-    if (ttf.existsSync()) {
-      stdout.write('  • Realigning $stem.ttf ... ');
+  for (final dir in ttfDirs) {
+    if (!dir.existsSync()) continue;
+    final files = dir.listSync().whereType<File>().where((f) => f.path.endsWith('.ttf')).toList();
+    files.sort((a, b) => a.path.compareTo(b.path));
+    for (final ttf in files) {
+      final name = ttf.uri.pathSegments.last;
+      stdout.write('  • Realigning $name ... ');
       try {
         SfntTransformer.transformFont(inputFile: ttf);
         print('[OK 2-byte aligned]');

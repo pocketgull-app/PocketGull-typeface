@@ -1,42 +1,49 @@
 {
-  "timestamp": "2026-09-04T08:51:21Z",
+  "timestamp": "2026-09-06T09:11:07Z",
   "case_study": 4,
   "script": "Cherokee Syllabary (Tsalagi Gawonihisdi)",
   "region": "North America / Cherokee Nation & EBCI",
   "clinical_focus": "Cherokee Nation health services, Hastings Hospital EHR, and rural health clinics.",
   "codepoints_synthesized": 172,
-  "total_glyphs_compiled": 688,
-  "runtime_ms": 11861.2,
-  "manual_hours_benchmark": 516.0,
-  "acceleration_factor": 156611,
+  "total_glyphs_compiled": 860,
+  "runtime_ms": 54242.92,
+  "manual_hours_benchmark": 645.0,
+  "acceleration_factor": 42807,
   "fonts_updated": [
     {
       "filename": "PocketGull-Fineliner.ttf",
       "weight": 400,
       "is_mono": false,
       "glyphs_added": 172,
-      "time_ms": 3049.74
+      "time_ms": 15520.78
     },
     {
       "filename": "PocketGull-Bold.ttf",
       "weight": 700,
       "is_mono": false,
       "glyphs_added": 172,
-      "time_ms": 2939.06
+      "time_ms": 15023.02
     },
     {
       "filename": "PocketGull-Chiseltip.ttf",
       "weight": 900,
       "is_mono": false,
       "glyphs_added": 172,
-      "time_ms": 2947.0
+      "time_ms": 15149.1
     },
     {
       "filename": "PocketGullMono-Regular.ttf",
       "weight": 400,
       "is_mono": true,
       "glyphs_added": 172,
-      "time_ms": 2925.09
+      "time_ms": 4408.66
+    },
+    {
+      "filename": "PocketGullMono-Italic.ttf",
+      "weight": 400,
+      "is_mono": true,
+      "glyphs_added": 172,
+      "time_ms": 4140.94
     }
   ]
 }

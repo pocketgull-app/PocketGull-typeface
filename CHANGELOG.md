@@ -3,7 +3,26 @@
 All notable changes to the **PocketGull Typeface Superfamily** will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) (`v2.0.0`).
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html) (`v3.0.0`).
+
+## [3.1.0] - 2026-09-06
+
+### Added
+- **Sumero-Akkadian Cuneiform Ancient Medicine & Hammurabi Clinical Codex**:
+  - Full ingestion of 1,234 Unicode Sumero-Akkadian Cuneiform codepoints (`U+12000`–`U+12543`) across all proportional font cuts (`PocketGull-Regular`, `PocketGull-Bold`, `PocketGull-Black`, `PocketGull-Italic`, `PocketGull-BoldItalic`, `PocketGull-Fineliner`, `PocketGull-Chiseltip`).
+  - Scaled and baseline-aligned all wedge stylus contours (vertical, horizontal, Winkelhaken) to match PocketGull's 714 UPM cap-height and Louise Sloan 5:1 optotype grid.
+  - Decomposed nested composite components into pure simple glyphs to ensure 100% W3C OTS memory safety.
+  - Interactive Cuneiform Clinical Codex showcase card and 203 DPI thermal prescription label simulation in `index.html`.
+- **RTL Semitic Clinical Enhancement (Persian & Arabic)**:
+  - Added dedicated Persian (Farsi: فارسی) clinical terminology (`فشار خون`, `قلب و مغز`, `دوز دارو`) and Perso-Arabic letter coverage (`پ`, `چ`, `ژ`, `گ`, `ک`, `ی`).
+  - Added bedside thermal emergency prescriptions for Persian (`fa`) and Cuneiform (`cunei`).
+  - Expanded RTL Semitic Card in `index.html` to a 3-column architecture grid (Arabic, Persian, Hebrew).
+
+### Fixed
+- **W3C OTS Memory Safety & Composite Maxp Recalculation**:
+  - Stripped zero-contour empty component references (`NullMark` gid 3367) from Devanagari contextual glyphs (`uni093F0901.15`, `uni093F0930094D.15`, etc.), permanently resolving the browser console warning `glyf: empty gid 3367 used as component`.
+  - Recalculated `maxp.maxCompositePoints` from 123 to 146 across all cuts, eliminating the browser console warning `glyf: Number of composite points in glyph 3297 exceeds maxp maxCompositePoints: 146 vs 123`.
+  - Recompiled all 11 WOFF2 binaries and verified 0 console warnings or errors on live page reload.
 
 ## [3.0.0] - 2026-09-04
 
@@ -52,3 +71,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **TrueType 2-Byte Word-Boundary Alignment**: Padded all glyph contours so that `loca[i] % 2 == 0`, passing 100% of Thomas Phinney forensic typefoundry checks.
 - **W3C OpenType Sanitizer (OTS)**: 100% pass rate with zero warnings or fatals across all 16 TTF and WOFF2 binaries.
 - **Fontbakery QA**: 711 automated checks passed with 0 FAILs and 0 FATALs across the proportional and monospace families.
+
+## [1.0.0] - 2026-05-01
+
+### Added
+- **Original Inception (Physical Cardstock Felt-Marker)**:
+  - Digitized physical cardstock hand-lettered by Phil Gear at GearArts into standardized 1000 UPM TrueType vectors with quadratic G2 curvature.
+  - CERN Zenodo Archival DOI: [10.5281/zenodo.18879500](https://doi.org/10.5281/zenodo.18879500).
+  - Baked core Latin, numerals, and punctuation onto a 1000 UPM em-square calibrated to Louise Sloan 5:1 optotypic legibility standards.
+- **Institute for Safe Medication Practices (ISMP) Clinical Disambiguation**:
+  - Slashed zero (`zero` / `cv08`) to prevent 10-fold dosing overdoses.
+  - Curved lowercase l (`cv05`) to prevent confusion with numeral 1.
+  - Serifed capital I (`ss02`) to disambiguate from lowercase l and pipe symbol.
+  - Slashed Z (`cv11`) to prevent confusion with numeral 2 in handwriting and electronic prescriptions.
+- **Louise Sloan 5:1 Visual Acuity Geometry**:
+  - Calibrated all letter heights to 5 arcminutes and stroke / counter apertures to 1 arcminute at standard clinical viewing distances (55 cm near, 6 m far).
+- **670nm Retinal Photobiomodulation (PBM) Dark Mode**:
+  - Integrated high-contrast monochromatic dark mode eliminating high-energy blue photons (<500 nm) to safeguard night-shift clinician mitochondrial membrane potential and prevent circadian disruption.
+

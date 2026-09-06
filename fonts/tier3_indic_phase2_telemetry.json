@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-09-06T07:32:32Z",
+  "script": "Tier 3: Indic Phase 2 (High-Frequency Medical Conjunct Ligatures)",
+  "gsub_rules_compiled": 869,
+  "unique_conjuncts": 836,
+  "fonts_updated": [
+    {
+      "filename": "PocketGull-Fineliner.ttf",
+      "weight": 400,
+      "is_mono": false,
+      "glyphs_added": 836,
+      "time_ms": 6302.04
+    },
+    {
+      "filename": "PocketGull-Bold.ttf",
+      "weight": 700,
+      "is_mono": false,
+      "glyphs_added": 0,
+      "time_ms": 8165.41
+    },
+    {
+      "filename": "PocketGull-Chiseltip.ttf",
+      "weight": 900,
+      "is_mono": false,
+      "glyphs_added": 0,
+      "time_ms": 8104.3
+    },
+    {
+      "filename": "PocketGullMono-Regular.ttf",
+      "weight": 400,
+      "is_mono": true,
+      "glyphs_added": 0,
+      "time_ms": 8720.74
+    }
+  ],
+  "total_glyphs_compiled": 836,
+  "runtime_ms": 31384.39,
+  "manual_hours_benchmark": 627.0,
+  "acceleration_factor": 71921
+}

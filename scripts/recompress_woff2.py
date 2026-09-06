@@ -27,7 +27,11 @@ stems = [
     "PocketGull-Italic",
     "PocketGull-Chiseltip",
     "PocketGull-MarkerRaw",
+    "PocketGull-CondensedBold",
+    "PocketGull-Micro",
+    "PocketGull-Soft",
     "PocketGullMono-Regular",
+    "PocketGullMono-Bold",
     "PocketGullMono-Italic",
     "PocketGull-VF",
 ]

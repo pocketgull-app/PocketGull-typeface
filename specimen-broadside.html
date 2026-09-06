@@ -267,7 +267,7 @@
     /* ISMP Disambiguation Matrix */
     .ismp-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 16px;
     }
 
@@ -369,6 +369,160 @@
       color: var(--text-muted);
       line-height: 1.4;
     }
+
+    /* SMoE World Scripts Broadside Grid */
+    .smoe-tier-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .smoe-tier-card {
+      background: #090d16;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .smoe-tier-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .smoe-tier-specimen {
+      font-size: 26px;
+      margin: 12px 0 8px 0;
+      line-height: 1.3;
+      color: #f8fafc;
+    }
+
+    /* Optical Readability Comparison Cards */
+    .readability-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 800px) {
+      .readability-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .readability-card {
+      background: #090d16;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 24px;
+      position: relative;
+    }
+
+    .readability-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .readability-badge.raw {
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #f87171;
+    }
+
+    .readability-badge.calibrated {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+    }
+
+    .alignment-guide-box {
+      position: relative;
+      background: #05080e;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 36px 20px 24px 20px;
+      margin: 16px 0;
+      overflow: hidden;
+    }
+
+    .guide-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      pointer-events: none;
+    }
+
+    .guide-line.cap-height {
+      top: 24px;
+      background: rgba(56, 189, 248, 0.4);
+      border-top: 1px dashed rgba(56, 189, 248, 0.6);
+    }
+
+    .guide-line.x-height {
+      top: 50px;
+      background: rgba(245, 158, 11, 0.4);
+      border-top: 1px dashed rgba(245, 158, 11, 0.6);
+    }
+
+    .guide-line.baseline {
+      bottom: 24px;
+      background: rgba(16, 185, 129, 0.5);
+      border-top: 1px solid rgba(16, 185, 129, 0.8);
+    }
+
+    .guide-tag {
+      position: absolute;
+      right: 8px;
+      font-size: 9px;
+      font-family: 'PocketGull Mono', monospace;
+      padding: 1px 5px;
+      border-radius: 3px;
+      letter-spacing: 0.05em;
+    }
+
+    .guide-tag.cap {
+      top: 14px;
+      background: rgba(56, 189, 248, 0.2);
+      color: #38bdf8;
+    }
+
+    .guide-tag.x {
+      top: 40px;
+      background: rgba(245, 158, 11, 0.2);
+      color: #f59e0b;
+    }
+
+    .guide-tag.base {
+      bottom: 28px;
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+    }
+
+    .specimen-text-guide {
+      font-size: 38px;
+      line-height: 1.4;
+      position: relative;
+      z-index: 2;
+    }
   </style>
 </head>
 <body>
@@ -378,11 +532,13 @@
     <!-- 1. Broadside Master Header -->
     <header class="header-broadside">
       <div class="badge-bar">
+        <a href="marker_studio.html" class="badge" style="background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.4); color: var(--amber); text-decoration: none;">🖋️ Marker Morphological Studio</a>
+        <a href="index.html" class="badge" style="background: rgba(6, 182, 212, 0.15); border-color: var(--cyan); color: var(--cyan); text-decoration: none;">← Full Specimen</a>
         <span class="badge">Open-Source Healthcare Typography</span>
         <span class="badge emerald">W3C OTS & Word-Aligned Valid</span>
         <span class="badge amber">SIL Open Font License 1.1</span>
         <span class="badge">Google Fonts Option 5</span>
-        <span class="badge">72 BPM Philocardia Resonance</span>
+        <span class="badge" style="background: rgba(244, 63, 94, 0.15); border-color: rgba(244, 63, 94, 0.4); color: var(--rose);">♥ The Healer Font (Hearts for i's)</span>
       </div>
       <h1 class="header-title">PocketGull <span>Superfamily</span></h1>
       <p class="header-subtitle">
@@ -551,6 +707,15 @@
           </div>
           <p class="ismp-desc">Crossbar stroke prevents fatal handwriting ambiguity with digit 2.</p>
         </div>
+
+        <div class="ismp-card">
+          <div class="ismp-title" style="color: var(--rose);">The Healer Font (Hearts for i's)</div>
+          <div class="ismp-comparison">
+            <span class="ismp-standard" style="font-family: sans-serif; text-decoration: none; opacity: 0.8; color: #94a3b8;">cl<span style="color:#94a3b8;">i</span>n<span style="color:#94a3b8;">i</span>c</span>
+            <span class="ismp-safe" style="color: var(--rose); font-family: 'PocketGull Bold';">cl<span class="philocardia-heart" style="color: var(--rose);">ı</span>n<span class="philocardia-heart" style="color: var(--rose);">ı</span>c</span>
+          </div>
+          <p class="ismp-desc">Humanist heart-shaped tittles on lowercase <em>i</em> for clinician vagal calming and bio-resonance.</p>
+        </div>
       </div>
     </section>
 
@@ -586,7 +751,215 @@
       </div>
     </section>
 
-    <!-- 6. Architectural Quality Pillars -->
+    <!-- 6. Universal World Scripts SMoE Specimen Suite (Tiers 2–5) -->
+    <section class="specimen-card">
+      <div class="section-label">Mixture-of-Experts Sub-Foundry Architecture</div>
+      <div class="section-title">
+        <span>Universal World Scripts Expansion (Tiers 2–5 SMoE)</span>
+        <small>27 Specialized Sub-Foundry Targets • Gated Zero-Egress Dispatch</small>
+      </div>
+
+      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
+        PocketGull routes multi-script typography dynamically via 27 specialized SMoE experts, preserving the Louise Sloan 5:1 optotype invariant and ISMP clinical safeguards across all major global language families without monolithic font bloat:
+      </p>
+
+      <div class="smoe-tier-grid">
+        <!-- Tier 2: RTL & Semitic -->
+        <div class="smoe-tier-card" style="border-color: rgba(192, 132, 252, 0.4);">
+          <div>
+            <div class="smoe-tier-badge" style="color: #c084fc;">
+              <span>🇸🇦 🇮🇱 🇲🇻</span> Tier 2 &bull; RTL &amp; Semitic (🟢 100% Live Native)
+            </div>
+            <div style="font-size: 11px; font-family: 'PocketGull Mono', monospace; color: var(--text-muted);">
+              ARAB (696), HEBR (134), SYRC (77), THAA (50) &bull; 957 CPs, 3,828 Glyphs
+            </div>
+            <div class="smoe-tier-specimen" dir="rtl" style="font-family: 'PocketGull', 'PocketGull Bold', sans-serif;">
+              ضغط الدم: <bdi dir="ltr" style="font-family:'PocketGull Mono',monospace; color: var(--cyan);">120/80</bdi> mmHg • דופק 72 • ܕܘܦܩܐ • ހިތުގެ ވިންދު
+            </div>
+          </div>
+          <div class="smoe-tier-meta">
+            Native Arabic cursive joining (init/medi/fina/isol), Hebrew niqqud, Syriac, Thaana, and UAX #9 protected numeric isolates preventing 120/80 vital sign inversion.
+          </div>
+        </div>
+
+        <!-- Tier 3: Indic Core -->
+        <div class="smoe-tier-card" style="border-color: rgba(245, 158, 11, 0.4);">
+          <div>
+            <div class="smoe-tier-badge" style="color: #f59e0b;">
+              <span>🇮🇳 🇧🇩 🇱🇰</span> Tier 3 &bull; Indic Core (🟢 100% Live Native)
+            </div>
+            <div style="font-size: 11px; font-family: 'PocketGull Mono', monospace; color: var(--text-muted);">
+              DEVA, BENG, TAML, TELU, GURM, GUJR, ORYA, KNDA, MLAM, SINH &bull; 1,836 Glyphs/cut
+            </div>
+            <div class="smoe-tier-specimen" style="font-family: 'PocketGull Bold', sans-serif; color: #f59e0b; font-size: 22px;">
+              हृदय 72 BPM • রক্তচাপ • இதய துடிப்பு • గుండె చప్పుడు • క్ష ज्ञ त्र
+            </div>
+          </div>
+          <div class="smoe-tier-meta">
+            1,000 base codepoints + 836 decomposed medical conjunct ligatures (7,344 superfamily glyphs); Shirorekha headline alignment &amp; GPOS abvm/blwm mark positioning.
+          </div>
+        </div>
+
+        <!-- Tier 4: Southeast Asian -->
+        <div class="smoe-tier-card" style="border-color: rgba(56, 189, 248, 0.4);">
+          <div>
+            <div class="smoe-tier-badge" style="color: #38bdf8;">
+              <span>🇹🇭 🇱🇦 🇰🇭 🇲🇲 🇹🇮</span> Tier 4 &bull; Southeast Asian (🟢 100% Live Native)
+            </div>
+            <div style="font-size: 11px; font-family: 'PocketGull Mono', monospace; color: var(--text-muted);">
+              THAI (87), LAOO (83), KHMR (146), MYMR (223), TIBT (207) &bull; 746 CPs, 2,984 Glyphs
+            </div>
+            <div class="smoe-tier-specimen" style="font-family: 'PocketGull Bold', sans-serif; color: #38bdf8; font-size: 22px;">
+              หัวใจ 72 ครั้ง/นาที • ຄວາມດັນ • ចង្វាក់បេះដូង • နှလုံးခုန်နှုန်း • སྙིང་གི་འཕར་ལྡིང་
+            </div>
+          </div>
+          <div class="smoe-tier-meta">
+            Multi-level GPOS mark &amp; mkmk tone-mark stacking anchors preventing vertical vowel/tone collision or clipping.
+          </div>
+        </div>
+
+        <!-- Tier 5: CJK Clinical Core -->
+        <div class="smoe-tier-card" style="border-color: rgba(52, 211, 153, 0.4);">
+          <div>
+            <div class="smoe-tier-badge" style="color: #34d399;">
+              <span>🇨🇳 🇯🇵 🇰🇷</span> Tier 5 &bull; CJK Clinical Core (🟢 100% Live Native)
+            </div>
+            <div style="font-size: 11px; font-family: 'PocketGull Mono', monospace; color: var(--text-muted);">
+              Top 3,500 Hanzi (3,500), Kana (205), Radicals (393), Hangul Jamo &amp; Syllables (708) &bull; 4,806 CPs, 19,224 Glyphs
+            </div>
+            <div class="smoe-tier-specimen" style="font-family: 'PocketGull Bold', sans-serif; color: #34d399; font-size: 22px;">
+              血压 120/80 • 心率 72 bpm • 呼吸 16 • 体温 36.8°C • 血圧 • 혈압 120/80 • 심박수 72
+            </div>
+          </div>
+          <div class="smoe-tier-meta">
+            Surpassing the 15,000-glyph target with 19,224 superfamily glyphs; 1000 UPM em-box balance, Kangxi radical composition, and ICU monospace cell centering.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Optical Readability & x-Height Calibration Showcase -->
+    <section class="specimen-card" style="margin-top: 24px;">
+      <div class="section-label" style="color: var(--emerald);">Humanist Proportions &amp; Optical Geometry</div>
+      <div class="section-title">
+        <span>Optical Readability &amp; x-Height Grounding</span>
+        <small>Harmonizing Non-Latin Writing Systems with English Baselines (y=0) and x-Height (y=540 UPM)</small>
+      </div>
+
+      <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
+        Standard non-Latin writing systems like <strong>Unicode Braille (ISO/TR 11548)</strong> and <strong>Chinuk Pipa (Duployan Shorthand)</strong> often suffer from severe optical mismatch when juxtaposed with English prose: Braille cells float arbitrarily or appear frail with thin 60 UPM dots, while stenographic circle vowels collapse into illegible punctuation specks. PocketGull applies mathematical optical normalization:
+      </p>
+
+      <div class="readability-grid">
+        <!-- 1. Unicode Braille Calibration -->
+        <div class="readability-card">
+          <div class="readability-badge raw">
+            <span>⚠️ Standard Raw ISO/TR 11548</span>
+          </div>
+          <h4 style="font-size: 16px; color: #f1f5f9; margin-bottom: 8px;">Uncalibrated Floating Braille</h4>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
+            Dots float arbitrarily with frail r=60 UPM radii. Cell fails to ground on baseline (y=0) and drifts disconnected from Latin cap-height geometry.
+          </p>
+
+          <div class="alignment-guide-box">
+            <div class="guide-line cap-height"></div>
+            <span class="guide-tag cap">CAP (720)</span>
+            <div class="guide-line x-height"></div>
+            <span class="guide-tag x">x-HEIGHT (540)</span>
+            <div class="guide-line baseline"></div>
+            <span class="guide-tag base">BASELINE (0)</span>
+
+            <div class="specimen-text-guide" style="font-family: 'DejaVu Sans', sans-serif; color: #94a3b8; transform: translateY(-8px);">
+              Rx: ⠁⠍⠕⠭ 500mg
+            </div>
+          </div>
+          <div style="font-size: 11px; font-family: 'PocketGull Mono', monospace; color: #ef4444;">
+            DISPARITY: Float offset +200 UPM • Optical weight deficit -23%
+          </div>
+        </div>
+
+        <div class="readability-card" style="border-color: rgba(16, 185, 129, 0.4);">
+          <div class="readability-badge calibrated">
+            <span>✓ PocketGull Optically Calibrated</span>
+          </div>
+          <h4 style="font-size: 16px; color: #34d399; margin-bottom: 8px;">Cap-to-Baseline Grounded Braille Cell</h4>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
+            Dot 3 rests tangent to baseline (y=0), Dot 1 crowns tangent to Cap Height (y=720), and dot radius is boosted to r=78 UPM matching Latin bold stroke weight.
+          </p>
+
+          <div class="alignment-guide-box" style="border-color: rgba(16, 185, 129, 0.3);">
+            <div class="guide-line cap-height"></div>
+            <span class="guide-tag cap">CAP (720)</span>
+            <div class="guide-line x-height"></div>
+            <span class="guide-tag x">x-HEIGHT (540)</span>
+            <div class="guide-line baseline"></div>
+            <span class="guide-tag base">BASELINE (0)</span>
+
+            <div class="specimen-text-guide" style="font-family: 'PocketGull Bold', sans-serif; color: #34d399;">
+              Rx: ⠁⠍⠕⠭ 500mg
+            </div>
+          </div>
+          <div style="font-size: 11px; font-family: 'PocketGull Mono', monospace; color: #34d399;">
+            HARMONIZED: Cap-to-baseline lock (y=0..720) • 78 UPM dot stroke parity
+          </div>
+        </div>
+
+        <!-- 2. Chinuk Pipa Shorthand Calibration -->
+        <div class="readability-card">
+          <div class="readability-badge raw">
+            <span>⚠️ Raw Duployan Shorthand</span>
+          </div>
+          <h4 style="font-size: 16px; color: #f1f5f9; margin-bottom: 8px;">Unscaled Stenographic Punctuation</h4>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
+            Circle vowels (a, o, u) render with minute 130 UPM diameters, vanishing like stray commas or flyspecks beside English words.
+          </p>
+
+          <div class="alignment-guide-box">
+            <div class="guide-line cap-height"></div>
+            <span class="guide-tag cap">CAP (720)</span>
+            <div class="guide-line x-height"></div>
+            <span class="guide-tag x">x-HEIGHT (540)</span>
+            <div class="guide-line baseline"></div>
+            <span class="guide-tag base">BASELINE (0)</span>
+
+            <div class="specimen-text-guide" style="font-family: 'Segoe UI Historic', sans-serif; color: #94a3b8; transform: scale(0.65) translateY(12px); transform-origin: left center;">
+              Kloshe: 𛰅𛰆𛱄𛰜
+            </div>
+          </div>
+          <div style="font-size: 11px; font-family: 'PocketGull Mono', monospace; color: #ef4444;">
+            DISPARITY: Vowel ratio 0.24× vs Latin 'o' • Severe visual fatigue
+          </div>
+        </div>
+
+        <div class="readability-card" style="border-color: rgba(56, 189, 248, 0.4);">
+          <div class="readability-badge calibrated" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">
+            <span>✓ PocketGull Optically Calibrated</span>
+          </div>
+          <h4 style="font-size: 16px; color: #38bdf8; margin-bottom: 8px;">Cap-to-Baseline Chinuk Pipa</h4>
+          <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
+            Consonant stems span from baseline (y=0) to Cap Height (y=720) with circle vowels scaled to full x-height counters (y=540 UPM).
+          </p>
+
+          <div class="alignment-guide-box" style="border-color: rgba(56, 189, 248, 0.3);">
+            <div class="guide-line cap-height"></div>
+            <span class="guide-tag cap">CAP (720)</span>
+            <div class="guide-line x-height"></div>
+            <span class="guide-tag x">x-HEIGHT (540)</span>
+            <div class="guide-line baseline"></div>
+            <span class="guide-tag base">BASELINE (0)</span>
+
+            <div class="specimen-text-guide" style="font-family: 'PocketGull Bold', sans-serif; color: #38bdf8;">
+              Kloshe: 𛰅𛰆𛱄𛰜 𛰃𛱑𛰙
+            </div>
+          </div>
+          <div style="font-size: 11px; font-family: 'PocketGull Mono', monospace; color: #38bdf8;">
+            HARMONIZED: Full cap-height stem span • 100% legibility parity
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Architectural Quality Pillars -->
     <div class="pillar-row">
       <div class="pillar-item">
         <h4>1. 1000 UPM Em-Square</h4>
