@@ -278,6 +278,9 @@
       <button class="hud-btn" id="btnResetView" title="Reset camera angle">🎯 Center View</button>
       <button class="hud-btn active" id="btnAutoSpin" title="Toggle automatic turntable rotation">🔄 Turntable</button>
       <button class="hud-btn" id="btnWireframe" title="Toggle CAD wireframe">📐 Wireframe</button>
+      <button class="hud-btn" id="btnAudioToggle" title="Toggle 528Hz Solfeggio &amp; 40Hz Healing Soundscape" style="border-color: #10b981; color: #10b981;">
+        🎵 Healing MIDI: OFF
+      </button>
       <button class="hud-btn" id="btnAR" title="Launch WebXR AR mode">📱 AR Mode</button>
       <a href="index.html#section-07" class="hud-btn" title="Back to specimen">← Specimen</a>
       <a href="surfer.html" class="hud-btn" style="border-color: var(--accent-teal); color: var(--accent-teal);" title="Play Sloan Surfer">🏄 Sloan Surfer</a>
@@ -323,6 +326,19 @@
         <button class="opt-btn" data-mat="bone">🦴 Cortical Bone</button>
         <button class="opt-btn" data-mat="glove">🧤 Tactile Nitrile</button>
         <button class="opt-btn" data-mat="obsidian">🖤 Black Ceramic</button>
+      </div>
+    </div>
+
+    <div>
+      <div class="panel-section-title">
+        <span>🎵 Neuroacoustic Healing Engine</span>
+        <span style="color: #10b981; font-size: 0.65rem;">432Hz / 528Hz / 40Hz</span>
+      </div>
+      <div class="btn-row" style="margin-top: 0.5rem;" id="soundscapeButtons">
+        <button class="opt-btn active" data-tune="dna">🧬 528Hz DNA Cellular</button>
+        <button class="opt-btn" data-tune="gamma">🧠 40Hz Gamma Focus</button>
+        <button class="opt-btn" data-tune="monastic">🔔 432Hz Monastic Bell</button>
+        <button class="opt-btn" data-tune="cardiac">🫀 60 BPM Cardiac Pulse</button>
       </div>
     </div>
 
@@ -458,12 +474,71 @@
     }
     scene.add(ringGroup);
 
-    // Web Audio Synthesizer for Glove Haptic Feedback
+    // --- ADVANCED NEUROACOUSTIC & HEALING MIDI SOUND ENGINE ---
     let audioCtx = null;
+    let isMusicPlaying = false;
+    let currentTune = 'dna';
+    let musicTimer = null;
+    let binauralLeftOsc = null;
+    let binauralRightOsc = null;
+    let musicMasterGain = null;
+    let stepIndex = 0;
+
+    // Healing Frequency Sets
+    // 528 Hz: Solfeggio "Transformation & DNA Repair"
+    // 432 Hz: Monastic Sacred Harmonic Pitch (Verdi tuning)
+    // 40 Hz: Gamma oscillation for Microtubule dipoles and sensory focus
+    const SOUNDSCAPE_PRESETS = {
+      dna: {
+        root: 528,
+        binauralBeat: 8.0, // Alpha relaxation 8Hz
+        scale: [528, 594, 660, 792, 880, 1056],
+        wave: 'sine',
+        tempo: 96,
+        name: '528Hz Solfeggio DNA Repair'
+      },
+      gamma: {
+        root: 216, // 432 / 2
+        binauralBeat: 40.0, // 40Hz Gamma Focus (Orch-OR)
+        scale: [216, 256, 288, 324, 384, 432],
+        wave: 'triangle',
+        tempo: 120,
+        name: '40Hz Cortical Gamma Synchrony'
+      },
+      monastic: {
+        root: 432,
+        binauralBeat: 4.5, // Theta deep meditation
+        scale: [216, 288, 324, 432, 576, 648],
+        wave: 'sine',
+        tempo: 72,
+        name: '432Hz Monastic Cathedral Chimes'
+      },
+      cardiac: {
+        root: 130.81, // C3
+        binauralBeat: 1.0, // 60 BPM delta rhythm
+        scale: [130.81, 164.81, 196.00, 220.00, 261.63],
+        wave: 'triangle',
+        tempo: 60,
+        name: '60 BPM Hemodynamic Vagal Tone'
+      }
+    };
+
+    function initAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        musicMasterGain = audioCtx.createGain();
+        musicMasterGain.gain.setValueAtTime(0.22, audioCtx.currentTime);
+        musicMasterGain.connect(audioCtx.destination);
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    // Play tactile mechanoreceptor click
     function playHapticFeedback(freq = 180, duration = 0.08) {
       try {
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
+        initAudioContext();
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
         osc.type = 'triangle';
@@ -475,6 +550,138 @@
         osc.start();
         osc.stop(audioCtx.currentTime + duration);
       } catch (e) {}
+    }
+
+    // Play an individual musical chime / optotype note
+    function playChimeNote(freq, dur = 0.8, type = 'sine', pan = 0) {
+      if (!audioCtx || !isMusicPlaying) return;
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      const panner = audioCtx.createStereoPanner ? audioCtx.createStereoPanner() : null;
+
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, now);
+
+      // Organic Bell/Chime Envelope
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.18, now + 0.03);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+
+      if (panner) {
+        panner.pan.setValueAtTime(pan, now);
+        osc.connect(gain);
+        gain.connect(panner);
+        panner.connect(musicMasterGain);
+      } else {
+        osc.connect(gain);
+        gain.connect(musicMasterGain);
+      }
+
+      osc.start(now);
+      osc.stop(now + dur);
+    }
+
+    // Start Binaural Carrier Drones
+    function startBinauralDrone() {
+      stopBinauralDrone();
+      if (!audioCtx) return;
+      const preset = SOUNDSCAPE_PRESETS[currentTune];
+      const root = preset.root;
+      const beat = preset.binauralBeat;
+
+      // Left Ear: root frequency
+      binauralLeftOsc = audioCtx.createOscillator();
+      const leftGain = audioCtx.createGain();
+      leftGain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+      binauralLeftOsc.type = 'sine';
+      binauralLeftOsc.frequency.setValueAtTime(root, audioCtx.currentTime);
+
+      // Right Ear: root + beat difference
+      binauralRightOsc = audioCtx.createOscillator();
+      const rightGain = audioCtx.createGain();
+      rightGain.gain.setValueAtTime(0.06, audioCtx.currentTime);
+      binauralRightOsc.type = 'sine';
+      binauralRightOsc.frequency.setValueAtTime(root + beat, audioCtx.currentTime);
+
+      if (audioCtx.createStereoPanner) {
+        const panL = audioCtx.createStereoPanner();
+        panL.pan.setValueAtTime(-0.8, audioCtx.currentTime);
+        binauralLeftOsc.connect(leftGain);
+        leftGain.connect(panL);
+        panL.connect(musicMasterGain);
+
+        const panR = audioCtx.createStereoPanner();
+        panR.pan.setValueAtTime(0.8, audioCtx.currentTime);
+        binauralRightOsc.connect(rightGain);
+        rightGain.connect(panR);
+        panR.connect(musicMasterGain);
+      } else {
+        binauralLeftOsc.connect(leftGain);
+        leftGain.connect(musicMasterGain);
+        binauralRightOsc.connect(rightGain);
+        rightGain.connect(musicMasterGain);
+      }
+
+      binauralLeftOsc.start();
+      binauralRightOsc.start();
+    }
+
+    function stopBinauralDrone() {
+      if (binauralLeftOsc) {
+        try { binauralLeftOsc.stop(); binauralLeftOsc.disconnect(); } catch(e){}
+        binauralLeftOsc = null;
+      }
+      if (binauralRightOsc) {
+        try { binauralRightOsc.stop(); binauralRightOsc.disconnect(); } catch(e){}
+        binauralRightOsc = null;
+      }
+    }
+
+    // Sequencer Step for Melodic Pentatonic Pattern
+    function runHealingSequencer() {
+      if (!isMusicPlaying) return;
+      const preset = SOUNDSCAPE_PRESETS[currentTune];
+      const scale = preset.scale;
+
+      // Generative melodic step
+      const noteIdx = (stepIndex * 3 + Math.floor(stepIndex / 4)) % scale.length;
+      const noteFreq = scale[noteIdx];
+      const pan = Math.sin(stepIndex * 0.4);
+
+      // Trigger Melodic Chime
+      playChimeNote(noteFreq, 1.2, preset.wave, pan);
+
+      // Sub-harmonic bass pulse every 4 steps
+      if (stepIndex % 4 === 0) {
+        playChimeNote(scale[0] / 2, 1.8, 'sine', 0);
+      }
+
+      stepIndex++;
+      const stepTimeMs = (60 / preset.tempo) * 500; // eighth-note pulse
+      musicTimer = setTimeout(runHealingSequencer, stepTimeMs);
+    }
+
+    function toggleHealingMusic() {
+      initAudioContext();
+      isMusicPlaying = !isMusicPlaying;
+      const btn = document.getElementById('btnAudioToggle');
+
+      if (isMusicPlaying) {
+        btn.textContent = '🎵 Healing MIDI: ON';
+        btn.style.background = 'rgba(16, 185, 129, 0.25)';
+        btn.style.boxShadow = '0 0 16px rgba(16, 185, 129, 0.5)';
+        startBinauralDrone();
+        runHealingSequencer();
+        triggerGloveTouch(SOUNDSCAPE_PRESETS[currentTune].name);
+      } else {
+        btn.textContent = '🎵 Healing MIDI: OFF';
+        btn.style.background = '';
+        btn.style.boxShadow = '';
+        if (musicTimer) clearTimeout(musicTimer);
+        stopBinauralDrone();
+        triggerGloveTouch('Soundscape Paused');
+      }
     }
 
     // Material Presets (PBR MeshStandardMaterial / MeshPhysicalMaterial)
@@ -820,7 +1027,26 @@
       build3DGlyphMesh();
     });
 
-    // AR Mode
+    // Healing Music Toggle
+    document.getElementById('btnAudioToggle').addEventListener('click', () => {
+      toggleHealingMusic();
+    });
+
+    // Soundscape Preset Buttons
+    document.querySelectorAll('#soundscapeButtons .opt-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#soundscapeButtons .opt-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentTune = btn.dataset.tune;
+        stepIndex = 0;
+        if (isMusicPlaying) {
+          startBinauralDrone();
+        }
+        triggerGloveTouch('Soundscape: ' + SOUNDSCAPE_PRESETS[currentTune].name);
+      });
+    });
+
+        // AR Mode
     document.getElementById('btnAR').addEventListener('click', () => {
       if (navigator.xr) {
         alert('WebXR AR Surface Inspection Plane: Calibrating 6.0 meter optical line-of-sight for Louise Sloan 5:1 optotype clinical trial.');
