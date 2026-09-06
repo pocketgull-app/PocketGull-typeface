@@ -545,6 +545,88 @@
       font-weight: 700;
     }
 
+
+    /* Tri-Paradigm & PTSD EMDR Suite Styles */
+    .paradigm-selector-bar {
+      display: flex;
+      gap: 0.35rem;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 0.3rem;
+      margin-bottom: 0.75rem;
+    }
+    .paradigm-btn {
+      flex: 1;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.35rem 0.4rem;
+      border-radius: 6px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+      transition: all 0.2s ease;
+    }
+    .paradigm-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .paradigm-btn.active[data-paradigm="allopathic"] {
+      border-color: #38bdf8;
+      background: rgba(56, 189, 248, 0.2);
+      color: #38bdf8;
+    }
+    .paradigm-btn.active[data-paradigm="tcm"] {
+      border-color: #10b981;
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+    }
+    .paradigm-btn.active[data-paradigm="ayurvedic"] {
+      border-color: #f59e0b;
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+    }
+
+    /* PTSD & Trauma-Informed Grounding Card */
+    .ptsd-panel-card {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(168, 85, 247, 0.08) 100%);
+      border: 1px solid rgba(244, 63, 94, 0.3);
+      border-radius: 12px;
+      padding: 0.95rem;
+      margin-top: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .btn-emergency-ground {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(245, 158, 11, 0.25));
+      border: 1px solid #f43f5e;
+      color: #fecdd3;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.45rem 0.75rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 0 12px rgba(244, 63, 94, 0.25);
+    }
+    .btn-emergency-ground:hover {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.4), rgba(245, 158, 11, 0.4));
+      color: #fff;
+      box-shadow: 0 0 18px rgba(244, 63, 94, 0.45);
+    }
+
   </style>
 </head>
 <body>
@@ -579,6 +661,23 @@
     
     <!-- LEFT PANEL: LETTERFORM GAMEBOARDS SELECTION -->
     <aside class="panel-sidebar">
+      <!-- Universal Healing Tri-Paradigm Selector -->
+      <div class="panel-title">
+        <span>🌐</span>
+        <span>Universal Medical Paradigm</span>
+      </div>
+      <div class="paradigm-selector-bar" id="paradigmSelectorBar" role="radiogroup" aria-label="Medical Healing Paradigm">
+        <button type="button" class="paradigm-btn active" data-paradigm="allopathic" title="Western Allopathic & Neurobiology: ETDRS Acuity, Motor Mapping, ISMP Safety">
+          <span>🔵</span> Allopathic
+        </button>
+        <button type="button" class="paradigm-btn" data-paradigm="tcm" title="Traditional Chinese Medicine: Qi Flow, Shen Calming, Acupoint Meridians">
+          <span>🟢</span> TCM Qi
+        </button>
+        <button type="button" class="paradigm-btn" data-paradigm="ayurvedic" title="Ayurvedic Medicine: Tridosha Balance (Vata/Pitta/Kapha), Sushumna & Prana">
+          <span>🟡</span> Ayurveda
+        </button>
+      </div>
+
       <div class="panel-title">
         <span>🧩</span>
         <span>Choose Letterform Board</span>
@@ -642,6 +741,34 @@
           <div class="board-char">A</div>
           <div class="board-name">Pinnacle Temple</div>
           <div class="board-desc">Ascend the twin pillars and cross the peaceful high horizon bridge.</div>
+        </div>
+
+        <!-- 7. TCM Xin / Heart Meridian (心) -->
+        <div class="board-card" data-board="xin">
+          <div class="board-char" style="font-family: 'PocketGull', sans-serif;">心</div>
+          <div class="board-name">TCM Xin (Heart & Shen)</div>
+          <div class="board-desc">4-stroke radical calming the Shen spirit and opening chest constriction.</div>
+        </div>
+
+        <!-- 8. Vedic Pranava / Sacred Loop (ॐ) -->
+        <div class="board-card" data-board="om">
+          <div class="board-char" style="font-family: 'PocketGull', sans-serif;">ॐ</div>
+          <div class="board-name">Vedic Pranava OM</div>
+          <div class="board-desc">Continuous sacred curve pacifying Vata restlessness into deep Ojas stillness.</div>
+        </div>
+
+        <!-- 9. An / Chinese Safety (安) -->
+        <div class="board-card" data-board="an">
+          <div class="board-char" style="font-family: 'PocketGull', sans-serif;">安</div>
+          <div class="board-name">Ān (Sanctuary & Safety)</div>
+          <div class="board-desc">Sheltering roof protecting the inner self; universal trauma refuge.</div>
+        </div>
+
+        <!-- 10. Shanti / Inner Peace (शान्ति) -->
+        <div class="board-card" data-board="shanti">
+          <div class="board-char" style="font-family: 'PocketGull', sans-serif;">शान्ति</div>
+          <div class="board-name">Shanti (Deep Peace)</div>
+          <div class="board-desc">Threefold harmonic cessation of physical, mental, and spiritual strife.</div>
         </div>
       </div>
 
@@ -813,6 +940,44 @@
         <div class="rehab-metric-row">
           <span>CORPUS CALLOSUM COHERENCE:</span>
           <span class="rehab-metric-val" id="valCallosumCoherence">COHERENT (0.10 Hz)</span>
+        </div>
+      </div>
+
+      <!-- PTSD & Trauma-Informed Grounding Suite -->
+      <div class="panel-title" style="margin-top: 0.5rem;">
+        <span>🕊️</span>
+        <span>Trauma &amp; PTSD Grounding</span>
+      </div>
+      <div class="ptsd-panel-card" id="ptsdPanel">
+        <button type="button" class="btn-emergency-ground" id="btnEmergencyGround" title="Instant sensory grounding: Dims contrast, activates warm amber phototherapy, 136.1 Hz OM drone, and 5 calming breaths">
+          <span>🛡️</span> EMERGENCY GROUNDING ANCHOR
+        </button>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.2rem;">
+          <span style="font-size: 0.72rem; font-weight: 800; color: #f43f5e; text-transform: uppercase;">
+            Somatic Trauma Protocol
+          </span>
+          <span id="ptsdStatusBadge" style="font-family: var(--font-mono); font-size: 0.62rem; color: #cbd5e1; background: rgba(0,0,0,0.4); padding: 0.1rem 0.4rem; border-radius: 4px;">
+            WINDOW OF TOLERANCE
+          </span>
+        </div>
+        <p id="ptsdDesc" style="font-size: 0.72rem; color: rgba(255,255,255,0.75); line-height: 1.35; margin: 0;">
+          EMDR bilateral eye desensitization across glyph paths softens amygdala hyper-vigilance while 136.1 Hz OM stabilizes shock.
+        </p>
+
+        <div class="rehab-mode-grid">
+          <button type="button" class="rehab-pill" id="btnEmdrBilateral" data-trauma="emdr" title="EMDR Saccadic Sweep: Smooth horizontal tracking across letterform paths to downregulate traumatic memories">
+            <span>👁️</span> EMDR Saccade
+          </button>
+          <button type="button" class="rehab-pill" id="btnSomaticDischarge" data-trauma="discharge" title="Levine Somatic Experiencing: Gentle oscillatory unwinding to release frozen survival energy">
+            <span>🌊</span> Somatic Release
+          </button>
+          <button type="button" class="rehab-pill" id="btnAncestralWord" data-trauma="word" title="Trace sacred grounding words of peace across mother tongues (PEACE, 安, शान्ति, PAZ)">
+            <span>🔤</span> Sacred Words
+          </button>
+          <button type="button" class="rehab-pill" id="btnVagalShield" data-trauma="vagal" title="Porges Polyvagal Social Engagement: Warm tone harmonics to dissolve freeze states">
+            <span>🛡️</span> Vagal Shield
+          </button>
         </div>
       </div>
 
@@ -1071,6 +1236,103 @@
           { x: 0, y: -220, label: 'Apex Pinnacle', collected: false },
           { x: 160, y: 200, label: 'Right Foot', collected: false },
           { x: 0, y: 50, label: 'Crossbar Sanctuary', collected: false }
+        ]
+      },
+
+      xin: {
+        id: 'xin',
+        name: 'TCM Xin (Heart & Shen) • 心',
+        moralTitle: 'Nourishing the Shen (Spirit)',
+        moralDesc: 'In Chinese Medicine, the Heart (心) houses Shen—the spirit, consciousness, and emotional peace. Tracing the 4 points releases chest tension and stills restless racing thoughts.',
+        paths: [
+          // Left dot
+          { type: 'bezier', p0: { x: -130, y: -40 }, p1: { x: -150, y: 0 }, p2: { x: -120, y: 40 }, p3: { x: -100, y: 50 } },
+          // Bottom sweeping cradle hook (wo gou)
+          { type: 'bezier', p0: { x: -100, y: -20 }, p1: { x: -80, y: 150 }, p2: { x: 70, y: 170 }, p3: { x: 130, y: 40 } },
+          // Center inner dot
+          { type: 'circle', cx: -15, cy: -20, r: 25 },
+          // Right outer dot
+          { type: 'circle', cx: 100, cy: -80, r: 25 }
+        ],
+        targets: [
+          { x: -110, y: 40, label: 'Left Reservoir', collected: false },
+          { x: 0, y: 155, label: 'Shen Cradle', collected: false },
+          { x: -15, y: -20, label: 'Inner Flame', collected: false },
+          { x: 100, y: -80, label: 'Upper Ascendant', collected: false }
+        ]
+      },
+
+      om: {
+        id: 'om',
+        name: 'Vedic Pranava OM • ॐ',
+        moralTitle: 'Pranic Grounding & Ojas Preservation',
+        moralDesc: 'The primordial sound of wholeness in Ayurvedic medicine. The three curves represent waking, dreaming, and deep stillness. Tracing the loop pacifies hyperactive Vata air and rebuilds Ojas.',
+        paths: [
+          // Upper loop
+          { type: 'circle', cx: -40, cy: -110, r: 85 },
+          // Lower expansive belly loop
+          { type: 'circle', cx: -20, cy: 70, r: 110 },
+          // Right sweeping tail curve
+          { type: 'bezier', p0: { x: 70, y: 70 }, p1: { x: 160, y: 60 }, p2: { x: 180, y: -40 }, p3: { x: 130, y: -90 } },
+          // Crescent chandra-bindu
+          { type: 'bezier', p0: { x: 30, y: -180 }, p1: { x: 80, y: -150 }, p2: { x: 130, y: -150 }, p3: { x: 170, y: -180 } },
+          { type: 'circle', cx: 100, cy: -215, r: 18 }
+        ],
+        targets: [
+          { x: -40, y: -110, label: 'Jagrat (Conscious)', collected: false },
+          { x: -20, y: 70, label: 'Sushupti (Deep Stillness)', collected: false },
+          { x: 150, y: -20, label: 'Swapna (Vision)', collected: false },
+          { x: 100, y: -215, label: 'Bindu (Pure Awareness)', collected: false }
+        ]
+      },
+
+      an: {
+        id: 'an',
+        name: 'Ān (Refuge & Safety) • 安',
+        moralTitle: 'Sanctuary Under a Protective Roof',
+        moralDesc: 'Formed by a protective sheltering roof over a calm centered figure. An ancient ideograph signifying that trauma cannot penetrate once the boundaries of personal sanctuary are sealed.',
+        paths: [
+          // Crown dot
+          { type: 'line', x1: 0, y1: -220, x2: 0, y2: -165 },
+          // Roof canopy left hook & crossbar
+          { type: 'line', x1: -160, y1: -140, x2: 160, y2: -140 },
+          { type: 'line', x1: -160, y1: -140, x2: -170, y2: -90 },
+          { type: 'line', x1: 160, y1: -140, x2: 150, y2: -90 },
+          // Lower figure sanctuary cross and sweep
+          { type: 'line', x1: -150, y1: 120, x2: 150, y2: 120 },
+          { type: 'bezier', p0: { x: 0, y: -100 }, p1: { x: -80, y: -20 }, p2: { x: 0, y: 190 }, p3: { x: 80, y: 220 } }
+        ],
+        targets: [
+          { x: 0, y: -200, label: 'Crown Keystone', collected: false },
+          { x: -160, y: -120, label: 'West Eaves', collected: false },
+          { x: 160, y: -120, label: 'East Eaves', collected: false },
+          { x: 0, y: 120, label: 'Inner Hearth', collected: false },
+          { x: 80, y: 220, label: 'Root Ground', collected: false }
+        ]
+      },
+
+      shanti: {
+        id: 'shanti',
+        name: 'Shanti (Universal Peace) • शान्ति',
+        moralTitle: 'Threefold Transcendent Peace',
+        moralDesc: 'In Vedic Sanskrit, Shanti invoked thrice protects against adhyatmika (inner emotional strife), adhibhautika (relational conflict), and adhidaivika (environmental and cosmic chaos).',
+        paths: [
+          // Upper Shirorekha headline
+          { type: 'line', x1: -180, y1: -160, x2: 180, y2: -160 },
+          // Sha loop
+          { type: 'circle', cx: -100, cy: -80, r: 55 },
+          { type: 'line', x1: -45, y1: -160, x2: -45, y2: 180 },
+          // Vertical spine pillar
+          { type: 'line', x1: 45, y1: -160, x2: 45, y2: 180 },
+          // Right Matra loop
+          { type: 'bezier', p0: { x: 45, y: -20 }, p1: { x: 110, y: -20 }, p2: { x: 130, y: 80 }, p3: { x: 130, y: 180 } }
+        ],
+        targets: [
+          { x: -140, y: -160, label: 'Headline Haven', collected: false },
+          { x: -100, y: -80, label: 'Sha Chakra', collected: false },
+          { x: -45, y: 160, label: 'Inner Shanti', collected: false },
+          { x: 45, y: 160, label: 'Relational Shanti', collected: false },
+          { x: 130, y: 160, label: 'Cosmic Shanti', collected: false }
         ]
       }
     };
@@ -1445,6 +1707,95 @@
       }
       lastTokenSignX = currentSignX;
     }
+
+
+    /* ========================================================================== */
+    /* TRI-PARADIGM ARBITER & PTSD EMDR GROUNDING ENGINE                          */
+    /* ========================================================================== */
+    let currentParadigm = 'allopathic'; // 'allopathic', 'tcm', 'ayurvedic'
+    let isEmdrActive = false;
+    let emdrDirection = 1;
+
+    // Paradigm Arbiter
+    document.querySelectorAll('.paradigm-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        sound.init();
+        document.querySelectorAll('.paradigm-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentParadigm = btn.dataset.paradigm;
+
+        if (currentParadigm === 'allopathic') {
+          sound.setFrequency(528);
+          setBoard('zero');
+          showToast('🔵 Western Allopathic: ISMP Disambiguation & Motor Mapping Active');
+        } else if (currentParadigm === 'tcm') {
+          sound.setFrequency(432);
+          setBoard('xin');
+          document.querySelectorAll('.board-card').forEach(c => c.classList.toggle('active', c.dataset.board === 'xin'));
+          showToast('🟢 TCM Qi & Meridian: Xin (Heart Shen) Acupoint Channel Active');
+        } else if (currentParadigm === 'ayurvedic') {
+          sound.setFrequency(136.1);
+          setBoard('om');
+          document.querySelectorAll('.board-card').forEach(c => c.classList.toggle('active', c.dataset.board === 'om'));
+          showToast('🟡 Ayurvedic Medicine: Pranava OM & Tridosha Grounding Active');
+        }
+      });
+    });
+
+    // Emergency Grounding Anchor (Single-Tap PTSD De-escalation)
+    const btnEmergencyGround = document.getElementById('btnEmergencyGround');
+    if (btnEmergencyGround) {
+      btnEmergencyGround.addEventListener('click', () => {
+        sound.init();
+        sound.setFrequency(136.1); // Earth OM 136.1 Hz for profound trauma calming
+        if (typeof setHealerMode === 'function') setHealerMode('breath'); // 4-7-8 Breath
+        
+        // Turn on Glare Softener
+        const glareEl = document.getElementById('glareSoftenerOverlay');
+        const chipGlareEl = document.getElementById('chipGlare');
+        if (glareEl) glareEl.classList.add('active');
+        if (chipGlareEl) chipGlareEl.classList.add('active');
+
+        // Select An (Sanctuary) or OM board
+        setBoard('an');
+        document.querySelectorAll('.board-card').forEach(c => c.classList.toggle('active', c.dataset.board === 'an'));
+
+        showToast('🛡️ GROUNDING SAFETY ACTIVATED • Feel Your Feet on the Floor • Breathe Deeply');
+      });
+    }
+
+    // PTSD Somatic Protocol Buttons
+    const traumaPills = document.querySelectorAll('.rehab-pill[data-trauma]');
+    traumaPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        sound.init();
+        traumaPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        const mode = pill.dataset.trauma;
+
+        if (mode === 'emdr') {
+          isEmdrActive = true;
+          setBoard('s'); // S-curve or Figure-8 for wide horizontal eye tracking
+          document.querySelectorAll('.board-card').forEach(c => c.classList.toggle('active', c.dataset.board === 's'));
+          if (!isAutoFlow && typeof btnToggleAutoFlow !== 'undefined' && btnToggleAutoFlow) {
+            btnToggleAutoFlow.click();
+          }
+          showToast('👁️ EMDR Bilateral Eye-Tracker Active: Follow the pearl horizontally with eyes only');
+        } else if (mode === 'discharge') {
+          sound.setFrequency(432);
+          showToast('🌊 Somatic Experiencing: Notice physical sensations, allow spontaneous sighing');
+        } else if (mode === 'word') {
+          setBoard('shanti');
+          document.querySelectorAll('.board-card').forEach(c => c.classList.toggle('active', c.dataset.board === 'shanti'));
+          showToast('🔤 Sacred Words Active: Tracing Shanti (Universal Peace)');
+        } else if (mode === 'vagal') {
+          sound.setFrequency(528);
+          setBoard('pipa');
+          document.querySelectorAll('.board-card').forEach(c => c.classList.toggle('active', c.dataset.board === 'pipa'));
+          showToast('🛡️ Polyvagal Safety Shield: Dissolving freeze into social connection');
+        }
+      });
+    });
 
     // Touch & Mouse Input Handlers
     function handlePointer(clientX, clientY) {
