@@ -463,6 +463,10 @@
       </div>
 
       <div class="telemetry-cluster">
+        <div class="telemetry-card" id="cardTeamSync" style="display: none; border-color: #a855f7;">
+          <div class="telemetry-val" id="hudTeamSync" style="color: #c084fc;">100%</div>
+          <div class="telemetry-label">Team Harmony</div>
+        </div>
         <div class="telemetry-card">
           <div class="telemetry-val" id="hudAcuity">20/200</div>
           <div class="telemetry-label">Visual Acuity</div>
@@ -497,6 +501,7 @@
         <!-- Healing Soundscape Preset Selector -->
         <select id="selectTerrain" class="hud-btn" style="background: rgba(56, 189, 248, 0.2); border-color: #38bdf8; color: #38bdf8; cursor: pointer; outline: none; font-weight: 800;" title="Select Visual &amp; Physics Theme">
           <option value="cyber">⚡ Cyber Highway</option>
+          <option value="edgesurf">🏄‍♂️ Edge Surf (Microsoft Classic)</option>
           <option value="skifree">⛷️ SkiFree Alpine (1991)</option>
           <option value="pacific">🌊 Pacific Wave Surfer</option>
         </select>
@@ -506,6 +511,7 @@
           <option value="monastic">🔔 432Hz Monastic Chime</option>
           <option value="cardiac">🫀 60 BPM Cardiac Pulse</option>
         </select>
+        <button class="hud-btn" id="btnToggleCoop" style="border-color: #a855f7; color: #c084fc;" title="Toggle 2-Player Collaborative Tandem Mode">👥 Co-Op Team: OFF</button>
         <button class="hud-btn" id="btnToggleHaptic" style="border-color: #f59e0b; color: #f59e0b;" title="Toggle Device Haptic Motor &amp; Somatosensory Vibration">📳 Tactile: ON</button>
         <button class="hud-btn" id="btnToggleSound">🔊 Audio: ON</button>
         <button class="hud-btn" id="btnPauseGame">⏸ Pause</button>
@@ -520,7 +526,7 @@
       <div class="card-badge">OPEN-SOURCE WEBXR RHYTHM HIGHWAY</div>
       <h1 class="card-title">SLOAN SURFER</h1>
       <p class="card-desc">
-        A clinical optometry rhythm game inspired by Moonrider.xyz. Surf the 3D typographic highway, slice Louise Sloan optotypes, disambiguate life-critical ISMP characters, and synchronize with 40 Hz gamma cardiac hemodynamics.
+        A clinical optometry &amp; collaborative learning game inspired by Moonrider.xyz, Microsoft Edge Surf, and SkiFree. Designed as an intergenerational teaching stage: master Louise Sloan 5:1 optotypes, test life-critical ISMP medication safety, and build collaborative saccadic synchronization across clinical teams, students, and patients.
       </p>
 
       <!-- AGE-BASED CLINICAL DIFFICULTY TIERS -->
@@ -597,6 +603,19 @@
     const streakToast = document.getElementById('streakToast');
     const startModal = document.getElementById('startModal');
     const btnStartRun = document.getElementById('btnStartRun');
+    const btnToggleCoop = document.getElementById('btnToggleCoop');
+    const cardTeamSync = document.getElementById('cardTeamSync');
+    if (btnToggleCoop) {
+      btnToggleCoop.addEventListener('click', () => {
+        isCoopMode = !isCoopMode;
+        btnToggleCoop.textContent = isCoopMode ? '👥 Co-Op Team: ON (P1: Mouse • P2: Keys)' : '👥 Co-Op Team: OFF';
+        btnToggleCoop.style.borderColor = isCoopMode ? '#a855f7' : 'rgba(255,255,255,0.2)';
+        btnToggleCoop.style.background = isCoopMode ? 'rgba(168, 85, 247, 0.25)' : 'rgba(15, 23, 42, 0.8)';
+        if (cardTeamSync) cardTeamSync.style.display = isCoopMode ? 'flex' : 'none';
+        triggerTactileImpulse([50, 30, 50], 320, 'strong');
+      });
+    }
+
     const btnToggleSound = document.getElementById('btnToggleSound');
     const btnPauseGame = document.getElementById('btnPauseGame');
 
@@ -886,8 +905,26 @@
     let beatTimer = 0;
     let spawnTimer = 0;
 
-    // ─── SkiFree & Surf Retro Physics & Obstacles ───
-    let currentTerrain = 'cyber'; // 'cyber' | 'skifree' | 'pacific'
+    // ─── SkiFree, Edge Surf & Collaborative Teamwork Mode ───
+    let currentTerrain = 'cyber'; // 'cyber' | 'edgesurf' | 'skifree' | 'pacific'
+    let isCoopMode = false;
+    let teamSyncScore = 100;
+
+    // Co-op Player 2 Controls (Keyboard: Arrow Keys / WASD)
+    const player2 = {
+      x: 60,
+      y: 0,
+      saber: { x: 60, y: 0, color: '#ec4899', trail: [] }
+    };
+
+    // The Edge Surfer Kraken / Giant Sea Monster
+    const kraken = {
+      active: false,
+      z: 1500,
+      x: 0,
+      speed: 800,
+      frame: 0
+    };
     let obstacles = []; // Trees, rocks, slalom flags, ramps, ocean barrels
     let obstacleTimer = 0;
     let isJumping = false;
@@ -962,7 +999,13 @@
       let type = 'tree';
       let icon = '🌲';
 
-      if (currentTerrain === 'skifree') {
+      if (currentTerrain === 'edgesurf') {
+        const r = Math.random();
+        if (r < 0.35) { type = 'buoy'; icon = '🔴'; }
+        else if (r < 0.6) { type = 'turtle'; icon = '🐢'; }
+        else if (r < 0.8) { type = 'ramp'; icon = '🚤'; }
+        else { type = 'octopus'; icon = '🐙'; }
+      } else if (currentTerrain === 'skifree') {
         const r = Math.random();
         if (r < 0.4) { type = 'tree'; icon = '🌲'; }
         else if (r < 0.7) { type = 'slalom'; icon = '🚩'; }
@@ -1032,6 +1075,20 @@
     window.addEventListener('keydown', (e) => {
       if (e.code === 'Space') {
         triggerJump();
+      }
+
+      // Player 2 Co-Op Controls (Arrow Keys or WASD)
+      if (isCoopMode) {
+        const step = 45;
+        if (e.code === 'ArrowLeft' || e.code === 'KeyA') {
+          player2.x = Math.max(-LANE_SPACING_X * 1.5, player2.x - step);
+        } else if (e.code === 'ArrowRight' || e.code === 'KeyD') {
+          player2.x = Math.min(LANE_SPACING_X * 1.5, player2.x + step);
+        } else if (e.code === 'ArrowUp' || e.code === 'KeyW') {
+          player2.y = Math.max(-80, player2.y - step);
+        } else if (e.code === 'ArrowDown' || e.code === 'KeyS') {
+          player2.y = Math.min(80, player2.y + step);
+        }
       }
     });
 
@@ -1470,7 +1527,16 @@
       }
 
       // 5. Render Glowing Light Sabers & Motion Trails
-      [player.leftSaber, player.rightSaber].forEach(saber => {
+      const activeSabers = [player.leftSaber, player.rightSaber];
+      if (isCoopMode) {
+        player2.saber.x = player2.x;
+        player2.saber.y = player2.y;
+        player2.saber.trail.push({ x: player2.saber.x, y: player2.saber.y, alpha: 1.0 });
+        if (player2.saber.trail.length > 12) player2.saber.trail.shift();
+        activeSabers.push(player2.saber);
+      }
+
+      activeSabers.forEach(saber => {
         // Draw saber trail
         if (saber.trail.length > 1) {
           ctx.save();
