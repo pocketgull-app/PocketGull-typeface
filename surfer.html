@@ -500,12 +500,11 @@
       <div style="display: flex; gap: 0.6rem; align-items: center;">
         <!-- Healing Soundscape Preset Selector -->
         <select id="selectTerrain" class="hud-btn" style="background: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #10b981; cursor: pointer; outline: none; font-weight: 800;" title="Select Visual &amp; Physics Theme">
-          <option value="fable" selected>📜 Aesop's Fable Sanctuary</option>
-          <option value="edgesurf">🏄‍♂️ Edge Surf (Lagoon Waters)</option>
-          <option value="cyber">⚡ Cyber Highway</option>
-          <option value="edgesurf">🏄‍♂️ Edge Surf (Microsoft Classic)</option>
-          <option value="skifree">⛷️ SkiFree Alpine (1991)</option>
-          <option value="pacific">🌊 Pacific Wave Surfer</option>
+          <option value="fable" selected>📜 Aesop's Fables (Cozy Meadow)</option>
+          <option value="edgesurf">🏄‍♂️ Edge Surf (Azure Lagoon)</option>
+          <option value="skifree">⛷️ SkiFree Alpine (Glacier Snow)</option>
+          <option value="pacific">🌊 Pacific Wave (Ocean Swells)</option>
+          <option value="cyber">⚡ Cyber Highway (Neon Grid)</option>
         </select>
         <select id="selectSoundscape" class="hud-btn" style="background: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #10b981; cursor: pointer; outline: none; font-weight: 800;">
           <option value="dna">🧬 528Hz Solfeggio DNA</option>
@@ -621,6 +620,9 @@
     const btnStartRun = document.getElementById('btnStartRun');
     const btnToggleCoop = document.getElementById('btnToggleCoop');
     const cardTeamSync = document.getElementById('cardTeamSync');
+    const hudTeamSync = document.getElementById('hudTeamSync');
+    const streakTitle = document.getElementById('streakTitle');
+    const tierGrid = document.getElementById('tierGrid');
     if (btnToggleCoop) {
       btnToggleCoop.addEventListener('click', () => {
         isCoopMode = !isCoopMode;
@@ -1277,6 +1279,15 @@
 
       // Streak Visual Punch
       streakVal.textContent = streak;
+      if (streakTitle) {
+        if (currentTerrain === 'fable') streakTitle.textContent = 'WISPS COLLECTED';
+        else if (currentTerrain === 'edgesurf') streakTitle.textContent = 'SURF FLOW';
+        else if (currentTerrain === 'skifree') streakTitle.textContent = 'SLALOM STREAK';
+        else streakTitle.textContent = 'SACCADE STREAK';
+      }
+      if (hudTeamSync && isCoopMode) {
+        hudTeamSync.textContent = Math.min(100, Math.floor(teamSyncScore)) + '%';
+      }
       streakBanner.style.transform = 'translate(-50%, -50%) scale(1.15)';
       setTimeout(() => {
         streakBanner.style.transform = 'translate(-50%, -50%) scale(1.0)';
@@ -1361,22 +1372,40 @@
       const dt = (currentTime - lastTime) / 1000;
       lastTime = currentTime;
 
-      // Clear Frame & Dynamic Terrain Background
-      if (currentTerrain === 'skifree') {
-        // High-contrast Alpine White Glacier with distant pine mountain silhouettes
+      // ─── FULL DYNAMIC THEME BACKGROUNDS (ALL 5 THEMES) ───
+      if (currentTerrain === 'fable') {
+        // 1. Aesop's Fable Twilight Meadow (Warm sunset amber & lush moss)
+        const fableGrad = ctx.createLinearGradient(0, 0, 0, height);
+        fableGrad.addColorStop(0, '#1c1917');      // Forest canopy
+        fableGrad.addColorStop(0.35, '#292524');
+        fableGrad.addColorStop(0.44, '#78350f');   // Amber sunset horizon
+        fableGrad.addColorStop(0.55, '#14532d');   // Mossy clover meadow
+        fableGrad.addColorStop(1, '#052e16');
+        ctx.fillStyle = fableGrad;
+      } else if (currentTerrain === 'edgesurf') {
+        // 2. Microsoft Edge Surf Azure Lagoon (Sunny tropical waters)
+        const edgeGrad = ctx.createLinearGradient(0, 0, 0, height);
+        edgeGrad.addColorStop(0, '#0369a1');      // Distant ocean
+        edgeGrad.addColorStop(0.44, '#38bdf8');   // Sunlit surface reef
+        edgeGrad.addColorStop(0.7, '#7dd3fc');
+        edgeGrad.addColorStop(1, '#bae6fd');      // Shallows
+        ctx.fillStyle = edgeGrad;
+      } else if (currentTerrain === 'skifree') {
+        // 3. SkiFree Alpine 1991 (Crisp glacial powder snow)
         const snowGrad = ctx.createLinearGradient(0, 0, 0, height);
-        snowGrad.addColorStop(0, '#cbd5e1');
-        snowGrad.addColorStop(0.44, '#f1f5f9');
-        snowGrad.addColorStop(1, '#ffffff');
+        snowGrad.addColorStop(0, '#94a3b8');      // Mountain peaks
+        snowGrad.addColorStop(0.44, '#e2e8f0');   // Horizon slope
+        snowGrad.addColorStop(1, '#ffffff');      // Forefront snow
         ctx.fillStyle = snowGrad;
       } else if (currentTerrain === 'pacific') {
-        // Deep Pacific Oceanic swell gradient
+        // 4. Pacific Ocean Swells (Deep midnight navy & bioluminescence)
         const seaGrad = ctx.createLinearGradient(0, 0, 0, height);
         seaGrad.addColorStop(0, '#0c4a6e');
-        seaGrad.addColorStop(0.44, '#0369a1');
-        seaGrad.addColorStop(1, '#0284c7');
+        seaGrad.addColorStop(0.44, '#075985');
+        seaGrad.addColorStop(1, '#0369a1');
         ctx.fillStyle = seaGrad;
       } else {
+        // 5. Cyber Highway (Deep space neon telemetry)
         ctx.fillStyle = '#030712';
       }
       ctx.fillRect(0, 0, width, height);
@@ -1386,7 +1415,18 @@
 
       // 1. Draw 3D Perspective Highway Grid
       ctx.save();
-      ctx.strokeStyle = currentTerrain === 'skifree' ? 'rgba(71, 85, 105, 0.35)' : (currentTerrain === 'pacific' ? 'rgba(255, 255, 255, 0.45)' : 'rgba(56, 189, 248, 0.22)');
+      // Theme-specific grid stroke colors
+      if (currentTerrain === 'fable') {
+        ctx.strokeStyle = 'rgba(245, 158, 11, 0.35)'; // Amber path in meadow
+      } else if (currentTerrain === 'edgesurf') {
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.55)'; // Foamy surf wake
+      } else if (currentTerrain === 'skifree') {
+        ctx.strokeStyle = 'rgba(71, 85, 105, 0.35)';   // Ski tracks in snow
+      } else if (currentTerrain === 'pacific') {
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.45)';  // Bioluminescent waves
+      } else {
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.22)';  // Cyber grid
+      }
       ctx.lineWidth = 1.5;
 
       // Longitudinal Lane Lines
@@ -1617,6 +1657,57 @@
         }
       }
 
+      // Render the Edge Surfer Giant Kraken (Active in Edge Surf Mode)
+      if (currentTerrain === 'edgesurf' && isPlaying && (score >= 2000 || streak >= 15)) {
+        if (!kraken.active) {
+          kraken.active = true;
+          kraken.z = 1300;
+          kraken.x = player.x;
+          streakToast.textContent = '🦑 WATCH OUT! THE GIANT KRAKEN IS SURFACING!';
+          streakToast.style.color = '#a855f7';
+          streakToast.classList.add('show');
+          triggerTactileImpulse([80, 40, 80], 90, 'strong');
+          setTimeout(() => streakToast.classList.remove('show'), 1500);
+        }
+      }
+
+      if (kraken.active && currentTerrain === 'edgesurf') {
+        if (isPlaying) {
+          kraken.z -= dt * kraken.speed * 0.75;
+          kraken.x += (player.x - kraken.x) * 0.04;
+        }
+        if (kraken.z > 0) {
+          const perspective = 480 / Math.max(1, kraken.z);
+          const kX = centerX + kraken.x * perspective;
+          const kY = horizonY + (height * 0.48) * perspective - 15;
+          const kSize = Math.max(25, perspective * 65);
+
+          ctx.save();
+          ctx.font = kSize + 'px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('🐙', kX, kY);
+
+          // Water ripple under kraken
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.ellipse(kX, kY + kSize * 0.35, kSize * 0.5, kSize * 0.2, 0, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.restore();
+
+          if (kraken.z <= PLAYER_Z + 30 && kraken.z >= PLAYER_Z - 30) {
+            streakToast.textContent = '🌊 SPLASH! KRAKEN TENTACLE SURF! +300';
+            streakToast.style.color = '#38bdf8';
+            streakToast.classList.add('show');
+            triggerTactileImpulse([60, 40, 60], 180, 'normal');
+            setTimeout(() => streakToast.classList.remove('show'), 1000);
+            score += 300;
+            kraken.z = 1400; // Resurface behind
+          }
+        }
+      }
+
       // Render the SkiFree Yeti
       if (yeti.active && currentTerrain === 'skifree') {
         if (isPlaying) {
@@ -1752,18 +1843,8 @@
         const btnText = document.getElementById('btnStartRunText');
         if (btnText) btnText.textContent = config.buttonText;
 
-        // Auto-switch soundscape
-        const selectTerrain = document.getElementById('selectTerrain');
-    if (selectTerrain) {
-      selectTerrain.addEventListener('change', (e) => {
-        currentTerrain = e.target.value;
-        obstacles = [];
-        yeti.active = false;
-        triggerTactileImpulse([40], 240, 'normal');
-      });
-    }
-
-    const selectSoundscape = document.getElementById('selectSoundscape');
+        // Auto-switch soundscape based on tier
+        const selectSoundscape = document.getElementById('selectSoundscape');
         if (selectSoundscape) {
           selectSoundscape.value = config.soundscape;
           synth.setTune(config.soundscape);
@@ -1784,6 +1865,23 @@
       particles = [];
       synth.playBeatKick();
     });
+
+    const selectTerrain = document.getElementById('selectTerrain');
+    if (selectTerrain) {
+      selectTerrain.addEventListener('change', (e) => {
+        currentTerrain = e.target.value;
+        obstacles = [];
+        yeti.active = false;
+        kraken.active = false;
+        triggerTactileImpulse([40], 240, 'normal');
+        if (streakTitle) {
+          if (currentTerrain === 'fable') streakTitle.textContent = 'WISPS COLLECTED';
+          else if (currentTerrain === 'edgesurf') streakTitle.textContent = 'SURF FLOW';
+          else if (currentTerrain === 'skifree') streakTitle.textContent = 'SLALOM STREAK';
+          else streakTitle.textContent = 'SACCADE STREAK';
+        }
+      });
+    }
 
     const selectSoundscape = document.getElementById('selectSoundscape');
     if (selectSoundscape) {
