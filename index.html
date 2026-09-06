@@ -7179,6 +7179,7 @@
                 <button id="bodyPlaneSagittalBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: transparent; color: var(--text-secondary);">Sagittal (Side)</button>
                 <button id="bodyResetOrbitBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">🔄 Reset 3D</button>
                 <button id="bodyHoloLensBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: rgba(20, 184, 166, 0.2); color: var(--accent-teal); border: 1px solid var(--accent-teal); font-weight: 800;">✨ 3D Spatial Holocalligramme</button>
+                <button id="bodyDiscoBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: linear-gradient(135deg, rgba(236, 72, 153, 0.25), rgba(168, 85, 247, 0.25)); color: #f472b6; border: 1px solid #ec4899; font-weight: 800;">🕺 Saturday Night Disco</button>
                 <button id="bodyWebXrBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4);">🥽 WebXR / Spatial AR</button>
               </div>
             </div>
@@ -11569,6 +11570,409 @@ Sincerely,
             holoZoom = Math.max(0.6, Math.min(2.5, holoZoom * factor));
             updateHoloTransform();
           }, { passive: false });
+
+      // ─── 'A Saturday Night in the Typefoundry' — Pure Typographic Discothèque Engine ───
+      const bodyDiscoBtn = document.getElementById('bodyDiscoBtn');
+      if (bodyDiscoBtn) {
+        bodyDiscoBtn.addEventListener('click', () => {
+          launchPocketGullDiscoModal();
+        });
+      }
+
+      function launchPocketGullDiscoModal() {
+        let modal = document.getElementById('pocketgullDiscoModalOverlay');
+        if (!modal) {
+          modal = document.createElement('div');
+          modal.id = 'pocketgullDiscoModalOverlay';
+          modal.style.position = 'fixed';
+          modal.style.inset = '0';
+          modal.style.zIndex = '999999';
+          modal.style.background = 'radial-gradient(circle at center, #180828 0%, #030008 100%)';
+          modal.style.display = 'flex';
+          modal.style.flexDirection = 'column';
+          modal.style.userSelect = 'none';
+
+          modal.innerHTML = `
+            <!-- Disco Header Bar -->
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 1rem 1.75rem; background: rgba(10, 2, 18, 0.92); border-bottom: 1px solid rgba(236, 72, 153, 0.3); color: #fff; font-family: var(--font-code); backdrop-filter: blur(16px); gap: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.85rem;">
+                <span style="font-size: 1.6rem; animation: philocardia-beat-60 1s infinite;">🪩</span>
+                <div>
+                  <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                    <span style="font-family: 'PocketGull Bold', sans-serif; font-size: 1.15rem; font-weight: 900; background: linear-gradient(90deg, #ec4899, #a855f7, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.02em;">
+                      A SATURDAY NIGHT IN THE TYPEFOUNDRY
+                    </span>
+                    <span style="font-size: 0.7rem; background: rgba(236, 72, 153, 0.2); border: 1px solid #ec4899; padding: 0.15rem 0.5rem; border-radius: 9999px; color: #f472b6; font-weight: 800;">
+                      100% PURE POCKETGULL VF
+                    </span>
+                  </div>
+                  <p style="font-size: 0.72rem; color: #a1a1aa; margin: 0;">
+                    Inspired by Mozilla A-Saturday-Night (2017). Zero 3D meshes or external engines. 100% pure TrueType vectors &amp; Web Audio synthesizers.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Disco Controls -->
+              <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                <!-- Audio Synth & Beat Toggle -->
+                <button id="discoMusicToggleBtn" style="background: linear-gradient(135deg, #ec4899, #8b5cf6); border: none; color: #fff; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; gap: 0.35rem;">
+                  🔊 Start 120 BPM Disco Synth
+                </button>
+                
+                <!-- Track Selector -->
+                <select id="discoTrackSelect" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(236, 72, 153, 0.4); color: #f472b6; padding: 0.35rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-family: var(--font-code); cursor: pointer;">
+                  <option value="optotypic">Track 1: The Optotypic Hustle (120 BPM)</option>
+                  <option value="frankStarling">Track 2: Frank-Starling Funk (Systolic Syncopation)</option>
+                  <option value="telemetryRobot">Track 3: 600 UPM Telemetry Robot</option>
+                </select>
+
+                <!-- Puppeteer Mode Toggle -->
+                <button id="discoPuppetToggleBtn" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem; font-weight: 700;">
+                  🎮 Puppeteer Avatar 1 (Mouse/Touch)
+                </button>
+
+                <button id="closeDiscoModalBtn" style="background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem;">
+                  ✕ Exit Discothèque
+                </button>
+              </div>
+            </div>
+
+            <!-- 3D Discothèque Arena -->
+            <div id="discoStage" style="flex: 1; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center; perspective: 1000px; cursor: default;">
+              
+              <!-- Spotlight Overhead Beams -->
+              <div id="discoSpotlightLeft" style="position: absolute; top: -100px; left: 15%; width: 220px; height: 900px; background: linear-gradient(180deg, rgba(236, 72, 153, 0.35) 0%, rgba(236, 72, 153, 0) 100%); transform: rotate(18deg); pointer-events: none; filter: blur(30px); transition: all 0.25s ease;"></div>
+              <div id="discoSpotlightRight" style="position: absolute; top: -100px; right: 15%; width: 220px; height: 900px; background: linear-gradient(180deg, rgba(56, 189, 248, 0.35) 0%, rgba(56, 189, 248, 0) 100%); transform: rotate(-18deg); pointer-events: none; filter: blur(30px); transition: all 0.25s ease;"></div>
+
+              <!-- Rotating Optotype Disco Ball (Top Center) -->
+              <div id="discoBall" style="position: absolute; top: 20px; width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #ffffff, #94a3b8 40%, #1e293b 90%); box-shadow: 0 0 35px rgba(255, 255, 255, 0.6), 0 0 70px rgba(236, 72, 153, 0.4); display: flex; justify-content: center; align-items: center; font-family: 'PocketGull Bold', sans-serif; font-size: 1.1rem; font-weight: 900; color: #09090b; z-index: 20;">
+                <span id="discoBallLetter">Z</span>
+              </div>
+
+              <!-- 3D Kinetic Typographic Dance Floor (PocketGull Mono U+2500) -->
+              <div id="discoDanceFloor" style="position: absolute; bottom: 0; width: 900px; height: 420px; transform: rotateX(68deg) translateZ(-40px); background: rgba(5, 1, 10, 0.95); border: 2px solid rgba(236, 72, 153, 0.3); border-radius: 16px; box-shadow: 0 0 80px rgba(168, 85, 247, 0.3); display: flex; flex-direction: column; justify-content: space-around; padding: 1.5rem; pointer-events: none;">
+                <div class="disco-floor-row" style="display: flex; justify-content: space-between; font-family: 'PocketGull Mono', monospace; font-size: 1.1rem; color: #ec4899; opacity: 0.85;">
+                  <span>┌────────┐</span><span>┌────────┐</span><span>┌────────┐</span><span>┌────────┐</span>
+                </div>
+                <div class="disco-floor-row" style="display: flex; justify-content: space-between; font-family: 'PocketGull Mono', monospace; font-size: 1.1rem; color: #38bdf8; opacity: 0.85;">
+                  <span>├─ 120 ──┤</span><span>├─ BPM ──┤</span><span>├─ BEAT ─┤</span><span>├─ SYNC ─┤</span>
+                </div>
+                <div class="disco-floor-row" style="display: flex; justify-content: space-between; font-family: 'PocketGull Mono', monospace; font-size: 1.1rem; color: #a855f7; opacity: 0.85;">
+                  <span>├─ 600 ──┤</span><span>├─ UPM ──┤</span><span>├─ MONO ─┤</span><span>├─ STEP ─┤</span>
+                </div>
+                <div class="disco-floor-row" style="display: flex; justify-content: space-between; font-family: 'PocketGull Mono', monospace; font-size: 1.1rem; color: #34d399; opacity: 0.85;">
+                  <span>└────────┘</span><span>└────────┘</span><span>└────────┘</span><span>└────────┘</span>
+                </div>
+              </div>
+
+              <!-- 4 Living Typographic Dancers -->
+              <div id="discoDancerContainer" style="position: relative; width: 880px; height: 450px; display: flex; justify-content: space-around; align-items: flex-end; z-index: 10; padding-bottom: 20px;">
+                
+                <!-- DANCER 1: Fineliner 400 (The Agile Breakdancer / Puppeteer Target) -->
+                <div id="discoDancer1" class="disco-dancer" data-dancer="1" style="display: flex; flex-direction: column; align-items: center; width: 140px; transform-origin: bottom center; transition: transform 0.05s linear;">
+                  <!-- Head -->
+                  <div class="dancer-head" style="font-family: 'PocketGull Bold', sans-serif; font-size: 1.8rem; font-weight: 800; color: #38bdf8; text-shadow: 0 0 10px rgba(56, 189, 248, 0.6); margin-bottom: 2px;">
+                    ( O )
+                  </div>
+                  <!-- Upper Arms & Chest -->
+                  <div class="dancer-torso" style="font-family: 'PocketGull Mono', monospace; font-size: 1.1rem; color: #93c5fd; white-space: pre; line-height: 1;">
+\\ [ 400 ] //
+  | | | |  
+                  </div>
+                  <!-- Pelvis & Legs -->
+                  <div class="dancer-legs" style="font-family: 'PocketGull Mono', monospace; font-size: 1.1rem; color: #38bdf8; white-space: pre; line-height: 1;">
+   / \\   
+  /   \\  
+ _/   \\_ 
+                  </div>
+                  <span style="font-family: var(--font-code); font-size: 0.65rem; color: #38bdf8; margin-top: 6px; font-weight: 700; background: rgba(56, 189, 248, 0.15); padding: 0.1rem 0.4rem; border-radius: 4px;">
+                    1. Fineliner (Agile)
+                  </span>
+                </div>
+
+                <!-- DANCER 2: Bold 700 (The Funk Master) -->
+                <div id="discoDancer2" class="disco-dancer" data-dancer="2" style="display: flex; flex-direction: column; align-items: center; width: 140px; transform-origin: bottom center; transition: transform 0.05s linear;">
+                  <!-- Head -->
+                  <div class="dancer-head" style="font-family: 'PocketGull Bold', sans-serif; font-size: 2.2rem; font-weight: 900; color: #ec4899; text-shadow: 0 0 15px rgba(236, 72, 153, 0.7); margin-bottom: 2px;">
+                    [ 700 ]
+                  </div>
+                  <!-- Upper Arms & Chest -->
+                  <div class="dancer-torso" style="font-family: 'PocketGull Bold', sans-serif; font-size: 1.25rem; font-weight: 800; color: #f472b6; white-space: pre; line-height: 1;">
+/==[FUNK]==\\
+  | | | |   
+                  </div>
+                  <!-- Pelvis & Legs -->
+                  <div class="dancer-legs" style="font-family: 'PocketGull Bold', sans-serif; font-size: 1.25rem; font-weight: 800; color: #ec4899; white-space: pre; line-height: 1;">
+   / \\     
+  /   \\    
+ [Z] [2]   
+                  </div>
+                  <span style="font-family: var(--font-code); font-size: 0.65rem; color: #f472b6; margin-top: 6px; font-weight: 700; background: rgba(236, 72, 153, 0.15); padding: 0.1rem 0.4rem; border-radius: 4px;">
+                    2. Bold 700 (Funk)
+                  </span>
+                </div>
+
+                <!-- DANCER 3: Chiseltip 900 (The Strutter) -->
+                <div id="discoDancer3" class="disco-dancer" data-dancer="3" style="display: flex; flex-direction: column; align-items: center; width: 140px; transform-origin: bottom center; transition: transform 0.05s linear;">
+                  <!-- Head -->
+                  <div class="dancer-head" style="font-family: 'PocketGull Chiseltip', sans-serif; font-size: 2.4rem; font-weight: 900; color: #fbbf24; text-shadow: 0 0 15px rgba(251, 191, 36, 0.7); margin-bottom: 2px;">
+                    { 900 }
+                  </div>
+                  <!-- Upper Arms & Chest -->
+                  <div class="dancer-torso" style="font-family: 'PocketGull Chiseltip', sans-serif; font-size: 1.3rem; font-weight: 900; color: #fde047; white-space: pre; line-height: 1;">
+\\==[CHISEL]==/
+   |  |   
+                  </div>
+                  <!-- Pelvis & Legs -->
+                  <div class="dancer-legs" style="font-family: 'PocketGull Chiseltip', sans-serif; font-size: 1.3rem; font-weight: 900; color: #fbbf24; white-space: pre; line-height: 1;">
+   /   \\   
+  |     |  
+ [0]   [0] 
+                  </div>
+                  <span style="font-family: var(--font-code); font-size: 0.65rem; color: #fbbf24; margin-top: 6px; font-weight: 700; background: rgba(251, 191, 36, 0.15); padding: 0.1rem 0.4rem; border-radius: 4px;">
+                    3. Chiseltip 900 (Strut)
+                  </span>
+                </div>
+
+                <!-- DANCER 4: Mono 600 UPM (The Telemetry Robot) -->
+                <div id="discoDancer4" class="disco-dancer" data-dancer="4" style="display: flex; flex-direction: column; align-items: center; width: 140px; transform-origin: bottom center; transition: transform 0.05s linear;">
+                  <!-- Head -->
+                  <div class="dancer-head" style="font-family: 'PocketGull Mono', monospace; font-size: 1.9rem; font-weight: 700; color: #34d399; text-shadow: 0 0 12px rgba(52, 211, 153, 0.7); margin-bottom: 2px;">
+                    &lt; 600 &gt;
+                  </div>
+                  <!-- Upper Arms & Chest -->
+                  <div class="dancer-torso" style="font-family: 'PocketGull Mono', monospace; font-size: 1.15rem; color: #6ee7b7; white-space: pre; line-height: 1;">
+|--[ROBOT]--|
+  |  OTS  |  
+                  </div>
+                  <!-- Pelvis & Legs -->
+                  <div class="dancer-legs" style="font-family: 'PocketGull Mono', monospace; font-size: 1.15rem; color: #34d399; white-space: pre; line-height: 1;">
+   |     |   
+  [=]   [=]  
+                  </div>
+                  <span style="font-family: var(--font-code); font-size: 0.65rem; color: #34d399; margin-top: 6px; font-weight: 700; background: rgba(52, 211, 153, 0.15); padding: 0.1rem 0.4rem; border-radius: 4px;">
+                    4. Mono (600 UPM Robot)
+                  </span>
+                </div>
+
+              </div>
+
+              <!-- Live MoCap & Audio Telemetry HUD Overlay -->
+              <div style="position: absolute; bottom: 20px; left: 24px; font-family: var(--font-code); font-size: 0.78rem; color: #f472b6; pointer-events: none; background: rgba(0, 0, 0, 0.6); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid rgba(236, 72, 153, 0.3);">
+                🎵 TEMPO: 120 BPM • CHOREOGRAPHY: BEAT-SYNCHRONIZED KINEMATICS
+              </div>
+
+              <div id="discoPuppetBadge" style="position: absolute; bottom: 20px; right: 24px; font-family: var(--font-code); font-size: 0.78rem; color: #38bdf8; pointer-events: none; background: rgba(0, 0, 0, 0.6); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.3);">
+                🎮 PUPPETEER: OFF (CHOREOGRAPHY AUTOPILOT)
+              </div>
+            </div>
+          `;
+
+          document.body.appendChild(modal);
+
+          let isDiscoPlaying = false;
+          let discoAudioCtx = null;
+          let discoBeatTimer = null;
+          let discoBeatCount = 0;
+          let isPuppeteering = false;
+          let puppetTargetX = 0;
+          let puppetTargetY = 0;
+
+          const discoMusicToggleBtn = document.getElementById('discoMusicToggleBtn');
+          const discoTrackSelect = document.getElementById('discoTrackSelect');
+          const discoPuppetToggleBtn = document.getElementById('discoPuppetToggleBtn');
+          const closeDiscoModalBtn = document.getElementById('closeDiscoModalBtn');
+          const discoStage = document.getElementById('discoStage');
+          const discoBallLetter = document.getElementById('discoBallLetter');
+          const discoSpotlightLeft = document.getElementById('discoSpotlightLeft');
+          const discoSpotlightRight = document.getElementById('discoSpotlightRight');
+          const discoFloorRows = document.querySelectorAll('.disco-floor-row');
+          const discoPuppetBadge = document.getElementById('discoPuppetBadge');
+
+          const dancer1 = document.getElementById('discoDancer1');
+          const dancer2 = document.getElementById('discoDancer2');
+          const dancer3 = document.getElementById('discoDancer3');
+          const dancer4 = document.getElementById('discoDancer4');
+
+          const SLOAN_LETTERS = ['C', 'D', 'E', 'F', 'H', 'K', 'N', 'O', 'P', 'R', 'S', 'T', 'V', 'Z'];
+
+          // Pure Web Audio API Synthesizer (Zero External MP3s / 100% Native)
+          function playDiscoBassKick() {
+            if (!discoAudioCtx) return;
+            try {
+              const osc = discoAudioCtx.createOscillator();
+              const gain = discoAudioCtx.createGain();
+              osc.type = 'sine';
+              osc.frequency.setValueAtTime(140, discoAudioCtx.currentTime);
+              osc.frequency.exponentialRampToValueAtTime(35, discoAudioCtx.currentTime + 0.12);
+              gain.gain.setValueAtTime(0.4, discoAudioCtx.currentTime);
+              gain.gain.exponentialRampToValueAtTime(0.01, discoAudioCtx.currentTime + 0.15);
+              osc.connect(gain);
+              gain.connect(discoAudioCtx.destination);
+              osc.start();
+              osc.stop(discoAudioCtx.currentTime + 0.16);
+
+              // Snare / Hi-Hat on alternating beats
+              if (discoBeatCount % 2 === 1) {
+                const hat = discoAudioCtx.createOscillator();
+                const hatGain = discoAudioCtx.createGain();
+                hat.type = 'triangle';
+                hat.frequency.setValueAtTime(8000, discoAudioCtx.currentTime);
+                hatGain.gain.setValueAtTime(0.12, discoAudioCtx.currentTime);
+                hatGain.gain.exponentialRampToValueAtTime(0.01, discoAudioCtx.currentTime + 0.06);
+                hat.connect(hatGain);
+                hatGain.connect(discoAudioCtx.destination);
+                hat.start();
+                hat.stop(discoAudioCtx.currentTime + 0.07);
+              }
+            } catch (err) {
+              console.warn('Synth error:', err);
+            }
+          }
+
+          function stepDiscoBeat() {
+            discoBeatCount++;
+            const beatPhase = discoBeatCount % 4;
+
+            // 1. Audio synth
+            if (isDiscoPlaying) {
+              playDiscoBassKick();
+            }
+
+            // 2. Rotate Disco Ball letter
+            if (discoBallLetter) {
+              discoBallLetter.textContent = SLOAN_LETTERS[discoBeatCount % SLOAN_LETTERS.length];
+            }
+
+            // 3. Modulate Spotlights
+            if (discoSpotlightLeft && discoSpotlightRight) {
+              const hue1 = (discoBeatCount * 45) % 360;
+              const hue2 = (hue1 + 180) % 360;
+              discoSpotlightLeft.style.background = `linear-gradient(180deg, hsla(${hue1}, 90%, 65%, 0.35) 0%, transparent 100%)`;
+              discoSpotlightRight.style.background = `linear-gradient(180deg, hsla(${hue2}, 90%, 65%, 0.35) 0%, transparent 100%)`;
+              discoSpotlightLeft.style.transform = `rotate(${10 + Math.sin(discoBeatCount * 0.8) * 18}deg)`;
+              discoSpotlightRight.style.transform = `rotate(${-10 - Math.sin(discoBeatCount * 0.8) * 18}deg)`;
+            }
+
+            // 4. Pulse Dance Floor Rows
+            discoFloorRows.forEach((row, i) => {
+              if (i === (discoBeatCount % 4)) {
+                row.style.filter = 'brightness(1.8) drop-shadow(0 0 12px #ec4899)';
+                row.style.opacity = '1.0';
+              } else {
+                row.style.filter = 'none';
+                row.style.opacity = '0.4';
+              }
+            });
+
+            // 5. Kinetic Dancer Choreography
+            const bounce = beatPhase === 0 || beatPhase === 2 ? -22 : 0;
+            const sway = Math.sin(discoBeatCount * 0.8) * 14;
+
+            // Dancer 1: Fineliner (Agile breakdancer or puppeteered)
+            if (!isPuppeteering && dancer1) {
+              dancer1.style.transform = `translateY(${bounce * 1.2}px) rotate(${sway * 1.2}deg) scale(${1.0 + (beatPhase === 0 ? 0.08 : 0)})`;
+            }
+
+            // Dancer 2: Bold 700 (Funk Master, pop and lock)
+            if (dancer2) {
+              const funkBounce = beatPhase === 1 || beatPhase === 3 ? -25 : 0;
+              dancer2.style.transform = `translateY(${funkBounce}px) rotate(${-sway}deg) scale(${1.0 + (beatPhase === 1 ? 0.12 : 0)})`;
+            }
+
+            // Dancer 3: Chiseltip 900 (Strutting with high inertia)
+            if (dancer3) {
+              const strutX = Math.sin(discoBeatCount * 0.5) * 20;
+              dancer3.style.transform = `translateX(${strutX}px) translateY(${bounce * 0.8}px) rotate(${sway * 0.6}deg)`;
+            }
+
+            // Dancer 4: Mono 600 UPM (Strict discrete 90-degree robot arm step)
+            if (dancer4) {
+              const robotAngle = (beatPhase * 12) - 18;
+              const robotHop = beatPhase === 0 ? -15 : 0;
+              dancer4.style.transform = `translateY(${robotHop}px) skewX(${robotAngle}deg)`;
+            }
+          }
+
+          function startDiscoLoop() {
+            if (discoBeatTimer) clearInterval(discoBeatTimer);
+            // 120 BPM = 500 ms per quarter beat, 250 ms per eighth beat
+            discoBeatTimer = setInterval(stepDiscoBeat, 250);
+          }
+
+          startDiscoLoop();
+
+          discoMusicToggleBtn.addEventListener('click', () => {
+            if (!discoAudioCtx) {
+              const AudioCtx = window.AudioContext || window.webkitAudioContext;
+              if (AudioCtx) discoAudioCtx = new AudioCtx();
+            }
+            if (discoAudioCtx && discoAudioCtx.state === 'suspended') {
+              discoAudioCtx.resume();
+            }
+
+            isDiscoPlaying = !isDiscoPlaying;
+            if (isDiscoPlaying) {
+              discoMusicToggleBtn.textContent = '⏸ Pause Disco Audio';
+              discoMusicToggleBtn.style.background = 'var(--accent-amber)';
+              discoMusicToggleBtn.style.color = '#09090b';
+            } else {
+              discoMusicToggleBtn.textContent = '🔊 Start 120 BPM Disco Synth';
+              discoMusicToggleBtn.style.background = 'linear-gradient(135deg, #ec4899, #8b5cf6)';
+              discoMusicToggleBtn.style.color = '#fff';
+            }
+          });
+
+          discoPuppetToggleBtn.addEventListener('click', () => {
+            isPuppeteering = !isPuppeteering;
+            if (isPuppeteering) {
+              discoPuppetToggleBtn.textContent = '🎮 Puppeteer Active (Move Pointer)';
+              discoPuppetToggleBtn.style.background = '#38bdf8';
+              discoPuppetToggleBtn.style.color = '#09090b';
+              if (discoPuppetBadge) {
+                discoPuppetBadge.textContent = '🎮 PUPPETEER: ACTIVE (AVATAR 1 FOLLOWING MOUSE)';
+                discoPuppetBadge.style.color = '#4ade80';
+                discoPuppetBadge.style.borderColor = '#4ade80';
+              }
+            } else {
+              discoPuppetToggleBtn.textContent = '🎮 Puppeteer Avatar 1 (Mouse/Touch)';
+              discoPuppetToggleBtn.style.background = 'rgba(56, 189, 248, 0.15)';
+              discoPuppetToggleBtn.style.color = '#38bdf8';
+              if (discoPuppetBadge) {
+                discoPuppetBadge.textContent = '🎮 PUPPETEER: OFF (CHOREOGRAPHY AUTOPILOT)';
+                discoPuppetBadge.style.color = '#38bdf8';
+                discoPuppetBadge.style.borderColor = 'rgba(56, 189, 248, 0.3)';
+              }
+            }
+          });
+
+          // Pointer interaction for puppeteering Avatar 1
+          discoStage.addEventListener('pointermove', (e) => {
+            if (!isPuppeteering || !dancer1) return;
+            const rect = discoStage.getBoundingClientRect();
+            const relX = (e.clientX - rect.left) / rect.width - 0.5;
+            const relY = (e.clientY - rect.top) / rect.height - 0.5;
+
+            const tilt = relX * 45;
+            const hop = -Math.abs(relY * 60);
+            const torso = dancer1.querySelector('.dancer-torso');
+            if (torso) {
+              torso.textContent = relX < 0 ? '\\\\ [ 400 ] ---\n  | | | |  ' : '--- [ 400 ] //\n  | | | |  ';
+            }
+            dancer1.style.transform = `translateX(${relX * 160}px) translateY(${hop}px) rotate(${tilt}deg) scale(1.15)`;
+          });
+
+          closeDiscoModalBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            if (discoBeatTimer) clearInterval(discoBeatTimer);
+            if (discoAudioCtx && discoAudioCtx.state === 'running') {
+              discoAudioCtx.suspend();
+            }
+            isDiscoPlaying = false;
+            discoMusicToggleBtn.textContent = '🔊 Start 120 BPM Disco Synth';
+            discoMusicToggleBtn.style.background = 'linear-gradient(135deg, #ec4899, #8b5cf6)';
+            discoMusicToggleBtn.style.color = '#fff';
+          });
 
         } else {
           modal.style.display = 'flex';
