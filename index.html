@@ -7029,6 +7029,9 @@
             <button class="phoropter-mode-btn" id="modeStressBtn" style="padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">
               🎲 Random Optotype Stress-Test
             </button>
+            <button class="phoropter-mode-btn" id="modeDiscoDirectBtn" style="padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 800; border: 1px solid #ec4899; cursor: pointer; background: linear-gradient(135deg, rgba(236, 72, 153, 0.3), rgba(168, 85, 247, 0.3)); color: #f472b6;">
+              🕺 Saturday Night Disco
+            </button>
           </div>
 
           <div style="font-family: var(--font-code); font-size: 0.8rem; color: var(--accent-teal); background: rgba(20, 184, 166, 0.1); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid rgba(20, 184, 166, 0.25);">
@@ -10329,6 +10332,35 @@ Sincerely,
         renderStressGrid();
       });
 
+      const modeDiscoDirectBtn = document.getElementById('modeDiscoDirectBtn');
+      if (modeDiscoDirectBtn) {
+        modeDiscoDirectBtn.addEventListener('click', () => {
+          if (typeof launchPocketGullDiscoModal === 'function') {
+            launchPocketGullDiscoModal();
+          } else {
+            initBodyMatrix();
+            setTimeout(() => {
+              if (typeof launchPocketGullDiscoModal === 'function') launchPocketGullDiscoModal();
+            }, 50);
+          }
+        });
+      }
+
+      // Handle direct hash navigation to #viewBody or #body3dStage
+      if (window.location.hash === '#viewBody' || window.location.hash === '#body' || window.location.hash === '#body3dStage') {
+        setTimeout(() => {
+          setMode(2);
+          initBodyMatrix();
+        }, 100);
+      } else {
+        // Pre-initialize body matrix listeners so buttons like Saturday Night Disco work immediately
+        setTimeout(() => {
+          if (typeof initBodyMatrix === 'function') {
+            initBodyMatrix();
+          }
+        }, 200);
+      }
+
       // 2. Population-Ranked Focus Wheel Data
       const POPULATION_LANGUAGES = [
         {
@@ -11570,6 +11602,11 @@ Sincerely,
             holoZoom = Math.max(0.6, Math.min(2.5, holoZoom * factor));
             updateHoloTransform();
           }, { passive: false });
+
+        } else {
+          modal.style.display = 'flex';
+        }
+      }
 
       // ─── 'A Saturday Night in the Typefoundry' — Pure Typographic Discothèque Engine ───
       const bodyDiscoBtn = document.getElementById('bodyDiscoBtn');
