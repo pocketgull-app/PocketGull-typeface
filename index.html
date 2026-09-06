@@ -6844,11 +6844,11 @@
                 <span class="badge" style="background: rgba(20, 184, 166, 0.2); color: var(--accent-teal); border: 1px solid var(--accent-teal); font-size: 0.65rem; padding: 0.15rem 0.5rem;">ZPL II &amp; 1-BIT MONOCHROME</span>
               </div>
               <h4 style="font-size: 1.25rem; font-weight: 800; color: #ffffff; margin-bottom: 0.5rem;">
-                PocketGull Sloan 5:1 Apertures Survive Low-Resolution Thermal Bleed
+                PocketGull ETDRS 1:5 Apertures Survive Low-Resolution Thermal Bleed
               </h4>
               <p class="thermal-lead-desc" style="font-size: 0.88rem; color: #ffffff; line-height: 1.65; font-weight: 500;">
                 Over 85% of bedside medication labels, IV bags, and patient wristbands are printed on 203 DPI thermal printers (Zebra, Honeywell, Brother). 
-                PocketGull's Sloan 5:1 dilated counters allow lower printhead heat (Darkness 12–14 vs 25+), extending printhead lifespan past 2.2 million inches while preventing diacritics, Eastern numerals, and Hebrew final letters from clogging.
+                PocketGull's ETDRS-inspired 1:5 stroke-to-height aperture ratio allows lower printhead heat (Darkness 12–14 vs 25+), extending printhead lifespan past 2.2 million inches while preventing diacritics, Eastern numerals, and Hebrew final letters from clogging.
               </p>
             </div>
 
@@ -6966,7 +6966,7 @@
               <!-- Footer with Braille -->
               <div style="border-top: 1px solid #000000; padding-top: 0.4rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem;">
                 <span style="font-family: 'PocketGull', monospace;">MRN: ⠠⠓⠠⠎ ⠼⠉⠙ (#9842-01)</span>
-                <span style="font-weight: 800;">SLOAN 5:1 DILATED ✓</span>
+                <span style="font-weight: 800;">ETDRS 1:5 APERTURES ✓</span>
               </div>
             </div>
           </div>
@@ -9786,13 +9786,24 @@ Sincerely,
           rxBody.style.textAlign = 'left';
         }
 
-        // Harmonized font fallback for cursive scripts (Arabic/Farsi) to ensure 100% connected Naskh
+        // ── Script-specific font routing ────────────────────────────────────
+        // PocketGull is a Latin + Indigenous Scripts superfamily.
+        // Arabic/Farsi: route to Noto Sans Arabic for cursive shaping
+        //   (PocketGull retains Arabic base codepoints but has no init/medi/fina/isol shaping).
+        // Japanese/Korean: route to system CJK — PocketGull has zero CJK glyphs.
+        // All other scripts: PocketGull native rendering.
         if (lang === 'ar' || lang === 'fa') {
-          rxHeader.style.fontFamily = '"Noto Sans Arabic", "Segoe UI", Tahoma, "PocketGull Bold", sans-serif';
-          rxBody.style.fontFamily = '"Noto Sans Arabic", "Segoe UI", Tahoma, "PocketGull Mono", monospace';
+          // Arabic & Farsi: full Naskh cursive — Noto Sans Arabic is authoritative
+          rxHeader.style.fontFamily = '"Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif';
+          rxBody.style.fontFamily   = '"Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif';
+        } else if (lang === 'ja' || lang === 'ko') {
+          // Japanese/Korean: system CJK — PocketGull does not cover CJK (by design)
+          // Latin portions (drug name, units) remain legible via CJK font Latin subset
+          rxHeader.style.fontFamily = '"Noto Sans JP", "Yu Gothic", "Hiragino Sans", "Meiryo", sans-serif';
+          rxBody.style.fontFamily   = '"Noto Sans JP", "Yu Gothic", "Hiragino Sans", "Meiryo", monospace';
         } else {
           rxHeader.style.fontFamily = '"PocketGull Bold", sans-serif';
-          rxBody.style.fontFamily = "'PocketGull Mono', monospace";
+          rxBody.style.fontFamily   = "'PocketGull Mono', monospace";
         }
       }
 

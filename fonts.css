@@ -436,6 +436,59 @@
   unicode-range: U+E0A0-E0B6, U+2500-257F, U+26A1, U+2713-2714, U+276E-276F;
 }
 
+/* Expert I: Arabic / Farsi / Urdu — Intentional Noto Sans Arabic Routing
+   =========================================================================
+   PocketGull is a Latin + Indigenous Scripts superfamily. Arabic script
+   (U+0600–U+06FF) requires full cursive shaping (init/medi/fina/isol
+   positional variants) that PocketGull does not implement. Arabic text is
+   intentionally routed to Noto Sans Arabic for correct Naskh rendering.
+
+   IMPORTANT: PocketGull retains Arabic BASE codepoints (U+0600–U+06FF) in
+   its cmap for isolated letter rendering in non-shaping contexts (e.g. math
+   or symbol usage). For connected Arabic text, this expert fires first and
+   supplies Noto Sans Arabic for the complete Arabic block.
+
+   Arabic Presentation Forms (U+FB50–U+FDFF, U+FE70–U+FEFF) have been
+   removed from PocketGull binary per Unicode deprecation advisory.
+   ========================================================================= */
+@font-face {
+  font-family: 'PocketGull Arabic';
+  src: local('Noto Sans Arabic'), local('Segoe UI'), local('Tahoma');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF,
+                 U+200C-200F, U+2010-2027, U+202A-202E,
+                 U+2060-206F, U+FB50-FDFF, U+FE70-FEFF;
+}
+
+/* Expert J: CJK Unified Ideographs & Kana — Explicit System Fallback
+   =========================================================================
+   PocketGull does not contain CJK Unified Ideographs, Hiragana, Katakana,
+   Hangul, or CJK compatibility characters. This expert explicitly routes the
+   CJK block to the system CJK font stack (Noto Sans CJK, Yu Gothic, etc.)
+   to prevent PocketGull from being incorrectly selected as a CJK fallback
+   on systems that lack a proper CJK font for the Latin blocks.
+
+   Specimen usage of Japanese text (e.g. thermal bedside Rx: セファゾリン)
+   is rendered by the system CJK font — this is intentional and labelled
+   in the specimen HTML. PocketGull does not claim CJK coverage.
+   ========================================================================= */
+@font-face {
+  font-family: 'PocketGull CJK Fallback';
+  src: local('Noto Sans CJK SC'), local('Noto Sans JP'), local('Yu Gothic'),
+       local('Hiragino Sans'), local('Microsoft YaHei'), local('sans-serif');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+2E80-2EFF, U+2F00-2FDF, U+3000-303F, U+3040-309F,
+                 U+30A0-30FF, U+3100-312F, U+3190-31FF, U+3200-32FF,
+                 U+3300-33FF, U+3400-4DBF, U+4E00-9FFF, U+A000-A48F,
+                 U+A490-A4CF, U+AC00-D7FF, U+F900-FAFF, U+FE30-FE4F,
+                 U+FF00-FFEF, U+1B000-1B0FF, U+1F004-1F004,
+                 U+20000-2A6DF, U+2A700-2CEAF;
+}
+
 /* ==========================================================================
    4. GOOGLE NOTO UNIVERSAL HARMONIZED FALLBACK (ZERO CLS METRIC OVERRIDES)
    Enforces exact 1000 UPM vertical metric parity with Google Noto Sans
