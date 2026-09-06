@@ -7029,7 +7029,7 @@
             <button class="phoropter-mode-btn" id="modeStressBtn" style="padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">
               🎲 Random Optotype Stress-Test
             </button>
-            <button class="phoropter-mode-btn" id="modeTurntableDirectBtn" style="padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 800; border: 1px solid #38bdf8; cursor: pointer; background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(45, 212, 191, 0.25)); color: #38bdf8;">
+            <button class="phoropter-mode-btn" id="modeTurntableDirectBtn" onclick="if(typeof launchPocketGullTurntableModal==='function')launchPocketGullTurntableModal();" style="padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 800; border: 1px solid #38bdf8; cursor: pointer; background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(45, 212, 191, 0.25)); color: #38bdf8;">
               🔄 2D-to-3D Turntable Studio
             </button>
           </div>
@@ -7182,7 +7182,7 @@
                 <button id="bodyPlaneSagittalBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: transparent; color: var(--text-secondary);">Sagittal (Side)</button>
                 <button id="bodyResetOrbitBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">🔄 Reset 3D</button>
                 <button id="bodyHoloLensBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: rgba(20, 184, 166, 0.2); color: var(--accent-teal); border: 1px solid var(--accent-teal); font-weight: 800;">✨ 3D Spatial Holocalligramme</button>
-                <button id="bodyTurntableBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(45, 212, 191, 0.25)); color: #38bdf8; border: 1px solid #38bdf8; font-weight: 800;">🔄 2D-to-3D Turntable Studio</button>
+                <button id="bodyTurntableBtn" onclick="if(typeof launchPocketGullTurntableModal==='function')launchPocketGullTurntableModal();" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(45, 212, 191, 0.25)); color: #38bdf8; border: 1px solid #38bdf8; font-weight: 800;">🔄 2D-to-3D Turntable Studio</button>
                 <button id="bodyWebXrBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4);">🥽 WebXR / Spatial AR</button>
               </div>
             </div>
@@ -10291,6 +10291,451 @@ Sincerely,
     /* ========================================================================== */
     /* 07. INTERACTIVE MULTI-SCALE PHOROPTER & POPULATION FOCUS WHEEL SCRIPT      */
     /* ========================================================================== */
+      function launchPocketGullTurntableModal() {
+        let modal = document.getElementById('pocketgullTurntableModalOverlay');
+        if (!modal) {
+          modal = document.createElement('div');
+          modal.id = 'pocketgullTurntableModalOverlay';
+          modal.style.position = 'fixed';
+          modal.style.inset = '0';
+          modal.style.zIndex = '999999';
+          modal.style.background = 'radial-gradient(circle at center, #0f172a 0%, #020617 100%)';
+          modal.style.display = 'flex';
+          modal.style.flexDirection = 'column';
+          modal.style.userSelect = 'none';
+
+          modal.innerHTML = `
+            <!-- Studio Header Bar -->
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 1rem 1.75rem; background: rgba(3, 7, 18, 0.95); border-bottom: 1px solid var(--border-subtle); color: #fff; font-family: var(--font-code); backdrop-filter: blur(16px); gap: 1rem;">
+              <div style="display: flex; align-items: center; gap: 0.85rem;">
+                <span style="font-size: 1.6rem;">🔄</span>
+                <div>
+                  <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                    <span style="font-family: 'PocketGull Bold', sans-serif; font-size: 1.15rem; font-weight: 900; color: #38bdf8; letter-spacing: -0.02em;">
+                      POCKETGULL 2D-TO-3D TURNTABLE STUDIO
+                    </span>
+                    <span style="font-size: 0.7rem; background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; padding: 0.15rem 0.5rem; border-radius: 9999px; color: #38bdf8; font-weight: 800;">
+                      ADOBE-INSPIRED EXTRUSION RIG
+                    </span>
+                  </div>
+                  <p style="font-size: 0.72rem; color: #a1a1aa; margin: 0;">
+                    Extrude 2D vector glyphs and anatomical profiles into 3D volumetric slabs with specular normal lighting and 360° turntable rotation.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Top Studio Controls -->
+              <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                <!-- Model Subject Selector -->
+                <select id="turntableSubjectSelect" style="background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-subtle); color: #38bdf8; padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.78rem; font-family: var(--font-code); cursor: pointer; font-weight: 700;">
+                  <option value="body">Subject: 3D Typographic Human Silhouette</option>
+                  <option value="heart">Subject: Myocardium Pump Vector (🫀)</option>
+                  <option value="brain">Subject: Cerebral Tubulin 40Hz Dipole (🧠)</option>
+                  <option value="sloanZ">Subject: Sloan Optotype 'Z' (cv11 Slashed)</option>
+                  <option value="sloan0">Subject: ISMP Slashed Zero '0' (cv08)</option>
+                  <option value="braille">Subject: ISO/TR 11548 Braille Matrix (⠠⠃)</option>
+                </select>
+
+                <!-- Turntable Motor Play/Pause -->
+                <button id="turntableMotorBtn" style="background: var(--accent-teal); border: none; color: #09090b; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; gap: 0.35rem;">
+                  ⏸ Pause Motor (3.0 RPM)
+                </button>
+
+                <!-- Reset Camera -->
+                <button id="turntableResetBtn" style="background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-subtle); color: #fff; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem;">
+                  🔄 Reset View
+                </button>
+
+                <button id="closeTurntableModalBtn" style="background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem;">
+                  ✕ Exit Studio
+                </button>
+              </div>
+            </div>
+
+            <!-- Main Studio Workspace (Left Controls + 3D Viewport) -->
+            <div style="flex: 1; display: flex; overflow: hidden; position: relative;">
+              
+              <!-- Left Sidebar: Adobe 3D & Materials Properties Inspector -->
+              <div style="width: 280px; background: rgba(10, 15, 30, 0.85); border-right: 1px solid var(--border-subtle); padding: 1.25rem; overflow-y: auto; font-family: var(--font-code); display: flex; flex-direction: column; gap: 1.25rem; backdrop-filter: blur(12px); z-index: 20;">
+                
+                <div>
+                  <div style="font-size: 0.7rem; color: #38bdf8; font-weight: 800; margin-bottom: 0.5rem; text-transform: uppercase;">
+                    1. Extrusion &amp; Bevel Depth
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.25rem;">
+                    <span>Extrude Z-Depth</span>
+                    <span id="extrudeDepthVal" style="color: #38bdf8; font-weight: 700;">40 px</span>
+                  </div>
+                  <input type="range" id="extrudeDepthSlider" min="0" max="80" value="40" style="width: 100%; accent-color: #38bdf8; cursor: pointer;">
+                </div>
+
+                <div>
+                  <div style="font-size: 0.7rem; color: #38bdf8; font-weight: 800; margin-bottom: 0.5rem; text-transform: uppercase;">
+                    2. Motorized Turntable Speed
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.25rem;">
+                    <span>Rotation Rate</span>
+                    <span id="turntableSpeedVal" style="color: var(--accent-teal); font-weight: 700;">3.0 RPM</span>
+                  </div>
+                  <input type="range" id="turntableSpeedSlider" min="0" max="10" step="0.5" value="3.0" style="width: 100%; accent-color: var(--accent-teal); cursor: pointer;">
+                </div>
+
+                <div>
+                  <div style="font-size: 0.7rem; color: #38bdf8; font-weight: 800; margin-bottom: 0.5rem; text-transform: uppercase;">
+                    3. Directional Key Lighting
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.25rem;">
+                    <span>Light Azimuth</span>
+                    <span id="lightAzimuthVal" style="color: #fbbf24; font-weight: 700;">45°</span>
+                  </div>
+                  <input type="range" id="lightAzimuthSlider" min="-180" max="180" value="45" style="width: 100%; accent-color: #fbbf24; cursor: pointer;">
+                </div>
+
+                <div>
+                  <div style="font-size: 0.7rem; color: #38bdf8; font-weight: 800; margin-bottom: 0.5rem; text-transform: uppercase;">
+                    4. Render Mode &amp; Shading
+                  </div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem;">
+                    <button class="turntable-render-btn active" data-render="lit" style="padding: 0.4rem; font-size: 0.72rem; font-weight: 700; border-radius: 4px; border: 1px solid #38bdf8; background: rgba(56, 189, 248, 0.2); color: #38bdf8; cursor: pointer;">
+                      ☀️ Lit Shaded
+                    </button>
+                    <button class="turntable-render-btn" data-render="wire" style="padding: 0.4rem; font-size: 0.72rem; font-weight: 700; border-radius: 4px; border: 1px solid var(--border-subtle); background: transparent; color: var(--text-muted); cursor: pointer;">
+                      📐 CAD Wireframe
+                    </button>
+                  </div>
+                </div>
+
+                <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem; font-size: 0.68rem; color: var(--text-muted); line-height: 1.5;">
+                  <strong>Adobe Workflow Parity:</strong><br>
+                  • <strong>LMB Drag:</strong> Turntable Orbit (Pitch / Yaw)<br>
+                  • <strong>Wheel:</strong> Camera Dolly Zoom<br>
+                  • <strong>Shift + Drag:</strong> Camera Pan X/Y<br>
+                  • <strong>Extrude:</strong> Multi-layer vector depth slices with normal attenuation
+                </div>
+
+              </div>
+
+              <!-- Right: 3D Stage Viewport -->
+              <div id="turntableStage" style="flex: 1; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center; perspective: 1200px; cursor: grab;">
+                
+                <!-- Floor Grid Shadow Plane -->
+                <div style="position: absolute; bottom: 8%; width: 500px; height: 500px; background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.18) 0%, rgba(0, 0, 0, 0) 70%); transform: rotateX(90deg) translateZ(-160px); pointer-events: none; border-radius: 50%;"></div>
+
+                <!-- 3D Transform Gimbal Platform -->
+                <div id="turntableGimbal" style="width: 340px; height: 480px; position: relative; transform-style: preserve-3d; transition: transform 0.05s linear;">
+                  
+                  <!-- Dynamic Extruded Vector Layers will be rendered here -->
+                  <div id="turntableLayersContainer" style="position: absolute; inset: 0; transform-style: preserve-3d;">
+                    <!-- Slices generated by renderExtrusion() -->
+                  </div>
+
+                </div>
+
+                <!-- Viewport Telemetry HUD -->
+                <div style="position: absolute; bottom: 20px; left: 20px; font-family: var(--font-code); font-size: 0.75rem; color: #38bdf8; background: rgba(0, 0, 0, 0.6); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.3); pointer-events: none;">
+                  🖱️ DRAG TO ROTATE 3D • WHEEL TO ZOOM • SHIFT TO PAN
+                </div>
+
+                <div id="turntableAngleBadge" style="position: absolute; bottom: 20px; right: 20px; font-family: var(--font-code); font-size: 0.75rem; color: #fbbf24; background: rgba(0, 0, 0, 0.6); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid rgba(251, 191, 36, 0.3); pointer-events: none;">
+                  YAW: 0° • PITCH: 0° • DEPTH: 40px
+                </div>
+
+              </div>
+
+            </div>
+          `;
+
+          document.body.appendChild(modal);
+
+          let ttYaw = 0;
+          let ttPitch = 0;
+          let ttZoom = 1.0;
+          let ttPanX = 0;
+          let ttPanY = 0;
+          let ttExtrudeDepth = 40;
+          let ttSpeedRpm = 3.0;
+          let ttLightAzimuth = 45;
+          let ttRenderMode = 'lit'; // 'lit' or 'wire'
+          let isTtMotorRunning = true;
+          let ttMotorTimer = null;
+          let isTtDragging = false;
+          let ttStartX = 0;
+          let ttStartY = 0;
+
+          const turntableStage = document.getElementById('turntableStage');
+          const turntableGimbal = document.getElementById('turntableGimbal');
+          const turntableLayersContainer = document.getElementById('turntableLayersContainer');
+          const turntableSubjectSelect = document.getElementById('turntableSubjectSelect');
+          const turntableMotorBtn = document.getElementById('turntableMotorBtn');
+          const turntableResetBtn = document.getElementById('turntableResetBtn');
+          const closeTurntableModalBtn = document.getElementById('closeTurntableModalBtn');
+          const extrudeDepthSlider = document.getElementById('extrudeDepthSlider');
+          const extrudeDepthVal = document.getElementById('extrudeDepthVal');
+          const turntableSpeedSlider = document.getElementById('turntableSpeedSlider');
+          const turntableSpeedVal = document.getElementById('turntableSpeedVal');
+          const lightAzimuthSlider = document.getElementById('lightAzimuthSlider');
+          const lightAzimuthVal = document.getElementById('lightAzimuthVal');
+          const turntableAngleBadge = document.getElementById('turntableAngleBadge');
+          const renderBtns = modal.querySelectorAll('.turntable-render-btn');
+
+          function getSubjectSvg(subject, layerZ, opacity, strokeColor, fillColor) {
+            if (subject === 'heart') {
+              return `
+                <svg viewBox="0 0 240 240" style="width: 100%; height: 100%; overflow: visible;">
+                  <g fill="${fillColor}" stroke="${strokeColor}" stroke-width="${ttRenderMode === 'wire' ? '1.5' : '2'}">
+                    <path d="M 120,60 C 105,25 45,25 45,80 C 45,135 120,195 120,195 C 120,195 195,135 195,80 C 195,25 135,25 120,60 Z" />
+                    <!-- Ventricular & Atrial Internal Vector Contours -->
+                    <circle cx="95" cy="90" r="18" fill="none" stroke="${strokeColor}" stroke-dasharray="2,2" />
+                    <circle cx="145" cy="90" r="18" fill="none" stroke="${strokeColor}" stroke-dasharray="2,2" />
+                    <text x="120" y="115" font-family="'PocketGull Bold'" font-size="14" font-weight="900" text-anchor="middle" fill="${strokeColor}">MYOCARDIUM</text>
+                  </g>
+                </svg>
+              `;
+            } else if (subject === 'brain') {
+              return `
+                <svg viewBox="0 0 240 240" style="width: 100%; height: 100%; overflow: visible;">
+                  <g fill="${fillColor}" stroke="${strokeColor}" stroke-width="${ttRenderMode === 'wire' ? '1.5' : '2'}">
+                    <ellipse cx="120" cy="110" rx="75" ry="60" />
+                    <path d="M 60,110 Q 120,70 180,110" fill="none" />
+                    <path d="M 60,130 Q 120,170 180,130" fill="none" />
+                    <text x="120" y="115" font-family="'PocketGull Bold'" font-size="13" font-weight="900" text-anchor="middle" fill="${strokeColor}">ORCH-OR 40Hz</text>
+                  </g>
+                </svg>
+              `;
+            } else if (subject === 'sloanZ') {
+              return `
+                <svg viewBox="0 0 240 240" style="width: 100%; height: 100%; overflow: visible;">
+                  <g fill="${fillColor}" stroke="${strokeColor}" stroke-width="${ttRenderMode === 'wire' ? '2' : '0'}">
+                    <text x="120" y="180" font-family="'PocketGull Bold', sans-serif" font-size="175" font-weight="900" text-anchor="middle" style="font-feature-settings: 'cv11' 1;">Z</text>
+                  </g>
+                </svg>
+              `;
+            } else if (subject === 'sloan0') {
+              return `
+                <svg viewBox="0 0 240 240" style="width: 100%; height: 100%; overflow: visible;">
+                  <g fill="${fillColor}" stroke="${strokeColor}" stroke-width="${ttRenderMode === 'wire' ? '2' : '0'}">
+                    <text x="120" y="180" font-family="'PocketGull Bold', sans-serif" font-size="175" font-weight="900" text-anchor="middle" style="font-feature-settings: 'zero' 1, 'cv08' 1;">0</text>
+                  </g>
+                </svg>
+              `;
+            } else if (subject === 'braille') {
+              return `
+                <svg viewBox="0 0 240 240" style="width: 100%; height: 100%; overflow: visible;">
+                  <g fill="${fillColor}" stroke="${strokeColor}" stroke-width="2">
+                    <circle cx="85" cy="65" r="16" />
+                    <circle cx="85" cy="115" r="16" />
+                    <circle cx="85" cy="165" r="16" />
+                    <circle cx="155" cy="65" r="16" />
+                    <circle cx="155" cy="115" r="16" />
+                    <circle cx="155" cy="165" r="16" />
+                  </g>
+                </svg>
+              `;
+            } else {
+              // Complete Typographic Body Matrix Silhouette
+              return `
+                <svg viewBox="0 0 280 420" style="width: 100%; height: 100%; overflow: visible;">
+                  <g fill="${fillColor}" stroke="${strokeColor}" stroke-width="${ttRenderMode === 'wire' ? '1.5' : '1'}">
+                    <!-- Head -->
+                    <circle cx="140" cy="42" r="26" />
+                    <text x="140" y="47" font-family="'PocketGull Bold'" font-size="9" text-anchor="middle" fill="${strokeColor}">BRAIN</text>
+                    <!-- Thorax -->
+                    <ellipse cx="108" cy="108" rx="20" ry="24" />
+                    <ellipse cx="172" cy="108" rx="20" ry="24" />
+                    <circle cx="140" cy="126" r="18" />
+                    <!-- Liver -->
+                    <rect x="110" y="152" width="60" height="22" rx="6" />
+                    <!-- Pelvis / Legs -->
+                    <rect x="95" y="215" width="22" height="70" rx="6" />
+                    <rect x="163" y="215" width="22" height="70" rx="6" />
+                    <rect x="95" y="295" width="22" height="70" rx="6" />
+                    <rect x="163" y="295" width="22" height="70" rx="6" />
+                  </g>
+                </svg>
+              `;
+            }
+          }
+
+          function renderExtrusion() {
+            if (!turntableLayersContainer) return;
+            const subject = turntableSubjectSelect.value;
+            const sliceCount = ttExtrudeDepth === 0 ? 1 : Math.max(3, Math.round(ttExtrudeDepth / 4));
+            const stepZ = ttExtrudeDepth / sliceCount;
+
+            let html = '';
+            for (let i = 0; i < sliceCount; i++) {
+              const z = (i * stepZ) - (ttExtrudeDepth / 2);
+              const isFront = (i === sliceCount - 1);
+              const isBack = (i === 0);
+
+              // Shading calculation based on light azimuth
+              const lightFactor = Math.cos((ttYaw - ttLightAzimuth) * (Math.PI / 180));
+              const intensity = 0.5 + (0.5 * lightFactor);
+
+              let strokeColor = '#38bdf8';
+              let fillColor = 'none';
+
+              if (ttRenderMode === 'wire') {
+                strokeColor = isFront ? '#38bdf8' : (isBack ? '#1e293b' : 'rgba(56, 189, 248, 0.4)');
+                fillColor = 'none';
+              } else {
+                // Lit Shaded mode: Front is bright, side/back slices create thick gradient slab
+                if (isFront) {
+                  strokeColor = '#38bdf8';
+                  fillColor = `rgba(56, 189, 248, ${0.75 + (0.2 * intensity)})`;
+                } else {
+                  const darken = (i / sliceCount);
+                  strokeColor = `rgba(14, 116, 144, ${0.4 + (0.4 * darken)})`;
+                  fillColor = `rgba(15, 23, 42, ${0.6 + (0.3 * darken)})`;
+                }
+              }
+
+              html += `
+                <div style="position: absolute; inset: 0; transform: translateZ(${z}px); pointer-events: none;">
+                  ${getSubjectSvg(subject, z, 1.0, strokeColor, fillColor)}
+                </div>
+              `;
+            }
+
+            turntableLayersContainer.innerHTML = html;
+          }
+
+          function updateTurntableTransform() {
+            if (!turntableGimbal) return;
+            turntableGimbal.style.transform = `translate3d(${ttPanX}px, ${ttPanY}px, 0) scale(${ttZoom}) rotateY(${ttYaw}deg) rotateX(${ttPitch}deg)`;
+            if (turntableAngleBadge) {
+              turntableAngleBadge.textContent = `YAW: ${Math.round(ttYaw % 360)}° • PITCH: ${Math.round(ttPitch)}° • DEPTH: ${ttExtrudeDepth}px`;
+            }
+          }
+
+          function startTurntableMotor() {
+            if (ttMotorTimer) clearInterval(ttMotorTimer);
+            ttMotorTimer = setInterval(() => {
+              if (isTtMotorRunning && !isTtDragging) {
+                // 1 RPM = 360 deg in 60s = 6 deg/s = 0.1 deg per 60fps frame
+                const degPerFrame = (ttSpeedRpm * 360) / (60 * 60);
+                ttYaw += degPerFrame * 1.5;
+                updateTurntableTransform();
+                // Dynamically recalculate shading if rotating past key light
+                if (Math.round(ttYaw) % 5 === 0) {
+                  renderExtrusion();
+                }
+              }
+            }, 1000 / 60);
+          }
+
+          startTurntableMotor();
+          renderExtrusion();
+          updateTurntableTransform();
+
+          // Controls Listeners
+          turntableSubjectSelect.addEventListener('change', () => {
+            renderExtrusion();
+          });
+
+          extrudeDepthSlider.addEventListener('input', (e) => {
+            ttExtrudeDepth = parseInt(e.target.value, 10);
+            if (extrudeDepthVal) extrudeDepthVal.textContent = `${ttExtrudeDepth} px`;
+            renderExtrusion();
+            updateTurntableTransform();
+          });
+
+          turntableSpeedSlider.addEventListener('input', (e) => {
+            ttSpeedRpm = parseFloat(e.target.value);
+            if (turntableSpeedVal) turntableSpeedVal.textContent = `${ttSpeedRpm.toFixed(1)} RPM`;
+          });
+
+          lightAzimuthSlider.addEventListener('input', (e) => {
+            ttLightAzimuth = parseInt(e.target.value, 10);
+            if (lightAzimuthVal) lightAzimuthVal.textContent = `${ttLightAzimuth}°`;
+            renderExtrusion();
+          });
+
+          turntableMotorBtn.addEventListener('click', () => {
+            isTtMotorRunning = !isTtMotorRunning;
+            turntableMotorBtn.textContent = isTtMotorRunning ? `⏸ Pause Motor (${ttSpeedRpm.toFixed(1)} RPM)` : '▶ Start Turntable';
+            turntableMotorBtn.style.background = isTtMotorRunning ? 'var(--accent-teal)' : 'var(--accent-amber)';
+          });
+
+          turntableResetBtn.addEventListener('click', () => {
+            ttYaw = 0;
+            ttPitch = 0;
+            ttZoom = 1.0;
+            ttPanX = 0;
+            ttPanY = 0;
+            updateTurntableTransform();
+          });
+
+          renderBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+              renderBtns.forEach(b => {
+                b.classList.remove('active');
+                b.style.background = 'transparent';
+                b.style.borderColor = 'var(--border-subtle)';
+                b.style.color = 'var(--text-muted)';
+              });
+              btn.classList.add('active');
+              btn.style.background = 'rgba(56, 189, 248, 0.2)';
+              btn.style.borderColor = '#38bdf8';
+              btn.style.color = '#38bdf8';
+              ttRenderMode = btn.dataset.render;
+              renderExtrusion();
+            });
+          });
+
+          closeTurntableModalBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            clearInterval(ttMotorTimer);
+          });
+
+          // Pointer interaction for 3D Turntable Tumble and Orbit
+          turntableStage.addEventListener('pointerdown', (e) => {
+            isTtDragging = true;
+            ttStartX = e.clientX;
+            ttStartY = e.clientY;
+            turntableStage.style.cursor = 'grabbing';
+            turntableStage.setPointerCapture(e.pointerId);
+          });
+
+          turntableStage.addEventListener('pointermove', (e) => {
+            if (!isTtDragging) return;
+            const dx = e.clientX - ttStartX;
+            const dy = e.clientY - ttStartY;
+
+            if (e.shiftKey) {
+              ttPanX += dx * 0.8;
+              ttPanY += dy * 0.8;
+            } else {
+              ttYaw += dx * 0.5;
+              ttPitch = Math.max(-75, Math.min(75, ttPitch - dy * 0.4));
+            }
+
+            ttStartX = e.clientX;
+            ttStartY = e.clientY;
+            updateTurntableTransform();
+            renderExtrusion();
+          });
+
+          turntableStage.addEventListener('pointerup', (e) => {
+            isTtDragging = false;
+            turntableStage.style.cursor = 'grab';
+            turntableStage.releasePointerCapture(e.pointerId);
+          });
+
+          turntableStage.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const factor = e.deltaY > 0 ? 0.9 : 1.1;
+            ttZoom = Math.max(0.4, Math.min(3.5, ttZoom * factor));
+            updateTurntableTransform();
+          }, { passive: false });
+
+        } else {
+          modal.style.display = 'flex';
+        }
+      }
+      window.launchPocketGullTurntableModal = launchPocketGullTurntableModal;
+
+
     (function initMultiScalePhoropter() {
       // 1. Mode Switching
       const modePopulationBtn = document.getElementById('modePopulationBtn');
@@ -10332,13 +10777,23 @@ Sincerely,
         renderStressGrid();
       });
 
+      // Hoisted state variables for 3D body matrix
+      let bodyGimbalInitialized = false;
+      let currentBodyOrgan = 'heart';
+      let currentBodyLang = 'en';
+      let bodyYaw = 0;
+      let bodyPitch = 0;
+      let isBodyDragging = false;
+      let bodyDragStartX = 0;
+      let bodyDragStartY = 0;
+
       const modeTurntableDirectBtn = document.getElementById('modeTurntableDirectBtn');
       if (modeTurntableDirectBtn) {
         modeTurntableDirectBtn.addEventListener('click', () => {
           if (typeof launchPocketGullTurntableModal === 'function') {
             launchPocketGullTurntableModal();
           } else {
-            initBodyMatrix();
+            if (typeof initBodyMatrix === 'function') initBodyMatrix();
             setTimeout(() => {
               if (typeof launchPocketGullTurntableModal === 'function') launchPocketGullTurntableModal();
             }, 50);
@@ -10350,15 +10805,8 @@ Sincerely,
       if (window.location.hash === '#viewBody' || window.location.hash === '#body' || window.location.hash === '#body3dStage') {
         setTimeout(() => {
           setMode(2);
-          initBodyMatrix();
+          if (typeof initBodyMatrix === 'function') initBodyMatrix();
         }, 100);
-      } else {
-        // Pre-initialize body matrix listeners so buttons like Saturday Night Disco work immediately
-        setTimeout(() => {
-          if (typeof initBodyMatrix === 'function') {
-            initBodyMatrix();
-          }
-        }, 200);
       }
 
       // 2. Population-Ranked Focus Wheel Data
@@ -11093,15 +11541,6 @@ Sincerely,
         }
       };
 
-      let currentBodyOrgan = 'heart';
-      let currentBodyLang = 'en';
-      let bodyYaw = 0;
-      let bodyPitch = 0;
-      let isBodyDragging = false;
-      let bodyDragStartX = 0;
-      let bodyDragStartY = 0;
-      let bodyGimbalInitialized = false;
-
       function initBodyMatrix() {
         if (bodyGimbalInitialized) return;
         bodyGimbalInitialized = true;
@@ -11614,449 +12053,6 @@ Sincerely,
         bodyTurntableBtn.addEventListener('click', () => {
           launchPocketGullTurntableModal();
         });
-      }
-
-      function launchPocketGullTurntableModal() {
-        let modal = document.getElementById('pocketgullTurntableModalOverlay');
-        if (!modal) {
-          modal = document.createElement('div');
-          modal.id = 'pocketgullTurntableModalOverlay';
-          modal.style.position = 'fixed';
-          modal.style.inset = '0';
-          modal.style.zIndex = '999999';
-          modal.style.background = 'radial-gradient(circle at center, #0f172a 0%, #020617 100%)';
-          modal.style.display = 'flex';
-          modal.style.flexDirection = 'column';
-          modal.style.userSelect = 'none';
-
-          modal.innerHTML = `
-            <!-- Studio Header Bar -->
-            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 1rem 1.75rem; background: rgba(3, 7, 18, 0.95); border-bottom: 1px solid var(--border-subtle); color: #fff; font-family: var(--font-code); backdrop-filter: blur(16px); gap: 1rem;">
-              <div style="display: flex; align-items: center; gap: 0.85rem;">
-                <span style="font-size: 1.6rem;">🔄</span>
-                <div>
-                  <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-                    <span style="font-family: 'PocketGull Bold', sans-serif; font-size: 1.15rem; font-weight: 900; color: #38bdf8; letter-spacing: -0.02em;">
-                      POCKETGULL 2D-TO-3D TURNTABLE STUDIO
-                    </span>
-                    <span style="font-size: 0.7rem; background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; padding: 0.15rem 0.5rem; border-radius: 9999px; color: #38bdf8; font-weight: 800;">
-                      ADOBE-INSPIRED EXTRUSION RIG
-                    </span>
-                  </div>
-                  <p style="font-size: 0.72rem; color: #a1a1aa; margin: 0;">
-                    Extrude 2D vector glyphs and anatomical profiles into 3D volumetric slabs with specular normal lighting and 360° turntable rotation.
-                  </p>
-                </div>
-              </div>
-
-              <!-- Top Studio Controls -->
-              <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
-                <!-- Model Subject Selector -->
-                <select id="turntableSubjectSelect" style="background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-subtle); color: #38bdf8; padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.78rem; font-family: var(--font-code); cursor: pointer; font-weight: 700;">
-                  <option value="body">Subject: 3D Typographic Human Silhouette</option>
-                  <option value="heart">Subject: Myocardium Pump Vector (🫀)</option>
-                  <option value="brain">Subject: Cerebral Tubulin 40Hz Dipole (🧠)</option>
-                  <option value="sloanZ">Subject: Sloan Optotype 'Z' (cv11 Slashed)</option>
-                  <option value="sloan0">Subject: ISMP Slashed Zero '0' (cv08)</option>
-                  <option value="braille">Subject: ISO/TR 11548 Braille Matrix (⠠⠃)</option>
-                </select>
-
-                <!-- Turntable Motor Play/Pause -->
-                <button id="turntableMotorBtn" style="background: var(--accent-teal); border: none; color: #09090b; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; gap: 0.35rem;">
-                  ⏸ Pause Motor (3.0 RPM)
-                </button>
-
-                <!-- Reset Camera -->
-                <button id="turntableResetBtn" style="background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-subtle); color: #fff; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem;">
-                  🔄 Reset View
-                </button>
-
-                <button id="closeTurntableModalBtn" style="background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem;">
-                  ✕ Exit Studio
-                </button>
-              </div>
-            </div>
-
-            <!-- Main Studio Workspace (Left Controls + 3D Viewport) -->
-            <div style="flex: 1; display: flex; overflow: hidden; position: relative;">
-              
-              <!-- Left Sidebar: Adobe 3D & Materials Properties Inspector -->
-              <div style="width: 280px; background: rgba(10, 15, 30, 0.85); border-right: 1px solid var(--border-subtle); padding: 1.25rem; overflow-y: auto; font-family: var(--font-code); display: flex; flex-direction: column; gap: 1.25rem; backdrop-filter: blur(12px); z-index: 20;">
-                
-                <div>
-                  <div style="font-size: 0.7rem; color: #38bdf8; font-weight: 800; margin-bottom: 0.5rem; text-transform: uppercase;">
-                    1. Extrusion &amp; Bevel Depth
-                  </div>
-                  <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.25rem;">
-                    <span>Extrude Z-Depth</span>
-                    <span id="extrudeDepthVal" style="color: #38bdf8; font-weight: 700;">40 px</span>
-                  </div>
-                  <input type="range" id="extrudeDepthSlider" min="0" max="80" value="40" style="width: 100%; accent-color: #38bdf8; cursor: pointer;">
-                </div>
-
-                <div>
-                  <div style="font-size: 0.7rem; color: #38bdf8; font-weight: 800; margin-bottom: 0.5rem; text-transform: uppercase;">
-                    2. Motorized Turntable Speed
-                  </div>
-                  <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.25rem;">
-                    <span>Rotation Rate</span>
-                    <span id="turntableSpeedVal" style="color: var(--accent-teal); font-weight: 700;">3.0 RPM</span>
-                  </div>
-                  <input type="range" id="turntableSpeedSlider" min="0" max="10" step="0.5" value="3.0" style="width: 100%; accent-color: var(--accent-teal); cursor: pointer;">
-                </div>
-
-                <div>
-                  <div style="font-size: 0.7rem; color: #38bdf8; font-weight: 800; margin-bottom: 0.5rem; text-transform: uppercase;">
-                    3. Directional Key Lighting
-                  </div>
-                  <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.25rem;">
-                    <span>Light Azimuth</span>
-                    <span id="lightAzimuthVal" style="color: #fbbf24; font-weight: 700;">45°</span>
-                  </div>
-                  <input type="range" id="lightAzimuthSlider" min="-180" max="180" value="45" style="width: 100%; accent-color: #fbbf24; cursor: pointer;">
-                </div>
-
-                <div>
-                  <div style="font-size: 0.7rem; color: #38bdf8; font-weight: 800; margin-bottom: 0.5rem; text-transform: uppercase;">
-                    4. Render Mode &amp; Shading
-                  </div>
-                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem;">
-                    <button class="turntable-render-btn active" data-render="lit" style="padding: 0.4rem; font-size: 0.72rem; font-weight: 700; border-radius: 4px; border: 1px solid #38bdf8; background: rgba(56, 189, 248, 0.2); color: #38bdf8; cursor: pointer;">
-                      ☀️ Lit Shaded
-                    </button>
-                    <button class="turntable-render-btn" data-render="wire" style="padding: 0.4rem; font-size: 0.72rem; font-weight: 700; border-radius: 4px; border: 1px solid var(--border-subtle); background: transparent; color: var(--text-muted); cursor: pointer;">
-                      📐 CAD Wireframe
-                    </button>
-                  </div>
-                </div>
-
-                <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem; font-size: 0.68rem; color: var(--text-muted); line-height: 1.5;">
-                  <strong>Adobe Workflow Parity:</strong><br>
-                  • <strong>LMB Drag:</strong> Turntable Orbit (Pitch / Yaw)<br>
-                  • <strong>Wheel:</strong> Camera Dolly Zoom<br>
-                  • <strong>Shift + Drag:</strong> Camera Pan X/Y<br>
-                  • <strong>Extrude:</strong> Multi-layer vector depth slices with normal attenuation
-                </div>
-
-              </div>
-
-              <!-- Right: 3D Stage Viewport -->
-              <div id="turntableStage" style="flex: 1; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center; perspective: 1200px; cursor: grab;">
-                
-                <!-- Floor Grid Shadow Plane -->
-                <div style="position: absolute; bottom: 8%; width: 500px; height: 500px; background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.18) 0%, rgba(0, 0, 0, 0) 70%); transform: rotateX(90deg) translateZ(-160px); pointer-events: none; border-radius: 50%;"></div>
-
-                <!-- 3D Transform Gimbal Platform -->
-                <div id="turntableGimbal" style="width: 340px; height: 480px; position: relative; transform-style: preserve-3d; transition: transform 0.05s linear;">
-                  
-                  <!-- Dynamic Extruded Vector Layers will be rendered here -->
-                  <div id="turntableLayersContainer" style="position: absolute; inset: 0; transform-style: preserve-3d;">
-                    <!-- Slices generated by renderExtrusion() -->
-                  </div>
-
-                </div>
-
-                <!-- Viewport Telemetry HUD -->
-                <div style="position: absolute; bottom: 20px; left: 20px; font-family: var(--font-code); font-size: 0.75rem; color: #38bdf8; background: rgba(0, 0, 0, 0.6); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.3); pointer-events: none;">
-                  🖱️ DRAG TO ROTATE 3D • WHEEL TO ZOOM • SHIFT TO PAN
-                </div>
-
-                <div id="turntableAngleBadge" style="position: absolute; bottom: 20px; right: 20px; font-family: var(--font-code); font-size: 0.75rem; color: #fbbf24; background: rgba(0, 0, 0, 0.6); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid rgba(251, 191, 36, 0.3); pointer-events: none;">
-                  YAW: 0° • PITCH: 0° • DEPTH: 40px
-                </div>
-
-              </div>
-
-            </div>
-          `;
-
-          document.body.appendChild(modal);
-
-          let ttYaw = 0;
-          let ttPitch = 0;
-          let ttZoom = 1.0;
-          let ttPanX = 0;
-          let ttPanY = 0;
-          let ttExtrudeDepth = 40;
-          let ttSpeedRpm = 3.0;
-          let ttLightAzimuth = 45;
-          let ttRenderMode = 'lit'; // 'lit' or 'wire'
-          let isTtMotorRunning = true;
-          let ttMotorTimer = null;
-          let isTtDragging = false;
-          let ttStartX = 0;
-          let ttStartY = 0;
-
-          const turntableStage = document.getElementById('turntableStage');
-          const turntableGimbal = document.getElementById('turntableGimbal');
-          const turntableLayersContainer = document.getElementById('turntableLayersContainer');
-          const turntableSubjectSelect = document.getElementById('turntableSubjectSelect');
-          const turntableMotorBtn = document.getElementById('turntableMotorBtn');
-          const turntableResetBtn = document.getElementById('turntableResetBtn');
-          const closeTurntableModalBtn = document.getElementById('closeTurntableModalBtn');
-          const extrudeDepthSlider = document.getElementById('extrudeDepthSlider');
-          const extrudeDepthVal = document.getElementById('extrudeDepthVal');
-          const turntableSpeedSlider = document.getElementById('turntableSpeedSlider');
-          const turntableSpeedVal = document.getElementById('turntableSpeedVal');
-          const lightAzimuthSlider = document.getElementById('lightAzimuthSlider');
-          const lightAzimuthVal = document.getElementById('lightAzimuthVal');
-          const turntableAngleBadge = document.getElementById('turntableAngleBadge');
-          const renderBtns = modal.querySelectorAll('.turntable-render-btn');
-
-          function getSubjectSvg(subject, layerZ, opacity, strokeColor, fillColor) {
-            if (subject === 'heart') {
-              return `
-                <svg viewBox="0 0 240 240" style="width: 100%; height: 100%; overflow: visible;">
-                  <g fill="${fillColor}" stroke="${strokeColor}" stroke-width="${ttRenderMode === 'wire' ? '1.5' : '2'}">
-                    <path d="M 120,60 C 105,25 45,25 45,80 C 45,135 120,195 120,195 C 120,195 195,135 195,80 C 195,25 135,25 120,60 Z" />
-                    <!-- Ventricular & Atrial Internal Vector Contours -->
-                    <circle cx="95" cy="90" r="18" fill="none" stroke="${strokeColor}" stroke-dasharray="2,2" />
-                    <circle cx="145" cy="90" r="18" fill="none" stroke="${strokeColor}" stroke-dasharray="2,2" />
-                    <text x="120" y="115" font-family="'PocketGull Bold'" font-size="14" font-weight="900" text-anchor="middle" fill="${strokeColor}">MYOCARDIUM</text>
-                  </g>
-                </svg>
-              `;
-            } else if (subject === 'brain') {
-              return `
-                <svg viewBox="0 0 240 240" style="width: 100%; height: 100%; overflow: visible;">
-                  <g fill="${fillColor}" stroke="${strokeColor}" stroke-width="${ttRenderMode === 'wire' ? '1.5' : '2'}">
-                    <ellipse cx="120" cy="110" rx="75" ry="60" />
-                    <path d="M 60,110 Q 120,70 180,110" fill="none" />
-                    <path d="M 60,130 Q 120,170 180,130" fill="none" />
-                    <text x="120" y="115" font-family="'PocketGull Bold'" font-size="13" font-weight="900" text-anchor="middle" fill="${strokeColor}">ORCH-OR 40Hz</text>
-                  </g>
-                </svg>
-              `;
-            } else if (subject === 'sloanZ') {
-              return `
-                <svg viewBox="0 0 240 240" style="width: 100%; height: 100%; overflow: visible;">
-                  <g fill="${fillColor}" stroke="${strokeColor}" stroke-width="${ttRenderMode === 'wire' ? '2' : '0'}">
-                    <text x="120" y="180" font-family="'PocketGull Bold', sans-serif" font-size="175" font-weight="900" text-anchor="middle" style="font-feature-settings: 'cv11' 1;">Z</text>
-                  </g>
-                </svg>
-              `;
-            } else if (subject === 'sloan0') {
-              return `
-                <svg viewBox="0 0 240 240" style="width: 100%; height: 100%; overflow: visible;">
-                  <g fill="${fillColor}" stroke="${strokeColor}" stroke-width="${ttRenderMode === 'wire' ? '2' : '0'}">
-                    <text x="120" y="180" font-family="'PocketGull Bold', sans-serif" font-size="175" font-weight="900" text-anchor="middle" style="font-feature-settings: 'zero' 1, 'cv08' 1;">0</text>
-                  </g>
-                </svg>
-              `;
-            } else if (subject === 'braille') {
-              return `
-                <svg viewBox="0 0 240 240" style="width: 100%; height: 100%; overflow: visible;">
-                  <g fill="${fillColor}" stroke="${strokeColor}" stroke-width="2">
-                    <circle cx="85" cy="65" r="16" />
-                    <circle cx="85" cy="115" r="16" />
-                    <circle cx="85" cy="165" r="16" />
-                    <circle cx="155" cy="65" r="16" />
-                    <circle cx="155" cy="115" r="16" />
-                    <circle cx="155" cy="165" r="16" />
-                  </g>
-                </svg>
-              `;
-            } else {
-              // Complete Typographic Body Matrix Silhouette
-              return `
-                <svg viewBox="0 0 280 420" style="width: 100%; height: 100%; overflow: visible;">
-                  <g fill="${fillColor}" stroke="${strokeColor}" stroke-width="${ttRenderMode === 'wire' ? '1.5' : '1'}">
-                    <!-- Head -->
-                    <circle cx="140" cy="42" r="26" />
-                    <text x="140" y="47" font-family="'PocketGull Bold'" font-size="9" text-anchor="middle" fill="${strokeColor}">BRAIN</text>
-                    <!-- Thorax -->
-                    <ellipse cx="108" cy="108" rx="20" ry="24" />
-                    <ellipse cx="172" cy="108" rx="20" ry="24" />
-                    <circle cx="140" cy="126" r="18" />
-                    <!-- Liver -->
-                    <rect x="110" y="152" width="60" height="22" rx="6" />
-                    <!-- Pelvis / Legs -->
-                    <rect x="95" y="215" width="22" height="70" rx="6" />
-                    <rect x="163" y="215" width="22" height="70" rx="6" />
-                    <rect x="95" y="295" width="22" height="70" rx="6" />
-                    <rect x="163" y="295" width="22" height="70" rx="6" />
-                  </g>
-                </svg>
-              `;
-            }
-          }
-
-          function renderExtrusion() {
-            if (!turntableLayersContainer) return;
-            const subject = turntableSubjectSelect.value;
-            const sliceCount = ttExtrudeDepth === 0 ? 1 : Math.max(3, Math.round(ttExtrudeDepth / 4));
-            const stepZ = ttExtrudeDepth / sliceCount;
-
-            let html = '';
-            for (let i = 0; i < sliceCount; i++) {
-              const z = (i * stepZ) - (ttExtrudeDepth / 2);
-              const isFront = (i === sliceCount - 1);
-              const isBack = (i === 0);
-
-              // Shading calculation based on light azimuth
-              const lightFactor = Math.cos((ttYaw - ttLightAzimuth) * (Math.PI / 180));
-              const intensity = 0.5 + (0.5 * lightFactor);
-
-              let strokeColor = '#38bdf8';
-              let fillColor = 'none';
-
-              if (ttRenderMode === 'wire') {
-                strokeColor = isFront ? '#38bdf8' : (isBack ? '#1e293b' : 'rgba(56, 189, 248, 0.4)');
-                fillColor = 'none';
-              } else {
-                // Lit Shaded mode: Front is bright, side/back slices create thick gradient slab
-                if (isFront) {
-                  strokeColor = '#38bdf8';
-                  fillColor = `rgba(56, 189, 248, ${0.75 + (0.2 * intensity)})`;
-                } else {
-                  const darken = (i / sliceCount);
-                  strokeColor = `rgba(14, 116, 144, ${0.4 + (0.4 * darken)})`;
-                  fillColor = `rgba(15, 23, 42, ${0.6 + (0.3 * darken)})`;
-                }
-              }
-
-              html += `
-                <div style="position: absolute; inset: 0; transform: translateZ(${z}px); pointer-events: none;">
-                  ${getSubjectSvg(subject, z, 1.0, strokeColor, fillColor)}
-                </div>
-              `;
-            }
-
-            turntableLayersContainer.innerHTML = html;
-          }
-
-          function updateTurntableTransform() {
-            if (!turntableGimbal) return;
-            turntableGimbal.style.transform = `translate3d(${ttPanX}px, ${ttPanY}px, 0) scale(${ttZoom}) rotateY(${ttYaw}deg) rotateX(${ttPitch}deg)`;
-            if (turntableAngleBadge) {
-              turntableAngleBadge.textContent = `YAW: ${Math.round(ttYaw % 360)}° • PITCH: ${Math.round(ttPitch)}° • DEPTH: ${ttExtrudeDepth}px`;
-            }
-          }
-
-          function startTurntableMotor() {
-            if (ttMotorTimer) clearInterval(ttMotorTimer);
-            ttMotorTimer = setInterval(() => {
-              if (isTtMotorRunning && !isTtDragging) {
-                // 1 RPM = 360 deg in 60s = 6 deg/s = 0.1 deg per 60fps frame
-                const degPerFrame = (ttSpeedRpm * 360) / (60 * 60);
-                ttYaw += degPerFrame * 1.5;
-                updateTurntableTransform();
-                // Dynamically recalculate shading if rotating past key light
-                if (Math.round(ttYaw) % 5 === 0) {
-                  renderExtrusion();
-                }
-              }
-            }, 1000 / 60);
-          }
-
-          startTurntableMotor();
-          renderExtrusion();
-          updateTurntableTransform();
-
-          // Controls Listeners
-          turntableSubjectSelect.addEventListener('change', () => {
-            renderExtrusion();
-          });
-
-          extrudeDepthSlider.addEventListener('input', (e) => {
-            ttExtrudeDepth = parseInt(e.target.value, 10);
-            if (extrudeDepthVal) extrudeDepthVal.textContent = `${ttExtrudeDepth} px`;
-            renderExtrusion();
-            updateTurntableTransform();
-          });
-
-          turntableSpeedSlider.addEventListener('input', (e) => {
-            ttSpeedRpm = parseFloat(e.target.value);
-            if (turntableSpeedVal) turntableSpeedVal.textContent = `${ttSpeedRpm.toFixed(1)} RPM`;
-          });
-
-          lightAzimuthSlider.addEventListener('input', (e) => {
-            ttLightAzimuth = parseInt(e.target.value, 10);
-            if (lightAzimuthVal) lightAzimuthVal.textContent = `${ttLightAzimuth}°`;
-            renderExtrusion();
-          });
-
-          turntableMotorBtn.addEventListener('click', () => {
-            isTtMotorRunning = !isTtMotorRunning;
-            turntableMotorBtn.textContent = isTtMotorRunning ? `⏸ Pause Motor (${ttSpeedRpm.toFixed(1)} RPM)` : '▶ Start Turntable';
-            turntableMotorBtn.style.background = isTtMotorRunning ? 'var(--accent-teal)' : 'var(--accent-amber)';
-          });
-
-          turntableResetBtn.addEventListener('click', () => {
-            ttYaw = 0;
-            ttPitch = 0;
-            ttZoom = 1.0;
-            ttPanX = 0;
-            ttPanY = 0;
-            updateTurntableTransform();
-          });
-
-          renderBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-              renderBtns.forEach(b => {
-                b.classList.remove('active');
-                b.style.background = 'transparent';
-                b.style.borderColor = 'var(--border-subtle)';
-                b.style.color = 'var(--text-muted)';
-              });
-              btn.classList.add('active');
-              btn.style.background = 'rgba(56, 189, 248, 0.2)';
-              btn.style.borderColor = '#38bdf8';
-              btn.style.color = '#38bdf8';
-              ttRenderMode = btn.dataset.render;
-              renderExtrusion();
-            });
-          });
-
-          closeTurntableModalBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-            clearInterval(ttMotorTimer);
-          });
-
-          // Pointer interaction for 3D Turntable Tumble and Orbit
-          turntableStage.addEventListener('pointerdown', (e) => {
-            isTtDragging = true;
-            ttStartX = e.clientX;
-            ttStartY = e.clientY;
-            turntableStage.style.cursor = 'grabbing';
-            turntableStage.setPointerCapture(e.pointerId);
-          });
-
-          turntableStage.addEventListener('pointermove', (e) => {
-            if (!isTtDragging) return;
-            const dx = e.clientX - ttStartX;
-            const dy = e.clientY - ttStartY;
-
-            if (e.shiftKey) {
-              ttPanX += dx * 0.8;
-              ttPanY += dy * 0.8;
-            } else {
-              ttYaw += dx * 0.5;
-              ttPitch = Math.max(-75, Math.min(75, ttPitch - dy * 0.4));
-            }
-
-            ttStartX = e.clientX;
-            ttStartY = e.clientY;
-            updateTurntableTransform();
-            renderExtrusion();
-          });
-
-          turntableStage.addEventListener('pointerup', (e) => {
-            isTtDragging = false;
-            turntableStage.style.cursor = 'grab';
-            turntableStage.releasePointerCapture(e.pointerId);
-          });
-
-          turntableStage.addEventListener('wheel', (e) => {
-            e.preventDefault();
-            const factor = e.deltaY > 0 ? 0.9 : 1.1;
-            ttZoom = Math.max(0.4, Math.min(3.5, ttZoom * factor));
-            updateTurntableTransform();
-          }, { passive: false });
-
-        } else {
-          modal.style.display = 'flex';
-        }
       }
 
       // ─── Dual-Mode Chronometer: Cardiac Hemodynamics vs Human Lifespan & Tilth Engine ───
