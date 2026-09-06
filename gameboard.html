@@ -396,6 +396,95 @@
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
+
+    /* Philocardia & Touch Aura Suite Styles */
+    .philocardia-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(45, 212, 191, 0.3);
+      padding: 0.45rem 0.75rem;
+      border-radius: 12px;
+      backdrop-filter: blur(12px);
+      margin-bottom: 0.85rem;
+    }
+    .philocardia-chip {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.28rem 0.65rem;
+      border-radius: 9999px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+    .philocardia-chip:hover {
+      border-color: var(--accent-teal);
+      color: #fff;
+      background: rgba(20, 184, 166, 0.15);
+    }
+    .philocardia-chip.active {
+      border-color: var(--accent-teal);
+      background: rgba(20, 184, 166, 0.22);
+      color: var(--accent-teal);
+      box-shadow: 0 0 10px rgba(20, 184, 166, 0.35);
+    }
+    .philocardia-chip.aura-active {
+      border-color: #fb7185;
+      background: rgba(251, 113, 133, 0.22);
+      color: #fda4af;
+      box-shadow: 0 0 14px rgba(251, 113, 133, 0.4);
+    }
+
+    /* 15-Second Radial Palpation Chronometer */
+    .palpation-hud-widget {
+      position: absolute;
+      top: 1.25rem;
+      left: 1.25rem;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(45, 212, 191, 0.35);
+      border-radius: 30px;
+      padding: 0.35rem 0.85rem 0.35rem 0.45rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+      cursor: pointer;
+      user-select: none;
+    }
+    .palpation-hud-widget:hover {
+      border-color: var(--accent-teal);
+    }
+    .palpation-svg-dial {
+      transform: rotate(-90deg);
+    }
+    .palpation-arc-meter {
+      transition: stroke-dashoffset 0.1s linear;
+    }
+    .glare-softener-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 999;
+      background: radial-gradient(circle at center, transparent 30%, rgba(20, 15, 5, 0.22) 100%), rgba(255, 240, 210, 0.04);
+      mix-blend-mode: multiply;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    .glare-softener-overlay.active {
+      opacity: 1;
+    }
+
   </style>
 </head>
 <body>
@@ -519,6 +608,56 @@
 
     <!-- CENTER PLAYFIELD: THE LETTERFORM CANVAS -->
     <main class="stage-container" id="stageWrap">
+      <!-- Philocardia & Touch Aura Top Command Bar -->
+      <div style="position: absolute; top: 1.25rem; left: 50%; transform: translateX(-50%); z-index: 20; max-width: 90%; width: auto;">
+        <div class="philocardia-bar" id="philocardiaBar" role="toolbar" aria-label="Philocardia Pulse & Touch Aura Pacer">
+          <span style="font-family: var(--font-display); font-size: 0.78rem; font-weight: 800; color: var(--accent-teal); margin-right: 0.25rem; display: flex; align-items: center; gap: 0.3rem;">
+            <span>♥</span> The Philocardia
+          </span>
+          <button type="button" class="philocardia-chip active" id="chip72" data-mode="72" title="72 BPM Standard Sinus Rhythm (0.833s period)">
+            ♥ 72 BPM Sinus
+          </button>
+          <button type="button" class="philocardia-chip" id="chip60" data-mode="60" title="60 BPM Resting Rhythm (1.000s period)">
+            ♥ 60 BPM Rest
+          </button>
+          <button type="button" class="philocardia-chip" id="chipBreath" data-mode="breath" title="4-7-8 Somatic Box Breathing Cycle (16s)">
+            🫁 4-7-8 Breathing
+          </button>
+          <button type="button" class="philocardia-chip" id="chipAura" data-mode="aura" title="Touch & Cursor Proximity Aura: Hearts and stroke weight bloom toward your hand">
+            ✨ Touch Aura
+          </button>
+          <button type="button" class="philocardia-chip" id="chipStatic" data-mode="static" title="Static Hearts without motion animation">
+            ♡ Static Hearts
+          </button>
+          <button type="button" class="philocardia-chip" id="chipOff" data-mode="off" title="Standard dots / clean mode">
+            ⚪ Off
+          </button>
+          <span style="width: 1px; height: 16px; background: rgba(255,255,255,0.15); margin: 0 0.2rem;"></span>
+          <button type="button" class="philocardia-chip" id="chipAuscultation" title="Toggle S1/S2 Acoustic Heartbeat Auscultation">
+            🎧 <span id="labelAuscultation">Sound OFF</span>
+          </button>
+          <button type="button" class="philocardia-chip" id="chipEyeRest" title="20-20-20 Ocular Sanctuary: Gaze 20 feet away for 20 seconds">
+            👁️ <span id="labelEyeRest">20-20-20</span>
+          </button>
+          <button type="button" class="philocardia-chip" id="chipGlare" title="Sub-perceptual amber micro-luminance softener to relieve eye fatigue">
+            🌙 Glare Softener
+          </button>
+        </div>
+      </div>
+
+      <!-- 15-Second Radial Palpation Chronometer HUD -->
+      <div class="palpation-hud-widget" id="palpationHudWidget" title="15-Second Radial Palpation Chronometer: Watch 1 full quarter-sweep (15s) to calculate BPM = Beats × 4. Tap for haptic auscultation.">
+        <svg class="palpation-svg-dial" width="30" height="30" viewBox="0 0 30 30">
+          <circle cx="15" cy="15" r="12" fill="none" stroke="rgba(45, 212, 191, 0.15)" stroke-width="2.5" />
+          <circle class="palpation-arc-meter" id="palpationArcMeter" cx="15" cy="15" r="12" fill="none" stroke="#2dd4bf" stroke-width="2.5" stroke-dasharray="75.4" stroke-dashoffset="75.4" stroke-linecap="round" />
+        </svg>
+        <span id="palpationHeartIcon" style="font-size: 0.82rem; color: #2dd4bf; transition: transform 0.15s ease;">♥</span>
+        <span id="palpationTimerText" style="font-family: var(--font-mono); font-size: 0.72rem; color: #f8fafc; font-weight: 700;">0.0s</span>
+        <span style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent-amber);">×4=BPM</span>
+      </div>
+
+      <!-- Glare Softener Filter Sheet -->
+      <div class="glare-softener-overlay" id="glareSoftenerOverlay"></div>
       <!-- HUD Overlay -->
       <div class="stage-hud">
         <div class="stage-banner" id="boardTitleBanner">
@@ -908,6 +1047,176 @@
       }, 2200);
     }
 
+
+    /* ========================================================================== */
+    /* PHILOCARDIA, TOUCH AURA & S1/S2 AUSCULTATION ENGINE                        */
+    /* ========================================================================== */
+    let currentPhilocardiaMode = '72'; // '72', '60', 'breath', 'aura', 'static', 'off'
+    let isTouchAuraActive = false;
+    let isAuscultationActive = false;
+    let isGlareSoftenerActive = false;
+    let pointerCanvasX = 0;
+    let pointerCanvasY = 0;
+    let pointerRadius = 0;
+    let heartParticles = [];
+    let palpationSeconds = 0;
+    let lastPalpationTime = performance.now();
+    let eyeRestTimer = null;
+    let eyeRestSeconds = 1200; // 20 minutes
+
+    // S1/S2 Acoustic Heartbeat Synthesizer
+    function playAuscultationBeat() {
+      if (!isAuscultationActive || !sound.ctx || !sound.enabled) return;
+      try {
+        const now = sound.ctx.currentTime;
+        // S1 "Lub" (lower pitch ~70 Hz, longer)
+        const osc1 = sound.ctx.createOscillator();
+        const gain1 = sound.ctx.createGain();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(70, now);
+        osc1.frequency.exponentialRampToValueAtTime(45, now + 0.08);
+        gain1.gain.setValueAtTime(0.35, now);
+        gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.09);
+        osc1.connect(gain1);
+        gain1.connect(sound.masterGain);
+        osc1.start(now);
+        osc1.stop(now + 0.1);
+
+        // S2 "Dub" (slightly higher pitch ~95 Hz, crisp, 140ms later)
+        const osc2 = sound.ctx.createOscillator();
+        const gain2 = sound.ctx.createGain();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(95, now + 0.14);
+        osc2.frequency.exponentialRampToValueAtTime(55, now + 0.21);
+        gain2.gain.setValueAtTime(0.28, now + 0.14);
+        gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
+        osc2.connect(gain2);
+        gain2.connect(sound.masterGain);
+        osc2.start(now + 0.14);
+        osc2.stop(now + 0.23);
+      } catch (e) {}
+    }
+
+    // Heartbeat Interval Loop
+    let heartbeatTimer = null;
+    function scheduleHeartbeat() {
+      if (heartbeatTimer) clearInterval(heartbeatTimer);
+      let intervalMs = 833; // default 72 BPM
+      if (currentPhilocardiaMode === '60') intervalMs = 1000;
+      else if (currentPhilocardiaMode === 'breath') intervalMs = 2000;
+      else if (currentPhilocardiaMode === 'aura') intervalMs = 1100;
+
+      heartbeatTimer = setInterval(() => {
+        if (currentPhilocardiaMode !== 'off') {
+          playAuscultationBeat();
+          // Micro pulse on palpation icon
+          const icon = document.getElementById('palpationHeartIcon');
+          if (icon) {
+            icon.style.transform = 'scale(1.35)';
+            setTimeout(() => { icon.style.transform = 'scale(1)'; }, 140);
+          }
+        }
+      }, intervalMs);
+    }
+    scheduleHeartbeat();
+
+    // Mode Selector Controls
+    const philoChips = document.querySelectorAll('.philocardia-chip[data-mode]');
+    philoChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        sound.init();
+        philoChips.forEach(c => c.classList.remove('active', 'aura-active'));
+        const mode = chip.dataset.mode;
+        currentPhilocardiaMode = mode;
+        chip.classList.add(mode === 'aura' ? 'aura-active' : 'active');
+        isTouchAuraActive = (mode === 'aura');
+
+        // Update Pacer Label
+        const pacerLabel = document.getElementById('pacerLabel');
+        if (pacerLabel) {
+          if (mode === '72') pacerLabel.textContent = '♥ 72 BPM Normocardia • Radial Palpation Active (4s In / 6s Out)';
+          else if (mode === '60') pacerLabel.textContent = '♥ 60 BPM Deep Rest • Parasympathetic Down-Regulation (5s In / 5s Out)';
+          else if (mode === 'breath') pacerLabel.textContent = '🫁 4-7-8 Somatic Breath • Inhale 4s … Hold 7s … Exhale 8s';
+          else if (mode === 'aura') pacerLabel.textContent = '✨ Touch Aura Active • Glyphs and Pearls Bloom Toward Cursor';
+          else if (mode === 'static') pacerLabel.textContent = '♡ Static Hearts Sanctuary • Pure Calm Focus';
+          else pacerLabel.textContent = '⚪ Standard Practice Mode • Clean Letterform Geometry';
+        }
+
+        showToast(`♥ Philocardia Mode: ${chip.textContent.trim()}`);
+        scheduleHeartbeat();
+      });
+    });
+
+    // Auscultation Sound Toggle
+    const chipAuscultation = document.getElementById('chipAuscultation');
+    const labelAuscultation = document.getElementById('labelAuscultation');
+    if (chipAuscultation) {
+      chipAuscultation.addEventListener('click', () => {
+        sound.init();
+        isAuscultationActive = !isAuscultationActive;
+        chipAuscultation.classList.toggle('active', isAuscultationActive);
+        labelAuscultation.textContent = isAuscultationActive ? 'Sound ON' : 'Sound OFF';
+        if (isAuscultationActive) playAuscultationBeat();
+        showToast(isAuscultationActive ? '🎧 S1/S2 Auscultation Acoustic Tone ON' : '🎧 Stethoscope Tone Muted');
+      });
+    }
+
+    // 20-20-20 Ocular Rest Sanctuary
+    const chipEyeRest = document.getElementById('chipEyeRest');
+    const labelEyeRest = document.getElementById('labelEyeRest');
+    if (chipEyeRest) {
+      setInterval(() => {
+        eyeRestSeconds--;
+        if (eyeRestSeconds <= 0) {
+          eyeRestSeconds = 1200;
+          showToast('👁️ 20-20-20 Sanctuary: Look at an object 20 feet away for 20 seconds to relax eye muscles!');
+        }
+        const m = Math.floor(eyeRestSeconds / 60);
+        const s = eyeRestSeconds % 60;
+        if (labelEyeRest) labelEyeRest.textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
+      }, 1000);
+      chipEyeRest.addEventListener('click', () => {
+        showToast('👁️ 20-20-20 Sanctuary Active: Take 20 seconds to look out a window or gaze 20 ft away.');
+      });
+    }
+
+    // Glare Softener Toggle
+    const chipGlare = document.getElementById('chipGlare');
+    const glareOverlay = document.getElementById('glareSoftenerOverlay');
+    if (chipGlare && glareOverlay) {
+      chipGlare.addEventListener('click', () => {
+        isGlareSoftenerActive = !isGlareSoftenerActive;
+        chipGlare.classList.toggle('active', isGlareSoftenerActive);
+        glareOverlay.classList.toggle('active', isGlareSoftenerActive);
+        showToast(isGlareSoftenerActive ? '🌙 Glare Softener Active • Warm Amber Micro-Luminance' : '🌙 Glare Softener Off');
+      });
+    }
+
+    // Palpation Chronometer Click (Haptic Feedback)
+    const palpationWidget = document.getElementById('palpationHudWidget');
+    if (palpationWidget) {
+      palpationWidget.addEventListener('click', () => {
+        sound.init();
+        if (typeof navigator !== 'undefined' && navigator.vibrate) {
+          navigator.vibrate([25, 85, 35]); // S1 + S2
+        }
+        playAuscultationBeat();
+        showToast('♥ 15-Second Radial Pulse Check • Count pulses during 1 sweep, multiply by 4');
+      });
+    }
+
+    // Canvas Pointer Hover Tracking for Touch Aura
+    canvas.addEventListener('pointermove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      pointerCanvasX = e.clientX - rect.left - width / 2;
+      pointerCanvasY = e.clientY - rect.top - height / 2;
+      pointerRadius = 180; // 180px aura proximity radius
+    });
+
+    canvas.addEventListener('pointerleave', () => {
+      pointerRadius = 0;
+    });
+
     // Touch & Mouse Input Handlers
     function handlePointer(clientX, clientY) {
       const rect = canvas.getBoundingClientRect();
@@ -973,16 +1282,88 @@
         ctx.fill();
       });
 
+      // ─── Touch Aura Proximity Calculation ───
+      let auraProximityFactor = 0;
+      if (pointerRadius > 0 && (isTouchAuraActive || currentPhilocardiaMode === 'aura')) {
+        const distToPointer = Math.hypot(pointerCanvasX - token.x, pointerCanvasY - token.y);
+        if (distToPointer < 220) {
+          auraProximityFactor = 1 - (distToPointer / 220);
+        }
+
+        // Draw Touch Aura Halo around Cursor / Finger
+        ctx.save();
+        const auraGrad = ctx.createRadialGradient(pointerCanvasX, pointerCanvasY, 10, pointerCanvasX, pointerCanvasY, 180);
+        auraGrad.addColorStop(0, 'rgba(251, 113, 133, 0.28)');
+        auraGrad.addColorStop(0.5, 'rgba(45, 212, 191, 0.15)');
+        auraGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = auraGrad;
+        ctx.beginPath();
+        ctx.arc(pointerCanvasX, pointerCanvasY, 180, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Spawn gentle Heart Embers when near token or paths
+        if (Math.random() < 0.25) {
+          heartParticles.push({
+            x: pointerCanvasX + (Math.random() - 0.5) * 40,
+            y: pointerCanvasY + (Math.random() - 0.5) * 40,
+            vx: (Math.random() - 0.5) * 0.8,
+            vy: -Math.random() * 1.2 - 0.4,
+            alpha: 1.0,
+            scale: Math.random() * 0.6 + 0.6,
+            char: (currentPhilocardiaMode === 'aura' || currentPhilocardiaMode === '72') ? '♥' : '✦'
+          });
+        }
+        ctx.restore();
+      }
+
+      // Draw and Update Heart Embers
+      for (let i = heartParticles.length - 1; i >= 0; i--) {
+        const hp = heartParticles[i];
+        hp.x += hp.vx;
+        hp.y += hp.vy;
+        hp.alpha -= 0.018;
+        if (hp.alpha <= 0) {
+          heartParticles.splice(i, 1);
+          continue;
+        }
+        ctx.save();
+        ctx.font = `${Math.round(14 * hp.scale)}px "PocketGull", sans-serif`;
+        ctx.fillStyle = `rgba(251, 113, 133, ${hp.alpha})`;
+        ctx.shadowColor = '#fb7185';
+        ctx.shadowBlur = 8;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(hp.char, hp.x, hp.y);
+        ctx.restore();
+      }
+
+      // Update 15-Second Radial Palpation Chronometer
+      const nowTime = performance.now();
+      const dt = (nowTime - lastPalpationTime) / 1000;
+      lastPalpationTime = nowTime;
+      palpationSeconds = (palpationSeconds + dt) % 15;
+      const palpTimerEl = document.getElementById('palpationTimerText');
+      if (palpTimerEl) palpTimerEl.textContent = `${palpationSeconds.toFixed(1)}s`;
+      const arcMeterEl = document.getElementById('palpationArcMeter');
+      if (arcMeterEl) {
+        const totalLen = 75.4; // 2 * pi * 12
+        const progress = palpationSeconds / 15;
+        arcMeterEl.style.strokeDashoffset = (totalLen * (1 - progress)).toString();
+      }
+
       // 2. Draw Letterform Stroke Tracks (The Gameboard)
+      // Variable Font Stroke Weight Bloom via Touch Aura
+      const baseOuterWidth = 42 + (auraProximityFactor * 24); // 42px -> 66px
+      const baseInnerWidth = 14 + (auraProximityFactor * 8);   // 14px -> 22px
       ctx.save();
-      ctx.lineWidth = 42;
+      ctx.lineWidth = baseOuterWidth;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
 
-      // Outer Stroke Glow
-      ctx.strokeStyle = 'rgba(20, 184, 166, 0.12)';
-      ctx.shadowColor = '#14b8a6';
-      ctx.shadowBlur = 25;
+      // Outer Stroke Glow (shifts rose when Touch Aura is strong)
+      ctx.strokeStyle = auraProximityFactor > 0.4 ? 'rgba(251, 113, 133, 0.22)' : 'rgba(20, 184, 166, 0.12)';
+      ctx.shadowColor = auraProximityFactor > 0.4 ? '#fb7185' : '#14b8a6';
+      ctx.shadowBlur = 25 + (auraProximityFactor * 15);
       drawBoardPaths(board.paths);
       ctx.stroke();
 
