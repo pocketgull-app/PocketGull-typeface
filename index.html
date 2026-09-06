@@ -7029,8 +7029,8 @@
             <button class="phoropter-mode-btn" id="modeStressBtn" style="padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 700; border: none; cursor: pointer; background: transparent; color: var(--text-secondary);">
               🎲 Random Optotype Stress-Test
             </button>
-            <button class="phoropter-mode-btn" id="modeDiscoDirectBtn" style="padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 800; border: 1px solid #ec4899; cursor: pointer; background: linear-gradient(135deg, rgba(236, 72, 153, 0.3), rgba(168, 85, 247, 0.3)); color: #f472b6;">
-              🕺 Saturday Night Disco
+            <button class="phoropter-mode-btn" id="modeTurntableDirectBtn" style="padding: 0.5rem 1rem; border-radius: 6px; font-size: 0.85rem; font-weight: 800; border: 1px solid #38bdf8; cursor: pointer; background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(45, 212, 191, 0.25)); color: #38bdf8;">
+              🔄 2D-to-3D Turntable Studio
             </button>
           </div>
 
@@ -7182,7 +7182,7 @@
                 <button id="bodyPlaneSagittalBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: transparent; color: var(--text-secondary);">Sagittal (Side)</button>
                 <button id="bodyResetOrbitBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">🔄 Reset 3D</button>
                 <button id="bodyHoloLensBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: rgba(20, 184, 166, 0.2); color: var(--accent-teal); border: 1px solid var(--accent-teal); font-weight: 800;">✨ 3D Spatial Holocalligramme</button>
-                <button id="bodyDiscoBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: linear-gradient(135deg, rgba(236, 72, 153, 0.25), rgba(168, 85, 247, 0.25)); color: #f472b6; border: 1px solid #ec4899; font-weight: 800;">🕺 Saturday Night Disco</button>
+                <button id="bodyTurntableBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(45, 212, 191, 0.25)); color: #38bdf8; border: 1px solid #38bdf8; font-weight: 800;">🔄 2D-to-3D Turntable Studio</button>
                 <button id="bodyWebXrBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4);">🥽 WebXR / Spatial AR</button>
               </div>
             </div>
@@ -10332,15 +10332,15 @@ Sincerely,
         renderStressGrid();
       });
 
-      const modeDiscoDirectBtn = document.getElementById('modeDiscoDirectBtn');
-      if (modeDiscoDirectBtn) {
-        modeDiscoDirectBtn.addEventListener('click', () => {
-          if (typeof launchPocketGullDiscoModal === 'function') {
-            launchPocketGullDiscoModal();
+      const modeTurntableDirectBtn = document.getElementById('modeTurntableDirectBtn');
+      if (modeTurntableDirectBtn) {
+        modeTurntableDirectBtn.addEventListener('click', () => {
+          if (typeof launchPocketGullTurntableModal === 'function') {
+            launchPocketGullTurntableModal();
           } else {
             initBodyMatrix();
             setTimeout(() => {
-              if (typeof launchPocketGullDiscoModal === 'function') launchPocketGullDiscoModal();
+              if (typeof launchPocketGullTurntableModal === 'function') launchPocketGullTurntableModal();
             }, 50);
           }
         });
@@ -11608,408 +11608,451 @@ Sincerely,
         }
       }
 
-      // ─── 'A Saturday Night in the Typefoundry' — Pure Typographic Discothèque Engine ───
-      const bodyDiscoBtn = document.getElementById('bodyDiscoBtn');
-      if (bodyDiscoBtn) {
-        bodyDiscoBtn.addEventListener('click', () => {
-          launchPocketGullDiscoModal();
+      // ─── Adobe-Style 2D-to-3D Vector Extrusion & Turntable Studio ───
+      const bodyTurntableBtn = document.getElementById('bodyTurntableBtn');
+      if (bodyTurntableBtn) {
+        bodyTurntableBtn.addEventListener('click', () => {
+          launchPocketGullTurntableModal();
         });
       }
 
-      function launchPocketGullDiscoModal() {
-        let modal = document.getElementById('pocketgullDiscoModalOverlay');
+      function launchPocketGullTurntableModal() {
+        let modal = document.getElementById('pocketgullTurntableModalOverlay');
         if (!modal) {
           modal = document.createElement('div');
-          modal.id = 'pocketgullDiscoModalOverlay';
+          modal.id = 'pocketgullTurntableModalOverlay';
           modal.style.position = 'fixed';
           modal.style.inset = '0';
           modal.style.zIndex = '999999';
-          modal.style.background = 'radial-gradient(circle at center, #180828 0%, #030008 100%)';
+          modal.style.background = 'radial-gradient(circle at center, #0f172a 0%, #020617 100%)';
           modal.style.display = 'flex';
           modal.style.flexDirection = 'column';
           modal.style.userSelect = 'none';
 
           modal.innerHTML = `
-            <!-- Disco Header Bar -->
-            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 1rem 1.75rem; background: rgba(10, 2, 18, 0.92); border-bottom: 1px solid rgba(236, 72, 153, 0.3); color: #fff; font-family: var(--font-code); backdrop-filter: blur(16px); gap: 1rem;">
+            <!-- Studio Header Bar -->
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 1rem 1.75rem; background: rgba(3, 7, 18, 0.95); border-bottom: 1px solid var(--border-subtle); color: #fff; font-family: var(--font-code); backdrop-filter: blur(16px); gap: 1rem;">
               <div style="display: flex; align-items: center; gap: 0.85rem;">
-                <span style="font-size: 1.6rem; animation: philocardia-beat-60 1s infinite;">🪩</span>
+                <span style="font-size: 1.6rem;">🔄</span>
                 <div>
                   <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
-                    <span style="font-family: 'PocketGull Bold', sans-serif; font-size: 1.15rem; font-weight: 900; background: linear-gradient(90deg, #ec4899, #a855f7, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.02em;">
-                      A SATURDAY NIGHT IN THE TYPEFOUNDRY
+                    <span style="font-family: 'PocketGull Bold', sans-serif; font-size: 1.15rem; font-weight: 900; color: #38bdf8; letter-spacing: -0.02em;">
+                      POCKETGULL 2D-TO-3D TURNTABLE STUDIO
                     </span>
-                    <span style="font-size: 0.7rem; background: rgba(236, 72, 153, 0.2); border: 1px solid #ec4899; padding: 0.15rem 0.5rem; border-radius: 9999px; color: #f472b6; font-weight: 800;">
-                      100% PURE POCKETGULL VF
+                    <span style="font-size: 0.7rem; background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; padding: 0.15rem 0.5rem; border-radius: 9999px; color: #38bdf8; font-weight: 800;">
+                      ADOBE-INSPIRED EXTRUSION RIG
                     </span>
                   </div>
                   <p style="font-size: 0.72rem; color: #a1a1aa; margin: 0;">
-                    Inspired by Mozilla A-Saturday-Night (2017). Zero 3D meshes or external engines. 100% pure TrueType vectors &amp; Web Audio synthesizers.
+                    Extrude 2D vector glyphs and anatomical profiles into 3D volumetric slabs with specular normal lighting and 360° turntable rotation.
                   </p>
                 </div>
               </div>
 
-              <!-- Disco Controls -->
+              <!-- Top Studio Controls -->
               <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
-                <!-- Audio Synth & Beat Toggle -->
-                <button id="discoMusicToggleBtn" style="background: linear-gradient(135deg, #ec4899, #8b5cf6); border: none; color: #fff; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; gap: 0.35rem;">
-                  🔊 Start 120 BPM Disco Synth
-                </button>
-                
-                <!-- Track Selector -->
-                <select id="discoTrackSelect" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(236, 72, 153, 0.4); color: #f472b6; padding: 0.35rem 0.65rem; border-radius: 6px; font-size: 0.75rem; font-family: var(--font-code); cursor: pointer;">
-                  <option value="optotypic">Track 1: The Optotypic Hustle (120 BPM)</option>
-                  <option value="frankStarling">Track 2: Frank-Starling Funk (Systolic Syncopation)</option>
-                  <option value="telemetryRobot">Track 3: 600 UPM Telemetry Robot</option>
+                <!-- Model Subject Selector -->
+                <select id="turntableSubjectSelect" style="background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-subtle); color: #38bdf8; padding: 0.4rem 0.75rem; border-radius: 6px; font-size: 0.78rem; font-family: var(--font-code); cursor: pointer; font-weight: 700;">
+                  <option value="body">Subject: 3D Typographic Human Silhouette</option>
+                  <option value="heart">Subject: Myocardium Pump Vector (🫀)</option>
+                  <option value="brain">Subject: Cerebral Tubulin 40Hz Dipole (🧠)</option>
+                  <option value="sloanZ">Subject: Sloan Optotype 'Z' (cv11 Slashed)</option>
+                  <option value="sloan0">Subject: ISMP Slashed Zero '0' (cv08)</option>
+                  <option value="braille">Subject: ISO/TR 11548 Braille Matrix (⠠⠃)</option>
                 </select>
 
-                <!-- Puppeteer Mode Toggle -->
-                <button id="discoPuppetToggleBtn" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem; font-weight: 700;">
-                  🎮 Puppeteer Avatar 1 (Mouse/Touch)
+                <!-- Turntable Motor Play/Pause -->
+                <button id="turntableMotorBtn" style="background: var(--accent-teal); border: none; color: #09090b; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; gap: 0.35rem;">
+                  ⏸ Pause Motor (3.0 RPM)
                 </button>
 
-                <button id="closeDiscoModalBtn" style="background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem;">
-                  ✕ Exit Discothèque
+                <!-- Reset Camera -->
+                <button id="turntableResetBtn" style="background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-subtle); color: #fff; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem;">
+                  🔄 Reset View
+                </button>
+
+                <button id="closeTurntableModalBtn" style="background: transparent; border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; padding: 0.4rem 0.85rem; border-radius: 6px; cursor: pointer; font-size: 0.75rem;">
+                  ✕ Exit Studio
                 </button>
               </div>
             </div>
 
-            <!-- 3D Discothèque Arena -->
-            <div id="discoStage" style="flex: 1; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center; perspective: 1000px; cursor: default;">
+            <!-- Main Studio Workspace (Left Controls + 3D Viewport) -->
+            <div style="flex: 1; display: flex; overflow: hidden; position: relative;">
               
-              <!-- Spotlight Overhead Beams -->
-              <div id="discoSpotlightLeft" style="position: absolute; top: -100px; left: 15%; width: 220px; height: 900px; background: linear-gradient(180deg, rgba(236, 72, 153, 0.35) 0%, rgba(236, 72, 153, 0) 100%); transform: rotate(18deg); pointer-events: none; filter: blur(30px); transition: all 0.25s ease;"></div>
-              <div id="discoSpotlightRight" style="position: absolute; top: -100px; right: 15%; width: 220px; height: 900px; background: linear-gradient(180deg, rgba(56, 189, 248, 0.35) 0%, rgba(56, 189, 248, 0) 100%); transform: rotate(-18deg); pointer-events: none; filter: blur(30px); transition: all 0.25s ease;"></div>
-
-              <!-- Rotating Optotype Disco Ball (Top Center) -->
-              <div id="discoBall" style="position: absolute; top: 20px; width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #ffffff, #94a3b8 40%, #1e293b 90%); box-shadow: 0 0 35px rgba(255, 255, 255, 0.6), 0 0 70px rgba(236, 72, 153, 0.4); display: flex; justify-content: center; align-items: center; font-family: 'PocketGull Bold', sans-serif; font-size: 1.1rem; font-weight: 900; color: #09090b; z-index: 20;">
-                <span id="discoBallLetter">Z</span>
-              </div>
-
-              <!-- 3D Kinetic Typographic Dance Floor (PocketGull Mono U+2500) -->
-              <div id="discoDanceFloor" style="position: absolute; bottom: 0; width: 900px; height: 420px; transform: rotateX(68deg) translateZ(-40px); background: rgba(5, 1, 10, 0.95); border: 2px solid rgba(236, 72, 153, 0.3); border-radius: 16px; box-shadow: 0 0 80px rgba(168, 85, 247, 0.3); display: flex; flex-direction: column; justify-content: space-around; padding: 1.5rem; pointer-events: none;">
-                <div class="disco-floor-row" style="display: flex; justify-content: space-between; font-family: 'PocketGull Mono', monospace; font-size: 1.1rem; color: #ec4899; opacity: 0.85;">
-                  <span>┌────────┐</span><span>┌────────┐</span><span>┌────────┐</span><span>┌────────┐</span>
-                </div>
-                <div class="disco-floor-row" style="display: flex; justify-content: space-between; font-family: 'PocketGull Mono', monospace; font-size: 1.1rem; color: #38bdf8; opacity: 0.85;">
-                  <span>├─ 120 ──┤</span><span>├─ BPM ──┤</span><span>├─ BEAT ─┤</span><span>├─ SYNC ─┤</span>
-                </div>
-                <div class="disco-floor-row" style="display: flex; justify-content: space-between; font-family: 'PocketGull Mono', monospace; font-size: 1.1rem; color: #a855f7; opacity: 0.85;">
-                  <span>├─ 600 ──┤</span><span>├─ UPM ──┤</span><span>├─ MONO ─┤</span><span>├─ STEP ─┤</span>
-                </div>
-                <div class="disco-floor-row" style="display: flex; justify-content: space-between; font-family: 'PocketGull Mono', monospace; font-size: 1.1rem; color: #34d399; opacity: 0.85;">
-                  <span>└────────┘</span><span>└────────┘</span><span>└────────┘</span><span>└────────┘</span>
-                </div>
-              </div>
-
-              <!-- 4 Living Typographic Dancers -->
-              <div id="discoDancerContainer" style="position: relative; width: 880px; height: 450px; display: flex; justify-content: space-around; align-items: flex-end; z-index: 10; padding-bottom: 20px;">
+              <!-- Left Sidebar: Adobe 3D & Materials Properties Inspector -->
+              <div style="width: 280px; background: rgba(10, 15, 30, 0.85); border-right: 1px solid var(--border-subtle); padding: 1.25rem; overflow-y: auto; font-family: var(--font-code); display: flex; flex-direction: column; gap: 1.25rem; backdrop-filter: blur(12px); z-index: 20;">
                 
-                <!-- DANCER 1: Fineliner 400 (The Agile Breakdancer / Puppeteer Target) -->
-                <div id="discoDancer1" class="disco-dancer" data-dancer="1" style="display: flex; flex-direction: column; align-items: center; width: 140px; transform-origin: bottom center; transition: transform 0.05s linear;">
-                  <!-- Head -->
-                  <div class="dancer-head" style="font-family: 'PocketGull Bold', sans-serif; font-size: 1.8rem; font-weight: 800; color: #38bdf8; text-shadow: 0 0 10px rgba(56, 189, 248, 0.6); margin-bottom: 2px;">
-                    ( O )
+                <div>
+                  <div style="font-size: 0.7rem; color: #38bdf8; font-weight: 800; margin-bottom: 0.5rem; text-transform: uppercase;">
+                    1. Extrusion &amp; Bevel Depth
                   </div>
-                  <!-- Upper Arms & Chest -->
-                  <div class="dancer-torso" style="font-family: 'PocketGull Mono', monospace; font-size: 1.1rem; color: #93c5fd; white-space: pre; line-height: 1;">
-\\ [ 400 ] //
-  | | | |  
+                  <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.25rem;">
+                    <span>Extrude Z-Depth</span>
+                    <span id="extrudeDepthVal" style="color: #38bdf8; font-weight: 700;">40 px</span>
                   </div>
-                  <!-- Pelvis & Legs -->
-                  <div class="dancer-legs" style="font-family: 'PocketGull Mono', monospace; font-size: 1.1rem; color: #38bdf8; white-space: pre; line-height: 1;">
-   / \\   
-  /   \\  
- _/   \\_ 
-                  </div>
-                  <span style="font-family: var(--font-code); font-size: 0.65rem; color: #38bdf8; margin-top: 6px; font-weight: 700; background: rgba(56, 189, 248, 0.15); padding: 0.1rem 0.4rem; border-radius: 4px;">
-                    1. Fineliner (Agile)
-                  </span>
+                  <input type="range" id="extrudeDepthSlider" min="0" max="80" value="40" style="width: 100%; accent-color: #38bdf8; cursor: pointer;">
                 </div>
 
-                <!-- DANCER 2: Bold 700 (The Funk Master) -->
-                <div id="discoDancer2" class="disco-dancer" data-dancer="2" style="display: flex; flex-direction: column; align-items: center; width: 140px; transform-origin: bottom center; transition: transform 0.05s linear;">
-                  <!-- Head -->
-                  <div class="dancer-head" style="font-family: 'PocketGull Bold', sans-serif; font-size: 2.2rem; font-weight: 900; color: #ec4899; text-shadow: 0 0 15px rgba(236, 72, 153, 0.7); margin-bottom: 2px;">
-                    [ 700 ]
+                <div>
+                  <div style="font-size: 0.7rem; color: #38bdf8; font-weight: 800; margin-bottom: 0.5rem; text-transform: uppercase;">
+                    2. Motorized Turntable Speed
                   </div>
-                  <!-- Upper Arms & Chest -->
-                  <div class="dancer-torso" style="font-family: 'PocketGull Bold', sans-serif; font-size: 1.25rem; font-weight: 800; color: #f472b6; white-space: pre; line-height: 1;">
-/==[FUNK]==\\
-  | | | |   
+                  <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.25rem;">
+                    <span>Rotation Rate</span>
+                    <span id="turntableSpeedVal" style="color: var(--accent-teal); font-weight: 700;">3.0 RPM</span>
                   </div>
-                  <!-- Pelvis & Legs -->
-                  <div class="dancer-legs" style="font-family: 'PocketGull Bold', sans-serif; font-size: 1.25rem; font-weight: 800; color: #ec4899; white-space: pre; line-height: 1;">
-   / \\     
-  /   \\    
- [Z] [2]   
-                  </div>
-                  <span style="font-family: var(--font-code); font-size: 0.65rem; color: #f472b6; margin-top: 6px; font-weight: 700; background: rgba(236, 72, 153, 0.15); padding: 0.1rem 0.4rem; border-radius: 4px;">
-                    2. Bold 700 (Funk)
-                  </span>
+                  <input type="range" id="turntableSpeedSlider" min="0" max="10" step="0.5" value="3.0" style="width: 100%; accent-color: var(--accent-teal); cursor: pointer;">
                 </div>
 
-                <!-- DANCER 3: Chiseltip 900 (The Strutter) -->
-                <div id="discoDancer3" class="disco-dancer" data-dancer="3" style="display: flex; flex-direction: column; align-items: center; width: 140px; transform-origin: bottom center; transition: transform 0.05s linear;">
-                  <!-- Head -->
-                  <div class="dancer-head" style="font-family: 'PocketGull Chiseltip', sans-serif; font-size: 2.4rem; font-weight: 900; color: #fbbf24; text-shadow: 0 0 15px rgba(251, 191, 36, 0.7); margin-bottom: 2px;">
-                    { 900 }
+                <div>
+                  <div style="font-size: 0.7rem; color: #38bdf8; font-weight: 800; margin-bottom: 0.5rem; text-transform: uppercase;">
+                    3. Directional Key Lighting
                   </div>
-                  <!-- Upper Arms & Chest -->
-                  <div class="dancer-torso" style="font-family: 'PocketGull Chiseltip', sans-serif; font-size: 1.3rem; font-weight: 900; color: #fde047; white-space: pre; line-height: 1;">
-\\==[CHISEL]==/
-   |  |   
+                  <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted); margin-bottom: 0.25rem;">
+                    <span>Light Azimuth</span>
+                    <span id="lightAzimuthVal" style="color: #fbbf24; font-weight: 700;">45°</span>
                   </div>
-                  <!-- Pelvis & Legs -->
-                  <div class="dancer-legs" style="font-family: 'PocketGull Chiseltip', sans-serif; font-size: 1.3rem; font-weight: 900; color: #fbbf24; white-space: pre; line-height: 1;">
-   /   \\   
-  |     |  
- [0]   [0] 
-                  </div>
-                  <span style="font-family: var(--font-code); font-size: 0.65rem; color: #fbbf24; margin-top: 6px; font-weight: 700; background: rgba(251, 191, 36, 0.15); padding: 0.1rem 0.4rem; border-radius: 4px;">
-                    3. Chiseltip 900 (Strut)
-                  </span>
+                  <input type="range" id="lightAzimuthSlider" min="-180" max="180" value="45" style="width: 100%; accent-color: #fbbf24; cursor: pointer;">
                 </div>
 
-                <!-- DANCER 4: Mono 600 UPM (The Telemetry Robot) -->
-                <div id="discoDancer4" class="disco-dancer" data-dancer="4" style="display: flex; flex-direction: column; align-items: center; width: 140px; transform-origin: bottom center; transition: transform 0.05s linear;">
-                  <!-- Head -->
-                  <div class="dancer-head" style="font-family: 'PocketGull Mono', monospace; font-size: 1.9rem; font-weight: 700; color: #34d399; text-shadow: 0 0 12px rgba(52, 211, 153, 0.7); margin-bottom: 2px;">
-                    &lt; 600 &gt;
+                <div>
+                  <div style="font-size: 0.7rem; color: #38bdf8; font-weight: 800; margin-bottom: 0.5rem; text-transform: uppercase;">
+                    4. Render Mode &amp; Shading
                   </div>
-                  <!-- Upper Arms & Chest -->
-                  <div class="dancer-torso" style="font-family: 'PocketGull Mono', monospace; font-size: 1.15rem; color: #6ee7b7; white-space: pre; line-height: 1;">
-|--[ROBOT]--|
-  |  OTS  |  
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem;">
+                    <button class="turntable-render-btn active" data-render="lit" style="padding: 0.4rem; font-size: 0.72rem; font-weight: 700; border-radius: 4px; border: 1px solid #38bdf8; background: rgba(56, 189, 248, 0.2); color: #38bdf8; cursor: pointer;">
+                      ☀️ Lit Shaded
+                    </button>
+                    <button class="turntable-render-btn" data-render="wire" style="padding: 0.4rem; font-size: 0.72rem; font-weight: 700; border-radius: 4px; border: 1px solid var(--border-subtle); background: transparent; color: var(--text-muted); cursor: pointer;">
+                      📐 CAD Wireframe
+                    </button>
                   </div>
-                  <!-- Pelvis & Legs -->
-                  <div class="dancer-legs" style="font-family: 'PocketGull Mono', monospace; font-size: 1.15rem; color: #34d399; white-space: pre; line-height: 1;">
-   |     |   
-  [=]   [=]  
-                  </div>
-                  <span style="font-family: var(--font-code); font-size: 0.65rem; color: #34d399; margin-top: 6px; font-weight: 700; background: rgba(52, 211, 153, 0.15); padding: 0.1rem 0.4rem; border-radius: 4px;">
-                    4. Mono (600 UPM Robot)
-                  </span>
+                </div>
+
+                <div style="border-top: 1px solid var(--border-subtle); padding-top: 1rem; font-size: 0.68rem; color: var(--text-muted); line-height: 1.5;">
+                  <strong>Adobe Workflow Parity:</strong><br>
+                  • <strong>LMB Drag:</strong> Turntable Orbit (Pitch / Yaw)<br>
+                  • <strong>Wheel:</strong> Camera Dolly Zoom<br>
+                  • <strong>Shift + Drag:</strong> Camera Pan X/Y<br>
+                  • <strong>Extrude:</strong> Multi-layer vector depth slices with normal attenuation
                 </div>
 
               </div>
 
-              <!-- Live MoCap & Audio Telemetry HUD Overlay -->
-              <div style="position: absolute; bottom: 20px; left: 24px; font-family: var(--font-code); font-size: 0.78rem; color: #f472b6; pointer-events: none; background: rgba(0, 0, 0, 0.6); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid rgba(236, 72, 153, 0.3);">
-                🎵 TEMPO: 120 BPM • CHOREOGRAPHY: BEAT-SYNCHRONIZED KINEMATICS
+              <!-- Right: 3D Stage Viewport -->
+              <div id="turntableStage" style="flex: 1; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center; perspective: 1200px; cursor: grab;">
+                
+                <!-- Floor Grid Shadow Plane -->
+                <div style="position: absolute; bottom: 8%; width: 500px; height: 500px; background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.18) 0%, rgba(0, 0, 0, 0) 70%); transform: rotateX(90deg) translateZ(-160px); pointer-events: none; border-radius: 50%;"></div>
+
+                <!-- 3D Transform Gimbal Platform -->
+                <div id="turntableGimbal" style="width: 340px; height: 480px; position: relative; transform-style: preserve-3d; transition: transform 0.05s linear;">
+                  
+                  <!-- Dynamic Extruded Vector Layers will be rendered here -->
+                  <div id="turntableLayersContainer" style="position: absolute; inset: 0; transform-style: preserve-3d;">
+                    <!-- Slices generated by renderExtrusion() -->
+                  </div>
+
+                </div>
+
+                <!-- Viewport Telemetry HUD -->
+                <div style="position: absolute; bottom: 20px; left: 20px; font-family: var(--font-code); font-size: 0.75rem; color: #38bdf8; background: rgba(0, 0, 0, 0.6); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.3); pointer-events: none;">
+                  🖱️ DRAG TO ROTATE 3D • WHEEL TO ZOOM • SHIFT TO PAN
+                </div>
+
+                <div id="turntableAngleBadge" style="position: absolute; bottom: 20px; right: 20px; font-family: var(--font-code); font-size: 0.75rem; color: #fbbf24; background: rgba(0, 0, 0, 0.6); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid rgba(251, 191, 36, 0.3); pointer-events: none;">
+                  YAW: 0° • PITCH: 0° • DEPTH: 40px
+                </div>
+
               </div>
 
-              <div id="discoPuppetBadge" style="position: absolute; bottom: 20px; right: 24px; font-family: var(--font-code); font-size: 0.78rem; color: #38bdf8; pointer-events: none; background: rgba(0, 0, 0, 0.6); padding: 0.4rem 0.8rem; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.3);">
-                🎮 PUPPETEER: OFF (CHOREOGRAPHY AUTOPILOT)
-              </div>
             </div>
           `;
 
           document.body.appendChild(modal);
 
-          let isDiscoPlaying = false;
-          let discoAudioCtx = null;
-          let discoBeatTimer = null;
-          let discoBeatCount = 0;
-          let isPuppeteering = false;
-          let puppetTargetX = 0;
-          let puppetTargetY = 0;
+          let ttYaw = 0;
+          let ttPitch = 0;
+          let ttZoom = 1.0;
+          let ttPanX = 0;
+          let ttPanY = 0;
+          let ttExtrudeDepth = 40;
+          let ttSpeedRpm = 3.0;
+          let ttLightAzimuth = 45;
+          let ttRenderMode = 'lit'; // 'lit' or 'wire'
+          let isTtMotorRunning = true;
+          let ttMotorTimer = null;
+          let isTtDragging = false;
+          let ttStartX = 0;
+          let ttStartY = 0;
 
-          const discoMusicToggleBtn = document.getElementById('discoMusicToggleBtn');
-          const discoTrackSelect = document.getElementById('discoTrackSelect');
-          const discoPuppetToggleBtn = document.getElementById('discoPuppetToggleBtn');
-          const closeDiscoModalBtn = document.getElementById('closeDiscoModalBtn');
-          const discoStage = document.getElementById('discoStage');
-          const discoBallLetter = document.getElementById('discoBallLetter');
-          const discoSpotlightLeft = document.getElementById('discoSpotlightLeft');
-          const discoSpotlightRight = document.getElementById('discoSpotlightRight');
-          const discoFloorRows = document.querySelectorAll('.disco-floor-row');
-          const discoPuppetBadge = document.getElementById('discoPuppetBadge');
+          const turntableStage = document.getElementById('turntableStage');
+          const turntableGimbal = document.getElementById('turntableGimbal');
+          const turntableLayersContainer = document.getElementById('turntableLayersContainer');
+          const turntableSubjectSelect = document.getElementById('turntableSubjectSelect');
+          const turntableMotorBtn = document.getElementById('turntableMotorBtn');
+          const turntableResetBtn = document.getElementById('turntableResetBtn');
+          const closeTurntableModalBtn = document.getElementById('closeTurntableModalBtn');
+          const extrudeDepthSlider = document.getElementById('extrudeDepthSlider');
+          const extrudeDepthVal = document.getElementById('extrudeDepthVal');
+          const turntableSpeedSlider = document.getElementById('turntableSpeedSlider');
+          const turntableSpeedVal = document.getElementById('turntableSpeedVal');
+          const lightAzimuthSlider = document.getElementById('lightAzimuthSlider');
+          const lightAzimuthVal = document.getElementById('lightAzimuthVal');
+          const turntableAngleBadge = document.getElementById('turntableAngleBadge');
+          const renderBtns = modal.querySelectorAll('.turntable-render-btn');
 
-          const dancer1 = document.getElementById('discoDancer1');
-          const dancer2 = document.getElementById('discoDancer2');
-          const dancer3 = document.getElementById('discoDancer3');
-          const dancer4 = document.getElementById('discoDancer4');
-
-          const SLOAN_LETTERS = ['C', 'D', 'E', 'F', 'H', 'K', 'N', 'O', 'P', 'R', 'S', 'T', 'V', 'Z'];
-
-          // Pure Web Audio API Synthesizer (Zero External MP3s / 100% Native)
-          function playDiscoBassKick() {
-            if (!discoAudioCtx) return;
-            try {
-              const osc = discoAudioCtx.createOscillator();
-              const gain = discoAudioCtx.createGain();
-              osc.type = 'sine';
-              osc.frequency.setValueAtTime(140, discoAudioCtx.currentTime);
-              osc.frequency.exponentialRampToValueAtTime(35, discoAudioCtx.currentTime + 0.12);
-              gain.gain.setValueAtTime(0.4, discoAudioCtx.currentTime);
-              gain.gain.exponentialRampToValueAtTime(0.01, discoAudioCtx.currentTime + 0.15);
-              osc.connect(gain);
-              gain.connect(discoAudioCtx.destination);
-              osc.start();
-              osc.stop(discoAudioCtx.currentTime + 0.16);
-
-              // Snare / Hi-Hat on alternating beats
-              if (discoBeatCount % 2 === 1) {
-                const hat = discoAudioCtx.createOscillator();
-                const hatGain = discoAudioCtx.createGain();
-                hat.type = 'triangle';
-                hat.frequency.setValueAtTime(8000, discoAudioCtx.currentTime);
-                hatGain.gain.setValueAtTime(0.12, discoAudioCtx.currentTime);
-                hatGain.gain.exponentialRampToValueAtTime(0.01, discoAudioCtx.currentTime + 0.06);
-                hat.connect(hatGain);
-                hatGain.connect(discoAudioCtx.destination);
-                hat.start();
-                hat.stop(discoAudioCtx.currentTime + 0.07);
-              }
-            } catch (err) {
-              console.warn('Synth error:', err);
+          function getSubjectSvg(subject, layerZ, opacity, strokeColor, fillColor) {
+            if (subject === 'heart') {
+              return `
+                <svg viewBox="0 0 240 240" style="width: 100%; height: 100%; overflow: visible;">
+                  <g fill="${fillColor}" stroke="${strokeColor}" stroke-width="${ttRenderMode === 'wire' ? '1.5' : '2'}">
+                    <path d="M 120,60 C 105,25 45,25 45,80 C 45,135 120,195 120,195 C 120,195 195,135 195,80 C 195,25 135,25 120,60 Z" />
+                    <!-- Ventricular & Atrial Internal Vector Contours -->
+                    <circle cx="95" cy="90" r="18" fill="none" stroke="${strokeColor}" stroke-dasharray="2,2" />
+                    <circle cx="145" cy="90" r="18" fill="none" stroke="${strokeColor}" stroke-dasharray="2,2" />
+                    <text x="120" y="115" font-family="'PocketGull Bold'" font-size="14" font-weight="900" text-anchor="middle" fill="${strokeColor}">MYOCARDIUM</text>
+                  </g>
+                </svg>
+              `;
+            } else if (subject === 'brain') {
+              return `
+                <svg viewBox="0 0 240 240" style="width: 100%; height: 100%; overflow: visible;">
+                  <g fill="${fillColor}" stroke="${strokeColor}" stroke-width="${ttRenderMode === 'wire' ? '1.5' : '2'}">
+                    <ellipse cx="120" cy="110" rx="75" ry="60" />
+                    <path d="M 60,110 Q 120,70 180,110" fill="none" />
+                    <path d="M 60,130 Q 120,170 180,130" fill="none" />
+                    <text x="120" y="115" font-family="'PocketGull Bold'" font-size="13" font-weight="900" text-anchor="middle" fill="${strokeColor}">ORCH-OR 40Hz</text>
+                  </g>
+                </svg>
+              `;
+            } else if (subject === 'sloanZ') {
+              return `
+                <svg viewBox="0 0 240 240" style="width: 100%; height: 100%; overflow: visible;">
+                  <g fill="${fillColor}" stroke="${strokeColor}" stroke-width="${ttRenderMode === 'wire' ? '2' : '0'}">
+                    <text x="120" y="180" font-family="'PocketGull Bold', sans-serif" font-size="175" font-weight="900" text-anchor="middle" style="font-feature-settings: 'cv11' 1;">Z</text>
+                  </g>
+                </svg>
+              `;
+            } else if (subject === 'sloan0') {
+              return `
+                <svg viewBox="0 0 240 240" style="width: 100%; height: 100%; overflow: visible;">
+                  <g fill="${fillColor}" stroke="${strokeColor}" stroke-width="${ttRenderMode === 'wire' ? '2' : '0'}">
+                    <text x="120" y="180" font-family="'PocketGull Bold', sans-serif" font-size="175" font-weight="900" text-anchor="middle" style="font-feature-settings: 'zero' 1, 'cv08' 1;">0</text>
+                  </g>
+                </svg>
+              `;
+            } else if (subject === 'braille') {
+              return `
+                <svg viewBox="0 0 240 240" style="width: 100%; height: 100%; overflow: visible;">
+                  <g fill="${fillColor}" stroke="${strokeColor}" stroke-width="2">
+                    <circle cx="85" cy="65" r="16" />
+                    <circle cx="85" cy="115" r="16" />
+                    <circle cx="85" cy="165" r="16" />
+                    <circle cx="155" cy="65" r="16" />
+                    <circle cx="155" cy="115" r="16" />
+                    <circle cx="155" cy="165" r="16" />
+                  </g>
+                </svg>
+              `;
+            } else {
+              // Complete Typographic Body Matrix Silhouette
+              return `
+                <svg viewBox="0 0 280 420" style="width: 100%; height: 100%; overflow: visible;">
+                  <g fill="${fillColor}" stroke="${strokeColor}" stroke-width="${ttRenderMode === 'wire' ? '1.5' : '1'}">
+                    <!-- Head -->
+                    <circle cx="140" cy="42" r="26" />
+                    <text x="140" y="47" font-family="'PocketGull Bold'" font-size="9" text-anchor="middle" fill="${strokeColor}">BRAIN</text>
+                    <!-- Thorax -->
+                    <ellipse cx="108" cy="108" rx="20" ry="24" />
+                    <ellipse cx="172" cy="108" rx="20" ry="24" />
+                    <circle cx="140" cy="126" r="18" />
+                    <!-- Liver -->
+                    <rect x="110" y="152" width="60" height="22" rx="6" />
+                    <!-- Pelvis / Legs -->
+                    <rect x="95" y="215" width="22" height="70" rx="6" />
+                    <rect x="163" y="215" width="22" height="70" rx="6" />
+                    <rect x="95" y="295" width="22" height="70" rx="6" />
+                    <rect x="163" y="295" width="22" height="70" rx="6" />
+                  </g>
+                </svg>
+              `;
             }
           }
 
-          function stepDiscoBeat() {
-            discoBeatCount++;
-            const beatPhase = discoBeatCount % 4;
+          function renderExtrusion() {
+            if (!turntableLayersContainer) return;
+            const subject = turntableSubjectSelect.value;
+            const sliceCount = ttExtrudeDepth === 0 ? 1 : Math.max(3, Math.round(ttExtrudeDepth / 4));
+            const stepZ = ttExtrudeDepth / sliceCount;
 
-            // 1. Audio synth
-            if (isDiscoPlaying) {
-              playDiscoBassKick();
-            }
+            let html = '';
+            for (let i = 0; i < sliceCount; i++) {
+              const z = (i * stepZ) - (ttExtrudeDepth / 2);
+              const isFront = (i === sliceCount - 1);
+              const isBack = (i === 0);
 
-            // 2. Rotate Disco Ball letter
-            if (discoBallLetter) {
-              discoBallLetter.textContent = SLOAN_LETTERS[discoBeatCount % SLOAN_LETTERS.length];
-            }
+              // Shading calculation based on light azimuth
+              const lightFactor = Math.cos((ttYaw - ttLightAzimuth) * (Math.PI / 180));
+              const intensity = 0.5 + (0.5 * lightFactor);
 
-            // 3. Modulate Spotlights
-            if (discoSpotlightLeft && discoSpotlightRight) {
-              const hue1 = (discoBeatCount * 45) % 360;
-              const hue2 = (hue1 + 180) % 360;
-              discoSpotlightLeft.style.background = `linear-gradient(180deg, hsla(${hue1}, 90%, 65%, 0.35) 0%, transparent 100%)`;
-              discoSpotlightRight.style.background = `linear-gradient(180deg, hsla(${hue2}, 90%, 65%, 0.35) 0%, transparent 100%)`;
-              discoSpotlightLeft.style.transform = `rotate(${10 + Math.sin(discoBeatCount * 0.8) * 18}deg)`;
-              discoSpotlightRight.style.transform = `rotate(${-10 - Math.sin(discoBeatCount * 0.8) * 18}deg)`;
-            }
+              let strokeColor = '#38bdf8';
+              let fillColor = 'none';
 
-            // 4. Pulse Dance Floor Rows
-            discoFloorRows.forEach((row, i) => {
-              if (i === (discoBeatCount % 4)) {
-                row.style.filter = 'brightness(1.8) drop-shadow(0 0 12px #ec4899)';
-                row.style.opacity = '1.0';
+              if (ttRenderMode === 'wire') {
+                strokeColor = isFront ? '#38bdf8' : (isBack ? '#1e293b' : 'rgba(56, 189, 248, 0.4)');
+                fillColor = 'none';
               } else {
-                row.style.filter = 'none';
-                row.style.opacity = '0.4';
+                // Lit Shaded mode: Front is bright, side/back slices create thick gradient slab
+                if (isFront) {
+                  strokeColor = '#38bdf8';
+                  fillColor = `rgba(56, 189, 248, ${0.75 + (0.2 * intensity)})`;
+                } else {
+                  const darken = (i / sliceCount);
+                  strokeColor = `rgba(14, 116, 144, ${0.4 + (0.4 * darken)})`;
+                  fillColor = `rgba(15, 23, 42, ${0.6 + (0.3 * darken)})`;
+                }
               }
+
+              html += `
+                <div style="position: absolute; inset: 0; transform: translateZ(${z}px); pointer-events: none;">
+                  ${getSubjectSvg(subject, z, 1.0, strokeColor, fillColor)}
+                </div>
+              `;
+            }
+
+            turntableLayersContainer.innerHTML = html;
+          }
+
+          function updateTurntableTransform() {
+            if (!turntableGimbal) return;
+            turntableGimbal.style.transform = `translate3d(${ttPanX}px, ${ttPanY}px, 0) scale(${ttZoom}) rotateY(${ttYaw}deg) rotateX(${ttPitch}deg)`;
+            if (turntableAngleBadge) {
+              turntableAngleBadge.textContent = `YAW: ${Math.round(ttYaw % 360)}° • PITCH: ${Math.round(ttPitch)}° • DEPTH: ${ttExtrudeDepth}px`;
+            }
+          }
+
+          function startTurntableMotor() {
+            if (ttMotorTimer) clearInterval(ttMotorTimer);
+            ttMotorTimer = setInterval(() => {
+              if (isTtMotorRunning && !isTtDragging) {
+                // 1 RPM = 360 deg in 60s = 6 deg/s = 0.1 deg per 60fps frame
+                const degPerFrame = (ttSpeedRpm * 360) / (60 * 60);
+                ttYaw += degPerFrame * 1.5;
+                updateTurntableTransform();
+                // Dynamically recalculate shading if rotating past key light
+                if (Math.round(ttYaw) % 5 === 0) {
+                  renderExtrusion();
+                }
+              }
+            }, 1000 / 60);
+          }
+
+          startTurntableMotor();
+          renderExtrusion();
+          updateTurntableTransform();
+
+          // Controls Listeners
+          turntableSubjectSelect.addEventListener('change', () => {
+            renderExtrusion();
+          });
+
+          extrudeDepthSlider.addEventListener('input', (e) => {
+            ttExtrudeDepth = parseInt(e.target.value, 10);
+            if (extrudeDepthVal) extrudeDepthVal.textContent = `${ttExtrudeDepth} px`;
+            renderExtrusion();
+            updateTurntableTransform();
+          });
+
+          turntableSpeedSlider.addEventListener('input', (e) => {
+            ttSpeedRpm = parseFloat(e.target.value);
+            if (turntableSpeedVal) turntableSpeedVal.textContent = `${ttSpeedRpm.toFixed(1)} RPM`;
+          });
+
+          lightAzimuthSlider.addEventListener('input', (e) => {
+            ttLightAzimuth = parseInt(e.target.value, 10);
+            if (lightAzimuthVal) lightAzimuthVal.textContent = `${ttLightAzimuth}°`;
+            renderExtrusion();
+          });
+
+          turntableMotorBtn.addEventListener('click', () => {
+            isTtMotorRunning = !isTtMotorRunning;
+            turntableMotorBtn.textContent = isTtMotorRunning ? `⏸ Pause Motor (${ttSpeedRpm.toFixed(1)} RPM)` : '▶ Start Turntable';
+            turntableMotorBtn.style.background = isTtMotorRunning ? 'var(--accent-teal)' : 'var(--accent-amber)';
+          });
+
+          turntableResetBtn.addEventListener('click', () => {
+            ttYaw = 0;
+            ttPitch = 0;
+            ttZoom = 1.0;
+            ttPanX = 0;
+            ttPanY = 0;
+            updateTurntableTransform();
+          });
+
+          renderBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+              renderBtns.forEach(b => {
+                b.classList.remove('active');
+                b.style.background = 'transparent';
+                b.style.borderColor = 'var(--border-subtle)';
+                b.style.color = 'var(--text-muted)';
+              });
+              btn.classList.add('active');
+              btn.style.background = 'rgba(56, 189, 248, 0.2)';
+              btn.style.borderColor = '#38bdf8';
+              btn.style.color = '#38bdf8';
+              ttRenderMode = btn.dataset.render;
+              renderExtrusion();
             });
-
-            // 5. Kinetic Dancer Choreography
-            const bounce = beatPhase === 0 || beatPhase === 2 ? -22 : 0;
-            const sway = Math.sin(discoBeatCount * 0.8) * 14;
-
-            // Dancer 1: Fineliner (Agile breakdancer or puppeteered)
-            if (!isPuppeteering && dancer1) {
-              dancer1.style.transform = `translateY(${bounce * 1.2}px) rotate(${sway * 1.2}deg) scale(${1.0 + (beatPhase === 0 ? 0.08 : 0)})`;
-            }
-
-            // Dancer 2: Bold 700 (Funk Master, pop and lock)
-            if (dancer2) {
-              const funkBounce = beatPhase === 1 || beatPhase === 3 ? -25 : 0;
-              dancer2.style.transform = `translateY(${funkBounce}px) rotate(${-sway}deg) scale(${1.0 + (beatPhase === 1 ? 0.12 : 0)})`;
-            }
-
-            // Dancer 3: Chiseltip 900 (Strutting with high inertia)
-            if (dancer3) {
-              const strutX = Math.sin(discoBeatCount * 0.5) * 20;
-              dancer3.style.transform = `translateX(${strutX}px) translateY(${bounce * 0.8}px) rotate(${sway * 0.6}deg)`;
-            }
-
-            // Dancer 4: Mono 600 UPM (Strict discrete 90-degree robot arm step)
-            if (dancer4) {
-              const robotAngle = (beatPhase * 12) - 18;
-              const robotHop = beatPhase === 0 ? -15 : 0;
-              dancer4.style.transform = `translateY(${robotHop}px) skewX(${robotAngle}deg)`;
-            }
-          }
-
-          function startDiscoLoop() {
-            if (discoBeatTimer) clearInterval(discoBeatTimer);
-            // 120 BPM = 500 ms per quarter beat, 250 ms per eighth beat
-            discoBeatTimer = setInterval(stepDiscoBeat, 250);
-          }
-
-          startDiscoLoop();
-
-          discoMusicToggleBtn.addEventListener('click', () => {
-            if (!discoAudioCtx) {
-              const AudioCtx = window.AudioContext || window.webkitAudioContext;
-              if (AudioCtx) discoAudioCtx = new AudioCtx();
-            }
-            if (discoAudioCtx && discoAudioCtx.state === 'suspended') {
-              discoAudioCtx.resume();
-            }
-
-            isDiscoPlaying = !isDiscoPlaying;
-            if (isDiscoPlaying) {
-              discoMusicToggleBtn.textContent = '⏸ Pause Disco Audio';
-              discoMusicToggleBtn.style.background = 'var(--accent-amber)';
-              discoMusicToggleBtn.style.color = '#09090b';
-            } else {
-              discoMusicToggleBtn.textContent = '🔊 Start 120 BPM Disco Synth';
-              discoMusicToggleBtn.style.background = 'linear-gradient(135deg, #ec4899, #8b5cf6)';
-              discoMusicToggleBtn.style.color = '#fff';
-            }
           });
 
-          discoPuppetToggleBtn.addEventListener('click', () => {
-            isPuppeteering = !isPuppeteering;
-            if (isPuppeteering) {
-              discoPuppetToggleBtn.textContent = '🎮 Puppeteer Active (Move Pointer)';
-              discoPuppetToggleBtn.style.background = '#38bdf8';
-              discoPuppetToggleBtn.style.color = '#09090b';
-              if (discoPuppetBadge) {
-                discoPuppetBadge.textContent = '🎮 PUPPETEER: ACTIVE (AVATAR 1 FOLLOWING MOUSE)';
-                discoPuppetBadge.style.color = '#4ade80';
-                discoPuppetBadge.style.borderColor = '#4ade80';
-              }
-            } else {
-              discoPuppetToggleBtn.textContent = '🎮 Puppeteer Avatar 1 (Mouse/Touch)';
-              discoPuppetToggleBtn.style.background = 'rgba(56, 189, 248, 0.15)';
-              discoPuppetToggleBtn.style.color = '#38bdf8';
-              if (discoPuppetBadge) {
-                discoPuppetBadge.textContent = '🎮 PUPPETEER: OFF (CHOREOGRAPHY AUTOPILOT)';
-                discoPuppetBadge.style.color = '#38bdf8';
-                discoPuppetBadge.style.borderColor = 'rgba(56, 189, 248, 0.3)';
-              }
-            }
-          });
-
-          // Pointer interaction for puppeteering Avatar 1
-          discoStage.addEventListener('pointermove', (e) => {
-            if (!isPuppeteering || !dancer1) return;
-            const rect = discoStage.getBoundingClientRect();
-            const relX = (e.clientX - rect.left) / rect.width - 0.5;
-            const relY = (e.clientY - rect.top) / rect.height - 0.5;
-
-            const tilt = relX * 45;
-            const hop = -Math.abs(relY * 60);
-            const torso = dancer1.querySelector('.dancer-torso');
-            if (torso) {
-              torso.textContent = relX < 0 ? '\\\\ [ 400 ] ---\n  | | | |  ' : '--- [ 400 ] //\n  | | | |  ';
-            }
-            dancer1.style.transform = `translateX(${relX * 160}px) translateY(${hop}px) rotate(${tilt}deg) scale(1.15)`;
-          });
-
-          closeDiscoModalBtn.addEventListener('click', () => {
+          closeTurntableModalBtn.addEventListener('click', () => {
             modal.style.display = 'none';
-            if (discoBeatTimer) clearInterval(discoBeatTimer);
-            if (discoAudioCtx && discoAudioCtx.state === 'running') {
-              discoAudioCtx.suspend();
-            }
-            isDiscoPlaying = false;
-            discoMusicToggleBtn.textContent = '🔊 Start 120 BPM Disco Synth';
-            discoMusicToggleBtn.style.background = 'linear-gradient(135deg, #ec4899, #8b5cf6)';
-            discoMusicToggleBtn.style.color = '#fff';
+            clearInterval(ttMotorTimer);
           });
+
+          // Pointer interaction for 3D Turntable Tumble and Orbit
+          turntableStage.addEventListener('pointerdown', (e) => {
+            isTtDragging = true;
+            ttStartX = e.clientX;
+            ttStartY = e.clientY;
+            turntableStage.style.cursor = 'grabbing';
+            turntableStage.setPointerCapture(e.pointerId);
+          });
+
+          turntableStage.addEventListener('pointermove', (e) => {
+            if (!isTtDragging) return;
+            const dx = e.clientX - ttStartX;
+            const dy = e.clientY - ttStartY;
+
+            if (e.shiftKey) {
+              ttPanX += dx * 0.8;
+              ttPanY += dy * 0.8;
+            } else {
+              ttYaw += dx * 0.5;
+              ttPitch = Math.max(-75, Math.min(75, ttPitch - dy * 0.4));
+            }
+
+            ttStartX = e.clientX;
+            ttStartY = e.clientY;
+            updateTurntableTransform();
+            renderExtrusion();
+          });
+
+          turntableStage.addEventListener('pointerup', (e) => {
+            isTtDragging = false;
+            turntableStage.style.cursor = 'grab';
+            turntableStage.releasePointerCapture(e.pointerId);
+          });
+
+          turntableStage.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const factor = e.deltaY > 0 ? 0.9 : 1.1;
+            ttZoom = Math.max(0.4, Math.min(3.5, ttZoom * factor));
+            updateTurntableTransform();
+          }, { passive: false });
 
         } else {
           modal.style.display = 'flex';
