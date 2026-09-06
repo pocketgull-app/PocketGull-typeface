@@ -7178,8 +7178,8 @@
                 <button id="bodyPlaneCoronalBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: var(--accent-teal); color: #09090b;">Coronal (Front)</button>
                 <button id="bodyPlaneSagittalBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: transparent; color: var(--text-secondary);">Sagittal (Side)</button>
                 <button id="bodyResetOrbitBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">🔄 Reset 3D</button>
-                <button id="bodyAframeBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: rgba(236, 72, 153, 0.15); color: #f472b6; border: 1px solid rgba(236, 72, 153, 0.4); font-weight: 800;">🌐 aframe.io VR</button>
-                <button id="bodyWebXrBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4);">🥽 WebXR / AR</button>
+                <button id="bodyHoloLensBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: rgba(20, 184, 166, 0.2); color: var(--accent-teal); border: 1px solid var(--accent-teal); font-weight: 800;">✨ 3D Spatial Holocalligramme</button>
+                <button id="bodyWebXrBtn" class="action-btn" style="padding: 0.35rem 0.75rem; font-size: 0.75rem; background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4);">🥽 WebXR / Spatial AR</button>
               </div>
             </div>
 
@@ -11347,96 +11347,211 @@ Sincerely,
         });
       }
 
-      // aframe.io WebVR / Spatial Browser Launcher
-      const bodyAframeBtn = document.getElementById('bodyAframeBtn');
-      if (bodyAframeBtn) {
-        bodyAframeBtn.addEventListener('click', () => {
-          // Dynamically load A-Frame library from unpkg if not present
-          if (!window.AFRAME) {
-            const script = document.createElement('script');
-            script.src = 'https://aframe.io/releases/1.6.0/aframe.min.js';
-            script.onload = () => launchAframeModal();
-            document.head.appendChild(script);
-            bodyAframeBtn.textContent = '⏳ Loading aframe.io...';
-          } else {
-            launchAframeModal();
-          }
+      // ─── Pure High-Quality PocketGull 3D Spatial Holocalligramme Engine ───
+      const bodyHoloLensBtn = document.getElementById('bodyHoloLensBtn');
+      if (bodyHoloLensBtn) {
+        bodyHoloLensBtn.addEventListener('click', () => {
+          launchPocketGullHoloModal();
         });
       }
 
-      function launchAframeModal() {
-        if (bodyAframeBtn) {
-          bodyAframeBtn.textContent = '🌐 aframe.io VR Active';
-          bodyAframeBtn.style.background = 'rgba(236, 72, 153, 0.3)';
-        }
-
-        let modal = document.getElementById('aframeModalOverlay');
+      function launchPocketGullHoloModal() {
+        let modal = document.getElementById('pocketgullHoloModalOverlay');
         if (!modal) {
           modal = document.createElement('div');
-          modal.id = 'aframeModalOverlay';
+          modal.id = 'pocketgullHoloModalOverlay';
           modal.style.position = 'fixed';
           modal.style.inset = '0';
           modal.style.zIndex = '99999';
-          modal.style.background = 'rgba(0, 0, 0, 0.95)';
+          modal.style.background = 'radial-gradient(circle at center, #020617 0%, #000000 100%)';
           modal.style.display = 'flex';
           modal.style.flexDirection = 'column';
 
           modal.innerHTML = `
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.5rem; background: #030712; border-bottom: 1px solid var(--border-subtle); color: #fff; font-family: var(--font-code);">
-              <div style="display: flex; align-items: center; gap: 0.75rem;">
-                <span style="font-size: 1.25rem;">🌐</span>
-                <span style="font-weight: 800; color: #f472b6;">AFRAME.IO WEBVR SPATIAL ANATOMY ROOM</span>
-                <span style="font-size: 0.75rem; background: rgba(236, 72, 153, 0.2); padding: 0.2rem 0.6rem; border-radius: 9999px; color: #f472b6;">6-DOF Immersive VR</span>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 2rem; background: rgba(3, 7, 18, 0.95); border-bottom: 1px solid var(--border-subtle); color: #fff; font-family: var(--font-code); backdrop-blur-md: blur(16px);">
+              <div style="display: flex; align-items: center; gap: 1rem;">
+                <span style="font-size: 1.5rem;">✨</span>
+                <div>
+                  <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="font-family: 'PocketGull Bold', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--accent-teal); letter-spacing: -0.02em;">
+                      POCKETGULL 3D SPATIAL HOLOCALLIGRAMME
+                    </span>
+                    <span style="font-size: 0.7rem; background: rgba(20, 184, 166, 0.2); border: 1px solid var(--accent-teal); padding: 0.15rem 0.6rem; border-radius: 9999px; color: var(--accent-teal); font-weight: 800;">
+                      100% PURE POCKETGULL VF
+                    </span>
+                  </div>
+                  <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">
+                    Zero external runtime dependencies. 100% pure TrueType vector typography volumetric silhouette.
+                  </p>
+                </div>
               </div>
-              <button id="closeAframeModalBtn" style="background: transparent; border: 1px solid var(--border-subtle); color: #fff; padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer;">✕ Close VR</button>
+              <div style="display: flex; align-items: center; gap: 1rem;">
+                <button id="holoSpinToggleBtn" style="background: rgba(20, 184, 166, 0.15); border: 1px solid var(--accent-teal); color: var(--accent-teal); padding: 0.4rem 0.9rem; border-radius: 6px; cursor: pointer; font-size: 0.8rem; font-weight: 700;">
+                  ⏸ Pause Rotation
+                </button>
+                <button id="closeHoloModalBtn" style="background: transparent; border: 1px solid var(--border-subtle); color: #fff; padding: 0.4rem 0.9rem; border-radius: 6px; cursor: pointer; font-size: 0.8rem;">
+                  ✕ Exit Holocalligramme
+                </button>
+              </div>
             </div>
-            <div style="flex: 1; position: relative;" id="aframeSceneWrapper">
-              <a-scene embedded style="width: 100%; height: 100%;">
-                <a-sky color="#020617"></a-sky>
+
+            <!-- Full-Screen 3D Stereoscopic Typographic Canvas -->
+            <div style="flex: 1; position: relative; overflow: hidden; display: flex; justify-content: center; align-items: center; perspective: 1200px; cursor: grab;" id="holoStage">
+              
+              <!-- 3D Transform Carousel Gimbal -->
+              <div id="holoGimbal" style="width: 380px; height: 580px; position: relative; transform-style: preserve-3d; transition: transform 0.05s linear;">
                 
-                <!-- Lighting -->
-                <a-ambient-light color="#38bdf8" intensity="0.6"></a-ambient-light>
-                <a-directional-light position="2 4 3" color="#ffffff" intensity="1.2"></a-directional-light>
+                <!-- LAYER 1: Front Coronal Typographic Calligramme (PocketGull Bold) -->
+                <div style="position: absolute; inset: 0; transform: translateZ(45px); pointer-events: none;">
+                  <svg viewBox="0 0 380 580" style="width: 100%; height: 100%; overflow: visible;">
+                    <g fill="#38bdf8" font-family="'PocketGull Bold', sans-serif" font-weight="800" text-anchor="middle" filter="drop-shadow(0 0 12px rgba(56, 189, 248, 0.6))">
+                      <!-- Cranial -->
+                      <text x="190" y="55" font-size="16">CEREBRUM</text>
+                      <text x="190" y="75" font-size="10" fill="#93c5fd">ORCH-OR 40Hz DIPOLE</text>
+                      <!-- Pulmonary & Cardiac -->
+                      <text x="135" y="145" font-size="13" fill="#22c55e">PULMONARY</text>
+                      <text x="245" y="145" font-size="13" fill="#22c55e">ALVEOLI</text>
+                      <text x="190" y="185" font-size="18" fill="#f43f5e">MYOCARDIUM</text>
+                      <text x="190" y="205" font-size="9" fill="#fb7185">W = ∫ P dV + 1/2 m v²</text>
+                      <!-- Visceral -->
+                      <text x="190" y="255" font-size="14" fill="#fbbf24">HEPATIC PARENCHYMA</text>
+                      <text x="190" y="275" font-size="10" fill="#fef08a">100,000 CYTOCHROME LOBULES</text>
+                      <!-- Skeletal -->
+                      <text x="140" y="380" font-size="13" fill="#c084fc">FEMUR</text>
+                      <text x="240" y="380" font-size="13" fill="#c084fc">FEMUR</text>
+                      <text x="140" y="460" font-size="12" fill="#e879f9">TIBIA</text>
+                      <text x="240" y="460" font-size="12" fill="#e879f9">TIBIA</text>
+                    </g>
+                  </svg>
+                </div>
 
-                <!-- Floating 3D Typographic Patient Silhouette Matrix in VR -->
-                <a-entity position="0 1.2 -2.5" animation="property: rotation; to: 0 360 0; loop: true; dur: 30000; easing: linear">
-                  <!-- Head / Brain -->
-                  <a-text value="BRAIN: ORCH-OR 40Hz" color="#38bdf8" position="0 1.2 0" align="center" width="4" font="mozillavr"></a-text>
-                  <a-sphere position="0 0.9 0" radius="0.25" color="#38bdf8" opacity="0.4" wireframe="true"></a-sphere>
+                <!-- LAYER 2: Core Monospace Telemetry Matrix (PocketGull Mono) -->
+                <div style="position: absolute; inset: 0; transform: translateZ(0px); pointer-events: none;">
+                  <svg viewBox="0 0 380 580" style="width: 100%; height: 100%; overflow: visible;">
+                    <g fill="#14b8a6" opacity="0.65" font-family="'PocketGull Mono', monospace" font-size="9" text-anchor="middle">
+                      <text x="190" y="35">:: 0x80 RESERVED BIT-7 MASKED ::</text>
+                      <text x="190" y="95">[ 13418 ENCODED GLYPH POINTS ]</text>
+                      <text x="190" y="115">. - = = = = = + = = = = = - .</text>
+                      <text x="190" y="165">| | | | 600 UPM MONO PITCH | | | |</text>
+                      <text x="190" y="225">. - = = = FRANK-STARLING = = = - .</text>
+                      <text x="190" y="295">| | | | 203 DPI RESISTANT | | | |</text>
+                      <text x="190" y="335">. - = = = = = = = = = = = = = - .</text>
+                      <text x="190" y="415">| | 5:1 LOAN OPTO APERTURE | |</text>
+                      <text x="190" y="495">| | W3C OTS MEMORY SAFE | |</text>
+                      <text x="190" y="535">:: SEMVER 3.0.0 ALIGNED ::</text>
+                    </g>
+                  </svg>
+                </div>
 
-                  <!-- Lungs -->
-                  <a-text value="LUNGS: 300M ALVEOLI" color="#22c55e" position="0 0.4 0" align="center" width="3.5" font="mozillavr"></a-text>
-                  <a-box position="-0.3 0.2 0" depth="0.2" height="0.4" width="0.3" color="#22c55e" opacity="0.3"></a-box>
-                  <a-box position="0.3 0.2 0" depth="0.2" height="0.4" width="0.3" color="#22c55e" opacity="0.3"></a-box>
+                <!-- LAYER 3: Back Coronal Tactile Braille Matrix (PocketGull Braille U+2800) -->
+                <div style="position: absolute; inset: 0; transform: translateZ(-45px); pointer-events: none;">
+                  <svg viewBox="0 0 380 580" style="width: 100%; height: 100%; overflow: visible;">
+                    <g fill="#a855f7" opacity="0.45" font-family="'PocketGull', monospace" font-size="12" text-anchor="middle">
+                      <text x="190" y="60">⠠⠉⠑⠗⠑⠃⠗⠁⠇</text>
+                      <text x="190" y="150">⠠⠏⠥⠇⠍⠕⠝⠁⠗⠽</text>
+                      <text x="190" y="190">⠠⠓⠑⠁⠗⠞</text>
+                      <text x="190" y="260">⠠⠓⠑⠏⠁⠞⠊⠉</text>
+                      <text x="190" y="390">⠠⠁⠉⠞⠊⠝</text>
+                      <text x="190" y="470">⠠⠍⠽⠕⠎⠊⠝</text>
+                    </g>
+                  </svg>
+                </div>
 
-                  <!-- Heart -->
-                  <a-text value="HEART: MYOCARDIUM 60 BPM" color="#f43f5e" position="0 -0.1 0" align="center" width="3.5" font="mozillavr"></a-text>
-                  <a-octahedron position="0 -0.1 0" radius="0.2" color="#f43f5e" opacity="0.8" animation="property: scale; to: 1.25 1.25 1.25; dir: alternate; dur: 500; loop: true"></a-octahedron>
+              </div>
 
-                  <!-- Pelvis & Femur -->
-                  <a-text value="FEMUR: ACTOMYOSIN 5pN" color="#c084fc" position="0 -0.6 0" align="center" width="3.5" font="mozillavr"></a-text>
-                  <a-cylinder position="-0.25 -1.0 0" radius="0.06" height="0.7" color="#c084fc" opacity="0.5"></a-cylinder>
-                  <a-cylinder position="0.25 -1.0 0" radius="0.06" height="0.7" color="#c084fc" opacity="0.5"></a-cylinder>
-                </a-entity>
+              <!-- Live HUD Telemetry Overlay -->
+              <div style="position: absolute; bottom: 24px; left: 24px; font-family: var(--font-code); font-size: 0.8rem; color: var(--accent-teal); pointer-events: none;">
+                🖱️ DRAG TO ORBIT IN 3D • WHEEL TO DOLLY • SHIFT TO SLICE
+              </div>
 
-                <!-- VR Camera Rig with Tracked Controls -->
-                <a-entity id="rig" position="0 1.6 0">
-                  <a-camera look-controls wasd-controls position="0 0 0"></a-camera>
-                  <a-entity oculus-touch-controls="hand: left"></a-entity>
-                  <a-entity oculus-touch-controls="hand: right"></a-entity>
-                </a-entity>
-              </a-scene>
+              <div id="holoAngleBadge" style="position: absolute; bottom: 24px; right: 24px; font-family: var(--font-code); font-size: 0.8rem; color: var(--accent-amber); pointer-events: none;">
+                HOLOCALLIGRAMME ROTATION: 0°
+              </div>
             </div>
           `;
 
           document.body.appendChild(modal);
-          document.getElementById('closeAframeModalBtn').addEventListener('click', () => {
-            modal.style.display = 'none';
-            if (bodyAframeBtn) {
-              bodyAframeBtn.textContent = '🌐 aframe.io VR';
-              bodyAframeBtn.style.background = 'rgba(236, 72, 153, 0.15)';
+
+          let holoYaw = 0;
+          let holoPitch = 0;
+          let holoZoom = 1.0;
+          let isHoloDragging = false;
+          let holoStartX = 0;
+          let holoStartY = 0;
+          let holoSpinning = true;
+          let holoSpinTimer = null;
+
+          const holoStage = document.getElementById('holoStage');
+          const holoGimbal = document.getElementById('holoGimbal');
+          const holoAngleBadge = document.getElementById('holoAngleBadge');
+          const holoSpinToggleBtn = document.getElementById('holoSpinToggleBtn');
+          const closeHoloModalBtn = document.getElementById('closeHoloModalBtn');
+
+          function updateHoloTransform() {
+            if (!holoGimbal) return;
+            holoGimbal.style.transform = `scale(${holoZoom}) rotateY(${holoYaw}deg) rotateX(${holoPitch}deg)`;
+            if (holoAngleBadge) {
+              holoAngleBadge.textContent = `HOLOCALLIGRAMME AZIMUTH: ${Math.round(holoYaw % 360)}° • PITCH: ${Math.round(holoPitch)}°`;
             }
+          }
+
+          function startHoloSpin() {
+            if (holoSpinTimer) clearInterval(holoSpinTimer);
+            holoSpinTimer = setInterval(() => {
+              if (holoSpinning && !isHoloDragging) {
+                holoYaw += 0.35;
+                updateHoloTransform();
+              }
+            }, 1000 / 60);
+          }
+
+          startHoloSpin();
+
+          holoSpinToggleBtn.addEventListener('click', () => {
+            holoSpinning = !holoSpinning;
+            holoSpinToggleBtn.textContent = holoSpinning ? '⏸ Pause Rotation' : '▶ Resume Rotation';
+            holoSpinToggleBtn.style.background = holoSpinning ? 'rgba(20, 184, 166, 0.15)' : 'var(--accent-teal)';
+            holoSpinToggleBtn.style.color = holoSpinning ? 'var(--accent-teal)' : '#09090b';
           });
+
+          closeHoloModalBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            clearInterval(holoSpinTimer);
+          });
+
+          // Pointer interaction
+          holoStage.addEventListener('pointerdown', (e) => {
+            isHoloDragging = true;
+            holoStartX = e.clientX;
+            holoStartY = e.clientY;
+            holoStage.style.cursor = 'grabbing';
+            holoStage.setPointerCapture(e.pointerId);
+          });
+
+          holoStage.addEventListener('pointermove', (e) => {
+            if (!isHoloDragging) return;
+            const dx = e.clientX - holoStartX;
+            const dy = e.clientY - holoStartY;
+            holoYaw += dx * 0.5;
+            holoPitch = Math.max(-45, Math.min(45, holoPitch - dy * 0.4));
+            holoStartX = e.clientX;
+            holoStartY = e.clientY;
+            updateHoloTransform();
+          });
+
+          holoStage.addEventListener('pointerup', (e) => {
+            isHoloDragging = false;
+            holoStage.style.cursor = 'grab';
+            holoStage.releasePointerCapture(e.pointerId);
+          });
+
+          holoStage.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const factor = e.deltaY > 0 ? 0.92 : 1.08;
+            holoZoom = Math.max(0.6, Math.min(2.5, holoZoom * factor));
+            updateHoloTransform();
+          }, { passive: false });
+
         } else {
           modal.style.display = 'flex';
         }
