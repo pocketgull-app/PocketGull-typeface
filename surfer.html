@@ -495,6 +495,11 @@
 
       <div style="display: flex; gap: 0.6rem; align-items: center;">
         <!-- Healing Soundscape Preset Selector -->
+        <select id="selectTerrain" class="hud-btn" style="background: rgba(56, 189, 248, 0.2); border-color: #38bdf8; color: #38bdf8; cursor: pointer; outline: none; font-weight: 800;" title="Select Visual &amp; Physics Theme">
+          <option value="cyber">⚡ Cyber Highway</option>
+          <option value="skifree">⛷️ SkiFree Alpine (1991)</option>
+          <option value="pacific">🌊 Pacific Wave Surfer</option>
+        </select>
         <select id="selectSoundscape" class="hud-btn" style="background: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #10b981; cursor: pointer; outline: none; font-weight: 800;">
           <option value="dna">🧬 528Hz Solfeggio DNA</option>
           <option value="gamma">🧠 40Hz Gamma Focus</option>
@@ -881,6 +886,24 @@
     let beatTimer = 0;
     let spawnTimer = 0;
 
+    // ─── SkiFree & Surf Retro Physics & Obstacles ───
+    let currentTerrain = 'cyber'; // 'cyber' | 'skifree' | 'pacific'
+    let obstacles = []; // Trees, rocks, slalom flags, ramps, ocean barrels
+    let obstacleTimer = 0;
+    let isJumping = false;
+    let jumpY = 0;
+    let jumpVy = 0;
+
+    // The Infamous SkiFree Abominable Snow Yeti
+    const yeti = {
+      active: false,
+      z: 1500,
+      x: 0,
+      speed: 850,
+      charging: false,
+      frame: 0
+    };
+
     // Target Dictionary
     const TARGET_DEFINITIONS = [
       // Louise Sloan Optotypes
@@ -932,6 +955,56 @@
       });
     }
 
+    
+    // Spawn retro obstacles (SkiFree Slalom Poles, Pine Trees, Jump Mounds, Surf Barrels)
+    function spawnObstacle() {
+      const lane = LANES[Math.floor(Math.random() * LANES.length)];
+      let type = 'tree';
+      let icon = '🌲';
+
+      if (currentTerrain === 'skifree') {
+        const r = Math.random();
+        if (r < 0.4) { type = 'tree'; icon = '🌲'; }
+        else if (r < 0.7) { type = 'slalom'; icon = '🚩'; }
+        else if (r < 0.9) { type = 'ramp'; icon = '⛷️'; }
+        else { type = 'rock'; icon = '🪨'; }
+      } else if (currentTerrain === 'pacific') {
+        const r = Math.random();
+        if (r < 0.4) { type = 'buoy'; icon = '📍'; }
+        else if (r < 0.7) { type = 'barrel'; icon = '🌊'; }
+        else if (r < 0.9) { type = 'ramp'; icon = '🏄'; }
+        else { type = 'coral'; icon = '🪸'; }
+      } else {
+        return; // Pure typographic mode in cyber
+      }
+
+      obstacles.push({
+        type: type,
+        icon: icon,
+        lane: lane,
+        x: lane * LANE_SPACING_X,
+        y: 0,
+        z: HIGHWAY_Z_DEPTH + 100,
+        hit: false
+      });
+    }
+
+    // Trigger Ski Jump / Wave Aerial
+    function triggerJump() {
+      if (!isJumping) {
+        isJumping = true;
+        jumpVy = -16;
+        triggerTactileImpulse([20, 30, 40], 340, 'strong');
+        if (synth) synth.playSaberSlash(880, true);
+        streakToast.textContent = currentTerrain === 'skifree' ? '⛷️ AERIAL DAFFY TRICK! +500' : '🏄 TUBE RIDE AERIAL! +500';
+        streakToast.style.color = '#38bdf8';
+        streakToast.classList.add('show');
+        setTimeout(() => streakToast.classList.remove('show'), 900);
+        score += 500;
+        hudScore.textContent = String(score).padStart(6, '0');
+      }
+    }
+
     // ─── Input Listeners (Mouse & Touch Tracking) ───
     function updateSabers(clientX, clientY) {
       const centerX = width / 2;
@@ -955,6 +1028,12 @@
       if (player.leftSaber.trail.length > 12) player.leftSaber.trail.shift();
       if (player.rightSaber.trail.length > 12) player.rightSaber.trail.shift();
     }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') {
+        triggerJump();
+      }
+    });
 
     window.addEventListener('mousemove', (e) => updateSabers(e.clientX, e.clientY));
     window.addEventListener('touchmove', (e) => {
@@ -1117,8 +1196,24 @@
       const dt = (currentTime - lastTime) / 1000;
       lastTime = currentTime;
 
-      // Clear Frame
-      ctx.fillStyle = '#030712';
+      // Clear Frame & Dynamic Terrain Background
+      if (currentTerrain === 'skifree') {
+        // High-contrast Alpine White Glacier with distant pine mountain silhouettes
+        const snowGrad = ctx.createLinearGradient(0, 0, 0, height);
+        snowGrad.addColorStop(0, '#cbd5e1');
+        snowGrad.addColorStop(0.44, '#f1f5f9');
+        snowGrad.addColorStop(1, '#ffffff');
+        ctx.fillStyle = snowGrad;
+      } else if (currentTerrain === 'pacific') {
+        // Deep Pacific Oceanic swell gradient
+        const seaGrad = ctx.createLinearGradient(0, 0, 0, height);
+        seaGrad.addColorStop(0, '#0c4a6e');
+        seaGrad.addColorStop(0.44, '#0369a1');
+        seaGrad.addColorStop(1, '#0284c7');
+        ctx.fillStyle = seaGrad;
+      } else {
+        ctx.fillStyle = '#030712';
+      }
       ctx.fillRect(0, 0, width, height);
 
       const centerX = width / 2;
@@ -1126,7 +1221,7 @@
 
       // 1. Draw 3D Perspective Highway Grid
       ctx.save();
-      ctx.strokeStyle = 'rgba(56, 189, 248, 0.22)';
+      ctx.strokeStyle = currentTerrain === 'skifree' ? 'rgba(71, 85, 105, 0.35)' : (currentTerrain === 'pacific' ? 'rgba(255, 255, 255, 0.45)' : 'rgba(56, 189, 248, 0.22)');
       ctx.lineWidth = 1.5;
 
       // Longitudinal Lane Lines
@@ -1258,6 +1353,99 @@
         }
       }
 
+      
+      // Render Obstacles (Trees, Slalom Flags, Ramps)
+      for (let i = obstacles.length - 1; i >= 0; i--) {
+        const obs = obstacles[i];
+        if (isPlaying) {
+          obs.z -= dt * AGE_TIERS[selectedAgeTierKey].speed;
+        }
+
+        const perspective = 480 / Math.max(1, obs.z);
+        const projX = centerX + obs.x * perspective;
+        const projY = horizonY + (height * 0.48) * perspective;
+        const size = Math.max(12, perspective * 32);
+
+        // Check Jump Ramp collision
+        if (!obs.hit && obs.z <= PLAYER_Z + 40 && obs.z >= PLAYER_Z - 40) {
+          if (Math.abs(projX - (centerX + player.x)) < size * 1.5) {
+            obs.hit = true;
+            if (obs.type === 'ramp') {
+              triggerJump();
+            } else if (obs.type === 'slalom') {
+              score += 200;
+              streak++;
+              streakToast.textContent = '🚩 SLALOM GATE CLEARED! +200';
+              streakToast.style.color = '#10b981';
+              streakToast.classList.add('show');
+              setTimeout(() => streakToast.classList.remove('show'), 600);
+              synth.playSaberSlash(720, true);
+              triggerTactileImpulse([40], 280, 'normal');
+            } else if (!isJumping) {
+              // Hit obstacle while not jumping
+              registerMiss();
+              createShatterEffect(projX, projY, '#94a3b8', 16);
+            }
+          }
+        }
+
+        if (obs.z < -30) {
+          obstacles.splice(i, 1);
+          continue;
+        }
+
+        if (obs.z > 0) {
+          ctx.save();
+          ctx.font = size + 'px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(obs.icon, projX, projY);
+          ctx.restore();
+        }
+      }
+
+      // Render the SkiFree Yeti
+      if (yeti.active && currentTerrain === 'skifree') {
+        if (isPlaying) {
+          yeti.z -= dt * yeti.speed;
+          // Yeti chases player X
+          yeti.x += (player.x - yeti.x) * 0.05;
+        }
+
+        if (yeti.z > 0) {
+          const perspective = 480 / Math.max(1, yeti.z);
+          const yX = centerX + yeti.x * perspective;
+          const yY = horizonY + (height * 0.48) * perspective - 10;
+          const ySize = Math.max(20, perspective * 55);
+
+          ctx.save();
+          ctx.font = ySize + 'px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          // Animated Yeti roar frame
+          const yetiIcon = Math.floor(performance.now() / 150) % 2 === 0 ? '👹' : '🦍';
+          ctx.fillText(yetiIcon, yX, yY);
+
+          // Yeti shadow
+          ctx.fillStyle = 'rgba(0,0,0,0.3)';
+          ctx.beginPath();
+          ctx.ellipse(yX, yY + ySize * 0.4, ySize * 0.4, ySize * 0.15, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+
+          // Yeti Catch Collision!
+          if (yeti.z <= PLAYER_Z + 30 && yeti.z >= PLAYER_Z - 30) {
+            streakToast.textContent = '🍖 THE YETI CAUGHT YOU! SACCADE RESTARTS!';
+            streakToast.style.color = '#ef4444';
+            streakToast.classList.add('show');
+            triggerTactileImpulse([150, 80, 200, 100, 300], 50, 'strong');
+            setTimeout(() => streakToast.classList.remove('show'), 2000);
+            yeti.z = 1200; // Reset yeti back
+            registerMiss();
+          }
+        }
+      }
+
       // 4. Render Particle Bursts
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
@@ -1343,7 +1531,17 @@
         if (btnText) btnText.textContent = config.buttonText;
 
         // Auto-switch soundscape
-        const selectSoundscape = document.getElementById('selectSoundscape');
+        const selectTerrain = document.getElementById('selectTerrain');
+    if (selectTerrain) {
+      selectTerrain.addEventListener('change', (e) => {
+        currentTerrain = e.target.value;
+        obstacles = [];
+        yeti.active = false;
+        triggerTactileImpulse([40], 240, 'normal');
+      });
+    }
+
+    const selectSoundscape = document.getElementById('selectSoundscape');
         if (selectSoundscape) {
           selectSoundscape.value = config.soundscape;
           synth.setTune(config.soundscape);
