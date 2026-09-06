@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>PocketGull 3D Model Viewer — Clinical & Anatomical Tactile Stage</title>
+  <meta name="description" content="A-Frame and WebXR inspired 3D model viewer and anatomical tactile specimen stage for the PocketGull Typeface Superfamily.">
+  <link rel="stylesheet" href="fonts.css">
+  <style>
+    :root {
+      --bg-space: #07090e;
+      --bg-panel: rgba(13, 17, 23, 0.85);
+      --border-panel: rgba(56, 189, 248, 0.25);
+      --accent-cyan: #38bdf8;
+      --accent-teal: #14b8a6;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body, html {
+      width: 100%; height: 100%; overflow: hidden;
+      background: var(--bg-space);
+      font-family: 'PocketGull VF', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--text-main);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    #viewport-container {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      display: block;
+    }
+    canvas#stage3d {
+      width: 100%; height: 100%; display: block;
+    }
+
+    /* TOP HEADER HUD */
+    header.hud-header {
+      position: absolute; top: 1rem; left: 1rem; right: 1rem;
+      display: flex; justify-content: space-between; align-items: center;
+      pointer-events: none; z-index: 20;
+    }
+    .hud-badge {
+      pointer-events: auto;
+      background: var(--bg-panel);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-panel);
+      border-radius: 8px;
+      padding: 0.6rem 1.2rem;
+      display: flex; align-items: center; gap: 0.75rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+    .hud-title {
+      font-size: 1rem; font-weight: 800; letter-spacing: 0.05em;
+      color: var(--accent-cyan);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .hud-sub {
+      font-size: 0.75rem; color: var(--text-muted);
+      font-family: 'PocketGull Mono', monospace;
+    }
+    .hud-actions {
+      display: flex; gap: 0.5rem; pointer-events: auto;
+    }
+    .hud-btn {
+      background: var(--bg-panel);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-panel);
+      color: var(--text-main);
+      border-radius: 6px;
+      padding: 0.5rem 0.9rem;
+      font-size: 0.8rem; font-weight: 700;
+      cursor: pointer;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .hud-btn:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      transform: translateY(-1px);
+    }
+    .hud-btn.active {
+      background: var(--accent-teal);
+      border-color: var(--accent-teal);
+      color: #07090e;
+    }
+
+    /* FLOATING CONTROL PANELS */
+    .controls-panel {
+      position: absolute; bottom: 1.5rem; left: 1.5rem; width: 340px;
+      background: var(--bg-panel);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-panel);
+      border-radius: 12px;
+      padding: 1.25rem;
+      z-index: 20;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+      display: flex; flex-direction: column; gap: 1rem;
+      max-height: calc(100vh - 8rem);
+      overflow-y: auto;
+    }
+    .panel-section-title {
+      font-size: 0.75rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--accent-cyan);
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 0.4rem;
+    }
+    .glyph-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.4rem;
+    }
+    .glyph-btn {
+      aspect-ratio: 1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      color: var(--text-main);
+      font-size: 1.25rem; font-weight: 800;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s ease;
+    }
+    .glyph-btn:hover {
+      background: rgba(56, 189, 248, 0.25);
+      border-color: var(--accent-cyan);
+      transform: scale(1.05);
+    }
+    .glyph-btn.active {
+      background: var(--accent-cyan);
+      color: #07090e;
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
+    }
+
+    /* MATERIAL & FILTER SELECTORS */
+    .btn-row {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem;
+    }
+    .opt-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      padding: 0.45rem 0.6rem;
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer; text-align: center;
+      transition: all 0.15s ease;
+    }
+    .opt-btn:hover {
+      color: var(--text-main);
+      border-color: var(--accent-teal);
+    }
+    .opt-btn.active {
+      background: rgba(20, 184, 166, 0.25);
+      border-color: var(--accent-teal);
+      color: var(--accent-teal);
+    }
+
+    /* SLIDERS */
+    .slider-group {
+      display: flex; flex-direction: column; gap: 0.3rem;
+    }
+    .slider-label {
+      display: flex; justify-content: space-between; font-size: 0.7rem;
+      color: var(--text-muted); font-family: 'PocketGull Mono', monospace;
+    }
+    .slider-input {
+      -webkit-appearance: none; width: 100%; height: 4px;
+      border-radius: 2px; background: rgba(255,255,255,0.15);
+      outline: none;
+    }
+    .slider-input::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 14px; height: 14px;
+      border-radius: 50%; background: var(--accent-cyan);
+      cursor: pointer; box-shadow: 0 0 6px rgba(56, 189, 248, 0.8);
+    }
+
+    /* RIGHT TELEMETRY HUD (ANATOMICAL & GLOVE METRICS) */
+    .telemetry-panel {
+      position: absolute; bottom: 1.5rem; right: 1.5rem; width: 320px;
+      background: var(--bg-panel);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--border-panel);
+      border-radius: 12px;
+      padding: 1.25rem;
+      z-index: 20;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+      display: flex; flex-direction: column; gap: 0.8rem;
+    }
+    .stat-box {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      display: flex; flex-direction: column; gap: 0.2rem;
+    }
+    .stat-title {
+      font-size: 0.65rem; text-transform: uppercase; color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+    .stat-value {
+      font-size: 1.05rem; font-weight: 800; color: var(--accent-cyan);
+      font-family: 'PocketGull Mono', monospace;
+    }
+    .stat-desc {
+      font-size: 0.65rem; color: #64748b; line-height: 1.3;
+    }
+
+    /* HAPTIC GLOVE STIMULUS OVERLAY */
+    .glove-touch-indicator {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.5rem; border-radius: 6px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      font-size: 0.75rem; color: var(--accent-amber);
+    }
+    .pulse-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent-amber);
+      box-shadow: 0 0 8px var(--accent-amber);
+      animation: pulse 1s infinite alternate;
+    }
+    @keyframes pulse {
+      from { transform: scale(0.8); opacity: 0.5; }
+      to { transform: scale(1.3); opacity: 1; }
+    }
+
+    /* GESTURE HINT BANNER */
+    .hint-banner {
+      position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
+      background: rgba(13, 17, 23, 0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 0.4rem 1.2rem;
+      font-size: 0.75rem; color: var(--text-muted);
+      pointer-events: none; z-index: 10;
+      font-family: 'PocketGull Mono', monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- VIEWPORT -->
+  <div id="viewport-container">
+    <canvas id="stage3d"></canvas>
+  </div>
+
+  <!-- HUD HEADER -->
+  <header class="hud-header">
+    <div class="hud-badge">
+      <span style="font-size: 1.3rem;">🔬</span>
+      <div>
+        <div class="hud-title">PocketGull 3D Model Viewer</div>
+        <div class="hud-sub">A-FRAME / WEBXR CLINICAL & ANATOMICAL STAGE</div>
+      </div>
+    </div>
+
+    <div class="hud-actions">
+      <button class="hud-btn" id="btnResetView" title="Center camera">🎯 Center View</button>
+      <button class="hud-btn" id="btnAutoSpin" title="Toggle automatic turntable rotation">🔄 Turntable</button>
+      <button class="hud-btn" id="btnAR" title="Launch WebXR AR session">📱 AR Mode</button>
+      <a href="index.html#section-07" class="hud-btn" title="Back to specimen">← Specimen</a>
+      <a href="surfer.html" class="hud-btn" style="border-color: var(--accent-teal); color: var(--accent-teal);" title="Play Sloan Surfer">🏄 Sloan Surfer</a>
+    </div>
+  </header>
+
+  <!-- CONTROLS PANEL (LEFT) -->
+  <aside class="controls-panel">
+    <div>
+      <div class="panel-section-title">
+        <span>Optotype & Glyph Selection</span>
+        <span style="color: var(--accent-teal); font-size: 0.65rem;">SLOAN 5:1</span>
+      </div>
+      <div class="glyph-grid" style="margin-top: 0.6rem;" id="glyphButtonsContainer">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+
+    <div class="slider-group">
+      <div class="slider-label">
+        <span>Extrusion Depth</span>
+        <span id="labelExtrude">80 mm</span>
+      </div>
+      <input type="range" class="slider-input" id="inputExtrude" min="10" max="250" value="80">
+    </div>
+
+    <div class="slider-group">
+      <div class="slider-label">
+        <span>Bevel Radius</span>
+        <span id="labelBevel">12 mm</span>
+      </div>
+      <input type="range" class="slider-input" id="inputBevel" min="0" max="30" value="12">
+    </div>
+
+    <div>
+      <div class="panel-section-title">
+        <span>Surgical & Anatomical Finish</span>
+      </div>
+      <div class="btn-row" style="margin-top: 0.5rem;" id="materialButtons">
+        <button class="opt-btn active" data-mat="steel">🏥 Surgical 316L</button>
+        <button class="opt-btn" data-mat="titanium">🦾 Titanium Grade 5</button>
+        <button class="opt-btn" data-mat="bone">🦴 Cortical Bone</button>
+        <button class="opt-btn" data-mat="glove">🧤 Tactile Nitrile</button>
+      </div>
+    </div>
+
+    <div>
+      <div class="panel-section-title">
+        <span>IOHA Anatomical Vision Filter</span>
+      </div>
+      <div class="btn-row" style="margin-top: 0.5rem;" id="filterButtons">
+        <button class="opt-btn active" data-filter="normal">👁️ 20/20 Foveal</button>
+        <button class="opt-btn" data-filter="cataract">🌫️ Nuclear Cataract</button>
+        <button class="opt-btn" data-filter="diabetic">🩸 Diabetic Scotoma</button>
+        <button class="opt-btn" data-filter="tunnel">⚡ Adrenaline Tunnel</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- HINT BANNER -->
+  <div class="hint-banner">
+    🖱️ Drag to Orbit • 📜 Scroll to Zoom • 🧤 Click Glyph to Simulate Tactile Glove Touch
+  </div>
+
+  <!-- TELEMETRY PANEL (RIGHT) -->
+  <aside class="telemetry-panel">
+    <div class="panel-section-title">
+      <span>Somatosensory Telemetry</span>
+      <span style="color: var(--accent-amber); font-size: 0.65rem;">IOHA DISSECTION LAB</span>
+    </div>
+
+    <div class="glove-touch-indicator" id="gloveStatus">
+      <div class="pulse-dot"></div>
+      <span id="gloveStatusText">Responsive Glove: Calibrated (SA-I Ready)</span>
+    </div>
+
+    <div class="stat-box">
+      <div class="stat-title">Receptive Field Discrimination</div>
+      <div class="stat-value" id="statTwoPoint">2.1 mm</div>
+      <div class="stat-desc">Fingertip Merkel disc resolution. PocketGull Braille cell spacing: 2.5 mm (100% discriminable).</div>
+    </div>
+
+    <div class="stat-box">
+      <div class="stat-title">Sloan Optotype Subtense</div>
+      <div class="stat-value" id="statSubtense">5.00 Arcmin (5')</div>
+      <div class="stat-desc">Stroke width = 1.00' arc at 6.0 m (20 ft). Standard Louise Sloan 5:1 legibility ratio.</div>
+    </div>
+
+    <div class="stat-box">
+      <div class="stat-title">Photoreceptor Stimulation</div>
+      <div class="stat-value" id="statFovea">~178,000 cones/mm²</div>
+      <div class="stat-desc">Fovea centralis stimulation density calculated across character counter apertures.</div>
+    </div>
+
+    <div class="stat-box">
+      <div class="stat-title">Tactile PBM Therapeutic State</div>
+      <div class="stat-value" style="color: var(--accent-rose);">660 nm / 850 nm</div>
+      <div class="stat-desc">Far-infrared photobiomodulation active: reducing flexor tendon stiffness.</div>
+    </div>
+  </aside>
+
+  <script>
+    // --- 3D PERSPECTIVE CANVAS ENGINE (Native WebGL / Canvas PBR Simulation) ---
+    const canvas = document.getElementById('stage3d');
+    const ctx = canvas.getContext('2d');
+
+    let width, height;
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    // Available Glyphs
+    const GLYPHS = [
+      { char: '0̸', name: 'Slashed Zero (cv08)', type: 'ismp' },
+      { char: 'C', name: 'Sloan Landolt-C', type: 'sloan' },
+      { char: 'E', name: 'Sloan Snellen-E', type: 'sloan' },
+      { char: 'R', name: 'Sloan R', type: 'sloan' },
+      { char: 'Ƶ', name: 'Slashed Z (cv11)', type: 'ismp' },
+      { char: 'ɬ', name: 'Curved l (cv05)', type: 'ismp' },
+      { char: 'I', name: 'Serifed I (ss02)', type: 'ismp' },
+      { char: '⠠⠃', name: 'Braille Cap B', type: 'braille' },
+      { char: '⠠⠓', name: 'Braille Cap H', type: 'braille' },
+      { char: '⠠⠍', name: 'Braille Cap M', type: 'braille' }
+    ];
+
+    let currentGlyph = GLYPHS[0];
+    let extrudeDepth = 80;
+    let bevelRadius = 12;
+    let currentMaterial = 'steel';
+    let currentFilter = 'normal';
+    let autoSpin = true;
+
+    // Camera Orbit State
+    let rotX = 0.25;
+    let rotY = -0.45;
+    let zoom = 1.0;
+    let isDragging = false;
+    let lastMouseX = 0, lastMouseY = 0;
+
+    // Web Audio Synthesizer for Glove Haptic Feedback
+    let audioCtx = null;
+    function playHapticFeedback(freq = 180, duration = 0.08) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.18, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    // Material Color Presets
+    const MATERIALS = {
+      steel: {
+        base: '#e2e8f0',
+        stroke: '#94a3b8',
+        specular: '#ffffff',
+        shadow: '#1e293b',
+        ambient: 'rgba(56, 189, 248, 0.12)'
+      },
+      titanium: {
+        base: '#94a3b8',
+        stroke: '#475569',
+        specular: '#cbd5e1',
+        shadow: '#0f172a',
+        ambient: 'rgba(20, 184, 166, 0.15)'
+      },
+      bone: {
+        base: '#fef3c7',
+        stroke: '#d97706',
+        specular: '#fffbeb',
+        shadow: '#78350f',
+        ambient: 'rgba(245, 158, 11, 0.1)'
+      },
+      glove: {
+        base: '#38bdf8',
+        stroke: '#0284c7',
+        specular: '#bae6fd',
+        shadow: '#0369a1',
+        ambient: 'rgba(56, 189, 248, 0.25)'
+      }
+    };
+
+    // Populate Glyph Buttons
+    const glyphContainer = document.getElementById('glyphButtonsContainer');
+    GLYPHS.forEach((g, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'glyph-btn' + (idx === 0 ? ' active' : '');
+      btn.textContent = g.char;
+      btn.title = g.name;
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.glyph-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentGlyph = g;
+        triggerGloveTouch(g.name);
+      });
+      glyphContainer.appendChild(btn);
+    });
+
+    // Material Buttons
+    document.querySelectorAll('#materialButtons .opt-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#materialButtons .opt-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentMaterial = btn.dataset.mat;
+        triggerGloveTouch('Material: ' + btn.textContent);
+      });
+    });
+
+    // Vision Filter Buttons
+    document.querySelectorAll('#filterButtons .opt-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#filterButtons .opt-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.filter;
+        triggerGloveTouch('Filter: ' + btn.textContent);
+      });
+    });
+
+    // Sliders
+    const inputExtrude = document.getElementById('inputExtrude');
+    const labelExtrude = document.getElementById('labelExtrude');
+    inputExtrude.addEventListener('input', (e) => {
+      extrudeDepth = parseInt(e.target.value, 10);
+      labelExtrude.textContent = extrudeDepth + ' mm';
+    });
+
+    const inputBevel = document.getElementById('inputBevel');
+    const labelBevel = document.getElementById('labelBevel');
+    inputBevel.addEventListener('input', (e) => {
+      bevelRadius = parseInt(e.target.value, 10);
+      labelBevel.textContent = bevelRadius + ' mm';
+    });
+
+    // Top HUD Actions
+    document.getElementById('btnResetView').addEventListener('click', () => {
+      rotX = 0.25; rotY = -0.45; zoom = 1.0;
+    });
+    const btnAutoSpin = document.getElementById('btnAutoSpin');
+    btnAutoSpin.addEventListener('click', () => {
+      autoSpin = !autoSpin;
+      btnAutoSpin.classList.toggle('active', autoSpin);
+    });
+    btnAutoSpin.classList.add('active');
+
+    // AR Button (WebXR / Camera pass-through placeholder)
+    document.getElementById('btnAR').addEventListener('click', () => {
+      if (navigator.xr) {
+        alert('WebXR AR Session: Initializing surface-detection plane at 6.0m optical distance for Louise Sloan 5:1 optotype inspection.');
+      } else {
+        alert('WebXR AR is available on supported mobile browsers (Chrome on Android / Safari WebXR on visionOS/iOS). Projecting in simulation mode.');
+      }
+    });
+
+    // Glove Touch Simulation
+    function triggerGloveTouch(desc) {
+      playHapticFeedback(220, 0.12);
+      const statusText = document.getElementById('gloveStatusText');
+      statusText.textContent = 'Tactile Pulse: ' + desc;
+      statusText.style.color = '#38bdf8';
+      setTimeout(() => {
+        statusText.textContent = 'Responsive Glove: Calibrated (SA-I Ready)';
+        statusText.style.color = '';
+      }, 2500);
+    }
+
+    // Mouse & Touch Controls
+    canvas.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+      triggerGloveTouch('Merkel Disc Mechanoreceptor Fired');
+    });
+    window.addEventListener('mouseup', () => { isDragging = false; });
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const dx = e.clientX - lastMouseX;
+      const dy = e.clientY - lastMouseY;
+      rotY += dx * 0.008;
+      rotX += dy * 0.008;
+      rotX = Math.max(-1.2, Math.min(1.2, rotX));
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+    });
+
+    // Touch Support
+    canvas.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        isDragging = true;
+        lastMouseX = e.touches[0].clientX;
+        lastMouseY = e.touches[0].clientY;
+        triggerGloveTouch('Touchscreen Tactile Surface Engaged');
+      }
+    });
+    window.addEventListener('touchend', () => { isDragging = false; });
+    window.addEventListener('touchmove', (e) => {
+      if (!isDragging || e.touches.length !== 1) return;
+      const dx = e.touches[0].clientX - lastMouseX;
+      const dy = e.touches[0].clientY - lastMouseY;
+      rotY += dx * 0.008;
+      rotX += dy * 0.008;
+      lastMouseX = e.touches[0].clientX;
+      lastMouseY = e.touches[0].clientY;
+    });
+
+    // Scroll to Zoom
+    canvas.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      zoom -= e.deltaY * 0.001;
+      zoom = Math.max(0.5, Math.min(2.5, zoom));
+    }, { passive: false });
+
+    // --- MAIN RENDER LOOP ---
+    function render() {
+      if (autoSpin && !isDragging) {
+        rotY += 0.006;
+      }
+
+      ctx.clearRect(0, 0, width, height);
+
+      // 1. Studio Background Gradient
+      const grad = ctx.createRadialGradient(width/2, height/2, 50, width/2, height/2, width*0.7);
+      grad.addColorStop(0, '#131c2e');
+      grad.addColorStop(1, '#05070b');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, width, height);
+
+      // 2. Studio Floor Grid
+      drawStudioFloor();
+
+      // 3. Render 3D Extruded Glyph Specimen
+      drawExtrudedGlyph();
+
+      // 4. Apply IOHA Clinical Anatomical Vision Filters
+      applyVisionFilter();
+
+      requestAnimationFrame(render);
+    }
+
+    function drawStudioFloor() {
+      const cx = width / 2;
+      const cy = height / 2 + 180 * zoom;
+      ctx.save();
+      ctx.strokeStyle = 'rgba(56, 189, 248, 0.08)';
+      ctx.lineWidth = 1;
+
+      // Concentric Distance Rings (Louise Sloan Calibration Marks: 6m, 4m, 2m, 1m)
+      for (let r = 80; r <= 480; r += 80) {
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, r * zoom * 1.5, r * zoom * 0.45, 0, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // Radial Spokes
+      for (let a = 0; a < Math.PI * 2; a += Math.PI / 6) {
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.lineTo(cx + Math.cos(a + rotY) * 550 * zoom, cy + Math.sin(a + rotY) * 165 * zoom);
+        ctx.stroke();
+      }
+
+      // Contact Ground Shadow
+      const shadowGrad = ctx.createRadialGradient(cx, cy, 10, cx, cy, 220 * zoom);
+      shadowGrad.addColorStop(0, 'rgba(0, 0, 0, 0.7)');
+      shadowGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = shadowGrad;
+      ctx.beginPath();
+      ctx.ellipse(cx, cy, 220 * zoom, 70 * zoom, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    function drawExtrudedGlyph() {
+      const mat = MATERIALS[currentMaterial];
+      const cx = width / 2;
+      const cy = height / 2;
+      const fontSize = 240 * zoom;
+      const depth = (extrudeDepth / 80) * 45 * zoom;
+
+      ctx.save();
+      ctx.translate(cx, cy);
+
+      // Pseudo-3D Orthographic Shear & Perspective Projection
+      const cosY = Math.cos(rotY);
+      const sinY = Math.sin(rotY);
+      const sinX = Math.sin(rotX);
+
+      ctx.font = '800 ' + fontSize + 'px "PocketGull VF", "PocketGull Mono", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      // Draw Extrusion Slices (Back to Front)
+      const numSlices = Math.max(12, Math.floor(depth));
+      const stepX = sinY * (depth / numSlices);
+      const stepY = -sinX * (depth / numSlices);
+
+      for (let i = numSlices; i >= 1; i--) {
+        const ox = (i - numSlices/2) * stepX;
+        const oy = (i - numSlices/2) * stepY;
+
+        // Shadow / Side Wall Color
+        ctx.fillStyle = mat.shadow;
+        ctx.fillText(currentGlyph.char, ox, oy);
+
+        if (i % 2 === 0) {
+          ctx.strokeStyle = mat.stroke;
+          ctx.lineWidth = 2 * zoom;
+          ctx.strokeText(currentGlyph.char, ox, oy);
+        }
+      }
+
+      // Front Face (Key Lit)
+      const fx = (-numSlices/2) * stepX;
+      const fy = (-numSlices/2) * stepY;
+
+      // Ambient Face Glow
+      ctx.fillStyle = mat.ambient;
+      ctx.fillText(currentGlyph.char, fx, fy);
+
+      // Specular Keylit Surface
+      const frontGrad = ctx.createLinearGradient(fx - 100, fy - 100, fx + 100, fy + 100);
+      frontGrad.addColorStop(0, mat.specular);
+      frontGrad.addColorStop(0.5, mat.base);
+      frontGrad.addColorStop(1, mat.stroke);
+      ctx.fillStyle = frontGrad;
+      ctx.fillText(currentGlyph.char, fx, fy);
+
+      // Bevel Stroke
+      if (bevelRadius > 0) {
+        ctx.strokeStyle = mat.specular;
+        ctx.lineWidth = (bevelRadius / 10) * 3 * zoom;
+        ctx.strokeText(currentGlyph.char, fx, fy);
+      }
+
+      ctx.restore();
+    }
+
+    function applyVisionFilter() {
+      if (currentFilter === 'normal') return;
+
+      ctx.save();
+      if (currentFilter === 'cataract') {
+        // Senile Nuclear Cataract: Diffuse light scattering and yellow/amber hazing
+        ctx.fillStyle = 'rgba(245, 158, 11, 0.12)';
+        ctx.fillRect(0, 0, width, height);
+        ctx.filter = 'blur(4px)';
+        ctx.drawImage(canvas, 0, 0);
+        ctx.filter = 'none';
+      } else if (currentFilter === 'diabetic') {
+        // Diabetic Retinopathy: Central scotoma & blot hemorrhage simulation
+        ctx.fillStyle = 'rgba(15, 23, 42, 0.4)';
+        ctx.beginPath();
+        ctx.arc(width/2, height/2, 90, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = 'rgba(185, 28, 28, 0.3)';
+        ctx.beginPath();
+        ctx.arc(width/2 + 60, height/2 - 40, 35, 0, Math.PI * 2);
+        ctx.fill();
+      } else if (currentFilter === 'tunnel') {
+        // High-Adrenaline Sympathetic Tunnel Vision: Constricted peripheral vignetting
+        const vig = ctx.createRadialGradient(width/2, height/2, 120, width/2, height/2, width*0.55);
+        vig.addColorStop(0, 'rgba(0,0,0,0)');
+        vig.addColorStop(0.7, 'rgba(10, 15, 25, 0.75)');
+        vig.addColorStop(1, 'rgba(2, 4, 8, 0.98)');
+        ctx.fillStyle = vig;
+        ctx.fillRect(0, 0, width, height);
+      }
+      ctx.restore();
+    }
+
+    // Start Engine
+    render();
+  </script>
+</body>
+</html>
