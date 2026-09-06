@@ -590,7 +590,7 @@
 
       <!-- Quick Interactive Calibration / Control Guide -->
       <div class="calibration-banner">
-        <span>🎮 <strong>Controls:</strong> Mouse Move or Touchscreen Drag controls Dual Sabers.</span>
+        <span>🎯 <strong>Goal:</strong> Move your glowing sabers into the glowing target line to slice incoming letters as they arrive!</span>
         <span>📳 <strong>Tactile Haptics:</strong> Real-time vibration pulse &amp; SA-I Merkel disc resonance enabled.</span>
         <span>🎧 <strong>Audio:</strong> 3D Binaural Solfeggio Beats.</span>
       </div>
@@ -1123,28 +1123,31 @@
       }
     }
 
-    // ─── Input Listeners (Mouse & Touch Tracking) ───
+    // ─── Input Listeners (True Moonrider Perspective Plane Tracking) ───
     function updateSabers(clientX, clientY) {
       const centerX = width / 2;
-      const centerY = height / 2;
-      const relX = clientX - centerX;
-      const relY = clientY - centerY;
+      const horizonY = height * 0.44;
 
-      player.x = relX;
-      player.y = relY;
+      // Map mouse directly to absolute screen coordinates
+      player.screenX = clientX;
+      player.screenY = Math.max(horizonY + 40, Math.min(height - 40, clientY));
 
-      // Dual sabers follow mouse position with dual-offset gauntlets
-      player.leftSaber.x = relX - 55;
-      player.leftSaber.y = relY + 30;
+      // Rel X & Y relative to highway center and perspective strike line
+      player.x = clientX - centerX;
+      player.y = player.screenY - (height * 0.76); // Rest position aligned with player strike plane
+
+      // Dual sabers follow mouse directly in screen pixels
+      player.leftSaber.x = clientX - 45;
+      player.leftSaber.y = player.screenY;
       player.leftSaber.trail.push({ x: player.leftSaber.x, y: player.leftSaber.y, alpha: 1.0 });
 
-      player.rightSaber.x = relX + 55;
-      player.rightSaber.y = relY + 30;
+      player.rightSaber.x = clientX + 45;
+      player.rightSaber.y = player.screenY;
       player.rightSaber.trail.push({ x: player.rightSaber.x, y: player.rightSaber.y, alpha: 1.0 });
 
       // Cap trail length
-      if (player.leftSaber.trail.length > 12) player.leftSaber.trail.shift();
-      if (player.rightSaber.trail.length > 12) player.rightSaber.trail.shift();
+      if (player.leftSaber.trail.length > 14) player.leftSaber.trail.shift();
+      if (player.rightSaber.trail.length > 14) player.rightSaber.trail.shift();
     }
 
     window.addEventListener('keydown', (e) => {
@@ -1403,6 +1406,33 @@
       }
       ctx.restore();
 
+      
+      // ─── MOONRIDER PERSPECTIVE STRIKE PLANE ───
+      const strikeY = height * 0.78;
+      ctx.save();
+      // Glowing Neon Strike Target Line
+      ctx.strokeStyle = currentTerrain === 'fable' ? 'rgba(16, 185, 129, 0.6)' : 'rgba(56, 189, 248, 0.6)';
+      ctx.lineWidth = 3;
+      ctx.shadowColor = currentTerrain === 'fable' ? '#10b981' : '#38bdf8';
+      ctx.shadowBlur = 15;
+      ctx.beginPath();
+      ctx.moveTo(centerX - LANE_SPACING_X * 2.8, strikeY);
+      ctx.lineTo(centerX + LANE_SPACING_X * 2.8, strikeY);
+      ctx.stroke();
+
+      // Lane Strike Targets (Glowing semicircles where letters arrive)
+      LANES.forEach(lane => {
+        const lx = centerX + lane * LANE_SPACING_X * 1.85;
+        ctx.beginPath();
+        ctx.arc(lx, strikeY, 28, 0, Math.PI * 2);
+        ctx.fillStyle = lane <= 0 ? 'rgba(56, 189, 248, 0.15)' : 'rgba(245, 158, 11, 0.15)';
+        ctx.fill();
+        ctx.strokeStyle = lane <= 0 ? 'rgba(56, 189, 248, 0.5)' : 'rgba(245, 158, 11, 0.5)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      });
+      ctx.restore();
+
       // 2. Spawn and Advance Incoming Targets
       if (isPlaying) {
         spawnTimer += dt;
@@ -1424,27 +1454,27 @@
         // Perspective Projection calculation
         const perspective = 480 / Math.max(1, t.z);
         const projX = centerX + t.x * perspective;
-        const projY = horizonY + (height * 0.48) * perspective + t.y * perspective;
+        const projY = horizonY + (height * 0.34) * perspective + t.y * (perspective * 0.5);
         const projScale = Math.max(0.1, t.scale * perspective * 24);
 
-        // Cozy Fable Magnetic Attraction (Letters gently float toward the player's saber)
+        // True Moonrider Screen Collision (Direct saber tip touch)
         const activeSaber = t.hand === 'left' ? player.leftSaber : player.rightSaber;
-        const targetScreenX = centerX + activeSaber.x;
-        const targetScreenY = horizonY + activeSaber.y;
-        const distToPlayer = Math.hypot(projX - targetScreenX, projY - targetScreenY);
+        const saberScreenX = activeSaber.x;
+        const saberScreenY = activeSaber.y;
 
-        if (!t.hit && t.z <= PLAYER_Z + 180 && distToPlayer < 240) {
-          // Magnetic suction towards saber
-          t.x += ((player.x - t.x) * 0.08);
+        // In Fable mode: gentle magnetic pull towards your saber
+        const distToSaber = Math.hypot(projX - saberScreenX, projY - saberScreenY);
+        if (!t.hit && t.z <= 250 && distToSaber < 300) {
+          t.x += (((saberScreenX - centerX) / perspective - t.x) * 0.08);
         }
 
-        // Test collision near player plane (PLAYER_Z)
-        if (!t.hit && t.z <= PLAYER_Z + 100 && t.z >= PLAYER_Z - 80) {
-          const activeSaber = t.hand === 'left' ? player.leftSaber : player.rightSaber;
-          const distToSaber = Math.hypot(projX - (centerX + activeSaber.x), projY - (horizonY + activeSaber.y));
-          
-          if (distToSaber < projScale * AGE_TIERS[selectedAgeTierKey].hitboxMultiplier) {
-            registerHit(t, centerX + activeSaber.x, horizonY + activeSaber.y);
+        // Hit Detection: Triggered whenever a target reaches the player's strike z-zone OR touches the saber tip
+        const isNearStrikePlane = (t.z <= 120 && t.z >= -30);
+        const hitRadius = (projScale * 1.4) * AGE_TIERS[selectedAgeTierKey].hitboxMultiplier;
+
+        if (!t.hit && isNearStrikePlane) {
+          if (distToSaber < Math.max(90, hitRadius)) {
+            registerHit(t, projX, projY);
           }
         }
 
@@ -1642,25 +1672,25 @@
       }
 
       activeSabers.forEach(saber => {
-        // Draw saber trail
+        // Draw saber trail directly in screen coordinates
         if (saber.trail.length > 1) {
           ctx.save();
           ctx.beginPath();
-          ctx.moveTo(centerX + saber.trail[0].x, horizonY + saber.trail[0].y);
+          ctx.moveTo(saber.trail[0].x, saber.trail[0].y);
           for (let k = 1; k < saber.trail.length; k++) {
-            ctx.lineTo(centerX + saber.trail[k].x, horizonY + saber.trail[k].y);
+            ctx.lineTo(saber.trail[k].x, saber.trail[k].y);
           }
           ctx.strokeStyle = saber.color;
-          ctx.lineWidth = 6;
+          ctx.lineWidth = 8;
           ctx.shadowColor = saber.color;
-          ctx.shadowBlur = 16;
+          ctx.shadowBlur = 20;
           ctx.stroke();
           ctx.restore();
         }
 
-        // Draw saber hilt and glowing tip
-        const sx = centerX + saber.x;
-        const sy = horizonY + saber.y;
+        // Draw saber hilt and glowing blade in screen space
+        const sx = saber.x;
+        const sy = saber.y;
 
         ctx.save();
         ctx.shadowColor = saber.color;
