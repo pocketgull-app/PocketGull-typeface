@@ -179,9 +179,43 @@ To safeguard the distinct interests of Indigenous Elders, professional typograph
 * **Google Fonts Option 5 Minimalist Versioning**: Every release strictly follows Google Fonts Option 5: `Version 3.000; The PocketGull Project Authors; OFL 1.1`, with `head.fontRevision` locked to exact float `3.0` matching `nameID 5` and UFO `fontinfo.plist` sources.
 * **Zero Reserved Font Names (RFN)**: Released under pure SIL OFL 1.1 without RFN restrictions, ensuring Linux distributions, hospital operating systems, and open-source applications can freely redistribute, bundle, and subset the superfamily without legal encumbrance.
 * **Repository & Vector Hygiene**: Git tracks pure vector SVGs as the single source of truth (SSOT). High-resolution 300 DPI raster broadsides ($>90\text{ MB}$) are excluded from Git history via `.gitignore` and published strictly as GitHub Release distribution bundles, keeping repository clone sizes lean ($<20\text{ MB}$).
-* **Pre-Flight Attestation**: Releases must achieve a 100% pass rate on automated multi-table forensic audits and Google Fonts pre-flight suites (42 / 42 checks passed) before upstream tagging.
+---
+
+## 🩺 Pillar VIII: The "Doctor to the Barrows" Universal Dignity & Equity Standard
+
+The sacred covenant of PocketGull is inspired by the **"Doctor to the Barrows"**: the traveling clinician who packs their diagnostic kit and journeys into the remote settlements, reservation clinics, arctic nursing stations, and peripheral outposts. 
+
+In these environments:
+* Equipment is often degraded (203 DPI low-temperature thermal printers, flickering battery-powered monitors, dust and glare).
+* Patients and caregivers frequently communicate in indigenous, regional, or minoritized languages.
+* A single dropped character, inverted dosage numeral, or missing-glyph "tofu" square can cause fatal medication error.
+
+To ensure **everyone feels heard, equal, and protected**, PocketGull enforces the following five equity covenants across every release:
+
+### 1. The CARE Principles for Indigenous Data Sovereignty
+* **Collective Benefit**: PocketGull's font tables, telemetry data, and specimen code are provided freely to Indigenous tribal nations, clinic networks, and schools under the SIL Open Font License 1.1 with zero commercial barriers.
+* **Authority to Control**: Indigenous scripts (Inuktitut Syllabics, Chinuk Pipa, Cherokee, Neo-Tifinagh, Ethiopic, Vai, Adlam) are engineered with optical parity to Latin capitals ($y = 720\text{ UPM}$ Cap-Height, $y = 0$ Baseline), never as subordinate or reduced-scale appendages.
+* **Responsibility & Sacred Privacy**: Ceremonial motifs, sacred petroglyphs, and elder registries remain in strictly private vaults (`.foundry/docs/`), isolated from public repositories and never ingested into proprietary AI models.
+
+### 2. Dual-Modality Tactile & Sighted Equality (Unicode Braille `U+2800`–`U+28FF`)
+* Every font binary embeds the full 256-cell ISO/TR 11548 8-dot Braille matrix.
+* Dot geometry is optotypically dilated ($r = 78\text{ UPM}$) and grounded to the Latin baseline so sighted clinicians can visually confirm tactile embossing on medication blister packs alongside English text with zero magnification.
+
+### 3. Cross-Script Clinical Life-Safety (ISMP Parity)
+* Disambiguation is a universal right:
+  * **Latin**: Slashed zero (`0` vs `O`), curved `l` (`1` vs `l` vs `I`).
+  * **Hebrew**: $90^\circ$ right-angle spur on Dalet (**ד**) to prevent confusion with Resh (**ר**) (*Dam* / Blood vs *Ram* / High).
+  * **Arabic & Persian**: Anti-clotting triangular nuqtas on Peh (`پ` vs `ب`) so penicillin allergy warnings never merge on thermal paper.
+  * **Eastern Numerals**: Isolated BiDi containers preventing dosage inversion (`۲۰۰۰ mg` vs `۰۰۰۲`).
+
+### 4. Radical Transparency & Truth in Fallback
+* PocketGull will never make false claims of coverage. Where complex non-Latin scripts (such as connected Arabic Naskh or CJK ideographs) require dedicated specialist engines, the superfamily provides transparent, zero-CLS metric-matched routing (`fonts.css` Experts I and J) to community-crafted fonts (Google Noto Sans Arabic, Noto Sans CJK), maintaining typographic harmony without pretending to cover unverified glyphs.
+
+### 5. Equal Cultural Dignity in Living Medical Documentation
+* Clinical specimens feature authentic diagnostic orders in Inuktitut, Chinuk Wawa, Cherokee, Amazigh, Amharic, Persian, Hebrew, Hindi, and Japanese—honoring the linguistic rights of every patient who places their trust in our hands.
 
 ---
+
 
 <div align="center">
 
