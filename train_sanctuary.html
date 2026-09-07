@@ -770,9 +770,14 @@
       <!-- Bottom Audio & Speed Controls -->
       <div class="audio-speed-dock">
         <div class="speed-slider-group">
-          <label for="speedSlider">Speed:</label>
-          <input type="range" id="speedSlider" min="20" max="79" value="68" aria-label="Train speed in miles per hour">
-          <span id="speedDisplay" style="font-family: var(--mono-stack); min-width: 45px;">68 mph</span>
+          <label for="speedSlider">Throttle:</label>
+          <input type="range" id="speedSlider" min="10" max="70" value="35" step="1" aria-label="Train speed in miles per hour">
+          <span id="speedDisplay" style="font-family: var(--mono-stack); min-width: 55px; color: var(--rail-teal); font-weight: 700;">35 mph</span>
+          <div style="display: inline-flex; gap: 0.25rem; margin-left: 0.35rem;">
+            <button type="button" class="notch-btn" data-speed="15" title="Gentle Solarium Glide (15 mph) for slow panoramic viewing" style="padding: 0.2rem 0.45rem; font-size: 0.68rem; border-radius: 4px; border: 1px solid var(--border-subtle); background: rgba(255,255,255,0.06); color: var(--text-muted); cursor: pointer;">15</button>
+            <button type="button" class="notch-btn active" data-speed="35" title="Scenic River Cruise (35 mph) relaxed pacing" style="padding: 0.2rem 0.45rem; font-size: 0.68rem; border-radius: 4px; border: 1px solid var(--rail-teal); background: rgba(45,212,191,0.18); color: var(--rail-teal); cursor: pointer;">35</button>
+            <button type="button" class="notch-btn" data-speed="55" title="Mainline Timber Run (55 mph)" style="padding: 0.2rem 0.45rem; font-size: 0.68rem; border-radius: 4px; border: 1px solid var(--border-subtle); background: rgba(255,255,255,0.06); color: var(--text-muted); cursor: pointer;">55</button>
+          </div>
         </div>
 
         <button class="acoustic-btn active" id="btnClickClack" title="Toggle procedural track joint acoustics">
@@ -994,7 +999,7 @@
     // =========================================================================
     let currentRouteKey = 'coast_starlight';
     let currentWaypointIdx = 0;
-    let trainSpeed = 68; // mph
+    let trainSpeed = 35; // mph (gentle scenic river glide; range: 10-70)
     let isSleeper = false;
     let isZen = false;
     let cameraView = 'left'; // 'left', 'dome', 'right'
@@ -1144,9 +1149,9 @@
 
       triggerDoubleAxleJoint();
 
-      // Interval inversely proportional to speed: 68 mph ~ 880ms
-      const interval = Math.max(550, 1800 - (trainSpeed * 16));
-      telemCadence.textContent = `${(1000 / interval).toFixed(2)} Hz (Click-Clack)`;
+      // Relaxed, rhythmic rail joint acoustic entrainment (~1.2s - 2.4s cadence)
+      const interval = Math.max(950, 2400 - (trainSpeed * 20));
+      telemCadence.textContent = `${(1000 / interval).toFixed(2)} Hz (Gentle Rocking)`;
       clickClackTimer = setTimeout(scheduleClickClack, interval);
     }
 
@@ -1445,12 +1450,12 @@
         return;
       }
 
-      // Parallax update based on speed
-      const speedFactor = trainSpeed / 60;
-      mountainOffset += 0.4 * speedFactor;
-      midForestOffset += 2.2 * speedFactor;
-      nearPolesOffset += 6.5 * speedFactor;
-      ballastOffset += 14.0 * speedFactor;
+      // Parallax update based on speed (calibrated for scenic observation glide)
+      const speedFactor = trainSpeed / 50;
+      mountainOffset += 0.12 * speedFactor;   // Gentle distant ridges
+      midForestOffset += 0.65 * speedFactor;  // Slow sweeping evergreens
+      nearPolesOffset += 1.85 * speedFactor;  // Unhurried telegraph poles
+      ballastOffset += 4.5 * speedFactor;     // Muted track gravel blur
 
       drawAtmosphericSky();
 
@@ -1533,15 +1538,36 @@
       populateWaypoints(currentRouteKey, true);
     });
 
-    // Speed Slider
-    speedSlider.addEventListener('input', (e) => {
-      trainSpeed = parseInt(e.target.value, 10);
+    // Speed Slider & Notch Presets
+    const notchBtns = document.querySelectorAll('.notch-btn');
+    function applySpeed(newSpeed) {
+      trainSpeed = Math.max(10, Math.min(70, newSpeed));
+      speedSlider.value = trainSpeed;
       speedDisplay.textContent = `${trainSpeed} mph`;
       telemSpeed.textContent = `${trainSpeed} MPH`;
-      if (primeMoverOsc) {
-        primeMoverOsc.frequency.setValueAtTime(42 + (trainSpeed / 80) * 14, audioCtx.currentTime);
+      
+      notchBtns.forEach(btn => {
+        const isMatch = (parseInt(btn.dataset.speed, 10) === trainSpeed);
+        btn.classList.toggle('active', isMatch);
+        btn.style.borderColor = isMatch ? 'var(--rail-teal)' : 'var(--border-subtle)';
+        btn.style.background = isMatch ? 'rgba(45,212,191,0.18)' : 'rgba(255,255,255,0.06)';
+        btn.style.color = isMatch ? 'var(--rail-teal)' : 'var(--text-muted)';
+      });
+
+      if (primeMoverOsc && audioCtx) {
+        primeMoverOsc.frequency.setValueAtTime(38 + (trainSpeed / 70) * 10, audioCtx.currentTime);
       }
       scheduleClickClack();
+    }
+
+    speedSlider.addEventListener('input', (e) => {
+      applySpeed(parseInt(e.target.value, 10));
+    });
+
+    notchBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        applySpeed(parseInt(btn.dataset.speed, 10));
+      });
     });
 
     // Audio Controls
