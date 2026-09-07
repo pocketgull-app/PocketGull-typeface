@@ -32,11 +32,12 @@
   "homepage": "https://typeface.pocketgull.app",
   "scripts": {
     "build": "dart run tool/pocketgull_foundry.dart build",
-    "test": "dart run tool/pocketgull_foundry.dart audit && node scripts/run-font-validator.mjs",
+    "test": "dart run tool/pocketgull_foundry.dart audit && node --test test/*.test.mjs && node scripts/run-font-validator.mjs",
     "audit": "dart run tool/pocketgull_foundry.dart audit",
     "validate": "node scripts/run-font-validator.mjs",
     "checksums": "node scripts/generate_checksums.mjs",
-    "serve": "dart run tool/pocketgull_foundry.dart serve 8770"
+    "serve": "dart run tool/pocketgull_foundry.dart serve 8770",
+    "test:unit": "node --test test/*.test.mjs"
   },
   "files": [
     "fonts/ttf/*.ttf",

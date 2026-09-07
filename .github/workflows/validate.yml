@@ -1,4 +1,4 @@
-name: Google Fonts Quality Assurance & Fontbakery
+name: Google Fonts Quality Assurance & SWE Test Suite
 
 on:
   push:
@@ -12,11 +12,24 @@ permissions:
 
 jobs:
   validate:
-    name: Fontbakery & Pre-Flight Standards
+    name: Standards, Audits & Unit Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Dart SDK (3.11)
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: Set up Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
@@ -24,16 +37,24 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
 
-      - name: Install Dependencies
+      - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install fonttools fontbakery gftools opentype-sanitizer
 
-      - name: Run PocketGull Pre-Flight Validator
-        run: |
-          python sources/validate_fonts.py
+      - name: Install NPM Dependencies
+        run: npm ci || npm install --package-lock-only
 
-      - name: Run Fontbakery (Google Fonts Profile)
+      - name: 1. Thomas Phinney Forensic Font Invariant Audit (Dart 3.11)
+        run: dart run tool/pocketgull_foundry.dart audit
+
+      - name: 2. Automated SWE Unit & Metric Regression Tests (Node)
+        run: npm run test:unit
+
+      - name: 3. Run PocketGull Pre-Flight Validator
+        run: python sources/validate_fonts.py
+
+      - name: 4. Run Fontbakery (Google Fonts Profile)
         continue-on-error: true
         run: |
           fontbakery check-googlefonts \
@@ -43,7 +64,7 @@ jobs:
 
       - name: Upload Fontbakery Report Artifact
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v4
         with:
           name: fontbakery-qa-report
           path: fontbakery-report.md

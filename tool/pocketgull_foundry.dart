@@ -12,6 +12,8 @@ import 'foundry/font_surgeon.dart';
 import 'foundry/smoe_subsetter.dart';
 import 'foundry/upstream_cure_engine.dart';
 import 'foundry/foundry_spector.dart';
+import 'foundry/sanctuary_tui.dart';
+import 'foundry/sanctuary_server.dart';
 
 const fontStems = [
   'PocketGull-Regular',
@@ -611,12 +613,19 @@ Commands:
   smoe [font]       Audit SMoE script expert routing across active Unicode blocks
   spector [dir]     Pure Dart 3.11 replacement for FontSpector (OpenType, Google Fonts, W3C OTS)
   serve [port]      Serve specimen proof locally with zero CORS restrictions (default: 8770)
+  sanctuary         Launch interactive Pure-Dart Terminal Sanctuary (TUI, Ludology, Pacing)
 ''');
 }
 
 Future<void> main(List<String> args) async {
   final command = args.isNotEmpty ? args[0] : 'audit';
   switch (command) {
+    case 'sanctuary':
+    case 'tui':
+    case 'parlor':
+      final tui = SanctuaryTui(projectRoot: Directory(findProjectRoot()));
+      await tui.run();
+      break;
     case 'build':
       await runBuild();
       break;
@@ -657,8 +666,10 @@ Future<void> main(List<String> args) async {
       runSync();
       break;
     case 'serve':
+    case 'server':
       final port = args.length > 1 ? int.tryParse(args[1]) ?? 8770 : 8770;
-      await runServe(port);
+      final server = SanctuaryServer(projectRoot: Directory(findProjectRoot()), port: port);
+      await server.start();
       break;
     case 'help':
     case '--help':
