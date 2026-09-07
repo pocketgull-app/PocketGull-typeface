@@ -670,17 +670,115 @@
       color: #57534E;
     }
     [data-theme="washi"] .italic-pillar-card {
-      background: #FAF8F2;
-      border: 1px solid #E5DDD0;
+      background: #FAF8F2 !important;
+      border: 1px solid #E5DDD0 !important;
       box-shadow: 0 4px 20px rgba(50, 40, 30, 0.05);
     }
     [data-theme="washi"] .italic-pillar-card p {
       color: #44403C !important;
     }
+    [data-theme="washi"] .italic-pillar-card div[style*="background: rgba(15, 23, 42"],
+    [data-theme="washi"] .italic-pillar-card div[style*="background:rgba(15, 23, 42"],
+    [data-theme="washi"] .italic-pillar-card div[style*="background: rgba(15,23,42"] {
+      background: #F4EFE6 !important;
+      color: #1F1B16 !important;
+      border-color: #E2DBD0 !important;
+    }
+    [data-theme="washi"] .italic-pillar-card code {
+      background: #EAE3D5 !important;
+      color: #0F766E !important;
+      border-color: #D8D1C4 !important;
+    }
     [data-theme="washi"] .italic-sample-box {
-      background: #F4EFE6;
-      border: 1px solid #E0D7C9;
-      color: #1F1B16;
+      background: #F4EFE6 !important;
+      border: 1px solid #E0D7C9 !important;
+      color: #1F1B16 !important;
+    }
+    [data-theme="washi"] .italic-sample-box span[style*="color: #94a3b8"],
+    [data-theme="washi"] .italic-sample-box span[style*="color:#94a3b8"] {
+      color: #57534E !important;
+    }
+    [data-theme="washi"] .clinical-gene {
+      color: #0369A1 !important;
+      border-bottom-color: rgba(3, 105, 161, 0.5) !important;
+    }
+    [data-theme="washi"] .clinical-protein {
+      color: #1F1B16 !important;
+    }
+    [data-theme="washi"] .clinical-pathogen {
+      color: #BE123C !important;
+    }
+    [data-theme="washi"] .clinical-patient-quote {
+      color: #B45309 !important;
+      border-left-color: #D97706 !important;
+    }
+    [data-theme="washi"] .clinical-directive {
+      color: #0F766E !important;
+    }
+    [data-theme="washi"] #italics h3[style*="color: #f8fafc"],
+    [data-theme="washi"] #italics h3[style*="color:#f8fafc"] {
+      color: #1F1B16 !important;
+    }
+    [data-theme="washi"] #italics .ismp-card[style*="background: rgba(15, 23, 42"],
+    [data-theme="washi"] #italics .ismp-card[style*="background:rgba(15, 23, 42"] {
+      background: #FFFFFF !important;
+      border-color: #E2DBD0 !important;
+    }
+    [data-theme="washi"] #italics .ismp-card > div[style*="border-bottom"] {
+      border-bottom-color: #E2DBD0 !important;
+    }
+    [data-theme="washi"] #italics h3[style*="color: #38bdf8"],
+    [data-theme="washi"] #italics h3[style*="color:#38bdf8"] {
+      color: #0F766E !important;
+    }
+    [data-theme="washi"] #italics p[style*="color: #94a3b8"],
+    [data-theme="washi"] #italics p[style*="color:#94a3b8"] {
+      color: #57534E !important;
+    }
+    [data-theme="washi"] #italicComparatorBox {
+      background: #FAF8F2 !important;
+      border-color: #E2DBD0 !important;
+    }
+    [data-theme="washi"] #italicComparatorBox > div {
+      background: #FFFFFF !important;
+      border-color: #E2DBD0 !important;
+    }
+    [data-theme="washi"] #italicComparatorBox span[style*="color: #94a3b8"],
+    [data-theme="washi"] #italicComparatorBox span[style*="color:#94a3b8"] {
+      color: #44403C !important;
+    }
+    [data-theme="washi"] #italicComparatorBox span[style*="color: #38bdf8"],
+    [data-theme="washi"] #italicComparatorBox span[style*="color:#38bdf8"] {
+      color: #0F766E !important;
+    }
+    [data-theme="washi"] #italicComparatorBox div[style*="color: #64748b"],
+    [data-theme="washi"] #italicComparatorBox div[style*="color:#64748b"] {
+      color: #57534E !important;
+    }
+    [data-theme="washi"] #italicComparatorBox div[style*="color: #38bdf8"],
+    [data-theme="washi"] #italicComparatorBox div[style*="color:#38bdf8"] {
+      color: #0F766E !important;
+    }
+    [data-theme="washi"] #romanSampleText {
+      color: #1F1B16 !important;
+    }
+    [data-theme="washi"] #italicSampleText {
+      color: #0F766E !important;
+    }
+    [data-theme="washi"] #italicPhilocardiaDemo {
+      color: #1F1B16 !important;
+    }
+    [data-theme="washi"] #italics div[style*="linear-gradient"] {
+      background: linear-gradient(135deg, rgba(15, 118, 110, 0.08) 0%, rgba(225, 29, 72, 0.08) 100%) !important;
+      border-color: #E2DBD0 !important;
+    }
+    [data-theme="washi"] #italics div[style*="linear-gradient"] div[style*="color: #f8fafc"],
+    [data-theme="washi"] #italics div[style*="linear-gradient"] div[style*="color:#f8fafc"] {
+      color: #1F1B16 !important;
+    }
+    [data-theme="washi"] #italics div[style*="linear-gradient"] div[style*="color: #94a3b8"],
+    [data-theme="washi"] #italics div[style*="linear-gradient"] div[style*="color:#94a3b8"] {
+      color: #57534E !important;
     }
     [data-theme="washi"] .ismp-title {
       color: #1F1B16;

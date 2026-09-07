@@ -215,12 +215,17 @@
         if (btn.classList.contains('active')) {
           if (feat && feat !== 'philocardia' && feat !== 'iphillyg') {
             activeFeats.push(`"${feat}" 1`);
+            if (feat === 'cv08') {
+              activeFeats.push('"zero" 1');
+            }
           }
         }
       });
 
       if (testerOutput) {
         testerOutput.style.fontFeatureSettings = activeFeats.length ? activeFeats.join(', ') : 'normal';
+        const hasZero = activeFeats.some(f => f.includes('zero') || f.includes('cv08'));
+        testerOutput.style.fontVariantNumeric = hasZero ? 'slashed-zero tabular-nums' : (activeFeats.some(f => f.includes('tnum')) ? 'tabular-nums' : 'normal');
         if (otReadout) {
           otReadout.textContent = 'font-feature-settings: ' + (activeFeats.length ? activeFeats.join(', ') : 'normal');
         }
