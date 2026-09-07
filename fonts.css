@@ -561,6 +561,54 @@
   transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.22s ease, filter 0.22s ease;
 }
 
+/* Lowercase j (dotless ȷ U+0237): Centered over the straight upper stem before the descender curve */
+.philocardia-j {
+  display: inline-block;
+  position: relative;
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.philocardia-j::after {
+  content: '';
+  position: absolute;
+  top: -0.15em;
+  left: 64%; /* Balanced over right-aligned stem of descending j */
+  width: 0.32em;
+  height: 0.32em;
+  transform: translateX(-50%) scale(var(--aura-scale, 1.0));
+  background-color: var(--aura-color, var(--teal-accent, currentColor));
+  pointer-events: none;
+  clip-path: url(#philocardiaMorphClip);
+  -webkit-clip-path: url(#philocardiaMorphClip);
+  filter: drop-shadow(0 0 var(--aura-glow, 0px) rgba(45, 212, 191, 0.55));
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.22s ease, filter 0.22s ease;
+}
+
+/* Exclamation Mark Terminal Heart: Replaces baseline period dot with an upright heart */
+.philocardia-excl {
+  display: inline-block;
+  position: relative;
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.philocardia-excl::after {
+  content: '';
+  position: absolute;
+  bottom: 0.04em; /* Sits precisely at baseline terminal */
+  left: 50%;
+  width: 0.30em;
+  height: 0.30em;
+  transform: translateX(-50%) scale(var(--aura-scale, 1.0));
+  background-color: var(--aura-color, var(--teal-accent, currentColor));
+  pointer-events: none;
+  clip-path: url(#philocardiaMorphClip);
+  -webkit-clip-path: url(#philocardiaMorphClip);
+  filter: drop-shadow(0 0 var(--aura-glow, 0px) rgba(45, 212, 191, 0.55));
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.22s ease, filter 0.22s ease;
+}
+
 /* Arabic Heart Nuqṭa (خ, ج, غ, ف, ن): Placed above apex of letterhead with Naskh optical balance */
 .philocardia-arabic-heart::after {
   content: '';

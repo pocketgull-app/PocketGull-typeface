@@ -229,16 +229,24 @@
         if (testerOutput.children && testerOutput.children.length > 0) {
           const clone = testerOutput.cloneNode(true);
           clone.querySelectorAll('.philocardia-heart').forEach(el => el.replaceWith('i'));
-          rawText = clone.textContent.replace(/ı/g, 'i');
+          clone.querySelectorAll('.philocardia-j').forEach(el => el.replaceWith('j'));
+          clone.querySelectorAll('.philocardia-excl').forEach(el => el.replaceWith('!'));
+          rawText = clone.textContent.replace(/ı/g, 'i').replace(/ȷ/g, 'j');
         } else {
-          rawText = (testerOutput.textContent || '').replace(/ı/g, 'i');
+          rawText = (testerOutput.textContent || '').replace(/ı/g, 'i').replace(/ȷ/g, 'j');
         }
 
         if (currentHealerMode !== 'off') {
           const pacingClass = HEALER_CONFIG[currentHealerMode]?.pacingClass || '';
-          const classStr = pacingClass ? `philocardia-heart ${pacingClass}` : 'philocardia-heart';
+          const classI = pacingClass ? `philocardia-heart ${pacingClass}` : 'philocardia-heart';
+          const classJ = pacingClass ? `philocardia-j ${pacingClass}` : 'philocardia-j';
+          const classExcl = pacingClass ? `philocardia-excl ${pacingClass}` : 'philocardia-excl';
           const escaped = escapeHtml(rawText);
-          testerOutput.innerHTML = escaped.replace(/i/g, `<span class="${classStr}">ı</span>`);
+          const transformed = escaped
+            .replace(/i/g, `<span class="${classI}">ı</span>`)
+            .replace(/j/g, `<span class="${classJ}">ȷ</span>`)
+            .replace(/!/g, `<span class="${classExcl}">!</span>`);
+          testerOutput.innerHTML = transformed;
         } else {
           testerOutput.textContent = rawText;
         }
@@ -410,7 +418,7 @@
 
     function updateAmbientAura(x, y) {
       const isAuraActive = (currentHealerMode === 'aura');
-      const hearts = document.querySelectorAll('.philocardia-heart, .philocardia-arabic-heart');
+      const hearts = document.querySelectorAll('.philocardia-heart, .philocardia-arabic-heart, .philocardia-j, .philocardia-excl');
       const vH = window.innerHeight;
       let maxFactor = 0;
 
