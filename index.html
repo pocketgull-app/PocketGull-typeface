@@ -508,13 +508,24 @@
               <button type="button" class="healer-pill" data-healer-mode="aura" title="Touch & Cursor Proximity Aura: Hearts and weight bloom toward your hand">
                 ✨ Touch Aura
               </button>
-              <button type="button" class="healer-pill" data-healer-mode="static" title="Static heart tittles without motion animation">
-                ♡ Static Hearts
-              </button>
-              <button type="button" class="healer-pill active" data-healer-mode="off" title="Disable heart tittles (standard dot)">
-                ⚪ Off
-              </button>
+            <!-- Level of Love (Cardiopulmonary Affection Gauge) -->
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed rgba(45, 212, 191, 0.2); width: 100%; flex-wrap: wrap;">
+              <span style="font-size: 0.72rem; font-family: monospace; font-weight: 800; color: #fb7185; text-transform: uppercase; letter-spacing: 0.06em; display: flex; align-items: center; gap: 0.3rem;">
+                <span>❤️</span> Level of Love:
+              </span>
+              <div style="display: inline-flex; gap: 0.3rem; flex-wrap: wrap;" id="loveLevelGroup">
+                <button type="button" class="love-level-btn" data-love="none" style="padding: 0.25rem 0.65rem; border-radius: 6px; font-size: 0.72rem; font-family: monospace; font-weight: 700; border: 1px solid rgba(255,255,255,0.15); background: transparent; color: #94a3b8; cursor: pointer; transition: all 0.15s ease;" title="Level 0: No Love — Pure clinical discipline, classic round dots and periods">
+                  ⚪ No Love (Pure Clinical)
+                </button>
+                <button type="button" class="love-level-btn" data-love="half" style="padding: 0.25rem 0.65rem; border-radius: 6px; font-size: 0.72rem; font-family: monospace; font-weight: 700; border: 1px solid rgba(45,212,191,0.3); background: rgba(45,212,191,0.1); color: #2dd4bf; cursor: pointer; transition: all 0.15s ease;" title="Level 1: Half Love — Tactful Emily Post restraint: dots softly morph to gentle hearts only on touch/hover">
+                  ♡ Half Love (Emily Post Aura)
+                </button>
+                <button type="button" class="love-level-btn active" data-love="super" style="padding: 0.25rem 0.65rem; border-radius: 6px; font-size: 0.72rem; font-family: monospace; font-weight: 800; border: 1px solid #fb7185; background: rgba(244,63,94,0.18); color: #fb7185; cursor: pointer; transition: all 0.15s ease;" title="Level 2: Super Love — Full 72 BPM cardiopulmonary S1/S2 heart pulse across i, j, !, and Arabic خ">
+                  💖 Super Love (Full Heart Pulse)
+                </button>
+              </div>
             </div>
+          </div>
 
             <!-- Ocular Ergonomics & Auscultation Suite -->
             <div style="display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;" id="ocularA11yGroup">

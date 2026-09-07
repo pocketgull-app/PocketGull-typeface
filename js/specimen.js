@@ -236,7 +236,17 @@
           rawText = (testerOutput.textContent || '').replace(/ı/g, 'i').replace(/ȷ/g, 'j');
         }
 
-        if (currentHealerMode !== 'off') {
+        if (currentLoveLevel === 'none' || currentHealerMode === 'off') {
+          // Level 0: No Love — 100% pure clinical discipline, zero hearts, classical round dots
+          testerOutput.textContent = rawText;
+        } else if (currentLoveLevel === 'half') {
+          // Level 1: Half Love — Gentle & subtle: Only lowercase 'i' receives a heart tittle
+          const pacingClass = HEALER_CONFIG[currentHealerMode]?.pacingClass || '';
+          const classI = pacingClass ? `philocardia-heart ${pacingClass}` : 'philocardia-heart';
+          const escaped = escapeHtml(rawText);
+          testerOutput.innerHTML = escaped.replace(/i/g, `<span class="${classI}">ı</span>`);
+        } else {
+          // Level 2: Super Love — Full affection: 'i', 'j', '!', and Arabic 'خ' all get heart tittles
           const pacingClass = HEALER_CONFIG[currentHealerMode]?.pacingClass || '';
           const classI = pacingClass ? `philocardia-heart ${pacingClass}` : 'philocardia-heart';
           const classJ = pacingClass ? `philocardia-j ${pacingClass}` : 'philocardia-j';
@@ -247,8 +257,6 @@
             .replace(/j/g, `<span class="${classJ}">ȷ</span>`)
             .replace(/!/g, `<span class="${classExcl}">!</span>`);
           testerOutput.innerHTML = transformed;
-        } else {
-          testerOutput.textContent = rawText;
         }
       }
     }
@@ -256,6 +264,7 @@
     // =========================================================================
     // The Healer Font: Cardiopulmonary Resonance & Touch Aura Sequencer
     // =========================================================================
+    let currentLoveLevel = 'super'; // 'none' (0 hearts), 'half' (only 'i' aura), 'super' ('i', 'j', '!', 'خ' hearts)
     let currentHealerMode = 'aura'; // '72', '60', 'breath', 'aura', 'static', 'off'
     const healerOrder = ['72', '60', 'breath', 'aura', 'static', 'off'];
     const healerPills = document.querySelectorAll('.healer-pill');
@@ -351,6 +360,51 @@
     healerPills.forEach(pill => {
       pill.addEventListener('click', () => {
         setHealerMode(pill.dataset.healerMode);
+      });
+    });
+
+    // Level of Love (None / Half / Super) Selector Handler
+    const loveLevelBtns = document.querySelectorAll('.love-level-btn');
+    function setLoveLevel(level) {
+      loveLevelBtns.forEach(btn => {
+        const isMatch = (btn.dataset.love === level);
+        btn.classList.toggle('active', isMatch);
+        if (isMatch) {
+          if (level === 'none') {
+            btn.style.borderColor = 'rgba(255,255,255,0.4)';
+            btn.style.background = 'rgba(255,255,255,0.1)';
+            btn.style.color = '#ffffff';
+          } else if (level === 'half') {
+            btn.style.borderColor = '#2dd4bf';
+            btn.style.background = 'rgba(45,212,191,0.2)';
+            btn.style.color = '#2dd4bf';
+          } else if (level === 'super') {
+            btn.style.borderColor = '#fb7185';
+            btn.style.background = 'rgba(244,63,94,0.25)';
+            btn.style.color = '#fb7185';
+          }
+        } else {
+          btn.style.background = 'transparent';
+          btn.style.borderColor = 'rgba(255,255,255,0.15)';
+          btn.style.color = '#94a3b8';
+        }
+      });
+
+      currentLoveLevel = level;
+
+      if (level === 'none') {
+        setHealerMode('off');
+      } else if (level === 'half') {
+        setHealerMode('aura');
+      } else if (level === 'super') {
+        setHealerMode('72');
+      }
+      updateOtFeatures();
+    }
+
+    loveLevelBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        setLoveLevel(btn.dataset.love);
       });
     });
 
