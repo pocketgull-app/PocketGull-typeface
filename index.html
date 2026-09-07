@@ -402,9 +402,6 @@
             <button class="ot-toggle-btn active" id="toggleSs02" data-feat="ss02" style="padding: 0.3rem 0.65rem; font-size: 0.75rem; font-family: monospace; border-radius: 6px; border: 1px solid #14b8a6; background: rgba(20, 184, 166, 0.15); color: #2dd4bf; cursor: pointer; transition: all 0.15s ease;" title="ISMP Serifed Capital I: Disambiguates I from lowercase l">
               'ss02' (I vs l) ON
             </button>
-            <button class="ot-toggle-btn active" id="togglePhilocardia" data-feat="philocardia" style="padding: 0.3rem 0.65rem; font-size: 0.75rem; font-family: monospace; border-radius: 6px; border: 1px solid #2dd4bf; background: rgba(45, 212, 191, 0.2); color: #2dd4bf; cursor: pointer; transition: all 0.15s ease;" title="The Healer Font: Heart-Dotted 'i' Alternate">
-              ♥ Heart 'i' ON
-            </button>
             <button class="ot-toggle-btn" id="toggleItalic" data-feat="ital" style="padding: 0.3rem 0.65rem; font-size: 0.75rem; font-family: monospace; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.4); background: rgba(56, 189, 248, 0.08); color: #38bdf8; cursor: pointer; transition: all 0.15s ease;" title="Italic Cut (-10.5° Slant): Mathematical true italic variety">
               <i>𝐼</i> Italic OFF
             </button>
@@ -454,18 +451,18 @@
                 <div style="font-size: 0.85rem; font-weight: 800; color: #2dd4bf; text-transform: uppercase; letter-spacing: 0.06em; display: flex; align-items: center; gap: 0.4rem;">
                   The Healer Font
                   <button type="button" id="healerStepBtn" style="font-size: 0.7rem; font-family: monospace; font-weight: 700; padding: 0.15rem 0.55rem; border-radius: 9999px; background: rgba(45, 212, 191, 0.2); color: #2dd4bf; border: 1px solid rgba(45, 212, 191, 0.4); cursor: pointer; transition: all 0.15s ease;" title="Click to cycle heart modes in succession">
-                    <span id="healerActiveBadge">72 BPM Sinus</span> ➔
+                    <span id="healerActiveBadge">⚪ Off</span> ➔
                   </button>
                 </div>
                 <div id="healerStatusCaption" style="font-size: 0.72rem; color: #a1a1aa; font-family: monospace;">
-                  Calibrated physiological pulse pacer · Palpate radial artery with zero watch
+                  Healer heart mode off; traditional circular tittles active
                 </div>
               </div>
             </div>
 
             <!-- Sequence Mode Switcher Pills -->
             <div style="display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;" id="healerPillGroup">
-              <button type="button" class="healer-pill active" data-healer-mode="72" title="Normal adult sinus rhythm (72 BPM = 0.833s period with S1/S2 lub-dub)">
+              <button type="button" class="healer-pill" data-healer-mode="72" title="Normal adult sinus rhythm (72 BPM = 0.833s period with S1/S2 lub-dub)">
                 ♥ 72 BPM Sinus
               </button>
               <button type="button" class="healer-pill" data-healer-mode="60" title="Resting cardiac rhythm (60 BPM = 1.000s period) to down-regulate sympathetic arousal">
@@ -480,7 +477,7 @@
               <button type="button" class="healer-pill" data-healer-mode="static" title="Static heart tittles without motion animation">
                 ♡ Static Hearts
               </button>
-              <button type="button" class="healer-pill" data-healer-mode="off" title="Disable heart tittles (standard dot)">
+              <button type="button" class="healer-pill active" data-healer-mode="off" title="Disable heart tittles (standard dot)">
                 ⚪ Off
               </button>
             </div>

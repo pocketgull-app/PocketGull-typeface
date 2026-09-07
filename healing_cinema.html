@@ -1460,7 +1460,13 @@
 
       formatBionic(text) {
         if (!this.isBionic) return text;
-        return text.split(" ").map(word => {
+        const esc = String(text)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+        return esc.split(" ").map(word => {
           if (word.length <= 3) return `<span class="bionic-anchor">${word}</span>`;
           const mid = Math.ceil(word.length * 0.45);
           return `<span class="bionic-anchor">${word.slice(0, mid)}</span>${word.slice(mid)}`;

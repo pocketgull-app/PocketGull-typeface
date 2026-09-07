@@ -44,8 +44,18 @@
         health: 'GOOD HEALTH'
       };
 
+      function escapeHtml(s) {
+        if (!s) return '';
+        return String(s)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
       function strip(s) {
-        return s.replace(/<[^>]+>/g, '').replace(/&bull;/g, '•').replace(/&amp;/g, '&').replace(/&rarr;/g, '→');
+        return String(s).replace(/<[^>]*>/g, '').replace(/&bull;/g, '•').replace(/&rarr;/g, '→').replace(/&amp;/g, '&');
       }
 
       function makeTwoColLine(left, right, width = 79) {
@@ -175,9 +185,9 @@
 
       function updateWagonTelemetry() {
         if (wagonRowEl) {
-          const wagonName = fontStats.name.length > 22 ? fontStats.name.substring(0, 19) + '...' : fontStats.name;
-          const rationsStr = fontStats.glyphs.toLocaleString() + ' GLYPHS';
-          const milesStr = 'MILE: ' + miles.toLocaleString() + ' / 2,040';
+          const wagonName = escapeHtml(fontStats.name.length > 22 ? fontStats.name.substring(0, 19) + '...' : fontStats.name);
+          const rationsStr = escapeHtml(fontStats.glyphs.toLocaleString() + ' GLYPHS');
+          const milesStr = escapeHtml('MILE: ' + miles.toLocaleString() + ' / 2,040');
 
           const content = '<span class="term-white">WAGON:</span> <span class="term-teal">' + wagonName + '</span> │ <span class="term-white">RATIONS:</span> ' + rationsStr + ' │ <span class="term-amber">' + milesStr + '</span>';
           wagonRowEl.innerHTML = makeSingleLine(content);
@@ -427,17 +437,21 @@
               renderCurrentMission();
 
               if (promptRow) {
+                const fam = escapeHtml(parsed.familyName.toLowerCase().substring(0, 8));
+                const glyphs = escapeHtml(String(parsed.numGlyphs));
+                const upm = escapeHtml(String(parsed.unitsPerEm));
                 promptRow.innerHTML = makeTwoColLine(
-                  '<span class="term-green">TRAIL GUIDE:</span> <span class="term-teal"></span><span style="background:#14b8a6;color:#09090b;font-weight:bold;"> fontspector </span><span class="term-teal"></span><span style="background:#1e293b;color:#38bdf8;"> ' + (parsed.familyName.toLowerCase().substring(0, 8)) + ' </span><span style="color:#1e293b;"></span> <span class="term-green">✔ ' + parsed.numGlyphs + ' GLYPHS</span>',
-                  '<span class="term-teal">' + parsed.unitsPerEm + ' UPM &bull; LOADED</span>'
+                  '<span class="term-green">TRAIL GUIDE:</span> <span class="term-teal"></span><span style="background:#14b8a6;color:#09090b;font-weight:bold;"> fontspector </span><span class="term-teal"></span><span style="background:#1e293b;color:#38bdf8;"> ' + fam + ' </span><span style="color:#1e293b;"></span> <span class="term-green">✔ ' + glyphs + ' GLYPHS</span>',
+                  '<span class="term-teal">' + upm + ' UPM &bull; LOADED</span>'
                 );
               }
             } catch (parseErr) {
               console.error('SFNT parse error:', parseErr);
               if (promptRow) {
+                const fname = escapeHtml(file.name.substring(0, 20));
                 promptRow.innerHTML = makeTwoColLine(
                   '<span class="term-green">TRAIL GUIDE:</span> <span class="term-amber">⚠ PARSE WARNING</span>',
-                  '<span class="term-white">' + file.name.substring(0, 20) + '</span>'
+                  '<span class="term-white">' + fname + '</span>'
                 );
               }
             }

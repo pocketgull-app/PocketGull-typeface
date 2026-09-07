@@ -190,15 +190,25 @@
     const otButtons = document.querySelectorAll('.ot-toggle-btn');
     const otReadout = document.getElementById('otCssReadout');
 
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
     function updateOtFeatures() {
       const activeFeats = [];
-      let isPhilocardia = false;
 
       otButtons.forEach(btn => {
         const feat = btn.dataset.feat;
         if (btn.classList.contains('active')) {
-          if (feat === 'philocardia' || feat === 'iphillyg') isPhilocardia = true;
-          else if (feat) activeFeats.push(`"${feat}" 1`);
+          if (feat && feat !== 'philocardia' && feat !== 'iphillyg') {
+            activeFeats.push(`"${feat}" 1`);
+          }
         }
       });
 
@@ -208,20 +218,22 @@
           otReadout.textContent = 'font-feature-settings: ' + (activeFeats.length ? activeFeats.join(', ') : 'normal');
         }
 
-        let formatted = testerOutput.innerText.replace(/ı/g, 'i');
-        if (isPhilocardia && currentHealerMode !== 'off') {
+        const rawText = testerOutput.innerText.replace(/ı/g, 'i');
+        if (currentHealerMode !== 'off') {
           const pacingClass = HEALER_CONFIG[currentHealerMode]?.pacingClass || '';
           const classStr = pacingClass ? `philocardia-heart ${pacingClass}` : 'philocardia-heart';
-          formatted = formatted.replace(/i/g, `<span class="${classStr}">ı</span>`);
+          const escaped = escapeHtml(rawText);
+          testerOutput.innerHTML = escaped.replace(/i/g, `<span class="${classStr}">ı</span>`);
+        } else {
+          testerOutput.textContent = rawText;
         }
-        testerOutput.innerHTML = formatted;
       }
     }
 
     // =========================================================================
     // The Healer Font: Cardiopulmonary Resonance & Touch Aura Sequencer
     // =========================================================================
-    let currentHealerMode = '72'; // '72', '60', 'breath', 'aura', 'static', 'off'
+    let currentHealerMode = 'off'; // '72', '60', 'breath', 'aura', 'static', 'off'
     const healerOrder = ['72', '60', 'breath', 'aura', 'static', 'off'];
     const healerPills = document.querySelectorAll('.healer-pill');
     const healerBadge = document.getElementById('healerActiveBadge');
@@ -293,14 +305,7 @@
         pill.classList.toggle('active', pill.dataset.healerMode === mode);
       });
 
-      // Sync OT feature toggle button
-      const btnPhilocardia = document.getElementById('togglePhilocardia');
-      if (btnPhilocardia) {
-        const isEnabled = mode !== 'off';
-        btnPhilocardia.classList.toggle('active', isEnabled);
-        btnPhilocardia.innerText = `♥ Heart 'i' ${isEnabled ? 'ON' : 'OFF'}`;
-      }
-
+      // Healer Mode bar is the single authoritative toggle control
       updateOtFeatures();
     }
 
@@ -388,10 +393,7 @@
         btn.style.borderColor = isActive ? '#2dd4bf' : 'rgba(255,255,255,0.15)';
         btn.style.color = isActive ? '#2dd4bf' : '#a1a1aa';
         const feat = btn.dataset.feat || '';
-        if (feat === 'philocardia') {
-          btn.innerText = `♥ Heart 'i' ${isActive ? 'ON' : 'OFF'}`;
-          setHealerMode(isActive ? '72' : 'off');
-        } else if (feat === 'ital') {
+        if (feat === 'ital') {
           btn.innerHTML = `<i>𝐼</i> Italic ${isActive ? 'ON' : 'OFF'}`;
           btn.style.borderColor = isActive ? '#38bdf8' : 'rgba(56, 189, 248, 0.4)';
           btn.style.background = isActive ? 'rgba(56, 189, 248, 0.2)' : 'rgba(56, 189, 248, 0.08)';
