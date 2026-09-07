@@ -55,7 +55,13 @@
       }
 
       function strip(s) {
-        return String(s).replace(/<[^>]*>/g, '').replace(/&bull;/g, '•').replace(/&rarr;/g, '→').replace(/&amp;/g, '&');
+        let str = String(s);
+        let prev;
+        do {
+          prev = str;
+          str = str.replace(/<[^>]*>/g, '');
+        } while (str !== prev);
+        return str.replace(/<|>/g, '').replace(/&bull;/g, '•').replace(/&rarr;/g, '→').replace(/&amp;/g, '&');
       }
 
       function makeTwoColLine(left, right, width = 79) {
