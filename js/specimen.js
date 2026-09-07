@@ -247,7 +247,7 @@
     // =========================================================================
     // The Healer Font: Cardiopulmonary Resonance & Touch Aura Sequencer
     // =========================================================================
-    let currentHealerMode = 'off'; // '72', '60', 'breath', 'aura', 'static', 'off'
+    let currentHealerMode = 'aura'; // '72', '60', 'breath', 'aura', 'static', 'off'
     const healerOrder = ['72', '60', 'breath', 'aura', 'static', 'off'];
     const healerPills = document.querySelectorAll('.healer-pill');
     const healerBadge = document.getElementById('healerActiveBadge');
@@ -319,6 +319,15 @@
         pill.classList.toggle('active', pill.dataset.healerMode === mode);
       });
 
+      const headerBioBadgeEl = document.getElementById('headerBioBadge');
+      if (headerBioBadgeEl) {
+        if (mode === 'aura') {
+          headerBioBadgeEl.textContent = 'Touch Aura';
+        } else {
+          headerBioBadgeEl.textContent = cfg ? cfg.badge.split(' ')[0] + ' ' + (cfg.badge.split(' ')[1] || '') : '72 BPM';
+        }
+      }
+
       // Healer Mode bar is the single authoritative toggle control
       updateOtFeatures();
     }
@@ -358,46 +367,80 @@
       });
     }
 
-    // Touch & Cursor Proximity Aura Listener on testerOutput
-    if (testerOutput) {
-      testerOutput.addEventListener('mousemove', (e) => {
-        if (currentHealerMode !== 'aura') return;
-        const mouseX = e.clientX;
-        const mouseY = e.clientY;
+    // Global Ambient Touch & Cursor Proximity Aura Engine
+    let lastPointerX = -9999;
+    let lastPointerY = -9999;
+    let auraRafId = null;
 
-        const hearts = testerOutput.querySelectorAll('.philocardia-heart');
-        hearts.forEach(heart => {
-          const hRect = heart.getBoundingClientRect();
-          const hCenterX = hRect.left + hRect.width / 2;
-          const hCenterY = hRect.top + hRect.height / 2;
-          const dist = Math.hypot(mouseX - hCenterX, mouseY - hCenterY);
+    function updateAmbientAura(x, y) {
+      const isAuraActive = (currentHealerMode === 'aura');
+      const hearts = document.querySelectorAll('.philocardia-heart');
+      const vH = window.innerHeight;
 
-          // Proximity radius 180px
-          if (dist < 180) {
-            const factor = 1 - (dist / 180);
-            const scale = 0.68 + (0.72 * factor); // Scale from 0.68 up to 1.40x
-            const glow = Math.round(14 * factor);
-            const color = factor > 0.55 ? '#fb7185' : '#2dd4bf'; // Rose when close, teal when medium
-            heart.style.setProperty('--aura-scale', scale);
-            heart.style.setProperty('--aura-glow', `${glow}px`);
-            heart.style.setProperty('--aura-color', color);
-          } else {
-            heart.style.removeProperty('--aura-scale');
-            heart.style.removeProperty('--aura-glow');
-            heart.style.removeProperty('--aura-color');
-          }
-        });
-      });
-
-      testerOutput.addEventListener('mouseleave', () => {
-        const hearts = testerOutput.querySelectorAll('.philocardia-heart');
-        hearts.forEach(heart => {
+      hearts.forEach(heart => {
+        if (!isAuraActive) {
           heart.style.removeProperty('--aura-scale');
           heart.style.removeProperty('--aura-glow');
           heart.style.removeProperty('--aura-color');
-        });
+          return;
+        }
+
+        const hRect = heart.getBoundingClientRect();
+        // Viewport cull check: skip elements well outside current screen
+        if (hRect.bottom < -100 || hRect.top > vH + 100) return;
+
+        const hCenterX = hRect.left + hRect.width / 2;
+        const hCenterY = hRect.top + hRect.height / 2;
+        const dist = Math.hypot(x - hCenterX, y - hCenterY);
+
+        // Responsive proximity bloom radius (180px)
+        if (dist < 180) {
+          const factor = 1 - (dist / 180);
+          const scale = 0.68 + (0.72 * factor); // Scale from 0.68 up to 1.40x
+          const glow = Math.round(14 * factor);
+          const color = factor > 0.55 ? '#fb7185' : '#2dd4bf'; // Rose when close, teal when medium
+          heart.style.setProperty('--aura-scale', scale);
+          heart.style.setProperty('--aura-glow', `${glow}px`);
+          heart.style.setProperty('--aura-color', color);
+        } else {
+          heart.style.removeProperty('--aura-scale');
+          heart.style.removeProperty('--aura-glow');
+          heart.style.removeProperty('--aura-color');
+        }
       });
     }
+
+    function scheduleAuraUpdate() {
+      if (!auraRafId) {
+        auraRafId = requestAnimationFrame(() => {
+          updateAmbientAura(lastPointerX, lastPointerY);
+          auraRafId = null;
+        });
+      }
+    }
+
+    window.addEventListener('pointermove', (e) => {
+      lastPointerX = e.clientX;
+      lastPointerY = e.clientY;
+      scheduleAuraUpdate();
+    }, { passive: true });
+
+    window.addEventListener('scroll', () => {
+      if (lastPointerX > -1000) {
+        scheduleAuraUpdate();
+      }
+    }, { passive: true });
+
+    window.addEventListener('pointerleave', () => {
+      lastPointerX = -9999;
+      lastPointerY = -9999;
+      scheduleAuraUpdate();
+    }, { passive: true });
+
+    // Initial ambient trigger on page load to configure the aura state
+    setTimeout(() => {
+      setHealerMode('aura');
+    }, 50);
 
     otButtons.forEach(btn => {
       btn.addEventListener('click', () => {
