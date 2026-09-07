@@ -161,7 +161,8 @@
       lakota: "Očhéthi Šakówiŋ // Phežúta Wičháša (Medicine Healer) • Čhaŋté (Heart): 72 BPM • Wóžapi • Wicozani (Holistic Health)",
       salish: "dxʷləšucid // sʔuladxʷ (Sustenance) • ƛʼubƛʼub (Very Well) • yəcəb (Clinic Telemetry) • SpO2 99% [Lushootseed]",
       mohawk: "Kanien'kéha // Ratetsyén:tha (Doctor) • Onkwanatason:a (Body) • Onòn:kwa (Medicine) 250 mg • Skén:nen (Peace & Health)",
-      hawaiian: "ʻŌlelo Hawaiʻi // Kauka (Physician) • Puʻuwai (Heart): 70 BPM • Lāʻau Lapaʻau (Medicine) • Ola Kino (Vital Well-being)"
+      hawaiian: "ʻŌlelo Hawaiʻi // Kauka (Physician) • Puʻuwai (Heart): 70 BPM • Lāʻau Lapaʻau (Medicine) • Ola Kino (Vital Well-being)",
+      parlor: "The Solarium Library • A cup of chamomile tea • Resting heart rate: 60 BPM • خَطّ نَسْخ • Peaceful Afternoon"
     };
 
     document.querySelectorAll('.preset-pill[data-preset]').forEach(pill => {
@@ -329,6 +330,13 @@
       }
 
       // Healer Mode bar is the single authoritative toggle control
+      if (morphClipPathEl) {
+        if (mode === 'off') {
+          morphClipPathEl.setAttribute('d', interpolateClipPath(0));
+        } else if (mode !== 'aura') {
+          morphClipPathEl.setAttribute('d', interpolateClipPath(1));
+        }
+      }
       updateOtFeatures();
     }
 
@@ -367,21 +375,51 @@
       });
     }
 
-    // Global Ambient Touch & Cursor Proximity Aura Engine
+    // Global Ambient Touch & Cursor Proximity Aura Engine & Continuous Tittle Morph
     let lastPointerX = -9999;
     let lastPointerY = -9999;
     let auraRafId = null;
 
+    // Cubic Bézier control points for 4-segment Circle (t=0) and Philocardia Heart (t=1)
+    const CIRCLE_POINTS = [
+      [0.500, 0.000], [0.776, 0.000], [1.000, 0.224], [1.000, 0.500],
+      [1.000, 0.776], [0.776, 1.000], [0.500, 1.000],
+      [0.224, 1.000], [0.000, 0.776], [0.000, 0.500],
+      [0.000, 0.224], [0.224, 0.000], [0.500, 0.000]
+    ];
+
+    const HEART_POINTS = [
+      [0.500, 0.280], [0.650, 0.000], [0.980, 0.080], [0.990, 0.440],
+      [1.000, 0.700], [0.760, 0.860], [0.500, 1.000],
+      [0.240, 0.860], [0.000, 0.700], [0.010, 0.440],
+      [0.020, 0.080], [0.350, 0.000], [0.500, 0.280]
+    ];
+
+    function interpolateClipPath(t) {
+      const clampT = Math.max(0, Math.min(1, t));
+      const pts = CIRCLE_POINTS.map((c, i) => {
+        const h = HEART_POINTS[i];
+        const x = (c[0] + (h[0] - c[0]) * clampT).toFixed(3);
+        const y = (c[1] + (h[1] - c[1]) * clampT).toFixed(3);
+        return `${x},${y}`;
+      });
+      return `M ${pts[0]} C ${pts[1]} ${pts[2]} ${pts[3]} C ${pts[4]} ${pts[5]} ${pts[6]} C ${pts[7]} ${pts[8]} ${pts[9]} C ${pts[10]} ${pts[11]} ${pts[12]} Z`;
+    }
+
+    const morphClipPathEl = document.getElementById('philocardiaClipPath');
+
     function updateAmbientAura(x, y) {
       const isAuraActive = (currentHealerMode === 'aura');
-      const hearts = document.querySelectorAll('.philocardia-heart');
+      const hearts = document.querySelectorAll('.philocardia-heart, .philocardia-arabic-heart');
       const vH = window.innerHeight;
+      let maxFactor = 0;
 
       hearts.forEach(heart => {
         if (!isAuraActive) {
           heart.style.removeProperty('--aura-scale');
           heart.style.removeProperty('--aura-glow');
           heart.style.removeProperty('--aura-color');
+          heart.style.removeProperty('--aura-morph');
           return;
         }
 
@@ -393,21 +431,36 @@
         const hCenterY = hRect.top + hRect.height / 2;
         const dist = Math.hypot(x - hCenterX, y - hCenterY);
 
-        // Responsive proximity bloom radius (180px)
-        if (dist < 180) {
-          const factor = 1 - (dist / 180);
-          const scale = 0.68 + (0.72 * factor); // Scale from 0.68 up to 1.40x
+        // Responsive proximity bloom radius (200px)
+        if (dist < 200) {
+          const factor = 1 - (dist / 200);
+          if (factor > maxFactor) maxFactor = factor;
+
+          const scale = 0.85 + (0.45 * factor); // Scale from 0.85 up to 1.30x
           const glow = Math.round(14 * factor);
-          const color = factor > 0.55 ? '#fb7185' : '#2dd4bf'; // Rose when close, teal when medium
-          heart.style.setProperty('--aura-scale', scale);
+          const color = factor > 0.55 ? '#fb7185' : (factor > 0.2 ? '#2dd4bf' : 'currentColor');
+          heart.style.setProperty('--aura-scale', scale.toFixed(2));
           heart.style.setProperty('--aura-glow', `${glow}px`);
           heart.style.setProperty('--aura-color', color);
+          heart.style.setProperty('--aura-morph', factor.toFixed(2));
         } else {
           heart.style.removeProperty('--aura-scale');
           heart.style.removeProperty('--aura-glow');
           heart.style.removeProperty('--aura-color');
+          heart.style.removeProperty('--aura-morph');
         }
       });
+
+      if (morphClipPathEl) {
+        if (isAuraActive) {
+          morphClipPathEl.setAttribute('d', interpolateClipPath(maxFactor));
+        } else if (currentHealerMode === 'off') {
+          morphClipPathEl.setAttribute('d', interpolateClipPath(0));
+        } else {
+          // Other modes ('72', '60', 'breath', 'static') render full heart
+          morphClipPathEl.setAttribute('d', interpolateClipPath(1));
+        }
+      }
     }
 
     function scheduleAuraUpdate() {
@@ -1341,24 +1394,86 @@ Sincerely,
           rxBody.style.textAlign = 'left';
         }
 
-        // ── Script-specific font routing ────────────────────────────────────
-        // PocketGull is a Latin + Indigenous Scripts superfamily.
-        // Arabic/Farsi: route to Noto Sans Arabic for cursive shaping
-        //   (PocketGull retains Arabic base codepoints but has no init/medi/fina/isol shaping).
-        // Japanese/Korean: route to system CJK — PocketGull has zero CJK glyphs.
-        // All other scripts: PocketGull native rendering.
-        if (lang === 'ar' || lang === 'fa') {
+        // ── Script-specific font routing & optical height normalization ──────────
+        // PocketGull ETDRS 1:5 Apertures survive low-resolution 203 DPI thermal bleed.
+        // Normalize cap-height and x-height so indigenous and non-Latin syllabary/alphabet
+        // characters match the visual height of the numerical readout (2000 mg Q8H • ⌀18G).
+        if (lang === 'chr') {
+          // Cherokee Syllabary (Sequoyah): Optical scale match with numerals
+          rxHeader.style.fontFamily = '"PocketGull Cherokee", "PocketGull Bold", "Gadugi", sans-serif';
+          rxHeader.style.fontSize   = '0.98rem';
+          rxBody.style.fontFamily   = '"PocketGull Cherokee", "PocketGull Mono", "PocketGull", "Gadugi", monospace';
+          rxBody.style.fontSize     = '0.92rem';
+          rxBody.style.lineHeight   = '1.55';
+        } else if (lang === 'ber') {
+          // Neo-Tifinagh (Amazigh): Geometric counter-dilation
+          rxHeader.style.fontFamily = '"PocketGull Tifinagh", "PocketGull Bold", "Ebrima", "Noto Sans Tifinagh", sans-serif';
+          rxHeader.style.fontSize   = '0.98rem';
+          rxBody.style.fontFamily   = '"PocketGull Tifinagh", "PocketGull Mono", "PocketGull", "Ebrima", monospace';
+          rxBody.style.fontSize     = '0.92rem';
+          rxBody.style.lineHeight   = '1.55';
+        } else if (lang === 'he') {
+          // Hebrew: Clean optical baseline alignment and aperture preservation
+          rxHeader.style.fontFamily = '"PocketGull Bold", "Noto Sans Hebrew", "Arial", sans-serif';
+          rxHeader.style.fontSize   = '0.98rem';
+          rxBody.style.fontFamily   = '"PocketGull Mono", "PocketGull", "Noto Sans Hebrew", monospace';
+          rxBody.style.fontSize     = '0.90rem';
+          rxBody.style.lineHeight   = '1.5';
+        } else if (lang === 'iu') {
+          // Inuktitut (UCAS): Unified syllabic aspect ratio
+          rxHeader.style.fontFamily = '"PocketGull Inuktitut", "PocketGull Bold", "Euphemia", "Noto Sans Canadian Aboriginal", sans-serif';
+          rxHeader.style.fontSize   = '0.95rem';
+          rxBody.style.fontFamily   = '"PocketGull Inuktitut", "PocketGull Mono", "PocketGull", "Euphemia", monospace';
+          rxBody.style.fontSize     = '0.90rem';
+          rxBody.style.lineHeight   = '1.55';
+        } else if (lang === 'hi') {
+          // Devanagari: Shirorekha headline expansion, matra baseline clearance & 1:5 aperture dilation
+          rxHeader.style.fontFamily = '"PocketGull Devanagari", "PocketGull Bold", "Nirmala UI", "Noto Sans Devanagari", sans-serif';
+          rxHeader.style.fontSize   = '0.98rem';
+          rxBody.style.fontFamily   = '"PocketGull Devanagari", "PocketGull Mono", "PocketGull", "Nirmala UI", monospace';
+          rxBody.style.fontSize     = '0.94rem';
+          rxBody.style.lineHeight   = '1.65';
+        } else if (lang === 'chn') {
+          // Chinuk Pipa (Duployan Shorthand): Rotational phonological symmetry & elevation
+          rxHeader.style.fontFamily = '"PocketGull Duployan", "PocketGull Bold", sans-serif';
+          rxHeader.style.fontSize   = '1.02rem';
+          rxBody.style.fontFamily   = '"PocketGull Duployan", "PocketGull Mono", "PocketGull", monospace';
+          rxBody.style.fontSize     = '0.96rem';
+          rxBody.style.lineHeight   = '1.60';
+        } else if (lang === 'cunei') {
+          // Sumero-Akkadian Cuneiform: Wedge-stroke contrast dilation
+          rxHeader.style.fontFamily = '"PocketGull Cuneiform", "Segoe UI Historic", sans-serif';
+          rxHeader.style.fontSize   = '1.05rem';
+          rxBody.style.fontFamily   = '"PocketGull Cuneiform", "PocketGull Mono", "Segoe UI Historic", monospace';
+          rxBody.style.fontSize     = '1.00rem';
+          rxBody.style.lineHeight   = '1.60';
+        } else if (lang === 'ru') {
+          // Cyrillic: Classical x-height alignment with Latin tabular numerals
+          rxHeader.style.fontFamily = '"PocketGull Cyrillic", "PocketGull Bold", sans-serif';
+          rxHeader.style.fontSize   = '0.95rem';
+          rxBody.style.fontFamily   = '"PocketGull Cyrillic", "PocketGull Mono", monospace';
+          rxBody.style.fontSize     = '0.86rem';
+          rxBody.style.lineHeight   = '1.45';
+        } else if (lang === 'ar' || lang === 'fa') {
           // Arabic & Farsi: full Naskh cursive — Noto Sans Arabic is authoritative
           rxHeader.style.fontFamily = '"Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif';
+          rxHeader.style.fontSize   = '0.95rem';
           rxBody.style.fontFamily   = '"Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif';
+          rxBody.style.fontSize     = '0.88rem';
+          rxBody.style.lineHeight   = '1.5';
         } else if (lang === 'ja' || lang === 'ko') {
           // Japanese/Korean: system CJK — PocketGull does not cover CJK (by design)
-          // Latin portions (drug name, units) remain legible via CJK font Latin subset
           rxHeader.style.fontFamily = '"Noto Sans JP", "Yu Gothic", "Hiragino Sans", "Meiryo", sans-serif';
+          rxHeader.style.fontSize   = '0.90rem';
           rxBody.style.fontFamily   = '"Noto Sans JP", "Yu Gothic", "Hiragino Sans", "Meiryo", monospace';
+          rxBody.style.fontSize     = '0.82rem';
+          rxBody.style.lineHeight   = '1.45';
         } else {
           rxHeader.style.fontFamily = '"PocketGull Bold", sans-serif';
+          rxHeader.style.fontSize   = '0.95rem';
           rxBody.style.fontFamily   = "'PocketGull Mono', monospace";
+          rxBody.style.fontSize     = '0.82rem';
+          rxBody.style.lineHeight   = '1.4';
         }
       }
 

@@ -125,6 +125,15 @@
     })();
   </script>
 
+  <!-- Philocardia Tittle Morph Vectors (Circle to Heart) -->
+  <svg width="0" height="0" style="position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;" aria-hidden="true" focusable="false">
+    <defs>
+      <clipPath id="philocardiaMorphClip" clipPathUnits="objectBoundingBox">
+        <path id="philocardiaClipPath" d="M 0.5,0.0 C 0.776,0.0 1.0,0.224 1.0,0.5 C 1.0,0.776 0.776,1.0 0.5,1.0 C 0.224,1.0 0.0,0.776 0.0,0.5 C 0.0,0.224 0.224,0.0 0.5,0.0 Z" />
+      </clipPath>
+    </defs>
+  </svg>
+
   <!-- Site Navigation Header -->
   <header class="site-header">
     <a href="https://pocketgull.app" class="brand-group" title="PocketGull Clinical App &amp; AI Consult Engine" target="_blank" rel="noopener">
@@ -459,6 +468,7 @@
             <button class="preset-pill" data-preset="salish">🌊 Lushootseed (Coast Salish)</button>
             <button class="preset-pill" data-preset="mohawk">🏹 Kanien'kéha (Mohawk)</button>
             <button class="preset-pill" data-preset="hawaiian">🌺 ʻŌlelo Hawaiʻi</button>
+            <button class="preset-pill" data-preset="parlor" style="border-color: rgba(45, 212, 191, 0.4); color: #2dd4bf;">☕ Solarium &amp; Parlor</button>
           </div>
 
           <!-- Healer Mode & Touch Aura Sequencer -->
@@ -617,6 +627,25 @@
               </div>
             </div>
             <p class="ismp-desc">Replaces the circular dot on lowercase <em>i</em> with an optical heart tittle. Also features an optional gentle pulse (60 or 72 BPM) to give clinicians a calm visual heartbeat on screen.</p>
+          </div>
+
+          <!-- Arabic Heart Nuqṭa (The Healer Script: خ, ج, غ, ن) -->
+          <div class="ismp-card">
+            <div class="ismp-header">
+              <div class="ismp-title">Arabic Heart Nuqṭa (I'jam)</div>
+              <span class="ismp-feature-tag">cv13 / Heart Nuqṭa</span>
+            </div>
+            <div class="ismp-comparison">
+              <div class="comparison-col">
+                <div class="comparison-label bad">Rhombus Dot</div>
+                <div class="comparison-sample" style="font-size: 2.2rem; font-family: 'Noto Sans Arabic', sans-serif;" dir="rtl">خَطّ خَيْر</div>
+              </div>
+              <div class="comparison-col">
+                <div class="comparison-label good">Heart Nuqṭa</div>
+                <div class="comparison-sample disambiguated" style="font-size: 2.2rem; font-family: 'Noto Sans Arabic', sans-serif;" dir="rtl"><span class="philocardia-arabic-heart"><span class="arabic-base">ح</span></span>َطّ <span class="philocardia-arabic-heart"><span class="arabic-base">ح</span></span>َيْر</div>
+              </div>
+            </div>
+            <p class="ismp-desc">Transforms the classical diamond <em>nuqṭa</em> on crown letters like <strong>خ</strong> (<em>khāʾ</em>) into an optical heart tittle. Canting the cleft to the 45° Naskh pen angle maintains cursive rhythm while providing clinical vagal resonance.</p>
           </div>
 
           <!-- FDA / ISMP Tall Man Lettering -->
