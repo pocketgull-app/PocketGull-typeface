@@ -83,7 +83,7 @@ To create a Personal Access Token on Zenodo:
   publisher    = {CERN / Zenodo},
   version      = {3.0.0},
   doi          = {10.5281/zenodo.22309379},
-  url          = {https://typeface.pocketgull.app},
+  url          = {https://font.pocketgull.app},
   license      = {OFL-1.1}
 }
 ```

@@ -7,7 +7,7 @@ date-released: "2026-09-04"
 license: OFL-1.1
 doi: "10.5281/zenodo.22309379"
 repository-code: "https://github.com/pocketgull-app/pocketgull-typeface"
-url: "https://typeface.pocketgull.app"
+url: "https://font.pocketgull.app"
 authors:
   - family-names: "Gear"
     given-names: "Phil"
@@ -16,7 +16,7 @@ authors:
   - name: "The PocketGull Project Authors"
 identifiers:
   - type: url
-    value: "https://typeface.pocketgull.app"
+    value: "https://font.pocketgull.app"
     description: "Official Interactive Type Specimen & Telemetry Suite"
   - type: url
     value: "https://orcid.org/0009-0008-1372-5381"
@@ -74,7 +74,7 @@ preferred-citation:
   month: 9
   version: "3.0.0"
   doi: "10.5281/zenodo.22309379"
-  url: "https://typeface.pocketgull.app"
+  url: "https://font.pocketgull.app"
   repository-code: "https://github.com/pocketgull-app/pocketgull-typeface"
   license: "OFL-1.1"
   notes: "Released under the SIL Open Font License 1.1 for medical informatics, clinical safety, and low-vision accessibility under CARE Indigenous Data Sovereignty."

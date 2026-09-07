@@ -73,8 +73,8 @@ Disallow: /
 
 # Text and Data Mining Reservation (W3C TDMR Protocol)
 # Rights Reserved: All TDM rights reserved for AI training purposes under CARE Principles.
-# Policy URI: https://typeface.pocketgull.app/RESPONSIBLE_TYPOGRAPHY.md#pillar-vii-tripartite-governance--sovereignty-boundaries
+# Policy URI: https://font.pocketgull.app/RESPONSIBLE_TYPOGRAPHY.md#pillar-vii-tripartite-governance--sovereignty-boundaries
 
 # Discovery & Sitemaps
-Sitemap: https://typeface.pocketgull.app/sitemap.xml
+Sitemap: https://font.pocketgull.app/sitemap.xml
 Sitemap: https://pocketgull-app.github.io/PocketGull-typeface/sitemap.xml

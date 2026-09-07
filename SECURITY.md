@@ -89,7 +89,7 @@ To satisfy **Executive Order 14028** and **NIST SP 800-218 Secure Software Devel
 2. **Subresource Integrity (SRI) Manifest**:
    All webfont deliverables include pre-computed W3C Subresource Integrity (`sha384-...`) hashes in `fonts/sri-hashes.json` for CDN deployment, preventing tampering and cross-site font injection.
    ```html
-   <link rel="preload" href="https://typeface.pocketgull.app/fonts/woff2/PocketGull-Bold.woff2" 
+   <link rel="preload" href="https://font.pocketgull.app/fonts/woff2/PocketGull-Bold.woff2" 
          as="font" type="font/woff2" crossorigin 
          integrity="sha384-c0eHz2vKk8U9h/L97q09eWw6b5A2b4c1d6e8f0a2b4c6d8e0f2a4b6c8d0e2f4a6">
    ```

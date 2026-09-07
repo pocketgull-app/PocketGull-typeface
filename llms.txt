@@ -8,16 +8,16 @@
 - **Publisher**: PocketGull LLC
 - **License**: [SIL Open Font License 1.1](https://openfontlicense.org) (100% Free & Open Source)
 - [Official Repository](https://github.com/pocketgull-app/pocketgull-typeface): Git repository containing UFO3 source files, Dart foundry compiler, and font binaries.
-- [Interactive Web Specimen](https://typeface.pocketgull.app/): Live specimen engine with variable font axes and 670nm Retinal PBM mode.
-- [Healing Cinema Engine](https://typeface.pocketgull.app/healing_cinema.html): 0.1 Hz resonant breathing typographic cinema and OKLCH gradient flow.
+- [Interactive Web Specimen](https://font.pocketgull.app/): Live specimen engine with variable font axes and 670nm Retinal PBM mode.
+- [Healing Cinema Engine](https://font.pocketgull.app/healing_cinema.html): 0.1 Hz resonant breathing typographic cinema and OKLCH gradient flow.
 - [CERN Zenodo Archival](https://doi.org/10.5281/zenodo.20647514): Long-term DOI preservation.
-- [Citation Metadata](https://typeface.pocketgull.app/CITATION.cff): CFF bibliographic citation format.
+- [Citation Metadata](https://font.pocketgull.app/CITATION.cff): CFF bibliographic citation format.
 
 ## 4 Coordinated Masters
-- [PocketGull Bold](https://typeface.pocketgull.app/fonts/ttf/PocketGull-Bold.ttf): Triage warnings and headline acuity (weight 700).
-- [PocketGull Fineliner](https://typeface.pocketgull.app/fonts/ttf/PocketGull-Fineliner.ttf): Clinical progress notes and humanized reading (weight 400).
-- [PocketGull Chiseltip](https://typeface.pocketgull.app/fonts/ttf/PocketGull-Chiseltip.ttf): Dynamic calligraphic display and brand mark (weight 900).
-- [PocketGull Mono](https://typeface.pocketgull.app/fonts/ttf/PocketGullMono-Regular.ttf): 600 UPM fixed-pitch telemetry and ICU vitals.
+- [PocketGull Bold](https://font.pocketgull.app/fonts/ttf/PocketGull-Bold.ttf): Triage warnings and headline acuity (weight 700).
+- [PocketGull Fineliner](https://font.pocketgull.app/fonts/ttf/PocketGull-Fineliner.ttf): Clinical progress notes and humanized reading (weight 400).
+- [PocketGull Chiseltip](https://font.pocketgull.app/fonts/ttf/PocketGull-Chiseltip.ttf): Dynamic calligraphic display and brand mark (weight 900).
+- [PocketGull Mono](https://font.pocketgull.app/fonts/ttf/PocketGullMono-Regular.ttf): 600 UPM fixed-pitch telemetry and ICU vitals.
 
 ## Clinical Safety Features
 - `cv08` Slashed Zero (0 vs O)

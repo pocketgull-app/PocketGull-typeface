@@ -1,7 +1,7 @@
 name: pocketgull_typeface
 description: Optotypically calibrated clinical and ophthalmological vector typeface superfamily bridging tactile humanist warmth with zero-error clinical precision.
 version: 3.0.0
-homepage: https://typeface.pocketgull.app
+homepage: https://font.pocketgull.app
 repository: https://github.com/pocketgull-app/PocketGull-typeface
 
 environment:

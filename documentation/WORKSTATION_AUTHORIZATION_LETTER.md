@@ -44,7 +44,7 @@ We request approval to install the three core TrueType font binaries:
 
 I would be happy to coordinate a brief 30-day pilot within our department or floor to demonstrate the reduction in visual strain and enhanced legibility across our clinical team.
 
-Documentation & Interactive Verification Specimen: https://typeface.pocketgull.app
+Documentation & Interactive Verification Specimen: https://font.pocketgull.app
 Open Source Repository: https://github.com/pocketgull-app/pocketgull-typeface
 
 Thank you for your dedication to our clinical staff's ergonomics and patient safety.

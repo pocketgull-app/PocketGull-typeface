@@ -13,7 +13,7 @@
 
 <br/>
 
-### 🌐 [Spécimen Interactif en Ligne](https://typeface.pocketgull.app) &nbsp;•&nbsp; 📦 [Sources UFO](sources/) &nbsp;•&nbsp; 📄 [Licence SIL OFL 1.1](OFL.txt) &nbsp;•&nbsp; 🏛️ [Archivage CERN](documentation/CERN_ZENODO_ARCHIVAL_GUIDE.md)
+### 🌐 [Spécimen Interactif en Ligne](https://font.pocketgull.app) &nbsp;•&nbsp; 📦 [Sources UFO](sources/) &nbsp;•&nbsp; 📄 [Licence SIL OFL 1.1](OFL.txt) &nbsp;•&nbsp; 🏛️ [Archivage CERN](documentation/CERN_ZENODO_ARCHIVAL_GUIDE.md)
 
 </div>
 
@@ -94,7 +94,7 @@ En attendant l'achèvement natif des niveaux restants, PocketGull s'harmonise pa
 
 Liaison via feuille de style CSS :
 ```html
-<link rel="stylesheet" href="https://typeface.pocketgull.app/fonts.css">
+<link rel="stylesheet" href="https://font.pocketgull.app/fonts.css">
 ```
 
 Activation de la sécurité posologique clinique :
@@ -134,7 +134,7 @@ Si vous intégrez la superfamille typographique PocketGull dans vos recherches c
   publisher    = {CERN / Zenodo},
   version      = {3.0.0},
   doi          = {10.5281/zenodo.20647514},
-  url          = {https://typeface.pocketgull.app},
+  url          = {https://font.pocketgull.app},
   license      = {OFL-1.1}
 }
 ```

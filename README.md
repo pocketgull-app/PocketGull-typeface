@@ -13,7 +13,7 @@
 
 <br/>
 
-### 🌐 [Live Interactive Specimen](https://typeface.pocketgull.app) &nbsp;•&nbsp; 💾 [Download Fonts (.ZIP)](fonts/PocketGull-v3.0.0-Complete-Superfamily.zip) &nbsp;•&nbsp; 🇫🇷 [Version Française](README.fr.md) &nbsp;•&nbsp; 📦 [UFO Sources](sources/) &nbsp;•&nbsp; 📄 [SIL OFL 1.1 License](OFL.txt) &nbsp;•&nbsp; 🏛️ [CERN Archival](documentation/CERN_ZENODO_ARCHIVAL_GUIDE.md)
+### 🌐 [Live Interactive Specimen](https://font.pocketgull.app) &nbsp;•&nbsp; 💾 [Download Fonts (.ZIP)](fonts/PocketGull-v3.0.0-Complete-Superfamily.zip) &nbsp;•&nbsp; 🇫🇷 [Version Française](README.fr.md) &nbsp;•&nbsp; 📦 [UFO Sources](sources/) &nbsp;•&nbsp; 📄 [SIL OFL 1.1 License](OFL.txt) &nbsp;•&nbsp; 🏛️ [CERN Archival](documentation/CERN_ZENODO_ARCHIVAL_GUIDE.md)
 
 
 </div>
@@ -131,7 +131,7 @@ Until all remaining tiers reach 100% native completion, PocketGull pairs seamles
 
 Link via CSS:
 ```html
-<link rel="stylesheet" href="https://typeface.pocketgull.app/fonts.css">
+<link rel="stylesheet" href="https://font.pocketgull.app/fonts.css">
 ```
 
 Enable clinical dosage disambiguation:
@@ -177,7 +177,7 @@ If you use the PocketGull Typeface Superfamily in your clinical research, health
   publisher    = {CERN / Zenodo},
   version      = {3.0.0},
   doi          = {10.5281/zenodo.22309379},
-  url          = {https://typeface.pocketgull.app},
+  url          = {https://font.pocketgull.app},
   license      = {OFL-1.1}
 }
 ```

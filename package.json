@@ -29,7 +29,7 @@
   "bugs": {
     "url": "https://github.com/pocketgull-app/pocketgull-typeface/issues"
   },
-  "homepage": "https://typeface.pocketgull.app",
+  "homepage": "https://font.pocketgull.app",
   "scripts": {
     "build": "dart run tool/pocketgull_foundry.dart build",
     "test": "dart run tool/pocketgull_foundry.dart audit && node --test test/*.test.mjs && node scripts/run-font-validator.mjs",

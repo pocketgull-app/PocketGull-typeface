@@ -3,7 +3,7 @@
 **Version:** 2.0.0  
 **License:** SIL Open Font License 1.1 (OFL)  
 **Primary Distribution:** [github.com/pocketgull-app/PocketGull-typeface](https://github.com/pocketgull-app/PocketGull-typeface)  
-**Interactive Specimen:** [typeface.pocketgull.app](https://typeface.pocketgull.app)  
+**Interactive Specimen:** [font.pocketgull.app](https://font.pocketgull.app)  
 **Author & Foundry:** Phil Gear & The PocketGull Project Authors (GearArts)  
 
 ---

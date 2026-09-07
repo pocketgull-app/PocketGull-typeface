@@ -965,19 +965,19 @@ body {
 
 <!-- PocketGull Bold (Display Titling & Alerts) -->
 <link rel="preload" 
-      href="https://typeface.pocketgull.app/fonts/woff2/PocketGull-Bold.woff2" 
+      href="https://font.pocketgull.app/fonts/woff2/PocketGull-Bold.woff2" 
       as="font" type="font/woff2" crossorigin 
       integrity="sha384-mCsM9K8GdN0OVvvw7SgmM3xBf8wK5MiXOBu8l2NmLliWbNGhncJFviHbt+ldAyEG">
 
 <!-- PocketGull Fineliner (Clinical Body & Discharge Notes) -->
 <link rel="preload" 
-      href="https://typeface.pocketgull.app/fonts/woff2/PocketGull-Fineliner.woff2" 
+      href="https://font.pocketgull.app/fonts/woff2/PocketGull-Fineliner.woff2" 
       as="font" type="font/woff2" crossorigin 
       integrity="sha384-Zv+SO5jkLsqXlc39+XU9cszaJuKwuybeOlLIeaGmJq79rScRQnXu63fathQMGNFY">
 
 <!-- PocketGull Mono (Fixed 600 UPM ICU Telemetry & Code) -->
 <link rel="preload" 
-      href="https://typeface.pocketgull.app/fonts/woff2/PocketGullMono-Regular.woff2" 
+      href="https://font.pocketgull.app/fonts/woff2/PocketGullMono-Regular.woff2" 
       as="font" type="font/woff2" crossorigin 
       integrity="sha384-owUFYPsY8xouw9qmbC62m+yDyQLyH8u3Y9hRO++ymo/TnKJy5wJ2hIe02n6L0pH1">`,
       'multilingual-css': `/* 3. Pan-Asian & Indic Multilingual Stacking */
@@ -1055,7 +1055,7 @@ module.exports = {
   }
 };`,
       omp: `# 4. Oh My Posh Ophthalmic Theme Installation (PowerShell)
-oh-my-posh init pwsh --config https://typeface.pocketgull.app/pocketgull-ophthalmic.omp.json | Invoke-Expression
+oh-my-posh init pwsh --config https://font.pocketgull.app/pocketgull-ophthalmic.omp.json | Invoke-Expression
 
 # Set terminal font to "PocketGull Mono" for gapless box-drawing and sub-cell ECG waveforms!`,
       'clinical-letter': `MEMORANDUM & WORKSTATION AUTHORIZATION REQUEST
@@ -1096,7 +1096,7 @@ We request approval to install the three core TrueType font binaries:
 
 I would be happy to coordinate a brief 30-day pilot within our department or floor to demonstrate the reduction in visual strain and enhanced legibility across our clinical team.
 
-Documentation & Interactive Verification Specimen: https://typeface.pocketgull.app
+Documentation & Interactive Verification Specimen: https://font.pocketgull.app
 Open Source Repository: https://github.com/pocketgull-app/pocketgull-typeface
 
 Thank you for your dedication to our clinical staff's ergonomics and patient safety.
