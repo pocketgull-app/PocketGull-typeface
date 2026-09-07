@@ -336,6 +336,9 @@
     </div>
 
     <div class="header-actions">
+      <button class="btn-action" id="btnSuperChill" style="border-color: #10b981; color: #34d399; background: rgba(16, 185, 129, 0.15); font-weight: 800; padding: 0.4rem 1rem;" title="One-Touch Super-Chill Mode: Maximizes magnetic snap, enables gentle auto-flow, eliminates wrong answers">
+        🌱 Super-Chill: OFF
+      </button>
       <div class="hud-banner" style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">
         <span>💓 0.10 Hz Respiratory Wave</span>
       </div>
@@ -630,6 +633,109 @@
       requestAnimationFrame(render);
     }
 
+
+    /* ========================================================================== */
+    /* SUPER-CHILL SANCTUARY ENGINE (AGGRESSIVE GENTLENESS)                       */
+    /* ========================================================================== */
+    let isSuperChillActive = false;
+    let autoPlayTimer = null;
+    const btnSuperChill = document.getElementById('btnSuperChill');
+
+    if (btnSuperChill) {
+      btnSuperChill.addEventListener('click', () => {
+        sound.init();
+        isSuperChillActive = !isSuperChillActive;
+        btnSuperChill.textContent = isSuperChillActive ? '🌱 Super-Chill: ON' : '🌱 Super-Chill: OFF';
+        btnSuperChill.style.background = isSuperChillActive ? 'rgba(16, 185, 129, 0.35)' : 'rgba(16, 185, 129, 0.15)';
+        btnSuperChill.style.boxShadow = isSuperChillActive ? '0 0 16px rgba(16, 185, 129, 0.5)' : 'none';
+
+        if (isSuperChillActive) {
+          document.getElementById('pacerLabel').textContent = '🌱 Super-Chill Active • Magnetic Assistance Max • No Wrong Answers • Pure Ease';
+          startChillAutoPlay();
+        } else {
+          document.getElementById('pacerLabel').textContent = 'Inhale (4s) … Contemplate & Glide Exhale (6s)';
+          if (autoPlayTimer) clearInterval(autoPlayTimer);
+        }
+      });
+    }
+
+    // Auto-Assisted Gentle Move in Knights' Tour when Chill is active
+    function startChillAutoPlay() {
+      if (autoPlayTimer) clearInterval(autoPlayTimer);
+      autoPlayTimer = setInterval(() => {
+        if (!isSuperChillActive) return;
+        if (currentGame === 'knights') {
+          makeGentleKnightMove();
+        } else if (currentGame === 'go') {
+          makeGentleGoMove();
+        }
+      }, 3500); // Gentle 3.5s rhythm
+    }
+
+    function makeGentleKnightMove() {
+      const activeK = knightsState.turn === 1 ? knightsState.knight1 : knightsState.knight2;
+      const size = 8;
+      const validMoves = [];
+
+      for (let r = 0; r < size; r++) {
+        for (let c = 0; c < size; c++) {
+          const idx = r * size + c;
+          if (!knightsState.visited[idx] && isValidKnightMove(activeK.r, activeK.c, r, c)) {
+            validMoves.push({ r, c, idx });
+          }
+        }
+      }
+
+      if (validMoves.length > 0) {
+        // Pick the most harmonic move
+        const choice = validMoves[Math.floor(Math.random() * validMoves.length)];
+        activeK.r = choice.r;
+        activeK.c = choice.c;
+        knightsState.visited[choice.idx] = true;
+        sound.playChime(knightsState.turn === 1 ? 528 : 432);
+        knightsState.turn = knightsState.turn === 1 ? 2 : 1;
+        updateKnightsUI();
+
+        if (knightsState.visited.every(Boolean)) {
+          sound.playChime(660);
+          resetKnights();
+        }
+      } else {
+        // If stranded, softly open a visited square so play never stops
+        const unvisited = [];
+        for (let i = 0; i < 64; i++) {
+          if (!knightsState.visited[i]) unvisited.push(i);
+        }
+        if (unvisited.length > 0) {
+          const jumpIdx = unvisited[0];
+          activeK.r = Math.floor(jumpIdx / size);
+          activeK.c = jumpIdx % size;
+          knightsState.visited[jumpIdx] = true;
+          sound.playChime(528);
+          knightsState.turn = knightsState.turn === 1 ? 2 : 1;
+          updateKnightsUI();
+        }
+      }
+    }
+
+    function makeGentleGoMove() {
+      const size = goState.size;
+      const emptySpots = [];
+      for (let r = 1; r < size - 1; r++) {
+        for (let c = 1; c < size - 1; c++) {
+          const key = `${r},${c}`;
+          if (!goState.stones[key]) emptySpots.push({ r, c, key });
+        }
+      }
+      if (emptySpots.length > 0) {
+        const pick = emptySpots[Math.floor(Math.random() * emptySpots.length)];
+        goState.stones[pick.key] = goState.turn;
+        sound.playStoneThunk(goState.turn === 'B' ? 240 : 320);
+        goState.turn = goState.turn === 'B' ? 'W' : 'B';
+        updateGoUI();
+      }
+    }
+
     // Render 8x8 Knights' Tour Board
     function renderKnights() {
       const size = 8;
@@ -817,24 +923,47 @@
       if (knightsState.visited[targetIdx]) return; // already visited
 
       const activeK = knightsState.turn === 1 ? knightsState.knight1 : knightsState.knight2;
+      
+      // If direct valid move: take it
       if (isValidKnightMove(activeK.r, activeK.c, row, col)) {
-        // Valid Move
         activeK.r = row;
         activeK.c = col;
         knightsState.visited[targetIdx] = true;
         sound.playChime(knightsState.turn === 1 ? 528 : 432);
-
-        // Switch Turn
         knightsState.turn = knightsState.turn === 1 ? 2 : 1;
         updateKnightsUI();
-
-        // Check Victory
-        if (knightsState.visited.every(Boolean)) {
-          setTimeout(() => {
-            sound.playChime(660);
-            alert('🌟 Harmony Complete! Both Knights have woven all 64 letters across the sacred grid together.');
-          }, 300);
+      } else if (isSuperChillActive) {
+        // ZERO WRONG ANSWERS: Soft-snap to the nearest valid unvisited square!
+        let nearestMove = null;
+        let nearestDist = Infinity;
+        for (let r = 0; r < size; r++) {
+          for (let c = 0; c < size; c++) {
+            const idx = r * size + c;
+            if (!knightsState.visited[idx] && isValidKnightMove(activeK.r, activeK.c, r, c)) {
+              const d = Math.hypot(r - row, c - col);
+              if (d < nearestDist) {
+                nearestDist = d;
+                nearestMove = { r, c, idx };
+              }
+            }
+          }
         }
+        if (nearestMove) {
+          activeK.r = nearestMove.r;
+          activeK.c = nearestMove.c;
+          knightsState.visited[nearestMove.idx] = true;
+          sound.playChime(knightsState.turn === 1 ? 528 : 432);
+          knightsState.turn = knightsState.turn === 1 ? 2 : 1;
+          updateKnightsUI();
+        }
+      }
+
+      // Check Victory
+      if (knightsState.visited.every(Boolean)) {
+        setTimeout(() => {
+          sound.playChime(660);
+          alert('🌟 Harmony Complete! Both Knights have woven all 64 letters across the sacred grid together.');
+        }, 300);
       }
     }
 

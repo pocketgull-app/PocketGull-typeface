@@ -709,6 +709,9 @@
         <span>🌸</span>
         <span id="hudHarmony">100% Calm</span>
       </div>
+      <button class="btn-action" id="btnSuperChill" style="border-color: #10b981; color: #34d399; background: rgba(16, 185, 129, 0.15); font-weight: 800; padding: 0.4rem 0.95rem;" title="One-Touch Super-Chill Mode: Maximizes magnetic snap, enables gentle auto-flow, eliminates wrong answers">
+        🌱 Super-Chill: OFF
+      </button>
       <button class="btn-action" id="btnToggleAudio">🔊 Audio: ON</button>
       <button class="btn-action" id="btnThemeToggle" title="Toggle between Dark, Washi (Japanese Paper), and 670nm Retinal PBM Night Shift">🎨 Theme: Dark</button>
       <a href="parlor_sanctuary.html" class="btn-action" style="border-color: rgba(245, 158, 11, 0.4); color: #fbbf24;" title="Open The Healing Games Parlor: Two Knights Tour, Cooperative Go, Kintsugi Checkers">🏛️ Games Parlor</a>
@@ -2465,6 +2468,32 @@
         btnToggleAutoFlow.style.borderColor = isAutoFlow ? '#10b981' : 'var(--accent-cyan)';
         btnToggleAutoFlow.style.color = isAutoFlow ? '#10b981' : 'var(--accent-cyan)';
         if (isAutoFlow) showToast('🌊 Gentle Auto-Flow Active • Rest Your Hands & Breathe');
+      });
+    }
+
+    // ─── Super-Chill Mode Engine (Aggressive Gentleness) ───
+    let isGameboardSuperChill = false;
+    const btnGameboardSuperChill = document.getElementById('btnSuperChill');
+    if (btnGameboardSuperChill) {
+      btnGameboardSuperChill.addEventListener('click', () => {
+        sound.init();
+        isGameboardSuperChill = !isGameboardSuperChill;
+        btnGameboardSuperChill.textContent = isGameboardSuperChill ? '🌱 Super-Chill: ON' : '🌱 Super-Chill: OFF';
+        btnGameboardSuperChill.style.background = isGameboardSuperChill ? 'rgba(16, 185, 129, 0.35)' : 'rgba(16, 185, 129, 0.15)';
+        btnGameboardSuperChill.style.boxShadow = isGameboardSuperChill ? '0 0 16px rgba(16, 185, 129, 0.5)' : 'none';
+
+        if (isGameboardSuperChill) {
+          // 1. Enable Auto-Flow if off
+          if (!isAutoFlow && btnToggleAutoFlow) btnToggleAutoFlow.click();
+          // 2. Set calm 60 BPM or 4-7-8 breath
+          if (typeof setHealerMode === 'function') setHealerMode('breath');
+          // 3. Set restorative frequency
+          sound.setFrequency(528);
+          showToast('🌱 Super-Chill Active • Hands-Free Restorative Flow • Zero Effort');
+        } else {
+          if (isAutoFlow && btnToggleAutoFlow) btnToggleAutoFlow.click();
+          showToast('🌱 Super-Chill Standard Mode');
+        }
       });
     }
 
