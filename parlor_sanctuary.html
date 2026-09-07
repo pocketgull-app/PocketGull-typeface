@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PocketGull — The Healing Games Parlor &amp; Relational Sanctuary</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  
+  <style>
+    @font-face {
+      font-family: 'PocketGull';
+      src: url('fonts/woff2/PocketGull-Bold.woff2') format('woff2'),
+           url('fonts/ttf/PocketGull-Bold.ttf') format('truetype');
+      font-weight: 700 900;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'PocketGull Fineliner';
+      src: url('fonts/woff2/PocketGull-Fineliner.woff2') format('woff2'),
+           url('fonts/ttf/PocketGull-Fineliner.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'PocketGull Mono';
+      src: url('fonts/woff2/PocketGullMono-Regular.woff2') format('woff2'),
+           url('fonts/ttf/PocketGullMono-Regular.ttf') format('truetype');
+      font-weight: 400 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --bg-space: #030712;
+      --bg-surface: #0b1329;
+      --bg-card: rgba(15, 23, 42, 0.85);
+      --border-subtle: rgba(255, 255, 255, 0.1);
+      --accent-teal: #14b8a6;
+      --accent-cyan: #38bdf8;
+      --accent-amber: #f59e0b;
+      --accent-emerald: #10b981;
+      --accent-rose: #fb7185;
+      --accent-purple: #c084fc;
+      --font-display: 'PocketGull', system-ui, sans-serif;
+      --font-body: 'PocketGull Fineliner', system-ui, sans-serif;
+      --font-mono: 'PocketGull Mono', monospace;
+    }
+
+    [data-theme="washi"] {
+      --bg-space: #faf8f2;
+      --bg-surface: #f4efe6;
+      --bg-card: rgba(255, 253, 248, 0.92);
+      --border-subtle: #d8d1c4;
+      --accent-teal: #0f766e;
+      --accent-cyan: #0284c7;
+      --accent-amber: #b45309;
+      --accent-emerald: #047857;
+      --accent-rose: #e11d48;
+      --accent-purple: #7e22ce;
+      color: #1f1b16;
+    }
+
+    [data-theme="pbm"] {
+      --bg-space: #0d0404;
+      --bg-surface: #1a0808;
+      --bg-card: rgba(35, 10, 10, 0.92);
+      --border-subtle: rgba(239, 68, 68, 0.35);
+      --accent-teal: #f87171;
+      --accent-cyan: #fca5a5;
+      --accent-amber: #ef4444;
+      --accent-emerald: #ef4444;
+      --accent-rose: #f87171;
+      --accent-purple: #f87171;
+      color: #fecaca;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body {
+      background-color: var(--bg-space);
+      color: #f8fafc;
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    [data-theme="washi"] body { color: #1f1b16; }
+    [data-theme="pbm"] body { color: #fecaca; }
+
+    /* Top Ribbon */
+    .parlor-header {
+      padding: 0.75rem 1.5rem;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(12px);
+      z-index: 10;
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .brand-icon {
+      font-size: 1.6rem;
+      color: var(--accent-amber);
+    }
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--accent-teal);
+      letter-spacing: 0.05em;
+    }
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .btn-action {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-subtle);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      padding: 0.4rem 0.85rem;
+      border-radius: 8px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .btn-action:hover {
+      border-color: var(--accent-teal);
+      background: rgba(20, 184, 166, 0.15);
+    }
+
+    /* Main Workspace */
+    .parlor-workspace {
+      display: flex;
+      flex: 1;
+      height: calc(100vh - 60px);
+      position: relative;
+    }
+
+    /* Left Sidebar: Game Mode Selector */
+    .parlor-sidebar {
+      width: 320px;
+      background: var(--bg-surface);
+      border-right: 1px solid var(--border-subtle);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      overflow-y: auto;
+      z-index: 5;
+    }
+    .game-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      transition: all 0.2s ease;
+    }
+    .game-card:hover {
+      border-color: var(--accent-teal);
+      transform: translateY(-2px);
+    }
+    .game-card.active {
+      border-color: var(--accent-teal);
+      background: rgba(20, 184, 166, 0.12);
+      box-shadow: 0 0 15px rgba(20, 184, 166, 0.25);
+    }
+    .game-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .game-card-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #fff;
+    }
+    .game-card-badge {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-cyan);
+    }
+    .game-card-desc {
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.35;
+    }
+
+    /* Center Stage */
+    .parlor-stage {
+      flex: 1;
+      position: relative;
+      background: radial-gradient(circle at center, #0f172a 0%, #030712 90%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+      border-radius: 16px;
+      background: #090e1a;
+      border: 1px solid var(--border-subtle);
+    }
+
+    /* Stage HUD */
+    .stage-hud-top {
+      position: absolute;
+      top: 1.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .hud-banner {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-subtle);
+      border-radius: 30px;
+      padding: 0.4rem 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: #fff;
+      backdrop-filter: blur(10px);
+    }
+
+    /* Right Sidebar: Wisdom & Co-Op Dashboard */
+    .parlor-sidebar-right {
+      width: 320px;
+      background: var(--bg-surface);
+      border-left: 1px solid var(--border-subtle);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      overflow-y: auto;
+      z-index: 5;
+    }
+    .wisdom-card {
+      background: linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, rgba(56, 189, 248, 0.05) 100%);
+      border: 1px solid rgba(20, 184, 166, 0.3);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+    .wisdom-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+    .wisdom-text {
+      font-size: 0.74rem;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Breath Pacer Bar */
+    .breath-pacer {
+      position: absolute;
+      bottom: 1.25rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-subtle);
+      border-radius: 30px;
+      padding: 0.4rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
+    .pacer-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-teal);
+      box-shadow: 0 0 10px var(--accent-teal);
+      animation: pulseBreath 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+    @keyframes pulseBreath {
+      0%, 100% { transform: scale(1); opacity: 0.5; }
+      40% { transform: scale(2.2); opacity: 1; background: var(--accent-cyan); box-shadow: 0 0 16px var(--accent-cyan); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Ribbon -->
+  <header class="parlor-header">
+    <div class="brand-group">
+      <div class="brand-icon">🏛️</div>
+      <div>
+        <div class="brand-title">THE HEALING GAMES PARLOR</div>
+        <div class="brand-sub">RELATIONAL SANCTUARY &amp; NON-ZERO-SUM REHABILITATION</div>
+      </div>
+    </div>
+
+    <div class="header-actions">
+      <div class="hud-banner" style="border-color: rgba(16, 185, 129, 0.4); color: #34d399;">
+        <span>💓 0.10 Hz Respiratory Wave</span>
+      </div>
+      <button class="btn-action" id="btnAudioToggle">🔊 Audio: ON</button>
+      <button class="btn-action" id="btnThemeToggle">🎨 Theme: Dark</button>
+      <a href="gameboard.html" class="btn-action" title="Open Single-Letterform Gameboard Sanctuary">🕊️ Letter Gameboards</a>
+      <a href="index.html#multi-scale" class="btn-action" title="Open Master Specimen">📖 Specimen</a>
+    </div>
+  </header>
+
+  <!-- Workspace -->
+  <div class="parlor-workspace">
+    
+    <!-- LEFT SIDEBAR: GAME SELECTION -->
+    <aside class="parlor-sidebar">
+      <div style="font-family: var(--font-display); font-size: 0.95rem; font-weight: 800; color: var(--accent-teal); text-transform: uppercase; margin-bottom: 0.25rem;">
+        Choose Collaborative Game
+      </div>
+      <p style="font-size: 0.72rem; color: rgba(255,255,255,0.65); line-height: 1.35; margin-bottom: 0.5rem;">
+        Ancient games transformed: no one is eliminated, no pieces are lost, and players pull together in parasympathetic flow.
+      </p>
+
+      <!-- 1. The Two Knights' Tour -->
+      <div class="game-card active" data-game="knights">
+        <div class="game-card-header">
+          <span class="game-card-title">🐴 Two Knights' Tour</span>
+          <span class="game-card-badge">BILATERAL / MIDLINE</span>
+        </div>
+        <div class="game-card-desc">
+          Two allied knights leap in 'L' strokes across the 8×8 grid, illuminating letters to weave words of healing without getting stranded.
+        </div>
+      </div>
+
+      <!-- 2. Cooperative Go (Living Qi) -->
+      <div class="game-card" data-game="go">
+        <div class="game-card-header">
+          <span class="game-card-title">⚪ Cooperative Go (Weiqi)</span>
+          <span class="game-card-badge">QI / BREATHING ROOM</span>
+        </div>
+        <div class="game-card-desc">
+          Place Black Slate &amp; White Shell stones on a 9×9 Kaya grid. Cooperate to give every stone living eyes and breathing liberties.
+        </div>
+      </div>
+
+      <!-- 3. Kintsugi Checkers -->
+      <div class="game-card" data-game="checkers">
+        <div class="game-card-header">
+          <span class="game-card-title">🔴 Kintsugi Checkers</span>
+          <span class="game-card-badge">REPAIR &amp; MENDING</span>
+        </div>
+        <div class="game-card-desc">
+          Leaping over a stone leaves an unbroken 24k burnished gold ribbon, mending broken pathways into a radiant mosaic.
+        </div>
+      </div>
+
+      <!-- 4. Sanctuary Chess -->
+      <div class="game-card" data-game="chess">
+        <div class="game-card-header">
+          <span class="game-card-title">👑 Sanctuary Chess</span>
+          <span class="game-card-badge">HEARTH PROTECTION</span>
+        </div>
+        <div class="game-card-desc">
+          No captures or combat: escort both Kings to the central Tilikum hearth while exchanging 528 Hz harmonic chords.
+        </div>
+      </div>
+
+      <!-- 5. Canoe Euchre -->
+      <div class="game-card" data-game="euchre">
+        <div class="game-card-header">
+          <span class="game-card-title">🃏 Canoe Euchre</span>
+          <span class="game-card-badge">INTERGENERATIONAL</span>
+        </div>
+        <div class="game-card-desc">
+          2v2 cooperative trick-passing with large-print PocketGull figures, procedural memory activation, and zero penalty traps.
+        </div>
+      </div>
+    </aside>
+
+    <!-- CENTER STAGE: THE GAME CANVAS -->
+    <main class="parlor-stage" id="stageWrap">
+      
+      <!-- Top HUD -->
+      <div class="stage-hud-top">
+        <div class="hud-banner" id="gameTitleBanner">
+          🐴 Active: <strong>The Two Knights' Tour • Bilateral Saccade Mode</strong>
+        </div>
+        <div class="hud-banner" id="turnIndicator" style="border-color: var(--accent-cyan); color: var(--accent-cyan);">
+          Turn: Cyan Knight (Player 1)
+        </div>
+      </div>
+
+      <!-- Canvas -->
+      <canvas id="parlorCanvas" width="600" height="600"></canvas>
+
+      <!-- Breath Pacer Guide -->
+      <div class="breath-pacer">
+        <div class="pacer-dot"></div>
+        <span id="pacerLabel">Inhale (4s) … Contemplate &amp; Glide Exhale (6s)</span>
+      </div>
+    </main>
+
+    <!-- RIGHT SIDEBAR: PHILOSOPHY & METRICS -->
+    <aside class="parlor-sidebar-right">
+      <div style="font-family: var(--font-display); font-size: 0.95rem; font-weight: 800; color: var(--accent-amber); text-transform: uppercase;">
+        Ludic Wisdom &amp; Somatics
+      </div>
+
+      <div class="wisdom-card">
+        <div class="wisdom-title" id="wisdomTitle">The Symmetry of the Knight</div>
+        <div class="wisdom-text" id="wisdomText">
+          Unlike rigid linear rooks, the Knight leaps over obstacles with an 'L' vector. In neuro-rehabilitation, it breaks motor perseveration and trains flexible lateral problem solving across the body's midline.
+        </div>
+      </div>
+
+      <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1rem; text-align: center;">
+        <div style="font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent-cyan); text-transform: uppercase;">
+          Collaborative Progress
+        </div>
+        <div id="statBigVal" style="font-family: var(--font-display); font-size: 2.2rem; font-weight: 900; color: #fff; margin: 0.2rem 0;">
+          0 / 64
+        </div>
+        <div id="statSubLabel" style="font-family: var(--font-mono); font-size: 0.68rem; color: #34d399;">
+          Squares Illuminated Together
+        </div>
+      </div>
+
+      <button class="btn-action" id="btnResetGame" style="width: 100%; justify-content: center; padding: 0.65rem; margin-top: auto;">
+        ✨ Reset Board Harmony
+      </button>
+
+      <div style="font-family: var(--font-mono); font-size: 0.62rem; color: #94a3b8; text-align: center; border-top: 1px dashed rgba(255,255,255,0.1); padding-top: 0.45rem;">
+        PocketGull Superfamily • SIL OFL 1.1<br>
+        <code>DOI: 10.5281/zenodo.22309379</code>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Audio Engine & Interactive Parlor Canvas Logic -->
+  <script>
+    /* ========================================================================== */
+    /* ACOUSTIC HARMONICS & SOUND ENGINE                                          */
+    /* ========================================================================== */
+    class ParlorAudio {
+      constructor() {
+        this.ctx = null;
+        this.enabled = true;
+      }
+      init() {
+        if (this.ctx) return;
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        this.ctx = new AudioContext();
+      }
+      playStoneThunk(freq = 280) {
+        if (!this.ctx || !this.enabled) return;
+        try {
+          const now = this.ctx.currentTime;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now);
+          osc.frequency.exponentialRampToValueAtTime(80, now + 0.08);
+          gain.gain.setValueAtTime(0.4, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.13);
+        } catch (e) {}
+      }
+      playChime(note = 528) {
+        if (!this.ctx || !this.enabled) return;
+        try {
+          const now = this.ctx.currentTime;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(note, now);
+          gain.gain.setValueAtTime(0.25, now);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.6);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now);
+          osc.stop(now + 1.7);
+        } catch (e) {}
+      }
+    }
+    const sound = new ParlorAudio();
+
+    /* ========================================================================== */
+    /* PARLOR CANVAS & GAME ENGINES                                               */
+    /* ========================================================================== */
+    const canvas = document.getElementById('parlorCanvas');
+    const ctx = canvas.getContext('2d');
+    let currentGame = 'knights'; // 'knights', 'go', 'checkers', 'chess', 'euchre'
+
+    // Letters hidden under 8x8 squares for Knights' Tour
+    const KNIGHT_LETTERS = [
+      'P','E','A','C','E','T','I','L',
+      'I','K','U','M','S','H','A','N',
+      'T','I','H','E','A','L','I','N',
+      'G','K','L','O','S','H','E','T',
+      'U','M','T','U','M','C','A','R',
+      'E','B','R','E','A','T','H','E',
+      'V','A','G','A','L','R','E','S',
+      'T','O','J','A','S','A','N','N'
+    ];
+
+    // 1. Two Knights' State
+    const knightsState = {
+      gridSize: 8,
+      visited: new Array(64).fill(false),
+      knight1: { r: 0, c: 0, color: '#38bdf8', label: '♞ Cyan' },
+      knight2: { r: 7, c: 7, color: '#f59e0b', label: '♘ Gold' },
+      turn: 1, // 1 or 2
+      history: []
+    };
+
+    // 2. Cooperative Go State (9x9)
+    const goState = {
+      size: 9,
+      stones: {}, // 'r,c' => 'B' or 'W'
+      liberties: {},
+      turn: 'B', // 'B' (Slate) or 'W' (Shell)
+      harmonizedGroups: 0
+    };
+
+    // Reset Knights
+    function resetKnights() {
+      knightsState.visited = new Array(64).fill(false);
+      knightsState.knight1 = { r: 0, c: 0, color: '#38bdf8', label: '♞ Cyan' };
+      knightsState.knight2 = { r: 7, c: 7, color: '#f59e0b', label: '♘ Gold' };
+      knightsState.visited[0] = true;
+      knightsState.visited[63] = true;
+      knightsState.turn = 1;
+      updateKnightsUI();
+    }
+
+    // Reset Go
+    function resetGo() {
+      goState.stones = {};
+      goState.turn = 'B';
+      goState.harmonizedGroups = 0;
+      updateGoUI();
+    }
+
+    // Knights valid leap: (dr=1, dc=2) or (dr=2, dc=1)
+    function isValidKnightMove(r1, c1, r2, c2) {
+      const dr = Math.abs(r1 - r2);
+      const dc = Math.abs(c1 - c2);
+      return (dr === 1 && dc === 2) || (dr === 2 && dc === 1);
+    }
+
+    function updateKnightsUI() {
+      const count = knightsState.visited.filter(Boolean).length;
+      document.getElementById('statBigVal').textContent = `${count} / 64`;
+      document.getElementById('statSubLabel').textContent = 'Squares Illuminated Together';
+      const turnEl = document.getElementById('turnIndicator');
+      if (knightsState.turn === 1) {
+        turnEl.textContent = 'Turn: Cyan Knight (Player 1)';
+        turnEl.style.color = '#38bdf8';
+        turnEl.style.borderColor = '#38bdf8';
+      } else {
+        turnEl.textContent = 'Turn: Gold Knight (Player 2)';
+        turnEl.style.color = '#f59e0b';
+        turnEl.style.borderColor = '#f59e0b';
+      }
+    }
+
+    function updateGoUI() {
+      const count = Object.keys(goState.stones).length;
+      document.getElementById('statBigVal').textContent = `${count} Stones`;
+      document.getElementById('statSubLabel').textContent = 'Placed with Living Breath';
+      const turnEl = document.getElementById('turnIndicator');
+      turnEl.textContent = goState.turn === 'B' ? 'Turn: Black Slate (Yin Grounding)' : 'Turn: White Shell (Yang Clarity)';
+      turnEl.style.color = goState.turn === 'B' ? '#cbd5e1' : '#fef08a';
+      turnEl.style.borderColor = goState.turn === 'B' ? '#94a3b8' : '#fef08a';
+    }
+
+    /* ─── RENDERING ─── */
+    function render() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (currentGame === 'knights') {
+        renderKnights();
+      } else if (currentGame === 'go') {
+        renderGo();
+      } else {
+        renderPlaceholder();
+      }
+
+      requestAnimationFrame(render);
+    }
+
+    // Render 8x8 Knights' Tour Board
+    function renderKnights() {
+      const size = 8;
+      const cell = canvas.width / size;
+
+      for (let r = 0; r < size; r++) {
+        for (let c = 0; c < size; c++) {
+          const idx = r * size + c;
+          const isVisited = knightsState.visited[idx];
+          const isDarkSquare = (r + c) % 2 === 1;
+
+          ctx.save();
+          // Square background
+          if (isVisited) {
+            ctx.fillStyle = 'rgba(20, 184, 166, 0.28)';
+          } else {
+            ctx.fillStyle = isDarkSquare ? '#0f172a' : '#1e293b';
+          }
+          ctx.fillRect(c * cell, r * cell, cell, cell);
+
+          // Border
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.08)';
+          ctx.strokeRect(c * cell, r * cell, cell, cell);
+
+          // Letterform on visited squares
+          if (isVisited) {
+            ctx.font = '700 20px "PocketGull", sans-serif';
+            ctx.fillStyle = '#f8fafc';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(KNIGHT_LETTERS[idx], c * cell + cell / 2, r * cell + cell / 2);
+          }
+          ctx.restore();
+        }
+      }
+
+      // Draw Valid Move Hints for active knight
+      const activeK = knightsState.turn === 1 ? knightsState.knight1 : knightsState.knight2;
+      for (let r = 0; r < size; r++) {
+        for (let c = 0; c < size; c++) {
+          const idx = r * size + c;
+          if (!knightsState.visited[idx] && isValidKnightMove(activeK.r, activeK.c, r, c)) {
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(c * cell + cell / 2, r * cell + cell / 2, 8, 0, Math.PI * 2);
+            ctx.fillStyle = activeK.color === '#38bdf8' ? 'rgba(56, 189, 248, 0.5)' : 'rgba(245, 158, 11, 0.5)';
+            ctx.fill();
+            ctx.restore();
+          }
+        }
+      }
+
+      // Draw Knight 1
+      drawKnightPiece(knightsState.knight1.r, knightsState.knight1.c, cell, '#38bdf8', '♞');
+      // Draw Knight 2
+      drawKnightPiece(knightsState.knight2.r, knightsState.knight2.c, cell, '#f59e0b', '♘');
+    }
+
+    function drawKnightPiece(r, c, cell, color, glyph) {
+      const x = c * cell + cell / 2;
+      const y = r * cell + cell / 2;
+      ctx.save();
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 18;
+      ctx.font = '34px "PocketGull", sans-serif';
+      ctx.fillStyle = color;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(glyph, x, y);
+      ctx.restore();
+    }
+
+    // Render 9x9 Cooperative Go Board
+    function renderGo() {
+      const size = goState.size;
+      const margin = 50;
+      const step = (canvas.width - margin * 2) / (size - 1);
+
+      // Kaya wood warm background
+      ctx.save();
+      ctx.fillStyle = '#1c1917';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // Grid lines
+      ctx.strokeStyle = 'rgba(245, 158, 11, 0.35)';
+      ctx.lineWidth = 1.5;
+      for (let i = 0; i < size; i++) {
+        // Horizontal
+        ctx.beginPath();
+        ctx.moveTo(margin, margin + i * step);
+        ctx.lineTo(canvas.width - margin, margin + i * step);
+        ctx.stroke();
+
+        // Vertical
+        ctx.beginPath();
+        ctx.moveTo(margin + i * step, margin);
+        ctx.lineTo(margin + i * step, canvas.height - margin);
+        ctx.stroke();
+      }
+
+      // Star points (Hoshi) for 9x9: center (4,4) and corners (2,2), (6,2), (2,6), (6,6)
+      const hoshi = [[2,2],[6,2],[4,4],[2,6],[6,6]];
+      hoshi.forEach(([r, c]) => {
+        ctx.beginPath();
+        ctx.arc(margin + c * step, margin + r * step, 4, 0, Math.PI * 2);
+        ctx.fillStyle = '#f59e0b';
+        ctx.fill();
+      });
+
+      // Draw Stones
+      for (const [key, stone] of Object.entries(goState.stones)) {
+        const [r, c] = key.split(',').map(Number);
+        const sx = margin + c * step;
+        const sy = margin + r * step;
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(sx, sy, step * 0.44, 0, Math.PI * 2);
+
+        if (stone === 'B') {
+          // Black Slate (Matte Obsidian)
+          const grad = ctx.createRadialGradient(sx - 4, sy - 4, 2, sx, sy, step * 0.44);
+          grad.addColorStop(0, '#334155');
+          grad.addColorStop(1, '#020617');
+          ctx.fillStyle = grad;
+          ctx.shadowColor = '#000';
+          ctx.shadowBlur = 12;
+        } else {
+          // White Shell (Luminous Pearl)
+          const grad = ctx.createRadialGradient(sx - 4, sy - 4, 2, sx, sy, step * 0.44);
+          grad.addColorStop(0, '#ffffff');
+          grad.addColorStop(1, '#cbd5e1');
+          ctx.fillStyle = grad;
+          ctx.shadowColor = '#38bdf8';
+          ctx.shadowBlur = 12;
+        }
+        ctx.fill();
+
+        // Subtle living pulse indicator
+        ctx.strokeStyle = 'rgba(20, 184, 166, 0.4)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      ctx.restore();
+    }
+
+    function renderPlaceholder() {
+      ctx.save();
+      ctx.fillStyle = '#0f172a';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.font = '800 24px "PocketGull", sans-serif';
+      ctx.fillStyle = 'var(--accent-teal)';
+      ctx.textAlign = 'center';
+      ctx.fillText('🏛️ Cooperative Sanctuary Studio Active', canvas.width / 2, canvas.height / 2 - 20);
+      ctx.font = '14px "PocketGull Mono", monospace';
+      ctx.fillStyle = '#94a3b8';
+      ctx.fillText('Select Two Knights\' Tour or Cooperative Go from the left panel', canvas.width / 2, canvas.height / 2 + 15);
+      ctx.restore();
+    }
+
+    /* ─── CLICK HANDLERS ─── */
+    canvas.addEventListener('click', (e) => {
+      sound.init();
+      const rect = canvas.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickY = e.clientY - rect.top;
+
+      if (currentGame === 'knights') {
+        handleKnightsClick(clickX, clickY);
+      } else if (currentGame === 'go') {
+        handleGoClick(clickX, clickY);
+      }
+    });
+
+    function handleKnightsClick(clickX, clickY) {
+      const size = 8;
+      const cell = canvas.width / size;
+      const col = Math.floor(clickX / cell);
+      const row = Math.floor(clickY / cell);
+      if (col < 0 || col >= size || row < 0 || row >= size) return;
+
+      const targetIdx = row * size + col;
+      if (knightsState.visited[targetIdx]) return; // already visited
+
+      const activeK = knightsState.turn === 1 ? knightsState.knight1 : knightsState.knight2;
+      if (isValidKnightMove(activeK.r, activeK.c, row, col)) {
+        // Valid Move
+        activeK.r = row;
+        activeK.c = col;
+        knightsState.visited[targetIdx] = true;
+        sound.playChime(knightsState.turn === 1 ? 528 : 432);
+
+        // Switch Turn
+        knightsState.turn = knightsState.turn === 1 ? 2 : 1;
+        updateKnightsUI();
+
+        // Check Victory
+        if (knightsState.visited.every(Boolean)) {
+          setTimeout(() => {
+            sound.playChime(660);
+            alert('🌟 Harmony Complete! Both Knights have woven all 64 letters across the sacred grid together.');
+          }, 300);
+        }
+      }
+    }
+
+    function handleGoClick(clickX, clickY) {
+      const size = goState.size;
+      const margin = 50;
+      const step = (canvas.width - margin * 2) / (size - 1);
+
+      const col = Math.round((clickX - margin) / step);
+      const row = Math.round((clickY - margin) / step);
+      if (col < 0 || col >= size || row < 0 || row >= size) return;
+
+      const key = `${row},${col}`;
+      if (goState.stones[key]) return; // Space occupied
+
+      // Place Stone with Breath
+      goState.stones[key] = goState.turn;
+      sound.playStoneThunk(goState.turn === 'B' ? 240 : 320);
+
+      // Alternate turn
+      goState.turn = goState.turn === 'B' ? 'W' : 'B';
+      updateGoUI();
+    }
+
+    /* ─── UI CONTROLS ─── */
+    document.querySelectorAll('.game-card').forEach(card => {
+      card.addEventListener('click', () => {
+        sound.init();
+        document.querySelectorAll('.game-card').forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+        currentGame = card.dataset.game;
+
+        const bannerTitle = document.getElementById('gameTitleBanner');
+        const wisTitle = document.getElementById('wisdomTitle');
+        const wisText = document.getElementById('wisdomText');
+
+        if (currentGame === 'knights') {
+          bannerTitle.innerHTML = '🐴 Active: <strong>The Two Knights\' Tour • Bilateral Saccade Mode</strong>';
+          wisTitle.textContent = 'The Symmetry of the Knight';
+          wisText.textContent = 'Unlike rigid linear rooks, the Knight leaps over obstacles with an \'L\' vector. In neuro-rehabilitation, it breaks motor perseveration and trains flexible lateral problem solving across the body\'s midline.';
+          resetKnights();
+        } else if (currentGame === 'go') {
+          bannerTitle.innerHTML = '⚪ Active: <strong>Cooperative Go (Weiqi) • Breathing Liberties & Living Qi</strong>';
+          wisTitle.textContent = 'Qi (氣) & Living Eyes';
+          wisText.textContent = 'Created over 4,000 years ago as a cognitive pacifier. In our cooperative sanctuary, players place Black Slate and White Shell stones together so every group maintains liberties to breathe.';
+          resetGo();
+        } else if (currentGame === 'checkers') {
+          bannerTitle.innerHTML = '🔴 Active: <strong>Kintsugi Checkers • Mending Fractures with Gold</strong>';
+          wisTitle.textContent = 'The Art of Kintsugi (金継ぎ)';
+          wisText.textContent = 'When jumping over a partner\'s checker, you do not eliminate it; you weave a 24k gold leaf ribbon connecting the squares, transforming obstacles into permanent resilience.';
+        } else if (currentGame === 'chess') {
+          bannerTitle.innerHTML = '👑 Active: <strong>Sanctuary Chess • The Village Hearth</strong>';
+          wisTitle.textContent = 'Escorting to the Hearth';
+          wisText.textContent = 'Pieces are not combatants, but clan travelers escorting both Kings to the center Tilikum square, chiming in resonant 528 Hz fifths upon meeting.';
+        } else if (currentGame === 'euchre') {
+          bannerTitle.innerHTML = '🃏 Active: <strong>Canoe Euchre • 2v2 Relational Partnership</strong>';
+          wisTitle.textContent = 'Silent Kinship & Procedural Flow';
+          wisText.textContent = 'Euchre requires profound trust in your partner across the table. For dementia and stroke recovery, card play awakens deep procedural memory without verbal strain.';
+        }
+      });
+    });
+
+    document.getElementById('btnResetGame').addEventListener('click', () => {
+      sound.init();
+      if (currentGame === 'knights') resetKnights();
+      else if (currentGame === 'go') resetGo();
+    });
+
+    document.getElementById('btnAudioToggle').addEventListener('click', function() {
+      sound.init();
+      sound.enabled = !sound.enabled;
+      this.textContent = sound.enabled ? '🔊 Audio: ON' : '🔇 Audio: MUTED';
+    });
+
+    // Theme Switcher 3-cycle
+    document.getElementById('btnThemeToggle').addEventListener('click', function() {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      let next = 'washi';
+      let label = '🎨 Theme: Washi (和紙)';
+      if (current === 'dark') {
+        next = 'washi';
+        label = '🎨 Theme: Washi (和紙)';
+      } else if (current === 'washi') {
+        next = 'pbm';
+        label = '🔴 Theme: 670nm PBM Night Shift';
+      } else {
+        next = 'dark';
+        label = '🎨 Theme: Dark';
+      }
+      document.documentElement.setAttribute('data-theme', next);
+      this.textContent = label;
+    });
+
+    // Initialize
+    resetKnights();
+    requestAnimationFrame(render);
+  </script>
+</body>
+</html>
