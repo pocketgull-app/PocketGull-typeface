@@ -566,6 +566,26 @@
       harmonizedGroups: 0
     };
 
+    // 3. Kintsugi Checkers State (8x8)
+    const checkersState = {
+      size: 8,
+      pieces: {}, // 'r,c' => { color: 'red' | 'white', isGolden: bool }
+      mendedRibbons: [], // array of { r1, c1, r2, c2 }
+      turn: 'red',
+      selected: null
+    };
+
+    // 4. Sanctuary Chess State (8x8)
+    const chessState = {
+      size: 8,
+      pieces: {}, // 'r,c' => { type: 'K'|'Q'|'R'|'B'|'N'|'P', side: 'white'|'black', glyph: '♔' }
+      whiteKing: { r: 7, c: 4 },
+      blackKing: { r: 0, c: 4 },
+      hearthReached: false,
+      turn: 'white',
+      selected: null
+    };
+
     // Reset Knights
     function resetKnights() {
       knightsState.visited = new Array(64).fill(false);
@@ -583,6 +603,68 @@
       goState.turn = 'B';
       goState.harmonizedGroups = 0;
       updateGoUI();
+    }
+
+    function resetCheckers() {
+      checkersState.pieces = {};
+      checkersState.mendedRibbons = [];
+      checkersState.turn = 'red';
+      checkersState.selected = null;
+      // Setup pieces on dark squares: rows 0..2 for white, rows 5..7 for red
+      for (let r = 0; r < 8; r++) {
+        for (let c = 0; c < 8; c++) {
+          if ((r + c) % 2 === 1) {
+            if (r < 3) checkersState.pieces[`${r},${c}`] = { color: 'white', isGolden: false };
+            else if (r > 4) checkersState.pieces[`${r},${c}`] = { color: 'red', isGolden: false };
+          }
+        }
+      }
+      updateCheckersUI();
+    }
+
+    function resetChess() {
+      chessState.pieces = {};
+      chessState.whiteKing = { r: 7, c: 4 };
+      chessState.blackKing = { r: 0, c: 4 };
+      chessState.hearthReached = false;
+      chessState.turn = 'white';
+      chessState.selected = null;
+
+      // Sanctuary Chess Board Setup
+      const backRankW = ['♖','♘','♗','♕','♔','♗','♘','♖'];
+      const backRankB = ['♜','♞','♝','♛','♚','♝','♞','♜'];
+      const types = ['R','N','B','Q','K','B','N','R'];
+
+      for (let c = 0; c < 8; c++) {
+        chessState.pieces[`7,${c}`] = { side: 'white', type: types[c], glyph: backRankW[c] };
+        chessState.pieces[`6,${c}`] = { side: 'white', type: 'P', glyph: '♙' };
+        chessState.pieces[`1,${c}`] = { side: 'black', type: 'P', glyph: '♟' };
+        chessState.pieces[`0,${c}`] = { side: 'black', type: types[c], glyph: backRankB[c] };
+      }
+      updateChessUI();
+    }
+
+    function updateCheckersUI() {
+      const ribbonCount = checkersState.mendedRibbons.length;
+      document.getElementById('statBigVal').textContent = `${ribbonCount} Ribbons`;
+      document.getElementById('statSubLabel').textContent = '24k Gold Kintsugi Mends';
+      const turnEl = document.getElementById('turnIndicator');
+      turnEl.textContent = checkersState.turn === 'red' ? 'Turn: Vermilion Stone (Player 1)' : 'Turn: Pearl Stone (Player 2)';
+      turnEl.style.color = checkersState.turn === 'red' ? '#f43f5e' : '#f8fafc';
+      turnEl.style.borderColor = checkersState.turn === 'red' ? '#f43f5e' : '#f8fafc';
+    }
+
+    function updateChessUI() {
+      const hearthCenter = (chessState.whiteKing.r === 4 || chessState.whiteKing.r === 3) &&
+                           (chessState.whiteKing.c === 3 || chessState.whiteKing.c === 4) &&
+                           (chessState.blackKing.r === 3 || chessState.blackKing.r === 4) &&
+                           (chessState.blackKing.c === 3 || chessState.blackKing.c === 4);
+      document.getElementById('statBigVal').textContent = hearthCenter ? 'Hearth Joined! 🕊️' : 'Sanctuary Pilgrimage';
+      document.getElementById('statSubLabel').textContent = 'Escorting Kings to Hearth';
+      const turnEl = document.getElementById('turnIndicator');
+      turnEl.textContent = chessState.turn === 'white' ? 'Turn: Ivory Fellowship' : 'Turn: Obsidian Fellowship';
+      turnEl.style.color = chessState.turn === 'white' ? '#38bdf8' : '#cbd5e1';
+      turnEl.style.borderColor = chessState.turn === 'white' ? '#38bdf8' : '#94a3b8';
     }
 
     // Knights valid leap: (dr=1, dc=2) or (dr=2, dc=1)
@@ -626,6 +708,10 @@
         renderKnights();
       } else if (currentGame === 'go') {
         renderGo();
+      } else if (currentGame === 'checkers') {
+        renderCheckers();
+      } else if (currentGame === 'chess') {
+        renderChess();
       } else {
         renderPlaceholder();
       }
@@ -884,6 +970,187 @@
       ctx.restore();
     }
 
+
+    // Render 8x8 Kintsugi Checkers Board
+    function renderCheckers() {
+      const size = 8;
+      const cell = canvas.width / size;
+
+      // Board squares
+      for (let r = 0; r < size; r++) {
+        for (let c = 0; c < size; c++) {
+          const isDarkSquare = (r + c) % 2 === 1;
+          ctx.fillStyle = isDarkSquare ? '#1e1b18' : '#292524';
+          ctx.fillRect(c * cell, r * cell, cell, cell);
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+          ctx.strokeRect(c * cell, r * cell, cell, cell);
+        }
+      }
+
+      // Draw 24k Gold Kintsugi Ribbons between jumped/mended coordinates
+      checkersState.mendedRibbons.forEach(ribbon => {
+        const x1 = ribbon.c1 * cell + cell / 2;
+        const y1 = ribbon.r1 * cell + cell / 2;
+        const x2 = ribbon.c2 * cell + cell / 2;
+        const y2 = ribbon.r2 * cell + cell / 2;
+        const midX = (x1 + x2) / 2;
+        const midY = (y1 + y2) / 2 - 12;
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.quadraticCurveTo(midX, midY, x2, y2);
+        ctx.strokeStyle = '#fbbf24';
+        ctx.lineWidth = 4.5;
+        ctx.shadowColor = '#f59e0b';
+        ctx.shadowBlur = 12;
+        ctx.stroke();
+
+        // Second subtle highlight line
+        ctx.beginPath();
+        ctx.moveTo(x1, y1);
+        ctx.quadraticCurveTo(midX, midY, x2, y2);
+        ctx.strokeStyle = '#fffbeb';
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+        ctx.restore();
+      });
+
+      // Highlight selected square
+      if (checkersState.selected) {
+        const { r, c } = checkersState.selected;
+        ctx.save();
+        ctx.strokeStyle = '#fbbf24';
+        ctx.lineWidth = 3;
+        ctx.shadowColor = '#fbbf24';
+        ctx.shadowBlur = 14;
+        ctx.strokeRect(c * cell + 2, r * cell + 2, cell - 4, cell - 4);
+        ctx.restore();
+      }
+
+      // Draw Checkers stones
+      for (const [key, piece] of Object.entries(checkersState.pieces)) {
+        const [r, c] = key.split(',').map(Number);
+        const cx = c * cell + cell / 2;
+        const cy = r * cell + cell / 2;
+        const radius = cell * 0.38;
+
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+
+        if (piece.color === 'red') {
+          const grad = ctx.createRadialGradient(cx - 3, cy - 3, 2, cx, cy, radius);
+          grad.addColorStop(0, '#fb7185');
+          grad.addColorStop(1, '#9f1239');
+          ctx.fillStyle = grad;
+          ctx.shadowColor = '#f43f5e';
+          ctx.shadowBlur = piece.isGolden ? 18 : 8;
+        } else {
+          const grad = ctx.createRadialGradient(cx - 3, cy - 3, 2, cx, cy, radius);
+          grad.addColorStop(0, '#ffffff');
+          grad.addColorStop(1, '#94a3b8');
+          ctx.fillStyle = grad;
+          ctx.shadowColor = '#38bdf8';
+          ctx.shadowBlur = piece.isGolden ? 18 : 8;
+        }
+        ctx.fill();
+
+        // If mended / golden, draw 24k gold lacquer ring and leaf motif
+        if (piece.isGolden) {
+          ctx.strokeStyle = '#fbbf24';
+          ctx.lineWidth = 3;
+          ctx.stroke();
+
+          ctx.font = '16px "PocketGull", sans-serif';
+          ctx.fillStyle = '#fbbf24';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('✨', cx, cy);
+        } else {
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+    }
+
+    // Render 8x8 Sanctuary Chess Board
+    function renderChess() {
+      const size = 8;
+      const cell = canvas.width / size;
+
+      // Board squares
+      for (let r = 0; r < size; r++) {
+        for (let c = 0; c < size; c++) {
+          const isDarkSquare = (r + c) % 2 === 1;
+          const isHearthSquare = (r === 3 || r === 4) && (c === 3 || c === 4);
+
+          ctx.save();
+          if (isHearthSquare) {
+            // Central Tilikum Hearth glowing warm
+            ctx.fillStyle = 'rgba(245, 158, 11, 0.2)';
+            ctx.fillRect(c * cell, r * cell, cell, cell);
+            ctx.strokeStyle = 'rgba(245, 158, 11, 0.6)';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(c * cell + 2, r * cell + 2, cell - 4, cell - 4);
+          } else {
+            ctx.fillStyle = isDarkSquare ? '#0f172a' : '#1e293b';
+            ctx.fillRect(c * cell, r * cell, cell, cell);
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
+            ctx.strokeRect(c * cell, r * cell, cell, cell);
+          }
+          ctx.restore();
+        }
+      }
+
+      // Draw central hearth icon
+      ctx.save();
+      ctx.font = '22px "PocketGull", sans-serif';
+      ctx.fillStyle = 'rgba(245, 158, 11, 0.45)';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('🕊️ Hearth', canvas.width / 2, canvas.height / 2);
+      ctx.restore();
+
+      // Highlight selected square
+      if (chessState.selected) {
+        const { r, c } = chessState.selected;
+        ctx.save();
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 3;
+        ctx.shadowColor = '#38bdf8';
+        ctx.shadowBlur = 12;
+        ctx.strokeRect(c * cell + 3, r * cell + 3, cell - 6, cell - 6);
+        ctx.restore();
+      }
+
+      // Draw Chess pieces
+      for (const [key, piece] of Object.entries(chessState.pieces)) {
+        const [r, c] = key.split(',').map(Number);
+        const cx = c * cell + cell / 2;
+        const cy = r * cell + cell / 2;
+
+        ctx.save();
+        ctx.font = '36px "PocketGull", "Segoe UI Symbol", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        if (piece.side === 'white') {
+          ctx.fillStyle = '#f8fafc';
+          ctx.shadowColor = '#38bdf8';
+          ctx.shadowBlur = 10;
+        } else {
+          ctx.fillStyle = '#cbd5e1';
+          ctx.shadowColor = '#f59e0b';
+          ctx.shadowBlur = 10;
+        }
+        ctx.fillText(piece.glyph, cx, cy);
+        ctx.restore();
+      }
+    }
+
     function renderPlaceholder() {
       ctx.save();
       ctx.fillStyle = '#0f172a';
@@ -909,6 +1176,10 @@
         handleKnightsClick(clickX, clickY);
       } else if (currentGame === 'go') {
         handleGoClick(clickX, clickY);
+      } else if (currentGame === 'checkers') {
+        handleCheckersClick(clickX, clickY);
+      } else if (currentGame === 'chess') {
+        handleChessClick(clickX, clickY);
       }
     });
 
@@ -967,6 +1238,134 @@
       }
     }
 
+    function handleCheckersClick(clickX, clickY) {
+      const size = 8;
+      const cell = canvas.width / size;
+      const col = Math.floor(clickX / cell);
+      const row = Math.floor(clickY / cell);
+      if (col < 0 || col >= size || row < 0 || row >= size) return;
+
+      const key = `${row},${col}`;
+      const piece = checkersState.pieces[key];
+
+      // If no piece is selected, select friendly piece
+      if (!checkersState.selected) {
+        if (piece && piece.color === checkersState.turn) {
+          checkersState.selected = { r: row, c: col };
+          sound.playChime(432);
+        }
+        return;
+      }
+
+      // If piece is already selected
+      const { r: sr, c: sc } = checkersState.selected;
+      const selKey = `${sr},${sc}`;
+      const selPiece = checkersState.pieces[selKey];
+
+      // If clicking same piece or another friendly piece, reselect
+      if (piece && piece.color === checkersState.turn) {
+        checkersState.selected = { r: row, c: col };
+        sound.playChime(432);
+        return;
+      }
+
+      // Check move: 1 step diagonal (glide) or 2 step diagonal (kintsugi jump)
+      const dr = Math.abs(row - sr);
+      const dc = Math.abs(col - sc);
+
+      if ((row + col) % 2 === 1 && !piece) {
+        if (dr === 1 && dc === 1) {
+          // Gentle glide
+          delete checkersState.pieces[selKey];
+          checkersState.pieces[key] = selPiece;
+          checkersState.selected = null;
+          sound.playStoneThunk(checkersState.turn === 'red' ? 320 : 260);
+          checkersState.turn = checkersState.turn === 'red' ? 'white' : 'red';
+          updateCheckersUI();
+        } else if (dr === 2 && dc === 2) {
+          // Kintsugi Jump: Partner stone is mended with 24k gold!
+          const midR = (row + sr) / 2;
+          const midC = (col + sc) / 2;
+          const midKey = `${midR},${midC}`;
+          const jumpedPiece = checkersState.pieces[midKey];
+
+          if (jumpedPiece) {
+            // Rather than capturing/deleting, both become golden!
+            jumpedPiece.isGolden = true;
+            selPiece.isGolden = true;
+            delete checkersState.pieces[selKey];
+            checkersState.pieces[key] = selPiece;
+            checkersState.mendedRibbons.push({ r1: sr, c1: sc, r2: row, c2: col });
+            checkersState.selected = null;
+            sound.playChime(528); // 528 Hz DNA repair / golden chime
+            checkersState.turn = checkersState.turn === 'red' ? 'white' : 'red';
+            updateCheckersUI();
+          }
+        } else if (isSuperChillActive) {
+          // Super-Chill: Glide gracefully anyway (Zero Wrong Answers)
+          delete checkersState.pieces[selKey];
+          checkersState.pieces[key] = selPiece;
+          checkersState.selected = null;
+          sound.playChime(432);
+          checkersState.turn = checkersState.turn === 'red' ? 'white' : 'red';
+          updateCheckersUI();
+        }
+      }
+    }
+
+    function handleChessClick(clickX, clickY) {
+      const size = 8;
+      const cell = canvas.width / size;
+      const col = Math.floor(clickX / cell);
+      const row = Math.floor(clickY / cell);
+      if (col < 0 || col >= size || row < 0 || row >= size) return;
+
+      const key = `${row},${col}`;
+      const piece = chessState.pieces[key];
+
+      if (!chessState.selected) {
+        if (piece && piece.side === chessState.turn) {
+          chessState.selected = { r: row, c: col };
+          sound.playChime(432);
+        }
+        return;
+      }
+
+      const { r: sr, c: sc } = chessState.selected;
+      const selKey = `${sr},${sc}`;
+      const selPiece = chessState.pieces[selKey];
+
+      if (piece && piece.side === chessState.turn) {
+        chessState.selected = { r: row, c: col };
+        sound.playChime(432);
+        return;
+      }
+
+      // Sanctuary Chess: Move without elimination
+      // Pieces can step toward the center hearth
+      delete chessState.pieces[selKey];
+      chessState.pieces[key] = selPiece;
+      chessState.selected = null;
+
+      if (selPiece.type === 'K') {
+        if (selPiece.side === 'white') chessState.whiteKing = { r: row, c: col };
+        else chessState.blackKing = { r: row, c: col };
+      }
+
+      sound.playStoneThunk(340);
+      chessState.turn = chessState.turn === 'white' ? 'black' : 'white';
+      updateChessUI();
+
+      // Check if both kings reached the central 2x2 hearth
+      const wNear = Math.abs(chessState.whiteKing.r - 3.5) <= 1 && Math.abs(chessState.whiteKing.c - 3.5) <= 1;
+      const bNear = Math.abs(chessState.blackKing.r - 3.5) <= 1 && Math.abs(chessState.blackKing.c - 3.5) <= 1;
+      if (wNear && bNear && !chessState.hearthReached) {
+        chessState.hearthReached = true;
+        sound.playChime(528);
+        setTimeout(() => sound.playChime(660), 400);
+      }
+    }
+
     function handleGoClick(clickX, clickY) {
       const size = goState.size;
       const margin = 50;
@@ -1014,10 +1413,12 @@
           bannerTitle.innerHTML = '🔴 Active: <strong>Kintsugi Checkers • Mending Fractures with Gold</strong>';
           wisTitle.textContent = 'The Art of Kintsugi (金継ぎ)';
           wisText.textContent = 'When jumping over a partner\'s checker, you do not eliminate it; you weave a 24k gold leaf ribbon connecting the squares, transforming obstacles into permanent resilience.';
+          resetCheckers();
         } else if (currentGame === 'chess') {
           bannerTitle.innerHTML = '👑 Active: <strong>Sanctuary Chess • The Village Hearth</strong>';
           wisTitle.textContent = 'Escorting to the Hearth';
           wisText.textContent = 'Pieces are not combatants, but clan travelers escorting both Kings to the center Tilikum square, chiming in resonant 528 Hz fifths upon meeting.';
+          resetChess();
         } else if (currentGame === 'euchre') {
           bannerTitle.innerHTML = '🃏 Active: <strong>Canoe Euchre • 2v2 Relational Partnership</strong>';
           wisTitle.textContent = 'Silent Kinship & Procedural Flow';
@@ -1030,6 +1431,8 @@
       sound.init();
       if (currentGame === 'knights') resetKnights();
       else if (currentGame === 'go') resetGo();
+      else if (currentGame === 'checkers') resetCheckers();
+      else if (currentGame === 'chess') resetChess();
     });
 
     document.getElementById('btnAudioToggle').addEventListener('click', function() {
