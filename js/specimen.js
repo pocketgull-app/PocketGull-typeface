@@ -181,7 +181,13 @@
               btnItal.click();
             }
           }
-          updateOtFeatures();
+          if (pill.dataset.preset === 'cardiac') {
+            if (typeof setHealerMode === 'function') {
+              setHealerMode('72');
+            }
+          } else {
+            updateOtFeatures();
+          }
         }
       });
     });
@@ -218,7 +224,15 @@
           otReadout.textContent = 'font-feature-settings: ' + (activeFeats.length ? activeFeats.join(', ') : 'normal');
         }
 
-        const rawText = testerOutput.innerText.replace(/ı/g, 'i');
+        let rawText = '';
+        if (testerOutput.children && testerOutput.children.length > 0) {
+          const clone = testerOutput.cloneNode(true);
+          clone.querySelectorAll('.philocardia-heart').forEach(el => el.replaceWith('i'));
+          rawText = clone.textContent.replace(/ı/g, 'i');
+        } else {
+          rawText = (testerOutput.textContent || '').replace(/ı/g, 'i');
+        }
+
         if (currentHealerMode !== 'off') {
           const pacingClass = HEALER_CONFIG[currentHealerMode]?.pacingClass || '';
           const classStr = pacingClass ? `philocardia-heart ${pacingClass}` : 'philocardia-heart';
