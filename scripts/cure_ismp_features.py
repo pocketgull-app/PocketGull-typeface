@@ -22,6 +22,7 @@ if hasattr(sys.stdout, 'reconfigure'):
 if hasattr(sys.stderr, 'reconfigure'):
     sys.stderr.reconfigure(encoding='utf-8', errors='replace')
 
+import subprocess
 from fontTools.ttLib import TTFont
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
@@ -29,6 +30,12 @@ TARGET_DIRS = [
     ROOT_DIR / "fonts" / "ttf",
     ROOT_DIR.parent / "pocketgull" / "public" / "fonts",
 ]
+
+def realign_font_word_boundaries(font_path: Path):
+    """Realigns font tables and glyf records to 2-byte word boundaries via pure Dart SfntTransformer."""
+    foundry_tool = ROOT_DIR / "tool" / "pocketgull_foundry.dart"
+    if foundry_tool.exists():
+        subprocess.run(["dart", "run", str(foundry_tool), "realign"], check=False, cwd=str(ROOT_DIR))
 
 from fontTools.ttLib.tables import otTables as ot
 
@@ -227,6 +234,13 @@ def cure_font_ismp(font_path: Path) -> bool:
     if modified:
         font.save(str(font_path))
         print(f"  ✓ Successfully saved cured font: {font_path}")
+        # Enforce Pillar 2: 2-Byte Word-Alignment Invariant (loca & glyf)
+        # Resaving via fontTools can produce unpadded odd-length glyph records and odd loca offsets.
+        # Run 2-byte word boundary alignment to ensure 100% W3C OTS compliance.
+        try:
+            realign_font_word_boundaries(font_path)
+        except Exception as e:
+            print(f"  [WARN] Could not realign {font_path.name}: {e}")
         return True
     return False
 

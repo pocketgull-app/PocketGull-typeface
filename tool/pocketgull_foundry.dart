@@ -118,11 +118,15 @@ void runRealign() {
   print('======================================================================\n');
 
   final root = findProjectRoot();
+  final appDir = findAppDir();
   final ttfDirs = [
     Directory('$root${Platform.pathSeparator}fonts${Platform.pathSeparator}ttf'),
     Directory('$root${Platform.pathSeparator}ofl${Platform.pathSeparator}pocketgull'),
     Directory('$root${Platform.pathSeparator}ofl${Platform.pathSeparator}pocketgullmono'),
   ];
+  if (appDir != null) {
+    ttfDirs.add(Directory('${appDir.path}${Platform.pathSeparator}public${Platform.pathSeparator}fonts'));
+  }
 
   for (final dir in ttfDirs) {
     if (!dir.existsSync()) continue;
