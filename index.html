@@ -125,6 +125,15 @@
     })();
   </script>
 
+  <!-- Philocardia Tittle Morph Vectors (Circle to Heart) -->
+  <svg width="0" height="0" style="position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;" aria-hidden="true" focusable="false">
+    <defs>
+      <clipPath id="philocardiaMorphClip" clipPathUnits="objectBoundingBox">
+        <path id="philocardiaClipPath" d="M 0.5,0.0 C 0.776,0.0 1.0,0.224 1.0,0.5 C 1.0,0.776 0.776,1.0 0.5,1.0 C 0.224,1.0 0.0,0.776 0.0,0.5 C 0.0,0.224 0.224,0.0 0.5,0.0 Z" />
+      </clipPath>
+    </defs>
+  </svg>
+
   <!-- Site Navigation Header -->
   <header class="site-header">
     <a href="https://pocketgull.app" class="brand-group" title="PocketGull Clinical App &amp; AI Consult Engine" target="_blank" rel="noopener">
@@ -459,6 +468,7 @@
             <button class="preset-pill" data-preset="salish">🌊 Lushootseed (Coast Salish)</button>
             <button class="preset-pill" data-preset="mohawk">🏹 Kanien'kéha (Mohawk)</button>
             <button class="preset-pill" data-preset="hawaiian">🌺 ʻŌlelo Hawaiʻi</button>
+            <button class="preset-pill" data-preset="parlor" style="border-color: rgba(45, 212, 191, 0.4); color: #2dd4bf;">☕ Solarium &amp; Parlor</button>
           </div>
 
           <!-- Healer Mode & Touch Aura Sequencer -->
@@ -498,13 +508,24 @@
               <button type="button" class="healer-pill" data-healer-mode="aura" title="Touch & Cursor Proximity Aura: Hearts and weight bloom toward your hand">
                 ✨ Touch Aura
               </button>
-              <button type="button" class="healer-pill" data-healer-mode="static" title="Static heart tittles without motion animation">
-                ♡ Static Hearts
-              </button>
-              <button type="button" class="healer-pill active" data-healer-mode="off" title="Disable heart tittles (standard dot)">
-                ⚪ Off
-              </button>
+            <!-- Level of Love (Cardiopulmonary Affection Gauge) -->
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px dashed rgba(45, 212, 191, 0.2); width: 100%; flex-wrap: wrap;">
+              <span style="font-size: 0.72rem; font-family: monospace; font-weight: 800; color: #fb7185; text-transform: uppercase; letter-spacing: 0.06em; display: flex; align-items: center; gap: 0.3rem;">
+                <span>❤️</span> Level of Love:
+              </span>
+              <div style="display: inline-flex; gap: 0.3rem; flex-wrap: wrap;" id="loveLevelGroup">
+                <button type="button" class="love-level-btn" data-love="none" style="padding: 0.25rem 0.65rem; border-radius: 6px; font-size: 0.72rem; font-family: monospace; font-weight: 700; border: 1px solid rgba(255,255,255,0.15); background: transparent; color: #94a3b8; cursor: pointer; transition: all 0.15s ease;" title="Level 0: No Love — Pure clinical discipline, classic round dots and periods">
+                  ⚪ No Love (Pure Clinical)
+                </button>
+                <button type="button" class="love-level-btn" data-love="half" style="padding: 0.25rem 0.65rem; border-radius: 6px; font-size: 0.72rem; font-family: monospace; font-weight: 700; border: 1px solid rgba(45,212,191,0.3); background: rgba(45,212,191,0.1); color: #2dd4bf; cursor: pointer; transition: all 0.15s ease;" title="Level 1: Half Love — Tactful Emily Post restraint: dots softly morph to gentle hearts only on touch/hover">
+                  ♡ Half Love (Emily Post Aura)
+                </button>
+                <button type="button" class="love-level-btn active" data-love="super" style="padding: 0.25rem 0.65rem; border-radius: 6px; font-size: 0.72rem; font-family: monospace; font-weight: 800; border: 1px solid #fb7185; background: rgba(244,63,94,0.18); color: #fb7185; cursor: pointer; transition: all 0.15s ease;" title="Level 2: Super Love — Full 72 BPM cardiopulmonary S1/S2 heart pulse across i, j, !, and Arabic خ">
+                  💖 Super Love (Full Heart Pulse)
+                </button>
+              </div>
             </div>
+          </div>
 
             <!-- Ocular Ergonomics & Auscultation Suite -->
             <div style="display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap;" id="ocularA11yGroup">
@@ -537,8 +558,8 @@
     <section class="specimen-section" id="ismp">
       <div class="container">
         <div class="section-header">
-          <div class="section-eyebrow">02 / Cl<span class="philocardia-heart">ı</span>n<span class="philocardia-heart">ı</span>cal Safety Standard</div>
-          <h2 class="section-title">ISMP &amp; FDA L<span class="philocardia-heart">ı</span>fe-Cr<span class="philocardia-heart">ı</span>t<span class="philocardia-heart">ı</span>cal D<span class="philocardia-heart">ı</span>samb<span class="philocardia-heart">ı</span>guat<span class="philocardia-heart">ı</span>on</h2>
+          <div class="section-eyebrow">02 / Clinical Safety Standard</div>
+          <h2 class="section-title">ISMP &amp; FDA Life-Critical Disambiguation</h2>
           <p class="section-desc">Character confusion in electronic prescribing causes thousands of preventable adverse drug events annually. PocketGull provides surgical disambiguation directly in the font engine.</p>
         </div>
 
@@ -600,23 +621,42 @@
             <p class="ismp-desc">Adds bilobe horizontal serifs at cap-height and baseline, decisively distinguishing uppercase I from lowercase l and digit 1 in critical biomarkers like "IL-6" and "IgA".</p>
           </div>
 
-          <!-- Heart-Dotted 'i' (The Healer Font) -->
+          <!-- Heart-Dotted 'i', 'j', and '!' (The Healer Font) -->
           <div class="ismp-card">
             <div class="ismp-header">
-              <div class="ismp-title">Heart-Dotted 'i' (The Healer Font)</div>
+              <div class="ismp-title">Heart Tittles: 'i', 'j' &amp; '!' (The Healer Font)</div>
               <span class="ismp-feature-tag">cv09 / Heart Tittle</span>
             </div>
             <div class="ismp-comparison">
               <div class="comparison-col">
-                <div class="comparison-label bad">Standard Dot</div>
-                <div class="comparison-sample" style="font-size: 1.6rem;">clinical insight</div>
+                <div class="comparison-label bad">Standard Dots</div>
+                <div class="comparison-sample" style="font-size: 1.55rem;">vital joy! injection</div>
               </div>
               <div class="comparison-col">
                 <div class="comparison-label good">Heart Dotted</div>
-                <div class="comparison-sample disambiguated" style="font-size: 1.6rem;">cl<span class="philocardia-heart">ı</span>n<span class="philocardia-heart">ı</span>cal <span class="philocardia-heart">ı</span>ns<span class="philocardia-heart">ı</span>ght</div>
+                <div class="comparison-sample disambiguated" style="font-size: 1.55rem;">v<span class="philocardia-heart">ı</span>tal <span class="philocardia-j">ȷ</span>oy<span class="philocardia-excl">!</span> <span class="philocardia-heart">ı</span>n<span class="philocardia-j">ȷ</span>ect<span class="philocardia-heart">ı</span>on</div>
               </div>
             </div>
-            <p class="ismp-desc">Replaces the circular dot on lowercase <em>i</em> with an optical heart tittle. Also features an optional gentle pulse (60 or 72 BPM) to give clinicians a calm visual heartbeat on screen.</p>
+            <p class="ismp-desc">Replaces circular dots on lowercase <em>i</em>, descending <em>j</em>, and terminal exclamation marks <em>!</em> with optical heart tittles. Features optional 60/72 BPM parasympathetic pulse and cursor touch aura.</p>
+          </div>
+
+          <!-- Arabic Heart Nuqṭa (The Healer Script: خ, ج, غ, ن) -->
+          <div class="ismp-card">
+            <div class="ismp-header">
+              <div class="ismp-title">Arabic Heart Nuqṭa (I'jam)</div>
+              <span class="ismp-feature-tag">cv13 / Heart Nuqṭa</span>
+            </div>
+            <div class="ismp-comparison">
+              <div class="comparison-col">
+                <div class="comparison-label bad">Rhombus Dot</div>
+                <div class="comparison-sample" style="font-size: 2.2rem; font-family: 'Noto Sans Arabic', sans-serif;" dir="rtl">خَطّ خَيْر</div>
+              </div>
+              <div class="comparison-col">
+                <div class="comparison-label good">Heart Nuqṭa</div>
+                <div class="comparison-sample disambiguated" style="font-size: 2.2rem; font-family: 'Noto Sans Arabic', sans-serif;" dir="rtl"><span class="philocardia-arabic-heart"><span class="arabic-base">ح</span></span>َطّ <span class="philocardia-arabic-heart"><span class="arabic-base">ح</span></span>َيْر</div>
+              </div>
+            </div>
+            <p class="ismp-desc">Transforms the classical diamond <em>nuqṭa</em> on crown letters like <strong>خ</strong> (<em>khāʾ</em>) into an optical heart tittle. Canting the cleft to the 45° Naskh pen angle maintains cursive rhythm while providing clinical vagal resonance.</p>
           </div>
 
           <!-- FDA / ISMP Tall Man Lettering -->
@@ -679,7 +719,7 @@
           <!-- Microgram Disambiguation -->
           <div class="ismp-card">
             <div class="ismp-header">
-              <div class="ismp-title">M<span class="philocardia-heart">ı</span>crogram mcg D<span class="philocardia-heart">ı</span>samb<span class="philocardia-heart">ı</span>guat<span class="philocardia-heart">ı</span>on</div>
+              <div class="ismp-title">Microgram mcg Disambiguation</div>
               <span class="ismp-feature-tag">ISMP Standard</span>
             </div>
             <div class="ismp-comparison">
@@ -717,7 +757,7 @@
           <!-- Clinical Humanist Italic Disambiguation -->
           <div class="ismp-card">
             <div class="ismp-header">
-              <div class="ismp-title">Cl<span class="philocardia-heart">ı</span>n<span class="philocardia-heart">ı</span>cal Human<span class="philocardia-heart">ı</span>st Ital<span class="philocardia-heart">ı</span>cs</div>
+              <div class="ismp-title">Clinical Humanist Italics</div>
               <span class="ismp-feature-tag">ital / cv05 / ss02</span>
             </div>
             <div class="ismp-comparison">
@@ -740,8 +780,8 @@
     <section class="specimen-section" id="italics" style="border-top: 1px solid var(--border-subtle); background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.08) 0%, transparent 60%);">
       <div class="container">
         <div class="section-header">
-          <div class="section-eyebrow" style="color: #38bdf8;">02.5 / The Second Voice &amp; Cl<span class="philocardia-heart">ı</span>n<span class="philocardia-heart">ı</span>cal Safety</div>
-          <h2 class="section-title">Why Ital<span class="philocardia-heart">ı</span>c Fonts &amp; Var<span class="philocardia-heart">ı</span>et<span class="philocardia-heart">ı</span>es Matter <span class="philocardia-heart">ı</span>n Med<span class="philocardia-heart">ı</span>c<span class="philocardia-heart">ı</span>ne</h2>
+          <div class="section-eyebrow" style="color: #38bdf8;">02.5 / The Second Voice &amp; Clinical Safety</div>
+          <h2 class="section-title">Why Italic Fonts &amp; Varieties Matter in Medicine</h2>
           <p class="section-desc">In clinical typography, italics are not decorative ornamentation. They are a rigorous semantic syntax—mandated by the International Code of Nomenclature, molecular oncology registries, and hospital risk management to prevent catastrophic medical errors.</p>
         </div>
 
@@ -755,8 +795,8 @@
             <p style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 0.75rem;">
               Unlike <strong>bold</strong>, which shouts and magnetically pulls the reader’s eye off the reading line, a true <em>italic</em> speaks in the exact same volume as the roman text, but changes tone of voice. It introduces a conversational second voice—a whisper, a diagnostic aside, or a critical qualifier—without disrupting the tonal gray density of a medical paragraph.
             </p>
-            <div style="font-size: 0.8rem; font-family: monospace; color: #94a3b8; background: rgba(0, 0, 0, 0.35); padding: 0.75rem; border-radius: 8px; border-left: 3px solid #38bdf8;">
-              PocketGull Italic cuts lean at a calibrated -10.5° slant angle with optical pivot at y=260 UPM (half of x-height), preserving natural felt-marker stroke fluidity.
+            <div style="font-size: 0.85rem; font-family: 'PocketGull', system-ui, -apple-system, sans-serif; line-height: 1.55; color: #e2e8f0; background: rgba(15, 23, 42, 0.75); padding: 0.85rem 1rem; border-radius: 8px; border-left: 3px solid #38bdf8; border: 1px solid rgba(56, 189, 248, 0.25);">
+              <strong>Ergonomic Slant:</strong> PocketGull Italic cuts lean at a calibrated <strong>10.5° forward slant angle</strong> with an optical pivot at <code>y = 260 UPM</code> (half of x-height), preserving natural stroke fluidity while ensuring zero clipping on thermal bed-side printers.
             </div>
           </div>
 
@@ -768,8 +808,8 @@
             <p style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 0.75rem;">
               Generic software artificially slants roman fonts with an affine sheer matrix. This mechanically pinches curves, distorts optical counters, and thickens diagonal strokes, creating visual "ink pooling" that triggers cognitive fatigue and chart misreading during rapid surgical intake.
             </p>
-            <div style="font-size: 0.8rem; font-family: monospace; color: #94a3b8; background: rgba(0, 0, 0, 0.35); padding: 0.75rem; border-radius: 8px; border-left: 3px solid #fb7185;">
-              PocketGull Mono Italic maintains a strict 600 UPM advance width across every glyph, ensuring 100% gapless ICU tabular telemetry alignment with zero numeric jitter.
+            <div style="font-size: 0.85rem; font-family: 'PocketGull', system-ui, -apple-system, sans-serif; line-height: 1.55; color: #e2e8f0; background: rgba(15, 23, 42, 0.75); padding: 0.85rem 1rem; border-radius: 8px; border-left: 3px solid #fb7185; border: 1px solid rgba(244, 63, 94, 0.25);">
+              <strong>Telemetry Alignment:</strong> PocketGull Mono Italic maintains a strict <strong>600 UPM advance width</strong> across every glyph, ensuring 100% gapless ICU tabular telemetry alignment with zero numeric jitter.
             </div>
           </div>
         </div>
@@ -777,7 +817,7 @@
         <!-- The 4 Life-Critical Clinical Italic Pillars -->
         <div style="margin-bottom: 2rem;">
           <h3 style="font-size: 1.1rem; font-weight: 800; color: #f8fafc; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-            <span>🛡️</span> The 4 Cl<span class="philocardia-heart">ı</span>n<span class="philocardia-heart">ı</span>cal Ital<span class="philocardia-heart">ı</span>c P<span class="philocardia-heart">ı</span>llars (L<span class="philocardia-heart">ı</span>fe-Cr<span class="philocardia-heart">ı</span>t<span class="philocardia-heart">ı</span>cal Safety)
+            <span>🛡️</span> The 4 Clinical Italic Pillars (Life-Critical Safety)
           </h3>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1rem;">
             

@@ -518,9 +518,10 @@
   display: none !important;
 }
 
-/* Philocardia: Signature Heart-Tittle Stylistic Alternate */
+/* Philocardia: Signature Heart-Tittle Stylistic Alternate with Organic Morph */
 .philocardia-heart,
-.iphillyg-heart {
+.iphillyg-heart,
+.philocardia-arabic-heart {
   display: inline-block;
   position: relative;
   line-height: inherit;
@@ -545,17 +546,92 @@
 
 .philocardia-heart::after,
 .iphillyg-heart::after {
-  content: '♥';
+  content: '';
   position: absolute;
-  top: -0.18em;
+  top: -0.15em;
   left: 50%;
-  transform: translateX(calc(-50% + var(--heart-offset-x, 0em))) skewX(var(--heart-skew, 0deg)) scale(var(--aura-scale, 0.68));
-  font-size: 0.72em;
-  line-height: 1;
-  color: var(--aura-color, var(--teal-accent, currentColor));
+  width: 0.32em;
+  height: 0.32em;
+  transform: translateX(calc(-50% + var(--heart-offset-x, 0em))) skewX(var(--heart-skew, 0deg)) scale(var(--aura-scale, 1.0));
+  background-color: var(--aura-color, var(--teal-accent, currentColor));
   pointer-events: none;
-  filter: drop-shadow(0 0 var(--aura-glow, 3px) rgba(45, 212, 191, 0.45));
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.25s ease, filter 0.25s ease;
+  clip-path: url(#philocardiaMorphClip);
+  -webkit-clip-path: url(#philocardiaMorphClip);
+  filter: drop-shadow(0 0 var(--aura-glow, 0px) rgba(45, 212, 191, 0.55));
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.22s ease, filter 0.22s ease;
+}
+
+/* Lowercase j (dotless ȷ U+0237): Centered over the straight upper stem before the descender curve */
+.philocardia-j {
+  display: inline-block;
+  position: relative;
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.philocardia-j::after {
+  content: '';
+  position: absolute;
+  top: -0.15em;
+  left: 64%; /* Balanced over right-aligned stem of descending j */
+  width: 0.32em;
+  height: 0.32em;
+  transform: translateX(-50%) scale(var(--aura-scale, 1.0));
+  background-color: var(--aura-color, var(--teal-accent, currentColor));
+  pointer-events: none;
+  clip-path: url(#philocardiaMorphClip);
+  -webkit-clip-path: url(#philocardiaMorphClip);
+  filter: drop-shadow(0 0 var(--aura-glow, 0px) rgba(45, 212, 191, 0.55));
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.22s ease, filter 0.22s ease;
+}
+
+/* Exclamation Mark Terminal Heart: Replaces baseline period dot with an upright heart */
+.philocardia-excl {
+  display: inline-block;
+  position: relative;
+  line-height: inherit;
+  font-family: inherit;
+}
+
+.philocardia-excl::after {
+  content: '';
+  position: absolute;
+  bottom: 0.04em; /* Sits precisely at baseline terminal */
+  left: 50%;
+  width: 0.30em;
+  height: 0.30em;
+  transform: translateX(-50%) scale(var(--aura-scale, 1.0));
+  background-color: var(--aura-color, var(--teal-accent, currentColor));
+  pointer-events: none;
+  clip-path: url(#philocardiaMorphClip);
+  -webkit-clip-path: url(#philocardiaMorphClip);
+  filter: drop-shadow(0 0 var(--aura-glow, 0px) rgba(45, 212, 191, 0.55));
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.22s ease, filter 0.22s ease;
+}
+
+/* Arabic Heart Nuqṭa (خ, ج, غ, ف, ن): Placed above apex of letterhead with Naskh optical balance */
+.philocardia-arabic-heart::after {
+  content: '';
+  position: absolute;
+  top: -0.26em;
+  right: 32%;
+  width: 0.34em;
+  height: 0.34em;
+  transform: translateX(50%) rotate(8deg) scale(var(--aura-scale, 1.0));
+  background-color: var(--aura-color, var(--teal-accent, currentColor));
+  pointer-events: none;
+  clip-path: url(#philocardiaMorphClip);
+  -webkit-clip-path: url(#philocardiaMorphClip);
+  filter: drop-shadow(0 0 var(--aura-glow, 0px) rgba(45, 212, 191, 0.55));
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.22s ease, filter 0.22s ease;
+}
+
+/* Fallback if clip-path URL is unsupported: render round dot transitioning to heart shape */
+@supports not (clip-path: url(#philocardiaMorphClip)) {
+  .philocardia-heart::after,
+  .iphillyg-heart::after {
+    border-radius: calc(50% * (1 - var(--aura-morph, 0)));
+  }
 }
 
 .night-flight .philocardia-heart::after,
@@ -564,15 +640,15 @@ body.red-dash .philocardia-heart::after,
 .night-flight .iphillyg-heart::after,
 body.night-flight .iphillyg-heart::after,
 body.red-dash .iphillyg-heart::after {
-  color: var(--teal-accent, #f87171);
+  background-color: var(--teal-accent, #f87171);
   filter: drop-shadow(0 0 4px rgba(248, 113, 113, 0.5));
 }
 
 .philocardia-heart:hover::after,
 .iphillyg-heart:hover::after {
-  transform: translateX(calc(-50% + var(--heart-offset-x, 0em))) skewX(var(--heart-skew, 0deg)) scale(0.95);
-  color: #f43f5e;
-  filter: drop-shadow(0 0 6px rgba(244, 63, 94, 0.7));
+  transform: translateX(calc(-50% + var(--heart-offset-x, 0em))) skewX(var(--heart-skew, 0deg)) scale(1.28);
+  background-color: #f43f5e;
+  filter: drop-shadow(0 0 8px rgba(244, 63, 94, 0.75));
 }
 
 /* Physiological S1/S2 Cardiac Pulse Animation (72 BPM = 0.833s period) */
@@ -604,15 +680,15 @@ body.red-dash .iphillyg-heart::after {
   100% { transform: scale(1.00); filter: drop-shadow(0 0 2px rgba(45,212,191,0.3)); color: #2dd4bf; } /* Rest 4s */
 }
 
-.philocardia-pacing-72 {
+.philocardia-pacing-72::after {
   animation: philocardia-beat-72 0.8333s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.philocardia-pacing-60 {
+.philocardia-pacing-60::after {
   animation: philocardia-beat-60 1.0000s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.philocardia-pacing-breath {
+.philocardia-pacing-breath::after {
   animation: philocardia-box-breath 16s infinite ease-in-out;
 }
 
