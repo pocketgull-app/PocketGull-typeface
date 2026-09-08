@@ -20,6 +20,7 @@ import shutil
 import sys
 from pathlib import Path
 from fontTools.ttLib import TTFont
+from fontTools.ttLib.tables._g_l_y_f import GlyphCoordinates
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 TTF_DIR = ROOT_DIR / "fonts" / "ttf"
@@ -108,6 +109,27 @@ def generate_italics():
                 for comp in glyph.components:
                     if hasattr(comp, "x") and hasattr(comp, "y"):
                         comp.x = round(comp.x + comp.y * SHEAR)
+
+        # 1b. Optical Correction for Slashed Zero (zero.slash and zero in Mono)
+        # Mechanical shear pushes the slash diagonal from 59.4° down to 52.1°, flattening it
+        # and crowding the inner counter curves. We apply an optical pitch restoration
+        # (+30 UPM on bottom points, -24 UPM on top points) to restore a crisp 56.5° angle.
+        for gname in ("zero.slash", "zero"):
+            if gname in glyf:
+                glyph = glyf[gname]
+                if glyph.numberOfContours == 3:
+                    pts, ends, flags = glyph.getCoordinates(glyf)
+                    slash_start = ends[0] + 1
+                    slash_end = ends[1]
+                    if slash_end - slash_start + 1 == 4:
+                        new_pts = list(pts)
+                        for i in range(slash_start, slash_end + 1):
+                            px, py = new_pts[i]
+                            if py < 300:
+                                new_pts[i] = (px + 30, py)
+                            else:
+                                new_pts[i] = (px - 24, py)
+                        glyph.coordinates = GlyphCoordinates(new_pts)
 
         # 2. Recalculate bounds and update metrics
         for gname in font.getGlyphOrder():
