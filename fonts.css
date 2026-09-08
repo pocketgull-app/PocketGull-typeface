@@ -634,6 +634,13 @@
   }
 }
 
+/* Ensure specimen demonstration cards and static disambiguation displays always render permanent heart clip path */
+.ismp-card .disambiguated :is(.philocardia-heart, .philocardia-j, .philocardia-excl, .philocardia-arabic-heart)::after,
+.philocardia-heart-static::after {
+  clip-path: url(#philocardiaStaticHeartClip);
+  -webkit-clip-path: url(#philocardiaStaticHeartClip);
+}
+
 .night-flight .philocardia-heart::after,
 body.night-flight .philocardia-heart::after,
 body.red-dash .philocardia-heart::after,

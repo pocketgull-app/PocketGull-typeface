@@ -24,7 +24,7 @@ PocketGull's geometry and clinical behavioral architecture are grounded in peer-
 ---
 
 ## 3. Life-Critical Clinical Safety & ISMP/FDA Medication Disambiguation
-* **Institute for Safe Medication Practices (ISMP) (2023)**: *"List of Error-Prone Abbreviations, Symbols, and Dose Designations."* Horsham (PA): ISMP. [[ISMP Guidelines](https://www.ismp.org/recommendations/error-prone-abbreviations-list)]  
+* **Institute for Safe Medication Practices (ISMP) (2023)**: *"List of Error-Prone Abbreviations, Symbols, and Dose Designations."* Horsham (PA): ISMP. [[ISMP Guidelines](https://home.ecri.org/blogs/ismp-resources)]  
   *Strict elimination of trailing zeros (5 mg not 5.0 mg), prohibition of naked decimals (0.5 mg not .5 mg), and slashed-zero disambiguation.*
 * **U.S. Food and Drug Administration (FDA) & CDER (2016)**: *"Safety Considerations for Container Labels and Carton Labeling Design to Minimize Medication Errors."* Guidance for Industry, Docket FDA-2013-D-0401. [[FDA Guidance](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/safety-considerations-container-labels-and-carton-labeling-design-minimize-medication-errors)]
 * **ANSI/AAMI HE75 (2009/R2018)**: *"Human Factors Engineering — Design of Medical Devices."* Section 18: Visual Displays and Typographic Legibility.

@@ -125,11 +125,16 @@
     })();
   </script>
 
-  <!-- Philocardia Tittle Morph Vectors (Circle to Heart) -->
+  <!-- Philocardia Tittle Morph & Static Vectors (Circle to Heart) -->
   <svg width="0" height="0" style="position: absolute; width: 0; height: 0; overflow: hidden; pointer-events: none;" aria-hidden="true" focusable="false">
     <defs>
+      <!-- Interactive Morph Clip: dynamic morphing between circle and heart -->
       <clipPath id="philocardiaMorphClip" clipPathUnits="objectBoundingBox">
-        <path id="philocardiaClipPath" d="M 0.5,0.0 C 0.776,0.0 1.0,0.224 1.0,0.5 C 1.0,0.776 0.776,1.0 0.5,1.0 C 0.224,1.0 0.0,0.776 0.0,0.5 C 0.0,0.224 0.224,0.0 0.5,0.0 Z" />
+        <path id="philocardiaClipPath" d="M 0.500,0.280 C 0.650,0.000 0.980,0.080 0.990,0.440 C 1.000,0.700 0.760,0.860 0.500,1.000 C 0.240,0.860 0.000,0.700 0.010,0.440 C 0.020,0.080 0.350,0.000 0.500,0.280 Z" />
+      </clipPath>
+      <!-- Dedicated Static Heart Clip: guarantees crisp heart rendering in specimen cards, tables & broadsides -->
+      <clipPath id="philocardiaStaticHeartClip" clipPathUnits="objectBoundingBox">
+        <path d="M 0.500,0.280 C 0.650,0.000 0.980,0.080 0.990,0.440 C 1.000,0.700 0.760,0.860 0.500,1.000 C 0.240,0.860 0.000,0.700 0.010,0.440 C 0.020,0.080 0.350,0.000 0.500,0.280 Z" />
       </clipPath>
     </defs>
   </svg>
@@ -630,11 +635,11 @@
             <div class="ismp-comparison">
               <div class="comparison-col">
                 <div class="comparison-label bad">Standard Dots</div>
-                <div class="comparison-sample" style="font-size: 1.55rem;">vital joy! injection</div>
+                <div class="comparison-sample" style="font-size: 1.35rem; line-height: 1.4; white-space: nowrap;">vital joy!<br>injection</div>
               </div>
               <div class="comparison-col">
                 <div class="comparison-label good">Heart Dotted</div>
-                <div class="comparison-sample disambiguated" style="font-size: 1.55rem;">v<span class="philocardia-heart">ı</span>tal <span class="philocardia-j">ȷ</span>oy<span class="philocardia-excl">!</span> <span class="philocardia-heart">ı</span>n<span class="philocardia-j">ȷ</span>ect<span class="philocardia-heart">ı</span>on</div>
+                <div class="comparison-sample disambiguated" style="font-size: 1.35rem; line-height: 1.4; white-space: nowrap;">v<span class="philocardia-heart">ı</span>tal <span class="philocardia-j">ȷ</span>oy<span class="philocardia-excl">!</span><br><span class="philocardia-heart">ı</span>n<span class="philocardia-j">ȷ</span>ect<span class="philocardia-heart">ı</span>on</div>
               </div>
             </div>
             <p class="ismp-desc">Replaces circular dots on lowercase <em>i</em>, descending <em>j</em>, and terminal exclamation marks <em>!</em> with optical heart tittles. Features optional 60/72 BPM parasympathetic pulse and cursor touch aura.</p>
@@ -4294,7 +4299,7 @@ Sincerely,
               <button type="button" class="doc-drill-launch-btn" data-term="ISMP Clinical Disambiguation" data-category="Patient Safety">
                 <span>🔬</span> Drill Down &amp; Learn
               </button>
-              <a href="https://www.ismp.org/recommendations/error-prone-abbreviations-list" target="_blank" rel="noopener" class="source-link-btn">
+              <a href="https://home.ecri.org/blogs/ismp-resources" target="_blank" rel="noopener" class="source-link-btn">
                 <span>🛡️</span> ISMP Guidelines
               </a>
               <a href="https://www.fda.gov/drugs/drug-safety-and-availability" target="_blank" rel="noopener" class="source-link-btn">
@@ -4324,7 +4329,7 @@ Sincerely,
               <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/safety-considerations-container-labels-and-carton-labeling-design-minimize-medication-errors" target="_blank" rel="noopener" class="source-link-btn">
                 <span>📑</span> FDA-2013-D-0401
               </a>
-              <a href="https://www.ismp.org/tools/tall-man-letters" target="_blank" rel="noopener" class="source-link-btn">
+              <a href="https://home.ecri.org/blogs/ismp-resources" target="_blank" rel="noopener" class="source-link-btn">
                 <span>🏷️</span> FDA/ISMP Tall Man
               </a>
             </div>
