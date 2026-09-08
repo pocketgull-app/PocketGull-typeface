@@ -3445,12 +3445,14 @@
       display: none !important;
     }
 
-    /* Header Nav in Essential Mode */
-    .header-nav a[data-lab="deep"] {
+    /* Header Nav in Essential Mode vs Deep Mode */
+    body.mode-essential .header-nav a[data-lab="deep"],
+    html.mode-essential .header-nav a[data-lab="deep"] {
       display: none !important;
     }
-    .mode-essential .header-nav a[data-lab="deep"] {
-      display: none !important;
+    body:not(.mode-essential) .header-nav a[data-lab="deep"],
+    html:not(.mode-essential) .header-nav a[data-lab="deep"] {
+      display: inline-flex !important;
     }
 
     .nav-unroll-pill {

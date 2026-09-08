@@ -1459,13 +1459,13 @@
       }
 
       formatBionic(text) {
-        if (!this.isBionic) return text;
         const esc = String(text)
           .replace(/&/g, '&amp;')
           .replace(/</g, '&lt;')
           .replace(/>/g, '&gt;')
           .replace(/"/g, '&quot;')
           .replace(/'/g, '&#39;');
+        if (!this.isBionic) return esc;
         return esc.split(" ").map(word => {
           if (word.length <= 3) return `<span class="bionic-anchor">${word}</span>`;
           const mid = Math.ceil(word.length * 0.45);
