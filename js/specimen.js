@@ -1150,19 +1150,19 @@ body {
 <link rel="preload" 
       href="https://font.pocketgull.app/fonts/woff2/PocketGull-Bold.woff2" 
       as="font" type="font/woff2" crossorigin 
-      integrity="sha384-mCsM9K8GdN0OVvvw7SgmM3xBf8wK5MiXOBu8l2NmLliWbNGhncJFviHbt+ldAyEG">
+      integrity="sha384-L3OZ7tkorT0H6zJG4A7OrCjEZJ+0NQel6BKgAWSHMuLK65XVHM7WFWv4lm+GstL6">
 
 <!-- PocketGull Fineliner (Clinical Body & Discharge Notes) -->
 <link rel="preload" 
       href="https://font.pocketgull.app/fonts/woff2/PocketGull-Fineliner.woff2" 
       as="font" type="font/woff2" crossorigin 
-      integrity="sha384-Zv+SO5jkLsqXlc39+XU9cszaJuKwuybeOlLIeaGmJq79rScRQnXu63fathQMGNFY">
+      integrity="sha384-H5dHFsvLEgPeH+PAbrJ6md00+kAXVCgoyzmflPkR2ifLvHkoWab/zBCMp0v7Uouw">
 
 <!-- PocketGull Mono (Fixed 600 UPM ICU Telemetry & Code) -->
 <link rel="preload" 
       href="https://font.pocketgull.app/fonts/woff2/PocketGullMono-Regular.woff2" 
       as="font" type="font/woff2" crossorigin 
-      integrity="sha384-owUFYPsY8xouw9qmbC62m+yDyQLyH8u3Y9hRO++ymo/TnKJy5wJ2hIe02n6L0pH1">`,
+      integrity="sha384-9/6V9dWJkAutMq/EhA3gkDc1liwZyPfCs+ZQKlbXOKXrGt4LIhk8xDHuEoEhQ6CP">`,
       'multilingual-css': `/* 3. Pan-Asian & Indic Multilingual Stacking */
 /* Chinese Anatomical Logographs */
 .clinical-chinese {

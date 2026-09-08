@@ -172,7 +172,7 @@ To safeguard the distinct interests of Indigenous Elders, professional typograph
 
 ### 2. For the Typographers & Type Engineers: Forensic Rigor & Algorithmic Determinism
 * **Rejection of Pixel-Autotraced Hallucinations**: Every glyph curve is derived from continuous mathematical centerline skeletons and calligraphic chisel nib physics ($w(\varphi) = \sqrt{(a \cos(\varphi - \theta))^2 + (b \sin(\varphi - \theta))^2}$), converted into cubic Bézier splines with zero self-intersections and zero duplicate nodes across 7,040 glyphs.
-* **TrueType Word-Boundary Alignment**: Enforces the Thomas Phinney forensic standard where all glyph records and `loca` offsets align to 2-byte word boundaries (`loca[i] % 2 == 0`), eliminating the silent font-dropping bugs that plague DirectWrite and W3C OpenType Sanitizer (OTS) engines.
+* **TrueType Word-Boundary Alignment**: Enforces the [Thomas Phinney](https://www.thomasphinney.com) ([Font Detective](https://fontdetective.com)) forensic standard where all glyph records and `loca` offsets align to 2-byte word boundaries (`loca[i] % 2 == 0`), eliminating the silent font-dropping bugs that plague DirectWrite and W3C OpenType Sanitizer (OTS) engines.
 * **Hermetic Pure Dart Foundry Pipeline**: Type transformation, table re-indexing, font surgical operations, and audit reporting are built natively in sound Dart 3.11 (`tool/foundry/`), providing deterministic, cross-platform builds without fragile external C-extension build chains.
 
 ### 3. For Upstream Google Fonts & The Open-Source Commons: Zero Technical Debt

@@ -90,7 +90,7 @@ To prevent cultural co-optation, maintain mathematical vector determinism, and e
 ### ✒️ For the Typographers: Mathematical Determinism & Memory Safety
 * **2-Byte Word Boundary Invariant**: DirectWrite and W3C OTS memory buffers discard fonts with odd byte offsets. Every glyph record is strictly padded to 2-byte alignment (`loca[i] % 2 == 0`).
 * **Zero Duplicate Nodes**: Bézier contours are cleaned with zero co-located control points, guaranteeing clean rasterizer scan conversion at 8K displays and 203 DPI thermal wristband printers.
-* **Thomas Phinney Forensic Audit**: 100% pass across all 16 SFNT tables with zero bad flags.
+* **[Thomas Phinney](https://www.thomasphinney.com) ([Font Detective](https://fontdetective.com)) Forensic Audit**: 100% pass across all 16 SFNT tables with zero bad flags.
 
 ### 🌐 For Google Fonts: Option 5 Upstream Delivery & Zero Debt
 * **SIL OFL 1.1 Licensed**: Free for commercial and open-source use, with zero licensing fees or restrictive royalties.

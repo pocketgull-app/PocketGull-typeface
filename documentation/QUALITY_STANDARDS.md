@@ -34,7 +34,7 @@ Every font binary (`.ttf`, `.woff2`) released in the **PocketGull** repository m
 - Smooth filleted radii approximated via cubic Bézier curves prevent pixel clipping at high zoom.
 - Clockwise outer contours; counter-clockwise inner counters.
 
-### 7. Thomas Phinney DirectWrite / ClearType Antialiasing (`gasp`)
+### 7. [Thomas Phinney](https://www.thomasphinney.com) ([Font Detective](https://fontdetective.com)) DirectWrite / ClearType Antialiasing (`gasp`)
 - Version 1 `gasp` table maps `0xFFFF` to `GASP_DOGRAY` ($0x02$) and `GASP_SYMMETRIC_SMOOTHING` ($0x04$) for subpixel antialiasing across Windows, macOS CoreText, and Linux FreeType.
 
 ---

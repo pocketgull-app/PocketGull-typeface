@@ -2089,11 +2089,25 @@
       -webkit-text-fill-color: transparent;
     }
 
+    .hero-title .highlight :is(.philocardia-heart, .iphillyg-heart) {
+      -webkit-text-fill-color: initial;
+      color: #14b8a6;
+    }
+
+    .hero-title .highlight :is(.philocardia-heart, .iphillyg-heart)::after {
+      -webkit-text-fill-color: initial;
+    }
+
     [data-theme="pbm"] .hero-title .highlight {
       background: linear-gradient(135deg, #ff4d4d, #ff8533);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
+    }
+
+    [data-theme="pbm"] .hero-title .highlight :is(.philocardia-heart, .iphillyg-heart) {
+      -webkit-text-fill-color: initial;
+      color: #ff4d4d;
     }
 
     .hero-subtitle {

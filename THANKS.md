@@ -67,4 +67,14 @@ We extend our heartfelt gratitude and respect to the indigenous language teacher
 
 ---
 
+## 🔍 Forensic Typography & Type Engineering Masters
+
+### 🕵️ Thomas Phinney — The Font Detective
+We extend our profound gratitude to **[Thomas Phinney](https://www.thomasphinney.com)** ([The Font Detective](https://fontdetective.com)), former Adobe type program manager, former CEO of FontLab, and world-renowned forensic font detective.
+
+His pioneering advocacy for OpenType mathematical integrity, rigorous 2-byte TrueType word boundary alignment (`loca[i] % 2 == 0`), subpixel `gasp` rendering standards, and meticulous font forensics has directly shaped PocketGull's memory-safe foundry architecture (`tool/foundry/phinney_auditor.dart`). PocketGull's zero-drop reliability across Windows DirectWrite, Apple CoreText, and Chromium OTS stands as a direct tribute to his engineering principles.
+
+
+---
+
 *“To see clearly is poetry, prophecy, and religion, all in one.”* — John Ruskin

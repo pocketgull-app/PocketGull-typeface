@@ -524,8 +524,10 @@
 .philocardia-arabic-heart {
   display: inline-block;
   position: relative;
-  line-height: inherit;
+  line-height: 1;
+  vertical-align: baseline;
   font-family: inherit;
+  letter-spacing: normal;
   --heart-skew: 0deg;
   --heart-offset-x: 0em;
 }
@@ -541,7 +543,7 @@
 ) :is(.philocardia-heart, .iphillyg-heart),
 :is(.philocardia-heart, .iphillyg-heart):is([style*="italic"], .italic) {
   --heart-skew: -10.5deg;
-  --heart-offset-x: 0.09em;
+  --heart-offset-x: 0.08em;
 }
 
 .philocardia-heart::after,
@@ -554,6 +556,7 @@
   height: 0.12em; /* Scaled precisely to original tittle height: 112-147 UPM */
   transform: translateX(calc(-50% + var(--heart-offset-x, 0em))) skewX(var(--heart-skew, 0deg)) scale(var(--aura-scale, 1.0));
   background-color: var(--aura-color, var(--teal-accent, currentColor));
+  -webkit-text-fill-color: initial;
   pointer-events: none;
   clip-path: url(#philocardiaMorphClip);
   -webkit-clip-path: url(#philocardiaMorphClip);
@@ -565,8 +568,10 @@
 .philocardia-j {
   display: inline-block;
   position: relative;
-  line-height: inherit;
+  line-height: 1;
+  vertical-align: baseline;
   font-family: inherit;
+  letter-spacing: normal;
 }
 
 .philocardia-j::after {
@@ -578,6 +583,7 @@
   height: 0.12em;
   transform: translateX(calc(-50% + var(--heart-offset-x, 0em))) skewX(var(--heart-skew, 0deg)) scale(var(--aura-scale, 1.0));
   background-color: var(--aura-color, var(--teal-accent, currentColor));
+  -webkit-text-fill-color: initial;
   pointer-events: none;
   clip-path: url(#philocardiaMorphClip);
   -webkit-clip-path: url(#philocardiaMorphClip);
@@ -589,8 +595,10 @@
 .philocardia-excl {
   display: inline-block;
   position: relative;
-  line-height: inherit;
+  line-height: 1;
+  vertical-align: baseline;
   font-family: inherit;
+  letter-spacing: normal;
 }
 
 .philocardia-excl::after {
@@ -602,6 +610,7 @@
   height: 0.135em;
   transform: translateX(-50%) scale(var(--aura-scale, 1.0));
   background-color: var(--aura-color, var(--teal-accent, currentColor));
+  -webkit-text-fill-color: initial;
   pointer-events: none;
   clip-path: url(#philocardiaMorphClip);
   -webkit-clip-path: url(#philocardiaMorphClip);
@@ -619,6 +628,7 @@
   height: 0.16em;
   transform: translateX(50%) rotate(8deg) scale(var(--aura-scale, 1.0));
   background-color: var(--aura-color, var(--teal-accent, currentColor));
+  -webkit-text-fill-color: initial;
   pointer-events: none;
   clip-path: url(#philocardiaMorphClip);
   -webkit-clip-path: url(#philocardiaMorphClip);
