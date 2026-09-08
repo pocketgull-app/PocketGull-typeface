@@ -626,30 +626,36 @@
         if (romanSample) {
           romanSample.style.fontFamily = "'PocketGull Bold', 'PocketGull', sans-serif";
           romanSample.style.fontWeight = '700';
+          romanSample.style.fontStyle = 'normal';
         }
         if (italicSample) {
           italicSample.style.fontFamily = "'PocketGull Bold Italic', 'PocketGull', sans-serif";
           italicSample.style.fontWeight = '700';
+          italicSample.style.fontStyle = 'italic';
         }
       } else if (weight === 'mono') {
         btnWMono?.classList.add('active');
         if (romanSample) {
           romanSample.style.fontFamily = "'PocketGull Mono', monospace";
           romanSample.style.fontWeight = '500';
+          romanSample.style.fontStyle = 'normal';
         }
         if (italicSample) {
           italicSample.style.fontFamily = "'PocketGull Mono', monospace";
           italicSample.style.fontWeight = '500';
+          italicSample.style.fontStyle = 'italic';
         }
       } else {
         btnWFineliner?.classList.add('active');
         if (romanSample) {
           romanSample.style.fontFamily = "'PocketGull Fineliner', 'PocketGull', sans-serif";
           romanSample.style.fontWeight = '400';
+          romanSample.style.fontStyle = 'normal';
         }
         if (italicSample) {
           italicSample.style.fontFamily = "'PocketGull Italic', 'PocketGull', sans-serif";
           italicSample.style.fontWeight = '400';
+          italicSample.style.fontStyle = 'italic';
         }
       }
     }

@@ -525,6 +525,22 @@
   position: relative;
   line-height: inherit;
   font-family: inherit;
+  --heart-skew: 0deg;
+  --heart-offset-x: 0em;
+}
+
+/* Dynamic Italic Master Tilt (-10.5° Slant & Optical Stem Tracking) */
+:is(
+  em, i, [style*="font-style: italic"], [style*="font-style:italic"],
+  [style*="font-family: 'PocketGull Italic'"], [style*="font-family:'PocketGull Italic'"],
+  [style*="font-family: 'PocketGull Bold Italic'"], [style*="font-family:'PocketGull Bold Italic'"],
+  .font-italic, .italic,
+  #italicSampleText, #italicPhilocardiaDemo,
+  [data-style="italic"]
+) :is(.philocardia-heart, .iphillyg-heart),
+:is(.philocardia-heart, .iphillyg-heart):is([style*="italic"], .italic) {
+  --heart-skew: -10.5deg;
+  --heart-offset-x: 0.09em;
 }
 
 .philocardia-heart::after,
@@ -533,7 +549,7 @@
   position: absolute;
   top: -0.18em;
   left: 50%;
-  transform: translateX(-50%) scale(var(--aura-scale, 0.68));
+  transform: translateX(calc(-50% + var(--heart-offset-x, 0em))) skewX(var(--heart-skew, 0deg)) scale(var(--aura-scale, 0.68));
   font-size: 0.72em;
   line-height: 1;
   color: var(--aura-color, var(--teal-accent, currentColor));
@@ -554,7 +570,7 @@ body.red-dash .iphillyg-heart::after {
 
 .philocardia-heart:hover::after,
 .iphillyg-heart:hover::after {
-  transform: translateX(-50%) scale(0.95);
+  transform: translateX(calc(-50% + var(--heart-offset-x, 0em))) skewX(var(--heart-skew, 0deg)) scale(0.95);
   color: #f43f5e;
   filter: drop-shadow(0 0 6px rgba(244, 63, 94, 0.7));
 }
