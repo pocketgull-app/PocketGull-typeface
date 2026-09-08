@@ -503,7 +503,7 @@
           const factor = 1 - (dist / 200);
           if (factor > maxFactor) maxFactor = factor;
 
-          const scale = 0.85 + (0.45 * factor); // Scale from 0.85 up to 1.30x
+          const scale = 1.00 + (0.15 * factor); // Subtle optical scaling from 1.00x up to 1.15x max
           const glow = Math.round(14 * factor);
           const color = factor > 0.55 ? '#fb7185' : (factor > 0.2 ? '#2dd4bf' : 'currentColor');
           heart.style.setProperty('--aura-scale', scale.toFixed(2));

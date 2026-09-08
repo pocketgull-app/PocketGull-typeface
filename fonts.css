@@ -548,10 +548,10 @@
 .iphillyg-heart::after {
   content: '';
   position: absolute;
-  top: -0.15em;
+  bottom: 0.625em; /* Exactly matching original tittle baseline: y=625 UPM (stem top y=536, gap=89 UPM) */
   left: 50%;
-  width: 0.32em;
-  height: 0.32em;
+  width: 0.12em; /* Scaled precisely to original tittle width: 103-164 UPM */
+  height: 0.12em; /* Scaled precisely to original tittle height: 112-147 UPM */
   transform: translateX(calc(-50% + var(--heart-offset-x, 0em))) skewX(var(--heart-skew, 0deg)) scale(var(--aura-scale, 1.0));
   background-color: var(--aura-color, var(--teal-accent, currentColor));
   pointer-events: none;
@@ -572,11 +572,11 @@
 .philocardia-j::after {
   content: '';
   position: absolute;
-  top: -0.15em;
-  left: 64%; /* Balanced over right-aligned stem of descending j */
-  width: 0.32em;
-  height: 0.32em;
-  transform: translateX(-50%) scale(var(--aura-scale, 1.0));
+  bottom: 0.625em; /* Exactly matches vertical height of i tittle at y=625 UPM */
+  left: 50%; /* Exactly centered on the upper vertical stem */
+  width: 0.12em;
+  height: 0.12em;
+  transform: translateX(calc(-50% + var(--heart-offset-x, 0em))) skewX(var(--heart-skew, 0deg)) scale(var(--aura-scale, 1.0));
   background-color: var(--aura-color, var(--teal-accent, currentColor));
   pointer-events: none;
   clip-path: url(#philocardiaMorphClip);
@@ -596,10 +596,10 @@
 .philocardia-excl::after {
   content: '';
   position: absolute;
-  bottom: 0.04em; /* Sits precisely at baseline terminal */
+  bottom: -0.014em; /* Sits precisely at baseline terminal dot: y=-14 UPM to y=121 UPM */
   left: 50%;
-  width: 0.30em;
-  height: 0.30em;
+  width: 0.135em; /* Matches original exclamation period dot diameter */
+  height: 0.135em;
   transform: translateX(-50%) scale(var(--aura-scale, 1.0));
   background-color: var(--aura-color, var(--teal-accent, currentColor));
   pointer-events: none;
@@ -613,10 +613,10 @@
 .philocardia-arabic-heart::after {
   content: '';
   position: absolute;
-  top: -0.26em;
+  top: -0.04em; /* Calibrated down from -0.26em to sit comfortably above letterhead */
   right: 32%;
-  width: 0.34em;
-  height: 0.34em;
+  width: 0.16em; /* Balanced Arabic nuqta size */
+  height: 0.16em;
   transform: translateX(50%) rotate(8deg) scale(var(--aura-scale, 1.0));
   background-color: var(--aura-color, var(--teal-accent, currentColor));
   pointer-events: none;
@@ -646,9 +646,9 @@ body.red-dash .iphillyg-heart::after {
 
 .philocardia-heart:hover::after,
 .iphillyg-heart:hover::after {
-  transform: translateX(calc(-50% + var(--heart-offset-x, 0em))) skewX(var(--heart-skew, 0deg)) scale(1.28);
+  transform: translateX(calc(-50% + var(--heart-offset-x, 0em))) skewX(var(--heart-skew, 0deg)) scale(1.15);
   background-color: #f43f5e;
-  filter: drop-shadow(0 0 8px rgba(244, 63, 94, 0.75));
+  filter: drop-shadow(0 0 6px rgba(244, 63, 94, 0.65));
 }
 
 /* Physiological S1/S2 Cardiac Pulse Animation (72 BPM = 0.833s period) */
