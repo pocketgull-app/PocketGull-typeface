@@ -74,7 +74,8 @@
     }
 
     .brand-badge {
-      font-family: var(--mono-stack);
+      font-family: var(--font-stack);
+      font-weight: 700;
       font-size: 0.75rem;
       background: rgba(45, 212, 191, 0.15);
       color: #2dd4bf;
@@ -92,7 +93,8 @@
     }
 
     .btn {
-      font-family: var(--mono-stack);
+      font-family: var(--font-stack);
+      font-weight: 700;
       font-size: 0.78rem;
       padding: 0.45rem 0.85rem;
       border-radius: 6px;
@@ -188,7 +190,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
-      font-family: var(--mono-stack);
+      font-family: var(--font-stack);
       font-size: 0.76rem;
       flex-wrap: wrap;
       position: sticky;
@@ -222,7 +224,8 @@
     }
 
     .btn-micro {
-      font-family: var(--mono-stack);
+      font-family: var(--font-stack);
+      font-weight: 600;
       font-size: 0.72rem;
       padding: 0.3rem 0.6rem;
       border-radius: 4px;
@@ -255,7 +258,8 @@
       background: #040813;
       border: 1px solid rgba(56, 189, 248, 0.35);
       color: #7dd3fc;
-      font-family: var(--mono-stack);
+      font-family: var(--font-stack);
+      font-weight: 600;
       font-size: 0.72rem;
       padding: 0.28rem 0.5rem;
       border-radius: 4px;
@@ -271,7 +275,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
-      font-family: var(--mono-stack);
+      font-family: var(--font-stack);
       font-size: 0.76rem;
       flex-wrap: wrap;
       position: sticky;
@@ -422,9 +426,10 @@
     }
 
     .act-tag {
-      font-family: var(--mono-stack);
+      font-family: var(--font-stack);
+      font-weight: 700;
       font-size: 0.82rem;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: #cbd5e1;
       margin-bottom: 1.25rem;
@@ -447,7 +452,6 @@
       overflow: visible;
       box-sizing: border-box;
       font-variation-settings: 'wght' var(--breath-weight);
-      font-feature-settings: "cv08" 1, "ss02" 1, "cv05" 1, "cv11" 1;
       background: linear-gradient(
         135deg,
         oklch(0.86 0.18 var(--hue-flow)) 0%,
@@ -570,9 +574,10 @@
     }
 
     .breath-phase-label {
-      font-family: var(--mono-stack);
+      font-family: var(--font-stack);
+      font-weight: 600;
       font-size: 0.82rem;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.08em;
       color: #cbd5e1;
     }
 
@@ -584,7 +589,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 1.25rem;
-      font-family: var(--mono-stack);
+      font-family: var(--font-stack);
       font-size: 0.82rem;
       position: relative;
       z-index: 10;
@@ -604,12 +609,15 @@
       color: #94a3b8;
       font-size: 0.72rem;
       letter-spacing: 0.05em;
-      font-weight: 500;
+      font-weight: 600;
+      text-transform: uppercase;
     }
 
     .telemetry-value {
       color: #38bdf8;
       font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" 1;
     }
 
     /* Timeline Scrubber */
@@ -819,7 +827,7 @@
 
   <!-- Custom Text Drawer -->
   <div class="custom-drawer" id="customDrawer" role="dialog" aria-modal="true" aria-label="Custom Typographic Input Modal">
-    <h2 style="margin-bottom: 0.5rem; font-family: var(--mono-stack); font-size: 0.85rem; color: #38bdf8;">CUSTOM TYPOGRAPHIC CINEMA INPUT</h2>
+    <h2 style="margin-bottom: 0.5rem; font-family: var(--font-stack); font-weight: 700; letter-spacing: 0.04em; font-size: 0.85rem; color: #38bdf8;">CUSTOM TYPOGRAPHIC CINEMA INPUT</h2>
     <label for="inputCustom" class="sr-only">Custom typographic projection text</label>
     <input type="text" id="inputCustom" aria-label="Custom typographic projection text" placeholder="Type clinical dosage, Inuktitut, or restorative poetry..." value="ᐊᓂᕐᓂᖅ · Sacred Breath &amp; Gnomon Volumetric Light.">
     <div style="display: flex; justify-content: flex-end; gap: 0.5rem;">
@@ -830,7 +838,7 @@
 
   <!-- Boris FX & Clinical Science Evidence Modal -->
   <div class="custom-drawer" id="scienceDrawer" role="dialog" aria-modal="true" aria-label="Boris FX and Clinical Science Evidence Dossier" style="max-width: 780px;">
-    <h2 style="margin-bottom: 0.75rem; font-family: var(--mono-stack); font-size: 0.95rem; color: #38bdf8; display: flex; justify-content: space-between; align-items: center;">
+    <h2 style="margin-bottom: 0.75rem; font-family: var(--font-stack); font-weight: 700; letter-spacing: 0.04em; font-size: 0.95rem; color: #38bdf8; display: flex; justify-content: space-between; align-items: center;">
       <span>⚕ BORIS FX &amp; NEURO-OPHTHALMOLOGY CLINICAL DOSSIER</span>
       <button class="btn-micro" onclick="toggleScienceDrawer()">✕ Close</button>
     </h2>

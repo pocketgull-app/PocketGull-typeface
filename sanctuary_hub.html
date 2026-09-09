@@ -41,7 +41,6 @@
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
-      font-feature-settings: "cv08" 1, "cv05" 1, "ss02" 1, "cv11" 1;
     }
 
     /* Top Hub Nav */
@@ -91,14 +90,16 @@
     }
 
     .hub-badge {
-      font-family: var(--mono-stack);
+      font-family: var(--sans-stack);
+      font-weight: 700;
       font-size: 0.72rem;
       padding: 0.2rem 0.55rem;
       border-radius: 4px;
       background: rgba(45, 212, 191, 0.15);
       border: 1px solid var(--border-accent);
       color: var(--teal-accent);
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
     }
 
     .nav-links {
@@ -108,8 +109,10 @@
     }
 
     .btn {
-      font-family: var(--mono-stack);
-      font-size: 0.78rem;
+      font-family: var(--sans-stack);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: -0.01em;
       padding: 0.45rem 0.9rem;
       border-radius: 6px;
       border: 1px solid var(--border-subtle);
@@ -143,7 +146,8 @@
     }
 
     .hero-pill {
-      font-family: var(--mono-stack);
+      font-family: var(--sans-stack);
+      font-weight: 700;
       font-size: 0.75rem;
       padding: 0.3rem 0.85rem;
       border-radius: 20px;
@@ -222,7 +226,8 @@
     }
 
     .card-badge {
-      font-family: var(--mono-stack);
+      font-family: var(--sans-stack);
+      font-weight: 700;
       font-size: 0.68rem;
       padding: 0.2rem 0.5rem;
       border-radius: 4px;
@@ -392,7 +397,8 @@
       background: #080e1a;
       border: 1px solid var(--border-accent);
       color: var(--text-primary);
-      font-family: var(--mono-stack);
+      font-family: var(--sans-stack);
+      font-weight: 600;
       font-size: 0.85rem;
       padding: 0.55rem 1rem;
       border-radius: 6px;
@@ -686,7 +692,7 @@
       </div>
 
       <div class="clan-selector-group">
-        <label for="hubClanSelect" style="font-family: var(--mono-stack); font-size: 0.75rem; color: var(--text-muted);">
+        <label for="hubClanSelect" style="font-family: var(--sans-stack); font-weight: 700; font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.04em;">
           ACTIVE ROLE:
         </label>
         <select id="hubClanSelect" class="clan-select" aria-label="Select Expedition Guild Role">
@@ -710,7 +716,7 @@
           All traditional ecological medicine (TEK), plant wisdom, and sovereign geographic markers embedded in PocketGull transit applications are shared under respectful open-source stewardship with tribal elders. All apps operate 100% offline with zero telemetry tracking.
         </p>
       </div>
-      <div style="font-family: var(--mono-stack); font-size: 0.72rem; color: var(--gold-leaf); border-left: 2px solid var(--gold-leaf); padding-left: 0.75rem;">
+      <div style="font-family: var(--sans-stack); font-weight: 700; letter-spacing: 0.06em; font-size: 0.72rem; color: var(--gold-leaf); border-left: 2px solid var(--gold-leaf); padding-left: 0.75rem;">
         COLLECTIVE BENEFIT · AUTHORITY TO CONTROL · RESPONSIBILITY · ETHICS
       </div>
     </div>
