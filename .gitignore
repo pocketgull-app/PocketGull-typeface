@@ -21,6 +21,7 @@ desktop.ini
 # Build & Intermediate Compilation Files
 build/
 dist/
+distribution/release/
 instance_ufo/
 master_ufo/
 master_ttf/

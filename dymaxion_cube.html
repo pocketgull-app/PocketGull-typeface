@@ -193,9 +193,22 @@
       transition: opacity 0.8s ease, filter 0.8s ease, background-image 0.8s ease;
     }
 
-    body.forest-env-active .geodesic-sky {
-      opacity: 0.85;
-      filter: blur(1.2px) brightness(0.62) saturate(1.25);
+    body.forest-env-active .geodesic-sky, body.env-forest .geodesic-sky {
+      background-image: url('assets/photography/tualatin_hills_nature_park.webp');
+      opacity: 0.82;
+      filter: blur(1.5px) brightness(0.58) saturate(1.3);
+    }
+
+    body.env-clouds .geodesic-sky {
+      background-image: url('assets/photography/atmospheric_clouds_sky.webp');
+      opacity: 0.82;
+      filter: blur(1px) brightness(0.65) saturate(1.2);
+    }
+
+    body.env-river .geodesic-sky {
+      background-image: url('assets/photography/willamette_river_sanctuary.webp');
+      opacity: 0.72;
+      filter: blur(2px) brightness(0.58) saturate(1.25);
     }
 
     body.env-pebble .geodesic-sky {
@@ -1903,13 +1916,24 @@
 
       // --- Environmental Bioregional Lens (Phil Gear Photography) ---
       const btnForestBackdrop = document.getElementById('btnForestBackdrop');
-      let isForestActive = false;
+      const forestLabel = document.getElementById('forestLabel');
+      const ENVIRONMENTS = [
+        { id: 'env-river', label: 'River Lens', icon: '🌊', bell: 432 },
+        { id: 'env-forest', label: 'Forest Lens', icon: '🌲', bell: 528 },
+        { id: 'env-clouds', label: 'Sky Lens', icon: '☁️', bell: 639 }
+      ];
+      let envIdx = 0;
       if (btnForestBackdrop) {
         btnForestBackdrop.addEventListener('click', () => {
-          isForestActive = !isForestActive;
-          document.body.classList.toggle('forest-env-active', isForestActive);
-          btnForestBackdrop.classList.toggle('active', isForestActive);
-          playBell(isForestActive ? 396 : 432, 0.8);
+          document.body.classList.remove('env-river', 'env-forest', 'env-clouds', 'forest-env-active');
+          envIdx = (envIdx + 1) % ENVIRONMENTS.length;
+          const currentEnv = ENVIRONMENTS[envIdx];
+          document.body.classList.add(currentEnv.id);
+          btnForestBackdrop.classList.toggle('active', envIdx > 0);
+          if (forestLabel) forestLabel.textContent = currentEnv.label;
+          const iconSpan = btnForestBackdrop.querySelector('span:first-child');
+          if (iconSpan) iconSpan.textContent = currentEnv.icon;
+          playBell(currentEnv.bell, 0.8);
           triggerHaptic(20);
         });
       }
@@ -1931,33 +1955,33 @@
       const PHOTO_VARIETIES = {
         blossom: {
           src: 'assets/photography/south_waterfront_iris_macro.webp',
-          loc: '🌸 S. Waterfront Iris Macro',
-          opt: '24 MP Optical • 1980×1320 Petal Cells'
+          loc: '🌸 S. Waterfront Botanical Garden',
+          opt: '24 MP Optical Macro • 1980×1320 Petal Cell Wall'
         },
         droplet: {
           src: 'assets/photography/pebble_stream_shoreline.webp',
           loc: '💧 Marsh Park Pebble Stream',
-          opt: 'High-Speed Kinetic Spray • 1280×854'
+          opt: 'High-Speed Kinetic Spray • 1280×854 Water Droplets'
         },
         heart: {
           src: 'assets/photography/willamette_river_sanctuary.webp',
           loc: '💖 Willamette River Sanctuary',
-          opt: 'Golden Hour Reflections • 1280×1707'
+          opt: 'Golden Hour Water Reflections • 1280×1707 River Stump'
         },
         dot: {
-          src: 'assets/photography/pebble_stream_shoreline.webp',
-          loc: '⚪ River Stone Sloan Optotype',
-          opt: '5:1 Acuity Roundness • 1280×854'
+          src: 'assets/photography/skidaway_salt_marsh.webp',
+          loc: '⚪ Skidaway Maritime Marsh',
+          opt: 'Sloan 5:1 Acuity Horizon • 1280×853 Tidal Shore'
         },
         nuqta: {
-          src: 'assets/photography/willamette_river_sanctuary.webp',
-          loc: '💎 Reed-Pen Rhombus Nuqṭa',
-          opt: 'Water Mirror Surface • 1280×1707'
+          src: 'assets/photography/laurelhurst_park_sanctuary.webp',
+          loc: '💎 Laurelhurst Historic Lake',
+          opt: 'Calligraphic Water Reflections • 1280×853 Weeping Willows'
         },
         star: {
-          src: 'assets/photography/south_waterfront_iris_macro.webp',
-          loc: '✨ Celestial Flower Astrolabe',
-          opt: 'Petal Micro-Radiance • 1980×1320'
+          src: 'assets/photography/atmospheric_clouds_sky.webp',
+          loc: '✨ High-Altitude Cirrus Stratum',
+          opt: 'Celestial Astrolabe Formation • 1280×853 Solar Radiance'
         }
       };
 
