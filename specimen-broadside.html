@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PocketGull Typeface Superfamily Master Type Specimen Broadside: Comprehensive foundry showcase featuring Louise Sloan optotypes, ISMP disambiguation, Braille, and variable font metrics.">
   <title>PocketGull Typeface Superfamily — Master Type Specimen Broadside</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="fonts.css?v=3.1.0">
+  <link rel="stylesheet" href="fonts.css?v=3.3.0">
   <style>
     :root {
       --bg: #070b12;
@@ -146,7 +147,7 @@
     .section-title {
       font-size: 28px;
       font-weight: 700;
-      margin-bottom: 24px;
+      margin: 0 0 24px 0;
       display: flex;
       justify-content: space-between;
       align-items: baseline;
@@ -299,10 +300,9 @@
     }
 
     .ismp-standard {
-      color: var(--rose);
+      color: #f87171;
       font-family: sans-serif;
       text-decoration: line-through;
-      opacity: 0.7;
     }
 
     .ismp-safe {
@@ -423,7 +423,7 @@
       padding: 16px;
     }
 
-    .pillar-item h4 {
+    .pillar-item h3 {
       font-size: 13px;
       color: var(--cyan);
       margin-bottom: 4px;
@@ -630,7 +630,7 @@
 </head>
 <body>
 
-  <div class="container">
+  <main class="container" id="mainContent" role="main">
 
     <!-- 1. Broadside Master Header -->
     <header class="header-broadside">
@@ -653,10 +653,10 @@
     <!-- 2. Superfamily Hierarchy Waterfall -->
     <section class="specimen-card">
       <div class="section-label">Superfamily Architecture & Masters</div>
-      <div class="section-title">
+      <h2 class="section-title">
         <span>The Five Production Cuts & Styles</span>
         <small>1000 UPM Em-Square • 600 UPM Fixed Monospace</small>
-      </div>
+      </h2>
 
       <div class="hierarchy-grid">
         <!-- 1. Chiseltip 900 -->
@@ -731,10 +731,10 @@
     <!-- 3. Variable Font Continuous Axis Interpolation (The Singer 16-Axis Billet Console) -->
     <section class="specimen-card" style="border-color: rgba(56, 189, 248, 0.4); background: radial-gradient(circle at top right, rgba(14, 165, 233, 0.08) 0%, rgba(9, 13, 22, 0.98) 100%);">
       <div class="section-label" style="color: #38bdf8;">Variable Font Engineering &amp; Bespoke Chassis Tuning</div>
-      <div class="section-title">
+      <h2 class="section-title">
         <span>The Singer 16-Axis Billet Console</span>
         <small>16-Axis Continuous Interpolation (fvar / gvar / HVAR / STAT) &bull; Zero Compromise</small>
-      </div>
+      </h2>
 
       <!-- Singer Precision Presets Ribbon -->
       <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px;">
@@ -755,32 +755,32 @@
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 20px;">
           <div>
-            <label style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
+            <label for="slider-wght" style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
               <span>Weight (wght: 400 ↔ 900)</span>
               <span id="val-wght" style="font-family: 'PocketGull Mono', monospace; color: #38bdf8; font-weight: 700;">600</span>
             </label>
-            <input type="range" id="slider-wght" min="400" max="900" step="10" value="600" style="width: 100%; accent-color: #38bdf8; cursor: pointer;">
+            <input type="range" id="slider-wght" aria-label="Weight axis slider (wght)" min="400" max="900" step="10" value="600" style="width: 100%; accent-color: #38bdf8; cursor: pointer;">
           </div>
           <div>
-            <label style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
+            <label for="slider-wdth" style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
               <span>Width (wdth: 75% ↔ 100%)</span>
               <span id="val-wdth" style="font-family: 'PocketGull Mono', monospace; color: #38bdf8; font-weight: 700;">100%</span>
             </label>
-            <input type="range" id="slider-wdth" min="75" max="100" step="1" value="100" style="width: 100%; accent-color: #38bdf8; cursor: pointer;">
+            <input type="range" id="slider-wdth" aria-label="Width axis slider (wdth)" min="75" max="100" step="1" value="100" style="width: 100%; accent-color: #38bdf8; cursor: pointer;">
           </div>
           <div>
-            <label style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
+            <label for="slider-slnt" style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
               <span>Slant (slnt: -10.5° ↔ 0.0°)</span>
               <span id="val-slnt" style="font-family: 'PocketGull Mono', monospace; color: #38bdf8; font-weight: 700;">0.0°</span>
             </label>
-            <input type="range" id="slider-slnt" min="-10.5" max="0" step="0.5" value="0" style="width: 100%; accent-color: #38bdf8; cursor: pointer;">
+            <input type="range" id="slider-slnt" aria-label="Slant axis slider (slnt)" min="-10.5" max="0" step="0.5" value="0" style="width: 100%; accent-color: #38bdf8; cursor: pointer;">
           </div>
           <div>
-            <label style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
+            <label for="slider-opsz" style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
               <span>Optical Size (opsz: 14 ↔ 72 pt)</span>
               <span id="val-opsz" style="font-family: 'PocketGull Mono', monospace; color: #38bdf8; font-weight: 700;">36 pt</span>
             </label>
-            <input type="range" id="slider-opsz" min="14" max="72" step="1" value="36" style="width: 100%; accent-color: #38bdf8; cursor: pointer;">
+            <input type="range" id="slider-opsz" aria-label="Optical size axis slider (opsz)" min="14" max="72" step="1" value="36" style="width: 100%; accent-color: #38bdf8; cursor: pointer;">
           </div>
         </div>
 
@@ -791,46 +791,46 @@
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 20px;">
           <div>
-            <label style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
+            <label for="slider-thrm" style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
               <span>Thermal Warmth (THRM)</span>
               <span id="val-thrm" style="font-family: 'PocketGull Mono', monospace; color: #2dd4bf; font-weight: 700;">0.0</span>
             </label>
-            <input type="range" id="slider-thrm" min="0" max="1" step="0.1" value="0" style="width: 100%; accent-color: #2dd4bf; cursor: pointer;">
+            <input type="range" id="slider-thrm" aria-label="Thermal warmth axis slider (THRM)" min="0" max="1" step="0.1" value="0" style="width: 100%; accent-color: #2dd4bf; cursor: pointer;">
           </div>
           <div>
-            <label style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
+            <label for="slider-aptr" style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
               <span>5:1 Aperture (APTR)</span>
               <span id="val-aptr" style="font-family: 'PocketGull Mono', monospace; color: #2dd4bf; font-weight: 700;">0.0</span>
             </label>
-            <input type="range" id="slider-aptr" min="0" max="1" step="0.1" value="0" style="width: 100%; accent-color: #2dd4bf; cursor: pointer;">
+            <input type="range" id="slider-aptr" aria-label="Louise Sloan 5:1 aperture axis slider (APTR)" min="0" max="1" step="0.1" value="0" style="width: 100%; accent-color: #2dd4bf; cursor: pointer;">
           </div>
           <div>
-            <label style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
+            <label for="slider-smrn" style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
               <span>Sanctuary Calm (SMRN)</span>
               <span id="val-smrn" style="font-family: 'PocketGull Mono', monospace; color: #2dd4bf; font-weight: 700;">0.0</span>
             </label>
-            <input type="range" id="slider-smrn" min="0" max="1" step="0.1" value="0" style="width: 100%; accent-color: #2dd4bf; cursor: pointer;">
+            <input type="range" id="slider-smrn" aria-label="Sanctuary calm axis slider (SMRN)" min="0" max="1" step="0.1" value="0" style="width: 100%; accent-color: #2dd4bf; cursor: pointer;">
           </div>
           <div>
-            <label style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
+            <label for="slider-trma" style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
               <span>Trauma Alert (TRMA)</span>
               <span id="val-trma" style="font-family: 'PocketGull Mono', monospace; color: #2dd4bf; font-weight: 700;">0.0</span>
             </label>
-            <input type="range" id="slider-trma" min="0" max="1" step="0.1" value="0" style="width: 100%; accent-color: #2dd4bf; cursor: pointer;">
+            <input type="range" id="slider-trma" aria-label="Trauma alert axis slider (TRMA)" min="0" max="1" step="0.1" value="0" style="width: 100%; accent-color: #2dd4bf; cursor: pointer;">
           </div>
           <div>
-            <label style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
+            <label for="slider-bion" style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
               <span>Bionic Reading (BION)</span>
               <span id="val-bion" style="font-family: 'PocketGull Mono', monospace; color: #2dd4bf; font-weight: 700;">0.0</span>
             </label>
-            <input type="range" id="slider-bion" min="0" max="1" step="0.1" value="0" style="width: 100%; accent-color: #2dd4bf; cursor: pointer;">
+            <input type="range" id="slider-bion" aria-label="Bionic reading axis slider (BION)" min="0" max="1" step="0.1" value="0" style="width: 100%; accent-color: #2dd4bf; cursor: pointer;">
           </div>
           <div>
-            <label style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
+            <label for="slider-boum" style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
               <span>Bouma Spacing (BOUM)</span>
               <span id="val-boum" style="font-family: 'PocketGull Mono', monospace; color: #2dd4bf; font-weight: 700;">0.0</span>
             </label>
-            <input type="range" id="slider-boum" min="0" max="1" step="0.1" value="0" style="width: 100%; accent-color: #2dd4bf; cursor: pointer;">
+            <input type="range" id="slider-boum" aria-label="Herman Bouma spacing axis slider (BOUM)" min="0" max="1" step="0.1" value="0" style="width: 100%; accent-color: #2dd4bf; cursor: pointer;">
           </div>
         </div>
 
@@ -841,39 +841,39 @@
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;">
           <div>
-            <label style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
+            <label for="slider-chis" style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
               <span>Chisel Angle (CHIS: 0° ↔ 45°)</span>
               <span id="val-chis" style="font-family: 'PocketGull Mono', monospace; color: #c084fc; font-weight: 700;">0°</span>
             </label>
-            <input type="range" id="slider-chis" min="0" max="45" step="1" value="0" style="width: 100%; accent-color: #c084fc; cursor: pointer;">
+            <input type="range" id="slider-chis" aria-label="Chisel angle axis slider (CHIS)" min="0" max="45" step="1" value="0" style="width: 100%; accent-color: #c084fc; cursor: pointer;">
           </div>
           <div>
-            <label style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
+            <label for="slider-nuqt" style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
               <span>Nuqṭa Angle (NUQT)</span>
               <span id="val-nuqt" style="font-family: 'PocketGull Mono', monospace; color: #c084fc; font-weight: 700;">0.0</span>
             </label>
-            <input type="range" id="slider-nuqt" min="0" max="1" step="0.1" value="0" style="width: 100%; accent-color: #c084fc; cursor: pointer;">
+            <input type="range" id="slider-nuqt" aria-label="Nuqta angle axis slider (NUQT)" min="0" max="1" step="0.1" value="0" style="width: 100%; accent-color: #c084fc; cursor: pointer;">
           </div>
           <div>
-            <label style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
+            <label for="slider-inuk" style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
               <span>Inuktitut Lock (INUK)</span>
               <span id="val-inuk" style="font-family: 'PocketGull Mono', monospace; color: #c084fc; font-weight: 700;">0.0</span>
             </label>
-            <input type="range" id="slider-inuk" min="0" max="1" step="0.1" value="0" style="width: 100%; accent-color: #c084fc; cursor: pointer;">
+            <input type="range" id="slider-inuk" aria-label="Inuktitut rotational lock axis slider (INUK)" min="0" max="1" step="0.1" value="0" style="width: 100%; accent-color: #c084fc; cursor: pointer;">
           </div>
           <div>
-            <label style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
+            <label for="slider-chin" style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
               <span>Chinuk Loop (CHIN: 1× ↔ 2×)</span>
               <span id="val-chin" style="font-family: 'PocketGull Mono', monospace; color: #c084fc; font-weight: 700;">1.0×</span>
             </label>
-            <input type="range" id="slider-chin" min="1.0" max="2.0" step="0.1" value="1.0" style="width: 100%; accent-color: #c084fc; cursor: pointer;">
+            <input type="range" id="slider-chin" aria-label="Chinuk Pipa loop axis slider (CHIN)" min="1.0" max="2.0" step="0.1" value="1.0" style="width: 100%; accent-color: #c084fc; cursor: pointer;">
           </div>
           <div>
-            <label style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
+            <label for="slider-brls" style="display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-bottom: 4px;">
               <span>Braille Dot (BRLS: 40 ↔ 96)</span>
               <span id="val-brls" style="font-family: 'PocketGull Mono', monospace; color: #c084fc; font-weight: 700;">78 UPM</span>
             </label>
-            <input type="range" id="slider-brls" min="40" max="96" step="2" value="78" style="width: 100%; accent-color: #c084fc; cursor: pointer;">
+            <input type="range" id="slider-brls" aria-label="Braille dot size axis slider (BRLS)" min="40" max="96" step="2" value="78" style="width: 100%; accent-color: #c084fc; cursor: pointer;">
           </div>
         </div>
       </div>
@@ -954,10 +954,10 @@
     <!-- 4. ISMP Life-Critical Clinical Disambiguation Suite -->
     <section class="specimen-card">
       <div class="section-label">Patient Safety Standard</div>
-      <div class="section-title">
+      <h2 class="section-title">
         <span>ISMP &amp; FDA Character Disambiguation Suite</span>
         <small>Eliminating Look-Alike / Sound-Alike Drug Collision Errors</small>
-      </div>
+      </h2>
 
       <div class="ismp-grid">
         <div class="ismp-card">
@@ -1010,10 +1010,10 @@
     <!-- 5. ICU Telemetry HUD Monospace Terminal -->
     <section class="specimen-card">
       <div class="section-label">Medical Telemetry Monospace (Fixed 600 UPM)</div>
-      <div class="section-title">
+      <h2 class="section-title">
         <span>PocketGull Mono ICU Intensive Care Telemetry HUD</span>
         <small>Gapless Box Drawing (U+2500–257F) • Sub-Cell Waveforms • Powerline Chevrons</small>
-      </div>
+      </h2>
 
       <div class="terminal-box">
 ┌───────────────────────────────────────────────────────────────────────────────────────────────┐
@@ -1042,10 +1042,10 @@
     <!-- 6. Universal World Scripts SMoE Specimen Suite (Tiers 2–5) -->
     <section class="specimen-card">
       <div class="section-label">Mixture-of-Experts Sub-Foundry Architecture</div>
-      <div class="section-title">
+      <h2 class="section-title">
         <span>Universal World Scripts Expansion (Tiers 2–5 SMoE)</span>
         <small>27 Specialized Sub-Foundry Targets • Gated Zero-Egress Dispatch</small>
-      </div>
+      </h2>
 
       <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
         PocketGull routes multi-script typography dynamically via 27 specialized SMoE experts, preserving the Louise Sloan 5:1 optotype invariant and ISMP clinical safeguards across all major global language families without monolithic font bloat:
@@ -1129,10 +1129,10 @@
     <!-- 7. Optical Readability & The Living Typographic Charter -->
     <section class="specimen-card" style="margin-top: 24px;">
       <div class="section-label" style="color: var(--emerald);">The Living Typographic Charter</div>
-      <div class="section-title">
+      <h2 class="section-title">
         <span>Script Sovereignty &amp; Harmonic Geometry</span>
         <small>Honoring Each Writing Tradition in Its Own Nature</small>
-      </div>
+      </h2>
 
       <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 8px; padding: 16px 20px; margin-bottom: 20px;">
         <div style="font-family: 'PocketGull Mono', monospace; font-size: 13px; color: #38bdf8; line-height: 1.8;">
@@ -1154,7 +1154,7 @@
           <div class="readability-badge standard">
             <span>🛡️ Authoritative Tactile Standard (ISO/TR 11548 &amp; ISO 17049)</span>
           </div>
-          <h4 style="font-size: 16px; color: #f1f5f9; margin-bottom: 8px;">Standard 8-Dot Tactile Geometry</h4>
+          <h3 style="font-size: 16px; color: #f1f5f9; margin-bottom: 8px;">Standard 8-Dot Tactile Geometry</h3>
           <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
             Standard 8-dot tactile dome geometry engineered for refreshable Braille pins and physical embossers (r=60 UPM, 2.5 mm pitch, uncompromised negative space).
           </p>
@@ -1180,7 +1180,7 @@
           <div class="readability-badge calibrated">
             <span>✓ PocketGull Baseline-Grounded Tactile Cell</span>
           </div>
-          <h4 style="font-size: 16px; color: #34d399; margin-bottom: 8px;">Preserved Tactile Ratio &amp; Latin Baseline Grounding</h4>
+          <h3 style="font-size: 16px; color: #34d399; margin-bottom: 8px;">Preserved Tactile Ratio &amp; Latin Baseline Grounding</h3>
           <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
             Dot 3 grounds tangent to baseline (y=0) while honoring ISO tactile proportions, preventing floating cell artifacts in mixed clinical discharge charts.
           </p>
@@ -1207,7 +1207,7 @@
           <div class="readability-badge standard">
             <span>📜 Sovereign Historical Standard (1891 Kamloops Wawa)</span>
           </div>
-          <h4 style="font-size: 16px; color: #f1f5f9; margin-bottom: 8px;">1891 Duployan Stenographic Phonetic Scale</h4>
+          <h3 style="font-size: 16px; color: #f1f5f9; margin-bottom: 8px;">1891 Duployan Stenographic Phonetic Scale</h3>
           <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
             Historical 1891 mimeograph lithograph scale where circle vowels (a, o, u) maintain compact stenographic loops (130 UPM) designed for rapid phonetic speech.
           </p>
@@ -1233,7 +1233,7 @@
           <div class="readability-badge calibrated" style="background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.4); color: #38bdf8;">
             <span>✓ PocketGull Phonemic-True Grounding</span>
           </div>
-          <h4 style="font-size: 16px; color: #38bdf8; margin-bottom: 8px;">Optical Waist Anchoring (No Roman Boxing)</h4>
+          <h3 style="font-size: 16px; color: #38bdf8; margin-bottom: 8px;">Optical Waist Anchoring (No Roman Boxing)</h3>
           <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 12px;">
             Preserves authentic Duployan phonemic size contrasts while anchoring consonant vectors along the optical waist (y=270 UPM) for zero-strain mixed reading.
           </p>
@@ -1355,42 +1355,49 @@
     </section>
 
     <!-- 8. Architectural Quality Pillars -->
-    <div class="pillar-row">
-      <div class="pillar-item">
-        <h4>1. 1000 UPM Em-Square</h4>
-        <p>Conforms to ISO/IEC 14496-22 with <code>fsSelection</code> bit 7 enabled across all cuts.</p>
+    <section class="specimen-card">
+      <div class="section-label">Foundry Compliance &amp; Standards</div>
+      <h2 class="section-title">
+        <span>The Eight Architectural Pillars</span>
+        <small>W3C OTS &amp; TrueType Invariants</small>
+      </h2>
+      <div class="pillar-row">
+        <div class="pillar-item">
+          <h3>1. 1000 UPM Em-Square</h3>
+          <p>Conforms to ISO/IEC 14496-22 with <code>fsSelection</code> bit 7 enabled across all cuts.</p>
+        </div>
+        <div class="pillar-item">
+          <h3>2. 2-Byte Word Invariant</h3>
+          <p>Every glyph padded to even bytes; <code>loca[i] % 2 == 0</code> for 100% OTS memory safety.</p>
+        </div>
+        <div class="pillar-item">
+          <h3>3. Bit-7 Flag Masking</h3>
+          <p>Reserved bit 7 in TTGlyphPen flags strictly zeroed (<code>flag &amp; 0x3F</code>) preventing driver crashes.</p>
+        </div>
+        <div class="pillar-item">
+          <h3>4. ISMP Disambiguation</h3>
+          <p>Slashed zero (<code>cv08</code>), curved l (<code>cv05</code>), serifed I (<code>ss02</code>), slashed Z (<code>cv11</code>) for clinical safety.</p>
+        </div>
+        <div class="pillar-item">
+          <h3>5. ISO/TR 11548 Braille</h3>
+          <p>Full 256 Unicode Braille (<code>U+2800</code>–<code>U+28FF</code>) tactile 8-dot geometry across all weights.</p>
+        </div>
+        <div class="pillar-item">
+          <h3>6. Monospace 600 UPM</h3>
+          <p>PocketGull Mono strictly 600 UPM fixed pitch (<code>isFixedPitch = 1</code>, <code>panose.bProportion = 9</code>).</p>
+        </div>
+        <div class="pillar-item">
+          <h3>7. DirectWrite ClearType</h3>
+          <p>Version 1 <code>gasp</code> table mapped to symmetric smoothing and grayscale antialiasing.</p>
+        </div>
+        <div class="pillar-item">
+          <h3>8. Baseline &amp; x-Height Lock</h3>
+          <p>Non-Latin scripts optically grounded to Latin baseline (y=0) and x-height (y=540 UPM).</p>
+        </div>
       </div>
-      <div class="pillar-item">
-        <h4>2. 2-Byte Word Invariant</h4>
-        <p>Every glyph padded to even bytes; <code>loca[i] % 2 == 0</code> for 100% OTS memory safety.</p>
-      </div>
-      <div class="pillar-item">
-        <h4>3. Bit-7 Flag Masking</h4>
-        <p>Reserved bit 7 in TTGlyphPen flags strictly zeroed (<code>flag &amp; 0x3F</code>) preventing driver crashes.</p>
-      </div>
-      <div class="pillar-item">
-        <h4>4. ISMP Disambiguation</h4>
-        <p>Slashed zero (<code>cv08</code>), curved l (<code>cv05</code>), serifed I (<code>ss02</code>), slashed Z (<code>cv11</code>) for clinical safety.</p>
-      </div>
-      <div class="pillar-item">
-        <h4>5. ISO/TR 11548 Braille</h4>
-        <p>Full 256 Unicode Braille (<code>U+2800</code>–<code>U+28FF</code>) tactile 8-dot geometry across all weights.</p>
-      </div>
-      <div class="pillar-item">
-        <h4>6. Monospace 600 UPM</h4>
-        <p>PocketGull Mono strictly 600 UPM fixed pitch (<code>isFixedPitch = 1</code>, <code>panose.bProportion = 9</code>).</p>
-      </div>
-      <div class="pillar-item">
-        <h4>7. DirectWrite ClearType</h4>
-        <p>Version 1 <code>gasp</code> table mapped to symmetric smoothing and grayscale antialiasing.</p>
-      </div>
-      <div class="pillar-item">
-        <h4>8. Baseline &amp; x-Height Lock</h4>
-        <p>Non-Latin scripts optically grounded to Latin baseline (y=0) and x-height (y=540 UPM).</p>
-      </div>
-    </div>
+    </section>
 
-  </div>
+  </main>
 
   <script>
     (function() {

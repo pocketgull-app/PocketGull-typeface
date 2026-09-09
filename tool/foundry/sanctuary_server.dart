@@ -214,10 +214,8 @@ class SanctuaryServer {
     final isFont = ext == 'woff2' || ext == 'ttf' || ext == 'otf';
     final isStaticAsset = ext == 'css' || ext == 'js' || ext == 'svg' || ext == 'png' || ext == 'webp' || ext == 'ico' || ext == 'json';
 
-    if (isFont) {
-      request.response.headers.set(HttpHeaders.cacheControlHeader, 'public, max-age=31536000, immutable');
-    } else if (isStaticAsset) {
-      request.response.headers.set(HttpHeaders.cacheControlHeader, 'public, max-age=86400');
+    if (isFont || isStaticAsset) {
+      request.response.headers.set(HttpHeaders.cacheControlHeader, 'no-cache, must-revalidate');
     } else {
       request.response.headers.set(HttpHeaders.cacheControlHeader, 'no-cache, no-store, must-revalidate');
     }

@@ -26,8 +26,14 @@ const fontStems = [
   'PocketGull-Antigravity',
   'PocketGull-Numerics',
   'PocketGullMono-Regular',
+  'PocketGullMono-Bold',
   'PocketGullMono-Italic',
   'PocketGull-MarkerRaw',
+  'PocketGull-Micro',
+  'PocketGull-CondensedBold',
+  'PocketGull-Soft',
+  'PocketGull-Serif-Regular',
+  'PocketGull-Serif-Bold',
   'PocketGull-VF',
 ];
 

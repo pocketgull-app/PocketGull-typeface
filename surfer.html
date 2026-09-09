@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PocketGull Sloan Surfer: A high-performance 3D typographic rhythm highway and visual perception trainer engineered with WebGL, spatial audio, and Louise Sloan optotypes.">
   <title>PocketGull Sloan Surfer — 3D Typographic Rhythm Highway (Moonrider Edition)</title>
-  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="fonts.css?v=3.3.0">
   <style>
     :root {
       --bg-space: #030712;
@@ -448,6 +449,8 @@
 </head>
 <body>
 
+  <!-- Main Game Landmark -->
+  <main id="mainGame" role="main">
   <!-- Game Canvas -->
   <canvas id="gameCanvas"></canvas>
 
@@ -499,24 +502,24 @@
 
       <div style="display: flex; gap: 0.6rem; align-items: center;">
         <!-- Healing Soundscape Preset Selector -->
-        <select id="selectTerrain" class="hud-btn" style="background: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #10b981; cursor: pointer; outline: none; font-weight: 800;" title="Select Visual &amp; Physics Theme">
+        <select id="selectTerrain" class="hud-btn" style="background: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #10b981; cursor: pointer; outline: none; font-weight: 800;" title="Select Visual &amp; Physics Theme" aria-label="Select Visual &amp; Physics Theme">
           <option value="fable" selected>📜 Aesop's Fables (Cozy Meadow)</option>
           <option value="edgesurf">🏄‍♂️ Edge Surf (Azure Lagoon)</option>
           <option value="skifree">⛷️ SkiFree Alpine (Glacier Snow)</option>
           <option value="pacific">🌊 Pacific Wave (Ocean Swells)</option>
           <option value="cyber">⚡ Cyber Highway (Neon Grid)</option>
         </select>
-        <select id="selectSoundscape" class="hud-btn" style="background: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #10b981; cursor: pointer; outline: none; font-weight: 800;">
+        <select id="selectSoundscape" class="hud-btn" style="background: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #10b981; cursor: pointer; outline: none; font-weight: 800;" title="Select Healing Audio Soundscape" aria-label="Select Healing Audio Soundscape">
           <option value="dna">🧬 528Hz Solfeggio DNA</option>
           <option value="gamma">🧠 40Hz Gamma Focus</option>
           <option value="monastic">🔔 432Hz Monastic Chime</option>
           <option value="cardiac">🫀 60 BPM Cardiac Pulse</option>
         </select>
-        <button class="hud-btn" id="btnToggleCoop" style="border-color: #a855f7; color: #c084fc;" title="Toggle 2-Player Collaborative Tandem Mode">👥 Co-Op Team: OFF</button>
-        <button class="hud-btn" id="btnToggleHaptic" style="border-color: #f59e0b; color: #f59e0b;" title="Toggle Device Haptic Motor &amp; Somatosensory Vibration">📳 Tactile: ON</button>
-        <button class="hud-btn" id="btnToggleSound">🔊 Audio: ON</button>
-        <button class="hud-btn" id="btnPauseGame">⏸ Pause</button>
-        <a href="index.html#section-07" class="hud-btn">📖 Specimen</a>
+        <button class="hud-btn" id="btnToggleCoop" style="border-color: #a855f7; color: #c084fc;" title="Toggle 2-Player Collaborative Tandem Mode" aria-label="Toggle 2-Player Collaborative Tandem Mode">👥 Co-Op Team: OFF</button>
+        <button class="hud-btn" id="btnToggleHaptic" style="border-color: #f59e0b; color: #f59e0b;" title="Toggle Device Haptic Motor &amp; Somatosensory Vibration" aria-label="Toggle Device Haptic Motor &amp; Somatosensory Vibration">📳 Tactile: ON</button>
+        <button class="hud-btn" id="btnToggleSound" aria-label="Toggle Audio Soundscape">🔊 Audio: ON</button>
+        <button class="hud-btn" id="btnPauseGame" aria-label="Pause or Resume Game">⏸ Pause</button>
+        <a href="index.html#section-07" class="hud-btn" aria-label="Navigate to Master Specimen">📖 Specimen</a>
       </div>
     </div>
   </div>
@@ -594,11 +597,12 @@
         <span>🎧 <strong>Audio:</strong> 3D Binaural Solfeggio Beats.</span>
       </div>
 
-      <button class="primary-start-btn" id="btnStartRun">
+      <button class="primary-start-btn" id="btnStartRun" aria-label="Enter Aesop's Fable Sanctuary">
         <span id="btnStartRunText">📜 ENTER AESOP’S FABLE SANCTUARY</span>
       </button>
     </div>
   </div>
+  </main>
 
   <!-- Game Logic & Web Audio Synthesizer Engine -->
   <script>

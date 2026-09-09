@@ -91,7 +91,6 @@ def augment_gsub_features(font_path):
         'ss01': 'Regenerative Ink-Saving Spore Traps',
         'ss12': 'Wildlife Sanctuary Dark Canopy',
         'ss15': 'Slow Typography Cognitive De-Escalation',
-        'calt': 'Ecological Contextual Alternates'
     }
     for tag, desc in eco_features.items():
         if tag not in existing_feats:
@@ -99,7 +98,7 @@ def augment_gsub_features(font_path):
             feature_rec.FeatureTag = tag
             feature = ot.Feature()
             feature.FeatureParams = None
-            feature.LookupListIndex = [0]
+            feature.LookupListIndex = []
             feature_rec.Feature = feature
             gsub.FeatureList.FeatureRecord.append(feature_rec)
             gsub.FeatureList.FeatureCount = len(gsub.FeatureList.FeatureRecord)

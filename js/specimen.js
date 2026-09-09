@@ -153,9 +153,9 @@
       });
     }
 
-    // ISMP Slashed Zero & Disambiguation Toggle
+    // ISMP Slashed Zero Toggle Quick-Action (Only controls slashed zero: 'zero' / 'cv08')
     const btnIsmpToggle = document.getElementById('btnIsmpToggle');
-    let ismpSafeActive = true;
+    let ismpSafeActive = false;
 
     function applyIsmpState(active) {
       ismpSafeActive = active;
@@ -166,20 +166,34 @@
           btnIsmpToggle.style.color = 'var(--accent-teal)';
           btnIsmpToggle.style.borderColor = 'var(--accent-teal)';
           btnIsmpToggle.textContent = '🛡️ Slashed 0: ON';
-          testerOutput.classList.add('clinical-ismp-safe');
-          testerOutput.style.fontFeatureSettings = '"zero" 1, "cv08" 1, "cv05" 1, "ss02" 1, "tnum" 1';
-          testerOutput.style.fontVariantNumeric = 'slashed-zero tabular-nums';
         } else {
           btnIsmpToggle.classList.remove('active');
           btnIsmpToggle.style.background = 'transparent';
           btnIsmpToggle.style.color = 'var(--text-secondary)';
           btnIsmpToggle.style.borderColor = 'var(--border-subtle)';
           btnIsmpToggle.textContent = '🛡️ Slashed 0: OFF';
-          testerOutput.classList.remove('clinical-ismp-safe');
-          testerOutput.style.fontFeatureSettings = 'normal';
-          testerOutput.style.fontVariantNumeric = 'normal';
         }
       }
+
+      // Synchronize with the 'cv08' toggle button in the OpenType features strip
+      const toggleCv08 = document.getElementById('toggleCv08');
+      if (toggleCv08) {
+        if (ismpSafeActive) {
+          toggleCv08.classList.add('active');
+          toggleCv08.textContent = "'cv08' (0 vs O) ON";
+          toggleCv08.style.background = 'rgba(20, 184, 166, 0.15)';
+          toggleCv08.style.borderColor = '#14b8a6';
+          toggleCv08.style.color = '#2dd4bf';
+        } else {
+          toggleCv08.classList.remove('active');
+          toggleCv08.textContent = "'cv08' (0 vs O) OFF";
+          toggleCv08.style.background = 'rgba(255, 255, 255, 0.04)';
+          toggleCv08.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+          toggleCv08.style.color = '#a1a1aa';
+        }
+      }
+
+      updateOtFeatures();
     }
 
     if (btnIsmpToggle) {
@@ -188,9 +202,9 @@
       });
     }
 
-    // Presets
+    // Presets (Proportional numerals and clean humanist Latin by default)
     const PRESETS = {
-      rx: "Rx: Amoxicillin 500 mg PO Q8H × 10d [ISMP Slashed Zero: 0 vs O]",
+      rx: "Rx: Amoxicillin 500 mg PO Q8H × 10d [Proportional Numerals 500]",
       cardiac: "Sinus Rhythm • Radial Pulse • Clinical Insight • The Healer Font (Hearts for i's) ♥",
       italics: "BRCA1 Protein vs BRCA1 Gene • Staphylococcus aureus (Pathogen) • statim PO Q8H",
       triage: "STAT 911 TRAUMA: SpO2 98% • HR 118 BPM • BP 85/50 mmHg • QRS 0.08s",
@@ -219,9 +233,6 @@
         if (text) {
           testerOutput.innerText = text;
           charCount.textContent = `${text.length} characters`;
-          if (pill.dataset.preset === 'rx' && !ismpSafeActive && btnIsmpToggle) {
-            btnIsmpToggle.click();
-          }
           if (pill.dataset.preset === 'italics') {
             const btnItal = document.getElementById('toggleItalic');
             if (btnItal && !btnItal.classList.contains('active')) {
@@ -253,6 +264,88 @@
         .replace(/'/g, '&#39;');
     }
 
+    // Attach interactive click listeners to all OpenType toggle buttons
+    otButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isActive = btn.classList.toggle('active');
+        const feat = btn.dataset.feat;
+
+        // Visual feedback on the button
+        if (isActive) {
+          btn.style.background = 'rgba(20, 184, 166, 0.15)';
+          btn.style.borderColor = '#14b8a6';
+          btn.style.color = '#2dd4bf';
+          if (feat === 'tnum') btn.textContent = "'tnum' ON";
+          else if (feat === 'cv08') btn.textContent = "'cv08' (0 vs O) ON";
+          else if (feat === 'cv05') btn.textContent = "'cv05' (l vs 1) ON";
+          else if (feat === 'ss02') btn.textContent = "'ss02' (I vs l) ON";
+          else if (feat === 'ital') {
+            btn.innerHTML = '<i>𝐼</i> Italic ON';
+            btn.style.borderColor = 'rgba(56, 189, 248, 0.4)';
+            btn.style.background = 'rgba(56, 189, 248, 0.15)';
+            btn.style.color = '#38bdf8';
+          }
+          else if (feat === 'dlig') btn.textContent = "'dlig' ON";
+          else if (feat === 'ss07') {
+            btn.textContent = "'ss07' (♥ Tittles) ON";
+            btn.style.borderColor = 'rgba(244, 63, 94, 0.4)';
+            btn.style.background = 'rgba(244, 63, 94, 0.15)';
+            btn.style.color = '#fb7185';
+          }
+        } else {
+          btn.style.background = 'rgba(255, 255, 255, 0.04)';
+          btn.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+          btn.style.color = '#a1a1aa';
+          if (feat === 'tnum') btn.textContent = "'tnum' OFF";
+          else if (feat === 'cv08') btn.textContent = "'cv08' (0 vs O) OFF";
+          else if (feat === 'cv05') btn.textContent = "'cv05' (l vs 1) OFF";
+          else if (feat === 'ss02') btn.textContent = "'ss02' (I vs l) OFF";
+          else if (feat === 'ital') {
+            btn.innerHTML = '<i>𝐼</i> Italic OFF';
+            btn.style.borderColor = 'rgba(56, 189, 248, 0.4)';
+            btn.style.background = 'rgba(56, 189, 248, 0.08)';
+            btn.style.color = '#38bdf8';
+          }
+          else if (feat === 'dlig') btn.textContent = "'dlig' OFF";
+          else if (feat === 'ss07') {
+            btn.textContent = "'ss07' (♥ Tittles) OFF";
+            btn.style.borderColor = 'rgba(244, 63, 94, 0.4)';
+            btn.style.background = 'rgba(244, 63, 94, 0.08)';
+            btn.style.color = '#fb7185';
+          }
+        }
+
+        // Sync #btnIsmpToggle if cv08 was toggled
+        if (feat === 'cv08') {
+          ismpSafeActive = isActive;
+          if (btnIsmpToggle) {
+            if (isActive) {
+              btnIsmpToggle.classList.add('active');
+              btnIsmpToggle.style.background = 'rgba(20, 184, 166, 0.2)';
+              btnIsmpToggle.style.color = 'var(--accent-teal)';
+              btnIsmpToggle.style.borderColor = 'var(--accent-teal)';
+              btnIsmpToggle.textContent = '🛡️ Slashed 0: ON';
+            } else {
+              btnIsmpToggle.classList.remove('active');
+              btnIsmpToggle.style.background = 'transparent';
+              btnIsmpToggle.style.color = 'var(--text-secondary)';
+              btnIsmpToggle.style.borderColor = 'var(--border-subtle)';
+              btnIsmpToggle.textContent = '🛡️ Slashed 0: OFF';
+            }
+          }
+        }
+
+        // Handle italic cut toggle
+        if (feat === 'ital') {
+          if (testerOutput) {
+            testerOutput.style.fontStyle = isActive ? 'italic' : 'normal';
+          }
+        }
+
+        updateOtFeatures();
+      });
+    });
+
     function updateOtFeatures() {
       const activeFeats = [];
 
@@ -271,7 +364,8 @@
       if (testerOutput) {
         testerOutput.style.fontFeatureSettings = activeFeats.length ? activeFeats.join(', ') : 'normal';
         const hasZero = activeFeats.some(f => f.includes('zero') || f.includes('cv08'));
-        testerOutput.style.fontVariantNumeric = hasZero ? 'slashed-zero tabular-nums' : (activeFeats.some(f => f.includes('tnum')) ? 'tabular-nums' : 'normal');
+        const hasTnum = activeFeats.some(f => f.includes('tnum'));
+        testerOutput.style.fontVariantNumeric = (hasZero && hasTnum) ? 'slashed-zero tabular-nums' : (hasZero ? 'slashed-zero' : (hasTnum ? 'tabular-nums' : 'normal'));
         if (otReadout) {
           otReadout.textContent = 'font-feature-settings: ' + (activeFeats.length ? activeFeats.join(', ') : 'normal');
         }
