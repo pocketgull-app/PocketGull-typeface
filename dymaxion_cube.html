@@ -185,28 +185,39 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
+      opacity: 0.52;
+      background-image: url('assets/photography/willamette_river_sanctuary.webp');
+      background-size: cover;
+      background-position: center center;
+      filter: blur(3px) brightness(0.48) saturate(1.2);
+      transition: opacity 0.8s ease, filter 0.8s ease, background-image 0.8s ease;
+    }
+
+    body.forest-env-active .geodesic-sky {
+      opacity: 0.85;
+      filter: blur(1.2px) brightness(0.62) saturate(1.25);
+    }
+
+    body.env-pebble .geodesic-sky {
+      background-image: url('assets/photography/pebble_stream_shoreline.webp');
+      filter: blur(3px) brightness(0.45) saturate(1.25);
+    }
+
+    body.env-void .geodesic-sky {
       opacity: 0.18;
       background-image: 
         radial-gradient(circle at 50% 50%, rgba(45, 212, 191, 0.15) 0%, transparent 60%),
         linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
       background-size: 100% 100%, 40px 40px, 40px 40px;
-      transition: opacity 0.8s ease, filter 0.8s ease, background-image 0.8s ease;
+      filter: none;
     }
 
-    body.forest-env-active .geodesic-sky {
-      opacity: 0.38;
-      background-image: url('assets/photography/tualatin_hills_nature_park.webp');
-      background-size: cover;
-      background-position: center;
-      filter: blur(4px) brightness(0.40) saturate(1.2);
-    }
-
-    body.forest-env-active .cube-face {
-      background: rgba(12, 19, 31, 0.84);
-      box-shadow: inset 0 0 28px rgba(45, 212, 191, 0.18), 0 16px 45px rgba(0, 0, 0, 0.7);
+    .cube-face {
+      background: rgba(12, 19, 31, 0.88);
+      box-shadow: inset 0 0 28px rgba(45, 212, 191, 0.18), 0 16px 45px rgba(0, 0, 0, 0.75);
       backdrop-filter: blur(16px);
-      border-color: rgba(45, 212, 191, 0.5);
+      border-color: rgba(45, 212, 191, 0.45);
     }
 
     .synergetic-ring {
@@ -266,15 +277,15 @@
 
     /* Dymaxion Unfolded Mode (Polyhedral Broadside Layout) */
     .cube-scene.unfolded {
-      transform: rotateX(0deg) rotateY(0deg) scale(0.68) !important;
+      transform: rotateX(0deg) rotateY(0deg) scale(0.60) !important;
     }
 
     .cube-scene.unfolded .face-front  { transform: translate3d(0, 0, 0); }
-    .cube-scene.unfolded .face-top    { transform: translate3d(0, calc(-1 * var(--cube-size) - 24px), 0); }
-    .cube-scene.unfolded .face-bottom { transform: translate3d(0, calc(var(--cube-size) + 24px), 0); }
-    .cube-scene.unfolded .face-left   { transform: translate3d(calc(-1 * var(--cube-size) - 24px), 0, 0); }
-    .cube-scene.unfolded .face-right  { transform: translate3d(calc(var(--cube-size) + 24px), 0, 0); }
-    .cube-scene.unfolded .face-back   { transform: translate3d(calc(2 * var(--cube-size) + 48px), 0, 0); }
+    .cube-scene.unfolded .face-top    { transform: translate3d(0, calc(-1 * var(--cube-size) - 72px), 0); }
+    .cube-scene.unfolded .face-bottom { transform: translate3d(0, calc(var(--cube-size) + 54px), 0); }
+    .cube-scene.unfolded .face-left   { transform: translate3d(calc(-1 * var(--cube-size) - 28px), 0, 0); }
+    .cube-scene.unfolded .face-right  { transform: translate3d(calc(var(--cube-size) + 28px), 0, 0); }
+    .cube-scene.unfolded .face-back   { transform: translate3d(calc(2 * var(--cube-size) + 56px), 0, 0); }
 
     .face-tag {
       font-family: 'PocketGull Mono', monospace;
@@ -312,27 +323,67 @@
     }
 
     .philocardia-display {
-      font-size: 2.5rem;
+      font-size: 2.85rem;
       font-weight: 800;
-      letter-spacing: -0.02em;
+      letter-spacing: 0.02em;
       color: #fff;
-    }
-
-    .philocardia-display .heart-target {
-      color: var(--rose);
       display: inline-block;
-      cursor: pointer;
-      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-align: center;
+      margin: 0.2rem 0;
+      line-height: 1.15;
     }
 
-    .philocardia-display .heart-target:hover {
-      transform: scale(1.35);
+    .disambiguated-l {
+      font-feature-settings: "cv05" 1;
+      color: #38bdf8;
+      display: inline;
+      position: relative;
+      cursor: help;
+      transition: color 0.2s ease;
+    }
+
+    .disambiguated-l:hover {
+      color: #7dd3fc;
+    }
+
+    .philocardia-heart {
+      display: inline-block;
+      position: relative;
+      color: #fff;
+      cursor: pointer;
+      line-height: inherit;
+      vertical-align: baseline;
+      padding: 0 0.02em;
+    }
+
+    .philocardia-heart::after {
+      content: var(--tittle-glyph, '♥');
+      position: absolute;
+      top: -0.28em;
+      left: 50%;
+      transform: translateX(-50%) scale(1.15);
+      font-size: 0.46em;
+      line-height: 1;
+      color: #fb7185;
+      filter: drop-shadow(0 0 6px rgba(251, 113, 133, 0.85));
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.2s ease;
+      pointer-events: none;
+    }
+
+    .philocardia-heart:hover::after {
+      transform: translateX(-50%) scale(1.35);
+      color: #f43f5e;
+      filter: drop-shadow(0 0 10px rgba(244, 63, 94, 1));
+    }
+
+    .philocardia-heart.heart-target {
+      cursor: pointer;
     }
 
     .tittle-variety-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 0.6rem;
+      gap: 0.35rem;
       width: 100%;
     }
 
@@ -340,18 +391,18 @@
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 6px;
-      padding: 0.4rem;
-      font-size: 1.1rem;
+      padding: 0.25rem 0.3rem;
+      font-size: 1rem;
       cursor: pointer;
       transition: all 0.2s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.2rem;
+      gap: 0.15rem;
     }
 
     .tittle-variety-item span {
-      font-size: 0.62rem;
+      font-size: 0.58rem;
       font-weight: 600;
       color: var(--text-muted);
     }
@@ -761,7 +812,7 @@
 
     .macro-loupe-viewport {
       width: 100%;
-      height: 78px;
+      height: 66px;
       border-radius: 6px;
       overflow: hidden;
       position: relative;
@@ -1086,12 +1137,15 @@
         </div>
         <div class="face-content">
           <div class="philocardia-display" id="frontHeartText">
-            clin<span class="heart-target" id="heartTarget" title="Click heart tittle to trigger heartbeat chime">i</span>cal
+            c<span class="disambiguated-l" title="Curved foot l (cv05): Outward sweep prevents 1/l/I collision">l</span><span class="philocardia-heart philocardia-pacing-72 heart-target" id="heartTarget" title="Click heart tittle to trigger heartbeat chime">ı</span>n<span class="philocardia-heart philocardia-pacing-72">ı</span>ca<span class="disambiguated-l" title="Curved foot l (cv05)">l</span>
           </div>
-          <div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 0.35rem; font-weight: 600;">
-            Philocardia Heart Tittle
+          <div style="display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 4px; padding: 0.15rem 0.5rem; font-family: 'PocketGull Mono', monospace; font-size: 0.68rem; color: #38bdf8; margin: 0.2rem 0;">
+            <span>cv05 curved l</span> • <span>ss07 heart tittle</span>
           </div>
-          <p style="font-size: 0.73rem; color: var(--text-muted); max-width: 250px; margin-top: 0.2rem;">
+          <div style="font-size: 0.82rem; color: #cbd5e1; margin-top: 0.25rem; font-weight: 600;">
+            Philocardia Heart Tittle &amp; ISMP Disambiguation
+          </div>
+          <p style="font-size: 0.72rem; color: var(--text-muted); max-width: 250px; margin-top: 0.15rem;">
             Before tending the world, quiet the nervous system. Match the 72 BPM resting cadence.
           </p>
           <button type="button" class="facet-action-btn" id="btnSyncBreath">
@@ -1135,16 +1189,16 @@
             💖 Philocardia: Bedside warmth &amp; lovingkindness.
           </div>
 
-          <!-- Real-World Botanical Macro Loupe (South Waterfront Iris) -->
-          <div id="macroLoupeWrap" class="macro-loupe-wrap" style="display: none;">
-            <div class="macro-loupe-viewport" id="macroLoupeViewport" title="Hover &amp; move cursor to inspect living petal cell structure">
-              <img src="assets/photography/south_waterfront_iris_macro.webp" alt="South Waterfront Iris Botanical Macro" class="macro-loupe-img" id="macroLoupeImg">
+          <!-- Real-World Botanical Macro Loupe (Phil Gear Photography) -->
+          <div id="macroLoupeWrap" class="macro-loupe-wrap" style="display: flex;">
+            <div class="macro-loupe-viewport" id="macroLoupeViewport" title="Hover &amp; move cursor across photo to inspect authentic cellular structure">
+              <img src="assets/photography/south_waterfront_iris_macro.webp" alt="Phil Gear Botanical Macro Photography" class="macro-loupe-img" id="macroLoupeImg">
               <div class="macro-loupe-reticle"></div>
-              <span class="macro-zoom-tag">24 MP MACRO</span>
+              <span class="macro-zoom-tag" id="macroZoomTag">24 MP MACRO</span>
             </div>
             <div class="macro-loupe-telemetry">
-              <span>🌸 South Waterfront Garden</span>
-              <span>1980×1320 Optical</span>
+              <span id="loupeLocationLabel">🌸 S. Waterfront Garden</span>
+              <span id="loupeOpticsLabel">1980×1320 Optical</span>
             </div>
           </div>
 
@@ -1218,18 +1272,30 @@
       <div class="cube-face face-back" data-facet="5">
         <div class="face-tag">
           <span>05 / CLINICAL SAFETY</span>
-          <span style="color: #2dd4bf;">PROTECT THE VULNERABLE</span>
+          <span style="color: #2dd4bf;">CERTAINTY IN MEDICINE</span>
         </div>
         <div class="face-content">
-          <div class="ismp-badge-row">
-            <span class="ismp-pill" id="pillZero" style="font-feature-settings: 'zero' 1, 'cv08' 1;">0 vs O</span>
-            <span class="ismp-pill" id="pillL" style="font-feature-settings: 'cv05' 1, 'ss02' 1;">1 vs l vs I</span>
+          <div class="ismp-comparison-table" style="width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; margin: 0.2rem 0;">
+            <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 6px; padding: 0.35rem 0.2rem; text-align: center;">
+              <div style="font-size: 0.58rem; color: #f87171; font-family: 'PocketGull Mono', monospace; font-weight: 700;">AMBIGUITY</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: #fca5a5; font-family: Arial, sans-serif; letter-spacing: 0.08em; margin: 0.1rem 0;">
+                l 1 I • 0 O
+              </div>
+              <div style="font-size: 0.58rem; color: #f87171;">Fatal Collisions</div>
+            </div>
+            <div style="background: rgba(45, 212, 191, 0.12); border: 1px solid rgba(45, 212, 191, 0.35); border-radius: 6px; padding: 0.35rem 0.2rem; text-align: center;">
+              <div style="font-size: 0.58rem; color: var(--teal); font-family: 'PocketGull Mono', monospace; font-weight: 700;">CERTAINTY</div>
+              <div style="font-size: 1.25rem; font-weight: 700; color: #fff; letter-spacing: 0.08em; margin: 0.1rem 0; font-feature-settings: 'cv05' 1, 'ss02' 1, 'cv08' 1, 'zero' 1;">
+                l 1 I • 0 O
+              </div>
+              <div style="font-size: 0.58rem; color: var(--teal);">Curved l • Slashed 0</div>
+            </div>
           </div>
-          <div id="sampleDosage" style="font-size: 1.15rem; font-weight: 700; color: #fff; margin-top: 0.25rem; font-feature-settings: 'zero' 1, 'cv08' 1, 'cv05' 1;">
+          <div id="sampleDosage" style="font-size: 1.25rem; font-weight: 800; color: #fff; margin: 0.2rem 0; font-feature-settings: 'zero' 1, 'cv08' 1, 'cv05' 1;">
             Amoxicillin 500 mg
           </div>
-          <div id="clinicalSafetyBox" class="seed-meaning-pill" style="color: var(--teal); border-color: rgba(45, 212, 191, 0.3); background: rgba(45, 212, 191, 0.1);">
-            ✓ Slashed Zero: Eliminates 10× dosage error.
+          <div id="clinicalSafetyBox" class="seed-meaning-pill" style="color: var(--teal); border-color: rgba(45, 212, 191, 0.3); background: rgba(45, 212, 191, 0.1); margin-top: 0.15rem;">
+            ✓ Slashed Zero &amp; Curved l: Surgical Disambiguation.
           </div>
           <button type="button" class="facet-action-btn" id="btnVerifyISMP">
             <span>🩺</span> <span id="ismpBtnLabel">Test Safety Disambiguation</span>
@@ -1648,10 +1714,14 @@
       // --- Pointer / Touch Orbit ---
       stage.addEventListener('pointerdown', (e) => {
         if (isUnfolded) return;
+        // Do not intercept clicks on buttons, variety items, loupes, or interactive controls
+        if (e.target.closest('button, a, input, select, .tittle-variety-item, .facet-action-btn, .macro-loupe-wrap, #heartTarget, .philocardia-heart, .disambiguated-l, .ismp-pill, .cadence-step-btn, .timeline-control-btn, .narrative-nav-btn, .timeline-rail-wrap, .timeline-marker, .photo-optics-card, [tabindex]')) {
+          return;
+        }
         isDragging = true;
         startX = e.clientX;
         startY = e.clientY;
-        stage.setPointerCapture(e.pointerId);
+        try { stage.setPointerCapture(e.pointerId); } catch (_) {}
       });
 
       stage.addEventListener('pointermove', (e) => {
@@ -1672,9 +1742,24 @@
         targetRotX = Math.max(-80, Math.min(80, targetRotX));
       });
 
-      stage.addEventListener('pointerup', () => { isDragging = false; });
+      stage.addEventListener('pointerup', (e) => {
+        isDragging = false;
+        try {
+          if (stage.hasPointerCapture(e.pointerId)) {
+            stage.releasePointerCapture(e.pointerId);
+          }
+        } catch (_) {}
+      });
+
       stage.addEventListener('pointerleave', () => {
         if (ambientAura) ambientAura.style.opacity = '0';
+      });
+
+      // Prevent interactive controls inside cube faces from triggering drag
+      document.querySelectorAll('.cube-face button, .cube-face .tittle-variety-item, .cube-face .facet-action-btn, #heartTarget, .macro-loupe-wrap, .ismp-pill, .photo-optics-card').forEach(el => {
+        el.addEventListener('pointerdown', (e) => {
+          e.stopPropagation();
+        });
       });
 
       // --- Transport Controls ---
@@ -1843,6 +1928,42 @@
         });
       }
 
+      const PHOTO_VARIETIES = {
+        blossom: {
+          src: 'assets/photography/south_waterfront_iris_macro.webp',
+          loc: '🌸 S. Waterfront Iris Macro',
+          opt: '24 MP Optical • 1980×1320 Petal Cells'
+        },
+        droplet: {
+          src: 'assets/photography/pebble_stream_shoreline.webp',
+          loc: '💧 Marsh Park Pebble Stream',
+          opt: 'High-Speed Kinetic Spray • 1280×854'
+        },
+        heart: {
+          src: 'assets/photography/willamette_river_sanctuary.webp',
+          loc: '💖 Willamette River Sanctuary',
+          opt: 'Golden Hour Reflections • 1280×1707'
+        },
+        dot: {
+          src: 'assets/photography/pebble_stream_shoreline.webp',
+          loc: '⚪ River Stone Sloan Optotype',
+          opt: '5:1 Acuity Roundness • 1280×854'
+        },
+        nuqta: {
+          src: 'assets/photography/willamette_river_sanctuary.webp',
+          loc: '💎 Reed-Pen Rhombus Nuqṭa',
+          opt: 'Water Mirror Surface • 1280×1707'
+        },
+        star: {
+          src: 'assets/photography/south_waterfront_iris_macro.webp',
+          loc: '✨ Celestial Flower Astrolabe',
+          opt: 'Petal Micro-Radiance • 1980×1320'
+        }
+      };
+
+      const loupeLocationLabel = document.getElementById('loupeLocationLabel');
+      const loupeOpticsLabel = document.getElementById('loupeOpticsLabel');
+
       varietyItems.forEach(item => {
         item.addEventListener('click', () => {
           varietyItems.forEach(i => i.classList.remove('active'));
@@ -1852,9 +1973,14 @@
           document.body.setAttribute('data-tittle-variety', v);
           if (seedMeaningBox) seedMeaningBox.textContent = meaning;
           if (logSeed) logSeed.textContent = meaning;
-          if (macroLoupeWrap) {
-            macroLoupeWrap.style.display = (v === 'blossom') ? 'flex' : 'none';
+          
+          if (macroLoupeWrap && PHOTO_VARIETIES[v]) {
+            macroLoupeWrap.style.display = 'flex';
+            if (macroLoupeImg) macroLoupeImg.src = PHOTO_VARIETIES[v].src;
+            if (loupeLocationLabel) loupeLocationLabel.textContent = PHOTO_VARIETIES[v].loc;
+            if (loupeOpticsLabel) loupeOpticsLabel.textContent = PHOTO_VARIETIES[v].opt;
           }
+          
           playBell(639, 0.5);
           triggerHaptic(15);
         });
@@ -1917,15 +2043,15 @@
         ismpSafe = !ismpSafe;
         btnVerifyISMP.classList.toggle('action-confirmed', ismpSafe);
         if (ismpSafe) {
-          sampleDosage.style.fontFeatureSettings = "'zero' 1, 'cv08' 1, 'cv05' 1";
+          sampleDosage.style.fontFeatureSettings = "'zero' 1, 'cv08' 1, 'cv05' 1, 'ss02' 1";
           sampleDosage.textContent = "Amoxicillin 500 mg";
-          clinicalSafetyBox.textContent = "✓ Slashed Zero: Eliminates 10× dosage error.";
+          clinicalSafetyBox.textContent = "✓ Slashed Zero & Curved l: Surgical Disambiguation.";
           clinicalSafetyBox.style.color = "var(--teal)";
-          ismpBtnLabel.textContent = "✓ ISMP Safeguards Active";
+          ismpBtnLabel.textContent = "✓ ISMP Certainty Active";
         } else {
-          sampleDosage.style.fontFeatureSettings = "'zero' 0, 'cv08' 0, 'cv05' 0";
-          sampleDosage.textContent = "Amoxicillin 500 mg (Plain)";
-          clinicalSafetyBox.textContent = "⚠️ Plain Zero: High risk of 500 vs 5OO collision.";
+          sampleDosage.style.fontFeatureSettings = "'zero' 0, 'cv08' 0, 'cv05' 0, 'ss02' 0";
+          sampleDosage.textContent = "Amoxicillin 500 mg (Ambiguous)";
+          clinicalSafetyBox.textContent = "⚠️ Plain Ambiguity: High risk of 500 vs 5OO and 1 vs l collision.";
           clinicalSafetyBox.style.color = "var(--amber)";
           ismpBtnLabel.textContent = "⚠️ Test Plain Ambiguity";
         }
