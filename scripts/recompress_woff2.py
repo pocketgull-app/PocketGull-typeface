@@ -33,6 +33,8 @@ stems = [
     "PocketGullMono-Regular",
     "PocketGullMono-Bold",
     "PocketGullMono-Italic",
+    "PocketGull-Serif-Regular",
+    "PocketGull-Serif-Bold",
     "PocketGull-VF",
 ]
 

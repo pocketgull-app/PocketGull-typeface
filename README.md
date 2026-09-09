@@ -13,7 +13,7 @@
 
 <br/>
 
-### 🌐 [Live Interactive Specimen](https://font.pocketgull.app) &nbsp;•&nbsp; 💾 [Download Fonts (.ZIP)](fonts/PocketGull-v3.0.0-Complete-Superfamily.zip) &nbsp;•&nbsp; 🇫🇷 [Version Française](README.fr.md) &nbsp;•&nbsp; 📦 [UFO Sources](sources/) &nbsp;•&nbsp; 📄 [SIL OFL 1.1 License](OFL.txt) &nbsp;•&nbsp; 🏛️ [CERN Archival](documentation/CERN_ZENODO_ARCHIVAL_GUIDE.md)
+### 🌐 [Live Interactive Specimen](https://font.pocketgull.app) &nbsp;•&nbsp; 🕊️ [First Principles &amp; Charter](documentation/FIRST_PRINCIPLES.md) &nbsp;•&nbsp; 💾 [Download Fonts (.ZIP)](fonts/PocketGull-v3.0.0-Complete-Superfamily.zip) &nbsp;•&nbsp; 🇫🇷 [Version Française](README.fr.md) &nbsp;•&nbsp; 📦 [UFO Sources](sources/) &nbsp;•&nbsp; 📄 [SIL OFL 1.1 License](OFL.txt) &nbsp;•&nbsp; 🏛️ [CERN Archival](documentation/CERN_ZENODO_ARCHIVAL_GUIDE.md)
 
 
 </div>
@@ -22,35 +22,36 @@
 
 <table>
   <tr>
-    <td width="64%" align="center" style="vertical-align: middle;">
-      <img src="documentation/images/pocketgull_device_hero.jpg" alt="PocketGull Telemetry Device & Optotypic Interface" width="100%" />
-      <br/><sub><strong>PocketGull Handheld Telemetry &amp; Optotypic Reader</strong></sub>
-    </td>
-    <td width="36%" align="center" style="vertical-align: middle;">
-      <img src="documentation/images/pocketgull_telemetry_screen_macro.jpg" alt="PocketGull Telemetry Interface Close-Up" width="100%" />
-      <br/><sub><strong>Screen Macro: Louise Sloan 5:1 Optotypes &amp; ISMP 0̸</strong></sub>
-    </td>
-  </tr>
-</table>
-
-<br/><br/>
-
-<table>
-  <tr>
     <td width="50%" align="center">
-      <img src="documentation/images/pocketgull_synaptic_specimen_light.png" alt="PocketGull Synaptic Codex - Light Mode" width="100%" />
+      <img src="documentation/images/pocketgull_healer_hero.jpg" alt="PocketGull The Healer (Hearts for i's)" width="100%" />
+      <br/><sub><strong>PocketGull The Healer: Felt Marker Cardstock DNA</strong></sub>
     </td>
     <td width="50%" align="center">
-      <img src="documentation/images/pocketgull_synaptic_specimen_dark.png" alt="PocketGull Synaptic Codex - Dark Mode" width="100%" />
+      <img src="documentation/images/pocketgull_telemetry_terminal.jpg" alt="PocketGull Telemetry Monospace & Box Drawing" width="100%" />
+      <br/><sub><strong>PocketGull Mono: 600 UPM ICU Telemetry &amp; ECG</strong></sub>
     </td>
   </tr>
 </table>
 
 </div>
 
+<br/>
+
 **PocketGull** is an open-source clinical sans-serif, display, and telemetry monospace typeface superfamily designed by Phil Gear. Engineered to bridge tactile humanist warmth with zero-error clinical precision, PocketGull solves a life-critical challenge in medical software: eliminating medication administration errors while providing an organic, fatigue-resistant texture that soothes the reader's eyes during 12-hour hospital shifts.
 
 Originating from spontaneous felt marker lettering created on physical cardstock, PocketGull synthesizes organic stroke dynamism with the Institute for Safe Medication Practices (ISMP) character disambiguation rules and Louise Sloan 5:1 optotypic legibility standards.
+
+---
+
+## 🕊️ The Living Typographic Charter
+
+Grounded in [First Principles](documentation/FIRST_PRINCIPLES.md) and systems engineering (Eskil Steenberg: *avoiding bugs by construction*):
+
+1. **Let Latin be Latin**: Crisp, disambiguated (ISMP), humanist, and readable.
+2. **Let Arabic be Arabic**: Let the nuqṭa keep its natural pen angle (the authentic reed-pen footprint, honoring calligraphy rather than sterile mechanical plumbness).
+3. **Let Braille be Braille**: Preserve standard tactile cell geometries and negative space (ISO/TR 11548 &amp; ISO 17049).
+4. **Let Shorthand be Shorthand**: Respect the phonemic size ratios of stenography without forcing it into Roman metal boxes.
+5. **Keep the binary engine clean**: Pad bytes to keep OTS happy (`loca[i] % 2 == 0`), but don't confuse memory alignment with typographic beauty.
 
 ---
 
@@ -90,7 +91,7 @@ To prevent cultural co-optation, maintain mathematical vector determinism, and e
 ### ✒️ For the Typographers: Mathematical Determinism & Memory Safety
 * **2-Byte Word Boundary Invariant**: DirectWrite and W3C OTS memory buffers discard fonts with odd byte offsets. Every glyph record is strictly padded to 2-byte alignment (`loca[i] % 2 == 0`).
 * **Zero Duplicate Nodes**: Bézier contours are cleaned with zero co-located control points, guaranteeing clean rasterizer scan conversion at 8K displays and 203 DPI thermal wristband printers.
-* **[Thomas Phinney](https://www.thomasphinney.com) ([Font Detective](https://fontdetective.com)) Forensic Audit**: 100% pass across all 16 SFNT tables with zero bad flags.
+* **[Thomas Phinney](https://www.thomasphinney.com) ([The Font Detective](https://thefontdetective.com)) Forensic Audit**: 100% pass across all 16 SFNT tables with zero bad flags.
 
 ### 🌐 For Google Fonts: Option 5 Upstream Delivery & Zero Debt
 * **SIL OFL 1.1 Licensed**: Free for commercial and open-source use, with zero licensing fees or restrictive royalties.

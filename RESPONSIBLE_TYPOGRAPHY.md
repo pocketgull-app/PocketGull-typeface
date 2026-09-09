@@ -1,4 +1,4 @@
-# PocketGull Manifesto on Responsible Typography, Multi-Script Sovereignty & Clinical Life-Safety
+# PocketGull Charter on Responsible Typography, Multi-Script Sovereignty & Clinical Life-Safety
 
 **The PocketGull Typeface Superfamily**  
 *An Open-Source Ethical Framework for Human Factors Precision, Vision Science Invariants, and Indigenous Script Sovereignty*
@@ -19,7 +19,7 @@ A blurred numeral on a high-throughput thermal patient wristband, a missing deci
 
 PocketGull was born from the conviction that **letterforms must protect life**. Originating from an authentic hand-drawn felt-tip marker drawing created on heavyweight cotton cardstock for GearArts, PocketGull elevates the organic warmth, compassion, and human breath of analog handwriting into a mathematically deterministic, optotypically calibrated, multi-script typefoundry.
 
-This manifesto sets forth the seven irrevocable pillars governing the creation, validation, and distribution of the PocketGull Typeface Superfamily.
+This charter sets forth the seven irrevocable pillars governing the creation, validation, and distribution of the PocketGull Typeface Superfamily.
 
 ---
 
@@ -172,7 +172,7 @@ To safeguard the distinct interests of Indigenous Elders, professional typograph
 
 ### 2. For the Typographers & Type Engineers: Forensic Rigor & Algorithmic Determinism
 * **Rejection of Pixel-Autotraced Hallucinations**: Every glyph curve is derived from continuous mathematical centerline skeletons and calligraphic chisel nib physics ($w(\varphi) = \sqrt{(a \cos(\varphi - \theta))^2 + (b \sin(\varphi - \theta))^2}$), converted into cubic Bézier splines with zero self-intersections and zero duplicate nodes across 7,040 glyphs.
-* **TrueType Word-Boundary Alignment**: Enforces the [Thomas Phinney](https://www.thomasphinney.com) ([Font Detective](https://fontdetective.com)) forensic standard where all glyph records and `loca` offsets align to 2-byte word boundaries (`loca[i] % 2 == 0`), eliminating the silent font-dropping bugs that plague DirectWrite and W3C OpenType Sanitizer (OTS) engines.
+* **TrueType Word-Boundary Alignment**: Enforces the [Thomas Phinney](https://www.thomasphinney.com) ([The Font Detective](https://thefontdetective.com)) forensic standard where all glyph records and `loca` offsets align to 2-byte word boundaries (`loca[i] % 2 == 0`), eliminating the silent font-dropping bugs that plague DirectWrite and W3C OpenType Sanitizer (OTS) engines.
 * **Hermetic Pure Dart Foundry Pipeline**: Type transformation, table re-indexing, font surgical operations, and audit reporting are built natively in sound Dart 3.11 (`tool/foundry/`), providing deterministic, cross-platform builds without fragile external C-extension build chains.
 
 ### 3. For Upstream Google Fonts & The Open-Source Commons: Zero Technical Debt

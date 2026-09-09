@@ -1,0 +1,59 @@
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.version.1.6.0.schema.json
+PackageIdentifier: PocketGull.Typeface
+PackageVersion: 3.1.0
+DefaultLocale: en-US
+ManifestType: version
+ManifestVersion: 1.6.0
+---
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.defaultLocale.1.6.0.schema.json
+PackageIdentifier: PocketGull.Typeface
+PackageVersion: 3.1.0
+PackageLocale: en-US
+Publisher: The PocketGull Project Authors
+PublisherUrl: https://github.com/pocketgull-app
+PublisherSupportUrl: https://github.com/pocketgull-app/pocketgull-typeface/issues
+PackageName: PocketGull Typeface
+PackageUrl: https://font.pocketgull.app
+License: OFL-1.1
+LicenseUrl: https://raw.githubusercontent.com/pocketgull-app/pocketgull-typeface/main/OFL.txt
+ShortDescription: Clinical, optotypic, and telemetry typeface superfamily engineered for life-critical healthcare.
+Description: |
+  PocketGull is an open-source clinical sans-serif, display, and telemetry monospace
+  typeface superfamily engineered by Phil Gear. Originating from tactile felt marker
+  lettering created on physical cardstock for GearArts, PocketGull synthesizes humanist
+  stroke warmth with Louise Sloan 5:1 optotypic legibility and Institute for Safe
+  Medication Practices (ISMP) character disambiguation standards for life-critical
+  healthcare environments.
+Tags:
+  - font
+  - typeface
+  - clinical
+  - medical
+  - typography
+  - monospace
+  - braille
+ReleaseDate: 2026-09-09
+ManifestType: defaultLocale
+ManifestVersion: 1.6.0
+---
+# yaml-language-server: $schema=https://aka.ms/winget-manifest.installer.1.6.0.schema.json
+PackageIdentifier: PocketGull.Typeface
+PackageVersion: 3.1.0
+Installers:
+  - Architecture: neutral
+    InstallerType: zip
+    InstallerUrl: https://github.com/pocketgull-app/pocketgull-typeface/releases/download/v3.1.0/pocketgull-typeface-v3.1.0.zip
+    InstallerSha256: 0000000000000000000000000000000000000000000000000000000000000000 # To be replaced upon release zip generation
+    NestedInstallerType: portable
+    NestedInstallerFiles:
+      - RelativeFilePath: fonts/ttf/PocketGull-Regular.ttf
+      - RelativeFilePath: fonts/ttf/PocketGull-Bold.ttf
+      - RelativeFilePath: fonts/ttf/PocketGull-Fineliner.ttf
+      - RelativeFilePath: fonts/ttf/PocketGull-Chiseltip.ttf
+      - RelativeFilePath: fonts/ttf/PocketGull-MarkerRaw.ttf
+      - RelativeFilePath: fonts/ttf/PocketGull-Serif-Regular.ttf
+      - RelativeFilePath: fonts/ttf/PocketGull-Serif-Bold.ttf
+      - RelativeFilePath: fonts/ttf/PocketGullMono-Regular.ttf
+      - RelativeFilePath: fonts/ttf/PocketGullMono-Bold.ttf
+ManifestType: installer
+ManifestVersion: 1.6.0

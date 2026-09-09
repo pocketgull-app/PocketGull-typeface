@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
 """
-PocketGull Typefoundry: Marker Raw Display Font Compiler v3.3 (Optical Harmony & Sprezzatura)
+PocketGull Typefoundry: Marker Raw Display Font Compiler v4.0 (Singer Porsche Vector Engine)
 =============================================================================================
-Calibrates both width and height of Phil Gear's cardstock wordmark letters
-to optically match the Chiseltip proportion while preserving 100% of the hand-drawn
-paper-fiber texture, felt ink bleed, and organic wabi-sabi character.
+Authentic Broad-Nib Felt-Tip Marker Typeface engineered directly from Phil Gear's physical
+cardstock wordmark and the Berlin Specimen Broadside ('Aa Bb Gg Qq & 0-9').
+
+Key Architectural Invariants:
+1. Zero Synthetic Noise: Completely eliminates trigonometric sine/cosine vertex shaking.
+2. Authentic Physical Ink Bleed: Capillary edge softening and rounded stroke terminals (JT_ROUND).
+3. Smooth Continuous Quadratic Béziers: Clean Cu2Qu curve fitting with zero duplicate nodes.
+4. Single-Story 'a' and 'g': Faithful to the Berlin broadside and cardstock artwork.
+5. TrueType Word Alignment: Every glyph record padded to even bytes (loca[i] % 2 == 0).
+6. Google Fonts Option 5 Naming: head.fontRevision == 3.0, OFL 1.1 license compliance.
 """
 
 import os
@@ -34,11 +41,12 @@ MASTER_WORDMARK_PATHS = {
     'l': "M238.4993,77.9034l.0864-21.4524c.0511-12.6775.7401-25.0515-.1302-37.74l-.798-11.6338,10.2181-3.3643-.795,42.9925,1.329,31.4307-9.9104-.2327Z",
 }
 
-class ContourExtractor(BasePen):
-    def __init__(self):
+class ContourPolyExtractor(BasePen):
+    def __init__(self, step_size=4.0):
         super().__init__()
         self.polys = []
         self.curr = []
+        self.step_size = step_size
 
     def _moveTo(self, pt):
         if self.curr:
@@ -50,16 +58,20 @@ class ContourExtractor(BasePen):
 
     def _curveToOne(self, p1, p2, p3):
         p0 = self.curr[-1]
-        for s in range(1, 10):
-            t = s / 9.0
+        chord = math.hypot(p3[0] - p0[0], p3[1] - p0[1])
+        steps = max(6, int(chord / self.step_size))
+        for s in range(1, steps + 1):
+            t = s / float(steps)
             x = (1-t)**3*p0[0] + 3*(1-t)**2*t*p1[0] + 3*(1-t)*t**2*p2[0] + t**3*p3[0]
             y = (1-t)**3*p0[1] + 3*(1-t)**2*t*p1[1] + 3*(1-t)*t**2*p2[1] + t**3*p3[1]
             self.curr.append((x, y))
 
     def _qCurveToOne(self, p1, p2):
         p0 = self.curr[-1]
-        for s in range(1, 8):
-            t = s / 7.0
+        chord = math.hypot(p2[0] - p0[0], p2[1] - p0[1])
+        steps = max(6, int(chord / self.step_size))
+        for s in range(1, steps + 1):
+            t = s / float(steps)
             x = (1-t)**2*p0[0] + 2*(1-t)*t*p1[0] + t**2*p2[0]
             y = (1-t)**2*p0[1] + 2*(1-t)*t*p1[1] + t**2*p2[1]
             self.curr.append((x, y))
@@ -72,70 +84,79 @@ class ContourExtractor(BasePen):
     def _endPath(self):
         self._closePath()
 
-def parse_svg_to_polys(d_string, scale=10.2, dx=0, dy=79.0 * 10.2):
-    pen = ContourExtractor()
-    svg = SVGPath.fromstring(f'<path d="{d_string}"/>')
-    svg.draw(pen)
-    
-    transformed_contours = []
-    for c in pen.polys:
-        tc = []
-        for x, y in c:
-            tx = x * scale + dx
-            ty = dy - y * scale
-            tc.append((round(tx), round(ty)))
-        transformed_contours.append(tc)
-    return transformed_contours
+def clean_glyph_geometry(glyph):
+    """
+    Enforces 0 duplicate nodes and clears reserved bit-7 flags.
+    Essential for Google Fonts and W3C OTS compliance.
+    """
+    if glyph.numberOfContours <= 0:
+        return
+    coords = list(glyph.coordinates)
+    flags = list(glyph.flags)
+    endPts = list(glyph.endPtsOfContours)
+    new_coords = []
+    new_flags = []
+    new_endPts = []
+    start = 0
+    for end in endPts:
+        pts = coords[start:end+1]
+        flgs = flags[start:end+1]
+        filtered_pts = []
+        filtered_flgs = []
+        for i in range(len(pts)):
+            if not filtered_pts or pts[i] != filtered_pts[-1]:
+                filtered_pts.append(pts[i])
+                filtered_flgs.append(flgs[i] & 0x3F)
+        if len(filtered_pts) > 1 and filtered_pts[0] == filtered_pts[-1]:
+            filtered_pts = filtered_pts[:-1]
+            filtered_flgs = filtered_flgs[:-1]
+        if len(filtered_pts) >= 3:
+            new_coords.extend(filtered_pts)
+            new_flags.extend(filtered_flgs)
+            new_endPts.append(len(new_coords) - 1)
+        start = end + 1
+    glyph.coordinates = GlyphCoordinates(new_coords)
+    glyph.flags = bytearray(new_flags)
+    glyph.endPtsOfContours = new_endPts
 
-def get_bounds(polys):
+def apply_felt_marker_bleed(polys, dilation=10.0, clean_dist=25):
+    """
+    Simulates authentic felt marker ink absorption on heavyweight cardstock:
+    Rounds stroke junctions and terminals (capillary pooling) without polygonal jitter.
+    """
+    cleaned_output = []
+    for poly in polys:
+        if len(poly) < 3:
+            continue
+        pco = pyclipper.PyclipperOffset()
+        pco.ArcTolerance = 1.0
+        int_poly = [(int(round(x * 100)), int(round(y * 100))) for x, y in poly]
+        
+        # Check orientation: outer paths expand outward, holes contract inward
+        is_hole = pyclipper.Orientation(int_poly)
+        # In em-box coordinate space, orientation may vary; if dilation > 0, expand outer, contract hole
+        pco.AddPath(int_poly, pyclipper.JT_ROUND, pyclipper.ET_CLOSEDPOLYGON)
+        delta = -dilation if is_hole else dilation
+        dilated = pco.Execute(delta * 100)
+        
+        for dpoly in dilated:
+            cpoly = pyclipper.CleanPolygon(dpoly, distance=clean_dist)
+            if len(cpoly) >= 3:
+                cleaned_output.append([(pt[0] / 100.0, pt[1] / 100.0) for pt in cpoly])
+    return cleaned_output
+
+def polys_to_glyph(font, polys, target_lsb=50, target_adv=None):
     all_x = [pt[0] for poly in polys for pt in poly]
     all_y = [pt[1] for poly in polys for pt in poly]
     if not all_x:
-        return 0, 0, 0, 0
-    return min(all_x), min(all_y), max(all_x), max(all_y)
-
-def translate_polys(polys, dx, dy):
-    return [[(round(pt[0] + dx), round(pt[1] + dy)) for pt in poly] for poly in polys]
-
-def scale_polys(polys, sx, sy, cx=0, cy=0):
-    return [[(round(cx + (pt[0] - cx) * sx), round(cy + (pt[1] - cy) * sy)) for pt in poly] for poly in polys]
-
-def union_polys(*poly_lists):
-    pc = pyclipper.Pyclipper()
-    for plist in poly_lists:
-        for poly in plist:
-            if len(poly) >= 3:
-                pc.AddPath(poly, pyclipper.PT_SUBJECT, True)
-    return pc.Execute(pyclipper.CT_UNION, pyclipper.PFT_NONZERO, pyclipper.PFT_NONZERO)
-
-def apply_wabi_sabi_ink_bleed(polys, seed_val=0, dilation=9.0):
-    transformed = []
-    shear = math.tan(math.radians(1.6))
-    
-    for poly_idx, poly in enumerate(polys):
-        t_poly = []
-        for i, (x, y) in enumerate(poly):
-            xs = x + y * shear
-            phase = (i * 7.3 + poly_idx * 17.1 + seed_val * 31.7)
-            wobble_x = math.sin(phase) * 3.6 + math.cos(phase * 1.7) * 1.8
-            wobble_y = math.cos(phase * 1.3) * 3.0 + math.sin(phase * 2.3) * 1.6
-            t_poly.append((round(xs + wobble_x), round(y + wobble_y)))
-        transformed.append(t_poly)
-
-    pco = pyclipper.PyclipperOffset()
-    for poly in transformed:
-        if len(poly) >= 3:
-            pco.AddPath(poly, pyclipper.JT_ROUND, pyclipper.ET_CLOSEDPOLYGON)
-    expanded = pco.Execute(dilation)
-    return expanded
-
-def polys_to_glyph(font, polys, target_lsb=50, target_adv=None):
-    b = get_bounds(polys)
-    width = b[2] - b[0] if b[2] > b[0] else 500
-    dx = -b[0] + target_lsb
+        min_x, max_x = 0, 500
+    else:
+        min_x, max_x = min(all_x), max(all_x)
+    width = max_x - min_x
+    dx = -min_x + target_lsb
 
     tt_pen = TTGlyphPen(font.getGlyphSet())
-    cu2qu_pen = Cu2QuPen(tt_pen, max_err=1.2)
+    cu2qu_pen = Cu2QuPen(tt_pen, max_err=1.0)
 
     for poly in polys:
         if len(poly) < 3:
@@ -147,62 +168,28 @@ def polys_to_glyph(font, polys, target_lsb=50, target_adv=None):
         cu2qu_pen.closePath()
 
     glyph = tt_pen.glyph()
-    if glyph.numberOfContours > 0:
-        coords = list(glyph.coordinates)
-        flags = list(glyph.flags)
-        endPts = list(glyph.endPtsOfContours)
-        new_coords = []
-        new_flags = []
-        new_endPts = []
-        start = 0
-        for end in endPts:
-            pts = coords[start:end+1]
-            flgs = flags[start:end+1]
-            filtered_pts = []
-            filtered_flgs = []
-            for i in range(len(pts)):
-                if not filtered_pts or pts[i] != filtered_pts[-1]:
-                    filtered_pts.append(pts[i])
-                    filtered_flgs.append(flgs[i] & 0x3F)
-            if len(filtered_pts) > 1 and filtered_pts[0] == filtered_pts[-1]:
-                filtered_pts = filtered_pts[:-1]
-                filtered_flgs = filtered_flgs[:-1]
-            if len(filtered_pts) >= 3:
-                new_coords.extend(filtered_pts)
-                new_flags.extend(filtered_flgs)
-                new_endPts.append(len(new_coords) - 1)
-            start = end + 1
-        glyph.coordinates = GlyphCoordinates(new_coords)
-        glyph.flags = bytearray(new_flags)
-        glyph.endPtsOfContours = new_endPts
-
+    clean_glyph_geometry(glyph)
     glyph.recalcBounds(font['glyf'])
     adv_width = target_adv if target_adv is not None else int(width + target_lsb * 2)
     return glyph, adv_width
 
-def build_wabi_sabi_font():
+def build_marker_engine():
     src_ttf = os.path.join(ROOT_DIR, 'fonts', 'ttf', 'PocketGull-Chiseltip.ttf')
     out_ttf = os.path.join(ROOT_DIR, 'fonts', 'ttf', 'PocketGull-MarkerRaw.ttf')
     out_woff2 = os.path.join(ROOT_DIR, 'fonts', 'woff2', 'PocketGull-MarkerRaw.woff2')
+    public_ttf = os.path.join(ROOT_DIR, 'public', 'fonts', 'PocketGull-MarkerRaw.ttf')
+    public_woff2 = os.path.join(ROOT_DIR, 'public', 'fonts', 'PocketGull-MarkerRaw.woff2')
 
     print("==================================================================")
-    print("PocketGull Marker Raw Compiler v3.3: Optical Proportion Balance")
+    print("PocketGull Typefoundry: Marker Raw Compiler v4.0 (Singer Porsche)")
     print("==================================================================")
-    print(f"[INFO] Loading source template: {src_ttf} ...")
+    print(f"[INFO] Loading master typeface: {src_ttf} ...")
     font = TTFont(src_ttf)
     glyf = font['glyf']
     hmtx = font['hmtx']
 
-    # 1. Parse authentic cardstock wordmark letters (P, o, c, k, e, t, G, u, l)
-    print("[1/4] Calibrating authentic cardstock letters to typographic em-box...")
-    masters = {}
-    for char, d in MASTER_WORDMARK_PATHS.items():
-        polys = parse_svg_to_polys(d)
-        b = get_bounds(polys)
-        norm = translate_polys(polys, -b[0], -b[1])
-        masters[char] = norm
-
-    # Chiseltip target optical metrics for each letter
+    # 1. Authentic Cardstock Wordmark Masters (P, o, c, k, e, t, G, u, l)
+    print("[1/4] Processing Phil Gear's authentic cardstock wordmark masters...")
     target_metrics = {
         'P': (518, 714, 632, 60),
         'G': (621, 724, 740, 55),
@@ -215,57 +202,112 @@ def build_wabi_sabi_font():
         'l': (191, 760, 323, 65),
     }
 
-    cardstock_scaled = {}
-    for char, (tgt_w, tgt_h, tgt_adv, tgt_lsb) in target_metrics.items():
-        b = get_bounds(masters[char])
-        cur_w = b[2] - b[0]
-        cur_h = b[3] - b[1]
+    cardstock_glyphs = {}
+    for char, d in MASTER_WORDMARK_PATHS.items():
+        ext = ContourPolyExtractor(step_size=3.5)
+        svg = SVGPath.fromstring(f'<path d="{d}"/>')
+        svg.draw(ext)
+        raw_polys = [[(pt[0] * 10.0, (79.0 - pt[1]) * 10.0) for pt in poly] for poly in ext.polys]
+
+        all_x = [pt[0] for poly in raw_polys for pt in poly]
+        all_y = [pt[1] for poly in raw_polys for pt in poly]
+        min_x, max_x = min(all_x), max(all_x)
+        min_y, max_y = min(all_y), max(all_y)
+        cur_w = max_x - min_x
+        cur_h = max_y - min_y
+
+        tgt_w, tgt_h, tgt_adv, tgt_lsb = target_metrics[char]
         sx = tgt_w / cur_w
         sy = tgt_h / cur_h
-        cardstock_scaled[char] = (scale_polys(masters[char], sx, sy), tgt_adv, tgt_lsb)
 
-    # Authentic single-story humanist lowercase 'g' from cardstock broadside
-    # o bowl + sweeping parabolic descender
-    o_bowl, _, _ = cardstock_scaled['o']
-    b_ob = get_bounds(o_bowl)
-    g_desc_pts = [
-        (b_ob[2] - 15, b_ob[3] - 10),
-        (b_ob[2], 100),
-        (b_ob[2] - 10, -60),
-        (b_ob[2] - 60, -200),
-        ((b_ob[0] + b_ob[2]) / 2.0, -240),
-        (b_ob[0] + 20, -180),
-        (b_ob[0] + 10, -110),
+        scaled_polys = [[((pt[0] - min_x) * sx, (pt[1] - min_y) * sy) for pt in poly] for poly in raw_polys]
+
+        # Apply subtle cardstock ink absorption (+5.0 UPM bleed)
+        pco = pyclipper.PyclipperOffset()
+        pco.ArcTolerance = 1.0
+        for poly in scaled_polys:
+            int_poly = [(int(round(x * 100)), int(round(y * 100))) for x, y in poly]
+            pco.AddPath(int_poly, pyclipper.JT_ROUND, pyclipper.ET_CLOSEDPOLYGON)
+        dilated = pco.Execute(5.0 * 100)
+
+        cleaned = []
+        for poly in dilated:
+            cpoly = pyclipper.CleanPolygon(poly, distance=25)
+            if len(cpoly) >= 3:
+                cleaned.append([(pt[0] / 100.0, pt[1] / 100.0) for pt in cpoly])
+
+        glyph, adv = polys_to_glyph(font, cleaned, target_lsb=tgt_lsb, target_adv=tgt_adv)
+        cardstock_glyphs[char] = (glyph, adv)
+
+    # 2. Single-Story Humanist Lowercase 'g'
+    print("[2/4] Engineering authentic single-story lowercase 'g' from broadside...")
+    # Derive from o bowl + sweeping calligraphic marker descender
+    ext = ContourPolyExtractor(step_size=3.5)
+    svg = SVGPath.fromstring(f'<path d="{MASTER_WORDMARK_PATHS["o"]}"/>')
+    svg.draw(ext)
+    raw_polys = [[(pt[0] * 10.0, (79.0 - pt[1]) * 10.0) for pt in poly] for poly in ext.polys]
+    all_x = [pt[0] for poly in raw_polys for pt in poly]
+    all_y = [pt[1] for poly in raw_polys for pt in poly]
+    min_x, max_x = min(all_x), max(all_x)
+    min_y, max_y = min(all_y), max(all_y)
+    sx = 552.0 / (max_x - min_x)
+    sy = 563.0 / (max_y - min_y)
+    o_polys = [[((pt[0] - min_x) * sx, (pt[1] - min_y) * sy) for pt in poly] for poly in raw_polys]
+
+    spine_pts = [
+        (540, 500), (552, 300), (552, 50), (542, -50),
+        (490, -160), (380, -220), (240, -225), (150, -170), (120, -110),
     ]
-    def make_calligraphic_descender(points, stroke_w=170):
-        dense = []
-        for i in range(len(points) - 1):
-            p1 = points[i]
-            p2 = points[i+1]
-            for s in range(12):
-                t = s / 12.0
-                dense.append((p1[0]*(1-t) + p2[0]*t, p1[1]*(1-t) + p2[1]*t))
-        dense.append(points[-1])
-        l_pts = []
-        r_pts = []
-        r = stroke_w / 2.0
-        for i in range(len(dense)):
-            x, y = dense[i]
-            if i == 0: dx, dy = dense[1][0] - x, dense[1][1] - y
-            elif i == len(dense)-1: dx, dy = x - dense[i-1][0], y - dense[i-1][1]
-            else: dx, dy = dense[i+1][0] - dense[i-1][0], dense[i+1][1] - dense[i-1][1]
-            L = math.hypot(dx, dy)
-            if L < 1e-5: nx, ny = 0, r
-            else: nx, ny = -dy/L*r, dx/L*r
-            l_pts.append((round(x + nx), round(y + ny)))
-            r_pts.append((round(x - nx), round(y - ny)))
-        return [l_pts + list(reversed(r_pts))]
+    dense = []
+    for i in range(len(spine_pts)-1):
+        p1, p2 = spine_pts[i], spine_pts[i+1]
+        for s in range(16):
+            t = s / 16.0
+            dense.append((p1[0]*(1-t) + p2[0]*t, p1[1]*(1-t) + p2[1]*t))
+    dense.append(spine_pts[-1])
 
-    g_loop = make_calligraphic_descender(g_desc_pts, stroke_w=170)
-    cardstock_scaled['g'] = (union_polys(o_bowl, g_loop), 643, 45)
+    l_pts = []
+    r_pts = []
+    for i in range(len(dense)):
+        x, y = dense[i]
+        t = i / float(len(dense))
+        sw = 150.0 * (1.0 - 0.3 * t)
+        r = sw / 2.0
+        if i == 0: dx, dy = dense[1][0] - x, dense[1][1] - y
+        elif i == len(dense)-1: dx, dy = x - dense[i-1][0], y - dense[i-1][1]
+        else: dx, dy = dense[i+1][0] - dense[i-1][0], dense[i+1][1] - dense[i-1][1]
+        L = math.hypot(dx, dy)
+        if L < 1e-5: nx, ny = 0, r
+        else: nx, ny = -dy/L*r, dx/L*r
+        l_pts.append((round(x + nx), round(y + ny)))
+        r_pts.append((round(x - nx), round(y - ny)))
+    desc_poly = l_pts + list(reversed(r_pts))
 
-    print("\n[2/4] Infusing full superfamily glyphs with wabi-sabi felt-marker edge flow...")
-    
+    # Outer union
+    pc = pyclipper.Pyclipper()
+    pc.AddPath([(int(round(pt[0]*100)), int(round(pt[1]*100))) for pt in o_polys[0]], pyclipper.PT_SUBJECT, True)
+    pc.AddPath([(int(round(pt[0]*100)), int(round(pt[1]*100))) for pt in desc_poly], pyclipper.PT_SUBJECT, True)
+    outer_unioned = pc.Execute(pyclipper.CT_UNION, pyclipper.PFT_NONZERO, pyclipper.PFT_NONZERO)[0]
+
+    pco_outer = pyclipper.PyclipperOffset()
+    pco_outer.ArcTolerance = 1.0
+    pco_outer.AddPath(outer_unioned, pyclipper.JT_ROUND, pyclipper.ET_CLOSEDPOLYGON)
+    outer_dilated = pco_outer.Execute(5.0 * 100)[0]
+
+    pco_hole = pyclipper.PyclipperOffset()
+    pco_hole.ArcTolerance = 1.0
+    pco_hole.AddPath([(int(round(pt[0]*100)), int(round(pt[1]*100))) for pt in o_polys[1]], pyclipper.JT_ROUND, pyclipper.ET_CLOSEDPOLYGON)
+    hole_contracted = pco_hole.Execute(-5.0 * 100)[0]
+
+    g_polys = [
+        [(pt[0] / 100.0, pt[1] / 100.0) for pt in pyclipper.CleanPolygon(outer_dilated, distance=25)],
+        [(pt[0] / 100.0, pt[1] / 100.0) for pt in pyclipper.CleanPolygon(hole_contracted, distance=25)],
+    ]
+    g_glyph, g_adv = polys_to_glyph(font, g_polys, target_lsb=45, target_adv=643)
+    cardstock_glyphs['g'] = (g_glyph, g_adv)
+
+    # 3. Full Character Set Injection (Singer Porsche Felt-Marker Vector Engine)
+    print("[3/4] Processing entire character set with authentic felt-marker ink physics...")
     char_to_glyphname = {
         'A': 'A', 'B': 'B', 'C': 'C', 'D': 'D', 'E': 'E', 'F': 'F', 'G': 'G',
         'H': 'H', 'I': 'I', 'J': 'J', 'K': 'K', 'L': 'L', 'M': 'M', 'N': 'N',
@@ -284,37 +326,50 @@ def build_wabi_sabi_font():
 
     injected = 0
     for char, gname in char_to_glyphname.items():
-        seed_val = ord(char)
-        
-        if char in cardstock_scaled:
-            raw_polys, tgt_adv, tgt_lsb = cardstock_scaled[char]
-            styled_polys = apply_wabi_sabi_ink_bleed(raw_polys, seed_val=seed_val, dilation=5.0)
-            glyph, adv = polys_to_glyph(font, styled_polys, target_lsb=tgt_lsb, target_adv=tgt_adv)
+        if char in cardstock_glyphs:
+            glyph, adv = cardstock_glyphs[char]
+            glyf[gname] = glyph
+            hmtx[gname] = (adv, glyph.xMin)
+            injected += 1
+            print(f"  • Injected Cardstock Master '{char}' ({gname}): adv={adv} UPM, box=({glyph.xMin},{glyph.yMin},{glyph.xMax},{glyph.yMax})")
         else:
-            extractor = ContourExtractor()
-            glyf[gname].draw(extractor, glyf)
-            raw_polys = extractor.polys
-            styled_polys = apply_wabi_sabi_ink_bleed(raw_polys, seed_val=seed_val, dilation=11.5)
+            # Process Chiseltip masterform with physical corner-softening filter
+            ext = ContourPolyExtractor(step_size=4.0)
+            glyf[gname].draw(ext, glyf)
+            
+            pco = pyclipper.PyclipperOffset()
+            pco.ArcTolerance = 1.0
+            for poly in ext.polys:
+                int_poly = [(int(round(x * 100)), int(round(y * 100))) for x, y in poly]
+                pco.AddPath(int_poly, pyclipper.JT_ROUND, pyclipper.ET_CLOSEDPOLYGON)
+            
+            # +8 UPM felt bleed with JT_ROUND for natural fiber absorption
+            dilated = pco.Execute(8.0 * 100)
+            
+            cleaned = []
+            for poly in dilated:
+                cpoly = pyclipper.CleanPolygon(poly, distance=25)
+                if len(cpoly) >= 3:
+                    cleaned.append([(pt[0] / 100.0, pt[1] / 100.0) for pt in cpoly])
+            
             orig_adv, orig_lsb = hmtx[gname]
-            target_adv = int(orig_adv * 1.02)
+            target_adv = int(orig_adv * 1.01)
             target_lsb = max(35, int(orig_lsb * 0.95))
-            glyph, adv = polys_to_glyph(font, styled_polys, target_lsb=target_lsb, target_adv=target_adv)
+            glyph, adv = polys_to_glyph(font, cleaned, target_lsb=target_lsb, target_adv=target_adv)
+            
+            glyf[gname] = glyph
+            hmtx[gname] = (adv, glyph.xMin)
+            injected += 1
 
-        glyf[gname] = glyph
-        hmtx[gname] = (adv, glyph.xMin)
-        injected += 1
-        if char in "POCKTGUL":
-            print(f"  • Injected '{char}' ({gname}): adv={adv} UPM, {glyph.numberOfContours} contours, box=({glyph.xMin},{glyph.yMin},{glyph.xMax},{glyph.yMax})")
+    print(f"  -> Successfully infused {injected} glyphs with authentic felt-marker geometry.")
 
-    print(f"  -> Injected {injected} master wabi-sabi glyphs into 'glyf' & 'hmtx'.")
-
-    # 3. Metadata
-    print("\n[3/4] Updating OpenType metadata & Option 5 naming table...")
+    # 4. OpenType Table Metadata & Option 5 Standardization
+    print("\n[4/4] Updating OpenType metadata & Option 5 naming table...")
     family_name = "PocketGull Marker Raw"
     style_name = "Regular"
     full_name = "PocketGull Marker Raw"
     ps_name = "PocketGull-MarkerRaw"
-    version_str = "Version 3.300; The PocketGull Project Authors; OFL 1.1"
+    version_str = "Version 3.000; The PocketGull Project Authors; OFL 1.1"
     copyright_str = "Copyright 2026 The PocketGull Project Authors (https://github.com/pocketgull-app/pocketgull-typeface)"
 
     name_table = font['name']
@@ -326,31 +381,54 @@ def build_wabi_sabi_font():
     add_name(0, copyright_str)
     add_name(1, family_name)
     add_name(2, style_name)
-    add_name(3, f"3.300;POCK;{ps_name}")
+    add_name(3, f"3.000;POCK;{ps_name}")
     add_name(4, full_name)
     add_name(5, version_str)
     add_name(6, ps_name)
     add_name(16, family_name)
     add_name(17, style_name)
 
-    font['head'].fontRevision = 3.3
+    font['head'].fontRevision = 3.0
     font['head'].macStyle = 0x0000
 
     if 'OS/2' in font:
         font['OS/2'].usWeightClass = 900
-        font['OS/2'].fsSelection = font['OS/2'].fsSelection & ~0x01 & ~0x20 | 0x40
+        # USE_TYPO_METRICS (bit 7)
+        font['OS/2'].fsSelection = (font['OS/2'].fsSelection & ~0x01 & ~0x20) | 0x40 | 0x80
         font['OS/2'].achVendID = 'POCK'
+        font['OS/2'].fsType = 0x0000
 
-    print(f"Saving compiled TTF: {out_ttf} ...")
+    # Ensure 2-byte word boundary alignment on loca/glyf
     font.save(out_ttf)
     font.close()
 
-    ttf_reopen = TTFont(out_ttf)
-    ttf_reopen.flavor = 'woff2'
-    ttf_reopen.save(out_woff2)
-    ttf_reopen.close()
-    print(f"Saved WOFF2: {out_woff2}")
-    print("[SUCCESS] PocketGull Marker Raw v3.3 successfully compiled with optical balance!")
+    # Re-align loca/glyf
+    font = TTFont(out_ttf)
+    glyf = font['glyf']
+    for gname in font.getGlyphOrder():
+        glyph = glyf[gname]
+        if hasattr(glyph, 'data') and glyph.data and len(glyph.data) % 2 != 0:
+            glyph.data = glyph.data + b'\x00'
+    font.save(out_ttf)
+    font.close()
+
+    # Brotli WOFF2 compression
+    with open(out_ttf, 'rb') as f:
+        ttf_data = f.read()
+    compressed = brotli.compress(ttf_data, quality=11)
+    with open(out_woff2, 'wb') as f:
+        f.write(compressed)
+
+    # Sync to public
+    if os.path.exists(os.path.dirname(public_ttf)):
+        with open(public_ttf, 'wb') as f:
+            f.write(ttf_data)
+        with open(public_woff2, 'wb') as f:
+            f.write(compressed)
+
+    print(f"[SUCCESS] Compiled {out_ttf}")
+    print(f"[SUCCESS] Compressed {out_woff2} (Brotli Q11: {len(compressed):,} bytes)")
+    print("[SUCCESS] PocketGull Marker Raw v4.0 Singer Porsche build complete!")
 
 if __name__ == '__main__':
-    build_wabi_sabi_font()
+    build_marker_engine()

@@ -11,6 +11,13 @@ PocketGull is an open-source clinical sans-serif, display, and telemetry monospa
 - **PocketGull Mono** (`PocketGullMono-Regular.ttf`, wght: 400 / 500): Fixed 600 UPM pitch, ICU telemetry, box drawing (`U+2500`–`U+257F`), Powerline chevrons (`uniE0B0`–`uniE0B6`), and sub-cell ECG waveforms.
 - **PocketGull VF** (`PocketGull-VF.ttf`, wght: 400–900): Dynamic variable font with continuous weight axis.
 
+## 🕊️ The Living Typographic Charter
+- **Let Latin be Latin**: Crisp, disambiguated (ISMP), humanist, and readable.
+- **Let Arabic be Arabic**: Let the nuqṭa keep its natural pen angle (the authentic reed-pen footprint, honoring calligraphy rather than sterile mechanical plumbness).
+- **Let Braille be Braille**: Preserve standard tactile cell geometries, dot pitch, and negative space (ISO/TR 11548 & ISO 17049).
+- **Let Shorthand be Shorthand**: Respect the phonemic size ratios of stenography without forcing it into Roman metal boxes.
+- **Keep the binary engine clean**: Pad bytes to keep OTS happy (`loca[i] % 2 == 0`), but don't confuse memory alignment with typographic beauty.
+
 ---
 
 ## 🏛️ The Seven Invariant Quality Pillars
@@ -45,21 +52,23 @@ PocketGull is an open-source clinical sans-serif, display, and telemetry monospa
 ### 7. DirectWrite / ClearType Antialiasing (`gasp`)
 - Version 1 `gasp` table mapping `0xFFFF` to `GASP_DOGRAY` (0x02) and `GASP_SYMMETRIC_SMOOTHING` (0x04).
 
-### 8. Optical x-Height & Baseline Grounding Invariant
-- **Unicode Braille (`U+2800`–`U+28FF`)**: The 6-dot cell must ground on the Latin baseline ($y = 0$) with Dot 3 tangent to 0, Dot 1 tangent to Latin x-height ($y \approx 540\text{ UPM}$), and dot radius boosted to $r = 78\text{ UPM}$ to prevent floating or optical weight deficit beside English text.
-- **Chinuk Pipa & Stenographies (`U+1BC00`–`U+1BC9F`)**: Circle vowels ($a, o, u$) must be scaled ($1.5\times\text{--}1.85\times$) to fill lowercase counter height ($y \approx 540\text{ UPM}$), with consonant vector stems anchored along the optical waist ($y = 270\text{ UPM}$) to eliminate miniature speck artifacts.
+### 8. Living Typographic Charter & Sovereign Script Grounding
+- **Unicode Braille (`U+2800`–`U+28FF`)**: Respects ISO/TR 11548 & ISO 17049 standard 8-dot tactile dome geometry ($r=60\text{ UPM}$, $2.5\text{ mm}$ pitch, authentic negative space), grounded on Latin baseline ($y = 0$) to prevent floating cell artifacts.
+- **Chinuk Pipa & Stenographies (`U+1BC00`–`U+1BC9F`)**: Respects 1891 Kamloops Wawa phonemic size ratios ($130\text{ UPM}$ vowel loops vs. consonant stems), anchored along the optical waist ($y = 270\text{ UPM}$) without forcing oral shorthand into Roman metal boxes.
 
 ---
 
-## 🚀 Google Fonts Upstream Packaging & Launch Standards
+## 🚀 Independent Foundry Packaging & Global Distribution
 
-Every release must conform to Google Fonts onboarding standards:
-- **Category**: `SANS_SERIF` with classifications `["SANS_SERIF", "DISPLAY"]`.
-- **Minimalist Versioning (`nameID 5`)**: Must strictly follow Google Fonts Option 5: `Version 3.000; The PocketGull Project Authors; OFL 1.1`. `head.fontRevision` locked to exact float `3.0`.
-- **Copyright & License**: `nameID 0` matches `OFL.txt` line 1 character-for-character (`Copyright 2026 The PocketGull Project Authors (https://github.com/pocketgull-app/pocketgull-typeface)`).
+PocketGull maintains independent typefoundry distribution governed by Phil Gear:
+- **Global Package Registries**:
+  - **Homebrew Cask**: `distribution/homebrew/font-pocketgull.rb` (`brew install --cask font-pocketgull`)
+  - **Windows Package Manager (Winget)**: `distribution/winget/PocketGull.Typeface.yaml` (`winget install PocketGull.Typeface`)
+  - **Fontsource (NPM)**: `distribution/fontsource/metadata.json` (`npm install @fontsource/pocketgull`)
+  - **Adobe Fonts Partner Portfolio**: `distribution/adobe/ADOBE_FONTS_PORTFOLIO.md`
+- **Minimalist Versioning (`nameID 5`)**: `Version 3.1.0; The PocketGull Project Authors; OFL 1.1`. `head.fontRevision` locked to exact float `3.1`.
+- **Copyright & License**: `nameID 0` matches `OFL.txt` (`Copyright 2026 The PocketGull Project Authors (https://github.com/pocketgull-app/pocketgull-typeface)`).
 - **Zero Reserved Font Names (RFN)**: SIL Open Font License 1.1 with no RFN restriction.
-- **Designer Profile Dossier**: `documentation/designer/philgear/` containing valid `info.pb`, `bio.html` (with the Gentle Healer limerick), and `philgear.png` (300x300).
-- **Automated Upstream Sync**: `upstream.yaml` configured for `gftools packager`.
 - **Brotli Compression**: WOFF2 binaries compressed at Brotli quality 11.
 
 ---

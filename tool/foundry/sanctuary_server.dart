@@ -17,7 +17,7 @@ class SanctuaryServer {
 
     for (var offset = 0; offset < 10; offset++) {
       try {
-        server = await HttpServer.bind(InternetAddress.loopbackIPv4, bindPort + offset);
+        server = await HttpServer.bind(InternetAddress.anyIPv4, bindPort + offset);
         bindPort = bindPort + offset;
         break;
       } catch (_) {}

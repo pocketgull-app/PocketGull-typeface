@@ -1,0 +1,28 @@
+cask "font-pocketgull" do
+  version "3.1.0"
+  sha256 :no_check
+
+  url "https://github.com/pocketgull-app/pocketgull-typeface/releases/download/v#{version}/pocketgull-typeface-v#{version}.zip",
+      verified: "github.com/pocketgull-app/pocketgull-typeface/"
+  name "PocketGull"
+  desc "Clinical, optotypic, and telemetry typeface superfamily engineered for life-critical healthcare"
+  homepage "https://font.pocketgull.app"
+
+  font "fonts/ttf/PocketGull-Regular.ttf"
+  font "fonts/ttf/PocketGull-Bold.ttf"
+  font "fonts/ttf/PocketGull-Black.ttf"
+  font "fonts/ttf/PocketGull-Fineliner.ttf"
+  font "fonts/ttf/PocketGull-Chiseltip.ttf"
+  font "fonts/ttf/PocketGull-Italic.ttf"
+  font "fonts/ttf/PocketGull-BoldItalic.ttf"
+  font "fonts/ttf/PocketGull-MarkerRaw.ttf"
+  font "fonts/ttf/PocketGull-Serif-Regular.ttf"
+  font "fonts/ttf/PocketGull-Serif-Bold.ttf"
+  font "fonts/ttf/PocketGull-Soft.ttf"
+  font "fonts/ttf/PocketGull-CondensedBold.ttf"
+  font "fonts/ttf/PocketGull-Micro.ttf"
+  font "fonts/ttf/PocketGull-VF.ttf"
+  font "fonts/ttf/PocketGullMono-Regular.ttf"
+  font "fonts/ttf/PocketGullMono-Bold.ttf"
+  font "fonts/ttf/PocketGullMono-Italic.ttf"
+end

@@ -53,6 +53,65 @@ In safety-critical medical communication, where a single ambiguous digit or conf
 
 ---
 
+## 💖 Positive Psychology PEMDAS: The Philocardia Heart Architecture
+
+```
+  (P) → [E] → {M} → <D> → (A) → [S]
+  Presence → Empathy → Meaning → Dignity → Agency → Serenity
+```
+
+### 1. (P) Presence & Psychological Safety (Positive Emotion)
+* **How it feels**: *"I can breathe here. I am welcomed."*
+* **The Psychology**: Amygdala down-regulation and vagal calming. When an anxious patient looks at an intake form, emergency room monitor, or prescription bottle, harsh geometric angles trigger stress.
+* **The Typography**: The warm, organic curve of felt marker on cardstock. Generous counters and soft stroke terminals that say: *you are not an error code; you are a person.*
+
+### 2. (E) Empathy & Effortless Flow (Engagement)
+* **How it feels**: *"Reading this doesn't hurt or exhaust me."*
+* **The Psychology**: Flow state and cognitive ease. Visual fatigue triggers irritability and anxiety.
+* **The Typography**: Generous humanist apertures (open `e`, `c`, `s`), Herman Bouma anti-crowding letter spacing, and optical weight balance so the eye glides across words without snagging or squinting.
+
+### 3. (M) Meaning & Mattering (Relationships & Culture)
+* **How it feels**: *"My heritage, my mother tongue, and my identity belong here."*
+* **The Psychology**: Belonging and cultural validation. Seeing your language treated as a second-class afterthought damages self-worth.
+* **The Typography**: **Script Sovereignty**:
+  * Arabic keeps the authentic $45^\circ$ reed-pen nuqṭa—not flattened by Western mechanical plumbness.
+  * Inuktitut Syllabics stand tall with full cap-height dignity.
+  * Kamloops Wawa Shorthand flows at its natural conversational speed.
+
+### 4. (D) Dignity & Disambiguation (Clarity as Kindness)
+* **How it feels**: *"I can trust this. Nobody will make a fatal mistake on me."*
+* **The Psychology**: Reassurance and trust. In a hospital, ambiguity is terrifying.
+* **The Typography**: **ISMP clinical clarity**:
+  * Slashed zero (`0̸`) so `100 mg` is never read as `10O mg`.
+  * Curved lowercase `l` and serifed capital `I` so `IL-6` or `100` are unmistakable.
+  * Clear decimal protection (`0.5 mg`, never naked `.5 mg`).
+  * *Precision is the highest form of clinical compassion.*
+
+### 5. (A) Agency & Accessibility (Accomplishment & Inclusion)
+* **How it feels**: *"I can navigate this independently, regardless of my abilities."*
+* **The Psychology**: Self-efficacy (Albert Bandura) and empowerment.
+* **The Typography**:
+  * Full 256 Unicode Braille (`U+2800`–`U+28FF`) preserving tactile dot pitch so blind readers and sighted clinicians meet on the same page.
+  * High-contrast WCAG 2.1 AAA geometry that holds up on low-resolution displays and 203 DPI thermal wristbands.
+
+### 6. (S) Serenity & The Quiet Workshop Voice (Synthesis / Restorative Vitality)
+* **How it feels**: *"Everything is going to be alright."*
+* **The Psychology**: Parasympathetic entrainment and physical recovery ($0.1\text{ Hz}$ heart-rate bio-resonance).
+* **The Typography**: The Philocardia resting heart rhythm—unhurried, steady, and peaceful. It doesn't scream for attention like an advertisement; it sits quietly beside you like a trusted companion.
+
+---
+
+## 🕊️ Evolution: From Mathematical Hierarchy to Script Sovereignty
+
+While PEMDA+ provides an intuitive memory-aid for clinical order of operations, language and calligraphy are organic and cultural, not purely arithmetic equations. As codified in [**First Principles: Stripping Away False Constraints**](FIRST_PRINCIPLES.md), the superfamily is guided by the **Living Typographic Charter**:
+- **Let Latin be Latin**: Crisp, disambiguated (ISMP), humanist, and readable.
+- **Let Arabic be Arabic**: Let the nuqṭa keep its natural pen angle (the authentic reed-pen footprint).
+- **Let Braille be Braille**: Preserve standard tactile cell geometries and negative space (ISO/TR 11548).
+- **Let Shorthand be Shorthand**: Respect the phonemic size ratios of stenography without forcing it into Roman metal boxes.
+- **Keep the binary engine clean**: Pad bytes to keep OTS happy (`loca[i] % 2 == 0`), but never confuse memory alignment with typographic beauty.
+
+---
+
 ## Promotional Assets
 
 ![PEMDA+ Hero Specimen](images/pocketgull-pemda-hero-specimen.jpg)

@@ -354,7 +354,7 @@ Future<void> runServe(int requestedPort) async {
 
   for (var offset = 0; offset < 10; offset++) {
     try {
-      server = await HttpServer.bind(InternetAddress.loopbackIPv4, port + offset);
+      server = await HttpServer.bind(InternetAddress.anyIPv4, port + offset);
       port = port + offset;
       break;
     } catch (_) {}

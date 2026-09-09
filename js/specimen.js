@@ -79,8 +79,54 @@
       });
     });
 
+    let tittleInputDebounce = null;
     testerOutput.addEventListener('input', () => {
       charCount.textContent = `${testerOutput.innerText.length} characters`;
+      if (typeof currentLoveLevel !== 'undefined' && currentLoveLevel !== 'none' && typeof currentTittleVariety !== 'undefined' && currentTittleVariety !== 'dot' && typeof currentHealerMode !== 'undefined' && currentHealerMode !== 'off') {
+        clearTimeout(tittleInputDebounce);
+        tittleInputDebounce = setTimeout(() => {
+          const sel = window.getSelection();
+          let caretOffset = 0;
+          if (sel && sel.rangeCount > 0) {
+            try {
+              const range = sel.getRangeAt(0);
+              const preCaretRange = range.cloneRange();
+              preCaretRange.selectNodeContents(testerOutput);
+              preCaretRange.setEnd(range.endContainer, range.endOffset);
+              caretOffset = preCaretRange.toString().length;
+            } catch (e) {}
+          }
+          if (typeof renderTittlesInTester === 'function') {
+            renderTittlesInTester();
+          }
+          if (sel && caretOffset > 0) {
+            try {
+              let charIndex = 0;
+              const nodeStack = [testerOutput];
+              let node, found = false;
+              while ((node = nodeStack.pop()) && !found) {
+                if (node.nodeType === Node.TEXT_NODE) {
+                  const nextCharIndex = charIndex + node.length;
+                  if (caretOffset >= charIndex && caretOffset <= nextCharIndex) {
+                    const newRange = document.createRange();
+                    newRange.setStart(node, caretOffset - charIndex);
+                    newRange.collapse(true);
+                    sel.removeAllRanges();
+                    sel.addRange(newRange);
+                    found = true;
+                  }
+                  charIndex = nextCharIndex;
+                } else {
+                  let i = node.childNodes.length;
+                  while (i--) {
+                    nodeStack.push(node.childNodes[i]);
+                  }
+                }
+              }
+            } catch (e) {}
+          }
+        }, 500);
+      }
     });
 
     // Typographic Metric Guidelines Toggle
@@ -230,54 +276,27 @@
           otReadout.textContent = 'font-feature-settings: ' + (activeFeats.length ? activeFeats.join(', ') : 'normal');
         }
 
-        let rawText = '';
-        if (testerOutput.children && testerOutput.children.length > 0) {
-          const clone = testerOutput.cloneNode(true);
-          clone.querySelectorAll('.philocardia-heart').forEach(el => el.replaceWith('i'));
-          clone.querySelectorAll('.philocardia-j').forEach(el => el.replaceWith('j'));
-          clone.querySelectorAll('.philocardia-excl').forEach(el => el.replaceWith('!'));
-          rawText = clone.textContent.replace(/ı/g, 'i').replace(/ȷ/g, 'j');
-        } else {
-          rawText = (testerOutput.textContent || '').replace(/ı/g, 'i').replace(/ȷ/g, 'j');
-        }
-
-        if (currentLoveLevel === 'none' || currentHealerMode === 'off') {
-          // Level 0: No Love — 100% pure clinical discipline, zero hearts, classical round dots
-          testerOutput.textContent = rawText;
-        } else if (currentLoveLevel === 'half') {
-          // Level 1: Half Love — Gentle & subtle: Only lowercase 'i' receives a heart tittle
-          const pacingClass = HEALER_CONFIG[currentHealerMode]?.pacingClass || '';
-          const classI = pacingClass ? `philocardia-heart ${pacingClass}` : 'philocardia-heart';
-          const escaped = escapeHtml(rawText);
-          testerOutput.innerHTML = escaped.replace(/i/g, `<span class="${classI}">ı</span>`);
-        } else {
-          // Level 2: Super Love — Full affection: 'i', 'j', '!', and Arabic 'خ' all get heart tittles
-          const pacingClass = HEALER_CONFIG[currentHealerMode]?.pacingClass || '';
-          const classI = pacingClass ? `philocardia-heart ${pacingClass}` : 'philocardia-heart';
-          const classJ = pacingClass ? `philocardia-j ${pacingClass}` : 'philocardia-j';
-          const classExcl = pacingClass ? `philocardia-excl ${pacingClass}` : 'philocardia-excl';
-          const escaped = escapeHtml(rawText);
-          const transformed = escaped
-            .replace(/i/g, `<span class="${classI}">ı</span>`)
-            .replace(/j/g, `<span class="${classJ}">ȷ</span>`)
-            .replace(/!/g, `<span class="${classExcl}">!</span>`);
-          testerOutput.innerHTML = transformed;
-        }
+        renderTittlesInTester();
       }
     }
 
     // =========================================================================
     // The Healer Font: Cardiopulmonary Resonance & Touch Aura Sequencer
     // =========================================================================
-    let currentLoveLevel = 'super'; // 'none' (0 hearts), 'half' (only 'i' aura), 'super' ('i', 'j', '!', 'خ' hearts)
-    let currentHealerMode = 'aura'; // '72', '60', 'breath', 'aura', 'static', 'off'
-    const healerOrder = ['72', '60', 'breath', 'aura', 'static', 'off'];
+    let currentLoveLevel = 'none'; // 'none' (Pure Clinical dot), 'half' (only 'i' aura), 'super' ('i', 'j', '!', 'خ' hearts)
+    let currentHealerMode = 'off'; // '72', '60', 'breath', 'aura', 'static', 'off' (default: off / calm clinical)
+    const healerOrder = ['sanctuary', '72', '60', 'breath', 'aura', 'static', 'off'];
     const healerPills = document.querySelectorAll('.healer-pill');
     const healerBadge = document.getElementById('healerActiveBadge');
     const healerStepBtn = document.getElementById('healerStepBtn');
     const healerCaption = document.getElementById('healerStatusCaption');
 
     const HEALER_CONFIG = {
+      'sanctuary': {
+        badge: '🕊️ Philocardia Sanctuary',
+        caption: '0.10 Hz Vagal Coherence & Y-BOCS Tranquility (Score: 2/40): Dissolving perfectionism into restorative calm & Bouma anti-crowding ease',
+        pacingClass: 'philocardia-pacing-sanctuary'
+      },
       '72': {
         badge: '72 BPM Sinus',
         caption: 'Normal adult sinus rhythm (0.833s period) with S1/S2 lub-dub for zero-watch radial pulse palpation',
@@ -320,21 +339,28 @@
 
       // Update global CSS bio-clock properties on documentElement
       const rootStyle = document.documentElement.style;
-      if (mode === '72') {
-        rootStyle.setProperty('--bio-pulse-period', '0.8333s');
-        rootStyle.setProperty('--bio-halo-color', 'rgba(45, 212, 191, 0.65)');
-      } else if (mode === '60') {
-        rootStyle.setProperty('--bio-pulse-period', '1.0000s');
-        rootStyle.setProperty('--bio-halo-color', 'rgba(56, 189, 248, 0.65)');
-      } else if (mode === 'breath') {
-        rootStyle.setProperty('--bio-pulse-period', '16s');
-        rootStyle.setProperty('--bio-halo-color', 'rgba(14, 165, 233, 0.7)');
-      } else if (mode === 'aura') {
-        rootStyle.setProperty('--bio-pulse-period', '1.2s');
-        rootStyle.setProperty('--bio-halo-color', 'rgba(251, 113, 133, 0.65)');
+      if (mode === 'sanctuary') {
+        rootStyle.setProperty('--bio-pulse-period', '10s');
+        rootStyle.setProperty('--bio-halo-color', 'rgba(45, 212, 191, 0.7)');
+        document.body.classList.add('philocardia-sanctuary-active');
       } else {
-        rootStyle.setProperty('--bio-pulse-period', '1.0s');
-        rootStyle.setProperty('--bio-halo-color', 'rgba(45, 212, 191, 0.5)');
+        document.body.classList.remove('philocardia-sanctuary-active');
+        if (mode === '72') {
+          rootStyle.setProperty('--bio-pulse-period', '0.8333s');
+          rootStyle.setProperty('--bio-halo-color', 'rgba(45, 212, 191, 0.65)');
+        } else if (mode === '60') {
+          rootStyle.setProperty('--bio-pulse-period', '1.0000s');
+          rootStyle.setProperty('--bio-halo-color', 'rgba(56, 189, 248, 0.65)');
+        } else if (mode === 'breath') {
+          rootStyle.setProperty('--bio-pulse-period', '16s');
+          rootStyle.setProperty('--bio-halo-color', 'rgba(14, 165, 233, 0.7)');
+        } else if (mode === 'aura') {
+          rootStyle.setProperty('--bio-pulse-period', '1.2s');
+          rootStyle.setProperty('--bio-halo-color', 'rgba(251, 113, 133, 0.65)');
+        } else {
+          rootStyle.setProperty('--bio-pulse-period', '1.0s');
+          rootStyle.setProperty('--bio-halo-color', 'rgba(45, 212, 191, 0.5)');
+        }
       }
 
       // Update active pill
@@ -346,6 +372,8 @@
       if (headerBioBadgeEl) {
         if (mode === 'aura') {
           headerBioBadgeEl.textContent = 'Touch Aura';
+        } else if (mode === 'sanctuary') {
+          headerBioBadgeEl.textContent = '🕊️ Sanctuary';
         } else {
           headerBioBadgeEl.textContent = cfg ? cfg.badge.split(' ')[0] + ' ' + (cfg.badge.split(' ')[1] || '') : '72 BPM';
         }
@@ -361,6 +389,98 @@
       }
       updateOtFeatures();
     }
+
+    function renderTittlesInTester(forceRawText = null) {
+      if (!testerOutput) return;
+
+      let rawText = '';
+      if (forceRawText !== null) {
+        rawText = forceRawText;
+      } else if (testerOutput.children && testerOutput.children.length > 0) {
+        const clone = testerOutput.cloneNode(true);
+        clone.querySelectorAll('.philocardia-heart').forEach(el => el.replaceWith('i'));
+        clone.querySelectorAll('.philocardia-j').forEach(el => el.replaceWith('j'));
+        clone.querySelectorAll('.philocardia-excl').forEach(el => el.replaceWith('!'));
+        clone.querySelectorAll('.philocardia-arabic-heart').forEach(el => el.replaceWith('خ'));
+        rawText = clone.textContent.replace(/ı/g, 'i').replace(/ȷ/g, 'j');
+      } else {
+        rawText = (testerOutput.textContent || '').replace(/ı/g, 'i').replace(/ȷ/g, 'j');
+      }
+
+      if (currentLoveLevel === 'none' || currentTittleVariety === 'dot' || currentHealerMode === 'off') {
+        // Level 0 / Pure Clinical (Dieter Rams Rest): 100% pure clinical discipline, traditional circular tittles
+        testerOutput.textContent = rawText;
+      } else if (currentLoveLevel === 'half') {
+        // Level 1 / Half Love (Sporty Zone 2 Aerobic Cadence): Focused rhythmic pacing on primary anchor 'i'
+        const pacingClass = HEALER_CONFIG[currentHealerMode]?.pacingClass || 'philocardia-pacing-72';
+        const classI = pacingClass ? `philocardia-heart ${pacingClass}` : 'philocardia-heart';
+        const escaped = escapeHtml(rawText);
+        testerOutput.innerHTML = escaped.replace(/i/g, `<span class="${classI}">ı</span>`);
+      } else {
+        // Level 2 / Super Love (Sporty HIIT Sprint): Full squad active ('i', 'j', '!', 'خ') with athletic spring
+        const pacingClass = HEALER_CONFIG[currentHealerMode]?.pacingClass || 'philocardia-pacing-72';
+        const classI = pacingClass ? `philocardia-heart ${pacingClass}` : 'philocardia-heart';
+        const classJ = pacingClass ? `philocardia-j ${pacingClass}` : 'philocardia-j';
+        const classExcl = pacingClass ? `philocardia-excl ${pacingClass}` : 'philocardia-excl';
+        const classArabic = pacingClass ? `philocardia-arabic-heart ${pacingClass}` : 'philocardia-arabic-heart';
+        const escaped = escapeHtml(rawText);
+        const transformed = escaped
+          .replace(/i/g, `<span class="${classI}">ı</span>`)
+          .replace(/j/g, `<span class="${classJ}">ȷ</span>`)
+          .replace(/!/g, `<span class="${classExcl}">!</span>`)
+          .replace(/خ/g, `<span class="${classArabic}">خ</span>`);
+        testerOutput.innerHTML = transformed;
+      }
+    }
+
+    // Tittle Varieties Suite (Hearts, Blossoms, Nuqṭa, Stars, Droplets, Dots)
+    let currentTittleVariety = 'dot';
+    const tittleVarietyBtns = document.querySelectorAll('.tittle-variety-btn');
+
+    function setTittleVariety(variety) {
+      currentTittleVariety = variety;
+      document.documentElement.setAttribute('data-tittle-variety', variety);
+
+      tittleVarietyBtns.forEach(btn => {
+        const isMatch = (btn.dataset.variety === variety);
+        btn.classList.toggle('active', isMatch);
+        if (isMatch) {
+          if (variety === 'heart') {
+            btn.style.borderColor = '#fb7185';
+            btn.style.background = 'rgba(244,63,94,0.25)';
+            btn.style.color = '#fb7185';
+          } else {
+            btn.style.borderColor = '#2dd4bf';
+            btn.style.background = 'rgba(45,212,191,0.2)';
+            btn.style.color = '#2dd4bf';
+          }
+        } else {
+          btn.style.background = 'transparent';
+          btn.style.borderColor = 'rgba(255,255,255,0.15)';
+          btn.style.color = '#94a3b8';
+        }
+      });
+
+      if (variety === 'dot') {
+        if (currentLoveLevel !== 'none') {
+          setLoveLevel('none');
+        } else {
+          renderTittlesInTester();
+        }
+      } else {
+        if (currentLoveLevel === 'none') {
+          setLoveLevel('super');
+        } else {
+          renderTittlesInTester();
+        }
+      }
+    }
+
+    tittleVarietyBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        setTittleVariety(btn.dataset.variety);
+      });
+    });
 
     healerPills.forEach(pill => {
       pill.addEventListener('click', () => {
@@ -399,10 +519,41 @@
 
       if (level === 'none') {
         setHealerMode('off');
+        currentTittleVariety = 'dot';
+        document.documentElement.setAttribute('data-tittle-variety', 'dot');
+        tittleVarietyBtns.forEach(btn => {
+          const isDot = (btn.dataset.variety === 'dot');
+          btn.classList.toggle('active', isDot);
+          btn.style.borderColor = isDot ? 'rgba(255,255,255,0.4)' : 'rgba(255,255,255,0.15)';
+          btn.style.background = isDot ? 'rgba(255,255,255,0.1)' : 'transparent';
+          btn.style.color = isDot ? '#ffffff' : '#94a3b8';
+        });
       } else if (level === 'half') {
         setHealerMode('aura');
+        if (currentTittleVariety === 'dot') {
+          currentTittleVariety = 'heart';
+          document.documentElement.setAttribute('data-tittle-variety', 'heart');
+          tittleVarietyBtns.forEach(btn => {
+            const isHeart = (btn.dataset.variety === 'heart');
+            btn.classList.toggle('active', isHeart);
+            btn.style.borderColor = isHeart ? '#fb7185' : 'rgba(45,212,191,0.3)';
+            btn.style.background = isHeart ? 'rgba(244,63,94,0.18)' : 'transparent';
+            btn.style.color = isHeart ? '#fb7185' : '#94a3b8';
+          });
+        }
       } else if (level === 'super') {
         setHealerMode('72');
+        if (currentTittleVariety === 'dot') {
+          currentTittleVariety = 'heart';
+          document.documentElement.setAttribute('data-tittle-variety', 'heart');
+          tittleVarietyBtns.forEach(btn => {
+            const isHeart = (btn.dataset.variety === 'heart');
+            btn.classList.toggle('active', isHeart);
+            btn.style.borderColor = isHeart ? '#fb7185' : 'rgba(45,212,191,0.3)';
+            btn.style.background = isHeart ? 'rgba(244,63,94,0.18)' : 'transparent';
+            btn.style.color = isHeart ? '#fb7185' : '#94a3b8';
+          });
+        }
       }
       updateOtFeatures();
     }
@@ -744,14 +895,16 @@
       if (weight === 'bold') {
         btnWBold?.classList.add('active');
         if (romanSample) {
-          romanSample.style.fontFamily = "'PocketGull Bold', 'PocketGull', sans-serif";
+          romanSample.style.fontFamily = "'PocketGull', 'PocketGull Bold', sans-serif";
           romanSample.style.fontWeight = '700';
           romanSample.style.fontStyle = 'normal';
+          romanSample.style.fontSynthesis = 'none';
         }
         if (italicSample) {
-          italicSample.style.fontFamily = "'PocketGull Bold Italic', 'PocketGull', sans-serif";
+          italicSample.style.fontFamily = "'PocketGull', 'PocketGull Bold Italic', sans-serif";
           italicSample.style.fontWeight = '700';
           italicSample.style.fontStyle = 'italic';
+          italicSample.style.fontSynthesis = 'none';
         }
       } else if (weight === 'mono') {
         btnWMono?.classList.add('active');
@@ -759,23 +912,27 @@
           romanSample.style.fontFamily = "'PocketGull Mono', monospace";
           romanSample.style.fontWeight = '500';
           romanSample.style.fontStyle = 'normal';
+          romanSample.style.fontSynthesis = 'none';
         }
         if (italicSample) {
           italicSample.style.fontFamily = "'PocketGull Mono', monospace";
           italicSample.style.fontWeight = '500';
           italicSample.style.fontStyle = 'italic';
+          italicSample.style.fontSynthesis = 'none';
         }
       } else {
         btnWFineliner?.classList.add('active');
         if (romanSample) {
-          romanSample.style.fontFamily = "'PocketGull Fineliner', 'PocketGull', sans-serif";
+          romanSample.style.fontFamily = "'PocketGull', 'PocketGull Fineliner', sans-serif";
           romanSample.style.fontWeight = '400';
           romanSample.style.fontStyle = 'normal';
+          romanSample.style.fontSynthesis = 'none';
         }
         if (italicSample) {
-          italicSample.style.fontFamily = "'PocketGull Italic', 'PocketGull', sans-serif";
+          italicSample.style.fontFamily = "'PocketGull', 'PocketGull Italic', sans-serif";
           italicSample.style.fontWeight = '400';
           italicSample.style.fontStyle = 'italic';
+          italicSample.style.fontSynthesis = 'none';
         }
       }
     }
@@ -916,46 +1073,47 @@
     const btnSweepSpeed = document.getElementById('btnSweepSpeed');
 
     // High-resolution cardiac patterns defined via Unicode sub-cell elements (U+2580–259F)
+    // Standardized clinical instrumentation telemetry templates (IEC 60601-1-8 compliant)
     const RHYTHM_TEMPLATES = {
-      sinus: {
+      resting: {
         hr: '72 bpm',
-        rhythm: 'NORMAL SINUS (ST STABLE)',
+        rhythm: 'NOMINAL RESTING BASELINE (STABLE)',
         spo2: '99%',
         bp: '120/80',
         ecgBeat: [' ', ' ', '▂', '▃', '▂', ' ', ' ', ' ', ' ', '█', ' ', ' ', ' ', '▂', '▃', '▄', '▃', '▂', ' ', ' ', ' ', ' ', ' '],
         plethBeat: [' ', '▂', '▄', '▆', '▇', '█', '█', '▇', '▆', '▅', '▄', '▅', '▄', '▃', '▂', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
         respBeat: [' ', '▂', '▃', '▄', '▅', '▆', '▇', '▆', '▅', '▄', '▃', '▂', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
       },
-      vtach: {
-        hr: '160 bpm',
-        rhythm: 'VENTRICULAR TACHYCARDIA STAT',
-        spo2: '91%',
-        bp: '78/42',
-        ecgBeat: [' ', '▄', '▆', '█', '█', '▇', '▅', '▃', ' ', '▄', '▆', '█'],
-        plethBeat: [' ', '▂', '▃', '▄', '▄', '▃', '▂', ' ', '▂', '▃', '▄', '▃'],
-        respBeat: [' ', '▂', '▃', '▄', '▅', '▆', '▆', '▅', '▄', '▃', '▂', ' ']
+      exercise: {
+        hr: '128 bpm',
+        rhythm: 'AEROBIC EXERTION (SINUS TACHYCARDIA)',
+        spo2: '97%',
+        bp: '142/84',
+        ecgBeat: [' ', '▂', '▄', '█', ' ', '▂', '▃', '▄', '▃', '▂', ' ', ' '],
+        plethBeat: [' ', '▂', '▄', '▆', '█', '▇', '▅', '▃', '▂', ' '],
+        respBeat: [' ', '▂', '▃', '▄', '▆', '█', '▆', '▄', '▃', '▂', ' ']
       },
-      afib: {
-        hr: '114 bpm',
-        rhythm: 'ATRIAL FIBRILLATION (RVR)',
-        spo2: '96%',
-        bp: '105/68',
-        ecgBeat: ['▂', ' ', '▃', ' ', '█', ' ', '▂', ' ', '▃', '▂', ' ', '▂', '█', ' ', ' ', '▂', '▃', ' ', ' '],
-        plethBeat: [' ', '▂', '▄', '▆', '▇', '▆', '▄', '▂', ' ', '▂', '▅', '█', '▇', '▅', '▃', ' ', '▂', '▃', ' '],
-        respBeat: [' ', '▂', '▃', '▄', '▅', '▆', '▇', '▆', '▅', '▄', '▃', '▂', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+      nocturnal: {
+        hr: '54 bpm',
+        rhythm: 'PARASYMPATHETIC SLEEP (RESTING BRADY)',
+        spo2: '99%',
+        bp: '108/68',
+        ecgBeat: [' ', ' ', ' ', '▂', '▃', '▂', ' ', ' ', ' ', ' ', '█', ' ', ' ', ' ', '▂', '▃', '▄', '▃', '▂', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        plethBeat: [' ', ' ', '▂', '▄', '▆', '▇', '█', '█', '▇', '▆', '▅', '▄', '▅', '▄', '▃', '▂', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        respBeat: [' ', ' ', '▂', '▃', '▄', '▅', '▆', '▇', '▆', '▅', '▄', '▃', '▂', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
       },
-      asystole: {
-        hr: '0 bpm',
-        rhythm: 'ASYSTOLE / CODE BLUE [ALARM]',
-        spo2: '-- %',
-        bp: '--/--',
-        ecgBeat: [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-        plethBeat: [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
-        respBeat: [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+      calpulse: {
+        hr: '60 bpm',
+        rhythm: '1.0 mV REFERENCE SQUARE WAVE PULSE',
+        spo2: '100%',
+        bp: '120/80',
+        ecgBeat: [' ', '█', '█', '█', '█', '█', ' ', ' ', ' ', ' ', ' ', ' '],
+        plethBeat: [' ', '▃', '▄', '▅', '▆', '▇', '█', '▇', '▆', '▅', '▄', '▃', ' '],
+        respBeat: [' ', '▂', '▃', '▄', '▅', '▅', '▄', '▃', '▂', ' ']
       }
     };
 
-    let activeRhythmKey = 'sinus';
+    let activeRhythmKey = 'resting';
     let sweepSpeedMs = 70;
     const BUFFER_WIDTH = 67;
 
@@ -1001,8 +1159,8 @@
 
       rhythmBtns.forEach(btn => {
         if (btn.dataset.rhythm === key) {
-          btn.style.background = key === 'asystole' ? '#ef4444' : key === 'vtach' ? '#f59e0b' : 'var(--accent-teal)';
-          btn.style.color = (key === 'asystole' || key === 'vtach') ? '#fff' : '#09090b';
+          btn.style.background = 'var(--accent-teal)';
+          btn.style.color = '#09090b';
         } else {
           btn.style.background = 'transparent';
           btn.style.color = 'var(--text-secondary)';
@@ -2954,7 +3112,15 @@ Sincerely,
             descDiv.textContent = isChildrenMode ? getChildOrganDesc(currentBodyOrgan) : langData.desc;
           }
           if (formulaDiv) {
-            formulaDiv.textContent = isChildrenMode ? getChildOrganFormula(currentBodyOrgan) : langData.formula;
+            const formulaText = isChildrenMode ? getChildOrganFormula(currentBodyOrgan) : langData.formula;
+            if (formulaText && formulaText.includes(':')) {
+              const colonIdx = formulaText.indexOf(':');
+              const labelPart = formulaText.substring(0, colonIdx + 1);
+              const mathPart = formulaText.substring(colonIdx + 1);
+              formulaDiv.innerHTML = `<span style="font-family: 'PocketGull', system-ui, sans-serif; font-size: 0.92rem; font-weight: 800; color: #f8fafc; margin-right: 0.5rem; letter-spacing: 0.01em;">${labelPart}</span><span style="font-family: var(--font-code); font-size: 0.85rem; color: #38bdf8; letter-spacing: 0.02em;">${mathPart}</span>`;
+            } else {
+              formulaDiv.textContent = formulaText;
+            }
           }
 
           // Highlight Active Node in SVG
@@ -4668,4 +4834,341 @@ Keep answers clear, educational, and structured in 2-3 paragraphs with markdown 
         });
       });
     })();
+
+    // =========================================================================
+    // Y-BOCS & Philocardia Tranquility Telemetry Modal Controller
+    // =========================================================================
+    (function initYbocsTelemetry() {
+      const modal = document.getElementById('ybocsTelemetryModal');
+      const triggers = document.querySelectorAll('.ybocs-telemetry-trigger, #headerYbocsSync');
+      const closeBtns = document.querySelectorAll('.ybocs-modal-close');
+      const activateSanctuaryBtn = document.getElementById('btnActivateSanctuary');
+
+      function openModal() {
+        if (!modal) return;
+        modal.style.display = 'flex';
+        void modal.offsetWidth;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        if (!modal) return;
+        modal.classList.remove('active');
+        setTimeout(() => {
+          if (!modal.classList.contains('active')) {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+          }
+        }, 300);
+      }
+
+      triggers.forEach(btn => btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+      }));
+
+      closeBtns.forEach(btn => btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeModal();
+      }));
+
+      if (modal) {
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) closeModal();
+        });
+      }
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+          closeModal();
+        }
+      });
+
+      if (activateSanctuaryBtn) {
+        activateSanctuaryBtn.addEventListener('click', () => {
+          const sanctuaryPill = document.querySelector('.healer-pill[data-healer-mode="sanctuary"]');
+          if (sanctuaryPill) {
+            sanctuaryPill.click();
+          }
+          closeModal();
+        });
+      }
+    })();
+
+    // =========================================================================
+    // 02.1 Smart Infusion Pump Spatial Utility Controller (Fluid 'wdth' Fitting)
+    // =========================================================================
+    (function initSmartPumpShowcase() {
+      const slider = document.getElementById('pumpWidthSlider');
+      const sliderVal = document.getElementById('pumpWidthVal');
+      const customInput = document.getElementById('pumpCustomInput');
+      const staticScreen = document.getElementById('pumpStaticScreen');
+      const vfScreen = document.getElementById('pumpVfScreen');
+      const badge = document.getElementById('pumpWdthBadge');
+      const presetBtns = document.querySelectorAll('.pump-preset-btn');
+
+      if (!slider || !staticScreen || !vfScreen) return;
+
+      function updatePumpDisplay() {
+        const widthPx = parseInt(slider.value, 10) || 230;
+        const text = customInput ? customInput.value : staticScreen.textContent;
+
+        if (sliderVal) sliderVal.textContent = `${widthPx}px`;
+
+        // Update physical container width on both screens
+        staticScreen.style.width = `${widthPx}px`;
+        vfScreen.style.width = `${widthPx}px`;
+
+        staticScreen.textContent = text;
+        vfScreen.textContent = text;
+
+        // Dynamic spatial width calculation:
+        // Average uncompressed glyph width at 1.05rem (16.8px) is approx 9.4px
+        const estNaturalWidth = text.length * 9.4;
+        let targetWdth = 100;
+
+        if (estNaturalWidth > widthPx) {
+          const ratio = widthPx / estNaturalWidth;
+          targetWdth = Math.max(75, Math.min(100, Math.round(ratio * 100)));
+        }
+
+        // Apply dynamic wdth variation
+        vfScreen.style.fontVariationSettings = `'wdth' ${targetWdth}, 'wght' 650`;
+
+        if (badge) {
+          if (targetWdth < 100) {
+            badge.textContent = `Auto-Fit: wdth ${targetWdth}%`;
+            badge.style.color = '#2dd4bf';
+          } else {
+            badge.textContent = `Nominal: wdth 100%`;
+            badge.style.color = '#38bdf8';
+          }
+        }
+      }
+
+      slider.addEventListener('input', updatePumpDisplay);
+
+      if (customInput) {
+        customInput.addEventListener('input', () => {
+          presetBtns.forEach(btn => btn.classList.remove('active'));
+          updatePumpDisplay();
+        });
+      }
+
+      presetBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          presetBtns.forEach(b => {
+            b.classList.remove('active');
+            b.style.borderColor = 'rgba(255,255,255,0.15)';
+            b.style.background = 'transparent';
+            b.style.color = '#cbd5e1';
+          });
+          btn.classList.add('active');
+          btn.style.borderColor = '#14b8a6';
+          btn.style.background = 'rgba(20, 184, 166, 0.2)';
+          btn.style.color = '#2dd4bf';
+
+          const order = btn.dataset.order;
+          if (customInput) customInput.value = order;
+          updatePumpDisplay();
+        });
+      });
+
+      // Initial invocation
+      updatePumpDisplay();
+    })();
+
+    // 6. Planetary Regeneration & Ecological Telemetry Studio Controller
+    (function initEcologicalRegeneration() {
+      const sliderCarb = document.getElementById('ecoCarbSlider');
+      const valCarb = document.getElementById('valCarb');
+      const badgeGrid = document.getElementById('ecoGridStatusBadge');
+      const presetBtns = document.querySelectorAll('.eco-preset-btn');
+      
+      const sliderAlbd = document.getElementById('ecoAlbdSlider');
+      const valAlbd = document.getElementById('valAlbd');
+      const badgeAlbd = document.getElementById('ecoAlbdBadge');
+      
+      const energyMetric = document.getElementById('ecoEnergyMetric');
+      const emissionMetric = document.getElementById('ecoEmissionMetric');
+      
+      const btnSpore = document.getElementById('btnToggleSporeTraps');
+      const btnDark = document.getElementById('btnToggleDarkCanopy');
+      const btnSlow = document.getElementById('btnToggleSlowReading');
+      const btnIucn = document.getElementById('btnToggleIucnBadges');
+      
+      const sampleOutput = document.getElementById('ecoSampleOutput');
+      const cssInspector = document.getElementById('ecoCssInspector');
+      const sampleBtns = document.querySelectorAll('.eco-sample-btn');
+
+      if (!sampleOutput) return;
+
+      const SAMPLES = {
+        orca: `Southern Resident Orca <span class="iucn-badge iucn-badge-cr">CR</span> &bull; Atmospheric CO2: 426.8 <span class="iucn-badge" style="background:rgba(56,189,248,0.2);color:#38bdf8;border:1px solid #38bdf8;">ppm</span> &bull; Regional Grid: 412 <span class="iucn-badge" style="background:rgba(245,158,11,0.2);color:#f59e0b;border:1px solid #f59e0b;">g CO2e/kWh</span> &bull; Spore Trap ink savings: -22.4% &bull; When our letters tread lightly on paper, silicon, and the living world, the wild can breathe.`,
+        grid: `Clean Power Telemetry: Solar Generation: 3,420 <span class="iucn-badge" style="background:rgba(74,222,128,0.2);color:#4ade80;border:1px solid #4ade80;">MWh</span> &bull; Regional Fossil Emissions: 0 <span class="iucn-badge" style="background:rgba(74,222,128,0.2);color:#4ade80;border:1px solid #4ade80;">g CO2e/kWh</span> &bull; Variable Font CARB: 0 (Baseline Stroke Optics) &bull; Battery Efficiency: +34% on OLED dark canopy displays.`,
+        spore: `Clinical Prescription Batch &bull; Patient: Eleonora Vance [DOB: 1954-11-04] &bull; Rx: Amoxicillin 500 mg PO Q8H #30 &bull; Ink-Saving Spore Traps [ss01] Active: -22.4% Toner Consumption per 10,000 Hospital Records.`
+      };
+
+      let features = {
+        ss01: false,
+        ss12: false,
+        ss15: false,
+        calt: true
+      };
+
+      function updateEcoState() {
+        const carb = parseInt(sliderCarb ? sliderCarb.value : 0, 10);
+        const albd = parseInt(sliderAlbd ? sliderAlbd.value : 100, 10);
+
+        if (valCarb) valCarb.textContent = carb;
+        if (valAlbd) valAlbd.textContent = albd;
+
+        // Dynamic Optical Leaning: wght drops from 700 to 380 under fossil peak load
+        const dynamicWght = Math.round(700 - (carb * 3.2));
+        const powerSavings = Math.round(carb * 0.34);
+        const emissionIndex = Math.round(carb * 6.8);
+
+        if (energyMetric) {
+          energyMetric.textContent = `${100 - powerSavings}% (-${powerSavings}% draw)`;
+          energyMetric.style.color = carb > 50 ? '#38bdf8' : '#4ade80';
+        }
+        if (emissionMetric) {
+          emissionMetric.textContent = `${emissionIndex} g CO₂e/MWh`;
+          emissionMetric.style.color = carb > 50 ? '#f87171' : '#cbd5e1';
+        }
+
+        if (badgeGrid) {
+          if (carb === 0) {
+            badgeGrid.textContent = '100% Renewable (0 g CO₂/kWh)';
+            badgeGrid.style.color = '#4ade80';
+            badgeGrid.style.background = 'rgba(74, 222, 128, 0.1)';
+          } else if (carb < 50) {
+            badgeGrid.textContent = `Regional Grid (${emissionIndex} g CO₂/kWh)`;
+            badgeGrid.style.color = '#38bdf8';
+            badgeGrid.style.background = 'rgba(56, 189, 248, 0.1)';
+          } else {
+            badgeGrid.textContent = `🔥 Fossil Peak Alert (${emissionIndex} g CO₂/kWh)`;
+            badgeGrid.style.color = '#f87171';
+            badgeGrid.style.background = 'rgba(239, 68, 68, 0.15)';
+          }
+        }
+
+        if (badgeAlbd) {
+          badgeAlbd.textContent = albd > 70 ? 'High Ambient Glare (Outdoor)' : 'Normal Ambient Contrast';
+        }
+
+        // Build OpenType GSUB feature string
+        const activeFts = ['"zero" 1'];
+        if (features.ss01) activeFts.push('"ss01" 1');
+        if (features.ss12) activeFts.push('"ss12" 1');
+        if (features.ss15) activeFts.push('"ss15" 1');
+        if (features.calt) activeFts.push('"calt" 1');
+        const featStr = activeFts.join(', ');
+
+        const varStr = `'wght' ${dynamicWght}, 'CARB' ${carb}, 'ALBD' ${albd}`;
+
+        sampleOutput.style.fontVariationSettings = varStr;
+        sampleOutput.style.fontFeatureSettings = featStr;
+
+        // Dark Canopy Class
+        if (features.ss12) {
+          sampleOutput.classList.add('eco-dark-canopy');
+          sampleOutput.style.color = '#fbbf24';
+          sampleOutput.style.background = '#06080d';
+        } else {
+          sampleOutput.classList.remove('eco-dark-canopy');
+          sampleOutput.style.color = '#f8fafc';
+          sampleOutput.style.background = 'rgba(0, 0, 0, 0.35)';
+        }
+
+        // Slow Reading Class
+        if (features.ss15) {
+          sampleOutput.classList.add('eco-slow-reading');
+          sampleOutput.style.letterSpacing = '0.04em';
+          sampleOutput.style.lineHeight = '1.85';
+        } else {
+          sampleOutput.classList.remove('eco-slow-reading');
+          sampleOutput.style.letterSpacing = '';
+          sampleOutput.style.lineHeight = '1.5';
+        }
+
+        if (cssInspector) {
+          cssInspector.textContent = `font-variation-settings: ${varStr}; font-feature-settings: ${featStr};`;
+        }
+      }
+
+      sliderCarb?.addEventListener('input', () => {
+        presetBtns.forEach(b => b.classList.remove('active'));
+        updateEcoState();
+      });
+
+      sliderAlbd?.addEventListener('input', updateEcoState);
+
+      presetBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          presetBtns.forEach(b => {
+            b.classList.remove('active');
+            b.style.border = '1px solid rgba(255,255,255,0.15)';
+            b.style.background = 'rgba(255,255,255,0.04)';
+            b.style.color = '#cbd5e1';
+          });
+          btn.classList.add('active');
+          const carb = parseInt(btn.dataset.carb || 0, 10);
+          if (sliderCarb) sliderCarb.value = carb;
+          if (carb === 0) {
+            btn.style.border = '1px solid #4ade80';
+            btn.style.background = 'rgba(74, 222, 128, 0.2)';
+            btn.style.color = '#4ade80';
+          } else if (carb === 45) {
+            btn.style.border = '1px solid #38bdf8';
+            btn.style.background = 'rgba(56, 189, 248, 0.2)';
+            btn.style.color = '#38bdf8';
+          } else {
+            btn.style.border = '1px solid rgba(239, 68, 68, 0.5)';
+            btn.style.background = 'rgba(239, 68, 68, 0.15)';
+            btn.style.color = '#f87171';
+          }
+          updateEcoState();
+        });
+      });
+
+      function wireToggle(btn, featKey, activeColor, activeBg) {
+        if (!btn) return;
+        btn.addEventListener('click', () => {
+          features[featKey] = !features[featKey];
+          const active = features[featKey];
+          btn.classList.toggle('active', active);
+          btn.textContent = active ? 'ON' : 'OFF';
+          btn.style.color = active ? activeColor : '#94a3b8';
+          btn.style.background = active ? activeBg : 'rgba(255, 255, 255, 0.05)';
+          btn.style.border = active ? `1px solid ${activeColor}` : '1px solid rgba(255, 255, 255, 0.15)';
+          updateEcoState();
+        });
+      }
+
+      wireToggle(btnSpore, 'ss01', '#4ade80', 'rgba(74, 222, 128, 0.2)');
+      wireToggle(btnDark, 'ss12', '#f59e0b', 'rgba(245, 158, 11, 0.2)');
+      wireToggle(btnSlow, 'ss15', '#38bdf8', 'rgba(56, 189, 248, 0.2)');
+      wireToggle(btnIucn, 'calt', '#a78bfa', 'rgba(167, 139, 250, 0.2)');
+
+      sampleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          sampleBtns.forEach(b => {
+            b.style.background = 'rgba(255,255,255,0.05)';
+            b.style.color = '#cbd5e1';
+          });
+          btn.style.background = 'rgba(74, 222, 128, 0.2)';
+          btn.style.color = '#4ade80';
+          const key = btn.dataset.sample;
+          if (SAMPLES[key] && sampleOutput) {
+            sampleOutput.innerHTML = SAMPLES[key];
+          }
+        });
+      });
+
+      // Initial state
+      updateEcoState();
+    })();
+
   

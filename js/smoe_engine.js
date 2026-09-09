@@ -1089,6 +1089,7 @@
       const covEl = document.getElementById('csTelCoverage');
       const tagEl = document.getElementById('csTelReportTag');
       const linkEl = document.getElementById('csTelReportLink');
+      const acuityBadgeEl = document.getElementById('csAcuityBadge');
 
       if (!specimenEl || !tabBtns.length) return;
 
@@ -1114,14 +1115,32 @@
           specimenEl.style.fontFamily = "'PocketGull', 'PocketGull Bold', sans-serif";
           specimenEl.style.fontWeight = '700';
           specimenEl.style.letterSpacing = 'normal';
+          if (acuityBadgeEl) {
+            acuityBadgeEl.innerHTML = '✨ Proportional Master (700 UPM)';
+            acuityBadgeEl.style.color = '#38bdf8';
+            acuityBadgeEl.style.borderColor = 'rgba(56, 189, 248, 0.3)';
+            acuityBadgeEl.style.background = 'rgba(56, 189, 248, 0.12)';
+          }
         } else if (weight === 'regular') {
           specimenEl.style.fontFamily = "'PocketGull', 'PocketGull Fineliner', sans-serif";
           specimenEl.style.fontWeight = '400';
           specimenEl.style.letterSpacing = 'normal';
+          if (acuityBadgeEl) {
+            acuityBadgeEl.innerHTML = '📄 Proportional Fineliner (540 UPM x-Height)';
+            acuityBadgeEl.style.color = '#94a3b8';
+            acuityBadgeEl.style.borderColor = 'rgba(148, 163, 184, 0.3)';
+            acuityBadgeEl.style.background = 'rgba(148, 163, 184, 0.12)';
+          }
         } else if (weight === 'mono') {
           specimenEl.style.fontFamily = "'PocketGull Mono', monospace";
           specimenEl.style.fontWeight = '400';
           specimenEl.style.letterSpacing = '0px';
+          if (acuityBadgeEl) {
+            acuityBadgeEl.innerHTML = '⚡ <strong>Pillar VIII Active: 680 UPM Optical Parity • Fixed 600 UPM Grid (0.49× Speck Cured)</strong>';
+            acuityBadgeEl.style.color = '#10b981';
+            acuityBadgeEl.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+            acuityBadgeEl.style.background = 'rgba(16, 185, 129, 0.15)';
+          }
         }
       }
 
@@ -1262,12 +1281,13 @@
       const catBtns = document.querySelectorAll('.cat-filter-btn');
 
       const deepSections = [
-        'italics', 'braille', 'bionic', 'terminal', 'smoe',
+        'eco-lab', 'italics', 'braille', 'bionic', 'terminal', 'smoe',
         'multilingual', 'multi-scale', 'governance', 'changelog', 'samsa-inspector'
       ];
 
       const categoryMap = {
         clinical: ['playground', 'ismp', 'italics', 'multi-scale'],
+        eco: ['eco-lab', 'playground', 'ismp'],
         sovereign: ['smoe', 'multilingual'],
         telemetry: ['terminal', 'bionic', 'braille'],
         foundry: ['developers', 'governance', 'changelog', 'sources', 'samsa-inspector']

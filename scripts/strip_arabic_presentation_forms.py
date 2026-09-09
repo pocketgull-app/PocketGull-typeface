@@ -26,9 +26,11 @@ import sys
 from fontTools.ttLib import TTFont
 
 TARGET_FONTS = [
-    "fonts/ttf/PocketGull-Bold.ttf",
-    "fonts/ttf/PocketGull-Fineliner.ttf",
-    "fonts/ttf/PocketGull-Chiseltip.ttf",
+    "fonts/ttf/PocketGull-Regular.ttf",
+    "fonts/ttf/PocketGull-Black.ttf",
+    "fonts/ttf/PocketGull-Soft.ttf",
+    "fonts/ttf/PocketGull-CondensedBold.ttf",
+    "fonts/ttf/PocketGull-Micro.ttf",
 ]
 
 PRES_FORMS_RANGES = [
@@ -153,13 +155,18 @@ def strip_arab_gsub(font):
 def strip_orphan_pres_glyphs(font, orphan_names):
     if not orphan_names:
         return 0
-    gorder = font.getGlyphOrder()
-    font.setGlyphOrder([g for g in gorder if g not in orphan_names])
     glyf_table = font.get("glyf")
+    hmtx_table = font.get("hmtx")
     if glyf_table:
         for name in orphan_names:
             if name in glyf_table.glyphs:
                 del glyf_table.glyphs[name]
+    if hmtx_table:
+        for name in orphan_names:
+            if name in hmtx_table.metrics:
+                del hmtx_table.metrics[name]
+    gorder = font.getGlyphOrder()
+    font.setGlyphOrder([g for g in gorder if g not in orphan_names])
     return len(orphan_names)
 
 

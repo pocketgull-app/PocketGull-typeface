@@ -32,8 +32,10 @@ PocketGull's geometry and clinical behavioral architecture are grounded in peer-
 ---
 
 ## 4. Tactile Accessibility, Web Standards & OpenType Engineering
-* **ISO/TR 11548-1 & ISO/TR 11548-2 (2012)**: *"Communication aids for blind persons with visual impairments — Braille."* International Organization for Standardization. [[ISO Standard](https://www.iso.org/standard/32958.html)]  
-  *8-dot and 6-dot tactile Braille cell metrics, 2.5 mm dot centers, and 6.0 mm cell pitch.*
+* **ISO/TR 11548-1:2001 & ISO/TR 11548-2:2001**: *"Communication aids for blind persons — Identifiers, names and assignation to coded character sets for 8-dot Braille characters."* International Organization for Standardization / ISO/TC 173. [[ISO Standard](https://www.iso.org/standard/32958.html)]  
+  *Defines 8-dot Braille pattern identifiers, shift marks, and coded character set semantics in synergy with ISO/IEC 10646-1 / Unicode U+2800–U+28FF.*
+* **ISO 17049:2013 & DIN 32976:2007**: *"Accessible design — Application of braille on signage, equipment and appliances"* & *"Braille; dimensions and tolerances."*  
+  *Defines physical tactile Braille cell geometry: 2.5 mm dot center distance, 6.0 mm cell pitch, and tactile dome tolerances.*
 * **Unicode Consortium (2024)**: *"The Unicode Standard, Version 16.0 — Braille Patterns Block (U+2800–U+28FF)."* [[Unicode Chart](https://www.unicode.org/charts/PDF/U2800.pdf)]
 * **World Wide Web Consortium (W3C) (2023)**: *"Web Content Accessibility Guidelines (WCAG) 2.2."* Level AAA Success Criteria 1.4.6 (Contrast Enhanced >= 7:1) and 2.5.8 (Target Size Minimum). [[W3C WCAG 2.2](https://www.w3.org/TR/WCAG22/)]
 * **ISO/IEC 14496-22 (2023)**: *"OpenType Specification v1.9.1."* Microsoft & Adobe. [[OpenType Spec](https://learn.microsoft.com/en-us/typography/opentype/spec/)]
@@ -44,6 +46,18 @@ PocketGull's geometry and clinical behavioral architecture are grounded in peer-
 * **Harpreet Shinhmar, Glen Jeffery, et al. (2020)**: *"Optically improved mitochondrial function redeems aged human visual decline."* The Journals of Gerontology: Series A, 75(9), e49–e52. [[DOI: 10.1093/gerona/glaa155](https://doi.org/10.1093/gerona/glaa155)] • [[PubMed: 32596696](https://pubmed.ncbi.nlm.nih.gov/32596696/)]  
   *Demonstrates 670 nm red photobiomodulation restores retinal ATP synthesis and contrast sensitivity.*
 * **George C. Brainard, et al. (2001)**: *"Action spectrum for melatonin regulation in humans: evidence for a novel circadian photoreceptor."* Journal of Neuroscience, 21(16), 6405–6412. [[DOI: 10.1523/JNEUROSCI.21-16-06405.2001](https://doi.org/10.1523/JNEUROSCI.21-16-06405.2001)] • [[PubMed: 11511598](https://pubmed.ncbi.nlm.nih.gov/11511598/)]
+
+---
+
+## 6. Biomedical Informatics, Ontologies & Standard Terminologies (NLM / UMLS)
+* **Olivier Bodenreider, M.D., Ph.D. (2004)**: *"The Unified Medical Language System (UMLS): integrating biomedical terminology."* Nucleic Acids Research, 32(Database issue), D267–D270. [[DOI: 10.1093/nar/gkh061](https://doi.org/10.1093/nar/gkh061)] • [[PubMed: 14681409](https://pubmed.ncbi.nlm.nih.gov/14681409/)] • [[PMC: PMC308795](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC308795/)]  
+  *Foundational specification of the UMLS Metathesaurus, Concept Unique Identifiers (CUIs), Semantic Network, and SPECIALIST Lexicon.*
+* **National Library of Medicine (US) (2026)**: *"UMLS Knowledge Sources [dataset on the Internet]. Release 2026AA."* Bethesda (MD): National Library of Medicine. [[NLM UMLS Portal](https://www.nlm.nih.gov/research/umls/licensedcontent/umlsknowledgesources.html)]  
+  *Universal biomedical ontology distributing standardized clinical coding standards including RxNorm, SNOMED CT, LOINC, MeSH, and ICD-10-CM.*
+* **Stuart J. Nelson, M.D., et al. (2011)**: *"Normalized names for clinical drugs: RxNorm at 6 years."* Journal of the American Medical Informatics Association (JAMIA), 18(4), 441–448. [[DOI: 10.1136/amiajnl-2011-000116](https://doi.org/10.1136/amiajnl-2011-000116)] • [[PubMed: 21515544](https://pubmed.ncbi.nlm.nih.gov/21515544/)]  
+  *Defines RxNorm Concept Unique Identifiers (RxCUIs) for clinical drug active ingredients, dosages, and pharmaceutical forms.*
+* **C.J. McDonald, S.L. Huff, et al. (2003)**: *"LOINC, a universal standard for identifying laboratory observations: a 5-year update."* Clinical Chemistry, 49(4), 624–633. [[DOI: 10.1373/49.4.624](https://doi.org/10.1373/49.4.624)] • [[PubMed: 12660134](https://pubmed.ncbi.nlm.nih.gov/12660134/)]  
+  *Logical Observation Identifiers Names and Codes for ICU laboratory telemetry, vital sign observation terms, and clinical measurement units.*
 
 ---
 

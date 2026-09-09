@@ -385,7 +385,30 @@
       --md-sys-typescale-body-large-font: 'PocketGull', sans-serif;
       --md-sys-typescale-label-large-font: 'PocketGull Mono', monospace;
 
-      
+      /* Base Theme Variables - 100% Native PocketGull Sovereign UI */
+      --bg-base: var(--md-sys-color-surface);
+      --bg-surface: var(--md-sys-color-surface-container-low);
+      --bg-elevated: var(--md-sys-color-surface-container);
+      --bg-card: var(--md-sys-color-surface-container-high);
+      --border-subtle: var(--md-sys-color-outline);
+      --border-focus: var(--md-sys-color-primary);
+      --text-primary: var(--md-sys-color-on-surface);
+      --text-secondary: var(--md-sys-color-on-surface-variant);
+      --text-muted: #a1a1aa;
+      --accent-teal: var(--md-sys-color-primary);
+      --accent-teal-glow: rgba(20, 184, 166, 0.25);
+      --accent-amber: #f59e0b;
+      --accent-pbm: #ff3333;
+      --accent-pbm-glow: rgba(255, 51, 51, 0.3);
+      --font-brand: 'PocketGull', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
+      --font-display: 'PocketGull', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
+      --font-clinical: 'PocketGull', 'PocketGull Bold', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Arial, sans-serif;
+      --font-mono: 'PocketGull Mono', 'SF Mono', 'Menlo', 'Monaco', 'Cascadia Code', 'Consolas', monospace;
+      --font-ui: 'PocketGull', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      --font-heading: 'PocketGull', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Arial, sans-serif;
+      --font-code: 'PocketGull Mono', 'SF Mono', 'Menlo', 'Monaco', 'Cascadia Code', 'Consolas', monospace;
+    }
+
     /* ==========================================================================
        CUSTOM THEMED SCROLLBARS (WASHI, OBSIDIAN, & 670nm PBM)
        Architectural Rectilinear Geometry - Zero Capsule Pills
@@ -457,30 +480,6 @@
       background: #FF3333;
     }
 
-    /* Base Theme Variables - 100% Native PocketGull Sovereign UI */
-      --bg-base: var(--md-sys-color-surface);
-      --bg-surface: var(--md-sys-color-surface-container-low);
-      --bg-elevated: var(--md-sys-color-surface-container);
-      --bg-card: var(--md-sys-color-surface-container-high);
-      --border-subtle: var(--md-sys-color-outline);
-      --border-focus: var(--md-sys-color-primary);
-      --text-primary: var(--md-sys-color-on-surface);
-      --text-secondary: var(--md-sys-color-on-surface-variant);
-      --text-muted: #a1a1aa;
-      --accent-teal: var(--md-sys-color-primary);
-      --accent-teal-glow: rgba(20, 184, 166, 0.25);
-      --accent-amber: #f59e0b;
-      --accent-pbm: #ff3333;
-      --accent-pbm-glow: rgba(255, 51, 51, 0.3);
-      --font-brand: 'PocketGull', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
-      --font-display: 'PocketGull', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
-      --font-clinical: 'PocketGull', 'PocketGull Bold', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Arial, sans-serif;
-      --font-mono: 'PocketGull Mono', 'SF Mono', 'Menlo', 'Monaco', 'Cascadia Code', 'Consolas', monospace;
-      --font-ui: 'PocketGull', -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      --font-heading: 'PocketGull', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Arial, sans-serif;
-      --font-code: 'PocketGull Mono', 'SF Mono', 'Menlo', 'Monaco', 'Cascadia Code', 'Consolas', monospace;
-    }
-
     
     /* ==========================================================================
        WASHI RICE PAPER (和紙) PAPERCRAFT THEME
@@ -501,6 +500,15 @@
       --accent-teal-glow: rgba(15, 118, 110, 0.2);
       --accent-amber: #B45309;
       --accent-coral: #DC2626;
+      --md-sys-color-surface: #FAF8F2;
+      --md-sys-color-surface-dim: #F4EFE6;
+      --md-sys-color-surface-container-lowest: #FFFDF8;
+      --md-sys-color-surface-container-low: #F4EFE6;
+      --md-sys-color-surface-container: #FAF8F2;
+      --md-sys-color-surface-container-high: #EFEAE1;
+      --md-sys-color-surface-container-highest: #E7E2D6;
+      --md-sys-color-on-surface: #1A1612;
+      --md-sys-color-on-surface-variant: #44403C;
       --paper-shadow: 6px 14px 28px -4px rgba(70, 45, 18, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
       --paper-shadow-lifted: 12px 24px 38px -6px rgba(70, 45, 18, 0.14), 0 4px 8px rgba(0, 0, 0, 0.06);
       filter: none;
@@ -625,8 +633,38 @@
       box-shadow: 0 0 10px rgba(3, 105, 161, 0.18) !important;
     }
 
-    [data-theme="washi"] .thermal-lead-desc {
+    [data-theme="washi"] .thermal-simulation-banner {
+      background: #FFFFFF !important;
+      border-color: #E7E2D6 !important;
       color: #1F1B16 !important;
+    }
+    [data-theme="washi"] .thermal-banner-title {
+      color: #1F1B16 !important;
+    }
+    [data-theme="washi"] .thermal-lead-desc {
+      color: #44403C !important;
+    }
+
+    [data-theme="washi"] .games-parlor-banner {
+      background: #FFFFFF !important;
+      border-color: #E7E2D6 !important;
+      color: #1F1B16 !important;
+      box-shadow: var(--paper-shadow-lifted) !important;
+    }
+    [data-theme="washi"] .games-parlor-title {
+      color: #1F1B16 !important;
+    }
+    [data-theme="washi"] .games-parlor-desc {
+      color: #44403C !important;
+    }
+    [data-theme="washi"] .games-parlor-badge {
+      background: rgba(15, 118, 110, 0.08) !important;
+      border-color: #0F766E !important;
+      color: #0F766E !important;
+    }
+    [data-theme="washi"] .games-parlor-mini-card {
+      background: #FAF8F2 !important;
+      border-color: #E7E2D6 !important;
     }
 
     /* Washi & Wabi-Sabi ISMP & Governance Cards */
@@ -1526,6 +1564,7 @@
 
     /* 4. ISMP Prescription Safety Studio */
     [data-theme="pbm"] .ismp-card,
+    [data-theme="pbm"] .games-parlor-banner,
     [data-theme="pbm"] .ismp-panel,
     [data-theme="pbm"] .ismp-demo-grid > div {
       background: #0f0000 !important;
@@ -3544,6 +3583,7 @@
     }
 
     /* Mode-Essential: Collapse Deep Dive Laboratories */
+    .mode-essential #eco-lab,
     .mode-essential #italics,
     .mode-essential #braille,
     .mode-essential #bionic,
@@ -4389,4 +4429,273 @@
       0%, 100% { transform: scale(1); opacity: 0.8; }
       50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 8px #2dd4bf); }
     }
-  
+
+/* --- WHO & NIH Volunteer Biomedical Typography Station --- */
+.volunteer-ribbon {
+  background: linear-gradient(90deg, rgba(13, 20, 36, 0.96) 0%, rgba(15, 23, 42, 0.94) 50%, rgba(13, 20, 36, 0.96) 100%);
+  border-bottom: 1px solid rgba(45, 212, 191, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  padding: 0.45rem 1.5rem;
+  font-family: 'PocketGull', sans-serif;
+  position: relative;
+  z-index: 85;
+}
+
+.volunteer-ribbon-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.volunteer-ribbon-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.volunteer-status-beacon {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: beaconPulse 2s infinite ease-in-out;
+}
+
+.volunteer-status-beacon.paused {
+  background: #f59e0b;
+  box-shadow: 0 0 6px #f59e0b;
+  animation: none;
+}
+
+.volunteer-title {
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: #f1f5f9;
+  letter-spacing: -0.01em;
+}
+
+.volunteer-badge {
+  font-family: 'PocketGull Mono', monospace;
+  font-size: 0.68rem;
+  padding: 0.15rem 0.45rem;
+  background: rgba(45, 212, 191, 0.12);
+  color: #2dd4bf;
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  border-radius: 4px;
+}
+
+.volunteer-ribbon-center {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.82rem;
+  color: #94a3b8;
+  flex-wrap: wrap;
+}
+
+.volunteer-count-label {
+  color: #cbd5e1;
+}
+
+.volunteer-counter-val {
+  font-family: 'PocketGull Mono', monospace;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #38bdf8;
+  letter-spacing: 0.02em;
+  transition: color 0.3s ease;
+}
+
+.counter-pulse-flash {
+  color: #34d399 !important;
+  text-shadow: 0 0 12px rgba(52, 211, 153, 0.7);
+}
+
+.volunteer-rate {
+  font-family: 'PocketGull Mono', monospace;
+  font-size: 0.72rem;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+.volunteer-last-item {
+  font-size: 0.75rem;
+  color: #cbd5e1;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  max-width: 380px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.last-tag {
+  font-family: 'PocketGull Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.1rem 0.35rem;
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border-radius: 3px;
+}
+
+.volunteer-ribbon-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.volunteer-toggle-btn {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #34d399;
+  font-family: 'PocketGull Bold', sans-serif;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+
+.volunteer-toggle-btn:hover {
+  background: rgba(16, 185, 129, 0.25);
+  border-color: #34d399;
+}
+
+.volunteer-toggle-btn.paused {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #fbbf24;
+}
+
+.volunteer-info-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+  font-family: 'PocketGull', sans-serif;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.volunteer-info-btn:hover {
+  color: #f1f5f9;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Volunteer Modal */
+.volunteer-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.volunteer-modal-card {
+  background: #0f172a;
+  border: 1.5px solid rgba(45, 212, 191, 0.4);
+  border-radius: 16px;
+  max-width: 600px;
+  width: 100%;
+  padding: 1.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+  animation: modalFadeIn 0.25s ease-out;
+}
+
+.volunteer-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.75rem;
+}
+
+.volunteer-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+  margin: 1rem 0;
+}
+
+@media (max-width: 600px) {
+  .volunteer-modal-grid { grid-template-columns: 1fr; }
+  .volunteer-last-item { display: none; }
+}
+
+.volunteer-info-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  padding: 0.85rem;
+}
+
+.info-box-title {
+  font-family: 'PocketGull Bold', sans-serif;
+  font-size: 0.85rem;
+  color: #f1f5f9;
+  margin-bottom: 0.35rem;
+}
+
+.info-box-desc {
+  font-size: 0.78rem;
+  color: #94a3b8;
+  line-height: 1.45;
+}
+
+@keyframes beaconPulse {
+  0%, 100% { transform: scale(1); opacity: 0.85; box-shadow: 0 0 8px #10b981; }
+  50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 14px #34d399; }
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Theme overrides */
+[data-theme="washi"] .volunteer-ribbon {
+  background: #faf8f2;
+  border-bottom: 1px solid #dcd2c2;
+  box-shadow: 0 2px 8px rgba(60, 45, 30, 0.04);
+}
+[data-theme="washi"] .volunteer-title { color: #1f1b16; }
+[data-theme="washi"] .volunteer-count-label { color: #57534e; }
+[data-theme="washi"] .volunteer-counter-val { color: #0f766e; }
+[data-theme="washi"] .volunteer-info-btn { border-color: #dcd2c2; color: #57534e; }
+[data-theme="washi"] .volunteer-modal-card { background: #faf8f2; border-color: #0f766e; color: #1f1b16; }
+[data-theme="washi"] .info-box-title { color: #1f1b16; }
+[data-theme="washi"] .info-box-desc { color: #57534e; }
+
+[data-theme="pbm"] .volunteer-ribbon {
+  background: #0a0000;
+  border-bottom: 1px solid #4a0000;
+}
+[data-theme="pbm"] .volunteer-title { color: #ff5555; }
+[data-theme="pbm"] .volunteer-status-beacon { background: #ff3333; box-shadow: 0 0 8px #ff3333; }
+[data-theme="pbm"] .volunteer-badge { background: rgba(255, 51, 51, 0.12); color: #ff5555; border-color: #550000; }
+[data-theme="pbm"] .volunteer-counter-val { color: #ff3333; }
+[data-theme="pbm"] .volunteer-rate { color: #ff5555; background: rgba(255, 51, 51, 0.1); }
+[data-theme="pbm"] .volunteer-toggle-btn { background: rgba(255, 51, 51, 0.15); border-color: #ff3333; color: #ff5555; }
+[data-theme="pbm"] .volunteer-modal-card { background: #050000; border-color: #ff3333; color: #ffaaaa; }
+[data-theme="pbm"] .info-box-title { color: #ff3333; }
+
