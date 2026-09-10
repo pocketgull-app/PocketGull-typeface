@@ -14,10 +14,10 @@ This master bibliography compiles the foundational peer-reviewed literature, his
 1. **Case Study 01**: Inuktitut Syllabics (*Canadian Aboriginal Syllabics, Arctic Clinical Telehealth & Inuit Qaujimajatuqangit*)
 2. **Case Study 02**: Chinuk Pipa (*Pacific Northwest Indigenous Stenographic Literacy & Grand Ronde Ethnobotany*)
 3. **Case Study 03**: Neo-Tifinagh (*Amazigh Language Rights, High Atlas Geography & Trans-Saharan Phytotherapy*)
-4. **Case Study 04**: Cherokee Syllabary (*The Sequoyah Revolution, Tohi Medicine & Sovereign Public Health*)
+4. **Case Study 04**: Cherokee Syllabary (*The Sequoyah Revolution, Tohi Medicine & Public Health*)
 5. **Case Study 05**: Ethiopic Geʻez (*Ancient Manuscript Preservation, Debtera Medicine & Primary Healthcare*)
-6. **Case Study 06**: West African Scripts (*Adlam & Vai Modern Indigenous Orthographic Sovereignty*)
-7. **Case Study 07**: Pan-Tribal Sovereign Indigenous Latin Orthographies (*12 IHS Areas, Safe Harbor & Sacred Lands*)
+6. **Case Study 06**: West African Scripts (*Adlam & Vai Modern Orthographic Literacy*)
+7. **Case Study 07**: Pan-Tribal Indigenous Latin Orthographies (*12 IHS Areas, Diacritics & Health Communication*)
 
 ---
 
@@ -173,9 +173,9 @@ This master bibliography compiles the foundational peer-reviewed literature, his
 
 ---
 
-## 🦅 Case Study 07: Pan-Tribal Sovereign Indigenous Latin Orthographies
+## 🦅 Case Study 07: Pan-Tribal Indigenous Latin Orthographies
 
-### Sovereign Epistemologies & Sacred Geographies
+### Community Epistemologies & Sacred Geographies
 - **Begay, R. W.** (2003). *Diné Philosophy of Care and Learning*. Tsaile, AZ: Navajo Community College Press.
 - **Black Elk, W., & Lyon, W. S.** (1990). *Black Elk: The Sacred Ways of a Lakota*. San Francisco: HarperSanFrancisco. ISBN: 978-0062500748.
 - **Eagle Woman (Angelique EagleWoman).** (2010). The Eagle and the Condor of the Western Hemisphere: Application of Indigenous knowledge to environmental and water sovereignty. *Idaho Law Review*, 47(1), 133–158.

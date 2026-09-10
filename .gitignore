@@ -49,20 +49,16 @@ bin/
 .agents/
 .antigravity/
 .gemini/
-.tools/
+# Web & Flutter Build Artifacts
+*.map
+*.deps
+flutter/
+apps/
+web/
+js/philocardia.js
 
-# Private Sovereign Typefoundry Vaults (Generators, Elder Registries, Sacred Boundaries - CARE Principles)
+# Local Foundry Tooling & Generation Scripts
 .foundry/
-.foundry/**
-.studio/
-.studio/**
-*.vault
-*.vault/**
-*tribal_office_registry*
-*elder_registry*
-private_registries/
-
-# DirectML Hardware-Accelerated Local Generation Pipeline (Hidden from Uploads)
 scripts/directml/
 
 # Dart Package Cache

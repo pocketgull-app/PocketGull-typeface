@@ -55,7 +55,7 @@ Designed by Phil Gear and the PocketGull Project Authors, **PERMA+ Thoughts** co
   - *Ajunnginniqarniq* (ᐊᔪᙱᓐᓂᖃᕐᓂᖅ): Mastery, capability, and autonomous disease self-management.
   - *Sanginiq* (ᓴᙱᓂᖅ): Functional physical strength and recovery milestones.
   - *Mamook Kloshe* (Chinuk Wawa): "To do good work, to successfully heal, to achieve a goal."
-* **Typographic Manifestation**: K-series syllabics (`ᑭ ᑮ ᑯ ᑰ ᑲ ᑳ`) and full Unicode 1.9 architectural parity—empowering Indigenous patients to review their charts in their mother tongue.
+* **Typographic Manifestation**: K-series syllabics (`ᑭ ᑮ ᑯ ᑰ ᑲ ᑳ`) and full Unicode 1.9 architectural parity—allowing patient-facing health charts to render accurately and legibly in Inuktitut.
 
 ### 6. (+) Physical Vitality & Restorative Health (ᐋᓐᓂᐊᖃᕐᓇᙱᑦᑐᓕᕆᓂᖅ • ᓂᕿᑦᑎᐊᕙᐃᑦ / Kloshe Muckamuck)
 * **Physiological Correlate**: Sleep architecture (slow-wave non-REM), circadian rhythm entrainment, anti-inflammatory nutrition, and cellular glymphatic cleansing.

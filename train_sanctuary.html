@@ -735,7 +735,7 @@
       <span class="telem-val" id="telemWatershed">Columbia River Basin</span>
     </div>
     <div class="telem-item">
-      <span class="telem-label">Sovereign Nation</span>
+      <span class="telem-label">Indigenous Homeland</span>
       <span class="telem-val accent" id="telemNation">Chinook & Cowlitz Territory</span>
     </div>
     <div class="telem-item">
@@ -801,9 +801,9 @@
     <button class="zen-pill" id="zenPill">✕ Exit Zen View</button>
 
     <!-- Scenic Waypoints & Elevation Profile -->
-    <section class="waypoint-section" aria-label="Scenic Waypoints & Sovereign Territories">
+    <section class="waypoint-section" aria-label="Scenic Waypoints & Indigenous Homelands">
       <div class="section-title">
-        <span>🗺️ Scenic Waypoints & Sovereign Homelands</span>
+        <span>🗺️ Scenic Waypoints & Indigenous Homelands</span>
         <span style="font-family:var(--mono-stack); font-size:0.72rem;">CLICK WAYPOINT TO JUMP</span>
       </div>
       <div class="waypoint-track" id="waypointTrack">
@@ -856,7 +856,7 @@
     <section class="dining-section" aria-label="Traditional Ecological Knowledge Dining Car">
       <div class="section-title">
         <span>🌿 Dining Car & Indigenous Ethnobotanical Apothecary</span>
-        <span style="font-family:var(--mono-stack); font-size:0.72rem; color:var(--rail-forest);">PILLAR VII · SOVEREIGN FORAGED HERITAGE</span>
+        <span style="font-family:var(--mono-stack); font-size:0.72rem; color:var(--rail-forest);">PILLAR VII · REGIONAL BOTANICAL HERITAGE</span>
       </div>
       <div class="dining-grid" id="diningGrid">
         <article class="menu-card">
@@ -951,7 +951,7 @@
 
   <script>
     // =========================================================================
-    // ROUTE DEFINITIONS & SOVEREIGN WATERSHEDS
+    // ROUTE DEFINITIONS & WATERSHEDS
     // =========================================================================
     const RAIL_ROUTES = {
       coast_starlight: {
@@ -1528,7 +1528,7 @@
       telemNation.textContent = wp.nation;
 
       hudTitle.innerHTML = `<span>🚂</span> ${wp.name}`;
-      hudDesc.textContent = `${wp.desc} Watershed: ${wp.water}. Sovereign Territory: ${wp.nation}.`;
+      hudDesc.textContent = `${wp.desc} Watershed: ${wp.water}. Indigenous Territory: ${wp.nation}.`;
       hudLookout.textContent = `LOOKOUT: ${wp.lookout}`;
     }
 
@@ -1653,7 +1653,7 @@ Route: ${route.name} (${route.corridor})
 Speed: ${trainSpeed} MPH · Track Cadence Active
 Date: ${new Date().toLocaleDateString('en-US', { dateStyle: 'full' })}
 
-## WAYPOINTS & SOVEREIGN HOMELANDS
+## WAYPOINTS & INDIGENOUS HOMELANDS
 ${route.waypoints.map(w => `- ${w.mp}: ${w.name} (${w.elev}) — Territory: ${w.nation} | Watershed: ${w.water}`).join('\n')}
 
 ## OBSERVATION PARLOUR CREW

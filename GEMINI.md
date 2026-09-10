@@ -11,12 +11,13 @@ PocketGull is an open-source clinical sans-serif, display, and telemetry monospa
 - **PocketGull Mono** (`PocketGullMono-Regular.ttf`, wght: 400 / 500): Fixed 600 UPM pitch, ICU telemetry, box drawing (`U+2500`–`U+257F`), Powerline chevrons (`uniE0B0`–`uniE0B6`), and sub-cell ECG waveforms.
 - **PocketGull VF** (`PocketGull-VF.ttf`, wght: 400–900): Dynamic variable font with continuous weight axis.
 
-## 🕊️ The Living Typographic Charter
+## 🕊️ Typographic Principles
 - **Let Latin be Latin**: Crisp, disambiguated (ISMP), humanist, and readable.
-- **Let Arabic be Arabic**: Let the nuqṭa keep its natural pen angle (the authentic reed-pen footprint, honoring calligraphy rather than sterile mechanical plumbness).
+- **Let Arabic be Arabic**: Honor the authentic reed-pen angle and calligraphic stroke contrast rather than artificial geometric flattening.
 - **Let Braille be Braille**: Preserve standard tactile cell geometries, dot pitch, and negative space (ISO/TR 11548 & ISO 17049).
-- **Let Shorthand be Shorthand**: Respect the phonemic size ratios of stenography without forcing it into Roman metal boxes.
-- **Keep the binary engine clean**: Pad bytes to keep OTS happy (`loca[i] % 2 == 0`), but don't confuse memory alignment with typographic beauty.
+- **Let Canadian Syllabics be Syllabics**: Respect rotational symmetry, optical stroke weights, and stroke terminals.
+- **Let Stenography be Stenography**: Respect phonemic size ratios without forcing shorthand into Roman metal boxes.
+- **Keep the binary engine clean**: Pad bytes to keep OTS happy (`loca[i] % 2 == 0`), ensuring memory safety across all systems.
 
 ---
 
@@ -52,9 +53,9 @@ PocketGull is an open-source clinical sans-serif, display, and telemetry monospa
 ### 7. DirectWrite / ClearType Antialiasing (`gasp`)
 - Version 1 `gasp` table mapping `0xFFFF` to `GASP_DOGRAY` (0x02) and `GASP_SYMMETRIC_SMOOTHING` (0x04).
 
-### 8. Living Typographic Charter & Sovereign Script Grounding
+### 8. Multi-Script Proportions & Grounding
 - **Unicode Braille (`U+2800`–`U+28FF`)**: Respects ISO/TR 11548 & ISO 17049 standard 8-dot tactile dome geometry ($r=60\text{ UPM}$, $2.5\text{ mm}$ pitch, authentic negative space), grounded on Latin baseline ($y = 0$) to prevent floating cell artifacts.
-- **Chinuk Pipa & Stenographies (`U+1BC00`–`U+1BC9F`)**: Respects 1891 Kamloops Wawa phonemic size ratios ($130\text{ UPM}$ vowel loops vs. consonant stems), anchored along the optical waist ($y = 270\text{ UPM}$) without forcing oral shorthand into Roman metal boxes.
+- **Duployan / Chinuk Pipa (`U+1BC00`–`U+1BC9F`)**: Respects phonemic size ratios ($130\text{ UPM}$ vowel loops vs. consonant stems), anchored along the optical waist ($y = 270\text{ UPM}$) to harmonize with Latin x-height.
 
 ---
 

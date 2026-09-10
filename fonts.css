@@ -547,17 +547,92 @@
 }
 
 /* ==========================================================================
-   4. GOOGLE NOTO UNIVERSAL HARMONIZED FALLBACK (ZERO CLS METRIC OVERRIDES)
-   Enforces exact 1000 UPM vertical metric parity with Google Noto Sans
+   4. ZERO-CLS HARMONIZED FALLBACKS & DEVELOPER BEST PRACTICES
+   Enforces exact 1000 UPM vertical metric parity with system fonts & Google Noto
    to eliminate Cumulative Layout Shift (CLS = 0.000) across global fallbacks.
    ========================================================================== */
+
+/* 4.1 Universal Sans Fallback (size-adjusted to 1000 UPM PocketGull em-square) */
+@font-face {
+  font-family: 'PocketGull Fallback';
+  src: local('Segoe UI'), local('Roboto'), local('Helvetica Neue'), local('Arial'), local('sans-serif');
+  ascent-override: 96%;
+  descent-override: 24%;
+  line-gap-override: 10%;
+  size-adjust: 100%;
+}
+
+/* 4.2 Telemetry Monospace Fallback (fixed 600 UPM pitch equivalent) */
+@font-face {
+  font-family: 'PocketGull Mono Fallback';
+  src: local('Cascadia Code'), local('Segoe UI Mono'), local('Consolas'), local('SFMono-Regular'), local('Menlo'), local('Courier New'), local('monospace');
+  ascent-override: 96%;
+  descent-override: 24%;
+  line-gap-override: 10%;
+  size-adjust: 100%;
+}
+
+/* 4.3 Clinical Serif Fallback */
+@font-face {
+  font-family: 'PocketGull Serif Fallback';
+  src: local('Georgia'), local('Times New Roman'), local('Cambria'), local('serif');
+  ascent-override: 96%;
+  descent-override: 24%;
+  line-gap-override: 10%;
+  size-adjust: 100%;
+}
+
+/* 4.4 Google Noto Global Script Fallback */
 @font-face {
   font-family: 'PocketGull Noto Fallback';
   src: local('Noto Sans'), local('Noto Sans CJK SC'), local('Noto Sans Devanagari'), local('Noto Sans Arabic'), local('sans-serif');
-  ascent-override: 95%;
-  descent-override: 25%;
-  line-gap-override: 0%;
+  ascent-override: 96%;
+  descent-override: 24%;
+  line-gap-override: 10%;
   size-adjust: 100%;
+}
+
+/* ==========================================================================
+   4.5 GLOBAL DEVELOPER TYPOGRAPHY TOKENS & SYSTEM FALLBACK STACKS
+   ========================================================================== */
+:root {
+  --font-sans: 'PocketGull', 'PocketGull Fallback', 'PocketGull Noto Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  --font-mono: 'PocketGull Mono', 'PocketGull Mono Fallback', ui-monospace, 'Cascadia Code', 'Segoe UI Mono', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --font-display: 'PocketGull Bold', 'PocketGull', 'PocketGull Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-chisel: 'PocketGull Chiseltip', 'PocketGull Bold', 'PocketGull', 'PocketGull Fallback', -apple-system, sans-serif;
+  --font-serif: 'PocketGull Serif', 'PocketGull Serif Fallback', Georgia, Cambria, 'Times New Roman', serif;
+  --font-vf: 'PocketGull VF', 'PocketGull', 'PocketGull Fallback', -apple-system, sans-serif;
+}
+
+/* Developer Utility Classes */
+.font-sans { font-family: var(--font-sans) !important; }
+.font-mono { font-family: var(--font-mono) !important; }
+.font-display { font-family: var(--font-display) !important; }
+.font-chisel { font-family: var(--font-chisel) !important; }
+.font-serif { font-family: var(--font-serif) !important; }
+.font-vf { font-family: var(--font-vf) !important; }
+
+/* OpenType Feature Utility Classes for Clinical & Ecological Best Practices */
+.font-feature-clinical {
+  font-feature-settings: "zero" 1, "cv05" 1, "ss02" 1, "cv11" 1;
+  font-variant-numeric: slashed-zero;
+}
+.font-feature-eco {
+  font-feature-settings: "ss01" 1;
+}
+.font-feature-tabular {
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+.font-feature-fractions {
+  font-feature-settings: "frac" 1;
+  font-variant-numeric: diagonal-fractions;
+}
+.font-feature-dark {
+  font-feature-settings: "ss12" 1;
+}
+.font-feature-slow {
+  font-feature-settings: "ss15" 1;
 }
 
 /* ==========================================================================
@@ -659,6 +734,7 @@
 /* Philocardia: Signature Heart-Tittle & Tittle Variety Stylistic Alternate */
 .philocardia-heart,
 .iphillyg-heart {
+  --tittle-glyph: '♥';
   display: inline-block;
   position: relative;
   line-height: 1;
@@ -689,6 +765,7 @@
 
 /* Lowercase j (dotless ȷ U+0237): Centered over the straight upper stem */
 .philocardia-j {
+  --tittle-glyph: '♥';
   display: inline-block;
   position: relative;
   line-height: 1;
@@ -718,6 +795,7 @@
 
 /* Exclamation Mark Terminal Heart/Tittle: Replaces baseline period dot */
 .philocardia-excl {
+  --tittle-glyph: '♥';
   display: inline-block;
   position: relative;
   line-height: inherit;
@@ -746,6 +824,7 @@
 
 /* Arabic Heart Nuqṭa (خ, ج, غ, ف, ن): Placed above apex of letterhead */
 .philocardia-arabic-heart {
+  --tittle-glyph: '♥';
   display: inline-block;
   position: relative;
   line-height: inherit;

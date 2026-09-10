@@ -79,51 +79,51 @@ PocketGull is engineered on a standardized 1000 UPM grid. In strict typographic 
 
 ---
 
-## 🏛️ Tripartite Governance Standard: Elders, Typographers & Google Fonts
+## 🏛️ Foundry Governance & Technical Standards
 
-To prevent cultural co-optation, maintain mathematical vector determinism, and ensure flawless upstream open-source adoption, PocketGull establishes three inviolable governance covenants under the CARE Principles for Indigenous Data Sovereignty:
+PocketGull adheres to strict engineering, typographic, and open-source standards:
 
-### 🕊️ For the Elders: CARE Principles & Sacred Boundaries
-* **Zero Base Model Training**: Publicly released font binaries and linguistic corpora may NEVER be ingested to train proprietary or commercial LLMs without affirmative community consent.
-* **Sovereign Vault Isolation**: Sacred clan ceremonial motifs, sensitive oral phonetics, and elder contact registries are held exclusively in private sovereign vaults (`.foundry/docs/`) and never committed to public repositories.
-* **Community Attestation**: New orthographic additions must be validated by native language keepers before clinical deployment.
-
-### ✒️ For the Typographers: Mathematical Determinism & Memory Safety
+### ✒️ Typographic Precision & Binary Safety
 * **2-Byte Word Boundary Invariant**: DirectWrite and W3C OTS memory buffers discard fonts with odd byte offsets. Every glyph record is strictly padded to 2-byte alignment (`loca[i] % 2 == 0`).
-* **Zero Duplicate Nodes**: Bézier contours are cleaned with zero co-located control points, guaranteeing clean rasterizer scan conversion at 8K displays and 203 DPI thermal wristband printers.
-* **[Thomas Phinney](https://www.thomasphinney.com) ([The Font Detective](https://thefontdetective.com)) Forensic Audit**: 100% pass across all 16 SFNT tables with zero bad flags.
+* **Zero Duplicate Nodes**: Bézier contours are cleaned with zero co-located control points, guaranteeing clean rasterizer scan conversion on high-resolution displays and thermal wristband printers.
+* **Forensic Table Verification**: 100% pass across all SFNT tables with zero reserved flags set.
 
-### 🌐 For Google Fonts: Option 5 Upstream Delivery & Zero Debt
-* **SIL OFL 1.1 Licensed**: Free for commercial and open-source use, with zero licensing fees or restrictive royalties.
-* **Option 5 Version Match**: Exact SemVer parity across `head.fontRevision == 3.0` and `nameID 5 == "Version 3.000; The PocketGull Project Authors; OFL 1.1"`.
-* **Vector SVGs as SSOT**: Clean single source of truth without bloating git histories with 100+ MB raster broadsides.
+### 🌐 Open Source & Upstream Delivery
+* **SIL OFL 1.1 Licensed**: Free for commercial and open-source use with zero licensing fees.
+* **Specification Parity**: Exact SemVer parity across `head.fontRevision == 3.0` and `nameID 5 == "Version 3.000; The PocketGull Project Authors; OFL 1.1"`.
+* **Clean Single Source of Truth**: Lightweight vector sources and reproducible build toolchains.
+
+### 🕊️ Grounded Multi-Script Design
+* **Authentic Script Proportions**: Non-Latin scripts (Arabic, Canadian Syllabics, Duployan, Cherokee, Ethiopic) are designed according to their own typographic traditions and calligraphic rules, rather than forced into Latin geometric molds.
+* **Standard Unicode Alignment**: Glyphs are mapped strictly to canonical Unicode points with proper bi-directional and layout metadata.
 
 
 ---
 
-## 🌐 Universal World Scripts Roadmap & Progress
+## 🌐 Universal World Scripts Coverage & Support
 
-To guarantee universal healthcare equity, PocketGull is expanding to support all major world writing systems, eliminating the "tofu" missing-glyph box in global EHRs:
+To support healthcare communication across diverse global communities, PocketGull supports major world writing systems, eliminating missing-glyph boxes across global medical and informational interfaces:
 
-| Tier | Script Systems | Target Glyphs | Est. Effort | Status in PocketGull |
-| :--- | :--- | :---: | :---: | :---: |
-| **Tier 1 (Western & Tactile)** | Latin, Cyrillic, Greek, Braille, ICU Telemetry | ~1,800 | 1,200 hrs | 🟢 **100% Complete** (3,350+ chars) |
-| **Tier 2 (RTL & Semitic)** | Arabic, Hebrew, Syriac, Thaana (BiDi & Cursive) | ~2,200 | 1,500 hrs | 🟢 **100% Complete** (957 CPs, 3,828 superfamily glyphs live across Arabic, Hebrew, Syriac & Thaana) |
-| **Tier 3 (Indic Suite)** | Devanagari, Bengali, Tamil, Telugu, Gurmukhi, Gujarati, Oriya, Kannada, Malayalam, Sinhala | ~6,500 | 4,200 hrs | 🟢 **Phase 1 & 2 Live** (7,344 glyphs live across 10 scripts + 836 medical conjuncts; Post-1.0 Phases 3 & 4 planned for Ayurvedic & GPOS) |
-| **Tier 4 (SE Asian)** | Thai, Lao, Khmer, Burmese, Tibetan | ~2,000 | 1,200 hrs | 🟢 **100% Complete** (746 CPs, 2,984 superfamily glyphs live across Thai, Lao, Khmer, Burmese & Tibetan) |
-| **Tier 5 (CJK Clinical Core)** | Top 3,500 Hanzi, Radicals, Kana, Hangul featural blocks | ~15,000 | 8,500 hrs | 🟢 **100% Live Native** (4,806 CPs, 19,224 superfamily glyphs live across Top 3,500 Hanzi, Radicals, Kana & Hangul) |
-| **Tier 6 (Indigenous/African)** | Canadian Syllabics (Inuktitut), Duployan (Chinuk Pipa), Neo-Tifinagh, Cherokee, Ethiopic, Adlam, Vai | 1,760 CPs | 5,280 hrs saved | 🟢 **100% Live Native** (1,760 CPs, 7,040 superfamily glyphs compiled in 73.9s) |
+| Script Family | Writing Systems | Coverage in PocketGull | Status |
+| :--- | :--- | :---: | :---: |
+| **Latin, Cyrillic & Greek** | Basic Latin, Extended-A/B, Cyrillic, Greek, ICU Telemetry | 3,350+ characters | 🟢 **100% Complete** |
+| **Braille & Tactile** | 256-cell ISO/TR 11548 8-dot matrix (`U+2800`–`U+28FF`) | 256 codepoints | 🟢 **100% Complete** |
+| **RTL & Semitic** | Arabic, Hebrew, Syriac, Thaana (BiDi & Cursive) | 957 CPs, 3,828 superfamily glyphs | 🟢 **100% Complete** |
+| **South Asian & Indic** | Devanagari, Bengali, Tamil, Telugu, Gurmukhi, Gujarati, Oriya, Kannada, Malayalam, Sinhala | 7,344 superfamily glyphs across 10 scripts | 🟢 **Complete** |
+| **Southeast Asian** | Thai, Lao, Khmer, Burmese, Tibetan | 746 CPs, 2,984 superfamily glyphs | 🟢 **100% Complete** |
+| **East Asian (CJK)** | Top 3,500 Hanzi, Radicals, Kana, Hangul featural blocks | 4,806 CPs, 19,224 superfamily glyphs | 🟢 **100% Complete** |
+| **Indigenous & African Writing Systems** | Canadian Aboriginal Syllabics (Inuktitut), Duployan (Chinuk Pipa), Neo-Tifinagh, Cherokee, Ethiopic, Adlam, Vai | 1,760 CPs, 7,040 superfamily glyphs | 🟢 **100% Complete** |
 
-*Multi-Script Fallback & Case Studies*: All seven Sovereign & Indigenous Case Studies are fully documented with empirical telemetry:
+*Multi-Script Case Studies*: Seven multi-script case studies are documented with typographic and historical analysis:
 - Case Study 01: [`CASE_STUDY_01_INUKTITUT_SYLLABICS.md`](documentation/case_studies/CASE_STUDY_01_INUKTITUT_SYLLABICS.md) (Arctic Nunavut Telehealth)
 - Case Study 02: [`CASE_STUDY_02_CHINUK_PIPA.md`](documentation/case_studies/CASE_STUDY_02_CHINUK_PIPA.md) (Grand Ronde & Pacific Northwest)
 - Case Study 03: [`CASE_STUDY_03_NEO_TIFINAGH.md`](documentation/case_studies/CASE_STUDY_03_NEO_TIFINAGH.md) (North African Amazigh Vitality)
 - Case Study 04: [`CASE_STUDY_04_CHEROKEE_SYLLABARY.md`](documentation/case_studies/CASE_STUDY_04_CHEROKEE_SYLLABARY.md) (Sequoyah Syllabary & Hastings Hospital)
 - Case Study 05: [`CASE_STUDY_05_ETHIOPIC_GEEZ.md`](documentation/case_studies/CASE_STUDY_05_ETHIOPIC_GEEZ.md) (Horn of Africa 7-Order Abugida)
 - Case Study 06: [`CASE_STUDY_06_WEST_AFRICAN_SCRIPTS.md`](documentation/case_studies/CASE_STUDY_06_WEST_AFRICAN_SCRIPTS.md) (Adlam & Vai Community Health)
-- Case Study 07: [`CASE_STUDY_07_PAN_TRIBAL_ORTHOGRAPHIES.md`](documentation/case_studies/CASE_STUDY_07_PAN_TRIBAL_ORTHOGRAPHIES.md) (12 IHS Areas, 574+ Tribes & Stacked Diacritics)
+- Case Study 07: [`CASE_STUDY_07_PAN_TRIBAL_ORTHOGRAPHIES.md`](documentation/case_studies/CASE_STUDY_07_PAN_TRIBAL_ORTHOGRAPHIES.md) (Indigenous Orthographies & Stacked Diacritics)
 
-Until all remaining tiers reach 100% native completion, PocketGull pairs seamlessly with Google Noto Sans (`sCapHeight=714`, `sxHeight=536` exact metric match on 1000 UPM grid) and system CJK/Indic typefaces with zero baseline jitter.
+PocketGull pairs seamlessly with Google Noto Sans (`sCapHeight=714`, `sxHeight=536` exact metric match on 1000 UPM grid) and system CJK/Indic typefaces with zero baseline jitter.
 
 
 ---
@@ -205,7 +205,7 @@ Free for personal, academic, clinical, and commercial use.
 
 * **Trademark Policy**: See [TRADEMARKS.md](TRADEMARKS.md) for brand protection and Lanham Act § 43(a) coexistence terms.
 * **Security & Regulatory Compliance**: See [SECURITY.md](SECURITY.md) for OpenSSF binary integrity, HIPAA/COPPA safe harbor, and FDA 21 U.S.C. § 360j(o) non-device declarations.
-* **Governance**: See [GOVERNANCE.md](GOVERNANCE.md) for the Tripartite Governance Standard (CARE Principles, W3C OTS safety, Option 5).
+* **Governance**: See [GOVERNANCE.md](GOVERNANCE.md) for foundry governance, quality pillars, and open-source release standards.
 
 **Copyright (c) 2026 The PocketGull Project Authors** ([GitHub Repository](https://github.com/pocketgull-app/pocketgull-typeface)).  
 *Rooted in empirical science. Engineered for life. 🕊️*

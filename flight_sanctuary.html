@@ -1078,14 +1078,14 @@
       flex-wrap: wrap;
     }
 
-    /* Satellite-to-Gold Alchemy Lens */
-    .alchemy-lens {
+    /* Terrain Spectral Inspection Lens */
+    .spectral-lens {
       position: absolute;
       width: 140px;
       height: 140px;
       border-radius: 50%;
-      border: 2px solid rgba(245, 158, 11, 0.9);
-      box-shadow: 0 0 25px rgba(245, 158, 11, 0.6), inset 0 0 20px rgba(45, 212, 191, 0.4);
+      border: 2px solid rgba(56, 189, 248, 0.9);
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.6), inset 0 0 20px rgba(45, 212, 191, 0.4);
       pointer-events: none;
       z-index: 10;
       transform: translate(-50%, -50%);
@@ -1093,10 +1093,10 @@
       backdrop-filter: contrast(1.3) brightness(1.15);
     }
 
-    .alchemy-reticle {
+    .spectral-reticle {
       position: absolute;
       inset: 6px;
-      border: 1px dashed rgba(245, 158, 11, 0.5);
+      border: 1px dashed rgba(56, 189, 248, 0.5);
       border-radius: 50%;
       animation: spinReticle 12s linear infinite;
     }
@@ -1106,13 +1106,13 @@
       to { transform: rotate(360deg); }
     }
 
-    .alchemy-hud {
+    .spectral-hud {
       position: absolute;
       top: -42px;
       left: 50%;
       transform: translateX(-50%);
       background: rgba(8, 12, 20, 0.92);
-      border: 1px solid rgba(245, 158, 11, 0.5);
+      border: 1px solid rgba(56, 189, 248, 0.5);
       border-radius: 6px;
       padding: 0.25rem 0.6rem;
       white-space: nowrap;
@@ -1447,12 +1447,12 @@
         </div>
       </div>
 
-      <!-- Interactive Satellite-to-Gold Alchemy Lens -->
-      <div class="alchemy-lens" id="alchemyLens" style="display: none;">
-        <div class="alchemy-reticle"></div>
-        <div class="alchemy-hud" id="alchemyHud">
+      <!-- Interactive Terrain Spectral Inspection Lens -->
+      <div class="spectral-lens" id="spectralLens" style="display: none;">
+        <div class="spectral-reticle"></div>
+        <div class="spectral-hud" id="spectralHud">
           <div class="hud-tag" id="hudTerrainType">TERRAIN: VOLCANIC RIDGE</div>
-          <div class="hud-sub" id="hudTransmutation">TRANSMUTATION: 24K GOLD LEAF</div>
+          <div class="hud-sub" id="hudTransmutation">SPECTRUM: BASALT CANYON</div>
         </div>
       </div>
     </div>
@@ -1464,7 +1464,7 @@
       <input type="range" class="fader-slider" id="crossFader" min="0" max="100" value="65" aria-label="Satellite to Illuminated Art Cross-Fader">
       <span>✨ SCRIPTORIUM</span>
       <button class="btn" id="btnCamMode" style="margin-left: 0.75rem; font-size: 0.72rem; padding: 0.25rem 0.6rem;" title="Toggle Camera between Aircraft Tracking and Full Cascade Corridor">🎥 View: Corridor Fit</button>
-      <button class="btn" id="btnAlchemyLens" style="margin-left: 0.5rem; font-size: 0.72rem; padding: 0.25rem 0.6rem;" title="Toggle Interactive Satellite-to-Gold Alchemy Lens">🔍 Land-to-Gold Lens</button>
+      <button class="btn" id="btnSpectralLens" style="margin-left: 0.5rem; font-size: 0.72rem; padding: 0.25rem 0.6rem;" title="Toggle Interactive Terrain Spectral Lens">🔍 Terrain Spectral Lens</button>
     </div>
   </main>
 
@@ -3542,13 +3542,13 @@
     startScriptoriumLoop();
 
     // =========================================================================
-    // SATELLITE-GUIDED ALCHEMY & LAND-TO-GOLD PIXEL ANALYZER
+    // SATELLITE MULTISPECTRAL TERRAIN PIXEL ANALYZER
     // =========================================================================
-    const btnAlchemyLens = document.getElementById('btnAlchemyLens');
-    const alchemyLens = document.getElementById('alchemyLens');
+    const btnSpectralLens = document.getElementById('btnSpectralLens');
+    const spectralLens = document.getElementById('spectralLens');
     const hudTerrainType = document.getElementById('hudTerrainType');
     const hudTransmutation = document.getElementById('hudTransmutation');
-    let isAlchemyLensActive = true;
+    let isSpectralLensActive = true;
     let lensPos = { x: 480, y: 260, active: false };
 
     // Off-Screen Satellite Pixel Sampler Canvas
@@ -3577,10 +3577,10 @@
     function analyzePixel(nx, ny) {
       if (!satSamplerData) {
         // Procedural geographic classification based on Pacific Northwest coordinates
-        if (ny > 0.65) return { terrain: "PUGET SOUND FJORD WATERS", alchemy: "MINERAL LAPIS LAZULI & CELTIC WAVELETS", color: "#38bdf8", type: "water" };
-        if (ny > 0.45 && nx > 0.40 && nx < 0.65) return { terrain: "LAWETLAT'LA VOLCANIC CALDERA", alchemy: "24K BURNISHED GOLD LEAF ISOLINES", color: "#f59e0b", type: "gold" };
-        if (nx > 0.65) return { terrain: "CASCADE ALPINE SNOWPACK", alchemy: "RAISED GESSO RELIEF & COBALT CREVASSE", color: "#e0f2fe", type: "snow" };
-        return { terrain: "OLD-GROWTH REDCEDAR RAINFOREST", alchemy: "MALACHITE BOTANICAL DIAPERING", color: "#10b981", type: "forest" };
+        if (ny > 0.65) return { terrain: "PUGET SOUND FJORD WATERS", spectrum: "MINERAL LAPIS & FJORD BASIN", color: "#38bdf8", type: "water" };
+        if (ny > 0.45 && nx > 0.40 && nx < 0.65) return { terrain: "LAWETLAT'LA VOLCANIC CALDERA", spectrum: "BASALT CRATER & THERMAL RIDGE", color: "#f59e0b", type: "gold" };
+        if (nx > 0.65) return { terrain: "CASCADE ALPINE SNOWPACK", spectrum: "HIGH-ALBEDO FIRN & CREVASSE", color: "#e0f2fe", type: "snow" };
+        return { terrain: "OLD-GROWTH REDCEDAR RAINFOREST", spectrum: "NDVI CANOPY DENSITY & MOSS", color: "#10b981", type: "forest" };
       }
 
       const px = Math.max(0, Math.min(159, Math.floor(nx * 160)));
@@ -3594,37 +3594,37 @@
 
       // 1. Glacier / Snow (High Albedo)
       if (lum > 140) {
-        return { terrain: "PERENNIAL GLACIER & SNOWFIELD", alchemy: "RAISED GESSO RELIEF & COBALT CREVASSE", color: "#e0f2fe", type: "snow" };
+        return { terrain: "PERENNIAL GLACIER & SNOWFIELD", spectrum: "HIGH-ALBEDO FIRN & CREVASSE", color: "#e0f2fe", type: "snow" };
       }
       // 2. Volcanic Basalt & Caldera Shadow (Deep Rock Fissure)
       if (lum < 38 && lum >= 12) {
-        return { terrain: "VOLCANIC BASALT & CRATER CALDERA", alchemy: "24K BURNISHED GOLD LEAF ISOLINES", color: "#f59e0b", type: "gold" };
+        return { terrain: "VOLCANIC BASALT & CRATER CALDERA", spectrum: "BASALT CRATER & THERMAL RIDGE", color: "#f59e0b", type: "gold" };
       }
       // 3. Water Body / Deep Basin (NDWI Blue Absorption)
       if (lum < 12 || (b > r * 1.1 && lum < 70)) {
-        return { terrain: "SPIRIT LAKE / BASALT WATERSHED", alchemy: "MINERAL LAPIS LAZULI & CELTIC WAVELETS", color: "#38bdf8", type: "water" };
+        return { terrain: "SPIRIT LAKE / BASALT WATERSHED", spectrum: "MINERAL LAPIS & FJORD BASIN", color: "#38bdf8", type: "water" };
       }
       // 4. Dense Canopy / Old-Growth Rainforest (NDVI Green)
       if (g > r * 1.18 && g >= 55) {
-        return { terrain: "TEMPERATE RAINFOREST CANOPY", alchemy: "MALACHITE BOTANICAL DIAPERING", color: "#10b981", type: "forest" };
+        return { terrain: "TEMPERATE RAINFOREST CANOPY", spectrum: "NDVI CANOPY DENSITY & MOSS", color: "#10b981", type: "forest" };
       }
       // 5. Post-Blast Pumice / Scree / Recovery Zone
-      return { terrain: "SUBALPINE PUMICE & RECOVERY ZONE", alchemy: "KINTSUGI GOLD VEIN & FIREWEED BLOOM", color: "#f43f5e", type: "kintsugi" };
+      return { terrain: "SUBALPINE PUMICE & RECOVERY ZONE", spectrum: "MINERAL SCREE & FIREWEED VEGETATION", color: "#f43f5e", type: "kintsugi" };
     }
 
-    // Toggle Alchemy Lens
-    btnAlchemyLens.addEventListener('click', () => {
-      isAlchemyLensActive = !isAlchemyLensActive;
-      btnAlchemyLens.classList.toggle('active', isAlchemyLensActive);
-      if (!isAlchemyLensActive) {
-        alchemyLens.style.display = 'none';
+    // Toggle Spectral Lens
+    btnSpectralLens.addEventListener('click', () => {
+      isSpectralLensActive = !isSpectralLensActive;
+      btnSpectralLens.classList.toggle('active', isSpectralLensActive);
+      if (!isSpectralLensActive) {
+        spectralLens.style.display = 'none';
         lensPos.active = false;
       }
     });
 
     // Pointer Interaction on Viewport Frame
     viewportFrame.addEventListener('pointermove', (e) => {
-      if (!isAlchemyLensActive) return;
+      if (!isSpectralLensActive) return;
       const rect = viewportFrame.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -3633,23 +3633,23 @@
       lensPos.y = y;
       lensPos.active = true;
 
-      alchemyLens.style.display = 'block';
-      alchemyLens.style.left = x + 'px';
-      alchemyLens.style.top = y + 'px';
+      spectralLens.style.display = 'block';
+      spectralLens.style.left = x + 'px';
+      spectralLens.style.top = y + 'px';
 
       const nx = x / rect.width;
       const ny = y / rect.height;
       const info = analyzePixel(nx, ny);
 
       hudTerrainType.textContent = 'TERRAIN: ' + info.terrain;
-      hudTransmutation.textContent = 'TRANSMUTATION: ' + info.alchemy;
-      alchemyLens.style.borderColor = info.color;
-      alchemyLens.style.boxShadow = `0 0 25px ${info.color}88, inset 0 0 20px ${info.color}44`;
+      hudTransmutation.textContent = 'SPECTRUM: ' + info.spectrum;
+      spectralLens.style.borderColor = info.color;
+      spectralLens.style.boxShadow = `0 0 25px ${info.color}88, inset 0 0 20px ${info.color}44`;
     });
 
     viewportFrame.addEventListener('pointerleave', () => {
       lensPos.active = false;
-      alchemyLens.style.display = 'none';
+      spectralLens.style.display = 'none';
     });
 
     // =========================================================================

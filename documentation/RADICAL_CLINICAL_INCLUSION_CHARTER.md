@@ -15,7 +15,7 @@
 
 Modern institutional typography was born of cold industrial metal, designed for corporate balance sheets and bureaucratic legibility. In a hospital, that coldness is not merely an aesthetic deficit—it is an active iatrogenic hazard. It alienates vulnerable patients, increases cognitive load for exhausted clinicians under adrenaline, and truncates life-critical medication names on cramped medical device viewports.
 
-The **PocketGull Typeface Superfamily** was born from a different origin: the tactile humanist warmth of hand-cut felt marker lettering on physical cardstock, synthesized with Louise Sloan 5:1 optotypic science, Institute for Safe Medication Practices (ISMP) character disambiguation, and the CARE Principles for Indigenous Data Sovereignty.
+The **PocketGull Typeface Superfamily** was born from a different origin: the tactile humanist warmth of hand-cut felt marker lettering on physical cardstock, synthesized with Louise Sloan 5:1 optotypic science, Institute for Safe Medication Practices (ISMP) character disambiguation, and respectful multi-script typographic design.
 
 This Charter establishes the permanent, non-negotiable architectural and ethical commitments of the PocketGull Typefoundry.
 
@@ -61,13 +61,14 @@ Medicine is not merely the calculation of pharmacokinetics; it is the human enco
 * Complete ISO/TR 11548 and ISO 17049 tactile 8-dot geometry across all 15 font styles with **zero `.notdef` tofu**.
 * The 6-dot tactile cell grounds directly on the Latin baseline ($y = 0$), with Dot 3 tangent to baseline and Dot 1 tangent to Latin x-height ($y \approx 540\text{ UPM}$), preventing tactile Braille from floating or feeling disconnected beside Latin text.
 
-### Pillar VI: Radical Multi-Script Sovereignty & The Living Charter
+### Pillar VI: Multi-Script Integrity & Typographic Respect
 PocketGull rejects the Eurocentric reduction of non-Latin writing systems into simplified Roman metal boxes:
 * **Let Latin be Latin:** Crisp, disambiguated (ISMP), humanist, and readable.
 * **Let Arabic be Arabic:** The *nuqṭa* retains its natural 35°–40° reed-pen pen angle, honoring Islamic calligraphy rather than forced mechanical plumbness.
 * **Let Braille be Braille:** Preserves standard tactile dot pitch and negative space geometry.
-* **Let Shorthand be Shorthand:** Chinuk Pipa stenographic circle vowels ($a, o, u$) are optically scaled ($1.5\times\text{--}1.85\times$) to match Latin counter height, eliminating miniature speck artifacts while respecting indigenous phonemic size ratios.
-* **Sovereignty Under CARE Principles:** Indigenous orthographies (Inuktitut Syllabics, Cherokee Syllabary, Neo-Tifinagh, Ethiopic Ge'ez, Adlam, Vai, Diné Bizaad, Lakota, Coast Salish, Kanien'kéha) are developed with cultural integrity. Sacred ceremonial motifs remain in sovereign community vaults.
+* **Let Canadian Syllabics be Syllabics:** Respects rotational symmetry, optical stroke weights, and stroke terminals.
+* **Let Shorthand be Shorthand:** Chinuk Pipa stenographic circle vowels ($a, o, u$) respect historical phonemic size ratios without forcing shorthand into Roman metal boxes.
+* **Typographic Respect & Accurate Coverage:** Diverse writing systems (Inuktitut Syllabics, Cherokee Syllabary, Neo-Tifinagh, Ethiopic Ge'ez, Adlam, Vai) are developed with strict adherence to Unicode specifications and authentic calligraphic traditions.
 
 ### Pillar VII: Sensory & Ophthalmic Inclusivity
 * **670nm Retinal Photobiomodulation (PBM):** A dedicated monochromatic ruby red palette (`#ff3333` on `#050000`) designed for night-shift emergency care. Stimulates mitochondrial cytochrome c oxidase while eliminating blue-light melatonin suppression.
@@ -76,26 +77,14 @@ PocketGull rejects the Eurocentric reduction of non-Latin writing systems into s
 
 ---
 
-## 🎛️ The 16-Axis Variable Font Engine (`PocketGull-VF`)
+## 🎛️ The 4-Axis Variable Font Engine (`PocketGull-VF`)
 
-PocketGull Variable Font encapsulates the entire superfamily into a single, cohesive engine operating across 16 continuous axes:
+PocketGull Variable Font encapsulates the superfamily into a single, cohesive engine operating across standard OpenType axes:
 
 1. **`wght` (Weight, 400–900):** Fineliner (400) to Chiseltip/Black (900).
 2. **`wdth` (Width, 75%–100%):** Fluid spatial adaptation for narrow pump viewports and dense flowsheets.
 3. **`slnt` (Slant, -10.5°–0°):** Humanist cursive slant preserving upright legibility.
-4. **`opsz` (Optical Size, 6–72pt):** Open apertures at 6pt vial sizes; refined contrast at 72pt signage.
-5. **`THRM` (Thermal Bleed Compensation, 0.0–1.0):** Anti-clotting ink traps for 203 DPI direct-thermal wristband wax bleed.
-6. **`APTR` (Aperture Expansion, 0.0–1.0):** Expands character mouths (`c`, `e`, `s`, `3`, `8`) to prevent cognitive misreading under fatigue.
-7. **`SMRN` (Sloan Acuity Normalizer, 0.0–1.0):** Calibrates 1:5 stroke ratios for clinical vision charts.
-8. **`TRMA` (Trauma Alarm Contrast, 0.0–1.0):** Maximum stroke punch for critical Code Blue monitors.
-9. **`BION` (Bionic Reading Saliency, 0.0–1.0):** Saccade fixation weight for ADHD and neurodivergent chart scanning.
-10. **`GRAV` (Baseline Grounding Gravity, 0.0–1.0):** Locks floating indigenous glyphs and Braille tangent to $y = 0$.
-11. **`BOUM` (Bouma Word Envelope, 0.0–1.0):** Heightens word-shape distinctiveness for look-alike drug pairs.
-12. **`CHIS` (Chisel Nib Angle, 0°–45°):** Dial-in felt-marker calligraphy.
-13. **`NUQT` (Arabic Nuqṭa Pen Angle, 0.0–1.0):** Restores traditional reed-pen angle.
-14. **`INUK` (Inuktitut Syllabic Scale, 0.0–1.0):** Harmonizes Arctic syllabics to Latin cap-height.
-15. **`CHIN` (Chinuk Pipa Vector Scale, 1.0–2.0):** Scales shorthand vowels to counter height.
-16. **`BRLS` (Braille Dot Radius, 40–96 UPM):** Calibrates tactile dot mass beside Latin clinical text.
+4. **`opsz` (Optical Size, 14–72pt):** Open apertures at small text sizes; refined contrast at display signage.
 
 ---
 
