@@ -181,13 +181,21 @@ def generate_italics():
                 hmtx[gname] = (600, new_lsb)
             else:
                 # Proportional Slant Envelope:
-                # Compensate for forward lean overhang at x-height and cap-height
                 if glyph.numberOfContours > 0 or glyph.isComposite():
-                    # Preserve optical spacing balance centered around optical waist pivot
-                    optical_lsb = round(old_lsb - (CENTER_Y * SHEAR * 0.25))
-                    delta_w = round((old_lsb - optical_lsb) * 0.5)
-                    new_width = max(old_width, old_width + delta_w)
-                    hmtx[gname] = (new_width, optical_lsb)
+                    # TrueType Invariant: hmtx.lsb must match glyph.xMin exactly
+                    new_lsb = glyph.xMin
+                    new_width = old_width
+
+                    # Optical Calibration for 'f':
+                    # Prevent oversized advance width from creating visual whitespace holes (e.g. 'ident if ied')
+                    # Standard typographic convention allows the ascender hook to overhang the following glyph.
+                    if gname == 'f':
+                        new_width = 400 if var["is_bold"] else 356
+                    elif gname == 'A':
+                        # Tighten A's wide right sidebearing slightly for smooth letter connections in italic
+                        new_width = max(old_width - 24, glyph.xMax + 20)
+
+                    hmtx[gname] = (new_width, new_lsb)
                 else:
                     hmtx[gname] = (old_width, old_lsb)
 

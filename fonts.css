@@ -76,51 +76,7 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'PocketGull Italic';
-  src: url('fonts/woff2/PocketGull-Italic.woff2?v=3.3.0') format('woff2'),
-       url('PocketGull-Italic.woff2?v=3.3.0') format('woff2'),
-       url('fonts/ttf/PocketGull-Italic.ttf?v=3.3.0') format('truetype'),
-       url('PocketGull-Italic.ttf?v=3.3.0') format('truetype');
-  font-weight: 400 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'PocketGull Italic';
-  src: url('fonts/woff2/PocketGull-Italic.woff2?v=3.3.0') format('woff2'),
-       url('PocketGull-Italic.woff2?v=3.3.0') format('woff2'),
-       url('fonts/ttf/PocketGull-Italic.ttf?v=3.3.0') format('truetype'),
-       url('PocketGull-Italic.ttf?v=3.3.0') format('truetype');
-  font-weight: 400 500;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'PocketGull Bold Italic';
-  src: url('fonts/woff2/PocketGull-BoldItalic.woff2?v=3.3.0') format('woff2'),
-       url('PocketGull-BoldItalic.woff2?v=3.3.0') format('woff2'),
-       url('fonts/ttf/PocketGull-BoldItalic.ttf?v=3.3.0') format('truetype'),
-       url('PocketGull-BoldItalic.ttf?v=3.3.0') format('truetype');
-  font-weight: 700 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'PocketGull Bold Italic';
-  src: url('fonts/woff2/PocketGull-BoldItalic.woff2?v=3.3.0') format('woff2'),
-       url('PocketGull-BoldItalic.woff2?v=3.3.0') format('woff2'),
-       url('fonts/ttf/PocketGull-BoldItalic.ttf?v=3.3.0') format('truetype'),
-       url('PocketGull-BoldItalic.ttf?v=3.3.0') format('truetype');
-  font-weight: 700 800;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Dedicated Family Aliases */
+/* 1.6 Dedicated Style Aliases (for explicit PostScript/CSS family matching) */
 @font-face {
   font-family: 'PocketGull Bold';
   src: url('fonts/woff2/PocketGull-Bold.woff2?v=3.3.0') format('woff2'),
@@ -129,6 +85,17 @@
        url('PocketGull-Bold.ttf?v=3.3.0') format('truetype');
   font-weight: 700 800;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PocketGull Bold Italic';
+  src: url('fonts/woff2/PocketGull-BoldItalic.woff2?v=3.3.0') format('woff2'),
+       url('PocketGull-BoldItalic.woff2?v=3.3.0') format('woff2'),
+       url('fonts/ttf/PocketGull-BoldItalic.ttf?v=3.3.0') format('truetype'),
+       url('PocketGull-BoldItalic.ttf?v=3.3.0') format('truetype');
+  font-weight: 700 800;
+  font-style: italic;
   font-display: swap;
 }
 
@@ -144,7 +111,7 @@
 }
 
 @font-face {
-  font-family: 'PocketGull Fineliner Italic';
+  font-family: 'PocketGull Italic';
   src: url('fonts/woff2/PocketGull-Italic.woff2?v=3.3.0') format('woff2'),
        url('PocketGull-Italic.woff2?v=3.3.0') format('woff2'),
        url('fonts/ttf/PocketGull-Italic.ttf?v=3.3.0') format('truetype'),
@@ -161,7 +128,7 @@
        url('fonts/ttf/PocketGull-Italic.ttf?v=3.3.0') format('truetype'),
        url('PocketGull-Italic.ttf?v=3.3.0') format('truetype');
   font-weight: 400 500;
-  font-style: normal;
+  font-style: italic;
   font-display: swap;
 }
 
