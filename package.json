@@ -25,7 +25,7 @@
     "The PocketGull Project Authors",
     "Emma"
   ],
-  "license": "OFL-1.1",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/pocketgull-app/pocketgull-typeface/issues"
   },
@@ -44,7 +44,7 @@
     "fonts/woff2/*.woff2",
     "fonts.css",
     "pocketgull.css",
-    "OFL.txt",
+    "LICENSE.txt",
     "CITATION.cff"
   ]
 }

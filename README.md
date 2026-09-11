@@ -2,7 +2,7 @@
 
 # 🕊️ PocketGull Typeface Superfamily
 
-[![OFL 1.1 License](https://img.shields.io/badge/License-SIL_OFL_1.1-orange.svg?style=flat-square)](OFL.txt)
+[![Apache 2.0 License](https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=flat-square)](LICENSE.txt)
 [![SemVer 3.0.0](https://img.shields.io/badge/SemVer-3.0.0-blue.svg?style=flat-square)](CHANGELOG.md)
 [![W3C OTS Validated](https://img.shields.io/badge/W3C_OTS-100%25_Valid-emerald.svg?style=flat-square)](https://github.com/googlefonts/ots)
 [![Fontbakery QA](https://img.shields.io/badge/Fontbakery-711%2F711_Passed-brightgreen.svg?style=flat-square)](https://github.com/googlefonts/fontbakery)
@@ -13,7 +13,7 @@
 
 <br/>
 
-### 🌐 [Live Interactive Specimen](https://font.pocketgull.app) &nbsp;•&nbsp; 🕊️ [First Principles &amp; Charter](documentation/FIRST_PRINCIPLES.md) &nbsp;•&nbsp; 💾 [Download Fonts (.ZIP)](fonts/PocketGull-v3.0.0-Complete-Superfamily.zip) &nbsp;•&nbsp; 🇫🇷 [Version Française](README.fr.md) &nbsp;•&nbsp; 📦 [UFO Sources](sources/) &nbsp;•&nbsp; 📄 [SIL OFL 1.1 License](OFL.txt) &nbsp;•&nbsp; 🏛️ [CERN Archival](documentation/CERN_ZENODO_ARCHIVAL_GUIDE.md)
+### 🌐 [Live Interactive Specimen](https://font.pocketgull.app) &nbsp;•&nbsp; 🕊️ [First Principles &amp; Charter](documentation/FIRST_PRINCIPLES.md) &nbsp;•&nbsp; 💾 [Download Fonts (.ZIP)](fonts/PocketGull-v3.0.0-Complete-Superfamily.zip) &nbsp;•&nbsp; 🇫🇷 [Version Française](README.fr.md) &nbsp;•&nbsp; 📦 [UFO Sources](sources/) &nbsp;•&nbsp; 📄 [Apache 2.0 License](LICENSE.txt) &nbsp;•&nbsp; 🏛️ [CERN Archival](documentation/CERN_ZENODO_ARCHIVAL_GUIDE.md)
 
 
 </div>
@@ -65,6 +65,10 @@ PocketGull is engineered on a standardized 1000 UPM grid. In strict typographic 
 | **PocketGull Fineliner** | `Pocket Gull Regular` | `PocketGull-Regular.woff2` / `.ttf` (`PocketGull-Fineliner`) | `PocketGull-Regular` | 400 | Proportional | Long-form clinical notes, EHR charts, patient leaflets |
 | **PocketGull Chiseltip** | `Pocket Gull Black` | `PocketGull-Black.woff2` / `.ttf` (`PocketGull-Chiseltip`) | `PocketGull-Black` | 900 | Proportional | Expressive signage, trauma alerts, high-contrast placards |
 | **PocketGull Mono** | `Pocket Gull Mono Regular` | `PocketGullMono-Regular.woff2` / `.ttf` | `PocketGullMono-Regular` | 400 / 500 | Fixed 600 UPM | ICU telemetry, tabular vitals, gapless box drawing |
+| **PocketGull Outline** | `Pocket Gull Outline` | `PocketGull-Outline.woff2` / `.ttf` | `PocketGull-Outline` | Display | Locked to Bold | Multi-color lithography, header silhouettes, hollow display |
+| **PocketGull Inline** | `Pocket Gull Inline` | `PocketGull-Inline.woff2` / `.ttf` | `PocketGull-Inline` | Display | Locked to Bold | Engraved titling, hairline center grooves, layered signage |
+| **PocketGull Halftone** | `Pocket Gull Halftone` | `PocketGull-Halftone.woff2` / `.ttf` | `PocketGull-Halftone` | Display | Locked to Bold | 45° Ben-Day screen tone lithography, zero-registration multi-color print |
+| **PocketGull VF** | `Pocket Gull Variable` | `PocketGull-VF.woff2` / `.ttf` | `PocketGull-VF` | 100–900 | Variable | 16 continuous axes: Hairline to Black, Softness, Sloan 5:1, ISMP |
 
 ---
 
@@ -76,6 +80,7 @@ PocketGull is engineered on a standardized 1000 UPM grid. In strict typographic 
 * **𛰀 Optical x-Height Calibration for Chinuk Pipa**: Duployan Shorthand vowels and consonant stems normalized to Latin lowercase waist ($y = 270\text{ UPM}$) and x-height ($y = 540\text{ UPM}$), transforming minute stenographic specks into clear, legible characters beside English medical text.
 * **👁️ Sloan 5:1 Optotypes & Bouma Spacing**: Calibrated for LogMAR 0.0 acuity and Herman Bouma peripheral anti-crowding at 50–70 cm reading distance.
 * **💻 ICU Medical Terminal & Oh My Posh**: Strict 600 UPM gapless box drawing (`U+2500`–`U+257F`) and sub-cell ECG waveforms with native prompt theme (`pocketgull-ophthalmic.omp.json`).
+* **🎨 Zero-Registration Chromatic Layering Engine**: Exact-matching advance widths (`hmtx.advanceWidth`) across Solid Base Fill, 45° Ben-Day Halftone, Hairline Inline, and Vector Outline cuts, allowing zero-drift ($0.000\text{px}$) multi-color lithography in web layouts and desktop publishing applications.
 
 ---
 
@@ -89,8 +94,8 @@ PocketGull adheres to strict engineering, typographic, and open-source standards
 * **Forensic Table Verification**: 100% pass across all SFNT tables with zero reserved flags set.
 
 ### 🌐 Open Source & Upstream Delivery
-* **SIL OFL 1.1 Licensed**: Free for commercial and open-source use with zero licensing fees.
-* **Specification Parity**: Exact SemVer parity across `head.fontRevision == 3.0` and `nameID 5 == "Version 3.000; The PocketGull Project Authors; OFL 1.1"`.
+* **Apache 2.0 Licensed**: Free for commercial and open-source use with zero licensing fees.
+* **Specification Parity**: Exact SemVer parity across `head.fontRevision == 3.0` and `nameID 5 == "Version 3.000; The PocketGull Project Authors; Apache 2.0"`.
 * **Clean Single Source of Truth**: Lightweight vector sources and reproducible build toolchains.
 
 ### 🕊️ Grounded Multi-Script Design
@@ -179,7 +184,7 @@ If you use the PocketGull Typeface Superfamily in your clinical research, health
   version      = {3.0.0},
   doi          = {10.5281/zenodo.22309379},
   url          = {https://font.pocketgull.app},
-  license      = {OFL-1.1}
+  license      = {Apache-2.0}
 }
 ```
 
@@ -200,7 +205,7 @@ See **[THANKS.md](THANKS.md)** for our full dedication and acknowledgements.
 
 ## 📜 License, Trademarks & Security
 
-PocketGull font binaries and source code are distributed under the **[SIL Open Font License, Version 1.1](OFL.txt)** (Zero Reserved Font Names).  
+PocketGull font binaries and source code are distributed under the **[Apache License, Version 2.0](LICENSE.txt)** (Zero Reserved Font Names).  
 Free for personal, academic, clinical, and commercial use.
 
 * **Trademark Policy**: See [TRADEMARKS.md](TRADEMARKS.md) for brand protection and Lanham Act § 43(a) coexistence terms.

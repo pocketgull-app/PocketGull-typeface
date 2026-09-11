@@ -5,7 +5,7 @@
 
 **Lead Architect**: Phil Gear & The PocketGull Project Authors  
 **Version**: 3.0.0 (Tier 6 Sovereign Scripts & Unified Foundry Pipeline)  
-**License**: SIL Open Font License 1.1 (OFL)  
+**License**: Apache License, Version 2.0  
 **Standard**: Google Fonts Specifications, OpenType 1.9, Louise Sloan 5:1 Optotypes, ISMP / FDA CDRH Guidelines, WCAG 2.1 AAA  
 **Permanent Archival**: CERN Zenodo Open Science Repository (`DOI: 10.5281/zenodo.22309379`)  
 
@@ -176,8 +176,8 @@ To safeguard the distinct interests of Indigenous Elders, professional typograph
 * **Hermetic Pure Dart Foundry Pipeline**: Type transformation, table re-indexing, font surgical operations, and audit reporting are built natively in sound Dart 3.11 (`tool/foundry/`), providing deterministic, cross-platform builds without fragile external C-extension build chains.
 
 ### 3. For Upstream Google Fonts & The Open-Source Commons: Zero Technical Debt
-* **Google Fonts Option 5 Minimalist Versioning**: Every release strictly follows Google Fonts Option 5: `Version 3.000; The PocketGull Project Authors; OFL 1.1`, with `head.fontRevision` locked to exact float `3.0` matching `nameID 5` and UFO `fontinfo.plist` sources.
-* **Zero Reserved Font Names (RFN)**: Released under pure SIL OFL 1.1 without RFN restrictions, ensuring Linux distributions, hospital operating systems, and open-source applications can freely redistribute, bundle, and subset the superfamily without legal encumbrance.
+* **Google Fonts Option 5 Minimalist Versioning**: Every release strictly follows Google Fonts Option 5: `Version 3.000; The PocketGull Project Authors; Apache 2.0`, with `head.fontRevision` locked to exact float `3.0` matching `nameID 5` and UFO `fontinfo.plist` sources.
+* **Zero Reserved Font Names (RFN)**: Released under pure Apache 2.0 without RFN restrictions, ensuring Linux distributions, hospital operating systems, and open-source applications can freely redistribute, bundle, and subset the superfamily without legal encumbrance.
 * **Repository & Vector Hygiene**: Git tracks pure vector SVGs as the single source of truth (SSOT). High-resolution 300 DPI raster broadsides ($>90\text{ MB}$) are excluded from Git history via `.gitignore` and published strictly as GitHub Release distribution bundles, keeping repository clone sizes lean ($<20\text{ MB}$).
 ---
 

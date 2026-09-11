@@ -15,12 +15,18 @@ class SfntTransformer {
     required File inputFile,
     File? outputFile,
     int? overrideWeight,
+    int? overrideRevision,
+    String? overrideVendor,
+    Map<String, Uint8List>? tableOverrides,
     bool injectGasp = true,
   }) {
     final bytes = inputFile.readAsBytesSync();
     final transformed = transformBytes(
       bytes,
       overrideWeight: overrideWeight,
+      overrideRevision: overrideRevision,
+      overrideVendor: overrideVendor,
+      tableOverrides: tableOverrides,
       injectGasp: injectGasp,
     );
     final target = outputFile ?? inputFile;
@@ -31,6 +37,9 @@ class SfntTransformer {
   static Uint8List transformBytes(
     Uint8List inputBytes, {
     int? overrideWeight,
+    int? overrideRevision,
+    String? overrideVendor,
+    Map<String, Uint8List>? tableOverrides,
     bool injectGasp = true,
   }) {
     final data = ByteData.sublistView(inputBytes);
@@ -139,6 +148,10 @@ class SfntTransformer {
     final tableDataMap = <String, Uint8List>{};
 
     for (final tag in tables.keys) {
+      if (tableOverrides != null && tableOverrides.containsKey(tag)) {
+        tableDataMap[tag] = tableOverrides[tag]!;
+        continue;
+      }
       final (offset, length) = tables[tag]!;
       final tableBytes = Uint8List.fromList(inputBytes.sublist(offset, offset + length));
 
@@ -152,15 +165,37 @@ class SfntTransformer {
         headView.setUint32(8, 0, Endian.big);
         // Set indexToLocFormat: 0 = short, 1 = long
         headView.setInt16(50, needsLongLoca ? 1 : 0, Endian.big);
+        if (overrideRevision != null && tableBytes.length >= 8) {
+          headView.setUint32(4, overrideRevision, Endian.big);
+        }
         tableDataMap[tag] = tableBytes;
-      } else if (tag == 'OS/2' && overrideWeight != null) {
+      } else if (tag == 'OS/2') {
         final os2View = ByteData.sublistView(tableBytes);
-        if (tableBytes.length >= 6) {
+        if (overrideWeight != null && tableBytes.length >= 6) {
           os2View.setUint16(4, overrideWeight, Endian.big);
+        }
+        if (overrideVendor != null && tableBytes.length >= 62) {
+          for (var v = 0; v < 4 && v < overrideVendor.length; v++) {
+            tableBytes[58 + v] = overrideVendor.codeUnitAt(v);
+          }
+        }
+        // Enforce fsSelection bit 7 (USE_TYPO_METRICS)
+        if (tableBytes.length >= 64) {
+          final sel = os2View.getUint16(62, Endian.big);
+          os2View.setUint16(62, sel | 0x0080, Endian.big);
         }
         tableDataMap[tag] = tableBytes;
       } else {
         tableDataMap[tag] = tableBytes;
+      }
+    }
+
+    // Inject any tableOverrides not already present
+    if (tableOverrides != null) {
+      for (final entry in tableOverrides.entries) {
+        if (!tableDataMap.containsKey(entry.key)) {
+          tableDataMap[entry.key] = entry.value;
+        }
       }
     }
 
@@ -274,5 +309,50 @@ class SfntTransformer {
       sum = (sum + trailing) & 0xFFFFFFFF;
     }
     return sum;
+  }
+
+  /// Builds a pure Windows Unicode BMP (Platform 3, Encoding 1, Lang 0x0409)
+  /// OpenType 'name' table without Mac Roman bloat.
+  static Uint8List buildNameTable(Map<int, String> names) {
+    final sortedIds = names.keys.toList()..sort();
+    final count = sortedIds.length;
+    final headerSize = 6 + count * 12;
+
+    final stringBytes = BytesBuilder();
+    final offsets = <int, int>{};
+    final lengths = <int, int>{};
+
+    for (final nid in sortedIds) {
+      final str = names[nid]!;
+      offsets[nid] = stringBytes.length;
+      final strBuf = Uint8List(str.length * 2);
+      final view = ByteData.sublistView(strBuf);
+      for (var j = 0; j < str.length; j++) {
+        view.setUint16(j * 2, str.codeUnitAt(j), Endian.big);
+      }
+      stringBytes.add(strBuf);
+      lengths[nid] = strBuf.length;
+    }
+
+    final tableBytes = Uint8List(headerSize + stringBytes.length);
+    final view = ByteData.sublistView(tableBytes);
+    view.setUint16(0, 0, Endian.big); // format = 0
+    view.setUint16(2, count, Endian.big); // count
+    view.setUint16(4, headerSize, Endian.big); // stringOffset
+
+    for (var i = 0; i < count; i++) {
+      final nid = sortedIds[i];
+      final recOffset = 6 + i * 12;
+      view.setUint16(recOffset + 0, 3, Endian.big); // platformID = 3 (Windows)
+      view.setUint16(recOffset + 2, 1, Endian.big); // encodingID = 1 (Unicode BMP)
+      view.setUint16(recOffset + 4, 0x0409, Endian.big); // languageID = 0x0409 (en-US)
+      view.setUint16(recOffset + 6, nid, Endian.big); // nameID
+      view.setUint16(recOffset + 8, lengths[nid]!, Endian.big); // length
+      view.setUint16(recOffset + 10, offsets[nid]!, Endian.big); // offset
+    }
+
+    final allStrBytes = stringBytes.takeBytes();
+    tableBytes.setRange(headerSize, headerSize + allStrBytes.length, allStrBytes);
+    return tableBytes;
   }
 }

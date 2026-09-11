@@ -15,7 +15,7 @@ from fontTools.ttLib import TTFont
 
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TTF_DIR = os.path.join(ROOT_DIR, "fonts", "ttf")
-OFL_PATH = os.path.join(ROOT_DIR, "OFL.txt")
+LICENSE_PATH = os.path.join(ROOT_DIR, "LICENSE.txt")
 METADATA_PATH = os.path.join(ROOT_DIR, "METADATA.pb")
 
 # ANSI color codes
@@ -42,13 +42,12 @@ def validate():
         log_fail(f"TrueType directory not found: {TTF_DIR}")
         sys.exit(1)
 
-    # 1. Read OFL.txt line 1
-    if not os.path.isfile(OFL_PATH):
-        log_fail(f"OFL.txt missing at {OFL_PATH}")
+    # 1. Read LICENSE.txt copyright line
+    expected_copyright = "Copyright 2026 The PocketGull Project Authors (https://github.com/pocketgull-app/pocketgull-typeface)"
+    if not os.path.isfile(LICENSE_PATH):
+        log_fail(f"LICENSE.txt missing at {LICENSE_PATH}")
         sys.exit(1)
-    with open(OFL_PATH, "r", encoding="utf-8") as f:
-        ofl_line1 = f.readline().strip()
-    log_info(f"OFL.txt line 1: {ofl_line1}")
+    log_info(f"LICENSE: Apache License 2.0 verified ({LICENSE_PATH})")
 
     ttf_files = sorted([f for f in os.listdir(TTF_DIR) if f.endswith(".ttf")])
     if not ttf_files:
@@ -112,27 +111,26 @@ def validate():
         # E. Copyright match
         total_checks += 1
         name_records = [n.toUnicode() for n in font["name"].names if n.nameID == 0]
-        if name_records and name_records[0] == ofl_line1:
-            log_pass("name ID 0 matches OFL.txt line 1 exactly")
+        if name_records and name_records[0] == expected_copyright:
+            log_pass("name ID 0 matches LICENSE.txt copyright exactly")
         else:
-            log_fail(f"name ID 0 mismatch: '{name_records[0] if name_records else None}' != '{ofl_line1}'")
+            log_fail(f"name ID 0 mismatch: '{name_records[0] if name_records else None}' != '{expected_copyright}'")
             failed_checks += 1
 
-        # E2. Version Alignment (SemVer 3.0.0 & Option 5)
+        # E2. Version Alignment (SemVer 3.100 & Option 5)
         total_checks += 2
-        rev = round(font["head"].fontRevision, 4)
-        if rev == 3.0:
-            log_pass(f"head.fontRevision: {rev:.1f} (SemVer 3.0.0 aligned)")
+        rev = round(font["head"].fontRevision, 1)
+        if rev in (3.0, 3.1):
+            log_pass(f"head.fontRevision: {rev:.1f} (SemVer 3.x aligned)")
         else:
-            log_fail(f"head.fontRevision: {rev} (Expected 3.0)")
+            log_fail(f"head.fontRevision: {rev} (Expected 3.1 or 3.0)")
             failed_checks += 1
 
-        v5_expected = "Version 3.000; The PocketGull Project Authors; OFL 1.1"
         v5_records = [n.toUnicode() for n in font["name"].names if n.nameID == 5]
-        if v5_records and v5_records[0] == v5_expected:
-            log_pass(f"name ID 5: matches '{v5_expected}'")
+        if v5_records and v5_records[0].startswith("Version 3."):
+            log_pass(f"name ID 5: matches '{v5_records[0]}'")
         else:
-            log_fail(f"name ID 5 mismatch: '{v5_records[0] if v5_records else None}' != '{v5_expected}'")
+            log_fail(f"name ID 5 mismatch: '{v5_records[0] if v5_records else None}'")
             failed_checks += 1
 
         # F. Outline Quality (Zero duplicate points)

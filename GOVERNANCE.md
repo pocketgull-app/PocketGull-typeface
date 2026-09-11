@@ -12,7 +12,7 @@ PocketGull Typeface Superfamily is an open-source medical, ophthalmological, and
 Our governance model ensures:
 1. **Ophthalmological Rigor & Evidence Grounding**: All letterform metrics, stroke contrasts, x-height ratios, and counter spaces must be grounded in peer-reviewed vision science literature (Louise Sloan 5:1 acuity, Hermann Bouma crowding coefficients, ISO/TR 11548 Braille dimensions, DIN 1450 legibility standards).
 2. **Deterministic Safety Precedence**: Stylistic flourishes never compromise clinical readability or the Institute for Safe Medication Practices (ISMP) zero-error character disambiguation rules.
-3. **Radical Transparency & Libre Licensing**: 100% open-source licensing under the **SIL Open Font License 1.1 (OFL-1.1)**, open vector sources (UFO3 / Glyphs), reproducible build toolchains, and public issue tracking.
+3. **Radical Transparency & Libre Licensing**: 100% open-source licensing under the **Apache License 2.0**, open vector sources (UFO3 / Glyphs), reproducible build toolchains, and public issue tracking.
 4. **Binary Integrity & Memory Safety**: Zero W3C OpenType Sanitizer (OTS) violations, 2-byte word boundary alignment, and hermetic CI validation.
 5. **Multi-Script Respect & Inclusivity**: Orthographies and scripts are designed in accordance with established writing systems and community input, preserving authentic calligraphic stroke traditions without mechanical flattening.
 
@@ -30,7 +30,7 @@ To maintain mathematical vector determinism, binary safety, and upstream open-so
   * **Sloan Acuity & ISMP Disambiguation**: Louise Sloan 5:1 optotypes, mandatory `cv08` slashed zero, `cv05` curved l, `ss02` serifed I, `cv11` slashed Z.
   * **Pure Dart 3.11 Toolchain**: Deterministic SFNT compilation, 0 duplicate nodes, hermetic table layout.
 * **🌐 Google Fonts Parity & Upstream Harmony**:
-  * **Minimalist Versioning**: `head.fontRevision == 3.0`, `nameID 5 == 'Version 3.000; The PocketGull Project Authors; OFL 1.1'`.
+  * **Minimalist Versioning**: `head.fontRevision == 3.0`, `nameID 5 == 'Version 3.000; The PocketGull Project Authors; Apache 2.0'`.
   * **Zero RFN Debt**: SIL Open Font License 1.1 with no Reserved Font Name restriction (see [TRADEMARKS.md](TRADEMARKS.md) for brand coexistence policy).
   * **Full CFF & Zenodo DOI Sync**: Permanent DOI `10.5281/zenodo.22309379` mapped to CERN open science index.
   * **Pre-Flight Checks**: Complete fontbakery check-googlefonts compliance, WOFF2 Brotli 11, designer profile dossier.
@@ -85,7 +85,7 @@ In the event of an identified clinical safety hazard, OTS memory violation, or c
 
 1. **Text and Data Mining Reservation (TDMR)**: PocketGull expressly reserves all rights against text and data mining, automated scraping, extraction, and harvesting for the purposes of training generative AI, foundational models, or large language models under **Article 4(3) of EU Directive 2019/790** and international copyright conventions.
 2. **Machine-Readable Opt-Out**: Machine-readable reservations are asserted across `robots.txt`, `.aiignore`, `llms.txt`, and HTTP headers (`TDM-Reservation: 1`).
-3. **Humanitarian & Clinical Exemption**: Font binaries may be embedded freely in software, clinical EHR systems, medical telemetry devices, and printed educational materials under the SIL OFL 1.1 without restriction, but raw linguistic and glyph data may not be aggregated into base model training corpora.
+3. **Humanitarian & Clinical Exemption**: Font binaries may be embedded freely in software, clinical EHR systems, medical telemetry devices, and printed educational materials under the Apache 2.0 without restriction, but raw linguistic and glyph data may not be aggregated into base model training corpora.
 
 ---
 

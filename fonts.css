@@ -1,8 +1,21 @@
 /**
  * PocketGull Typeface Superfamily
- * Official Webfont Stylesheet (SIL Open Font License 1.1)
+ * Official Webfont Stylesheet (Apache License 2.0)
  * https://font.pocketgull.app | https://github.com/pocketgull-app/pocketgull-typeface
  */
+
+/* 0. Variable Font Superfamily (Toyota Production System 16-Axis Continuous Design Space) */
+@font-face {
+  font-family: 'PocketGull VF';
+  src: url('fonts/woff2/PocketGull-VF.woff2?v=3.100') format('woff2-variations'),
+       url('PocketGull-VF.woff2?v=3.100') format('woff2-variations'),
+       url('fonts/ttf/PocketGull-VF.ttf?v=3.100') format('truetype-variations'),
+       url('PocketGull-VF.ttf?v=3.100') format('truetype-variations');
+  font-weight: 100 900;
+  font-stretch: 75% 100%;
+  font-style: oblique -10.5deg 0deg;
+  font-display: swap;
+}
 
 /* 1. Universal Proportional Superfamily */
 @font-face {
@@ -71,8 +84,20 @@
        url('fonts/ttf/PocketGull-VF.ttf?v=3.3.0') format('truetype'),
        url('PocketGull-VF.ttf?v=3.3.0') format('truetype');
   font-weight: 400 900;
-  font-stretch: 75% 100%;
-  font-style: oblique -10.5deg 0deg;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PocketGull Variable';
+  src: url('fonts/woff2/PocketGull-VF.woff2?v=3.3.0') format('woff2-variations'),
+       url('fonts/woff2/PocketGull-VF.woff2?v=3.3.0') format('woff2'),
+       url('PocketGull-VF.woff2?v=3.3.0') format('woff2'),
+       url('fonts/ttf/PocketGull-VF.ttf?v=3.3.0') format('truetype-variations'),
+       url('fonts/ttf/PocketGull-VF.ttf?v=3.3.0') format('truetype'),
+       url('PocketGull-VF.ttf?v=3.3.0') format('truetype');
+  font-weight: 400 900;
+  font-style: normal;
   font-display: swap;
 }
 
@@ -129,6 +154,17 @@
        url('PocketGull-Italic.ttf?v=3.3.0') format('truetype');
   font-weight: 400 500;
   font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PocketGull Black';
+  src: url('fonts/woff2/PocketGull-Black.woff2?v=3.3.0') format('woff2'),
+       url('PocketGull-Black.woff2?v=3.3.0') format('woff2'),
+       url('fonts/ttf/PocketGull-Black.ttf?v=3.3.0') format('truetype'),
+       url('PocketGull-Black.ttf?v=3.3.0') format('truetype');
+  font-weight: 900;
+  font-style: normal;
   font-display: swap;
 }
 
@@ -206,6 +242,40 @@
        url('fonts/ttf/PocketGull-Soft.ttf?v=3.3.0') format('truetype'),
        url('PocketGull-Soft.ttf?v=3.3.0') format('truetype');
   font-weight: 700 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PocketGull Superfamily Expansion: Chromatic & Textured Series */
+@font-face {
+  font-family: 'PocketGull Outline';
+  src: url('fonts/woff2/PocketGull-Outline.woff2?v=3.100') format('woff2'),
+       url('PocketGull-Outline.woff2?v=3.100') format('woff2'),
+       url('fonts/ttf/PocketGull-Outline.ttf?v=3.100') format('truetype'),
+       url('PocketGull-Outline.ttf?v=3.100') format('truetype');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PocketGull Inline';
+  src: url('fonts/woff2/PocketGull-Inline.woff2?v=3.100') format('woff2'),
+       url('PocketGull-Inline.woff2?v=3.100') format('woff2'),
+       url('fonts/ttf/PocketGull-Inline.ttf?v=3.100') format('truetype'),
+       url('PocketGull-Inline.ttf?v=3.100') format('truetype');
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PocketGull Halftone';
+  src: url('fonts/woff2/PocketGull-Halftone.woff2?v=3.100') format('woff2'),
+       url('PocketGull-Halftone.woff2?v=3.100') format('woff2'),
+       url('fonts/ttf/PocketGull-Halftone.ttf?v=3.100') format('truetype'),
+       url('PocketGull-Halftone.ttf?v=3.100') format('truetype');
+  font-weight: 400 700;
   font-style: normal;
   font-display: swap;
 }
@@ -495,7 +565,52 @@
                  U+2060-206F, U+FB50-FDFF, U+FE70-FEFF;
 }
 
-/* Expert J: CJK Unified Ideographs & Kana — Explicit System Fallback
+/* Expert J: Hebrew & Aramaic — Intentional Multi-Script SMoE Routing
+   =========================================================================
+   Hebrew script (U+0590–U+05FF, U+FB1D–U+FB4F) requires Tiberian vocalization
+   niqqud and cantillation diacritics with micro-positioned GPOS mark-to-base
+   and mark-to-mark attachment. In compliance with the Living Typographic
+   Charter ("Let Hebrew be Hebrew"), this expert routes Hebrew text directly
+   to native Hebrew engines (Noto Sans Hebrew, David Libre, Segoe UI) with
+   full GPOS shaper anchors and zero Cumulative Layout Shift (CLS = 0.000).
+   ========================================================================= */
+@font-face {
+  font-family: 'PocketGull Hebrew';
+  src: local('Noto Sans Hebrew'), local('David Libre'), local('Segoe UI'), local('Arial Hebrew'), local('sans-serif');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0590-05FF, U+FB1D-FB4F;
+  ascent-override: 96%;
+  descent-override: 24%;
+  line-gap-override: 10%;
+  size-adjust: 100%;
+}
+
+/* Expert K: Indic Core & South Asian — Zero-CLS Shirorekha Harmonization
+   =========================================================================
+   Indic scripts (Devanagari, Bengali, Tamil, Telugu, Gurmukhi, Gujarati,
+   Odia, Kannada, Malayalam) require complex conjunct ligatures and headline
+   balance. Routes directly to metric-matched Noto Sans Indic family.
+   ========================================================================= */
+@font-face {
+  font-family: 'PocketGull Indic';
+  src: local('Noto Sans Devanagari'), local('Noto Sans Tamil'), local('Noto Sans Telugu'),
+       local('Noto Sans Bengali'), local('Noto Sans Gurmukhi'), local('Noto Sans Gujarati'),
+       local('Noto Sans Kannada'), local('Noto Sans Malayalam'), local('Nirmala UI'), local('sans-serif');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0900-097F, U+0980-09FF, U+0A00-0A7F, U+0A80-0AFF,
+                 U+0B00-0B7F, U+0B80-0BFF, U+0C00-0C7F, U+0C80-0CFF,
+                 U+0D00-0D7F;
+  ascent-override: 96%;
+  descent-override: 24%;
+  line-gap-override: 10%;
+  size-adjust: 100%;
+}
+
+/* Expert L: CJK Unified Ideographs & Kana — Explicit System Fallback
    =========================================================================
    PocketGull does not contain CJK Unified Ideographs, Hiragana, Katakana,
    Hangul, or CJK compatibility characters. This expert explicitly routes the
@@ -599,7 +714,8 @@
   --font-sans: 'PocketGull', 'PocketGull Fallback', 'PocketGull Noto Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
   --font-mono: 'PocketGull Mono', 'PocketGull Mono Fallback', ui-monospace, 'Cascadia Code', 'Segoe UI Mono', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
   --font-display: 'PocketGull Bold', 'PocketGull', 'PocketGull Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-chisel: 'PocketGull Chiseltip', 'PocketGull Bold', 'PocketGull', 'PocketGull Fallback', -apple-system, sans-serif;
+  --font-black: 'PocketGull Black', 'PocketGull Chiseltip', 'PocketGull Bold', 'PocketGull', 'PocketGull Fallback', -apple-system, sans-serif;
+  --font-chisel: 'PocketGull Chiseltip', 'PocketGull Black', 'PocketGull Bold', 'PocketGull', 'PocketGull Fallback', -apple-system, sans-serif;
   --font-serif: 'PocketGull Serif', 'PocketGull Serif Fallback', Georgia, Cambria, 'Times New Roman', serif;
   --font-vf: 'PocketGull VF', 'PocketGull', 'PocketGull Fallback', -apple-system, sans-serif;
 }
@@ -608,6 +724,7 @@
 .font-sans { font-family: var(--font-sans) !important; }
 .font-mono { font-family: var(--font-mono) !important; }
 .font-display { font-family: var(--font-display) !important; }
+.font-black { font-family: var(--font-black) !important; }
 .font-chisel { font-family: var(--font-chisel) !important; }
 .font-serif { font-family: var(--font-serif) !important; }
 .font-vf { font-family: var(--font-vf) !important; }
@@ -1274,3 +1391,49 @@ body.eco-dark-canopy {
 .iucn-badge-en { background: rgba(249, 115, 22, 0.2); color: #f97316; border: 1px solid #f97316; }
 .iucn-badge-vu { background: rgba(234, 179, 8, 0.2); color: #eab308; border: 1px solid #eab308; }
 .iucn-badge-lc { background: rgba(34, 197, 94, 0.2); color: #22c55e; border: 1px solid #22c55e; }
+
+/* ==========================================================================
+   Zero-Registration Chromatic Layering Engine
+   Exact 1000 UPM bounding box alignment across Fill, Halftone, Inline, Outline
+   ========================================================================== */
+.font-bold {
+  font-family: 'PocketGull', sans-serif !important;
+  font-weight: 700 !important;
+}
+
+.font-outline {
+  font-family: 'PocketGull Outline', 'PocketGull', sans-serif !important;
+  font-weight: 400;
+}
+
+.font-inline {
+  font-family: 'PocketGull Inline', 'PocketGull', sans-serif !important;
+  font-weight: 700;
+}
+
+.font-halftone {
+  font-family: 'PocketGull Halftone', 'PocketGull', sans-serif !important;
+  font-weight: 400;
+}
+
+.chromatic-container {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+  line-height: 1.1;
+}
+
+.chromatic-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.chromatic-layer.layer-base {
+  position: relative;
+  pointer-events: auto;
+}

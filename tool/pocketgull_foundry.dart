@@ -14,6 +14,7 @@ import 'foundry/upstream_cure_engine.dart';
 import 'foundry/foundry_spector.dart';
 import 'foundry/sanctuary_tui.dart';
 import 'foundry/sanctuary_server.dart';
+import 'foundry/var_spector.dart';
 
 const fontStems = [
   'PocketGull-Regular',
@@ -34,6 +35,9 @@ const fontStems = [
   'PocketGull-Soft',
   'PocketGull-Serif-Regular',
   'PocketGull-Serif-Bold',
+  'PocketGull-Outline',
+  'PocketGull-Inline',
+  'PocketGull-Halftone',
   'PocketGull-VF',
 ];
 
@@ -127,8 +131,8 @@ void runRealign() {
   final appDir = findAppDir();
   final ttfDirs = [
     Directory('$root${Platform.pathSeparator}fonts${Platform.pathSeparator}ttf'),
-    Directory('$root${Platform.pathSeparator}ofl${Platform.pathSeparator}pocketgull'),
-    Directory('$root${Platform.pathSeparator}ofl${Platform.pathSeparator}pocketgullmono'),
+    Directory('$root${Platform.pathSeparator}apache${Platform.pathSeparator}pocketgull'),
+    Directory('$root${Platform.pathSeparator}apache${Platform.pathSeparator}pocketgullmono'),
   ];
   if (appDir != null) {
     ttfDirs.add(Directory('${appDir.path}${Platform.pathSeparator}public${Platform.pathSeparator}fonts'));
@@ -219,8 +223,8 @@ void runCompile() {
       'PocketGull-Italic.ttf': 400,
       'PocketGull-Antigravity.ttf': 400,
       'PocketGull-Numerics.ttf': 600,
-      'PocketGullMono-Regular.ttf': 500,
-      'PocketGullMono-Italic.ttf': 500,
+      'PocketGullMono-Regular.ttf': 400,
+      'PocketGullMono-Italic.ttf': 400,
       'PocketGull-VF.ttf': 400,
     };
 
@@ -508,6 +512,14 @@ void runRepair() {
   runEmbed();
 }
 
+String resolvePythonCmd(String root) {
+  final conda = File(r'C:\Users\philg\anaconda3\python.exe');
+  if (conda.existsSync()) return conda.path;
+  final pyVenv = File('${root}${Platform.pathSeparator}.venv${Platform.pathSeparator}Scripts${Platform.pathSeparator}python.exe');
+  if (pyVenv.existsSync()) return pyVenv.path;
+  return 'python';
+}
+
 Future<void> runBuild() async {
   print('\n======================================================================');
   print('  POCKETGULL TYPEFOUNDRY: UNIFIED BUILD & QA PIPELINE (DART 3.11)');
@@ -527,6 +539,11 @@ Future<void> runBuild() async {
     'PocketGull-MarkerRaw',
     'PocketGullMono-Regular',
     'PocketGullMono-Italic',
+    'PocketGull-Serif-Regular',
+    'PocketGull-Serif-Bold',
+    'PocketGull-Outline',
+    'PocketGull-Inline',
+    'PocketGull-Halftone',
     'PocketGull-VF',
   ];
 
@@ -549,8 +566,7 @@ Future<void> runBuild() async {
 
   // Step 2: Recompress WOFF2 using Python fontTools.ttLib.woff2
   print('\nStep 2: Recompressing WOFF2 webfonts (Brotli Q11)...');
-  final pyVenv = File('${root}${Platform.pathSeparator}.venv${Platform.pathSeparator}Scripts${Platform.pathSeparator}python.exe');
-  final pythonCmd = pyVenv.existsSync() ? pyVenv.path : 'python';
+  final pythonCmd = resolvePythonCmd(root);
 
   final pyScript = '''
 import os, sys
@@ -622,6 +638,8 @@ Commands:
   sync              Synchronize verified binaries across typeface and app font directories
   smoe [font]       Audit SMoE script expert routing across active Unicode blocks
   spector [dir]     Pure Dart 3.11 replacement for FontSpector (OpenType, Google Fonts, W3C OTS)
+  varspector [font] Pure Dart 3.11 Variable Typography Auditor (fvar, STAT, gvar, HVAR, wght/wdth/slnt)
+  benchmark         Run scientific rasterization throughput & latency benchmark suite
   serve [port]      Serve specimen proof locally with zero CORS restrictions (default: 8770)
   sanctuary         Launch interactive Pure-Dart Terminal Sanctuary (TUI, Ludology, Pacing)
 ''');
@@ -630,6 +648,20 @@ Commands:
 Future<void> main(List<String> args) async {
   final command = args.isNotEmpty ? args[0] : 'audit';
   switch (command) {
+    case 'varspector':
+    case 'var':
+      final target = args.length > 1 ? File(args[1]) : File('fonts/ttf/PocketGull-VF.ttf');
+      print('\n======================================================================');
+      print('  POCKETGULL FOUNDRY: VARSPECTOR VARIABLE TYPOGRAPHY AUDITOR');
+      print('======================================================================\n');
+      final rep = VariableFoundrySpector.audit(target);
+      for (final c in rep.checks) {
+        final tag = c.isPass ? '[PASS]' : (c.isWarn ? '[WARN]' : '[FAIL]');
+        print('  $tag ${c.id}: ${c.details}');
+      }
+      print('\n  SUMMARY: Total Checks: ${rep.checks.length} | PASS: ${rep.passCount} | WARN: ${rep.warnCount} | FAIL: ${rep.failCount}\n');
+      if (!rep.passed) exitCode = 1;
+      break;
     case 'sanctuary':
     case 'tui':
     case 'parlor':
@@ -640,7 +672,7 @@ Future<void> main(List<String> args) async {
       await runBuild();
       break;
     case 'spector':
-      final dir = args.length > 1 ? Directory(args[1]) : Directory('ofl');
+      final dir = args.length > 1 ? Directory(args[1]) : Directory('apache');
       final ok = await FoundrySpector.auditDirectory(dir);
       if (!ok) exitCode = 1;
       break;
@@ -674,6 +706,13 @@ Future<void> main(List<String> args) async {
       break;
     case 'sync':
       runSync();
+      break;
+    case 'benchmark':
+    case 'bench':
+      final py = resolvePythonCmd(findProjectRoot());
+      final benchScript = File('${findProjectRoot()}${Platform.pathSeparator}tool${Platform.pathSeparator}benchmark_rasterizer.py');
+      final proc = await Process.start(py, [benchScript.path, ...args.skip(1)], mode: ProcessStartMode.inheritStdio);
+      exitCode = await proc.exitCode;
       break;
     case 'serve':
     case 'server':

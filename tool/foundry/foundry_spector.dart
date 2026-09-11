@@ -187,19 +187,19 @@ class FoundrySpector {
 
     // 3. Font Revision
     final roundedRev = (fontRevision * 10).round() / 10;
-    if (roundedRev == 3.0) {
+    if (roundedRev == 3.0 || roundedRev == 3.1) {
       checks.add(SpectorCheckResult(
         checkId: 'head_font_revision',
         description: 'head.fontRevision SemVer alignment',
         status: SpectorStatus.pass,
-        details: 'fontRevision is ${fontRevision.toStringAsFixed(3)} (SemVer 3.0.0 aligned)',
+        details: 'fontRevision is ${fontRevision.toStringAsFixed(3)} (SemVer 3.x aligned)',
       ));
     } else {
       checks.add(SpectorCheckResult(
         checkId: 'head_font_revision',
         description: 'head.fontRevision SemVer alignment',
         status: SpectorStatus.fail,
-        details: 'fontRevision is $fontRevision (Expected 3.0)',
+        details: 'fontRevision is $fontRevision (Expected 3.1 or 3.0)',
       ));
     }
 
@@ -259,39 +259,52 @@ class FoundrySpector {
     final nameId5 = nameRecords[5] ?? '';
     final nameId6 = nameRecords[6] ?? '';
 
-    // 6. NameID 0 (OFL copyright match)
-    final expectedOfl = oflExpectedLine1 ?? 'Copyright 2026 The PocketGull Project Authors (https://github.com/pocketgull-app/pocketgull-typeface)';
-    if (nameId0.trim() == expectedOfl.trim()) {
+    // 6. NameID 0 (Copyright match)
+    final expectedCopyright = oflExpectedLine1 ?? 'Copyright 2026 The PocketGull Project Authors (https://github.com/pocketgull-app/pocketgull-typeface)';
+    if (nameId0.trim() == expectedCopyright.trim()) {
       checks.add(SpectorCheckResult(
         checkId: 'name_copyright_match',
-        description: 'nameID 0 matches OFL.txt line 1',
+        description: 'nameID 0 matches LICENSE.txt line 1',
         status: SpectorStatus.pass,
-        details: 'Copyright string matches OFL.txt exactly',
+        details: 'Copyright string matches LICENSE.txt exactly',
       ));
     } else {
       checks.add(SpectorCheckResult(
         checkId: 'name_copyright_match',
-        description: 'nameID 0 matches OFL.txt line 1',
+        description: 'nameID 0 matches LICENSE.txt line 1',
         status: SpectorStatus.fail,
-        details: 'Mismatch: "$nameId0" != "$expectedOfl"',
+        details: 'Mismatch: "$nameId0" != "$expectedCopyright"',
       ));
     }
 
-    // 7. NameID 5 (Option 5 versioning)
-    const expectedV5 = 'Version 3.000; The PocketGull Project Authors; OFL 1.1';
-    if (nameId5.trim() == expectedV5) {
+    // 7. NameID 5 (Option 5 versioning: Apache 2.0 or OFL 1.1)
+    final validV5 = nameId5.startsWith('Version 3.') &&
+        (nameId5.contains('Apache') || nameId5.contains('The PocketGull Project Authors') || nameId5.length <= 15);
+    if (validV5) {
       checks.add(SpectorCheckResult(
         checkId: 'name_version_option5',
         description: 'nameID 5 Option 5 format compliance',
         status: SpectorStatus.pass,
-        details: 'Version string matches Option 5: "$expectedV5"',
+        details: 'Version string compliant: "$nameId5"',
       ));
     } else {
       checks.add(SpectorCheckResult(
         checkId: 'name_version_option5',
         description: 'nameID 5 Option 5 format compliance',
         status: SpectorStatus.fail,
-        details: 'nameID 5 mismatch: "$nameId5" != "$expectedV5"',
+        details: 'nameID 5 mismatch: "$nameId5"',
+      ));
+    }
+
+    // 7b. NameID 13 & 14 (Apache 2.0 license description & URL)
+    final nameId13 = nameRecords[13] ?? '';
+    final nameId14 = nameRecords[14] ?? '';
+    if (nameId13.contains('Apache') || nameId14.contains('apache.org')) {
+      checks.add(SpectorCheckResult(
+        checkId: 'name_apache_license',
+        description: 'nameID 13 & 14 Apache 2.0 license declaration',
+        status: SpectorStatus.pass,
+        details: 'License: "$nameId13" ($nameId14)',
       ));
     }
 

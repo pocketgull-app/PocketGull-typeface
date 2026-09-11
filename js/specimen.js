@@ -1520,7 +1520,7 @@ PocketGull is an open-source, mathematically standardized 1000 UPM clinical type
 3. CYBERSECURITY, COMPLIANCE & TECHNICAL SPECIFICATIONS
   • Zero Egress & Zero Tracking: PocketGull consists purely of local OpenType/TrueType (.ttf) and webfont (.woff2) vector font files. It contains ZERO tracking scripts, ZERO external API calls, and zero network dependencies.
   • 100% HIPAA Safe Harbor: Operates entirely client-side on the local machine with zero ePHI exposure.
-  • Open-Source & Zero Licensing Cost: Released under the SIL Open Font License 1.1 (OFL-1.1), permitting unrestricted enterprise, hospital, and clinical use with zero software licensing fees.
+  • Open-Source & Zero Licensing Cost: Released under the Apache License, Version 2.0, permitting unrestricted enterprise, hospital, and clinical use with zero software licensing fees.
   • Low-Impact Deployment: Files can be silently distributed via Microsoft Intune, SCCM, or Windows Group Policy (GPO) to %WINDIR%\\Fonts, or applied via Citrix Workspace user profile layers without modifying system registry binaries.
 
 4. REQUESTED ACTION
@@ -4448,7 +4448,7 @@ Sincerely,
         'noto': {
           title: 'Google Noto Sans Universal Multi-Script Lineage',
           category: 'OPEN-SOURCE LINEAGE',
-          citation: 'Google Fonts &amp; Monotype — SIL Open Font License (OFL 1.1)',
+          citation: 'Google Fonts &amp; Monotype — Apache License 2.0',
           chips: ['What is "No More Tofu"?', 'Which world scripts are supported?', 'SIL Open Font License spec'],
           content: `
             <h3>1. Universal Multi-Script Harmony ("No More Tofu")</h3>
@@ -4825,7 +4825,7 @@ Keep answers clear, educational, and structured in 2-3 paragraphs with markdown 
           else if (qLower.includes('tofu') || qLower.includes('noto') || qLower.includes('world script') || qLower.includes('sil open font')) {
             answer = `<h4 style="color: var(--accent-teal); margin-bottom: 6px; font-size: 0.9rem;">🌐 Google Noto Sans Lineage ("No More Tofu")</h4>
             <p>When a computer lacks a glyph for a specific language, it renders a blank rectangle nicknamed "tofu" (豆腐). Google Noto was created to eradicate tofu across every written language on Earth.</p>
-            <p>PocketGull honors Noto's global interoperability heritage by aligning its Latin, Greek, Cyrillic, and extended phonetic character sets to Noto's standard baseline and cap-height metrics under the SIL Open Font License (OFL 1.1).</p>`;
+            <p>PocketGull honors Noto's global interoperability heritage by aligning its Latin, Greek, Cyrillic, and extended phonetic character sets to Noto's standard baseline and cap-height metrics under the Apache License 2.0.</p>`;
           }
           // 20. AMAZON EMBER & DALTON MAAG HUMANIST GROTESQUE
           else if (qLower.includes('dalton maag') || qLower.includes('ember') || qLower.includes('humanist') || qLower.includes('eye fatigue')) {

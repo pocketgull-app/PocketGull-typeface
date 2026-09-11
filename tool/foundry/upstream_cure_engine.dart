@@ -59,10 +59,10 @@ class UpstreamCureEngine {
     // Step 2: Enforce 2-byte word boundary alignment via Dart SfntTransformer
     print('\nStep 2: Enforcing TrueType 2-byte word alignment and Bit-7 masking in Dart...');
     final targets = [
-      File('${root.path}/ofl/pocketgull/PocketGull-Regular.ttf'),
-      File('${root.path}/ofl/pocketgull/PocketGull-Bold.ttf'),
-      File('${root.path}/ofl/pocketgull/PocketGull-Black.ttf'),
-      File('${root.path}/ofl/pocketgullmono/PocketGullMono-Regular.ttf'),
+      File('${root.path}/apache/pocketgull/PocketGull-Regular.ttf'),
+      File('${root.path}/apache/pocketgull/PocketGull-Bold.ttf'),
+      File('${root.path}/apache/pocketgull/PocketGull-Black.ttf'),
+      File('${root.path}/apache/pocketgullmono/PocketGullMono-Regular.ttf'),
       File('${root.path}/fonts/ttf/PocketGull-Regular.ttf'),
       File('${root.path}/fonts/ttf/PocketGull-Bold.ttf'),
       File('${root.path}/fonts/ttf/PocketGull-Black.ttf'),
@@ -138,11 +138,11 @@ for stem in ["PocketGull-Regular", "PocketGull-Bold", "PocketGull-Black", "Pocke
     if (fontspectorExe.existsSync()) {
       print('\nStep 6: Google Fonts Official FontSpector 1.7.1 Audit...');
       for (final (familyDir, ttfNames) in [
-        ('${root.path}/ofl/pocketgull', ['PocketGull-Regular.ttf', 'PocketGull-Bold.ttf', 'PocketGull-Black.ttf']),
-        ('${root.path}/ofl/pocketgullmono', ['PocketGullMono-Regular.ttf']),
+        ('${root.path}/apache/pocketgull', ['PocketGull-Regular.ttf', 'PocketGull-Bold.ttf', 'PocketGull-Black.ttf']),
+        ('${root.path}/apache/pocketgullmono', ['PocketGullMono-Regular.ttf']),
       ]) {
         final dir = Directory(familyDir);
-        final ofl = File('${dir.path}/OFL.txt');
+        final lic = File('${dir.path}/LICENSE.txt');
         final desc = File('${dir.path}/DESCRIPTION.en_us.html');
         for (final ttfName in ttfNames) {
           final ttf = File('${dir.path}/$ttfName');
@@ -150,7 +150,7 @@ for stem in ["PocketGull-Regular", "PocketGull-Bold", "PocketGull-Black", "Pocke
           final fsRes = await Process.run(fontspectorExe.path, [
             '-p', 'googlefonts',
             ttf.path,
-            ofl.path,
+            lic.path,
             desc.path,
             '--loglevel', 'fail',
           ]);
@@ -170,11 +170,11 @@ for stem in ["PocketGull-Regular", "PocketGull-Bold", "PocketGull-Black", "Pocke
   }
 
   static void _writePackagingDescriptors(Directory root) {
-    // 1. ofl/pocketgull/METADATA.pb
-    final pgMeta = File('${root.path}/ofl/pocketgull/METADATA.pb');
+    // 1. apache/pocketgull/METADATA.pb
+    final pgMeta = File('${root.path}/apache/pocketgull/METADATA.pb');
     pgMeta.writeAsStringSync('''name: "Pocket Gull"
 designer: "Phil Gear"
-license: "OFL"
+license: "APACHE2"
 category: "SANS_SERIF"
 date_added: "2026-08-04"
 fonts {
@@ -224,11 +224,11 @@ source {
 ''');
     print('  • Wrote ${pgMeta.path}');
 
-    // 2. ofl/pocketgullmono/METADATA.pb
-    final monoMeta = File('${root.path}/ofl/pocketgullmono/METADATA.pb');
+    // 2. apache/pocketgullmono/METADATA.pb
+    final monoMeta = File('${root.path}/apache/pocketgullmono/METADATA.pb');
     monoMeta.writeAsStringSync('''name: "Pocket Gull Mono"
 designer: "Phil Gear"
-license: "OFL"
+license: "APACHE2"
 category: "MONOSPACE"
 date_added: "2026-08-04"
 fonts {

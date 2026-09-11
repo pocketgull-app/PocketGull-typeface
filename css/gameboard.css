@@ -220,7 +220,7 @@
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border-subtle);
       color: #94a3b8;
-      border-radius: 9999px;
+      border-radius: 6px;
       padding: 0.2rem 0.55rem;
       font-size: 0.70rem;
       font-family: var(--font-mono);
@@ -441,7 +441,7 @@
 
     .zen-action-pill {
       padding: 0.32rem 0.75rem;
-      border-radius: 9999px;
+      border-radius: 6px;
       border: 1px solid var(--border-subtle);
       background: rgba(255, 255, 255, 0.05);
       color: #cbd5e1;
@@ -753,7 +753,7 @@
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid var(--border-subtle);
       color: #cbd5e1;
-      border-radius: 9999px;
+      border-radius: 6px;
       width: 30px;
       height: 30px;
       display: inline-flex;
@@ -985,7 +985,7 @@
       background: rgba(3, 7, 18, 0.85);
       border: 1px solid var(--border-subtle);
       padding: 0.28rem 0.85rem;
-      border-radius: 9999px;
+      border-radius: 6px;
       font-family: var(--font-mono);
       font-size: 0.72rem;
       color: var(--accent-emerald);
@@ -1019,7 +1019,7 @@
       pointer-events: auto;
     }
 
-    /* Pacing Guide Balloon & Pills */
+    /* Pacing Guide Balloon & Controls */
     .breath-pacer {
       position: static;
       display: flex;
@@ -1028,7 +1028,7 @@
       background: rgba(15, 23, 42, 0.85);
       border: 1px solid var(--border-subtle);
       padding: 0.35rem 0.85rem;
-      border-radius: 9999px;
+      border-radius: 6px;
       font-family: var(--font-mono);
       font-size: 0.72rem;
       color: #fff;
@@ -1050,7 +1050,7 @@
       border: 1px solid var(--accent-cyan);
       color: var(--accent-cyan);
       padding: 0.35rem 0.85rem;
-      border-radius: 9999px;
+      border-radius: 6px;
       backdrop-filter: blur(8px);
       font-family: var(--font-mono);
       font-size: 0.72rem;
@@ -1163,7 +1163,7 @@
       background: rgba(15, 23, 42, 0.85);
       border: 1px solid rgba(45, 212, 191, 0.3);
       padding: 0.3rem 0.65rem;
-      border-radius: 9999px;
+      border-radius: 8px;
       backdrop-filter: blur(12px);
       box-shadow: 0 4px 20px rgba(0,0,0,0.5);
       flex: 1 1 auto;
@@ -1180,7 +1180,7 @@
       font-size: 0.72rem;
       font-weight: 700;
       padding: 0.26rem 0.6rem;
-      border-radius: 9999px;
+      border-radius: 6px;
       border: 1px solid var(--border-subtle);
       background: rgba(255, 255, 255, 0.04);
       color: var(--text-secondary);
@@ -1218,7 +1218,7 @@
       gap: 0.5rem;
       background: rgba(15, 23, 42, 0.85);
       border: 1px solid rgba(45, 212, 191, 0.35);
-      border-radius: 9999px;
+      border-radius: 8px;
       padding: 0.3rem 0.65rem 0.3rem 0.45rem;
       backdrop-filter: blur(10px);
       box-shadow: 0 4px 15px rgba(0,0,0,0.5);

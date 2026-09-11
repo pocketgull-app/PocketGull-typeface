@@ -14,8 +14,8 @@ PublisherUrl: https://github.com/pocketgull-app
 PublisherSupportUrl: https://github.com/pocketgull-app/pocketgull-typeface/issues
 PackageName: PocketGull Typeface
 PackageUrl: https://font.pocketgull.app
-License: OFL-1.1
-LicenseUrl: https://raw.githubusercontent.com/pocketgull-app/pocketgull-typeface/main/OFL.txt
+License: Apache-2.0
+LicenseUrl: https://raw.githubusercontent.com/pocketgull-app/pocketgull-typeface/main/LICENSE.txt
 ShortDescription: Clinical, optotypic, and telemetry typeface superfamily engineered for life-critical healthcare.
 Description: |
   PocketGull is an open-source clinical sans-serif, display, and telemetry monospace
