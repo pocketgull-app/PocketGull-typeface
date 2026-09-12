@@ -65,14 +65,24 @@
     "sri": "sha384-NVTC9xdXLf4XYSp09OMpR3YN9ggwIY4i34pFl/Jn1IbXixNN+GkSqLxuKolR5jv0"
   },
   "fonts/ttf/PocketGull-Serif-Bold.ttf": {
-    "size": 1869148,
-    "sha256": "335cd51c44c57982facf1b41350cf85f7456fdb32cc45e01a1f2f4fac8486cfa",
-    "sri": "sha384-nmQPJKIywH3qzeHL8Hdg9vdDKRSN7QTmCm/c8K4nHK0pj5xYtLU2pfqjcTeKxG19"
+    "size": 1869312,
+    "sha256": "da61ecef1e930dc20c24243a2aa6a46b86de72b031cde18d3d3ffe6601be4aec",
+    "sri": "sha384-fr6rY0r+86wYymDGBd/Yks2cH8YyUVd50TPiKFJo5E2HJuUOTUBrTOrIT9rumHg6"
   },
   "fonts/ttf/PocketGull-Serif-Regular.ttf": {
-    "size": 1878400,
-    "sha256": "9826ffcbe33a9108c48bfacad98f542183176893dda57941f799d7e8c6e21edf",
-    "sri": "sha384-p4dnbVJFrQYtuPd5joZsLxcgRInRKonBXHyZs8n9T8oZdnJkw9g56icDsPdyOC8B"
+    "size": 1878660,
+    "sha256": "39f83e85e27f334231f7550ada3ab39036b6fd111dd33fa636e0b79abc0ad265",
+    "sri": "sha384-IVD5hAtNyiVNYb8RDLSVdCRNGH26CVuNaPa1HUrUU6sMTf7wXAZ51+DhU7cvH4vf"
+  },
+  "fonts/ttf/PocketGull-Slab-Bold.ttf": {
+    "size": 1869300,
+    "sha256": "7afe118163128e6e774bb2c505eb4b0dc0e8edc684df128ed6f58635c9431ba3",
+    "sri": "sha384-cyzoQKG/vrxftYs20mENXWp/jX6ILj0XeuhhuV1j6Fa5HscSwB9IOG7h44cuZgGt"
+  },
+  "fonts/ttf/PocketGull-Slab-Regular.ttf": {
+    "size": 1878648,
+    "sha256": "50b976fca67e9cf9be44b761b4a8432f808397dea02a08df5c6933ebed55102a",
+    "sri": "sha384-7YxYFoBCmIYww2vN6qMOb5NMvuP+iEF35cQcEVLWZ9O/9P7ZCfSS2VMikfw5ykSH"
   },
   "fonts/ttf/PocketGull-Soft.ttf": {
     "size": 2824344,
@@ -195,14 +205,24 @@
     "sri": "sha384-YJHyJ31M6z2m8B4nsTvYRqXPvhh8sUrJJ/EwE2GnszpDhb5BmBAieAFRuWUekkOg"
   },
   "fonts/woff2/PocketGull-Serif-Bold.woff2": {
-    "size": 675628,
-    "sha256": "a87b2db0acb1e2168c0e521eadcebc1001fc798317d86311b799b49ea4ba35b4",
-    "sri": "sha384-1q+vlZLUUMeaFhXFDPBZKxySmX0a34g2dEDYztPEAJcRxFIri55ISvSfvTSHNnFv"
+    "size": 675712,
+    "sha256": "31bccf779ee9afcda4c2ed65195918b07cff0ffd6fd6f9286a1e8fb6a76e699d",
+    "sri": "sha384-7cJmQYMuaByLpDX6+FuUd3ZVBNQqicfb+PMyYYOTCt51qfdN/j72lelD0WlYSjh9"
   },
   "fonts/woff2/PocketGull-Serif-Regular.woff2": {
-    "size": 674128,
-    "sha256": "48b99a484badcbe4995d412a22f41f3d71b5770a32c3f5ae05811dc6f4a7b32e",
-    "sri": "sha384-bEMzvKh0ECi7Yp7tld/zyrWWSiNu+XnQavbKRFsMe/tHvRdRaKw9gDeN7D68AIV1"
+    "size": 674812,
+    "sha256": "429d42fc800cf3e186e4490d4c050bc23615b3233a0d688b6f8b75c1c4d4b65d",
+    "sri": "sha384-wOXFGLcXw7Rqf2zDvWf8eolWHS61XFgcYKO7K2ZMSstNS0zi0x7683rJUCcnXpZx"
+  },
+  "fonts/woff2/PocketGull-Slab-Bold.woff2": {
+    "size": 675684,
+    "sha256": "4a6f51c7a8c0dd481a2989be18060eb3f1c646bd7ea358ad96bbdd77e13d6dcc",
+    "sri": "sha384-sQQb1IapYAivus+1xn/UaPgfLv1FSgcdufQPHqECOAbnCbHi3vIUajzuzjeLf02Y"
+  },
+  "fonts/woff2/PocketGull-Slab-Regular.woff2": {
+    "size": 674148,
+    "sha256": "bd84525e005e32303ed8b4ac29c45255c97c0e3e1934ed0ab56ea606b0c144ae",
+    "sri": "sha384-wvlZbws6czCjdjHf0OhhJgQxJAEJakdeGqaCa4kZh9sZt6GkROeveW+82RPZEX/6"
   },
   "fonts/woff2/PocketGull-Soft.woff2": {
     "size": 858876,

@@ -25,7 +25,7 @@ PocketGull spans the entire continuum from 203 DPI thermal bedside wristband pri
 2. **PocketGull Bold (wght 700 / 800)**: Display titling, Bionic reading anchors, trauma alarm banners, and pharmaceutical warning headers.
 3. **PocketGull Chiseltip (wght 900)**: Black calligraphic signage, high-contrast placards, and clinical wayfinding.
 4. **PocketGull Marker Raw (wght 900)**: The authentic cardstock felt-marker cut preserving tactile stroke bleed, energetic felt-tip fiber texture, and humanist warmth.
-5. **PocketGull Serif (Regular 400 & Bold 700)**: Bracketed humanist slab serifs engineered for extended clinical reading measures, surgical manuals, and editorial prestige.
+5. **PocketGull Slab (Regular 400 & Bold 700)**: Bracketed humanist slab serifs engineered for extended clinical reading measures, surgical manuals, and editorial prestige.
 6. **PocketGull Mono (Regular 400 & Bold 700)**: Fixed 600 UPM pitch, ICU telemetry, sub-cell ECG waveforms, box-drawing characters (`U+2500`–`U+257F`), and Powerline chevrons.
 7. **PocketGull Micro (wght 500)**: ETDRS 1:5 aperture dilation tailored for 203 DPI thermal wristbands, ampoules, and cryogenic vials.
 8. **PocketGull VF (wght 400–900, slnt -10.5°–0°, opsz 14–96)**: Continuous variable font offering seamless dynamic responsive scaling.

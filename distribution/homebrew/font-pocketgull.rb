@@ -16,6 +16,8 @@ cask "font-pocketgull" do
   font "fonts/ttf/PocketGull-Italic.ttf"
   font "fonts/ttf/PocketGull-BoldItalic.ttf"
   font "fonts/ttf/PocketGull-MarkerRaw.ttf"
+  font "fonts/ttf/PocketGull-Slab-Regular.ttf"
+  font "fonts/ttf/PocketGull-Slab-Bold.ttf"
   font "fonts/ttf/PocketGull-Serif-Regular.ttf"
   font "fonts/ttf/PocketGull-Serif-Bold.ttf"
   font "fonts/ttf/PocketGull-Soft.ttf"

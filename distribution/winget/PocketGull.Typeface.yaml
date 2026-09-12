@@ -51,6 +51,8 @@ Installers:
       - RelativeFilePath: fonts/ttf/PocketGull-Fineliner.ttf
       - RelativeFilePath: fonts/ttf/PocketGull-Chiseltip.ttf
       - RelativeFilePath: fonts/ttf/PocketGull-MarkerRaw.ttf
+      - RelativeFilePath: fonts/ttf/PocketGull-Slab-Regular.ttf
+      - RelativeFilePath: fonts/ttf/PocketGull-Slab-Bold.ttf
       - RelativeFilePath: fonts/ttf/PocketGull-Serif-Regular.ttf
       - RelativeFilePath: fonts/ttf/PocketGull-Serif-Bold.ttf
       - RelativeFilePath: fonts/ttf/PocketGullMono-Regular.ttf
